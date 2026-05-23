@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV(中心静脈)カテーテル抜去の注意点 ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .accordion-item{border:1px solid var(--border);border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+  .accordion-head{background:#f9fafc;padding:.9rem 1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);user-select:none;transition:background .2s}
+  .accordion-head:hover{background:#eef2f7}
+  .accordion-head .chev{transition:transform .25s;color:var(--accent);font-size:1.2rem}
+  .accordion-item.open .chev{transform:rotate(90deg)}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 1rem}
+  .accordion-item.open .accordion-body{max-height:1500px;padding:1rem}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:480px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .checklist{background:#f5f8fc;border-radius:10px;padding:1rem 1.2rem;margin-top:.8rem}
+  .checklist label{display:block;padding:.4rem 0;font-size:.92rem;cursor:pointer}
+  .checklist input{margin-right:.5rem;transform:scale(1.15)}
+  .checklist input:checked + span{text-decoration:line-through;color:var(--muted)}
+  .step-flow{counter-reset:step;list-style:none;padding-left:0}
+  .step-flow li{position:relative;padding:.6rem 0 .6rem 2.5rem;border-left:2px solid var(--accent);margin-left:1rem;padding-left:1.5rem}
+  .step-flow li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .pill{display:inline-block;font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:#fce4e4;color:var(--accent);margin-right:.3rem}
+  .pill.ok{background:#e8f5e9;color:var(--success)}
+  @media (max-width:480px){section{padding:1.1rem .9rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CV(中心静脈)カテーテル抜去の注意点</h1>
+  <p class="subtitle">空気塞栓を防ぐための知識と手技</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#why">なぜ危険か</a></li>
+    <li><a href="#airembol">空気塞栓</a></li>
+    <li><a href="#procedure">抜去手技</a></li>
+    <li><a href="#complications">合併症</a></li>
+    <li><a href="#checklist">チェックリスト</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="why">
+  <h2>1. なぜCV抜去は侮ってはいけないのか</h2>
+  <p>中心静脈カテーテル(CVC)の抜去は「ただ引き抜くだけ」に見えますが、実は<strong>致死的合併症</strong>(<u>空気塞栓</u>)を起こしうる手技です。挿入時の合併症ばかりが注目されますが、抜去時こそ油断しないことが重要です。</p>
+
+  <div class="callout danger">
+    <strong>⚠ 最重要:</strong> CV抜去時に最も警戒すべき合併症は<strong>空気塞栓(air embolism)</strong>。発症すれば数十秒で循環虚脱・心停止に至る可能性があります。
+  </div>
+
+  <h3>報告されている死亡例の典型像</h3>
+  <ul>
+    <li>座位またはfowler位で抜去 → 直後に呼吸困難・意識消失</li>
+    <li>抜去部位を圧迫せず、開放のまま離床 → 数分後に虚脱</li>
+    <li>抜去後 閉塞性ドレッシングをせず、数時間後に塞栓症状(遅発性)</li>
+  </ul>
+</section>
+
+<section id="airembol">
+  <h2>2. 空気塞栓のメカニズム</h2>
+  <p>身体の中で<strong>陰圧</strong>になる部位を理解することが、CV抜去の安全管理のすべての土台です。</p>
+
+  <h3>「胸腔内陰圧」の生理</h3>
+  <p>正常では胸腔内圧は常に大気圧より低い:</p>
+  <ul>
+    <li><strong>安静呼気時:</strong> 約 −5 cmH₂O</li>
+    <li><strong>安静吸気時:</strong> 約 −8 cmH₂O</li>
+    <li><strong>深吸気/努力吸気時:</strong> −20〜−40 cmH₂O</li>
+  </ul>
+  <p>この陰圧で肺が膨らみ、同時に<strong>胸腔内の静脈(上大静脈・右房)も陰圧化</strong>します。これが「<u>胸腔吸引作用</u>(thoracic suction)」と呼ばれ、静脈還流を促進する正常な生理です。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CV抜去時の空気塞栓の機序">
+      <!-- 胸郭 -->
+      <ellipse cx="200" cy="140" rx="160" ry="80" fill="#e8eef5" stroke="#0b2545" stroke-width="2"/>
+      <text x="160" y="40" font-size="11" fill="#0b2545" font-weight="bold">胸腔内陰圧 (−5〜−40 cmH₂O)</text>
+
+      <!-- 上大静脈 -->
+      <rect x="180" y="60" width="20" height="100" fill="#1565c0" rx="3"/>
+      <text x="205" y="105" font-size="10" fill="#1565c0" font-weight="bold">上大静脈</text>
+
+      <!-- カテーテル経路 (抜去後の管腔) -->
+      <line x1="60" y1="80" x2="190" y2="100" stroke="#999" stroke-width="3" stroke-dasharray="6,3"/>
+      <circle cx="60" cy="80" r="6" fill="#fff" stroke="#c62828" stroke-width="2"/>
+      <text x="15" y="65" font-size="10" fill="#c62828" font-weight="bold">抜去部位</text>
+      <text x="15" y="78" font-size="9" fill="#5a6473">(皮膚穿刺孔)</text>
+
+      <!-- 空気の流れ矢印 -->
+      <path d="M 35 100 L 55 88" stroke="#c62828" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+      <text x="10" y="110" font-size="10" fill="#c62828">空気</text>
+
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0 0, 8 4, 0 8" fill="#c62828"/>
+        </marker>
+      </defs>
+
+      <!-- 心臓 -->
+      <ellipse cx="220" cy="170" rx="40" ry="35" fill="#fce4e4" stroke="#c62828" stroke-width="1.5"/>
+      <text x="205" y="175" font-size="11" fill="#c62828" font-weight="bold">右房/右室</text>
+      <text x="200" y="200" font-size="9" fill="#c62828">→ 空気塞栓へ</text>
+    </svg>
+  </div>
+
+  <h3>抜去時に空気が引き込まれる条件</h3>
+  <ol>
+    <li>カテーテルが抜けても、皮膚→静脈までの<strong>瘻孔(tract)</strong>がしばらく残る(特に長期留置例)</li>
+    <li>その瘻孔の遠位端が胸腔内の陰圧静脈系に通じている</li>
+    <li>患者が<strong>吸気</strong>すると、胸腔内陰圧 → 静脈陰圧 → 瘻孔から空気が吸い込まれる</li>
+    <li>50 mL以上の空気が右心系に入ると<strong>致死的</strong>(諸説あるが10-20 mL/秒の流入で危険)</li>
+  </ol>
+
+  <div class="callout tip">
+    <strong>💡 ポイント:</strong> 「水は高い方から低い方へ」と同じく、空気も<u>陽圧から陰圧へ</u>流れます。胸腔内が陰圧 = 外気が引き込まれる吸引装置になります。
+  </div>
+</section>
+
+<section id="procedure">
+  <h2>3. 安全な抜去手技</h2>
+
+  <h3>抜去前の準備</h3>
+  <ul>
+    <li>凝固機能の確認(PT-INR、血小板)— 抗凝固薬服用中なら適切な休薬・対策</li>
+    <li>カテーテルの種類・長さ・留置日数を確認</li>
+    <li>必要物品: 滅菌手袋、ガーゼ、消毒液、<strong>ワセリンガーゼ + フィルムドレッシング</strong>(閉塞性)、縫合糸抜去用器材</li>
+  </ul>
+
+  <h3>手順(7ステップ)</h3>
+  <ol class="step-flow">
+    <li><strong>体位:</strong> <u>仰臥位</u>(supine)、必要なら<u>Trendelenburg位</u>(頭低位)。座位・Fowler位は禁忌</li>
+    <li><strong>説明:</strong> 抜去のタイミングで「息を止めてください」または「ハミングしてください」と指示できるよう事前説明</li>
+    <li><strong>消毒・固定具の除去:</strong> 縫合糸を切除、皮膚消毒</li>
+    <li><strong>呼気停止/Valsalva:</strong> 患者に<u>息こらえ(息を吐いてから止める)</u>または<u>ハミング</u>を指示(吸気陰圧を作らせない)</li>
+    <li><strong>抜去:</strong> ゆっくり一定速度で引き抜く。先端の破損・遺残がないことを確認</li>
+    <li><strong>即時圧迫:</strong> 抜去部を清潔ガーゼで5〜10分以上圧迫止血</li>
+    <li><strong>閉塞性ドレッシング:</strong> ワセリンガーゼ + 透明フィルムで<u>気密シール</u>。最低24時間継続(72時間が安全)</li>
+  </ol>
+
+  <h3>抜去後の管理</h3>
+  <ul>
+    <li>30分間は<strong>仰臥位安静</strong>(立位は陰圧を増強する)</li>
+    <li>バイタル監視、呼吸困難・胸痛・神経症状の有無を観察</li>
+    <li>カテーテル先端の<strong>培養提出</strong>(感染疑い時)</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📌 重要な質問:</strong> 「なぜハミングが有効?」 → 声帯閉鎖により胸腔内圧が陽圧化または0付近に保たれ、吸気陰圧の発生を防ぐため。Valsalva(息こらえ + いきみ)も同じ原理。
+  </div>
+</section>
+
+<section id="complications">
+  <h2>4. 合併症と対応</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>合併症</th><th>機序</th><th>対応</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>空気塞栓</strong><br><span class="pill">致死的</span></td>
+          <td>抜去部から胸腔内陰圧で空気引き込み</td>
+          <td>即座に<u>左側臥位 + Trendelenburg</u>(空気を右室外側に閉じ込める)、100%酸素、ICU管理。重症ではHBO(高気圧酸素)考慮</td>
+        </tr>
+        <tr>
+          <td>出血・血腫</td>
+          <td>抗凝固、血小板減少、太い血管(IJV, SCV)</td>
+          <td>圧迫止血5〜10分。改善なければ凝固補正</td>
+        </tr>
+        <tr>
+          <td>カテーテル断裂・遺残</td>
+          <td>長期留置でカテーテル劣化、無理な牽引</td>
+          <td>抜去後に先端確認。遺残疑いはX線/CT。IVRで回収</td>
+        </tr>
+        <tr>
+          <td>カテーテル関連感染(CRBSI)</td>
+          <td>カテーテル定着菌が血流播種</td>
+          <td>抜去後 先端培養 + 血培2セット。経過観察 → 抗菌薬</td>
+        </tr>
+        <tr>
+          <td>血栓飛散</td>
+          <td>カテーテル周囲血栓が抜去で剥離</td>
+          <td>事前にエコーで血栓評価。大血栓あれば抜去回避 or IVR連携</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="checklist">
+  <h2>5. CV抜去前 セルフチェックリスト</h2>
+  <p>抜去前にすべて確認してから手技を開始してください。</p>
+  <div class="checklist">
+    <label><input type="checkbox"><span> 抗凝固薬の確認・必要な休薬済み</span></label>
+    <label><input type="checkbox"><span> 凝固機能(PT-INR, 血小板)が許容範囲内</span></label>
+    <label><input type="checkbox"><span> カテーテル種類・留置日数・先端位置を把握</span></label>
+    <label><input type="checkbox"><span> 患者を仰臥位(またはTrendelenburg)に</span></label>
+    <label><input type="checkbox"><span> 呼吸停止/Valsalva/ハミングの説明済み</span></label>
+    <label><input type="checkbox"><span> ワセリンガーゼ + フィルムドレッシング準備済み</span></label>
+    <label><input type="checkbox"><span> モニター装着、緊急時対応物品が手元にある</span></label>
+    <label><input type="checkbox"><span> 抜去後30分の安静確保(立たせない)</span></label>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>6. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>CVC</td><td>Central Venous Catheter(中心静脈カテーテル)</td></tr>
+        <tr><td>Air embolism</td><td>空気塞栓症。50mL以上で致死的</td></tr>
+        <tr><td>Valsalva maneuver</td><td>声門閉鎖下にいきむ。胸腔内圧を陽圧化</td></tr>
+        <tr><td>Trendelenburg位</td><td>頭低位。下肢側を高くする体位</td></tr>
+        <tr><td>Occlusive dressing</td><td>閉塞性ドレッシング。気密性のあるドレッシング(ワセリンガーゼ+フィルム)</td></tr>
+        <tr><td>CRBSI</td><td>Catheter-Related Bloodstream Infection(カテーテル関連血流感染)</td></tr>
+        <tr><td>胸腔内陰圧</td><td>呼吸サイクル中、常に大気圧より低い圧。吸気時さらに低下</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>CV(中心静脈)カテーテル抜去の注意点 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、実際の手技は施設マニュアルと指導医の指示に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<script>
+  document.querySelectorAll('.accordion-head').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+
+  const questions = [
+    {q:"CV抜去時に最も警戒すべき致死的合併症はどれか。",choices:["皮下血腫","空気塞栓","カテーテル感染","気胸"],correct:1,explain:"空気塞栓は数十秒で循環虚脱を起こしうる致死的合併症。胸腔内陰圧で皮膚抜去孔から空気が引き込まれる。"},
+    {q:"CV抜去時の体位として最も適切なのはどれか。",choices:["座位","半座位(Fowler位)","仰臥位またはTrendelenburg位","腹臥位"],correct:2,explain:"頭高位は胸腔内陰圧・静脈陰圧を増大させ空気塞栓リスクを高める。仰臥位またはTrendelenburg(頭低位)で抜去する。"},
+    {q:"抜去のタイミングで患者に行わせる呼吸法として正しいのはどれか。",choices:["深呼吸を繰り返す","息こらえ(Valsalva)またはハミング","ゆっくり吸気","咳をする"],correct:1,explain:"Valsalva・ハミングは胸腔内圧を陽圧化または0付近に保ち、吸気陰圧による空気引き込みを防ぐ。深呼吸・吸気は禁忌。"},
+    {q:"CV抜去後に空気塞栓が疑われた場合の初期対応はどれか。",choices:["右側臥位 + 頭高位","左側臥位 + Trendelenburg位","座位 + 酸素投与","腹臥位"],correct:1,explain:"左側臥位 + Trendelenburg位(Durant maneuver)で空気を右室の側壁側に閉じ込め、肺動脈への移行を遅らせる。同時に100%酸素投与。"},
+    {q:"CV抜去後のドレッシングとして適切なのはどれか。",choices:["通常のガーゼのみ","ワセリンガーゼ + フィルムドレッシング","ドレッシング不要","アルコール綿のみ"],correct:1,explain:"気密性のある閉塞性ドレッシング(ワセリン+フィルム)を最低24時間継続し、瘻孔からの遅発性空気引き込みを防ぐ。"},
+    {q:"なぜ胸腔内は常に陰圧なのか?",choices:["心拍動による","肺の弾性収縮力と胸壁の弾性拡張力が拮抗するため","横隔膜の緊張による","重力の作用"],correct:1,explain:"肺は縮もうとし、胸郭は広がろうとする — その両者の弾性力が拮抗して胸腔内に陰圧(陰圧空間)が生まれる。"}
+  ];
+
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
