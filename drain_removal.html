@@ -52,6 +52,23 @@
   .pill{display:inline-block;font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:#fce4e4;color:var(--accent);margin-right:.3rem}
   .pill.warn{background:#fff3e0;color:var(--warn)}
   .pill.ok{background:#e8f5e9;color:var(--success)}
+  .case-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:1rem 1.2rem;margin:.8rem 0}
+  .case-card .case-no{display:inline-block;background:var(--accent);color:#fff;font-weight:bold;font-size:.78rem;padding:.15rem .6rem;border-radius:4px;margin-bottom:.5rem}
+  .case-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
+  .case-card .scenario{font-size:.9rem;margin-bottom:.5rem}
+  .case-card .lesson{background:#fff8e1;border-left:3px solid var(--warn);padding:.5rem .7rem;font-size:.85rem;margin-top:.4rem;border-radius:4px}
+  .case-card .lesson strong{color:var(--navy)}
+  .pmda-block{background:#f9fafc;border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.2rem;margin:1.2rem 0}
+  .pmda-block .pmda-title{font-weight:600;color:var(--navy);font-size:1.02rem;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+  .pmda-block .pmda-meta{font-size:.78rem;color:var(--muted);margin-bottom:.6rem}
+  .pmda-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin:.8rem 0}
+  .pmda-figs figure{margin:0;background:#fff;border:1px solid var(--border);border-radius:6px;padding:.4rem;text-align:center}
+  .pmda-figs img{width:100%;height:auto;border-radius:4px;cursor:zoom-in;transition:transform .2s}
+  .pmda-figs img:hover{transform:scale(1.02)}
+  .pmda-figs figcaption{font-size:.74rem;color:var(--muted);margin-top:.3rem}
+  .source-ref{background:#f5f8fc;border-left:4px solid var(--navy);padding:.7rem .9rem;border-radius:6px;font-size:.83rem;margin-top:.8rem}
+  .source-ref a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .source-ref a:hover{text-decoration:underline}
   .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
   .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
   .quiz-choices{display:grid;gap:.5rem}
@@ -89,6 +106,7 @@
     <li><a href="#timing">抜去タイミング</a></li>
     <li><a href="#bytype">部位別の注意</a></li>
     <li><a href="#technique">基本手技</a></li>
+    <li><a href="#cases">実際の事故例</a></li>
     <li><a href="#checklist">チェックリスト</a></li>
     <li><a href="#quiz">クイズ</a></li>
     <li><a href="#glossary">用語</a></li>
@@ -250,8 +268,114 @@
   </ul>
 </section>
 
+<section id="cases">
+  <h2>5. 実際の事故事例 ― PMDA医療安全情報</h2>
+  <p>独立行政法人 医薬品医療機器総合機構(PMDA)が公表している医療安全情報には、ドレーン関連の事故事例が複数収載されています。ここではドレーン抜去・取扱いに関連する代表的な2件を取り上げます。</p>
+
+  <!-- PMDA No.60 -->
+  <div class="pmda-block">
+    <div class="pmda-title">📘 PMDA医療安全情報 No.60 ― 胸腔ドレーン取扱い時の注意について</div>
+    <div class="pmda-meta">2020年8月発行 / 胸腔ドレーンの挿入位置と方向に起因する臓器損傷事例</div>
+
+    <div class="case-card">
+      <span class="case-no">事例 1 ― 肺穿通</span>
+      <h4>胸腔ドレーンが肺実質を穿通したケース</h4>
+      <p class="scenario">右肺虚脱に対し胸腔ドレーンを挿入。2日後の自己血癒着術中に咳とともに<u>血液喀出</u>。胸部CTで胸腔ドレーンが<strong>右上肺野を穿通</strong>していたことが判明。</p>
+      <div class="lesson"><strong>📌 学び:</strong> 挿入後の画像確認はあくまで「先端位置」であり、<u>肺実質への穿通</u>は見落とされうる。喀血や呼吸状態悪化があれば再評価を。</div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-no">事例 2 ― 大動脈損傷</span>
+      <h4>下行大動脈を損傷したケース</h4>
+      <p class="scenario">胸水ドレナージで胸腔ドレーンを挿入したところ、疼痛とSpO₂低下。胸腔鏡で<strong>下行大動脈と肺底区域に損傷</strong>を確認。</p>
+      <div class="lesson"><strong>📌 学び:</strong> 肋骨の<u>直下</u>には肋間動静脈・神経が走行。挿入時は肋骨の<u>上縁</u>を狙う(肋骨直上ライン)。挿入方向は心臓・大血管を避け、慎重に進める。違和感あれば即中断。</div>
+    </div>
+
+    <div class="pmda-figs">
+      <figure>
+        <a href="images/pmda_60_page-1.png" target="_blank" rel="noopener">
+          <img src="images/pmda_60_page-1.png" alt="PMDA No.60 1ページ目">
+        </a>
+        <figcaption>1ページ目: 事例と臓器損傷の警告</figcaption>
+      </figure>
+      <figure>
+        <a href="images/pmda_60_page-2.png" target="_blank" rel="noopener">
+          <img src="images/pmda_60_page-2.png" alt="PMDA No.60 2ページ目">
+        </a>
+        <figcaption>2ページ目: 挿入位置(肋骨と肋間動静脈)と挿入方向の解説</figcaption>
+      </figure>
+      <figure>
+        <a href="images/pmda_60_page-3.png" target="_blank" rel="noopener">
+          <img src="images/pmda_60_page-3.png" alt="PMDA No.60 3ページ目">
+        </a>
+        <figcaption>3ページ目: チェックリストと推奨</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- PMDA No.62 -->
+  <div class="pmda-block">
+    <div class="pmda-title">📘 PMDA医療安全情報 No.62 ― PCPS/ECMOカニューレの抜去事例について</div>
+    <div class="pmda-meta">2022年3月発行 / 大口径カニューレが「意図せず抜けた」3事例</div>
+
+    <div class="case-card">
+      <span class="case-no">事例 1 ― 固定前の脱落</span>
+      <h4>挿入術者と固定術者の連携不足で抜けたケース</h4>
+      <p class="scenario">PCPSカニューレの<u>挿入と糸固定</u>を別の術者が行っていたが、進捗の共有不足でカニューレを保持する者がいなくなり、自重で抜けてしまった。</p>
+      <div class="lesson"><strong>📌 学び:</strong> 補助循環開始後はカニューレ自体の重みで容易に移動する。<u>縫合糸で固定が完了するまでは必ず保持役を決めておく</u>。役割分担を声に出して確認。</div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-no">事例 2 ― 移送時の事故</span>
+      <h4>ストレッチャー移送時に駆動装置との距離が離れて抜けたケース</h4>
+      <p class="scenario">ICU〜CT室の移送中、ストレッチャーと駆動装置(コンソール)の距離が離れ、回路が引っ張られてカニューレが抜けた。</p>
+      <div class="lesson"><strong>📌 学び:</strong> 移送前に <u>統括リーダー + カニューレ監視役 + 駆動装置監視役</u> を割り当てる。事前のシミュレーションでトラブル対応を確認。</div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-no">事例 3 ― 体位変換</span>
+      <h4>体位変換でカニューレが10cm抜けたケース</h4>
+      <p class="scenario">日常的な体位変換時、カニューレが引っ張られて<strong>10cm抜けて</strong>しまった。</p>
+      <div class="lesson"><strong>📌 学び:</strong> 体位変換は複数人で実施し、必ず<u>カニューレ保持役</u>を配置。回路の張力を常に観察。</div>
+    </div>
+
+    <div class="pmda-figs">
+      <figure>
+        <a href="images/pmda_62_page-1.png" target="_blank" rel="noopener">
+          <img src="images/pmda_62_page-1.png" alt="PMDA No.62 1ページ目">
+        </a>
+        <figcaption>1ページ目: カニューレ固定時の注意点</figcaption>
+      </figure>
+      <figure>
+        <a href="images/pmda_62_page-2.png" target="_blank" rel="noopener">
+          <img src="images/pmda_62_page-2.png" alt="PMDA No.62 2ページ目">
+        </a>
+        <figcaption>2ページ目: 移送時の役割分担図</figcaption>
+      </figure>
+      <figure>
+        <a href="images/pmda_62_page-3.png" target="_blank" rel="noopener">
+          <img src="images/pmda_62_page-3.png" alt="PMDA No.62 3ページ目">
+        </a>
+        <figcaption>3ページ目: 体位変換時の注意点</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 共通する学び:</strong> ドレーン・カニューレの事故の多くは <u>「複数人作業時の連携不足」</u> と <u>「体動・移送時の張力管理不足」</u> から発生する。役割分担を明確にし、声出し確認を徹底することが最大の予防策。
+  </div>
+
+  <div class="source-ref">
+    <strong>📖 出典:</strong> 独立行政法人 医薬品医療機器総合機構(PMDA)<br>
+    PMDA医療安全情報 No.60(胸腔ドレーン取扱い時の注意について, 2020年8月)<br>
+    PMDA医療安全情報 No.62(PCPS/ECMOカニューレの抜去事例について, 2022年3月)<br>
+    <a href="https://www.pmda.go.jp/" target="_blank" rel="noopener">https://www.pmda.go.jp/</a><br>
+    <small>※ PMDA医療安全情報は厚生労働省所管の独立行政法人により公表されている公的な医療安全情報資料です。</small>
+  </div>
+</section>
+
 <section id="checklist">
-  <h2>5. ドレーン抜去 セルフチェックリスト</h2>
+  <h2>6. ドレーン抜去 セルフチェックリスト</h2>
   <div class="checklist">
     <label><input type="checkbox"><span> 排液量・性状が抜去基準を満たしている</span></label>
     <label><input type="checkbox"><span> 画像所見で液体貯留・遺残腔がない</span></label>
@@ -265,9 +389,9 @@
 </section>
 
 <section id="quiz">
-  <h2>6. 理解度チェック(全6問)</h2>
+  <h2>7. 理解度チェック(全7問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="progress" id="progress">問題 1 / 7</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -277,7 +401,7 @@
     </div>
     <div class="score-display" id="scoreDisplay">
       <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 6</div>
+      <div class="big" id="finalScore">0 / 7</div>
       <div id="comment"></div>
       <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
     </div>
@@ -285,7 +409,7 @@
 </section>
 
 <section id="glossary">
-  <h2>7. 用語集</h2>
+  <h2>8. 用語集</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>用語</th><th>意味</th></tr></thead>
@@ -328,7 +452,8 @@
     {q:"腹腔ドレーン(膵手術後)抜去前に確認すべき排液項目は?",choices:["pH","アミラーゼ・リパーゼ","ヘモグロビン","電解質"],correct:1,explain:"膵液瘻の早期発見にはドレーン排液中のアミラーゼ・リパーゼ測定が必須。血清の3倍以上で膵液瘻を疑う(ISGPF基準)。"},
     {q:"ドレーン抜去後の閉塞性ドレッシングが特に必要なのはどれか。",choices:["皮下ドレーン","胸腔ドレーン","Penroseドレーン","SBバック皮下留置"],correct:1,explain:"胸腔ドレーンは抜去孔から空気進入で気胸再発のリスクがあるため、ワセリンガーゼ+フィルムで気密シールが必須。"},
     {q:"心嚢ドレーン抜去後に最も警戒すべき合併症はどれか。",choices:["皮下気腫","心タンポナーデ","胸水貯留","気胸"],correct:1,explain:"心嚢ドレーン抜去後は遅発性出血による心タンポナーデを警戒。Beckの三徴(血圧低下・頸静脈怒張・心音減弱)を観察。"},
-    {q:"ドレーンが抜けない場合の対応として適切でないのはどれか。",choices:["固定縫合糸の遺残を確認","無理に引き抜く","画像評価を行う","IVR/外科にコンサルト"],correct:1,explain:"無理な牽引はドレーン断裂・組織損傷の原因。原因を確認してから対応する。"}
+    {q:"ドレーンが抜けない場合の対応として適切でないのはどれか。",choices:["固定縫合糸の遺残を確認","無理に引き抜く","画像評価を行う","IVR/外科にコンサルト"],correct:1,explain:"無理な牽引はドレーン断裂・組織損傷の原因。原因を確認してから対応する。"},
+    {q:"PMDA医療安全情報 No.62(PCPS/ECMOカニューレ抜去事例)から導かれる教訓として最も適切なのはどれか。",choices:["カニューレ挿入後はすぐ離れて構わない","ストレッチャー移送は1人で十分","補助循環開始後も縫合固定完了までカニューレを保持し、移送・体位変換時は役割分担を事前に決めておく","体位変換時はカニューレを触らず患者だけを動かす"],correct:2,explain:"PMDA No.62では「固定前の脱落」「移送時の引き抜け」「体位変換時の10cm抜け」の3事例が報告されている。固定完了までの保持、移送時の統括リーダー設置、複数人での体位変換が予防策。"}
   ];
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
