@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心血管外科 総論 ― 医学生のための入門</title>
+<style>
+  :root {
+    --navy: #0b2545;
+    --navy-light: #13315c;
+    --accent: #c62828;
+    --accent-light: #ef5350;
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #5a6473;
+    --border: #e1e5ea;
+    --success: #2e7d32;
+    --warn: #ef6c00;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08);
+    --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    padding: 2.5rem 1rem 2rem;
+    text-align: center;
+  }
+  header h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  header .subtitle {
+    opacity: 0.85;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+  }
+  header .meta {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  /* Nav */
+  nav {
+    background: var(--navy-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: var(--shadow);
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    min-width: max-content;
+    padding: 0 0.5rem;
+  }
+  nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  nav a:hover, nav a:focus {
+    background: rgba(255,255,255,0.08);
+    border-bottom-color: var(--accent-light);
+  }
+
+  /* Main */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+  section {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1.5rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  section h2 {
+    color: var(--navy);
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    border-left: 5px solid var(--accent);
+    padding-left: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  section h3 {
+    color: var(--navy-light);
+    font-size: 1.05rem;
+    margin: 1.2rem 0 0.6rem;
+  }
+  p, li { font-size: 0.95rem; }
+  ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+
+  /* Hero stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, #f0f4f8, #e8eef5);
+    border-left: 4px solid var(--accent);
+    padding: 0.9rem;
+    border-radius: 8px;
+  }
+  .stat-card .num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .stat-card .label {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-btn:hover { color: var(--accent-light); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fade 0.3s; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Accordion */
+  .accordion-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+  }
+  .accordion-head {
+    background: #f9fafc;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--navy);
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .accordion-head:hover { background: #eef2f7; }
+  .accordion-head .chev {
+    transition: transform 0.25s;
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+  .accordion-item.open .chev { transform: rotate(90deg); }
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 1rem;
+  }
+  .accordion-item.open .accordion-body {
+    max-height: 1200px;
+    padding: 1rem;
+  }
+
+  /* Procedure cards */
+  .proc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.8rem;
+  }
+  .proc-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .proc-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  .proc-card h4 {
+    color: var(--navy);
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .proc-card .full { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.5rem; }
+  .proc-card p { font-size: 0.85rem; }
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    background: #fce4e4;
+    color: var(--accent);
+    margin-right: 0.3rem;
+    margin-top: 0.4rem;
+  }
+  .tag.endo { background: #e3f2fd; color: #1565c0; }
+  .tag.open { background: #fff3e0; color: #e65100; }
+
+  /* Anatomy diagram */
+  .diagram-wrap {
+    background: #fafbfd;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .diagram-wrap svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+  }
+  .legend span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .legend i {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  /* Quiz */
+  .quiz {
+    background: #f5f8fc;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .quiz-q {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--navy);
+  }
+  .quiz-choices { display: grid; gap: 0.5rem; }
+  .quiz-choice {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .quiz-choice:hover { border-color: var(--accent-light); }
+  .quiz-choice.correct {
+    background: #e8f5e9;
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .quiz-choice.wrong {
+    background: #ffebee;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .quiz-choice:disabled { cursor: default; }
+  .quiz-feedback {
+    margin-top: 0.8rem;
+    padding: 0.7rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: #e8f5e9; color: var(--success); }
+  .quiz-feedback.ng { background: #ffebee; color: var(--accent); }
+  .quiz-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: var(--accent-light); }
+  .btn:disabled { background: #ccc; cursor: not-allowed; }
+  .progress {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .score-display {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: white;
+    border-radius: 10px;
+    margin-top: 1rem;
+    display: none;
+  }
+  .score-display.show { display: block; }
+  .score-display .big {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 480px;
+  }
+  th, td {
+    padding: 0.7rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+  }
+  tr:hover td { background: #f9fafc; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* Info callout */
+  .callout {
+    background: #fff8e1;
+    border-left: 4px solid var(--warn);
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin: 0.8rem 0;
+    font-size: 0.88rem;
+  }
+  .callout.tip {
+    background: #e3f2fd;
+    border-left-color: #1976d2;
+  }
+  .callout strong { color: var(--navy); }
+
+  @media (max-width: 480px) {
+    section { padding: 1.1rem 0.9rem; }
+    .proc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>心血管外科 総論</h1>
+  <p class="subtitle">医学生のための入門 ― 疾患・術式・解剖からクイズまで</p>
+  <p class="meta">For Medical Students | All Years</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#intro">概論</a></li>
+    <li><a href="#anatomy">解剖</a></li>
+    <li><a href="#disease">主要疾患</a></li>
+    <li><a href="#procedure">代表術式</a></li>
+    <li><a href="#peri">周術期</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語集</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- 概論 -->
+<section id="intro">
+  <h2>1. 心血管外科とは</h2>
+  <p>心血管外科(Cardiovascular Surgery; CVS)は、<strong>心臓・大血管(大動脈・主要肺動脈)・末梢血管</strong>の外科的治療を担う診療科です。冠動脈バイパス術(CABG)、弁膜症手術、大動脈瘤手術、先天性心疾患手術などを扱い、近年は<strong>低侵襲化(MICS・TAVI・EVAR/TEVAR)</strong>とハイブリッド治療が急速に進歩しています。</p>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num">~70,000</div>
+      <div class="label">日本国内 年間心臓血管手術数</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3-5%</div>
+      <div class="label">単独CABG手術死亡率(全国平均)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">No.1</div>
+      <div class="label">死因における循環器疾患(心+脳)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">60+</div>
+      <div class="label">国内TAVI実施施設数の増加</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 学習のコツ:</strong> 心血管外科は「<u>解剖→病態生理→診断→治療選択→術式</u>」の流れで理解すると体系的に頭に入ります。まず正常解剖と血流の方向をしっかり押さえましょう。
+  </div>
+</section>
+
+<!-- 解剖 -->
+<section id="anatomy">
+  <h2>2. 心臓・大血管の解剖</h2>
+  <p>下図は心臓と主要大血管の模式図です。各部位をタップして名称を確認できます。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="心臓と大血管の模式図">
+      <!-- 大動脈 -->
+      <path d="M 200 40 Q 200 80 230 100 Q 260 120 260 160" stroke="#c62828" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <text x="265" y="80" font-size="11" fill="#c62828" font-weight="bold">大動脈</text>
+
+      <!-- 上大静脈 -->
+      <line x1="160" y1="40" x2="160" y2="130" stroke="#1565c0" stroke-width="12" stroke-linecap="round"/>
+      <text x="100" y="80" font-size="11" fill="#1565c0" font-weight="bold">上大静脈</text>
+
+      <!-- 肺動脈 -->
+      <path d="M 195 50 Q 180 90 175 130" stroke="#7e57c2" stroke-width="10" fill="none"/>
+      <text x="135" y="55" font-size="11" fill="#7e57c2" font-weight="bold">肺動脈</text>
+
+      <!-- 心臓本体 -->
+      <ellipse cx="195" cy="200" rx="100" ry="90" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+
+      <!-- 中隔 -->
+      <line x1="195" y1="120" x2="195" y2="290" stroke="#999" stroke-width="2" stroke-dasharray="4,3"/>
+
+      <!-- 右房 -->
+      <text x="135" y="160" font-size="12" fill="#0b2545" font-weight="bold">右房</text>
+      <text x="135" y="175" font-size="9" fill="#5a6473">RA</text>
+
+      <!-- 右室 -->
+      <text x="135" y="230" font-size="12" fill="#0b2545" font-weight="bold">右室</text>
+      <text x="135" y="245" font-size="9" fill="#5a6473">RV</text>
+
+      <!-- 左房 -->
+      <text x="218" y="160" font-size="12" fill="#0b2545" font-weight="bold">左房</text>
+      <text x="218" y="175" font-size="9" fill="#5a6473">LA</text>
+
+      <!-- 左室 -->
+      <text x="218" y="230" font-size="12" fill="#0b2545" font-weight="bold">左室</text>
+      <text x="218" y="245" font-size="9" fill="#5a6473">LV</text>
+
+      <!-- 弁 -->
+      <circle cx="178" cy="180" r="6" fill="#2e7d32"/>
+      <text x="60" y="184" font-size="9" fill="#2e7d32">三尖弁(TV)</text>
+      <circle cx="212" cy="180" r="6" fill="#2e7d32"/>
+      <text x="295" y="184" font-size="9" fill="#2e7d32">僧帽弁(MV)</text>
+      <circle cx="178" cy="140" r="6" fill="#ef6c00"/>
+      <text x="60" y="144" font-size="9" fill="#ef6c00">肺動脈弁(PV)</text>
+      <circle cx="222" cy="140" r="6" fill="#ef6c00"/>
+      <text x="295" y="144" font-size="9" fill="#ef6c00">大動脈弁(AV)</text>
+
+      <!-- 心尖 -->
+      <text x="170" y="310" font-size="10" fill="#5a6473">心尖(Apex)</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#c62828"></i>動脈血</span>
+      <span><i style="background:#1565c0"></i>静脈血</span>
+      <span><i style="background:#7e57c2"></i>肺動脈(静脈血)</span>
+      <span><i style="background:#2e7d32"></i>房室弁</span>
+      <span><i style="background:#ef6c00"></i>半月弁</span>
+    </div>
+  </div>
+
+  <h3>血流の順序(覚え方)</h3>
+  <p><strong>全身 → 上下大静脈 → 右房 → (三尖弁) → 右室 → (肺動脈弁) → 肺動脈 → 肺 → 肺静脈 → 左房 → (僧帽弁) → 左室 → (大動脈弁) → 大動脈 → 全身</strong></p>
+
+  <div class="callout">
+    <strong>📌 ポイント:</strong> 心臓弁膜症の手術名は「弁名 + 術式」で命名されます。<br>
+    例: <em>AVR</em> = Aortic Valve Replacement(大動脈弁置換術) / <em>MVP</em> = Mitral Valve Plasty(僧帽弁形成術)
+  </div>
+</section>
+
+<!-- 主要疾患 -->
+<section id="disease">
+  <h2>3. 主要疾患(タブで切替)</h2>
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="d1">虚血性心疾患</button>
+    <button class="tab-btn" data-tab="d2">弁膜症</button>
+    <button class="tab-btn" data-tab="d3">大動脈疾患</button>
+    <button class="tab-btn" data-tab="d4">先天性心疾患</button>
+  </div>
+
+  <div class="tab-panel active" id="d1">
+    <h3>虚血性心疾患(Ischemic Heart Disease)</h3>
+    <p>冠動脈の狭窄・閉塞により心筋への血流が低下し、狭心症や心筋梗塞をきたす疾患群。</p>
+    <ul>
+      <li><strong>原因:</strong> 動脈硬化(高血圧・脂質異常症・糖尿病・喫煙が主要リスク)</li>
+      <li><strong>症状:</strong> 胸部絞扼感・労作時呼吸困難・冷汗・放散痛(左肩・下顎)</li>
+      <li><strong>診断:</strong> 心電図、心エコー、冠動脈CT、冠動脈造影(CAG)</li>
+      <li><strong>治療:</strong> 薬物 → PCI(カテーテル) → <strong>CABG(冠動脈バイパス術)</strong>
+        <ul>
+          <li>左主幹部病変・3枝病変・糖尿病合併ではCABGが優位(SYNTAX試験)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tab-panel" id="d2">
+    <h3>心臓弁膜症(Valvular Heart Disease)</h3>
+    <p>4つの弁(AV/MV/TV/PV)のいずれかが<strong>狭窄</strong>または<strong>逆流</strong>をきたす疾患。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>疾患</th><th>主な原因</th><th>代表術式</th></tr></thead>
+        <tbody>
+          <tr><td>AS(大動脈弁狭窄症)</td><td>加齢性石灰化、二尖弁</td><td>AVR / <strong>TAVI</strong></td></tr>
+          <tr><td>AR(大動脈弁閉鎖不全症)</td><td>弁尖変性、大動脈基部拡張</td><td>AVR / 自己弁温存(David)</td></tr>
+          <tr><td>MS(僧帽弁狭窄症)</td><td>リウマチ性</td><td>MVR / PTMC</td></tr>
+          <tr><td>MR(僧帽弁閉鎖不全症)</td><td>変性(Barlow)、虚血性</td><td><strong>MVP(形成)</strong> / MVR</td></tr>
+          <tr><td>TR(三尖弁閉鎖不全症)</td><td>機能性(肺高血圧)</td><td>TAP(三尖弁形成)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip">
+      <strong>💡 重要:</strong> 僧帽弁逆流(MR)は可能な限り<strong>形成術(MVP)</strong>を選択。耐久性・抗凝固不要・術後LV機能保持で置換術(MVR)より優位。
+    </div>
+  </div>
+
+  <div class="tab-panel" id="d3">
+    <h3>大動脈疾患(Aortic Disease)</h3>
+    <ul>
+      <li><strong>胸部大動脈瘤(TAA)</strong>: 上行・弓部・下行に分類。径5.5cm以上で手術適応。</li>
+      <li><strong>腹部大動脈瘤(AAA)</strong>: 腎動脈下が大半。5.0-5.5cm以上、または年間5mm以上拡大で手術。</li>
+      <li><strong>大動脈解離(Aortic Dissection)</strong>: Stanford分類が重要
+        <ul>
+          <li><strong>A型</strong>(上行大動脈を含む): <span style="color:var(--accent)">緊急手術適応</span>(死亡率1%/時間)</li>
+          <li><strong>B型</strong>(上行を含まない): 原則 降圧薬による保存的治療、合併症あれば TEVAR</li>
+        </ul>
+      </li>
+    </ul>
+    <p>術式: <strong>人工血管置換術</strong>(開胸/開腹) / <strong>ステントグラフト</strong>(TEVAR/EVAR) / <strong>Hybrid</strong>(両方の組み合わせ)</p>
+  </div>
+
+  <div class="tab-panel" id="d4">
+    <h3>先天性心疾患(Congenital Heart Disease; CHD)</h3>
+    <p>出生児の約1%に発生。チアノーゼの有無で大別される。</p>
+    <ul>
+      <li><strong>非チアノーゼ性(左→右シャント)</strong>: ASD, VSD, PDA, AVSD</li>
+      <li><strong>チアノーゼ性</strong>: Fallot四徴症(TOF), 大血管転位症(TGA), 単心室症, 総肺静脈還流異常(TAPVR)</li>
+    </ul>
+    <p>新生児・乳児期から段階的手術(BTシャント→Glenn→Fontan)が行われることが多い。</p>
+  </div>
+</section>
+
+<!-- 術式 -->
+<section id="procedure">
+  <h2>4. 代表的な術式</h2>
+  <p>カードをタップ(またはクリック)で詳細展開。</p>
+
+  <div class="proc-grid">
+    <div class="proc-card">
+      <h4>CABG</h4>
+      <div class="full">Coronary Artery Bypass Grafting</div>
+      <p>狭窄冠動脈の遠位側に内胸動脈(LITA)や橈骨動脈、大伏在静脈をバイパス。</p>
+      <span class="tag open">開心術</span>
+    </div>
+    <div class="proc-card">
+      <h4>AVR</h4>
+      <div class="full">Aortic Valve Replacement</div>
+      <p>大動脈弁を機械弁または生体弁で置換。ASに対する標準術式。</p>
+      <span class="tag open">開心術</span>
+    </div>
+    <div class="proc-card">
+      <h4>TAVI</h4>
+      <div class="full">Transcatheter Aortic Valve Implantation</div>
+      <p>カテーテルで生体弁を留置。高齢・ハイリスクASに対する低侵襲治療。</p>
+      <span class="tag endo">カテーテル</span>
+    </div>
+    <div class="proc-card">
+      <h4>MVP / MVR</h4>
+      <div class="full">Mitral Valve Plasty / Replacement</div>
+      <p>MRに対し形成(MVP)を第一選択。困難例・MS は置換(MVR)。</p>
+      <span class="tag open">開心術</span>
+    </div>
+    <div class="proc-card">
+      <h4>EVAR</h4>
+      <div class="full">Endovascular Aortic Repair</div>
+      <p>AAAに対するステントグラフト内挿術。鼠径部小切開で実施。</p>
+      <span class="tag endo">血管内</span>
+    </div>
+    <div class="proc-card">
+      <h4>TEVAR</h4>
+      <div class="full">Thoracic Endovascular Aortic Repair</div>
+      <p>胸部大動脈瘤・B型解離に対するステントグラフト。</p>
+      <span class="tag endo">血管内</span>
+    </div>
+    <div class="proc-card">
+      <h4>Bentall</h4>
+      <div class="full">Bentall Operation</div>
+      <p>大動脈基部置換 + AVR + 冠動脈再建。マルファン症候群などで実施。</p>
+      <span class="tag open">開心術</span>
+    </div>
+    <div class="proc-card">
+      <h4>David</h4>
+      <div class="full">Valve-Sparing Root Replacement</div>
+      <p>大動脈弁を温存して基部を置換。若年・弁形態良好例で選択。</p>
+      <span class="tag open">開心術</span>
+    </div>
+  </div>
+
+  <h3>体外循環(CPB)の基本</h3>
+  <div class="accordion-item">
+    <div class="accordion-head">人工心肺(Cardiopulmonary Bypass)とは <span class="chev">▶</span></div>
+    <div class="accordion-body">
+      <p>右房から脱血 → 人工肺で酸素化 → 上行大動脈に送血することで、心臓を止めて手術を可能にする装置。</p>
+      <ul>
+        <li><strong>カニュレーション部位:</strong> 上行大動脈(送血) + 上下大静脈または右房(脱血)</li>
+        <li><strong>心筋保護:</strong> 冷却 + 心筋保護液(心停止液; cardioplegia)で心停止と心筋保護を達成</li>
+        <li><strong>合併症:</strong> 全身炎症反応、凝固障害、神経学的合併症など</li>
+      </ul>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-head">Off-pump CABG(OPCAB)とは <span class="chev">▶</span></div>
+    <div class="accordion-body">
+      <p>人工心肺を使わず<strong>心拍動下</strong>にCABGを行う術式。スタビライザーで吻合部位を固定。脳合併症が少ない一方、グラフトの開存性は施設依存。</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-head">MICS(低侵襲心臓手術) <span class="chev">▶</span></div>
+    <div class="accordion-body">
+      <p>Minimally Invasive Cardiac Surgery。胸骨正中切開を避け、右小開胸などで弁手術やCABGを行う。整容性・早期回復が利点。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 周術期 -->
+<section id="peri">
+  <h2>5. 周術期管理のポイント</h2>
+  <h3>術前評価</h3>
+  <ul>
+    <li>心機能(EF, 弁機能, 肺動脈圧)、冠動脈評価(CAG/CCTA)</li>
+    <li>呼吸機能(FEV1)、腎機能(eGFR, Cre)、肝機能</li>
+    <li>頸動脈エコー(脳梗塞リスク)、歯科コンサルト(感染源)</li>
+    <li>リスクスコア: <strong>EuroSCORE II, STS Score, JapanSCORE</strong></li>
+  </ul>
+  <h3>術中</h3>
+  <ul>
+    <li>TEE(経食道心エコー)による弁機能・心機能のリアルタイム評価</li>
+    <li>ヘパリン化(ACT > 400-480秒)・人工心肺管理</li>
+    <li>心筋保護(順行性/逆行性 cardioplegia)</li>
+  </ul>
+  <h3>術後</h3>
+  <ul>
+    <li>ICU管理(血行動態、出血、不整脈、呼吸)</li>
+    <li>抗凝固/抗血小板療法(機械弁ではワーファリン生涯)</li>
+    <li>心臓リハビリテーション(早期離床)</li>
+  </ul>
+  <div class="callout">
+    <strong>⚠ 主要合併症:</strong> 出血・再開胸(2-5%)、心房細動(20-40%)、脳梗塞(1-3%)、AKI(5-30%)、縦隔炎(0.5-2%)、Low Output Syndrome
+  </div>
+</section>
+
+<!-- クイズ -->
+<section id="quiz">
+  <h2>6. 理解度チェック(全8問)</h2>
+  <p>選択肢をクリックすると正誤と解説が表示されます。</p>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 8</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem;">もう一度挑戦</button>
+    </div>
+  </div>
+</section>
+
+<!-- 用語集 -->
+<section id="glossary">
+  <h2>7. 用語集(略語)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>略語</th><th>正式名称</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>CABG</td><td>Coronary Artery Bypass Grafting</td><td>冠動脈バイパス術</td></tr>
+        <tr><td>AVR</td><td>Aortic Valve Replacement</td><td>大動脈弁置換術</td></tr>
+        <tr><td>MVR / MVP</td><td>Mitral Valve Replacement / Plasty</td><td>僧帽弁置換 / 形成術</td></tr>
+        <tr><td>TAVI / TAVR</td><td>Transcatheter Aortic Valve Implantation</td><td>経カテーテル大動脈弁植込術</td></tr>
+        <tr><td>EVAR / TEVAR</td><td>(Thoracic) Endovascular Aortic Repair</td><td>大動脈ステントグラフト内挿術</td></tr>
+        <tr><td>CPB</td><td>Cardiopulmonary Bypass</td><td>人工心肺</td></tr>
+        <tr><td>MICS</td><td>Minimally Invasive Cardiac Surgery</td><td>低侵襲心臓手術</td></tr>
+        <tr><td>OPCAB</td><td>Off-Pump CABG</td><td>人工心肺非使用CABG</td></tr>
+        <tr><td>LITA / LIMA</td><td>Left Internal Thoracic/Mammary Artery</td><td>左内胸動脈(代表的グラフト)</td></tr>
+        <tr><td>SVG</td><td>Saphenous Vein Graft</td><td>大伏在静脈グラフト</td></tr>
+        <tr><td>TEE</td><td>Transesophageal Echocardiography</td><td>経食道心エコー</td></tr>
+        <tr><td>EF</td><td>Ejection Fraction</td><td>駆出率</td></tr>
+        <tr><td>IABP</td><td>Intra-Aortic Balloon Pumping</td><td>大動脈内バルーンパンピング</td></tr>
+        <tr><td>ECMO</td><td>Extracorporeal Membrane Oxygenation</td><td>体外膜型人工肺</td></tr>
+        <tr><td>AAA / TAA</td><td>Abdominal/Thoracic Aortic Aneurysm</td><td>腹部/胸部大動脈瘤</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>心血管外科 総論 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tab).classList.add('active');
+    });
+  });
+
+  // Accordion
+  document.querySelectorAll('.accordion-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Quiz
+  const questions = [
+    {
+      q: "Stanford A型大動脈解離の標準治療として正しいのはどれか。",
+      choices: ["降圧薬による保存的治療", "緊急開心手術(人工血管置換)", "経過観察", "TEVAR単独"],
+      correct: 1,
+      explain: "Stanford A型(上行大動脈を含む)は破裂・心タンポナーデ・冠動脈解離のリスクが高く、緊急の人工血管置換術が標準治療。B型は原則 降圧療法。"
+    },
+    {
+      q: "僧帽弁逆流(MR)に対して可能であれば優先される術式はどれか。",
+      choices: ["MVR(置換術)", "MVP(形成術)", "TAVI", "PCI"],
+      correct: 1,
+      explain: "MVP(形成術)が第一選択。耐久性が高く、抗凝固療法が不要、術後LV機能が保たれる利点がある(ガイドライン推奨)。"
+    },
+    {
+      q: "CABGで最も長期開存性に優れるグラフトはどれか。",
+      choices: ["大伏在静脈(SVG)", "右胃大網動脈", "左内胸動脈(LITA)", "橈骨動脈"],
+      correct: 2,
+      explain: "LITA(左内胸動脈)→LAD(左前下行枝)のバイパスは20年で90%以上の開存率を示し、ゴールドスタンダード。"
+    },
+    {
+      q: "腹部大動脈瘤(AAA)の手術適応となる径の目安(無症候性・男性)は?",
+      choices: ["3.0 cm 以上", "4.0 cm 以上", "5.0-5.5 cm 以上", "7.0 cm 以上"],
+      correct: 2,
+      explain: "無症候性AAAでは径5.5cm(男性)以上、または年間5mm以上の拡大で手術適応。女性ではやや小さい径(5.0cm)で適応となることもある。"
+    },
+    {
+      q: "TAVIの適応として最も適切なのはどれか。",
+      choices: ["若年・低リスクのAR", "重症ASかつ手術リスクが高い症例", "感染性心内膜炎の活動期", "MS"],
+      correct: 1,
+      explain: "TAVIは元来 高齢・ハイリスクASに対して開発された治療。近年は中リスク・低リスク症例にも適応が拡大。AR・MS・活動性IEは原則として適応外。"
+    },
+    {
+      q: "人工心肺(CPB)中の抗凝固に用いる薬剤はどれか。",
+      choices: ["ワーファリン", "ヘパリン", "アスピリン", "DOAC"],
+      correct: 1,
+      explain: "CPB中は未分画ヘパリンを使用しACT > 400-480秒を維持。終了時はプロタミンで中和する。"
+    },
+    {
+      q: "Bentall手術の構成として正しいのはどれか。",
+      choices: ["AVR + 大動脈基部置換 + 冠動脈再建", "CABG + AVR", "MVP + TAP", "TEVAR + EVAR"],
+      correct: 0,
+      explain: "Bentall手術は大動脈基部置換+AVR+冠動脈の再吻合を一体で行う術式。マルファン症候群や大動脈基部拡張を伴うARに用いる。"
+    },
+    {
+      q: "Fallot四徴症(TOF)に含まれない所見はどれか。",
+      choices: ["肺動脈狭窄(PS)", "心室中隔欠損(VSD)", "大動脈騎乗", "心房中隔欠損(ASD)"],
+      correct: 3,
+      explain: "TOFの四徴は ①肺動脈狭窄 ②VSD ③大動脈騎乗 ④右室肥大。ASDは含まれない(合併することはある)。"
+    }
+  ];
+
+  let idx = 0, score = 0, answered = false;
+  const qText = document.getElementById('questionText');
+  const choicesEl = document.getElementById('choices');
+  const feedback = document.getElementById('feedback');
+  const nextBtn = document.getElementById('nextBtn');
+  const progress = document.getElementById('progress');
+  const scoreEl = document.getElementById('score');
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  const finalScore = document.getElementById('finalScore');
+  const comment = document.getElementById('comment');
+  const restartBtn = document.getElementById('restartBtn');
+
+  function renderQ() {
+    answered = false;
+    const q = questions[idx];
+    progress.textContent = `問題 ${idx + 1} / ${questions.length}`;
+    qText.textContent = q.q;
+    choicesEl.innerHTML = '';
+    feedback.classList.remove('show', 'ok', 'ng');
+    nextBtn.disabled = true;
+    q.choices.forEach((c, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-choice';
+      btn.textContent = `${String.fromCharCode(65 + i)}. ${c}`;
+      btn.addEventListener('click', () => selectAnswer(i, btn));
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(i, btn) {
+    if (answered) return;
+    answered = true;
+    const q = questions[idx];
+    const allBtns = choicesEl.querySelectorAll('.quiz-choice');
+    allBtns.forEach(b => b.disabled = true);
+    if (i === q.correct) {
+      btn.classList.add('correct');
+      feedback.className = 'quiz-feedback show ok';
+      feedback.innerHTML = `<strong>⭕ 正解!</strong> ${q.explain}`;
+      score++;
+    } else {
+      btn.classList.add('wrong');
+      allBtns[q.correct].classList.add('correct');
+      feedback.className = 'quiz-feedback show ng';
+      feedback.innerHTML = `<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65 + q.correct)}</strong>。 ${q.explain}`;
+    }
+    scoreEl.textContent = `得点: ${score} / ${idx + 1}`;
+    nextBtn.disabled = false;
+    nextBtn.textContent = idx === questions.length - 1 ? '結果を見る' : '次へ →';
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (idx === questions.length - 1) {
+      showResult();
+    } else {
+      idx++;
+      renderQ();
+    }
+  });
+
+  function showResult() {
+    document.getElementById('questionText').style.display = 'none';
+    choicesEl.style.display = 'none';
+    feedback.style.display = 'none';
+    nextBtn.style.display = 'none';
+    progress.style.display = 'none';
+    scoreEl.style.display = 'none';
+    finalScore.textContent = `${score} / ${questions.length}`;
+    const pct = score / questions.length;
+    if (pct === 1) comment.textContent = '🏆 満点! 心血管外科の総論を完璧に理解しています。';
+    else if (pct >= 0.75) comment.textContent = '👏 素晴らしい! しっかり理解できています。';
+    else if (pct >= 0.5) comment.textContent = '💪 良いペース。間違えた問題を復習しましょう。';
+    else comment.textContent = '📚 もう一度教材を読み直してから再挑戦してみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+
+  restartBtn.addEventListener('click', () => {
+    idx = 0; score = 0;
+    document.getElementById('questionText').style.display = '';
+    choicesEl.style.display = '';
+    feedback.style.display = '';
+    nextBtn.style.display = '';
+    progress.style.display = '';
+    scoreEl.style.display = '';
+    scoreEl.textContent = '得点: 0 / 0';
+    scoreDisplay.classList.remove('show');
+    renderQ();
+  });
+
+  renderQ();
+</script>
+
+</body>
+</html>
