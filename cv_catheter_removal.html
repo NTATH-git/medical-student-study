@@ -290,6 +290,109 @@
     <span class="case-no">事例 3 ― 抜去後の容態急変</span>
     <h4>抜去後 ガーゼ圧迫のみで遅発性に容態急変したケース</h4>
     <p class="scenario">中心静脈カテーテル抜去後、ガーゼで圧迫保護を行っていたが、<strong>1時間後</strong>に患者の容態が急変。レントゲン検査で<strong>空気塞栓</strong>が確認された。</p>
+
+    <div class="diagram-wrap" style="margin:.8rem 0">
+      <svg viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ガーゼのみ vs 閉塞性ドレッシングの比較図">
+        <!-- Title bar -->
+        <text x="140" y="22" font-size="14" fill="#c62828" font-weight="bold" text-anchor="middle">❌ ガーゼ圧迫のみ</text>
+        <text x="420" y="22" font-size="14" fill="#2e7d32" font-weight="bold" text-anchor="middle">⭕ 閉塞性ドレッシング</text>
+
+        <!-- Divider -->
+        <line x1="280" y1="35" x2="280" y2="320" stroke="#e1e5ea" stroke-width="2" stroke-dasharray="4,4"/>
+
+        <!-- ===== LEFT PANEL: Gauze only ===== -->
+        <!-- Gauze (porous - shown with dots/dashes) -->
+        <rect x="70" y="55" width="140" height="22" fill="#fff8e1" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="140" y="71" font-size="10" fill="#ef6c00" text-anchor="middle">ガーゼ(隙間あり)</text>
+
+        <!-- Air arrows passing through gauze -->
+        <text x="90" y="50" font-size="11" fill="#c62828">空気</text>
+        <path d="M 100 40 L 100 90" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
+        <path d="M 140 40 L 140 90" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
+        <path d="M 180 40 L 180 90" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
+
+        <!-- Skin -->
+        <rect x="50" y="95" width="180" height="18" fill="#fce4e4" stroke="#c62828"/>
+        <text x="55" y="108" font-size="9" fill="#5a6473">皮膚</text>
+        <!-- Hole in skin -->
+        <rect x="135" y="95" width="12" height="18" fill="#fff" stroke="#c62828"/>
+
+        <!-- Subcutaneous + fistula tract -->
+        <rect x="50" y="113" width="180" height="50" fill="#ffe0b2" stroke="#ef6c00"/>
+        <text x="55" y="128" font-size="9" fill="#5a6473">皮下</text>
+        <line x1="138" y1="113" x2="138" y2="163" stroke="#fff" stroke-width="6"/>
+        <line x1="148" y1="113" x2="148" y2="163" stroke="#fff" stroke-width="6"/>
+        <text x="160" y="145" font-size="9" fill="#999">瘻孔</text>
+
+        <!-- Vein -->
+        <rect x="50" y="170" width="180" height="35" fill="#1565c0" rx="3"/>
+        <text x="55" y="190" font-size="10" fill="#fff" font-weight="bold">上大静脈(陰圧)</text>
+
+        <!-- Air entering vein -->
+        <circle cx="143" cy="180" r="3" fill="#fff" stroke="#c62828" stroke-width="1.5"/>
+        <circle cx="138" cy="190" r="2.5" fill="#fff" stroke="#c62828" stroke-width="1.5"/>
+        <circle cx="148" cy="195" r="2" fill="#fff" stroke="#c62828" stroke-width="1.5"/>
+
+        <!-- Time + outcome -->
+        <rect x="60" y="220" width="160" height="32" fill="#ffebee" stroke="#c62828" rx="4"/>
+        <text x="140" y="234" font-size="10" fill="#c62828" font-weight="bold" text-anchor="middle">1時間後…</text>
+        <text x="140" y="247" font-size="10" fill="#c62828" text-anchor="middle">💀 空気塞栓 → 容態急変</text>
+
+        <text x="140" y="280" font-size="9" fill="#5a6473" text-anchor="middle">通常ガーゼは気密性なし。</text>
+        <text x="140" y="293" font-size="9" fill="#5a6473" text-anchor="middle">瘻孔が閉鎖する前に呼吸の</text>
+        <text x="140" y="306" font-size="9" fill="#5a6473" text-anchor="middle">陰圧で空気が引き込まれる。</text>
+
+        <!-- ===== RIGHT PANEL: Occlusive dressing ===== -->
+        <!-- Film (transparent solid layer) -->
+        <rect x="350" y="50" width="140" height="8" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
+        <text x="420" y="46" font-size="9" fill="#1565c0" text-anchor="middle">フィルム(透明・気密)</text>
+
+        <!-- Vaseline gauze (solid) -->
+        <rect x="350" y="58" width="140" height="22" fill="#fff59d" stroke="#f57f17" stroke-width="1.5"/>
+        <text x="420" y="73" font-size="10" fill="#f57f17" text-anchor="middle">ワセリンガーゼ</text>
+
+        <!-- Air blocked -->
+        <text x="370" y="42" font-size="11" fill="#c62828">空気</text>
+        <path d="M 380 32 L 380 46" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
+        <path d="M 420 32 L 420 46" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
+        <path d="M 460 32 L 460 46" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
+        <text x="370" y="100" font-size="20" fill="#2e7d32" font-weight="bold">✕</text>
+        <text x="415" y="100" font-size="20" fill="#2e7d32" font-weight="bold">✕</text>
+        <text x="455" y="100" font-size="20" fill="#2e7d32" font-weight="bold">✕</text>
+
+        <!-- Skin -->
+        <rect x="330" y="103" width="180" height="18" fill="#fce4e4" stroke="#c62828"/>
+        <text x="335" y="116" font-size="9" fill="#5a6473">皮膚</text>
+        <rect x="415" y="103" width="12" height="18" fill="#fff" stroke="#c62828"/>
+
+        <!-- Subcutaneous + fistula -->
+        <rect x="330" y="121" width="180" height="50" fill="#ffe0b2" stroke="#ef6c00"/>
+        <text x="335" y="136" font-size="9" fill="#5a6473">皮下</text>
+        <line x1="418" y1="121" x2="418" y2="171" stroke="#fff" stroke-width="6"/>
+        <line x1="428" y1="121" x2="428" y2="171" stroke="#fff" stroke-width="6"/>
+        <text x="440" y="153" font-size="9" fill="#999">瘻孔</text>
+
+        <!-- Vein - clean -->
+        <rect x="330" y="178" width="180" height="35" fill="#1565c0" rx="3"/>
+        <text x="335" y="198" font-size="10" fill="#fff" font-weight="bold">上大静脈(陰圧)</text>
+
+        <!-- Outcome - safe -->
+        <rect x="340" y="228" width="160" height="32" fill="#e8f5e9" stroke="#2e7d32" rx="4"/>
+        <text x="420" y="242" font-size="10" fill="#2e7d32" font-weight="bold" text-anchor="middle">瘻孔が閉鎖するまで</text>
+        <text x="420" y="255" font-size="10" fill="#2e7d32" text-anchor="middle">✅ 空気進入をブロック</text>
+
+        <text x="420" y="288" font-size="9" fill="#5a6473" text-anchor="middle">ワセリンが油性で気密性を作り、</text>
+        <text x="420" y="301" font-size="9" fill="#5a6473" text-anchor="middle">透明フィルムが二重に密閉。</text>
+        <text x="420" y="314" font-size="9" fill="#5a6473" text-anchor="middle">最低24時間継続(72時間が安全)。</text>
+
+        <defs>
+          <marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill="#c62828"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
     <div class="lesson"><strong>📌 学び:</strong> 通常のガーゼでは気密性がなく、瘻孔が閉じる前に呼吸サイクルで空気が引き込まれる。抜去直後に <u>密閉性のドレッシング材で被覆 + 5分以上圧迫</u> が必須。</div>
   </div>
 
