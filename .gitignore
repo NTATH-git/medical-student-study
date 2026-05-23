@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+*.alias
+"【*】 alias"
+
+# Claude Code
+.claude/
+
+# Editor
+.vscode/
+.idea/
+*.swp
