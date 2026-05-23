@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>医学生のための学習教材 ― 目次</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:3rem 1rem 2.5rem;text-align:center}
+  header h1{font-size:clamp(1.6rem,5vw,2.3rem);margin-bottom:.5rem}
+  header .subtitle{opacity:.85;font-size:clamp(.9rem,2.5vw,1.05rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  main{max-width:960px;margin:0 auto;padding:2rem 1rem 3rem}
+  .intro{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:2rem;box-shadow:var(--shadow)}
+  .intro h2{color:var(--navy);font-size:1.3rem;border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:.8rem}
+  .intro p{font-size:.95rem}
+  .category{margin-bottom:2rem}
+  .category h3{color:var(--navy);font-size:1.15rem;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+  .card{background:var(--card);border-radius:12px;padding:1.25rem;box-shadow:var(--shadow);text-decoration:none;color:inherit;border-left:5px solid var(--accent);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .card h4{color:var(--navy);font-size:1.05rem;margin-bottom:.4rem}
+  .card .desc{font-size:.88rem;color:var(--muted);flex-grow:1;margin-bottom:.6rem}
+  .card .tags{display:flex;flex-wrap:wrap;gap:.3rem}
+  .tag{display:inline-block;font-size:.72rem;padding:.15rem .55rem;border-radius:999px;background:#fce4e4;color:var(--accent)}
+  .tag.all{background:#e3f2fd;color:#1565c0}
+  .tag.adv{background:#fff3e0;color:#e65100}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>医学生のための学習教材</h1>
+  <p class="subtitle">心血管外科・周術期管理を中心とした学習サイト</p>
+  <p class="meta">Created for Medical Students | All Years</p>
+</header>
+
+<main>
+
+<div class="intro">
+  <h2>このサイトについて</h2>
+  <p>心血管外科を中心に、医学生が実習・臨床現場で出会う疾患・手技・周術期管理のポイントを、図解とインタラクティブなクイズで学べる教材を集めたサイトです。スマートフォンからも快適に閲覧できます。各ページにはクイズと用語集を備え、5〜10分の隙間時間で理解度を確認できます。</p>
+</div>
+
+<div class="category">
+  <h3>🫀 心血管外科 総論</h3>
+  <div class="grid">
+    <a href="cardiovascular_surgery_intro.html" class="card">
+      <h4>心血管外科 総論</h4>
+      <p class="desc">解剖、主要疾患(虚血性/弁膜症/大動脈/先天性)、代表術式(CABG/AVR/TAVI/EVAR等)、周術期管理を網羅。8問クイズ付き。</p>
+      <div class="tags"><span class="tag all">全学年</span><span class="tag">入門</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="category">
+  <h3>💊 周術期管理 ― 抜去手技と陰圧の臨床</h3>
+  <div class="grid">
+    <a href="cv_catheter_removal.html" class="card">
+      <h4>CV(中心静脈)カテーテル抜去の注意点</h4>
+      <p class="desc">致死的合併症である空気塞栓を防ぐための知識と手技。体位・呼吸法・閉塞性ドレッシング。6問クイズ付き。</p>
+      <div class="tags"><span class="tag all">全学年</span><span class="tag adv">手技</span></div>
+    </a>
+    <a href="npwt_basics.html" class="card">
+      <h4>持続陰圧療法(NPWT/VAC)はなぜ有効か</h4>
+      <p class="desc">創傷治癒を加速する4つの作用機序(マクロ/ミクロ変形・滲出液除去・血流改善)、適応・禁忌、心臓外科後縦隔炎での応用。</p>
+      <div class="tags"><span class="tag all">全学年</span><span class="tag">創傷</span></div>
+    </a>
+    <a href="drain_removal.html" class="card">
+      <h4>ドレーン抜去時に気をつけること</h4>
+      <p class="desc">胸腔/縦隔/腹腔/皮下の部位別 抜去手技と合併症。タブで切り替え可能。6問クイズ付き。</p>
+      <div class="tags"><span class="tag all">全学年</span><span class="tag adv">手技</span></div>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>医学生のための学習教材</p>
+  <p>本サイトの内容は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="https://github.com/NTATH-git/medical-student-study">GitHub Repository</a></p>
+</footer>
+
+</body>
+</html>

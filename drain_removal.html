@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ドレーン抜去時に気をつけること ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .tabs{display:flex;flex-wrap:wrap;gap:.4rem;border-bottom:2px solid var(--border);margin-bottom:1rem}
+  .tab-btn{background:transparent;border:none;padding:.7rem 1rem;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;font-family:inherit}
+  .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tab-btn:hover{color:var(--accent-light)}
+  .tab-panel{display:none}.tab-panel.active{display:block;animation:fade .3s}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:480px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .step-flow{counter-reset:step;list-style:none;padding-left:0}
+  .step-flow li{position:relative;padding:.6rem 0 .6rem 2.5rem;border-left:2px solid var(--accent);margin-left:1rem;padding-left:1.5rem}
+  .step-flow li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+  .checklist{background:#f5f8fc;border-radius:10px;padding:1rem 1.2rem;margin-top:.8rem}
+  .checklist label{display:block;padding:.4rem 0;font-size:.92rem;cursor:pointer}
+  .checklist input{margin-right:.5rem;transform:scale(1.15)}
+  .checklist input:checked + span{text-decoration:line-through;color:var(--muted)}
+  .pill{display:inline-block;font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:#fce4e4;color:var(--accent);margin-right:.3rem}
+  .pill.warn{background:#fff3e0;color:var(--warn)}
+  .pill.ok{background:#e8f5e9;color:var(--success)}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  @media (max-width:480px){section{padding:1.1rem .9rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ドレーン抜去時に気をつけること</h1>
+  <p class="subtitle">部位別の手技・タイミング・合併症</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#overview">総論</a></li>
+    <li><a href="#timing">抜去タイミング</a></li>
+    <li><a href="#bytype">部位別の注意</a></li>
+    <li><a href="#technique">基本手技</a></li>
+    <li><a href="#checklist">チェックリスト</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2>1. ドレーンとは ― 抜去前に押さえる総論</h2>
+  <p>ドレーン(drain)は、体腔内の<strong>滲出液・血液・空気</strong>を体外に誘導するチューブの総称。手術部位やリスクに応じて様々な種類が使い分けられます。</p>
+
+  <h3>ドレーンの3つの目的</h3>
+  <ol>
+    <li><strong>治療的ドレナージ:</strong> 膿瘍・血腫の排出</li>
+    <li><strong>予防的ドレナージ:</strong> 術後の血液・滲出液貯留予防</li>
+    <li><strong>情報的(インフォメーション)ドレナージ:</strong> 出血・吻合不全の早期発見</li>
+  </ol>
+
+  <h3>排液の3形式</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>方式</th><th>原理</th><th>代表例</th></tr></thead>
+      <tbody>
+        <tr><td>受動的(passive)</td><td>重力・毛細管現象</td><td>Penrose、Pleats、シリコンドレーン開放</td></tr>
+        <tr><td>能動的(active)低圧</td><td>陰圧バルブ</td><td>J-VAC、SBバック、Hemovac</td></tr>
+        <tr><td>能動的(active)持続陰圧</td><td>外部吸引器に接続</td><td>胸腔ドレーン(三連ボトル/デジタル機器)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 抜去の鉄則:</strong> 「<u>必要な期間 留置し、不要になったら速やかに抜く</u>」。長期留置は感染源・組織損傷・瘻孔形成のリスク。
+  </div>
+</section>
+
+<section id="timing">
+  <h2>2. 抜去のタイミングをどう判断するか</h2>
+  <p>「いつ抜くか」は部位・施設・症例で異なるが、共通する判断軸:</p>
+  <ul>
+    <li><strong>排液量:</strong> 一般に24時間で100-200 mL以下が目安(部位により異なる)</li>
+    <li><strong>排液性状:</strong> 漿液性で清澄、血性・乳び性・腸液性・膿性でないこと</li>
+    <li><strong>画像所見:</strong> CT/エコーで貯留・遺残腔がないこと</li>
+    <li><strong>臨床経過:</strong> 発熱・感染兆候がないこと、吻合部不全を疑う所見がないこと</li>
+    <li><strong>機能:</strong> 胸腔ドレーンは肺再膨張・エアリーク消失</li>
+  </ul>
+
+  <h3>部位別の目安(全体像)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>部位</th><th>抜去目安(排液量)</th><th>留置期間の目安</th></tr></thead>
+      <tbody>
+        <tr><td>胸腔ドレーン</td><td>200 mL/日以下 + エアリークなし + 肺膨張</td><td>術後2-5日</td></tr>
+        <tr><td>縦隔/心嚢ドレーン</td><td>50-100 mL/日以下</td><td>術後1-3日</td></tr>
+        <tr><td>腹腔ドレーン(消化器)</td><td>50-100 mL/日以下、アミラーゼ正常</td><td>術後3-7日</td></tr>
+        <tr><td>皮下ドレーン(SB)</td><td>30-50 mL/日以下</td><td>術後2-4日</td></tr>
+        <tr><td>Penroseドレーン</td><td>排液性状で判断</td><td>術後2-3日(感染源なら長期)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="bytype">
+  <h2>3. 部位別の注意点(タブ切替)</h2>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="t1">胸腔ドレーン</button>
+    <button class="tab-btn" data-tab="t2">縦隔/心嚢</button>
+    <button class="tab-btn" data-tab="t3">腹腔</button>
+    <button class="tab-btn" data-tab="t4">皮下</button>
+  </div>
+
+  <div class="tab-panel active" id="t1">
+    <h3>胸腔ドレーン <span class="pill">陰圧塞栓リスク最大</span></h3>
+    <p>胸腔ドレーン抜去は<strong>気胸再発</strong>と<strong>空気塞栓</strong>(理論上)に最も注意。CV抜去と同じく、胸腔内陰圧が落とし穴。</p>
+
+    <h4>抜去条件</h4>
+    <ul>
+      <li>排液 200 mL/日以下、性状 漿液性</li>
+      <li>エアリーク(bubble)消失</li>
+      <li>X線で肺完全膨張、気胸所見なし</li>
+      <li>水封式ドレーンの場合、吸引中止24時間後の再膨張維持確認</li>
+    </ul>
+
+    <h4>手技のコツ</h4>
+    <ul>
+      <li><strong>体位:</strong> 半座位またはセミファウラー位</li>
+      <li><strong>呼吸法:</strong> <u>Valsalva</u>(息こらえ + いきみ)または<u>呼気終末</u>のタイミングで一気に抜去</li>
+      <li><strong>抜去直後:</strong> 即座に<u>ワセリンガーゼ + フィルム</u>で気密シール(空気進入防止)</li>
+      <li><strong>抜去後:</strong> 1-3時間後にX線で気胸の再発がないことを確認</li>
+    </ul>
+
+    <div class="callout danger">
+      <strong>⚠ NG行動:</strong> 抜去中に患者が<u>吸気</u>すると胸腔内陰圧で空気が引き込まれ気胸を起こす。必ず呼気時 or Valsalvaで抜去すること。
+    </div>
+  </div>
+
+  <div class="tab-panel" id="t2">
+    <h3>縦隔・心嚢ドレーン <span class="pill warn">心タンポナーデ警戒</span></h3>
+    <p>心臓血管外科後の縦隔・心嚢ドレーン抜去では、術後出血の遅発化・心タンポナーデを警戒します。</p>
+    <ul>
+      <li>抜去前24時間の排液量・性状を確認(急増していないか)</li>
+      <li>心エコーで心嚢液貯留がないことを確認</li>
+      <li>抜去後は<strong>心エコーフォロー</strong>を行うことが多い</li>
+      <li>抜去後の急な血圧低下・頸静脈怒張・心音減弱 → タンポナーデを疑う</li>
+    </ul>
+    <div class="callout">
+      <strong>📌 抜去時の電気:</strong> 心嚢ドレーン抜去で<u>短時間の不整脈</u>(VPCなど)が出ることがある。心電図モニター下で実施。
+    </div>
+  </div>
+
+  <div class="tab-panel" id="t3">
+    <h3>腹腔ドレーン <span class="pill">瘻孔・吻合不全に注意</span></h3>
+    <p>消化器外科では「ドレーン排液の性状」が吻合不全を最初に教えてくれる重要な情報源。</p>
+    <h4>抜去前に確認するチェックリスト</h4>
+    <ul>
+      <li>排液量・性状の経時変化(腸液様・胆汁様・膿性は禁忌)</li>
+      <li>排液中<strong>アミラーゼ・リパーゼ</strong>(膵手術)、<strong>ビリルビン</strong>(肝胆道)</li>
+      <li>CT/エコーで膿瘍・液体貯留がないこと</li>
+      <li>炎症反応(WBC, CRP)の改善</li>
+      <li>食事再開後も排液が安定していること</li>
+    </ul>
+    <div class="callout">
+      <strong>📌 ドレーン抜去のリスク:</strong> 抜去で初めて発覚する<u>遅発性 縫合不全</u>がある。抜去後数日は注意深く臨床経過を観察。
+    </div>
+  </div>
+
+  <div class="tab-panel" id="t4">
+    <h3>皮下ドレーン(SB, Hemovac, Penrose) <span class="pill ok">比較的安全</span></h3>
+    <p>皮下ドレーンは深部腔とつながらないため、抜去合併症は最も少ない。ただし基本は同じ。</p>
+    <ul>
+      <li>排液 30-50 mL/日以下で抜去判断</li>
+      <li>固定縫合糸を完全に切除してから抜去(残糸でドレーン断裂)</li>
+      <li>抜去時のドレーン先端の<strong>遺残確認</strong>(短くなっていないか、切断面が鋭利か)</li>
+      <li>Penroseは安全ピンが付いているので脱落紛失に注意</li>
+    </ul>
+  </div>
+</section>
+
+<section id="technique">
+  <h2>4. ドレーン抜去 共通の基本手技</h2>
+  <ol class="step-flow">
+    <li><strong>抜去条件の最終確認:</strong> 排液量・性状・画像・全身状態</li>
+    <li><strong>説明と同意:</strong> 痛み・出血の可能性を説明</li>
+    <li><strong>体位調整:</strong> ドレーン部位に応じた体位(胸腔は半座位、腹腔は仰臥位)</li>
+    <li><strong>固定具除去:</strong> 縫合糸切除、固定テープ剥離</li>
+    <li><strong>呼吸指示:</strong> 必要な部位(胸腔)では Valsalva または呼気停止</li>
+    <li><strong>抜去:</strong> 一定速度でゆっくり引き抜く(無理な力をかけない)</li>
+    <li><strong>先端確認:</strong> 全長が抜けたか、破損・遺残がないか</li>
+    <li><strong>ドレッシング:</strong> 胸腔・縦隔は気密性のあるドレッシング</li>
+    <li><strong>記録と観察:</strong> 抜去日時、長さ、合併症の有無、次回観察項目</li>
+  </ol>
+
+  <h3>抜けない時の対応</h3>
+  <ul>
+    <li>固定糸の遺残を確認(最も多い原因)</li>
+    <li>癒着・組織嵌入の可能性 → 無理に引かない</li>
+    <li>少量の生食を注入してドレーン周囲を緩める(部位により)</li>
+    <li>切迫しない場合は画像確認 → IVR/外科コンサルト</li>
+  </ul>
+</section>
+
+<section id="checklist">
+  <h2>5. ドレーン抜去 セルフチェックリスト</h2>
+  <div class="checklist">
+    <label><input type="checkbox"><span> 排液量・性状が抜去基準を満たしている</span></label>
+    <label><input type="checkbox"><span> 画像所見で液体貯留・遺残腔がない</span></label>
+    <label><input type="checkbox"><span> 感染兆候(発熱、CRP上昇)がない</span></label>
+    <label><input type="checkbox"><span> 抗凝固薬の確認</span></label>
+    <label><input type="checkbox"><span> 適切な体位と呼吸指示の準備</span></label>
+    <label><input type="checkbox"><span> 必要なドレッシング材(気密性)準備済み</span></label>
+    <label><input type="checkbox"><span> 固定縫合糸を完全に切除した</span></label>
+    <label><input type="checkbox"><span> 抜去後の観察項目を計画(画像、バイタル、症状)</span></label>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>6. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>受動的ドレナージ</td><td>重力・毛細管現象で排液(Penroseなど)</td></tr>
+        <tr><td>能動的ドレナージ</td><td>陰圧で吸引(J-VAC、SBバック、胸腔ドレーン)</td></tr>
+        <tr><td>Air leak</td><td>胸腔ドレーンの水封部にbubbleが出る現象。肺瘻の存在</td></tr>
+        <tr><td>三連ボトル</td><td>胸腔ドレーンの典型的システム(集液・水封・吸引調整)</td></tr>
+        <tr><td>Valsalva 法</td><td>声門閉鎖下にいきむ。胸腔内圧を陽圧化し空気引き込みを防ぐ</td></tr>
+        <tr><td>SBバック</td><td>低圧持続吸引機能付き閉鎖式排液バッグの商品名</td></tr>
+        <tr><td>J-VAC</td><td>ジャクソンプラット型陰圧ドレーンの商品名</td></tr>
+        <tr><td>遺残腔(dead space)</td><td>術後に組織で埋まらず残った空間。感染・血腫の温床</td></tr>
+        <tr><td>縫合不全</td><td>消化管吻合の破綻。ドレーン排液性状の変化で発見されることが多い</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>ドレーン抜去時に気をつけること — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、実際の手技は施設マニュアルと指導医の指示に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const tab=btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');document.getElementById(tab).classList.add('active');
+    });
+  });
+
+  const questions = [
+    {q:"胸腔ドレーン抜去時、患者に行わせる呼吸法として正しいのはどれか。",choices:["深い吸気","Valsalva法または呼気停止","ゆっくりした吸気","咳き込む"],correct:1,explain:"吸気は胸腔内陰圧を増強し、抜去孔から空気が引き込まれ気胸再発のリスクとなる。Valsalvaまたは呼気停止で胸腔内陰圧を抑えてから抜去する。"},
+    {q:"胸腔ドレーン抜去の条件として誤っているのはどれか。",choices:["排液 200 mL/日以下","エアリークの消失","X線で肺完全膨張","発熱がある"],correct:3,explain:"発熱・感染兆候は抜去禁忌の判断要素。膿胸の遅発化を見逃す。"},
+    {q:"腹腔ドレーン(膵手術後)抜去前に確認すべき排液項目は?",choices:["pH","アミラーゼ・リパーゼ","ヘモグロビン","電解質"],correct:1,explain:"膵液瘻の早期発見にはドレーン排液中のアミラーゼ・リパーゼ測定が必須。血清の3倍以上で膵液瘻を疑う(ISGPF基準)。"},
+    {q:"ドレーン抜去後の閉塞性ドレッシングが特に必要なのはどれか。",choices:["皮下ドレーン","胸腔ドレーン","Penroseドレーン","SBバック皮下留置"],correct:1,explain:"胸腔ドレーンは抜去孔から空気進入で気胸再発のリスクがあるため、ワセリンガーゼ+フィルムで気密シールが必須。"},
+    {q:"心嚢ドレーン抜去後に最も警戒すべき合併症はどれか。",choices:["皮下気腫","心タンポナーデ","胸水貯留","気胸"],correct:1,explain:"心嚢ドレーン抜去後は遅発性出血による心タンポナーデを警戒。Beckの三徴(血圧低下・頸静脈怒張・心音減弱)を観察。"},
+    {q:"ドレーンが抜けない場合の対応として適切でないのはどれか。",choices:["固定縫合糸の遺残を確認","無理に引き抜く","画像評価を行う","IVR/外科にコンサルト"],correct:1,explain:"無理な牽引はドレーン断裂・組織損傷の原因。原因を確認してから対応する。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
