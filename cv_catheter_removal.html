@@ -74,6 +74,20 @@
   footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
   .pill{display:inline-block;font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:#fce4e4;color:var(--accent);margin-right:.3rem}
   .pill.ok{background:#e8f5e9;color:var(--success)}
+  .case-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:1rem 1.2rem;margin:.8rem 0;position:relative}
+  .case-card .case-no{display:inline-block;background:var(--accent);color:#fff;font-weight:bold;font-size:.78rem;padding:.15rem .6rem;border-radius:4px;margin-bottom:.5rem}
+  .case-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
+  .case-card .scenario{font-size:.9rem;margin-bottom:.5rem;color:var(--text)}
+  .case-card .lesson{background:#fff8e1;border-left:3px solid var(--warn);padding:.5rem .7rem;font-size:.85rem;margin-top:.4rem;border-radius:4px}
+  .case-card .lesson strong{color:var(--navy)}
+  .pmda-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem;margin:1rem 0}
+  .pmda-figs figure{margin:0;background:#fafbfd;border:1px solid var(--border);border-radius:8px;padding:.5rem;text-align:center}
+  .pmda-figs img{width:100%;height:auto;border-radius:4px;cursor:zoom-in;transition:transform .2s}
+  .pmda-figs img:hover{transform:scale(1.02)}
+  .pmda-figs figcaption{font-size:.78rem;color:var(--muted);margin-top:.4rem}
+  .source-ref{background:#f5f8fc;border-left:4px solid var(--navy);padding:.8rem 1rem;border-radius:6px;font-size:.85rem;margin-top:1rem}
+  .source-ref a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .source-ref a:hover{text-decoration:underline}
   @media (max-width:480px){section{padding:1.1rem .9rem}}
 </style>
 </head>
@@ -91,6 +105,7 @@
     <li><a href="#airembol">空気塞栓</a></li>
     <li><a href="#procedure">抜去手技</a></li>
     <li><a href="#complications">合併症</a></li>
+    <li><a href="#cases">実際の事故例</a></li>
     <li><a href="#checklist">チェックリスト</a></li>
     <li><a href="#quiz">クイズ</a></li>
     <li><a href="#glossary">用語</a></li>
@@ -243,8 +258,80 @@
   </div>
 </section>
 
+<section id="cases">
+  <h2>5. 実際の事故事例 ― PMDA医療安全情報 No.71</h2>
+  <p>独立行政法人 医薬品医療機器総合機構(PMDA)が <strong>2025年2月</strong> に公表した医療安全情報 No.71「中心静脈に留置するカテーテル使用時の空気塞栓事例について」では、CV関連の空気塞栓を <strong>2つの場面</strong> に分けて警告しています。</p>
+
+  <div class="callout danger">
+    <strong>⚠ PMDA警告の2つの場面:</strong>
+    <ol style="margin-top:.4rem">
+      <li><strong>コネクタの誤使用</strong>によるルートの大気開放(留置中の事故)</li>
+      <li><strong>抜去時・抜去後</strong>の刺入部からの空気引き込み(本ページの主題)</li>
+    </ol>
+  </div>
+
+  <h3>報告された3つの事例</h3>
+
+  <div class="case-card">
+    <span class="case-no">事例 1 ― コネクタ誤使用</span>
+    <h4>閉鎖式コネクタごと外してしまったケース</h4>
+    <p class="scenario">中心静脈カテーテルによる点滴終了時、誤って<u>患者側の閉鎖式コネクタごとルートを外し</u>てしまった結果、ルートが大気に開放され、空気塞栓が発生した。</p>
+    <div class="lesson"><strong>📌 学び:</strong> 閉鎖式コネクタを使っていても、接続を外す前に必ず <u>患者側のクランプ</u> と <u>閉鎖式コネクタの位置</u> を確認すること。</div>
+  </div>
+
+  <div class="case-card">
+    <span class="case-no">事例 2 ― 座位での抜去</span>
+    <h4>透析用カテーテルを座位で抜去したケース</h4>
+    <p class="scenario">透析用カテーテルを<u>座位</u>のままで抜去したところ、SpO₂が低下し意識消失。頭部CT・MRIで<strong>空気塞栓</strong>が確認された。</p>
+    <div class="lesson"><strong>📌 学び:</strong> 座位では刺入部の静脈圧が大気圧より低くなり、抜去孔から空気が引き込まれる。内頚静脈・鎖骨下静脈のカテーテルは <u>頭低位 + 呼吸停止</u> で抜去する。</div>
+  </div>
+
+  <div class="case-card">
+    <span class="case-no">事例 3 ― 抜去後の容態急変</span>
+    <h4>抜去後 ガーゼ圧迫のみで遅発性に容態急変したケース</h4>
+    <p class="scenario">中心静脈カテーテル抜去後、ガーゼで圧迫保護を行っていたが、<strong>1時間後</strong>に患者の容態が急変。レントゲン検査で<strong>空気塞栓</strong>が確認された。</p>
+    <div class="lesson"><strong>📌 学び:</strong> 通常のガーゼでは気密性がなく、瘻孔が閉じる前に呼吸サイクルで空気が引き込まれる。抜去直後に <u>密閉性のドレッシング材で被覆 + 5分以上圧迫</u> が必須。</div>
+  </div>
+
+  <h3>PMDA医療安全情報 No.71(原本)</h3>
+  <p>下記の画像は PMDA が公表しているポスターの原本です。クリックすると拡大表示されます。</p>
+  <div class="pmda-figs">
+    <figure>
+      <a href="images/pmda_71_page-1.png" target="_blank" rel="noopener">
+        <img src="images/pmda_71_page-1.png" alt="PMDA No.71 1ページ目: 2つのリスク場面と問題提起">
+      </a>
+      <figcaption>1ページ目: 2つのリスク場面の概要と問題提起</figcaption>
+    </figure>
+    <figure>
+      <a href="images/pmda_71_page-2.png" target="_blank" rel="noopener">
+        <img src="images/pmda_71_page-2.png" alt="PMDA No.71 2ページ目: コネクタ誤使用による空気塞栓事例">
+      </a>
+      <figcaption>2ページ目: コネクタ誤使用による事例と閉鎖式コネクタの正しい取扱い</figcaption>
+    </figure>
+    <figure>
+      <a href="images/pmda_71_page-3.png" target="_blank" rel="noopener">
+        <img src="images/pmda_71_page-3.png" alt="PMDA No.71 3ページ目: 抜去時の空気塞栓事例と機序">
+      </a>
+      <figcaption>3ページ目: 抜去時の事例 + 座位/仰臥位の比較 + 空気塞栓の機序</figcaption>
+    </figure>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 機序の補強(PMDA図より):</strong> 座位では<u>心臓と刺入部の圧較差が大きく、刺入部の静脈圧が低くなる</u>。仰臥位・頭低位では<u>圧較差が小さくなり静脈圧が高く保たれる</u>ため、空気が引き込まれにくい。
+  </div>
+
+  <div class="source-ref">
+    <strong>📖 出典:</strong> 独立行政法人 医薬品医療機器総合機構(PMDA)<br>
+    PMDA医療安全情報 No.71「中心静脈に留置するカテーテル使用時の空気塞栓事例について」 2025年2月<br>
+    <a href="https://www.pmda.go.jp/" target="_blank" rel="noopener">https://www.pmda.go.jp/</a><br>
+    <small>※ PMDA医療安全情報は厚生労働省所管の独立行政法人により公表されている公的な医療安全情報資料です。本ページの作成にあたり原本を引用しています。</small><br>
+    <small>関連: 日本医療安全調査機構「医療事故情報の再発防止に向けた提言 第17号 中心静脈カテーテル挿入・抜去に係る死亡事例の分析(改訂版)」<br>
+    <a href="https://www.medsafe.or.jp/" target="_blank" rel="noopener">https://www.medsafe.or.jp/</a></small>
+  </div>
+</section>
+
 <section id="checklist">
-  <h2>5. CV抜去前 セルフチェックリスト</h2>
+  <h2>6. CV抜去前 セルフチェックリスト</h2>
   <p>抜去前にすべて確認してから手技を開始してください。</p>
   <div class="checklist">
     <label><input type="checkbox"><span> 抗凝固薬の確認・必要な休薬済み</span></label>
@@ -259,9 +346,9 @@
 </section>
 
 <section id="quiz">
-  <h2>6. 理解度チェック(全6問)</h2>
+  <h2>7. 理解度チェック(全7問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="progress" id="progress">問題 1 / 7</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -271,7 +358,7 @@
     </div>
     <div class="score-display" id="scoreDisplay">
       <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 6</div>
+      <div class="big" id="finalScore">0 / 7</div>
       <div id="comment"></div>
       <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
     </div>
@@ -279,7 +366,7 @@
 </section>
 
 <section id="glossary">
-  <h2>7. 用語集</h2>
+  <h2>8. 用語集</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>用語</th><th>意味</th></tr></thead>
@@ -313,7 +400,8 @@
     {q:"抜去のタイミングで患者に行わせる呼吸法として正しいのはどれか。",choices:["深呼吸を繰り返す","息こらえ(Valsalva)またはハミング","ゆっくり吸気","咳をする"],correct:1,explain:"Valsalva・ハミングは胸腔内圧を陽圧化または0付近に保ち、吸気陰圧による空気引き込みを防ぐ。深呼吸・吸気は禁忌。"},
     {q:"CV抜去後に空気塞栓が疑われた場合の初期対応はどれか。",choices:["右側臥位 + 頭高位","左側臥位 + Trendelenburg位","座位 + 酸素投与","腹臥位"],correct:1,explain:"左側臥位 + Trendelenburg位(Durant maneuver)で空気を右室の側壁側に閉じ込め、肺動脈への移行を遅らせる。同時に100%酸素投与。"},
     {q:"CV抜去後のドレッシングとして適切なのはどれか。",choices:["通常のガーゼのみ","ワセリンガーゼ + フィルムドレッシング","ドレッシング不要","アルコール綿のみ"],correct:1,explain:"気密性のある閉塞性ドレッシング(ワセリン+フィルム)を最低24時間継続し、瘻孔からの遅発性空気引き込みを防ぐ。"},
-    {q:"なぜ胸腔内は常に陰圧なのか?",choices:["心拍動による","肺の弾性収縮力と胸壁の弾性拡張力が拮抗するため","横隔膜の緊張による","重力の作用"],correct:1,explain:"肺は縮もうとし、胸郭は広がろうとする — その両者の弾性力が拮抗して胸腔内に陰圧(陰圧空間)が生まれる。"}
+    {q:"なぜ胸腔内は常に陰圧なのか?",choices:["心拍動による","肺の弾性収縮力と胸壁の弾性拡張力が拮抗するため","横隔膜の緊張による","重力の作用"],correct:1,explain:"肺は縮もうとし、胸郭は広がろうとする — その両者の弾性力が拮抗して胸腔内に陰圧(陰圧空間)が生まれる。"},
+    {q:"PMDA医療安全情報 No.71で報告された事例として、CVカテーテル抜去後 ガーゼ圧迫のみで管理し『1時間後』に容態急変した症例の問題点はどれか。",choices:["圧迫時間が短すぎた","通常ガーゼでは気密性がなく、瘻孔が閉じる前に空気が引き込まれた","抗凝固薬を中止しなかった","抜去のスピードが速かった"],correct:1,explain:"事例3(PMDA No.71)。通常ガーゼは気密性に乏しく、呼吸サイクルの陰圧で遅発性に空気が引き込まれる。ワセリンガーゼ+フィルムなどの密閉性ドレッシングで被覆し、最低5分以上圧迫することがPMDA推奨。"}
   ];
 
   let idx=0,score=0,answered=false;
