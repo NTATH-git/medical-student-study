@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>胸部・胸腹部大動脈瘤術後の対麻痺メカニズム ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .mech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem;margin-top:1rem}
+  .mech-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:1rem}
+  .mech-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
+  .mech-card .num{display:inline-block;background:var(--accent);color:#fff;width:1.8rem;height:1.8rem;border-radius:50%;text-align:center;line-height:1.8rem;font-weight:bold;margin-right:.4rem}
+  .mech-card p{font-size:.85rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .crawford-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;margin-top:.8rem}
+  .crawford-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:6px;padding:.7rem .9rem;font-size:.86rem}
+  .crawford-card .type{font-weight:700;color:var(--navy);margin-bottom:.2rem}
+  .crawford-card .risk{font-size:.78rem;color:var(--muted)}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  /* Top text-based page navigation (wraps on mobile) */
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">胸部・胸腹部大動脈瘤術後の対麻痺メカニズム</a></h1>
+  <p class="subtitle">脊髄血流解剖 ― 4つの機序 ― リスク評価</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション">
+  <ul>
+    <li><a href="index.html">🏠 目次</a></li>
+    <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+    <li><a href="avr_open_procedure.html">AVR手順</a></li>
+    <li><a href="evar_endoleak.html">EVAR</a></li>
+    <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+    <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+    <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+    <li><a href="drain_removal.html">ドレーン抜去</a></li>
+    <li><a href="npwt_basics.html">NPWT</a></li>
+    <li><a href="hit_syndrome.html">HIT</a></li>
+  </ul>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#why">なぜ重要か</a></li>
+    <li><a href="#anatomy">脊髄血流解剖</a></li>
+    <li><a href="#mechanisms">4つのメカニズム</a></li>
+    <li><a href="#crawford">Crawford分類</a></li>
+    <li><a href="#detection">早期発見</a></li>
+    <li><a href="#prevention">予防戦略</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="why">
+  <h2>1. なぜ重要か ― 対麻痺は最も恐れられる合併症</h2>
+  <p>胸部下行大動脈瘤(DTAA)・胸腹部大動脈瘤(TAAA)に対する人工血管置換術の最重大合併症が <strong>対麻痺(paraplegia)</strong> です。下肢の永続的麻痺は患者のQOLを劇的に低下させ、社会復帰を不可能にします。</p>
+
+  <div class="callout danger">
+    <strong>⚠ 発生頻度:</strong><br>
+    ・胸部下行大動脈瘤(DTAA)単独置換: 2-8%<br>
+    ・胸腹部大動脈瘤(TAAA)置換: 4-30%(Crawford II型は最高リスク)<br>
+    ・急性大動脈解離 緊急手術: さらに高率
+  </div>
+
+  <h3>関連する用語の区別</h3>
+  <ul>
+    <li><strong>Paraplegia(完全対麻痺):</strong> 下肢完全麻痺</li>
+    <li><strong>Paraparesis(不全対麻痺):</strong> 下肢筋力低下</li>
+    <li><strong>Immediate onset:</strong> 術中〜術直後発症 = 術中の脊髄虚血</li>
+    <li><strong>Delayed onset:</strong> 術後12-48時間で発症 = reperfusion injury + 二次的虚血</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 重要:</strong> Delayed paraplegia は「術後一旦動かせた下肢が、12-48時間後に動かなくなる」典型像。観察が継続必要。
+  </div>
+</section>
+
+<section id="anatomy">
+  <h2>2. 脊髄血流の解剖</h2>
+  <p>脊髄の動脈血流は、<strong>1本の前脊髄動脈(ASA)</strong>と<strong>左右の後脊髄動脈(PSA)</strong>から供給されます。前脊髄動脈は脊髄前2/3(運動野・側索)を支配するため、虚血すると<strong>運動麻痺</strong>が前景に立ちます。</p>
+
+  <h3>3階層の血流網</h3>
+  <ol>
+    <li><strong>椎骨動脈系:</strong> 頚髄〜上位胸髄を栄養</li>
+    <li><strong>分節動脈(segmental artery):</strong> 胸部・腰部大動脈から肋間動脈/腰動脈として分岐 → 各椎間孔から radicular artery として脊髄前動脈に流入</li>
+    <li><strong>内腸骨動脈経由:</strong> 仙髄・円錐部分の側副血行</li>
+  </ol>
+
+  <h3>Adamkiewicz 動脈(大根動脈)</h3>
+  <p>分節動脈の中で最も太い脊髄供給枝を <strong>Adamkiewicz動脈(arteria radicularis magna)</strong> と呼びます。</p>
+  <ul>
+    <li>分岐レベル: <strong>75%が T8-L1、特にT9-T12</strong>(左側からが多い)</li>
+    <li>胸髄下部〜腰膨大部の前脊髄動脈の <strong>主要供給源</strong></li>
+    <li>個人差が大きく、術前CTで描出されないこともある</li>
+    <li>TAAA手術中にこの動脈を <u>遮断・結紮</u> すれば、対麻痺リスクが急増</li>
+  </ul>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="脊髄血流とAdamkiewicz動脈">
+      <!-- Spinal cord -->
+      <rect x="240" y="20" width="20" height="320" fill="#fce4e4" stroke="#c62828" stroke-width="1.5" rx="3"/>
+      <text x="265" y="35" font-size="10" fill="#0b2545">脊髄</text>
+
+      <!-- Anterior spinal artery (front) -->
+      <line x1="245" y1="20" x2="245" y2="340" stroke="#c62828" stroke-width="3"/>
+      <text x="190" y="180" font-size="10" fill="#c62828" font-weight="bold">前脊髄動脈</text>
+      <text x="190" y="192" font-size="10" fill="#c62828" font-weight="bold">(ASA, 1本)</text>
+
+      <!-- Posterior spinal arteries -->
+      <line x1="255" y1="20" x2="255" y2="340" stroke="#1565c0" stroke-width="2"/>
+      <text x="290" y="180" font-size="9" fill="#1565c0">後脊髄動脈</text>
+      <text x="290" y="192" font-size="9" fill="#1565c0">(PSA, 左右2本)</text>
+
+      <!-- Levels markers -->
+      <text x="220" y="60" font-size="9" fill="#5a6473" text-anchor="end">T1</text>
+      <text x="220" y="105" font-size="9" fill="#5a6473" text-anchor="end">T4</text>
+      <text x="220" y="150" font-size="9" fill="#5a6473" text-anchor="end">T8</text>
+      <text x="220" y="195" font-size="9" fill="#5a6473" text-anchor="end">T9</text>
+      <text x="220" y="220" font-size="9" fill="#5a6473" text-anchor="end">T10</text>
+      <text x="220" y="245" font-size="9" fill="#5a6473" text-anchor="end">T12</text>
+      <text x="220" y="275" font-size="9" fill="#5a6473" text-anchor="end">L1</text>
+
+      <!-- Aorta -->
+      <rect x="370" y="20" width="22" height="240" fill="#c62828" rx="2"/>
+      <text x="400" y="40" font-size="10" fill="#c62828" font-weight="bold">大動脈</text>
+
+      <!-- Segmental arteries (intercostal/lumbar) -->
+      <line x1="260" y1="60" x2="370" y2="60" stroke="#ef6c00" stroke-width="1.5"/>
+      <line x1="260" y1="105" x2="370" y2="105" stroke="#ef6c00" stroke-width="1.5"/>
+      <line x1="260" y1="150" x2="370" y2="150" stroke="#ef6c00" stroke-width="1.5"/>
+      <line x1="260" y1="220" x2="370" y2="220" stroke="#ef6c00" stroke-width="1.5"/>
+
+      <!-- Adamkiewicz: most prominent at T9-T12 -->
+      <path d="M 260 195 Q 320 200 370 200" stroke="#7e57c2" stroke-width="4" fill="none"/>
+      <text x="380" y="200" font-size="10" fill="#7e57c2" font-weight="bold">★ Adamkiewicz</text>
+      <text x="380" y="212" font-size="9" fill="#7e57c2">(T9-T12, 75%)</text>
+
+      <!-- Other label -->
+      <text x="375" y="270" font-size="9" fill="#ef6c00">分節動脈</text>
+      <text x="375" y="282" font-size="9" fill="#ef6c00">(肋間/腰)</text>
+
+      <!-- Iliac for collateral -->
+      <path d="M 380 260 L 400 320" stroke="#c62828" stroke-width="2"/>
+      <text x="405" y="335" font-size="9" fill="#c62828">内腸骨A</text>
+      <line x1="260" y1="320" x2="395" y2="320" stroke="#1565c0" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="295" y="315" font-size="8" fill="#1565c0">仙髄側副</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#c62828"></i>前脊髄動脈(運動)</span>
+      <span><i style="background:#1565c0"></i>後脊髄動脈(感覚)</span>
+      <span><i style="background:#ef6c00"></i>分節動脈</span>
+      <span><i style="background:#7e57c2"></i>Adamkiewicz動脈</span>
+    </div>
+  </div>
+
+  <h3>側副血行ネットワーク(collateral network)</h3>
+  <p>近年は単一のAdamkiewicz動脈ではなく、<strong>椎骨動脈・分節動脈・内腸骨動脈経由でつながる広範な血管ネットワーク</strong>として脊髄血流を理解する概念(Etz, Griepp)が提唱されています。これにより、複数の分節動脈をゆっくり遮断していけば、ネットワーク全体で代償する余地があります。</p>
+</section>
+
+<section id="mechanisms">
+  <h2>3. 対麻痺をきたす4つのメカニズム</h2>
+
+  <div class="mech-grid">
+    <div class="mech-card">
+      <h4><span class="num">1</span>分節動脈の遮断</h4>
+      <p>人工血管置換で <strong>肋間動脈・腰動脈・Adamkiewicz動脈</strong> を一括結紮 → 前脊髄動脈への灌流喪失 → 直接的な脊髄虚血。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">2</span>大動脈遮断による低灌流</h4>
+      <p>胸部大動脈遮断中は <strong>遠位灌流圧が低下</strong>(時に20-30mmHg)。distal aortic perfusion がなければ 脊髄供給動脈圧 ↓ → 灌流不足。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">3</span>塞栓(atheroembolism)</h4>
+      <p>大動脈壁の <strong>動脈硬化プラーク・血栓・コレステロール結晶</strong> が分節動脈に飛散 → 微小血管閉塞。慢性解離で多い。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">4</span>再灌流障害・浮腫</h4>
+      <p>大動脈遮断解除で脊髄灌流再開 → 虚血再灌流障害 + 細胞外浮腫 → CSF圧↑ → <strong>脊髄灌流圧↓</strong> → 二次的虚血(delayed paraplegia の主因)。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📌 SCPP(脊髄灌流圧)の公式:</strong> <strong>SCPP = MAP − CSFP</strong><br>
+    (MAP: 平均動脈圧、CSFP: 髄液圧)<br>
+    分子(MAP)が下がる + 分母的に増える(CSFP)→ SCPP低下 → 虚血。<br>
+    → MAP を上げる(昇圧)+ CSFP を下げる(<u>CSFドレナージ</u>)が予防の根幹。<br>
+    詳しくは「<a href="csf_drainage.html" style="color:var(--accent)">CSFドレナージ</a>」のページへ。
+  </div>
+</section>
+
+<section id="crawford">
+  <h2>4. Crawford 分類(胸腹部大動脈瘤の範囲)</h2>
+  <p>瘤の範囲が広いほど、結紮する分節動脈数が多くなる = 対麻痺リスク上昇。</p>
+
+  <div class="crawford-grid">
+    <div class="crawford-card">
+      <div class="type">Type I</div>
+      <div>左鎖骨下動脈直下〜腎動脈上まで</div>
+      <div class="risk">対麻痺: 約 3-10%</div>
+    </div>
+    <div class="crawford-card">
+      <div class="type">Type II ★最高リスク</div>
+      <div>左鎖骨下動脈直下〜腸骨動脈分岐部まで(全長)</div>
+      <div class="risk">対麻痺: 約 10-30%</div>
+    </div>
+    <div class="crawford-card">
+      <div class="type">Type III</div>
+      <div>第6肋間以遠〜腸骨動脈分岐部まで</div>
+      <div class="risk">対麻痺: 約 5-15%</div>
+    </div>
+    <div class="crawford-card">
+      <div class="type">Type IV</div>
+      <div>横隔膜下〜腸骨動脈分岐部まで(腹部大動脈中心)</div>
+      <div class="risk">対麻痺: 約 1-5%</div>
+    </div>
+    <div class="crawford-card">
+      <div class="type">Type V (extent V)</div>
+      <div>第6肋間以遠〜腎動脈上まで</div>
+      <div class="risk">対麻痺: 約 5-10%</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 なぜType IIが最も危険か:</strong> Type IIは <u>左鎖骨下動脈直下から腸骨動脈分岐まで</u> という最大範囲で人工血管に置換するため、Adamkiewicz動脈を含めほぼ全ての分節動脈が結紮される。
+  </div>
+
+  <h3>その他のリスク因子</h3>
+  <ul>
+    <li>緊急手術(待機手術より2-3倍リスク)</li>
+    <li>大動脈遮断時間が長い(>30分)</li>
+    <li>術前 脊髄虚血既往</li>
+    <li>術前腎不全(MAP維持困難)</li>
+    <li>高齢(>70歳)</li>
+    <li>左鎖骨下動脈の被覆(TEVAR時)</li>
+    <li>内腸骨動脈の閉塞・既往AAA術後 → 側副血行の予備能低下</li>
+  </ul>
+</section>
+
+<section id="detection">
+  <h2>5. 早期発見の方法</h2>
+
+  <h3>術中モニタリング</h3>
+  <ul>
+    <li><strong>MEP(運動誘発電位):</strong> 経頭蓋電気刺激 → 下肢筋電図記録。脊髄前角細胞・側索を反映。<u>50%以上の振幅低下で警告</u> → 緊急に分節動脈再建 or 灌流改善</li>
+    <li><strong>SEP(体性感覚誘発電位):</strong> 後索を反映。前脊髄動脈領域の虚血では出にくいが、補助的に使用</li>
+    <li><strong>遠位灌流圧モニター:</strong> 大腿動脈ライン圧で distal aortic perfusion 圧を測定</li>
+  </ul>
+
+  <h3>術後評価</h3>
+  <ul>
+    <li>麻酔覚醒後、可及的早期に下肢運動・感覚を評価</li>
+    <li>覚醒できない症例(挿管継続)では <u>覚醒テスト(wake-up test)</u> を朝行う</li>
+    <li><strong>術後12-48時間は最も警戒</strong> — delayed paraplegia の好発時期</li>
+    <li>下肢麻痺発症時は即座に MAP を上げ、CSFドレナージ強化、画像評価</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ Delayed paraplegia の対応:</strong> 動かせていた下肢が動かなくなったら、<u>即座にCOCKPIT(MAP↑ + CSFP↓ + 酸素化↑ + 適切なヘマトクリット)</u> プロトコルを発動。早期介入で回復例あり。
+  </div>
+</section>
+
+<section id="prevention">
+  <h2>6. 予防戦略 ― 多角的アプローチ</h2>
+  <p>単一の方法では効果限定。<strong>複数の戦略を組み合わせる(multimodal protection)</strong>のが標準。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>戦略</th><th>機序</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CSFドレナージ</strong></td><td>CSFP↓ → SCPP↑</td><td>Class I推奨(Crawford II/III)。詳細は<a href="csf_drainage.html" style="color:var(--accent)">専用ページ</a></td></tr>
+        <tr><td>Distal aortic perfusion</td><td>遮断中の下半身灌流維持(部分体外循環)</td><td>左房-大腿動脈バイパス + 遠心ポンプ</td></tr>
+        <tr><td>分節動脈再建</td><td>主要肋間動脈をbutton状にグラフトに再吻合</td><td>T8-L1レベル優先</td></tr>
+        <tr><td>軽度低体温</td><td>代謝抑制 → 虚血耐性向上</td><td>32-34℃ permissive</td></tr>
+        <tr><td>深部低体温循環停止(DHCA)</td><td>18-20℃で安全に60分まで遮断可能</td><td>近年は使用減少</td></tr>
+        <tr><td>MAP管理</td><td>SCPP維持(>80-90mmHg)</td><td>術中・術後共に</td></tr>
+        <tr><td>段階的遮断(sequential clamping)</td><td>側副が発達する時間を稼ぐ</td><td>段階別に遮断・再灌流を繰り返す</td></tr>
+        <tr><td>MEP/SEPモニター</td><td>早期警告 → 即時介入</td><td>術中対応の精度向上</td></tr>
+        <tr><td>ステロイド・神経保護薬</td><td>(エビデンス限定的)</td><td>メチルプレドニゾロン使用例あり</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>TEVAR(ステントグラフト)時の追加配慮</h3>
+  <ul>
+    <li>左鎖骨下動脈を被覆する場合は <strong>事前バイパス(carotid-subclavian bypass)</strong> が推奨されることが多い</li>
+    <li>過去のAAA手術歴があれば、内腸骨動脈経由の側副が低下 → CSFドレナージの閾値を下げる</li>
+    <li>大動脈被覆範囲が長い場合(>20cm)は対麻痺リスク上昇</li>
+  </ul>
+</section>
+
+<section id="quiz">
+  <h2>7. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>8. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>Paraplegia / Paraparesis</td><td>完全対麻痺 / 不全対麻痺(下肢)</td></tr>
+        <tr><td>DTAA</td><td>Descending Thoracic Aortic Aneurysm(胸部下行大動脈瘤)</td></tr>
+        <tr><td>TAAA</td><td>Thoracoabdominal Aortic Aneurysm(胸腹部大動脈瘤)</td></tr>
+        <tr><td>ASA</td><td>Anterior Spinal Artery(前脊髄動脈、1本)</td></tr>
+        <tr><td>PSA</td><td>Posterior Spinal Artery(後脊髄動脈、左右2本)</td></tr>
+        <tr><td>Adamkiewicz 動脈</td><td>Arteria radicularis magna(大根動脈)。T8-L1に75%</td></tr>
+        <tr><td>Crawford分類</td><td>胸腹部大動脈瘤の範囲分類(I-V)。II型が最高リスク</td></tr>
+        <tr><td>SCPP</td><td>Spinal Cord Perfusion Pressure。SCPP = MAP - CSFP</td></tr>
+        <tr><td>CSFP</td><td>CSF Pressure(脳脊髄液圧)</td></tr>
+        <tr><td>MEP</td><td>Motor Evoked Potential(運動誘発電位)。脊髄前角細胞反映</td></tr>
+        <tr><td>SEP</td><td>Somatosensory Evoked Potential(体性感覚誘発電位)</td></tr>
+        <tr><td>Distal aortic perfusion</td><td>大動脈遮断中の下半身体外循環灌流</td></tr>
+        <tr><td>DHCA</td><td>Deep Hypothermic Circulatory Arrest(深部低体温循環停止)</td></tr>
+        <tr><td>Sequential clamping</td><td>段階的遮断手技。側副血行発達を促す</td></tr>
+        <tr><td>COCKPIT プロトコル</td><td>遅発性対麻痺発症時の救済介入(MAP↑/CSFP↓/酸素化↑/Hct調整)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>胸部・胸腹部大動脈瘤術後の対麻痺メカニズム — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  // Highlight current page in the top text-based page nav
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Dynamic offset: place section nav just below page nav (handles wrap)
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"Adamkiewicz動脈が最も高頻度に分岐するレベルとして正しいのはどれか。",choices:["C5-T2","T3-T6","T8-L1","L2-L5"],correct:2,explain:"Adamkiewicz動脈(arteria radicularis magna)は75%がT8-L1、特にT9-T12レベルから分岐する(左側からが多い)。胸髄下部〜腰膨大部の前脊髄動脈の主要供給源。"},
+    {q:"脊髄灌流圧(SCPP)の公式として正しいのはどれか。",choices:["SCPP = CVP - CSFP","SCPP = MAP - CSFP","SCPP = MAP - CVP","SCPP = MAP + CSFP"],correct:1,explain:"SCPP(脊髄灌流圧)= MAP(平均動脈圧)− CSFP(脳脊髄液圧)。CSFPを下げる(CSFドレナージ)+ MAPを上げる(昇圧)がSCPP向上の二大戦略。"},
+    {q:"Crawford分類で最も対麻痺リスクが高いのはどれか。",choices:["Type I","Type II","Type IV","Type V"],correct:1,explain:"Crawford II型は左鎖骨下動脈直下〜腸骨動脈分岐部まで(全長)を置換する最大範囲で、Adamkiewicz動脈を含め全ての分節動脈が結紮されるため対麻痺率10-30%と最高リスク。"},
+    {q:"前脊髄動脈領域の虚血で前景に立つ症状はどれか。",choices:["振動覚障害","深部覚障害","運動麻痺","頭痛"],correct:2,explain:"前脊髄動脈は脊髄前2/3(運動野・側索)を支配するため、虚血すると下肢の運動麻痺が前景に立つ。後索(深部感覚)は後脊髄動脈領域なので比較的保たれる(anterior cord syndrome)。"},
+    {q:"Delayed paraplegia の特徴として正しいのはどれか。",choices:["術直後から麻痺","術後12-48時間後に発症","術後1週間以後の発症のみ","術後麻酔覚醒前にCT必須"],correct:1,explain:"Delayed paraplegia は『術後に一旦動かせていた下肢が、12-48時間後に動かなくなる』典型。再灌流障害+脊髄浮腫によるCSFP上昇 → SCPP低下が機序。術後48時間は最も警戒。"},
+    {q:"術中MEP(運動誘発電位)の主な意義として正しいのはどれか。",choices:["術中の覚醒度モニター","脊髄前角細胞の虚血を早期検出","脳波の代用","心電図の補助"],correct:1,explain:"MEPは経頭蓋電気刺激で誘発した下肢筋電図反応で、運動皮質→脊髄前角細胞→末梢神経の経路を反映。50%以上の振幅低下で警告とし、分節動脈再建や灌流改善を緊急に行う。"},
+    {q:"対麻痺予防のmultimodal protectionに含まれない戦略はどれか。",choices:["CSFドレナージ","Distal aortic perfusion","MAP維持(高値)","NSAIDs定時投与"],correct:3,explain:"NSAIDsは予防戦略には含まれない。標準的なmultimodal protectionは①CSFドレナージ ②distal aortic perfusion ③分節動脈再建 ④軽度低体温 ⑤MAP維持 ⑥MEP/SEPモニター ⑦段階的遮断など。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
