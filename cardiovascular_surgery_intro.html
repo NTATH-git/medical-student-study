@@ -409,16 +409,13 @@
   .back-to-top.show { opacity: 1; pointer-events: auto; }
   .back-to-top:hover { transform: translateY(-2px); background: var(--accent-light); }
 
-  /* Top text-based page navigation (replaces hamburger) */
-  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:0 1px 0 rgba(0,0,0,.08)}
-  .page-nav ul{display:flex;list-style:none;min-width:max-content;padding:0;margin:0}
-  .page-nav a{display:flex;align-items:center;gap:.25rem;color:#fff;text-decoration:none;padding:.55rem .85rem;font-size:.82rem;white-space:nowrap;border-bottom:3px solid transparent;transition:background .15s,border-color .15s;min-height:42px}
-  .page-nav a:hover{background:rgba(0,0,0,.12)}
-  .page-nav a.current{background:var(--accent);border-bottom-color:#fff;font-weight:700}
-  /* Stack the existing section nav below the page nav */
-  nav{top:42px}
-  /* Hide the floating hamburger now that text nav is in place */
   .menu-toggle{display:none}
+  /* Top text-based page navigation (wraps on mobile) */
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
   .menu-toggle{position:fixed;top:12px;right:12px;z-index:150;width:44px;height:44px;border-radius:8px;background:var(--navy);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s}
   .menu-toggle:hover{background:var(--navy-light)}
   .menu-toggle:focus{outline:2px solid var(--accent-light);outline-offset:2px}
@@ -457,6 +454,8 @@
     <li><a href="avr_open_procedure.html">AVR手順</a></li>
     <li><a href="evar_endoleak.html">EVAR</a></li>
     <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+    <li><a href="csf_drainage.html">CSFドレナージ</a></li>
     <li><a href="cv_catheter_removal.html">CV抜去</a></li>
     <li><a href="drain_removal.html">ドレーン抜去</a></li>
     <li><a href="npwt_basics.html">NPWT</a></li>
@@ -882,6 +881,10 @@
   // Highlight current page in the top text-based page nav
   const _curP = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Dynamic offset: place section nav just below page nav (handles wrap)
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
 
 
 

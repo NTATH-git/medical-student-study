@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>脳脊髄液(CSF)ドレナージが対麻痺に有効な理由 ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .formula-box{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:1.5rem 1.2rem;border-radius:12px;text-align:center;margin:1rem 0;box-shadow:var(--shadow-lg)}
+  .formula-box .formula{font-size:1.6rem;font-weight:700;letter-spacing:.05em;margin:.5rem 0}
+  .formula-box .desc{font-size:.85rem;opacity:.9}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .compare-grid > div{padding:1rem;border-radius:8px}
+  .compare-bad{background:#ffebee;border-left:4px solid var(--danger)}
+  .compare-good{background:#e8f5e9;border-left:4px solid var(--success)}
+  .compare-grid h4{margin-bottom:.5rem}
+  .compare-bad h4{color:var(--danger)}
+  .compare-good h4{color:var(--success)}
+  .step-flow{counter-reset:step;list-style:none;padding-left:0}
+  .step-flow li{position:relative;padding:.5rem 0 .5rem 2.5rem;border-left:2px solid var(--accent);margin-left:1rem;padding-left:1.5rem}
+  .step-flow li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+  .indi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .indi-grid > div{padding:1rem;border-radius:8px}
+  .indi-yes{background:#e8f5e9;border-left:4px solid var(--success)}
+  .indi-no{background:#ffebee;border-left:4px solid var(--accent)}
+  .indi-grid h4{margin-bottom:.5rem}
+  .indi-yes h4{color:var(--success)}
+  .indi-no h4{color:var(--accent)}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  /* Top text-based page navigation (wraps on mobile) */
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.indi-grid{grid-template-columns:1fr};.compare-grid{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">脳脊髄液(CSF)ドレナージが対麻痺に有効な理由</a></h1>
+  <p class="subtitle">SCPP の式から、適応・手技・合併症まで</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション">
+  <ul>
+    <li><a href="index.html">🏠 目次</a></li>
+    <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+    <li><a href="avr_open_procedure.html">AVR手順</a></li>
+    <li><a href="evar_endoleak.html">EVAR</a></li>
+    <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+    <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+    <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+    <li><a href="drain_removal.html">ドレーン抜去</a></li>
+    <li><a href="npwt_basics.html">NPWT</a></li>
+    <li><a href="hit_syndrome.html">HIT</a></li>
+  </ul>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#why">なぜ効くのか</a></li>
+    <li><a href="#evidence">エビデンス</a></li>
+    <li><a href="#indication">適応・禁忌</a></li>
+    <li><a href="#technique">手技</a></li>
+    <li><a href="#complications">合併症</a></li>
+    <li><a href="#combo">他戦略との組合せ</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="why">
+  <h2>1. なぜ効くのか ― SCPPの式から考える</h2>
+
+  <p>対麻痺予防の本質は <strong>「脊髄に十分な血液を流し続ける」</strong> ことです。脊髄に流れる血液の圧(脊髄灌流圧、SCPP)は次の式で表されます。</p>
+
+  <div class="formula-box">
+    <div class="formula">SCPP = MAP − CSFP</div>
+    <div class="desc">脊髄灌流圧 = 平均動脈圧 − 脳脊髄液圧</div>
+  </div>
+
+  <p>つまり、脊髄を流れる血流の駆動圧は <strong>「流入圧 − 流出抵抗」</strong> の構造になっています。流出側の <u>脳脊髄液圧(CSFP)</u> は、脊髄を取り囲む硬膜内の圧で、ここが高いと血管が圧迫されて流入血流が低下します。</p>
+
+  <h3>大動脈瘤手術中・術後に起こること</h3>
+  <div class="compare-grid">
+    <div class="compare-bad">
+      <h4>❌ 介入しない場合</h4>
+      <ul>
+        <li><strong>MAP↓</strong> 大動脈遮断で遠位灌流低下</li>
+        <li><strong>CSFP↑</strong> 再灌流障害・脊髄浮腫で髄液圧上昇</li>
+        <li><strong>SCPP = MAP↓ − CSFP↑</strong> → 急激低下</li>
+        <li>→ 脊髄虚血 → 対麻痺</li>
+      </ul>
+    </div>
+    <div class="compare-good">
+      <h4>⭕ CSFドレナージ + 昇圧</h4>
+      <ul>
+        <li><strong>MAP↑</strong> 昇圧薬で >80-90mmHg維持</li>
+        <li><strong>CSFP↓</strong> ドレナージで <10mmHg維持</li>
+        <li><strong>SCPP = MAP↑ − CSFP↓</strong> → 確保</li>
+        <li>→ 脊髄灌流維持 → 対麻痺予防</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SCPPの仕組み">
+      <!-- Spinal cord cross-section -->
+      <ellipse cx="240" cy="140" rx="70" ry="55" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+      <text x="240" y="145" font-size="14" fill="#0b2545" text-anchor="middle" font-weight="bold">脊髄</text>
+
+      <!-- Dural sac (encloses CSF + cord) -->
+      <ellipse cx="240" cy="140" rx="100" ry="80" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="240" y="225" font-size="11" fill="#1565c0" text-anchor="middle" font-weight="bold">CSF(脳脊髄液)</text>
+      <text x="240" y="238" font-size="9" fill="#1565c0" text-anchor="middle">CSFP↑で脊髄圧迫</text>
+
+      <!-- Inflow arrow (artery, large) -->
+      <path d="M 50 140 L 165 140" stroke="#c62828" stroke-width="8" marker-end="url(#ar)"/>
+      <text x="80" y="125" font-size="11" fill="#c62828" font-weight="bold">MAP(血流)</text>
+
+      <!-- Outflow arrow (less if compressed) -->
+      <path d="M 315 140 L 430 140" stroke="#9e9e9e" stroke-width="4" marker-end="url(#ar2)"/>
+      <text x="350" y="125" font-size="11" fill="#5a6473">流出</text>
+
+      <!-- CSF lateral arrows pushing on cord -->
+      <path d="M 145 105 L 175 125" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+      <path d="M 145 175 L 175 155" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+      <path d="M 335 105 L 305 125" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+      <path d="M 335 175 L 305 155" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+
+      <!-- CSF drain catheter -->
+      <line x1="240" y1="220" x2="240" y2="260" stroke="#7e57c2" stroke-width="3"/>
+      <circle cx="240" cy="260" r="6" fill="#7e57c2"/>
+      <text x="250" y="265" font-size="10" fill="#7e57c2" font-weight="bold">CSFドレーン → CSFP↓</text>
+
+      <defs>
+        <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <polygon points="0 0, 10 5, 0 10" fill="#c62828"/>
+        </marker>
+        <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0 0, 8 4, 0 8" fill="#9e9e9e"/>
+        </marker>
+        <marker id="ar3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 6 3, 0 6" fill="#1565c0"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 物理学的アナロジー:</strong> 脊髄血流を「ストローでジュースを吸う」と例えれば、CSFPは「ストローを外から指で押さえる力」。指の力(CSFP)が強いとジュース(血流)が流れない。CSFドレナージは「指を緩める」操作。
+  </div>
+</section>
+
+<section id="evidence">
+  <h2>2. エビデンス ― Coselli 試験</h2>
+
+  <h3>Coselli ら 2002年 RCT(J Vasc Surg)</h3>
+  <ul>
+    <li>対象: <strong>胸腹部大動脈瘤 Crawford I/II型</strong> 待機手術 145例</li>
+    <li>介入群: 周術期 CSFドレナージ実施 / 対照群: 実施せず</li>
+    <li>結果: <strong>対麻痺/不全対麻痺の発生率を80%相対減少</strong>(13% → 2.6%)</li>
+    <li>これを根拠に <strong>SVS・ESVS・JSVS ガイドライン</strong> はCrawford II型などの高リスクTAAAで <u>Class I 推奨</u></li>
+  </ul>
+
+  <div class="callout success">
+    <strong>📌 主要ガイドラインの推奨(要約):</strong><br>
+    ・SVS Guidelines on Aortic Aneurysm: high-risk TAAA で CSFドレナージを Class I 推奨<br>
+    ・JSVS 大動脈瘤・大動脈解離診療ガイドライン: Crawford I/II/III型で考慮<br>
+    ・TEVAR でも 大動脈被覆範囲が広い場合 / 既往AAA術後 / 左鎖骨下被覆例で考慮
+  </div>
+
+  <h3>近年の知見</h3>
+  <ul>
+    <li>術前予防的留置 vs 術後 rescue 留置 → <strong>予防的留置の方が有効</strong>(術後発症してから入れても遅いことが多い)</li>
+    <li>合併症リスクとのバランスは継続して議論中(後述)</li>
+    <li>TEVAR 単独例での予防的留置は controversial(routine ではない)</li>
+  </ul>
+</section>
+
+<section id="indication">
+  <h2>3. 適応と禁忌</h2>
+
+  <div class="indi-grid">
+    <div class="indi-yes">
+      <h4>✅ 適応(予防的留置)</h4>
+      <ul>
+        <li>Crawford II型 TAAA(全例推奨)</li>
+        <li>Crawford I・III型 TAAA(個別判断、原則推奨)</li>
+        <li>広範囲 TEVAR(>20cm被覆)</li>
+        <li>左鎖骨下動脈被覆を伴う TEVAR</li>
+        <li>既往 AAA術後 / 既往 TEVAR後の追加TEVAR</li>
+        <li>内腸骨動脈閉塞・両側骨盤虚血の既往</li>
+      </ul>
+    </div>
+    <div class="indi-no">
+      <h4>❌ 禁忌・要注意</h4>
+      <ul>
+        <li><strong>凝固障害</strong>(INR>1.5、血小板<100,000)</li>
+        <li>抗凝固薬服用中(ワーファリン、DOAC)</li>
+        <li>髄膜炎・脊椎部位感染</li>
+        <li>頭蓋内圧亢進(出血、占拠性病変)</li>
+        <li>解剖学的に穿刺困難(脊椎変形)</li>
+        <li>意識障害で評価困難な場合は注意</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📌 タイミング:</strong> 通常 <u>麻酔導入後すぐ、手術開始前</u> にカテーテルを留置。術中・術後 48-72時間継続する。
+  </div>
+</section>
+
+<section id="technique">
+  <h2>4. 手技</h2>
+
+  <h3>カテーテル留置</h3>
+  <ol class="step-flow">
+    <li><strong>体位:</strong> 側臥位または座位 で背中を丸める(腰椎穿刺と同じ)</li>
+    <li><strong>穿刺部位:</strong> <u>L3-L4 または L4-L5</u> 椎間 を清潔操作で穿刺(脊髄円錐より下方)</li>
+    <li><strong>使用カテーテル:</strong> 14-16G Tuohy 針 → 髄液逆流を確認 → 軟性カテーテル(EDM)を頭側に5-10cm挿入</li>
+    <li><strong>固定・接続:</strong> カテーテルを皮下トンネル経由でしっかり固定(自己抜去防止)→ 閉鎖式ドレナージ回路に接続</li>
+    <li><strong>圧トランスデューサ接続:</strong> CSFP モニタリング開始(基準点は外耳道高位)</li>
+  </ol>
+
+  <h3>ドレナージ管理(術中・術後)</h3>
+  <ul>
+    <li><strong>目標 CSFP:</strong> <u>< 10 mmHg</u>(8 mmHg以下が安全マージン)</li>
+    <li><strong>ドレナージ速度上限:</strong> <u>10-15 mL/h</u>(過剰排液 → 硬膜下血腫リスク)</li>
+    <li><strong>1日上限:</strong> 通常 150-250 mL/日 程度</li>
+    <li>排液は <u>清澄(clear)</u> が正常。血性なら出血、混濁なら感染を疑う</li>
+    <li>留置期間: <strong>通常 術後 48-72時間</strong>。リスク高ければ最大5日まで延長</li>
+  </ul>
+
+  <h3>抜去のタイミング</h3>
+  <ul>
+    <li>神経学的に下肢運動正常を48時間以上維持できていれば抜去検討</li>
+    <li>抜去前に <strong>凝固機能を再確認</strong>(術後出血リスク管理のため一時的に抗凝固投与している場合あり)</li>
+    <li>抜去後 24時間は仰臥位安静、頭低位は避ける</li>
+  </ul>
+</section>
+
+<section id="complications">
+  <h2>5. 合併症 ― リスクとのバランス</h2>
+  <p>CSFドレナージは有効だが、無視できない合併症があるため <strong>適応の慎重な吟味</strong> が必要です。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>合併症</th><th>頻度</th><th>機序・対策</th></tr></thead>
+      <tbody>
+        <tr><td><strong>硬膜下血腫</strong></td><td>1-3%</td><td>過剰ドレナージ → 脳が下垂 → 架橋静脈裂傷。<u>ドレナージ速度上限を遵守</u></td></tr>
+        <tr><td>頭痛(post-LP headache)</td><td>5-15%</td><td>CSF漏出による低髄液圧症状。安静・水分・カフェイン・blood patch</td></tr>
+        <tr><td>カテーテル関連感染(髄膜炎)</td><td>0.5-2%</td><td>清潔操作、長期留置を避ける</td></tr>
+        <tr><td>脊髄硬膜外血腫</td><td><1%</td><td>凝固障害・抗凝固併用時。麻痺出現で疑い、緊急MRI</td></tr>
+        <tr><td>カテーテル離断・残存</td><td>稀</td><td>抜去時に抵抗あれば中止、画像評価</td></tr>
+        <tr><td>偽性麻痺・誤判定</td><td>—</td><td>抗凝固併用例で出血性発症と紛らわしい</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠ 硬膜下血腫の警告サイン:</strong> CSFドレナージ後の<u>意識障害・頭痛増悪・神経学的悪化</u>があれば即頭部CTを実施。発症すれば mortality 高い。
+  </div>
+</section>
+
+<section id="combo">
+  <h2>6. 他の脊髄保護戦略との組み合わせ</h2>
+  <p>CSFドレナージは単独使用ではなく、対麻痺予防の <strong>multimodal protection の中核</strong> として位置付けられます。詳細は<a href="spinal_cord_ischemia.html" style="color:var(--accent)">対麻痺メカニズム</a>のページを参照。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>戦略</th><th>SCPP式での意味</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CSFドレナージ</strong></td><td>CSFP ↓(分母を下げる)</td></tr>
+        <tr><td>MAP維持(>80-90 mmHg)</td><td>MAP ↑(分子を上げる)</td></tr>
+        <tr><td>Distal aortic perfusion</td><td>大動脈遮断中も遠位灌流圧確保 → 分節動脈圧維持</td></tr>
+        <tr><td>分節動脈再建</td><td>そもそも血流入口を保つ</td></tr>
+        <tr><td>軽度低体温</td><td>虚血耐性向上(同じ低灌流でも被害少)</td></tr>
+        <tr><td>MEP/SEPモニター</td><td>早期警告 → 上記戦略を即座に強化</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 COCKPIT プロトコル(救済時):</strong> 術後に下肢麻痺発症 → 即座に CSF排液強化(目標 <5mmHg)+ MAP↑(>100 mmHg)+ 酸素化↑(SpO2 >95%)+ 適切なヘマトクリット(30%以上)で介入。早期対応で回復例あり。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>7. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>8. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>CSF</td><td>Cerebrospinal Fluid(脳脊髄液)</td></tr>
+        <tr><td>CSFP</td><td>CSF Pressure。正常 5-15 cmH₂O(臥位)</td></tr>
+        <tr><td>SCPP</td><td>Spinal Cord Perfusion Pressure。SCPP = MAP − CSFP</td></tr>
+        <tr><td>MAP</td><td>Mean Arterial Pressure(平均動脈圧)</td></tr>
+        <tr><td>EDM</td><td>External Drainage Monitor(髄液ドレナージ + 圧モニター回路)</td></tr>
+        <tr><td>Tuohy 針</td><td>硬膜外/髄腔穿刺に用いる弯曲先端針</td></tr>
+        <tr><td>Coselli trial</td><td>CSFドレナージの有効性を示したRCT(2002)</td></tr>
+        <tr><td>Crawford 分類</td><td>胸腹部大動脈瘤の範囲分類。II型がCSF最適応</td></tr>
+        <tr><td>Subdural hematoma</td><td>硬膜下血腫。過剰ドレナージで生じうる重篤合併症</td></tr>
+        <tr><td>Blood patch</td><td>自家血を硬膜外腔に注入し穿刺孔を閉鎖。post-LP headacheに有効</td></tr>
+        <tr><td>COCKPIT プロトコル</td><td>遅発性対麻痺発症時の救済介入セット</td></tr>
+        <tr><td>SVS / ESVS / JSVS</td><td>米国/欧州/日本 血管外科学会</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>脳脊髄液(CSF)ドレナージが対麻痺に有効な理由 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  // Highlight current page in the top text-based page nav
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Dynamic offset: place section nav just below page nav (handles wrap)
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"SCPP(脊髄灌流圧)の公式として正しいのはどれか。",choices:["SCPP = CVP - CSFP","SCPP = MAP - CSFP","SCPP = MAP + CSFP","SCPP = MAP - PVR"],correct:1,explain:"SCPP = MAP(平均動脈圧)− CSFP(脳脊髄液圧)。CSFドレナージはCSFPを下げて分母を縮小し、SCPPを確保する操作。"},
+    {q:"CSFドレナージで維持すべきCSFPの目標値として一般的なのはどれか。",choices:["< 5 mmHg","< 10 mmHg","< 20 mmHg","< 30 mmHg"],correct:1,explain:"CSFPの目標は通常 < 10 mmHg(8mmHg以下がより安全)。ただし下げすぎると硬膜下血腫リスクが上昇するため、5mmHg未満を継続するのは避ける。"},
+    {q:"CSFドレナージの最も警戒すべき重篤合併症はどれか。",choices:["頭痛","硬膜下血腫","発熱","低血圧"],correct:1,explain:"硬膜下血腫(1-3%)は致死的合併症。過剰ドレナージで脳が下垂し架橋静脈が裂傷する。ドレナージ速度を10-15 mL/h以下に厳守すること。"},
+    {q:"CSFドレナージカテーテルの穿刺部位として標準的なのはどれか。",choices:["C7-T1","T6-T7","L3-L4 または L4-L5","S2-S3"],correct:2,explain:"脊髄円錐(終末)はL1-L2なので、L3以下で穿刺すれば脊髄損傷を回避できる。腰椎穿刺と同じくL3-L4またはL4-L5を選択する。"},
+    {q:"Coselli らのRCT(2002)で示されたCSFドレナージの効果として正しいのはどれか。",choices:["全死亡率を50%減少","対麻痺/不全対麻痺の発生を約80%相対減少","入院期間を半減","感染症の予防"],correct:1,explain:"Crawford I/II型TAAA 145例のRCTで、CSFドレナージ群は対麻痺発生率を80%相対減少(13% → 2.6%)。これがSVS等のClass I推奨の根拠。"},
+    {q:"CSFドレナージの禁忌として正しいのはどれか。",choices:["糖尿病","凝固障害(INR>1.5など)","軽度貧血","高血圧"],correct:1,explain:"凝固障害は硬膜下血腫・脊髄硬膜外血腫リスクを増大させる絶対〜相対禁忌。INR>1.5、血小板<100,000、抗凝固薬服用中は慎重判断。"},
+    {q:"術後 遅発性対麻痺(delayed paraplegia)発症時のCOCKPITプロトコルの内容として誤っているのはどれか。",choices:["CSF排液強化(CSFP < 5 mmHg)","MAP上昇(>100 mmHg)","酸素化向上(SpO2 >95%)","抗凝固薬の追加投与"],correct:3,explain:"COCKPITプロトコルは ①CSF排液強化 ②MAP↑ ③酸素化↑ ④適切なヘマトクリット(30%以上)で脊髄灌流を最大化する救済介入。抗凝固薬追加は含まれない(むしろ出血リスクで悪化させうる)。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
