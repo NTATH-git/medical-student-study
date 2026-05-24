@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVAR術後 エンドリークの種類と対応 ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;margin-top:1rem}
+  .type-card{background:#fff;border:1px solid var(--border);border-top:5px solid var(--accent);border-radius:8px;padding:1rem 1.1rem;position:relative}
+  .type-card.type1{border-top-color:#c62828}
+  .type-card.type2{border-top-color:#ef6c00}
+  .type-card.type3{border-top-color:#7e57c2}
+  .type-card.type4{border-top-color:#1976d2}
+  .type-card.type5{border-top-color:#5a6473}
+  .type-card .type-label{display:inline-block;background:var(--accent);color:#fff;font-weight:bold;font-size:.78rem;padding:.2rem .6rem;border-radius:4px;margin-bottom:.5rem}
+  .type-card.type1 .type-label{background:#c62828}
+  .type-card.type2 .type-label{background:#ef6c00}
+  .type-card.type3 .type-label{background:#7e57c2}
+  .type-card.type4 .type-label{background:#1976d2}
+  .type-card.type5 .type-label{background:#5a6473}
+  .type-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
+  .type-card .freq{font-size:.78rem;color:var(--muted);margin-bottom:.5rem}
+  .type-card .desc{font-size:.88rem;margin-bottom:.5rem}
+  .type-card .mgmt{background:#f5f8fc;padding:.5rem .7rem;border-radius:4px;font-size:.82rem;margin-top:.4rem}
+  .type-card .mgmt strong{color:var(--navy)}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">EVAR術後 エンドリークの種類と対応</a></h1>
+  <p class="subtitle">5タイプの機序・診断・治療を整理する</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#intro">エンドリークとは</a></li>
+    <li><a href="#types">5タイプ</a></li>
+    <li><a href="#diagram">模式図</a></li>
+    <li><a href="#diagnosis">診断</a></li>
+    <li><a href="#management">治療</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>1. エンドリーク(Endoleak)とは</h2>
+  <p><strong>エンドリーク</strong>とは、EVAR(Endovascular Aortic Repair)やTEVAR後に、本来であれば瘤内へ流入が遮断されるはずの血流が <strong>瘤腔(aneurysm sac)内に持続的に流入する状態</strong> を指します。</p>
+
+  <div class="callout">
+    <strong>📌 重要:</strong> エンドリークがあると瘤腔内圧が維持され、<u>瘤径の拡大・破裂リスク</u>が残るため、フォローアップで早期発見・対応が必須です。
+  </div>
+
+  <h3>分類の歴史</h3>
+  <p>1996年に White らが Type I-IV を提唱、後に Type V(endotension)が加わり、現在は <strong>Type I-V の5タイプ</strong> に分類されます。タイプによって <strong>緊急度・治療方針・予後</strong> が大きく異なります。</p>
+
+  <h3>EVAR後フォローアップ頻度</h3>
+  <ul>
+    <li>術後1ヶ月、6ヶ月、12ヶ月で<strong>造影CT(CTA)</strong>を撮影</li>
+    <li>以降は年1回のCTA(もしくは超音波エコーで代替)</li>
+    <li>瘤径が増大していれば原因(エンドリーク)を精査</li>
+  </ul>
+</section>
+
+<section id="types">
+  <h2>2. エンドリークの5タイプ</h2>
+  <p>タイプごとに <u>原因部位 · 頻度 · 緊急度</u> が異なります。色分けで覚えましょう。</p>
+
+  <div class="type-grid">
+    <div class="type-card type1">
+      <span class="type-label">Type I</span>
+      <h4>固定部からの漏れ</h4>
+      <div class="freq">頻度: 約 5-10% / 緊急度: <strong style="color:#c62828">高</strong></div>
+      <p class="desc">ステントグラフトと自己血管の<strong>固定部(sealing zone)からの漏れ</strong>。瘤腔内圧が高くなり破裂リスク大。</p>
+      <ul style="font-size:.85rem;margin-top:.3rem">
+        <li><strong>Ia:</strong> 中枢側(proximal、腎動脈下大動脈)</li>
+        <li><strong>Ib:</strong> 末梢側(distal、総腸骨動脈)</li>
+        <li><strong>Ic:</strong> 内腸骨動脈プラグ部</li>
+      </ul>
+      <div class="mgmt"><strong>治療:</strong> <u>緊急対応必須</u>。バルーン拡張、cuff/extension追加、coil塞栓、コンバージョン(開腹手術)</div>
+    </div>
+
+    <div class="type-card type2">
+      <span class="type-label">Type II</span>
+      <h4>側枝からの逆行性流入 ★最多</h4>
+      <div class="freq">頻度: 約 20-40% / 緊急度: <strong style="color:#ef6c00">中</strong></div>
+      <p class="desc">瘤壁から分岐する<strong>側枝(腰動脈、下腸間膜動脈)</strong>からの逆行性血流。最も頻度が高い。</p>
+      <ul style="font-size:.85rem;margin-top:.3rem">
+        <li><strong>IIa:</strong> 1本の側枝から流入</li>
+        <li><strong>IIb:</strong> 2本以上の側枝から流入(out-flow あり)</li>
+      </ul>
+      <div class="mgmt"><strong>治療:</strong> 瘤径拡大なければ経過観察(自然消失あり)。拡大例は<u>coil塞栓</u>(SMA経由のIMA、または直接穿刺)</div>
+    </div>
+
+    <div class="type-card type3">
+      <span class="type-label">Type III</span>
+      <h4>グラフトの接合部・破損</h4>
+      <div class="freq">頻度: 約 1-3% / 緊急度: <strong style="color:#c62828">高</strong></div>
+      <p class="desc"><strong>モジュラー接合部の離開(IIIa)</strong>または<strong>布部分の損傷・破損(IIIb)</strong>。瘤腔への直接流入で高圧。</p>
+      <div class="mgmt"><strong>治療:</strong> 緊急対応。追加のステントグラフト挿入で被覆、または開腹コンバージョン</div>
+    </div>
+
+    <div class="type-card type4">
+      <span class="type-label">Type IV</span>
+      <h4>グラフトの透過性</h4>
+      <div class="freq">頻度: 稀(術直後のみ) / 緊急度: <strong style="color:#2e7d32">低</strong></div>
+      <p class="desc">ステントグラフトの<strong>布(fabric)の多孔性</strong>からの一過性漏出。術直後の造影で確認。</p>
+      <div class="mgmt"><strong>治療:</strong> 通常は<u>自然消失</u>。ACT正常化で改善。経過観察のみで対応可</div>
+    </div>
+
+    <div class="type-card type5">
+      <span class="type-label">Type V</span>
+      <h4>エンドテンション(endotension)</h4>
+      <div class="freq">頻度: 稀 / 緊急度: <strong style="color:#ef6c00">中</strong></div>
+      <p class="desc"><strong>明らかなリークは検出されないが瘤径が拡大する状態</strong>。微小漏出 or 血栓化部位経由の圧伝播が原因と推定。</p>
+      <div class="mgmt"><strong>治療:</strong> 瘤径増大が顕著なら追加ステント、開腹コンバージョン考慮</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 暗記のコツ:</strong> <u>Type I = 入口/出口の隙間、Type II = 側枝逆流、Type III = グラフトの故障、Type IV = 布の汗、Type V = 原因不明の膨張</u> と覚えると整理しやすい。
+  </div>
+</section>
+
+<section id="diagram">
+  <h2>3. エンドリークの模式図</h2>
+  <p>EVAR留置後の腹部大動脈瘤を上から下に断面的に示しています。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="エンドリーク5タイプの模式図">
+      <!-- Aorta + iliac frame -->
+      <path d="M 200 30 L 200 80 Q 200 90 195 100 L 195 220 L 140 320 L 140 360" stroke="#0b2545" stroke-width="2" fill="none"/>
+      <path d="M 260 30 L 260 80 Q 260 90 265 100 L 265 220 L 320 320 L 320 360" stroke="#0b2545" stroke-width="2" fill="none"/>
+
+      <!-- Aneurysm bulge -->
+      <ellipse cx="230" cy="170" rx="80" ry="60" fill="#ffe0b2" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="230" y="173" font-size="10" fill="#ef6c00" text-anchor="middle" font-weight="bold">瘤腔(sac)</text>
+
+      <!-- Stent graft (main body + iliac limbs) -->
+      <rect x="210" y="100" width="40" height="100" fill="#90caf9" stroke="#1565c0" stroke-width="1.5" opacity="0.85"/>
+      <path d="M 210 200 L 165 290 L 175 290 L 220 200 Z" fill="#90caf9" stroke="#1565c0" stroke-width="1.5" opacity="0.85"/>
+      <path d="M 250 200 L 295 290 L 285 290 L 240 200 Z" fill="#90caf9" stroke="#1565c0" stroke-width="1.5" opacity="0.85"/>
+      <text x="230" y="155" font-size="9" fill="#1565c0" text-anchor="middle" font-weight="bold">ステント</text>
+      <text x="230" y="167" font-size="9" fill="#1565c0" text-anchor="middle" font-weight="bold">グラフト</text>
+
+      <!-- Lumbar artery (side branch for Type II) -->
+      <line x1="155" y1="180" x2="115" y2="170" stroke="#ef6c00" stroke-width="2"/>
+      <line x1="305" y1="180" x2="345" y2="170" stroke="#ef6c00" stroke-width="2"/>
+      <text x="80" y="173" font-size="9" fill="#ef6c00">腰動脈</text>
+      <text x="350" y="173" font-size="9" fill="#ef6c00">腰動脈</text>
+
+      <!-- IMA (Type II) -->
+      <line x1="155" y1="210" x2="100" y2="225" stroke="#ef6c00" stroke-width="2"/>
+      <text x="60" y="228" font-size="9" fill="#ef6c00">IMA</text>
+
+      <!-- Annotations: Type Ia -->
+      <circle cx="230" cy="100" r="6" fill="#c62828"/>
+      <text x="230" y="104" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">Ia</text>
+      <text x="245" y="92" font-size="9" fill="#c62828">中枢シール</text>
+
+      <!-- Type Ib (distal iliac) -->
+      <circle cx="170" cy="290" r="6" fill="#c62828"/>
+      <text x="170" y="294" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">Ib</text>
+      <text x="100" y="285" font-size="9" fill="#c62828">末梢シール</text>
+
+      <!-- Type II markers (already shown with side branches) -->
+      <text x="380" y="200" font-size="9" fill="#ef6c00">II(側枝逆流)</text>
+
+      <!-- Type III (graft junction) -->
+      <circle cx="230" cy="200" r="6" fill="#7e57c2"/>
+      <text x="230" y="204" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">III</text>
+      <text x="245" y="200" font-size="9" fill="#7e57c2">接合部</text>
+
+      <!-- Type IV (fabric porosity, arrows from graft to sac) -->
+      <text x="170" y="135" font-size="9" fill="#1976d2">IV: 布透過</text>
+      <line x1="210" y1="130" x2="195" y2="125" stroke="#1976d2" stroke-width="1" marker-end="url(#a5)"/>
+      <line x1="250" y1="130" x2="265" y2="125" stroke="#1976d2" stroke-width="1" marker-end="url(#a5)"/>
+
+      <!-- Type V (endotension) -->
+      <text x="285" y="135" font-size="9" fill="#5a6473">V: 圧伝播</text>
+
+      <!-- Title -->
+      <text x="230" y="20" font-size="12" fill="#0b2545" text-anchor="middle" font-weight="bold">EVAR後の腹部大動脈瘤</text>
+
+      <defs>
+        <marker id="a5" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+          <polygon points="0 0, 7 3.5, 0 7" fill="#1976d2"/>
+        </marker>
+      </defs>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#c62828"></i>Type I (シール部)</span>
+      <span><i style="background:#ef6c00"></i>Type II (側枝)</span>
+      <span><i style="background:#7e57c2"></i>Type III (接合・破損)</span>
+      <span><i style="background:#1976d2"></i>Type IV (布透過)</span>
+      <span><i style="background:#5a6473"></i>Type V (endotension)</span>
+    </div>
+  </div>
+</section>
+
+<section id="diagnosis">
+  <h2>4. 診断</h2>
+  <h3>第一選択: 造影CT(CTA)</h3>
+  <ul>
+    <li>動脈相 + 遅延相(60-120秒)を撮影 → 遅延相でType IIが描出されやすい</li>
+    <li>瘤腔内の<strong>造影剤プール</strong>がエンドリークの証拠</li>
+    <li>流入経路(シール部 or 側枝 or グラフト接合部)からタイプ推定</li>
+  </ul>
+
+  <h3>代替/補助モダリティ</h3>
+  <ul>
+    <li><strong>造影超音波(CEUS)</strong>: 腎機能低下例で被曝・造影剤を減らせる</li>
+    <li><strong>MRA</strong>: ステント artifact が少ないNitinol製で有用</li>
+    <li><strong>DSA(血管造影)</strong>: 治療直結時の最終確認・治療計画</li>
+  </ul>
+
+  <h3>瘤径測定のポイント</h3>
+  <ul>
+    <li>最大短径(short-axis diameter)で経時変化を追う</li>
+    <li><strong>年5mm以上の拡大</strong> → エンドリーク精査・治療検討</li>
+    <li>瘤径不変または縮小 → エンドリーク許容できる場合あり(特にType II)</li>
+  </ul>
+</section>
+
+<section id="management">
+  <h2>5. タイプ別 治療方針</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Type</th><th>原則</th><th>主な治療</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ia</strong></td><td>即対応</td><td>Balloon angioplasty → Aortic cuff → Chimney/Snorkel/FEVAR/開腹コンバージョン</td></tr>
+        <tr><td><strong>Ib</strong></td><td>即対応</td><td>Iliac extension → 内腸骨動脈塞栓 + 総腸骨延長</td></tr>
+        <tr><td><strong>Ic</strong></td><td>計画的</td><td>追加塞栓 / extension</td></tr>
+        <tr><td><strong>II</strong></td><td>瘤径拡大例のみ</td><td>SMA→IMA経由 coil塞栓 / 腰動脈trans-lumbar塞栓 / 経皮的sac穿刺塞栓</td></tr>
+        <tr><td><strong>III</strong></td><td>即対応</td><td>追加グラフト/relining(被覆) / 開腹コンバージョン</td></tr>
+        <tr><td><strong>IV</strong></td><td>経過観察</td><td>通常 自然消失</td></tr>
+        <tr><td><strong>V</strong></td><td>瘤径拡大例のみ</td><td>追加ステント / 開腹コンバージョン</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠ 治療の閾値:</strong> Type II であっても <u>瘤径が年5mm以上拡大</u> または <u>絶対径が5.5cm超</u> なら治療介入を検討。経過観察に流されない。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>6. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>EVAR</td><td>Endovascular Aortic Repair(腹部大動脈瘤ステントグラフト内挿術)</td></tr>
+        <tr><td>TEVAR</td><td>Thoracic EVAR(胸部用)</td></tr>
+        <tr><td>Sealing zone</td><td>ステントグラフトと自己血管の密着部位</td></tr>
+        <tr><td>Sac</td><td>瘤腔。動脈瘤の袋状部分</td></tr>
+        <tr><td>IMA</td><td>Inferior Mesenteric Artery(下腸間膜動脈)</td></tr>
+        <tr><td>Lumbar artery</td><td>腰動脈。腹部大動脈から分枝する側枝</td></tr>
+        <tr><td>FEVAR</td><td>Fenestrated EVAR(開窓型)</td></tr>
+        <tr><td>Chimney/Snorkel</td><td>分枝動脈を並列ステントで温存する補助テクニック</td></tr>
+        <tr><td>Endotension</td><td>明らかなリーク描出なしに瘤径が拡大する病態(=Type V)</td></tr>
+        <tr><td>CTA</td><td>Computed Tomographic Angiography(造影CT)</td></tr>
+        <tr><td>CEUS</td><td>Contrast-Enhanced UltraSound(造影超音波)</td></tr>
+        <tr><td>Conversion</td><td>開腹手術への移行(コンバージョン)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>EVAR術後 エンドリーク — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const questions = [
+    {q:"エンドリークの中で最も頻度が高いのはどれか。",choices:["Type I","Type II","Type III","Type IV"],correct:1,explain:"Type II(側枝からの逆行性血流)が最も頻度が高い(20-40%)。腰動脈・下腸間膜動脈からの逆流が原因。瘤径拡大なければ経過観察可能。"},
+    {q:"Type Ia エンドリークの治療方針として最も適切なのはどれか。",choices:["経過観察(自然消失を待つ)","早期介入(バルーン拡張・aortic cuff・コンバージョン)","抗凝固療法のみ","抗血小板薬の中止"],correct:1,explain:"Type Ia(中枢側シール不良)は破裂リスク高く緊急対応必須。バルーン拡張、追加カフ、FEVAR、開腹コンバージョンなどで対応。"},
+    {q:"Type IV エンドリークの一般的な経過として正しいのはどれか。",choices:["緊急コンバージョンが必要","通常は自然消失する","必ずコイル塞栓が必要","Type II より重篤"],correct:1,explain:"Type IVはグラフト布の多孔性による術直後の一過性漏出。ACTが正常化すれば通常 自然消失するため経過観察のみで対応可能。"},
+    {q:"Type II エンドリークに介入を検討すべき状況はどれか。",choices:["術直後のCTで描出された時点で全例","瘤径が年5mm以上拡大した場合","発見後1ヶ月以内","抗血小板薬を服用中の場合"],correct:1,explain:"Type IIは多くが自然消失または瘤径安定で許容できる。瘤径年5mm以上の拡大、または絶対径5.5cm超で治療介入(コイル塞栓など)を検討する。"},
+    {q:"エンドリークの第一選択の画像診断法はどれか。",choices:["単純X線","造影CT(CTA)","非造影MRI","通常エコー"],correct:1,explain:"造影CT(動脈相+遅延相)が第一選択。遅延相でType II検出感度が上がる。腎機能低下時はCEUSで代替可能。"},
+    {q:"Type III エンドリークの病態として正しいのはどれか。",choices:["シール部からの漏れ","側枝からの逆流","ステントグラフトの接合部離開または布破損","布の多孔性による一過性漏出"],correct:2,explain:"Type IIIはモジュラー接合部の離開(IIIa)または布部分の損傷(IIIb)。瘤腔に直接高圧で流入するため緊急対応が必要。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
