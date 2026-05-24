@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下腸間膜動脈・内腸骨動脈の血流ネットワーク ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .accordion-item{border:1px solid var(--border);border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+  .accordion-head{background:#f9fafc;padding:.9rem 1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);user-select:none;transition:background .2s}
+  .accordion-head:hover{background:#eef2f7}
+  .accordion-head .chev{transition:transform .25s;color:var(--accent);font-size:1.2rem}
+  .accordion-item.open .chev{transform:rotate(90deg)}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 1rem}
+  .accordion-item.open .accordion-body{max-height:1500px;padding:1rem}
+  .clinical-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:1rem 1.2rem;margin:.8rem 0}
+  .clinical-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
+  .clinical-card .reason{background:#f5f8fc;padding:.5rem .7rem;border-radius:4px;font-size:.85rem;margin-top:.4rem}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">下腸間膜動脈・内腸骨動脈の血流ネットワーク</a></h1>
+  <p class="subtitle">EVAR・大動脈手術で必須の側副血行を理解する</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#why">なぜ重要か</a></li>
+    <li><a href="#mesenteric">腸間膜動脈系</a></li>
+    <li><a href="#iliac">内腸骨動脈系</a></li>
+    <li><a href="#collateral">3つの側副路</a></li>
+    <li><a href="#diagram">血流網模式図</a></li>
+    <li><a href="#clinical">臨床的意義</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="why">
+  <h2>1. なぜこのネットワークを理解する必要があるか</h2>
+  <p>腹部大動脈瘤の手術(EVAR、開腹)では、<strong>下腸間膜動脈(IMA)や内腸骨動脈を意図的に塞栓・結紮する</strong>場面があります。これらの動脈を「塞いでも大丈夫か」を判断する根拠が、<strong>側副血行ネットワーク(collateral circulation)</strong>です。</p>
+
+  <div class="callout danger">
+    <strong>⚠ ネットワークが破綻すると…</strong>
+    <ul style="margin-top:.4rem">
+      <li><strong>結腸虚血(ischemic colitis)</strong> — 死亡率高い、再開腹必要</li>
+      <li><strong>骨盤虚血</strong> — 殿筋跛行(buttock claudication)、勃起障害</li>
+      <li><strong>脊髄虚血</strong> — 対麻痺(まれ、Adamkiewicz動脈関連)</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 大原則:</strong> 「血流は別経路で代償できるか」を術前CTで予測することが、これらの合併症を防ぐ唯一の方法。
+  </div>
+</section>
+
+<section id="mesenteric">
+  <h2>2. 腸間膜動脈系(Mesenteric Arteries)</h2>
+  <p>消化管を栄養する3本の主幹動脈:</p>
+
+  <h3>3つの主幹</h3>
+  <ul>
+    <li><strong>腹腔動脈(CA: Celiac Artery)</strong> — T12レベル / 肝・脾・胃・十二指腸上部・膵頭</li>
+    <li><strong>上腸間膜動脈(SMA: Superior Mesenteric Artery)</strong> — L1 / 十二指腸下部〜横行結腸右2/3</li>
+    <li><strong>下腸間膜動脈(IMA: Inferior Mesenteric Artery)</strong> — L3 / 横行結腸左1/3〜直腸上部</li>
+  </ul>
+
+  <h3>IMAの3つの分枝</h3>
+  <ul>
+    <li><strong>左結腸動脈(left colic artery)</strong> — 下行結腸を支配</li>
+    <li><strong>S状結腸動脈(sigmoid arteries)</strong> — S状結腸を支配</li>
+    <li><strong>上直腸動脈(superior rectal artery)</strong> — 直腸上部を支配</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📌 ポイント:</strong> IMAはL3レベルから分岐するので、<u>腎動脈下AAA(infrarenal AAA)の瘤腔内に開口</u>することが多い。EVARで覆われる/結紮される可能性大。
+  </div>
+</section>
+
+<section id="iliac">
+  <h2>3. 内腸骨動脈系(Internal Iliac Artery)</h2>
+  <p>総腸骨動脈は仙腸関節の高さで <strong>外腸骨動脈(EIA)</strong> と <strong>内腸骨動脈(IIA, hypogastric artery)</strong> に分岐します。</p>
+
+  <h3>内腸骨動脈の主な分枝</h3>
+  <div class="accordion-item">
+    <div class="accordion-head">前枝(anterior division)<span class="chev">▶</span></div>
+    <div class="accordion-body">
+      <ul>
+        <li>閉鎖動脈(obturator)</li>
+        <li>下殿動脈(inferior gluteal)</li>
+        <li>内陰部動脈(internal pudendal)</li>
+        <li>下膀胱動脈/子宮動脈(inferior vesical / uterine)</li>
+        <li><strong>中直腸動脈(middle rectal artery)</strong> ← 重要(IMA系との吻合)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-head">後枝(posterior division)<span class="chev">▶</span></div>
+    <div class="accordion-body">
+      <ul>
+        <li>腸腰動脈(iliolumbar)</li>
+        <li>外側仙骨動脈(lateral sacral)</li>
+        <li>上殿動脈(superior gluteal)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>下直腸動脈(inferior rectal artery)はどこから?</h3>
+  <p>内陰部動脈の分枝で <u>直腸下部・肛門管</u> を支配。これも IMA系との吻合を形成する重要動脈。</p>
+</section>
+
+<section id="collateral">
+  <h2>4. 3つの主要側副血行路</h2>
+
+  <h3>① Marginal artery of Drummond(辺縁動脈)</h3>
+  <p>SMAとIMAの末梢分枝が大腸辺縁で連結し、<strong>結腸全体を縁取る</strong>1本の連続した動脈アーケード。SMA-IMA間の最も恒常的な側副路。</p>
+  <ul>
+    <li>SMA側: 中結腸動脈・右結腸動脈・回結腸動脈</li>
+    <li>IMA側: 左結腸動脈・S状結腸動脈</li>
+    <li>連結点が脾湾曲付近 = <strong>Griffith point</strong>(脆弱)</li>
+  </ul>
+
+  <h3>② Arc of Riolan(リオラン弓)</h3>
+  <p>中結腸動脈(SMA)と左結腸動脈(IMA)を結ぶ、<strong>腸間膜内側の太い側副路</strong>。通常は細いが、慢性的なIMA狭窄/閉塞があると<strong>拡張・蛇行</strong>して側副血行を担う ("meandering mesenteric artery")。</p>
+
+  <div class="callout">
+    <strong>📌 CT読影:</strong> 太く蛇行したArc of Riolanが見えたら、<u>IMA・腹腔動脈・SMAのいずれかに有意狭窄がある</u> 強い示唆。この動脈は絶対に温存・結紮回避。
+  </div>
+
+  <h3>③ 直腸動脈経由(IMA ↔ 内腸骨動脈)</h3>
+  <p>IMA系の<u>上直腸動脈</u>と、内腸骨動脈系の<u>中直腸動脈・下直腸動脈</u>が直腸壁内で吻合。<strong>骨盤と腸間膜の血流をつなぐ重要なバイパス</strong>。</p>
+  <ul>
+    <li>IMAを塞いでも → 内腸骨動脈 → 中・下直腸動脈 → 上直腸動脈 → 左結腸動脈 と逆流で代償可</li>
+    <li>逆に内腸骨動脈を塞いでも → IMA → 上直腸動脈 → 中・下直腸動脈 と順行で代償可</li>
+  </ul>
+
+  <h3>Watershed area(脆弱領域)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>名称</th><th>部位</th><th>支配動脈の境界</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Griffith point</strong></td><td>脾湾曲(splenic flexure)</td><td>SMA(中結腸動脈)と IMA(左結腸動脈)の境界</td></tr>
+        <tr><td><strong>Sudeck critical point</strong></td><td>直腸S状結腸移行部(S3)</td><td>S状結腸動脈最末梢と上直腸動脈の境界</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.88rem;margin-top:.5rem">これらの領域は側副血行が乏しく、IMA結紮後の<strong>虚血性大腸炎の好発部位</strong>(特に脾湾曲)。</p>
+</section>
+
+<section id="diagram">
+  <h2>5. 血流ネットワーク 模式図</h2>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="腸間膜動脈と内腸骨動脈の側副血行ネットワーク">
+      <!-- Title -->
+      <text x="260" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">腸間膜動脈系 ↔ 内腸骨動脈系 のネットワーク</text>
+
+      <!-- Aorta -->
+      <rect x="245" y="40" width="20" height="220" fill="#c62828" rx="2"/>
+      <text x="220" y="55" font-size="10" fill="#c62828" text-anchor="end" font-weight="bold">大動脈</text>
+
+      <!-- CA -->
+      <line x1="265" y1="60" x2="340" y2="55" stroke="#c62828" stroke-width="3"/>
+      <text x="345" y="58" font-size="10" fill="#c62828" font-weight="bold">CA</text>
+
+      <!-- SMA -->
+      <line x1="265" y1="100" x2="340" y2="105" stroke="#c62828" stroke-width="4"/>
+      <text x="345" y="108" font-size="11" fill="#c62828" font-weight="bold">SMA</text>
+
+      <!-- Middle colic (SMA) -->
+      <path d="M 340 105 Q 380 115 410 145" stroke="#ef6c00" stroke-width="2" fill="none"/>
+      <text x="395" y="135" font-size="9" fill="#ef6c00">中結腸A</text>
+
+      <!-- IMA -->
+      <line x1="265" y1="180" x2="340" y2="185" stroke="#c62828" stroke-width="3"/>
+      <text x="345" y="188" font-size="11" fill="#c62828" font-weight="bold">IMA</text>
+
+      <!-- Left colic -->
+      <path d="M 340 185 Q 380 195 410 215" stroke="#ef6c00" stroke-width="2" fill="none"/>
+      <text x="395" y="212" font-size="9" fill="#ef6c00">左結腸A</text>
+
+      <!-- Sigmoid -->
+      <path d="M 340 195 Q 370 230 380 270" stroke="#ef6c00" stroke-width="2" fill="none"/>
+      <text x="385" y="265" font-size="9" fill="#ef6c00">S状結腸A</text>
+
+      <!-- Superior rectal -->
+      <line x1="345" y1="195" x2="365" y2="330" stroke="#ef6c00" stroke-width="2"/>
+      <text x="370" y="335" font-size="9" fill="#ef6c00">上直腸A</text>
+
+      <!-- ★ Arc of Riolan (連結) -->
+      <path d="M 410 145 Q 470 180 410 215" stroke="#7e57c2" stroke-width="3" stroke-dasharray="6,3" fill="none"/>
+      <text x="475" y="185" font-size="11" fill="#7e57c2" font-weight="bold">Arc of Riolan</text>
+
+      <!-- ★ Marginal artery (continuous along colon) -->
+      <path d="M 420 145 Q 480 200 430 270 Q 400 300 380 275" stroke="#2e7d32" stroke-width="2.5" fill="none"/>
+      <text x="480" y="270" font-size="10" fill="#2e7d32" font-weight="bold">辺縁動脈</text>
+      <text x="480" y="282" font-size="9" fill="#2e7d32">(Drummond)</text>
+
+      <!-- ★ Griffith point -->
+      <circle cx="445" cy="180" r="5" fill="#ef6c00" stroke="#000" stroke-width="0.5"/>
+      <text x="455" y="160" font-size="9" fill="#ef6c00">Griffith point</text>
+      <text x="455" y="170" font-size="8" fill="#ef6c00">(脾湾曲)</text>
+
+      <!-- Iliac bifurcation -->
+      <path d="M 265 260 L 200 320" stroke="#c62828" stroke-width="3"/>
+      <path d="M 265 260 L 330 320" stroke="#c62828" stroke-width="3"/>
+      <text x="170" y="335" font-size="9" fill="#c62828">総腸骨A</text>
+
+      <!-- External iliac -->
+      <line x1="200" y1="320" x2="160" y2="400" stroke="#c62828" stroke-width="2"/>
+      <text x="120" y="380" font-size="9" fill="#c62828">外腸骨A</text>
+      <line x1="330" y1="320" x2="370" y2="400" stroke="#c62828" stroke-width="2"/>
+
+      <!-- Internal iliac -->
+      <line x1="200" y1="320" x2="240" y2="380" stroke="#1565c0" stroke-width="3"/>
+      <text x="210" y="395" font-size="9" fill="#1565c0" font-weight="bold">内腸骨A</text>
+      <line x1="330" y1="320" x2="290" y2="380" stroke="#1565c0" stroke-width="3"/>
+
+      <!-- Middle rectal -->
+      <path d="M 240 380 Q 280 360 345 340" stroke="#1565c0" stroke-width="2" fill="none"/>
+      <text x="270" y="375" font-size="9" fill="#1565c0">中直腸A</text>
+
+      <!-- Inferior rectal (via internal pudendal) -->
+      <path d="M 290 380 Q 330 360 350 345" stroke="#1565c0" stroke-width="2" fill="none"/>
+      <text x="295" y="350" font-size="9" fill="#1565c0">下直腸A</text>
+
+      <!-- ★ Anastomosis at rectum -->
+      <ellipse cx="357" cy="335" rx="14" ry="10" fill="none" stroke="#7e57c2" stroke-width="2"/>
+      <text x="378" y="320" font-size="10" fill="#7e57c2" font-weight="bold">直腸吻合</text>
+      <text x="378" y="332" font-size="9" fill="#7e57c2">(IMA↔IIA)</text>
+
+      <!-- Sudeck critical point -->
+      <circle cx="365" cy="300" r="5" fill="#ef6c00" stroke="#000" stroke-width="0.5"/>
+      <text x="380" y="295" font-size="9" fill="#ef6c00">Sudeck point</text>
+
+      <!-- Bottom legend -->
+      <text x="260" y="440" font-size="9" fill="#5a6473" text-anchor="middle">★ 紫=側副血行路 / 橙=脆弱領域 / 緑=辺縁動脈</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#c62828"></i>動脈幹</span>
+      <span><i style="background:#ef6c00"></i>IMA分枝/Watershed</span>
+      <span><i style="background:#1565c0"></i>内腸骨動脈系</span>
+      <span><i style="background:#7e57c2"></i>側副血行路</span>
+      <span><i style="background:#2e7d32"></i>辺縁動脈</span>
+    </div>
+  </div>
+</section>
+
+<section id="clinical">
+  <h2>6. 臨床的意義(血管外科のシナリオ)</h2>
+
+  <div class="clinical-card">
+    <h4>シナリオ1: EVAR で IMA が瘤腔内開口している</h4>
+    <p>大半は <strong>結紮(覆い)てよい</strong>(無治療でも辺縁動脈 + Riolan弓 + 直腸吻合で代償される)。</p>
+    <div class="reason"><strong>確認すべき:</strong> ① SMA・腹腔動脈に有意狭窄がない / ② 内腸骨動脈が両側開存 / ③ IMA径が4mm以上で太い場合は注意 / ④ 過去の腸管手術で側副が破壊されていない</div>
+  </div>
+
+  <div class="clinical-card">
+    <h4>シナリオ2: AAA が腸骨動脈に及び 内腸骨動脈をプラグする必要</h4>
+    <p>片側塞栓なら通常は耐えられるが、<strong>両側塞栓は禁忌</strong>(殿筋虚血、骨盤虚血、勃起障害)。</p>
+    <div class="reason"><strong>対策:</strong> 内腸骨動脈温存型デバイス(IBE: Iliac Branch Endoprosthesis)を選択。または bell-bottom 法、サンドイッチ法</div>
+  </div>
+
+  <div class="clinical-card">
+    <h4>シナリオ3: CT で Riolan弓が太く蛇行している</h4>
+    <p>IMA、SMA、または腹腔動脈のいずれかに有意狭窄がある証拠。</p>
+    <div class="reason"><strong>対策:</strong> Riolan弓は<u>絶対に温存</u>。瘤覆いがRiolan弓を含む場合は再建を検討。IMA結紮で結腸虚血の高リスク</div>
+  </div>
+
+  <div class="clinical-card">
+    <h4>シナリオ4: 開腹AAA手術中 IMA を結紮する判断</h4>
+    <p><strong>術中evaluation:</strong> IMA結紮前に <u>クランプテスト</u>(数分IMA遮断)→ S状結腸の色調、ドップラー血流、結腸辺縁拍動を確認 → 良好なら結紮、不良なら IMA再建(S状結腸動脈に吻合)</p>
+    <div class="reason"><strong>背景:</strong> AAA開腹手術後の虚血性大腸炎は1-3%、死亡率50%以上の重篤合併症</div>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠ 結腸虚血の早期警告:</strong> 術後の<u>血性下痢・腹部膨満・代謝性アシドーシス・WBC↑/CRP↑</u>は虚血性大腸炎の典型像。即座にS状結腸鏡(下部消化管内視鏡)で評価。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>7. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>8. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>IMA</td><td>Inferior Mesenteric Artery(下腸間膜動脈)。L3レベルから分岐</td></tr>
+        <tr><td>SMA</td><td>Superior Mesenteric Artery(上腸間膜動脈)</td></tr>
+        <tr><td>IIA</td><td>Internal Iliac Artery(内腸骨動脈、hypogastric artery)</td></tr>
+        <tr><td>EIA</td><td>External Iliac Artery(外腸骨動脈)</td></tr>
+        <tr><td>Marginal artery of Drummond</td><td>結腸を縁取る辺縁動脈。SMA-IMAの最も恒常的側副</td></tr>
+        <tr><td>Arc of Riolan</td><td>中結腸動脈と左結腸動脈を結ぶ太い側副路。狭窄あれば肥大</td></tr>
+        <tr><td>Meandering mesenteric artery</td><td>蛇行・拡張したArc of Riolanの別名</td></tr>
+        <tr><td>Griffith point</td><td>脾湾曲のwatershed(SMA-IMA境界)</td></tr>
+        <tr><td>Sudeck critical point</td><td>直腸S状結腸移行部のwatershed</td></tr>
+        <tr><td>Buttock claudication</td><td>殿部間欠跛行。内腸骨動脈閉塞の典型症状</td></tr>
+        <tr><td>IBE</td><td>Iliac Branch Endoprosthesis(内腸骨温存型デバイス)</td></tr>
+        <tr><td>虚血性大腸炎</td><td>Ischemic colitis。AAA手術後1-3%、特に脾湾曲・S状結腸</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>下腸間膜動脈・内腸骨動脈の血流ネットワーク — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  document.querySelectorAll('.accordion-head').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+
+  const questions = [
+    {q:"Marginal artery of Drummond は何と何の間の側副路か。",choices:["腹腔動脈とSMA","SMAとIMA","IMAと内腸骨動脈","SMAと内腸骨動脈"],correct:1,explain:"Drummond辺縁動脈は SMA末梢分枝(中結腸・右結腸・回結腸動脈)と IMA末梢分枝(左結腸・S状結腸動脈)を結腸辺縁で連結する、最も恒常的な側副路。"},
+    {q:"Arc of Riolan が CTで太く蛇行している所見の意味として正しいのはどれか。",choices:["先天奇形","IMA・SMA・腹腔動脈のいずれかに有意狭窄がある","健常人の正常所見","AAAの典型像"],correct:1,explain:"Arc of Riolanは通常は細いが、慢性的な主幹動脈狭窄があると側副血行として代償的に拡張・蛇行する(meandering mesenteric artery)。この所見があればIMA結紮は禁忌に近い。"},
+    {q:"虚血性大腸炎の最好発部位はどこか。",choices:["回盲部","上行結腸","脾湾曲(Griffith point)","直腸下部"],correct:2,explain:"脾湾曲はSMA-IMA境界のwatershedで、側副血行が乏しい。AAA手術後の虚血性大腸炎の最好発部位。"},
+    {q:"両側内腸骨動脈塞栓を避けるべき主な理由はどれか。",choices:["心機能低下","殿筋跛行・骨盤虚血・勃起障害","結腸虚血","脳梗塞"],correct:1,explain:"両側内腸骨動脈塞栓は殿部間欠跛行(buttock claudication)、骨盤虚血、男性では勃起障害をきたしうる。片側なら通常 代償される。"},
+    {q:"IMAと内腸骨動脈を結ぶ側副路として正しいのはどれか。",choices:["腎動脈経由","直腸動脈経由(上直腸-中直腸-下直腸)","Marginal artery of Drummond","椎骨動脈経由"],correct:1,explain:"IMA系の上直腸動脈と、内腸骨動脈系の中直腸動脈(前枝)・下直腸動脈(内陰部動脈分枝)が直腸壁内で吻合し、骨盤と腸間膜の血流をつなぐ。"},
+    {q:"AAA開腹手術中 IMA結紮の可否を判定する術中evaluation として最も適切なのはどれか。",choices:["心電図変化","クランプテストでS状結腸の色調・拍動・ドップラー血流を確認","血圧変化","尿量"],correct:1,explain:"IMA結紮前に数分間遮断し、S状結腸の色調・辺縁拍動・ドップラー血流を観察。良好なら結紮可、不良なら IMA再建(S状結腸動脈に直接吻合など)を行う。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>

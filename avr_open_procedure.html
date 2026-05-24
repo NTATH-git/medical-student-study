@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正中切開 大動脈弁置換術(AVR)の手順 ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .phase{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:.8rem 0}
+  .phase-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;cursor:pointer;user-select:none}
+  .phase-num{background:var(--accent);color:#fff;width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.05rem;flex-shrink:0}
+  .phase-title{color:var(--navy);font-size:1.05rem;font-weight:600;flex-grow:1}
+  .phase-chev{color:var(--accent);font-size:1.3rem;transition:transform .25s}
+  .phase.open .phase-chev{transform:rotate(90deg)}
+  .phase-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .phase.open .phase-body{max-height:2500px}
+  .phase-body-inner{padding-top:.8rem}
+  .step-list{list-style:none;padding-left:0}
+  .step-list > li{position:relative;padding:.5rem 0 .5rem 1.8rem;border-left:2px solid var(--border);margin-left:.5rem;padding-left:1.2rem}
+  .step-list > li::before{content:"▸";position:absolute;left:-.6rem;top:.5rem;background:#fff;color:var(--accent);font-weight:bold;padding:0 .3rem}
+  .step-list strong{color:var(--navy)}
+  .pitfall{background:#ffebee;border-left:3px solid var(--danger);padding:.5rem .7rem;font-size:.85rem;margin:.4rem 0;border-radius:4px}
+  .pitfall strong{color:var(--danger)}
+  .tip-inline{background:#e3f2fd;border-left:3px solid #1976d2;padding:.5rem .7rem;font-size:.85rem;margin:.4rem 0;border-radius:4px}
+  .tip-inline strong{color:#1976d2}
+  .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;margin-top:.8rem;font-size:.82rem}
+  .timeline div{padding:.6rem .8rem;background:#f5f8fc;border-left:3px solid var(--accent);border-radius:4px}
+  .timeline strong{color:var(--navy);display:block;margin-bottom:.2rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">正中切開 大動脈弁置換術(AVR)の手順</a></h1>
+  <p class="subtitle">術前準備から閉胸まで ― 7フェーズで理解する</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#overview">概要</a></li>
+    <li><a href="#indication">適応</a></li>
+    <li><a href="#timeline">タイムライン</a></li>
+    <li><a href="#phases">7フェーズ詳細</a></li>
+    <li><a href="#complications">合併症</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2>1. 概要</h2>
+  <p>大動脈弁置換術(AVR: Aortic Valve Replacement)は、重度大動脈弁狭窄症(AS)・大動脈弁閉鎖不全症(AR)に対する標準的な外科治療です。胸骨正中切開 + 人工心肺(CPB)下に大動脈を切開し、自己弁を切除して人工弁を縫着します。</p>
+
+  <h3>所要時間の目安(単独AVR)</h3>
+  <ul>
+    <li>全体手術時間: <strong>3-4時間</strong></li>
+    <li>体外循環時間: <strong>60-90分</strong></li>
+    <li>大動脈遮断時間: <strong>40-70分</strong></li>
+  </ul>
+
+  <h3>使用する人工弁の種類</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>種類</th><th>耐久性</th><th>抗凝固</th><th>選択基準</th></tr></thead>
+      <tbody>
+        <tr><td>機械弁(St. Jude, ATS など)</td><td>半永久</td><td>ワーファリン生涯</td><td>65歳未満、抗凝固管理可能例</td></tr>
+        <tr><td>生体弁(Perimount, Mosaic など)</td><td>10-20年</td><td>不要(術後3-6ヶ月のみ)</td><td>65歳以上、抗凝固禁忌、妊娠希望女性</td></tr>
+        <tr><td>Sutureless弁(Perceval)</td><td>10-15年(短)</td><td>生体弁同様</td><td>高齢・短時間手術希望例</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="indication">
+  <h2>2. 手術適応</h2>
+
+  <h3>AS(大動脈弁狭窄症)</h3>
+  <ul>
+    <li>有症候性 重症AS(失神・狭心症・心不全)</li>
+    <li>無症候性 重症AS + EF低下(<50%) or 弁口面積 ≤1.0 cm²</li>
+    <li>運動負荷で症状誘発</li>
+  </ul>
+
+  <h3>AR(大動脈弁閉鎖不全症)</h3>
+  <ul>
+    <li>有症候性 重症AR</li>
+    <li>無症候性 重症AR + EF ≤50% or LVESD ≥50 mm</li>
+  </ul>
+
+  <h3>TAVI(経カテーテル弁置換)との選択</h3>
+  <ul>
+    <li>低リスク(STS Score <4%)・若年・解剖不適 → 外科AVR</li>
+    <li>高リスク・高齢(80歳以上)・併存疾患多い → TAVI</li>
+    <li>中リスクは Heart Team で判断</li>
+  </ul>
+</section>
+
+<section id="timeline">
+  <h2>3. 全体タイムライン</h2>
+  <div class="timeline">
+    <div><strong>0:00</strong> 入室・全身麻酔導入</div>
+    <div><strong>0:30</strong> ライン挿入(動脈圧, 中心静脈)・TEE挿入</div>
+    <div><strong>1:00</strong> 切皮 → 胸骨正中切開</div>
+    <div><strong>1:15</strong> 心膜開放・カニュレーション準備</div>
+    <div><strong>1:30</strong> ヘパリン投与 → 動静脈カニュレーション → CPB開始</div>
+    <div><strong>1:45</strong> 体温冷却(32-34℃)・大動脈遮断 → 心停止液注入</div>
+    <div><strong>2:00</strong> 大動脈切開 → 弁切除 → サイザー測定</div>
+    <div><strong>2:30</strong> 弁輪縫合糸配置(15-18本)→ 人工弁通糸・降下・結紮</div>
+    <div><strong>3:00</strong> 大動脈閉鎖 → 脱気 → 大動脈遮断解除</div>
+    <div><strong>3:15</strong> 復温 → 心拍再開 → TEE check → CPB離脱</div>
+    <div><strong>3:30</strong> プロタミン投与 → カニューレ抜去 → 止血</div>
+    <div><strong>3:45</strong> ペーシングワイヤー・ドレーン留置</div>
+    <div><strong>4:00</strong> 胸骨ワイヤー閉鎖 → 皮膚閉鎖 → ICU搬入</div>
+  </div>
+</section>
+
+<section id="phases">
+  <h2>4. 7フェーズ 詳細手順(クリックで展開)</h2>
+
+  <!-- Phase 1 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">1</div>
+      <div class="phase-title">術前準備・麻酔導入</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>体位:</strong> 仰臥位、両上肢は体側に。下肢にコンプレッションストッキング装着</li>
+        <li><strong>モニタリング:</strong> 5誘導心電図、SpO₂、動脈圧ライン(橈骨)、中心静脈ライン(右内頚静脈または左鎖骨下静脈)、尿カテ、温度プローブ(食道・直腸・膀胱)</li>
+        <li><strong>麻酔導入:</strong> プロポフォール + フェンタニル + ロクロニウム。気管挿管</li>
+        <li><strong>TEE挿入:</strong> 麻酔導入後に経食道心エコー(TEE)プローブ挿入 → 術前心機能・弁形態の最終確認</li>
+        <li><strong>除毛・消毒:</strong> 頸部〜大腿まで広範囲消毒。ドレーピング</li>
+      </ul>
+      <div class="tip-inline"><strong>💡 TEE の意義:</strong> 術前にAS/ARの程度、左室機能、左心耳血栓、大動脈基部径を再確認。術中は脱気の確認、術後は人工弁機能評価に用いる。</div>
+    </div></div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">2</div>
+      <div class="phase-title">開胸 ― 胸骨正中切開</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>皮膚切開:</strong> 胸骨切痕(jugular notch)から剣状突起下まで(15-20cm)</li>
+        <li><strong>皮下組織展開:</strong> 電気メスで前胸筋膜まで到達</li>
+        <li><strong>胸骨切開:</strong> 胸骨ノコギリ(sternal saw)で正中縦切開。<u>麻酔科に「気道圧を下げて」依頼</u>(肺損傷予防)</li>
+        <li><strong>骨膜止血:</strong> ボーンワックスで切断面の出血を止める</li>
+        <li><strong>開胸器設置:</strong> retractor(Finochietto)で胸骨を開く</li>
+        <li><strong>胸腺・脂肪組織分離:</strong> 心膜露出</li>
+        <li><strong>心膜開放:</strong> 縦切開 → 心膜を吊り上げる縫合糸(stay suture)で創縁に固定</li>
+      </ul>
+      <div class="pitfall"><strong>⚠ ピットフォール:</strong> 胸骨ノコ使用時に <u>気道圧を下げない</u> と肺が膨らんで損傷リスク。再手術例では胸骨後癒着・右室直下のため、まず大腿動静脈で部分CPB確立してから開胸する。</div>
+    </div></div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">3</div>
+      <div class="phase-title">体外循環(CPB)確立</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>ヘパリン投与:</strong> 300-400 U/kg → ACT >400-480秒を確認</li>
+        <li><strong>大動脈カニュレーション(送血):</strong> 上行大動脈遠位(無名動脈直下)に purse-string 縫合 → カニューレ挿入 → 結紮固定 → 送血回路接続</li>
+        <li><strong>静脈カニュレーション(脱血):</strong> 右房に二段カニューレ(two-stage venous cannula)挿入。purse-string 固定</li>
+        <li><strong>心筋保護液ライン:</strong> 順行性(antegrade)は大動脈基部にneedle vent、逆行性(retrograde)は冠静脈洞にカニューレ</li>
+        <li><strong>左室ベント:</strong> 右上肺静脈経由で左房 → 左室へ。心拡張時の過伸展防止</li>
+        <li><strong>CPB開始:</strong> 灌流量2.4 L/min/m²を目安。動脈圧60-80mmHg維持</li>
+        <li><strong>体温冷却:</strong> 32-34℃まで冷却(中等度低体温)。脳保護・代謝低下</li>
+      </ul>
+      <div class="tip-inline"><strong>💡 順行性 vs 逆行性 心筋保護:</strong> ASでは大動脈弁が硬く順行性で十分注入できないことがある → 逆行性も併用。さらに大動脈遮断後に左右冠動脈口に直接 cardioplegia カニューレ挿入することもある。</div>
+    </div></div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">4</div>
+      <div class="phase-title">大動脈遮断・心停止確立</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>大動脈遮断(cross-clamp):</strong> カニューレと冠動脈口の間で aortic cross-clamp を装着</li>
+        <li><strong>心筋保護液(cardioplegia)注入:</strong> 冷却心筋保護液(高K⁺、~20mEq/L)を順行性に注入(800-1000mL) → 数秒で心停止</li>
+        <li><strong>追加注入:</strong> 20分ごとに300-500mL を反復(冷却維持・心筋保護)</li>
+        <li><strong>心臓表面冷却:</strong> 氷スラッシュ(slush)を心膜内に充填</li>
+      </ul>
+      <div class="pitfall"><strong>⚠ ピットフォール:</strong> 大動脈遮断中はARが強いと cardioplegia が左室へ逆流して効果不十分 + 左室拡張。ARあれば <u>大動脈切開後に直接冠動脈口へ注入</u> または <u>逆行性メイン</u> で対応。</div>
+    </div></div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">5</div>
+      <div class="phase-title">弁交換 ― 切除・サイジング・縫着</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>大動脈切開(aortotomy):</strong> 大動脈基部の数cm遠位で <u>横切開(transverse)</u> または <u>斜め切開(hockey-stick)</u>。切開上下に stay suture</li>
+        <li><strong>視野展開:</strong> retractor で大動脈壁を引いて弁を観察</li>
+        <li><strong>弁切除:</strong> 弁尖を <u>1枚ずつ尖端から弁輪近くで切離</u>。石灰化は専用鉗子で除去(脳塞栓予防のため断片をガーゼで保持しながら回収)</li>
+        <li><strong>弁輪のデブリ除去:</strong> 残存石灰化を完全に除去(縫合糸保持と人工弁シール性のため)</li>
+        <li><strong>サイザー測定:</strong> 各社サイザー(19-29mm)で弁輪径を測定。<u>最大限の弁口面積を選ぶ</u>(small AVRの患者ミスマッチ予防)</li>
+        <li><strong>縫合糸配置:</strong> ピル付き縫合糸(2-0 Ethibond pledgeted mattress)を 12-15本、<u>大動脈側から左室側へ(non-everting)</u> または逆方向(everting)に配置</li>
+        <li><strong>人工弁通糸:</strong> 縫合糸を人工弁のsewing ringに通す</li>
+        <li><strong>弁降下:</strong> 縫合糸を引きながら人工弁を弁輪へ slide-down</li>
+        <li><strong>結紮:</strong> 縫合糸をすべて結紮(機械弁では機械的可動域に注意)。剩余糸切除</li>
+        <li><strong>弁機能確認:</strong> 開閉動作・周囲漏れがないか視診</li>
+      </ul>
+      <div class="tip-inline"><strong>💡 patient-prosthesis mismatch (PPM)対策:</strong> 弁輪が小さい(<21mm)女性などでは大きい弁が入らない。Aortic root enlargement(Nicks法、Manougian法)、stentless弁、homograft、suturelessなどで対応。</div>
+    </div></div>
+  </div>
+
+  <!-- Phase 6 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">6</div>
+      <div class="phase-title">大動脈閉鎖・脱気・遮断解除・CPB離脱</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>大動脈閉鎖:</strong> 4-0 prolene で2層連続縫合(外膜・内膜)</li>
+        <li><strong>脱気(de-airing):</strong> 大動脈ベントから空気吸引。手指で心尖部・左室を圧迫して空気を押し出す。TEE で左室・左房・上行大動脈の空気残存を確認</li>
+        <li><strong>復温開始:</strong> CPB回路で37℃まで温める</li>
+        <li><strong>大動脈遮断解除:</strong> Cross-clamp 解除。冠動脈再灌流開始</li>
+        <li><strong>心拍再開:</strong> 通常 心室細動 → 自然心拍 or DC除細動 10-30Jで除細動</li>
+        <li><strong>ペーシング判断:</strong> 房室ブロックあれば 心外膜ペーシングワイヤー留置 → 一時ペーシング</li>
+        <li><strong>TEE評価:</strong> 人工弁機能、周囲漏れ(paravalvular leak)、左室機能、空気残存</li>
+        <li><strong>CPB離脱(weaning):</strong> 灌流量徐々に下げる → 自己心拍で循環維持できれば CPB OFF</li>
+      </ul>
+      <div class="pitfall"><strong>⚠ ピットフォール:</strong> 脱気不十分 → <u>左冠動脈に空気塞栓</u> → 下壁虚血・心室細動。TEEで上行大動脈・心室・心房を細かく確認、心拍再開前に十分時間をかける。</div>
+    </div></div>
+  </div>
+
+  <!-- Phase 7 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">7</div>
+      <div class="phase-title">プロタミン・止血・閉胸</div>
+      <div class="phase-chev">▶</div>
+    </div>
+    <div class="phase-body"><div class="phase-body-inner">
+      <ul class="step-list">
+        <li><strong>プロタミン投与:</strong> ヘパリン中和(投与量比 1:1)。ACT が CPB前値に戻ることを確認。<u>急速静注は血圧低下・アナフィラキシー</u>のリスク → ゆっくり投与</li>
+        <li><strong>カニューレ抜去:</strong> 静脈カニューレ → 動脈カニューレの順に抜去。purse-string で結紮</li>
+        <li><strong>止血確認:</strong> 縫合部・カニューレ抜去部・胸壁切離部 を厳密に確認。出血点には追加縫合 or 局所止血剤</li>
+        <li><strong>ペーシングワイヤー留置:</strong> 心房用・心室用の2本。皮下を経由して体外に出す</li>
+        <li><strong>ドレーン留置:</strong> 縦隔ドレーン(1-2本)、必要に応じて心嚢ドレーン・胸腔ドレーン(両側胸腔開放例)</li>
+        <li><strong>胸骨ワイヤー閉鎖:</strong> ステンレスワイヤー 6-8本で胸骨を寄せて固定(figure-of-eight または simple loop)</li>
+        <li><strong>皮下・皮膚閉鎖:</strong> 筋膜層、皮下、皮膚を縫合(吸収糸 + 真皮内縫合 or ステープラー)</li>
+        <li><strong>ICU搬入:</strong> 挿管下に ICU 移送 → 24時間呼吸・循環管理</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="callout tip" style="margin-top:1rem">
+    <strong>💡 すべてのフェーズを開く:</strong> 上の「▶」を順番にクリックすると、フェーズごとの詳細が確認できます。
+  </div>
+</section>
+
+<section id="complications">
+  <h2>5. 主要合併症と頻度</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>合併症</th><th>頻度</th><th>主な対策</th></tr></thead>
+      <tbody>
+        <tr><td>術後出血(再開胸)</td><td>2-5%</td><td>術中の厳密な止血、ACT補正</td></tr>
+        <tr><td>術後心房細動</td><td>20-40%</td><td>β遮断薬・アミオダロン予防</td></tr>
+        <tr><td>完全房室ブロック</td><td>2-7%</td><td>心房・心室ペーシングワイヤー、必要時PMI</td></tr>
+        <tr><td>脳梗塞</td><td>1-3%</td><td>脱気徹底、術前頸動脈評価、epi-aortic echo</td></tr>
+        <tr><td>急性腎障害(AKI)</td><td>5-30%</td><td>灌流量維持、術中尿量モニター</td></tr>
+        <tr><td>胸骨感染(縦隔炎)</td><td>0.5-2%</td><td>術前歯科 consult、術中抗菌薬、皮下脂肪止血</td></tr>
+        <tr><td>Low Output Syndrome</td><td>5-15%</td><td>カテコラミン、IABP、必要時 ECMO</td></tr>
+        <tr><td>Paravalvular leak</td><td>1-3%</td><td>術中TEE確認、必要時再縫着</td></tr>
+        <tr><td>PPM (patient-prosthesis mismatch)</td><td>10-30%</td><td>術前計画、可能な限り大きい弁・root enlargement</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>6. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>AVR</td><td>Aortic Valve Replacement(大動脈弁置換術)</td></tr>
+        <tr><td>CPB</td><td>Cardiopulmonary Bypass(人工心肺)</td></tr>
+        <tr><td>Cross-clamp</td><td>大動脈遮断鉗子</td></tr>
+        <tr><td>Cardioplegia</td><td>心筋保護液。高K⁺で心停止 + 冷却</td></tr>
+        <tr><td>Aortotomy</td><td>大動脈切開</td></tr>
+        <tr><td>Sewing ring</td><td>人工弁の縫合用リング(布製)</td></tr>
+        <tr><td>Pledgeted suture</td><td>テフロン補強付き縫合糸。引き裂き防止</td></tr>
+        <tr><td>TEE</td><td>Transesophageal Echocardiography(経食道心エコー)</td></tr>
+        <tr><td>ACT</td><td>Activated Clotting Time(活性化凝固時間)。CPB中の目標 >400-480秒</td></tr>
+        <tr><td>De-airing</td><td>脱気。心内・大動脈の空気除去手技</td></tr>
+        <tr><td>Paravalvular leak (PVL)</td><td>弁周囲漏れ。縫合不良によるシール不良</td></tr>
+        <tr><td>PPM</td><td>Patient-Prosthesis Mismatch(患者-人工弁ミスマッチ)。有効弁口面積/BSA <0.85で重症</td></tr>
+        <tr><td>Nicks/Manougian法</td><td>大動脈基部拡大形成術。弁輪が小さい例の対策</td></tr>
+        <tr><td>Stentless弁</td><td>ステントなしの生体弁。Freestyleなど</td></tr>
+        <tr><td>Homograft</td><td>同種大動脈弁グラフト</td></tr>
+        <tr><td>Sutureless弁</td><td>縫合不要型生体弁(Perceval, Intuity)。手術時間短縮</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>正中切開 大動脈弁置換術(AVR) — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、実際の手技は施設マニュアルと指導医の指示に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  // Phase accordion
+  document.querySelectorAll('.phase-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
+
+  const questions = [
+    {q:"単独AVRの一般的な大動脈遮断時間として最も適切な範囲はどれか。",choices:["10-20分","40-70分","2-3時間","CPB全期間"],correct:1,explain:"単独AVRの大動脈遮断時間は通常40-70分(縫合配置・弁縫着が主な時間)。CPB時間は60-90分が目安。"},
+    {q:"AVR術中の心筋保護(cardioplegia)の主成分として正しいのはどれか。",choices:["高Na⁺・温溶液","高K⁺・冷却溶液","高Ca²⁺溶液","生理食塩水のみ"],correct:1,explain:"Cardioplegiaは高K⁺(~20mEq/L)で心臓の電気的活動を停止させ、冷却で代謝を抑制する。順行性(大動脈基部から)・逆行性(冠静脈洞から)で投与する。"},
+    {q:"65歳未満で機械弁が選択される主な理由はどれか。",choices:["価格が安い","ワーファリン管理が不要","耐久性が半永久で再手術を回避できる","TAVIに移行しやすい"],correct:2,explain:"機械弁は構造的に半永久の耐久性があり、若年者の再手術回避メリットが大きい。一方で生涯ワーファリン内服が必要。生体弁は10-20年で劣化するため65歳以上で選択することが多い。"},
+    {q:"大動脈遮断解除前の『脱気(de-airing)』を怠ると何が起こりうるか。",choices:["左室破裂","冠動脈空気塞栓 → 下壁虚血・心室細動","僧帽弁逆流","脱血不良"],correct:1,explain:"左室・左房・上行大動脈に残った空気が冠動脈口(右冠動脈は前壁にあり最初に空気が流入しやすい)に流入し、下壁虚血・心室細動を起こす。TEEで脱気を確認することが重要。"},
+    {q:"AVR後 完全房室ブロック(CAVB)が発生した場合の初期対応として正しいのはどれか。",choices:["即時 永久ペースメーカー植込","心外膜ペーシングワイヤーで一時ペーシング → 1-2週経過観察","ジゴキシン静注","ワーファリン開始"],correct:1,explain:"AVR後CAVB(2-7%)の多くは一過性で1-2週で回復することがある。心外膜ペーシングワイヤーで一時ペーシングし、回復しない場合に PMI(永久ペースメーカー植込)を考慮する。"},
+    {q:"小さい弁輪(<21mm)女性で人工弁が入りにくい場合の対策として正しいのはどれか。",choices:["手術中止","大動脈基部拡大形成術(Nicks法、Manougian法)を併用","TAVIへ変更","機械弁にこだわる"],correct:1,explain:"Nicks法・Manougian法などのroot enlargement、stentless弁、sutureless弁、homograft などで対応。Patient-prosthesis mismatch(PPM)は予後不良要因となるため、可能な限り大きい有効弁口面積を確保する。"},
+    {q:"プロタミンの主な役割はどれか。",choices:["心筋保護","ヘパリンの中和","昇圧","抗血小板"],correct:1,explain:"プロタミンは塩基性タンパクで、酸性のヘパリンと結合して中和(投与比 1:1)。CPB離脱後 ACTがCPB前値に戻ることを確認する。急速投与でアナフィラキシー・血圧低下のリスクがあるためゆっくり投与。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIT(ヘパリン誘発性血小板減少症) ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .compare-grid > div{padding:1rem;border-radius:8px}
+  .compare-type1{background:#e8f5e9;border-left:4px solid var(--success)}
+  .compare-type2{background:#ffebee;border-left:4px solid var(--danger)}
+  .compare-grid h4{margin-bottom:.5rem}
+  .compare-type1 h4{color:var(--success)}
+  .compare-type2 h4{color:var(--danger)}
+  .step-flow{counter-reset:step;list-style:none;padding-left:0}
+  .step-flow li{position:relative;padding:.6rem 0 .6rem 2.5rem;border-left:2px solid var(--accent);margin-left:1rem;padding-left:1.5rem}
+  .step-flow li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+  .four-ts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .four-t-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1rem}
+  .four-t-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .four-t-card .points{font-size:.8rem;color:var(--muted);margin-top:.4rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .yes-no-box{padding:1rem 1.2rem;border-radius:8px;margin:.6rem 0}
+  .yes-box{background:#e8f5e9;border-left:5px solid var(--success)}
+  .no-box{background:#ffebee;border-left:5px solid var(--danger)}
+  .yes-box h4{color:var(--success);margin-bottom:.4rem}
+  .no-box h4{color:var(--danger);margin-bottom:.4rem}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.compare-grid{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">HIT(ヘパリン誘発性血小板減少症)</a></h1>
+  <p class="subtitle">「血小板↓ + 血栓(矛盾性)」を見逃さない</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#intro">HITとは</a></li>
+    <li><a href="#type">Type 1 vs Type 2</a></li>
+    <li><a href="#mechanism">機序</a></li>
+    <li><a href="#4ts">4Tsスコア</a></li>
+    <li><a href="#diagnosis">診断</a></li>
+    <li><a href="#management">治療</a></li>
+    <li><a href="#cvs">心臓外科</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>1. HIT とは</h2>
+  <p><strong>HIT(Heparin-Induced Thrombocytopenia)</strong>は、ヘパリン投与に伴う <strong>免疫介在性の血小板減少</strong> で、特異な臨床像として「血小板が減るのに <u>出血ではなく血栓症が起こる</u>」という<strong>矛盾性(paradoxical)</strong>の病態をきたします。</p>
+
+  <div class="callout danger">
+    <strong>⚠ 死亡率:</strong> 未診断・未治療のHITは死亡率20-30%。血栓症(DVT, PE, 動脈血栓、心筋梗塞、脳梗塞、四肢虚血)の発症率は30-50%。
+  </div>
+
+  <h3>頻度</h3>
+  <ul>
+    <li>未分画ヘパリン(UFH)使用例: <strong>0.5-5%</strong></li>
+    <li>低分子量ヘパリン(LMWH)使用例: <strong>0.1-1%</strong>(UFHより低い)</li>
+    <li>心臓外科後: <strong>1-3%</strong>(ヘパリン大量使用のため高め)</li>
+    <li>内科系入院・透析患者: 比較的低頻度</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 心血管外科で特に注意:</strong> CPB(人工心肺)では大量ヘパリンを使用 → 暴露歴がある患者の再手術時はHIT 急性発症のリスク。術前に血小板数推移を必ず確認。
+  </div>
+</section>
+
+<section id="type">
+  <h2>2. Type 1 と Type 2 ― 似て非なるもの</h2>
+  <p>「HIT」と総称されることもありますが、<strong>Type 1</strong>(非免疫性、軽症、予後良好)と <strong>Type 2</strong>(免疫介在性、重症、血栓症)は<u>全く別の病態</u>です。臨床的に「HIT」と言えば原則として<strong>Type 2を指します</strong>。</p>
+
+  <div class="compare-grid">
+    <div class="compare-type1">
+      <h4>Type 1 (非免疫性)</h4>
+      <ul style="font-size:.88rem">
+        <li><strong>頻度:</strong> ヘパリン投与の10-30%(高頻度)</li>
+        <li><strong>機序:</strong> ヘパリンの直接的な血小板凝集作用</li>
+        <li><strong>時期:</strong> 投与開始 1-4日(早期)</li>
+        <li><strong>血小板:</strong> 軽度低下(>100,000/μL)</li>
+        <li><strong>血栓症:</strong> なし</li>
+        <li><strong>対応:</strong> ヘパリン継続でも自然回復</li>
+      </ul>
+    </div>
+    <div class="compare-type2">
+      <h4>Type 2 (免疫介在性) ★臨床上の「HIT」</h4>
+      <ul style="font-size:.88rem">
+        <li><strong>頻度:</strong> 0.5-5%</li>
+        <li><strong>機序:</strong> 抗 PF4/heparin 抗体 → 血小板活性化 → 血栓</li>
+        <li><strong>時期:</strong> 投与5-14日目(典型)</li>
+        <li><strong>血小板:</strong> 中等度〜高度低下(>50%減 or <100,000/μL)</li>
+        <li><strong>血栓症:</strong> あり(動脈・静脈)</li>
+        <li><strong>対応:</strong> ヘパリン即時中止 + 代替抗凝固</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="mechanism">
+  <h2>3. 機序 ― なぜ血小板が減って血栓ができるのか</h2>
+
+  <h3>4ステップの病態</h3>
+  <ol class="step-flow">
+    <li><strong>ヘパリン投与 → PF4と結合</strong><br>血小板から放出される<u>血小板第4因子(PF4)</u>がヘパリンと複合体を形成</li>
+    <li><strong>PF4/heparin複合体に対する抗体(IgG)が産生される</strong><br>免疫系が複合体を「異物」と認識(5-14日かかる)</li>
+    <li><strong>抗体-PF4-heparin複合体が血小板FcγRIIaに結合</strong><br>血小板が活性化 → 凝集 → 消費による<u>血小板減少</u></li>
+    <li><strong>活性化血小板から微小粒子放出・トロンビン産生</strong><br>過凝固状態 → <u>動脈・静脈血栓症</u></li>
+  </ol>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HITの病態機序">
+      <!-- Heparin -->
+      <ellipse cx="60" cy="60" rx="35" ry="14" fill="#1565c0"/>
+      <text x="60" y="64" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">ヘパリン</text>
+
+      <!-- PF4 -->
+      <circle cx="150" cy="60" r="18" fill="#ef6c00"/>
+      <text x="150" y="64" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">PF4</text>
+
+      <!-- Plus -->
+      <text x="110" y="65" font-size="20" fill="#0b2545" text-anchor="middle">+</text>
+
+      <!-- Arrow -->
+      <line x1="180" y1="60" x2="220" y2="60" stroke="#0b2545" stroke-width="2" marker-end="url(#h1)"/>
+
+      <!-- PF4-heparin complex -->
+      <ellipse cx="260" cy="60" rx="30" ry="18" fill="#7e57c2"/>
+      <text x="260" y="58" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">PF4/</text>
+      <text x="260" y="69" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">heparin</text>
+
+      <!-- Arrow + IgG -->
+      <line x1="290" y1="60" x2="330" y2="60" stroke="#0b2545" stroke-width="2" marker-end="url(#h1)"/>
+
+      <!-- Antibody (Y shape) -->
+      <path d="M 360 50 L 370 65 L 380 50 M 370 65 L 370 78" stroke="#c62828" stroke-width="3" fill="none"/>
+      <text x="370" y="40" font-size="10" fill="#c62828" text-anchor="middle" font-weight="bold">抗PF4 IgG</text>
+
+      <!-- Down arrow -->
+      <line x1="370" y1="90" x2="370" y2="125" stroke="#0b2545" stroke-width="2" marker-end="url(#h1)"/>
+
+      <!-- Immune complex on platelet -->
+      <text x="370" y="140" font-size="10" fill="#0b2545" text-anchor="middle">複合体が血小板FcγRIIaに結合</text>
+
+      <!-- Platelet -->
+      <circle cx="160" cy="190" r="30" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+      <text x="160" y="195" font-size="11" fill="#c62828" text-anchor="middle" font-weight="bold">血小板</text>
+
+      <!-- Activated platelet -->
+      <circle cx="370" cy="190" r="30" fill="#c62828" stroke="#000" stroke-width="1"/>
+      <text x="370" y="187" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">活性化</text>
+      <text x="370" y="200" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">血小板</text>
+
+      <!-- Spikes around activated platelet -->
+      <line x1="370" y1="155" x2="370" y2="145" stroke="#c62828" stroke-width="2"/>
+      <line x1="395" y1="170" x2="408" y2="160" stroke="#c62828" stroke-width="2"/>
+      <line x1="395" y1="210" x2="408" y2="220" stroke="#c62828" stroke-width="2"/>
+      <line x1="370" y1="225" x2="370" y2="235" stroke="#c62828" stroke-width="2"/>
+      <line x1="345" y1="210" x2="332" y2="220" stroke="#c62828" stroke-width="2"/>
+      <line x1="345" y1="170" x2="332" y2="160" stroke="#c62828" stroke-width="2"/>
+
+      <!-- Arrow between -->
+      <line x1="195" y1="190" x2="335" y2="190" stroke="#0b2545" stroke-width="2" marker-end="url(#h1)"/>
+      <text x="265" y="183" font-size="9" fill="#0b2545" text-anchor="middle">活性化</text>
+
+      <!-- Results -->
+      <text x="100" y="255" font-size="11" fill="#c62828" font-weight="bold">血小板凝集</text>
+      <text x="100" y="270" font-size="10" fill="#c62828">→ 消費による減少</text>
+
+      <text x="430" y="255" font-size="11" fill="#c62828" font-weight="bold">トロンビン産生</text>
+      <text x="430" y="270" font-size="10" fill="#c62828">→ 動・静脈血栓症</text>
+
+      <defs>
+        <marker id="h1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0 0, 8 4, 0 8" fill="#0b2545"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>典型的な発症時期</h3>
+  <ul>
+    <li><strong>Typical onset</strong>: ヘパリン開始 <u>5-14日目</u>(抗体産生に時間がかかる)</li>
+    <li><strong>Rapid-onset HIT</strong>: <u>24時間以内</u>に発症(過去100日以内にヘパリン暴露歴 → 抗体既存)</li>
+    <li><strong>Delayed-onset HIT</strong>: ヘパリン中止後 <u>9-40日</u>に発症(まれ)</li>
+  </ul>
+</section>
+
+<section id="4ts">
+  <h2>4. 4Ts スコア(臨床確率の評価)</h2>
+  <p>HITの臨床診断には<strong>4Tsスコア</strong>を用います。4項目それぞれを 0-2点で評価、合計0-8点。</p>
+
+  <div class="four-ts-grid">
+    <div class="four-t-card">
+      <h4>① <span style="color:var(--accent)">T</span>hrombocytopenia<br>(血小板減少)</h4>
+      <p class="points">2点: 50%以上減少 + 最低 ≥20,000<br>1点: 30-50%減少 or 10,000-19,000<br>0点: <30%減少 or <10,000</p>
+    </div>
+    <div class="four-t-card">
+      <h4>② <span style="color:var(--accent)">T</span>iming<br>(発症時期)</h4>
+      <p class="points">2点: 5-10日目 or 100日以内の暴露歴あり<br>1点: >10日 or 不明<br>0点: <4日(暴露歴なし)</p>
+    </div>
+    <div class="four-t-card">
+      <h4>③ <span style="color:var(--accent)">T</span>hrombosis<br>(血栓症)</h4>
+      <p class="points">2点: 新規血栓・皮膚壊死・アナフィラキシー<br>1点: 進行性 or 再発血栓 or 紅斑<br>0点: なし</p>
+    </div>
+    <div class="four-t-card">
+      <h4>④ o<span style="color:var(--accent)">T</span>her causes<br>(他原因の除外)</h4>
+      <p class="points">2点: 他原因なし<br>1点: 他原因の可能性あり<br>0点: 明確な他原因あり</p>
+    </div>
+  </div>
+
+  <h3>スコア解釈</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>合計</th><th>確率</th><th>方針</th></tr></thead>
+      <tbody>
+        <tr><td><strong>6-8点</strong></td><td>高確率(>50%)</td><td>即座にヘパリン中止 + 代替抗凝固 + 抗体検査</td></tr>
+        <tr><td><strong>4-5点</strong></td><td>中確率(10-50%)</td><td>原則 ヘパリン中止 + 抗体検査(結果待ち)</td></tr>
+        <tr><td><strong>0-3点</strong></td><td>低確率(<5%)</td><td>HIT以外を検索、ヘパリン継続可</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="diagnosis">
+  <h2>5. 検査と確定診断</h2>
+
+  <h3>免疫学的検査(immunoassay)</h3>
+  <ul>
+    <li><strong>抗PF4/heparin抗体 ELISA</strong>: 感度高(>97%)・特異度低(~80%)。スクリーニングに使う</li>
+    <li>陰性なら HIT を否定できる(NPV高)</li>
+    <li>陽性でも他原因の偽陽性あり、機能的検査で確認</li>
+  </ul>
+
+  <h3>機能的検査(functional assay)</h3>
+  <ul>
+    <li><strong>SRA(Serotonin Release Assay)</strong>: ゴールドスタンダード。感度・特異度ともに高い</li>
+    <li><strong>HIPA(Heparin-Induced Platelet Aggregation)</strong>: 代替</li>
+    <li>結果に数日かかるが、確定診断に必要</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 検査結果を待たない:</strong> HITが疑わしければ <u>抗体検査の結果を待たずに</u> ヘパリン中止 + 代替抗凝固を開始する。血栓症リスクが時間とともに増えるため。
+  </div>
+</section>
+
+<section id="management">
+  <h2>6. 治療 ― やること・やらないこと</h2>
+
+  <div class="yes-no-box yes-box">
+    <h4>✅ やること</h4>
+    <ol>
+      <li><strong>すべてのヘパリンを即時中止</strong>(UFH, LMWH, ロック用ヘパリン、ヘパリン被覆カテーテル、ヘパリン入り輸液)</li>
+      <li><strong>代替の抗凝固薬を開始</strong>(下記)</li>
+      <li><strong>下肢血管エコー</strong>でDVTスクリーニング(無症状でも30%にDVT)</li>
+      <li>血小板正常化後(>150,000)に<strong>ワーファリンへ移行</strong>(代替抗凝固と4-5日 overlap)</li>
+      <li>カルテに<strong>「ヘパリン禁忌」</strong>を記録、患者にも情報提供</li>
+    </ol>
+  </div>
+
+  <div class="yes-no-box no-box">
+    <h4>❌ やってはいけないこと</h4>
+    <ul>
+      <li><strong>ヘパリンを「減量」して継続</strong> ― 用量にかかわらず免疫反応は持続</li>
+      <li><strong>LMWHへ変更</strong> ― UFHと交差反応する(LMWH禁忌)</li>
+      <li><strong>ワーファリン単独開始</strong> ― 初期にプロテインC低下で <u>warfarin-induced skin necrosis / venous limb gangrene</u> リスク</li>
+      <li><strong>血小板輸血</strong> ― 通常は禁忌(血栓助長)。出血合併症時のみ慎重に</li>
+      <li>下大静脈フィルター挿入 ― 推奨されない</li>
+    </ul>
+  </div>
+
+  <h3>代替抗凝固薬(non-heparin anticoagulants)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>薬剤</th><th>分類</th><th>投与経路</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td><strong>アルガトロバン</strong></td><td>直接トロンビン阻害(DTI)</td><td>持続静注</td><td>日本で第一選択。腎機能不全でも使用可、肝代謝</td></tr>
+        <tr><td><strong>ビバリルジン</strong></td><td>DTI</td><td>持続静注</td><td>心臓外科CPBに用いる(本邦では適応外使用)</td></tr>
+        <tr><td><strong>ダナパロイド</strong></td><td>ヘパリノイド</td><td>静注/皮下</td><td>本邦でDIC適応。HITには適応外だが使用例あり</td></tr>
+        <tr><td><strong>フォンダパリヌクス</strong></td><td>Xa阻害薬</td><td>皮下注</td><td>本邦HIT適応外、海外では使用</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="cvs">
+  <h2>7. 心臓外科患者でのHIT管理</h2>
+  <p>心臓血管外科では人工心肺(CPB)で大量ヘパリン(300-400 U/kg)を投与するため、HIT既往または陽性患者の手術は特殊な対応が必要です。</p>
+
+  <h3>術前HIT抗体評価</h3>
+  <ul>
+    <li>過去のヘパリン暴露後 100日以内 + 抗体陽性 → <strong>術前にplasmapheresis(血漿交換)</strong>で抗体除去 + ヘパリン使用</li>
+    <li>100日以上経過 + 抗体陰性化 → ヘパリン使用可(再感作リスクは残る)</li>
+    <li>強い陽性で延期不可 → <strong>ビバリルジンCPB</strong>(専門施設のみ)</li>
+  </ul>
+
+  <h3>ビバリルジン CPB の特徴</h3>
+  <ul>
+    <li>半減期 25分と短い → CPB離脱後速やかに凝固復帰</li>
+    <li>ACT測定不可(凝固系の他指標でモニター)</li>
+    <li>ストック液による回路停滞は禁忌(血栓化リスク)</li>
+    <li>術後出血リスクはヘパリン-プロタミン群と同等</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📌 周術期の代替抗凝固:</strong> 術前1週間以上ヘパリン投与歴がある患者は、血小板トレンドを毎日確認。50%以上の低下があれば HIT 抗体検査 → 代替抗凝固に変更。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>HIT</td><td>Heparin-Induced Thrombocytopenia(ヘパリン誘発性血小板減少症)</td></tr>
+        <tr><td>HITT</td><td>HIT with Thrombosis(血栓症合併HIT)</td></tr>
+        <tr><td>PF4</td><td>Platelet Factor 4(血小板第4因子)。ヘパリンと複合体を形成</td></tr>
+        <tr><td>UFH</td><td>Unfractionated Heparin(未分画ヘパリン)</td></tr>
+        <tr><td>LMWH</td><td>Low Molecular Weight Heparin(低分子量ヘパリン)。HITとは交差反応</td></tr>
+        <tr><td>4Ts スコア</td><td>HITの臨床確率スコア(Thrombocytopenia / Timing / Thrombosis / oTher causes)</td></tr>
+        <tr><td>SRA</td><td>Serotonin Release Assay(セロトニン放出試験)。HIT確定診断のゴールドスタンダード</td></tr>
+        <tr><td>DTI</td><td>Direct Thrombin Inhibitor(直接トロンビン阻害薬)。アルガトロバン、ビバリルジン</td></tr>
+        <tr><td>ヘパリノイド</td><td>ヘパリン類縁物質。ダナパロイドが代表</td></tr>
+        <tr><td>VLG</td><td>Venous Limb Gangrene(静脈性四肢壊疽)。ワーファリン早期投与で発症しうる</td></tr>
+        <tr><td>Plasmapheresis</td><td>血漿交換。HIT抗体除去に用いる</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>HIT(ヘパリン誘発性血小板減少症) — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const questions = [
+    {q:"典型的なHIT(Type 2)の発症時期はいつか?",choices:["ヘパリン開始当日〜2日","5-14日目","30日以降","中止後のみ"],correct:1,explain:"典型的HITはヘパリン開始5-14日目に発症(抗体産生に時間がかかる)。ただし100日以内の暴露歴があれば24時間以内に急速発症(rapid-onset HIT)することもある。"},
+    {q:"HIT(Type 2)で見られる血小板変化として正しいのはどれか。",choices:["血小板10,000未満まで急減","正常値","ベースラインから50%以上の低下","20%程度の軽度低下"],correct:2,explain:"4Tsスコアでも50%以上の低下が2点。HITでは通常 ベースラインから50%以上の急激な低下を認めるが、絶対値は20,000以下まで下がることは少なく、通常 50,000-100,000程度。"},
+    {q:"HIT患者にやってはいけない治療はどれか。",choices:["ヘパリン中止","ワーファリン単独開始","アルガトロバン開始","下肢エコー"],correct:1,explain:"ワーファリン単独開始は禁忌。プロテインCが先に低下し warfarin-induced skin necrosis / venous limb gangrene を発症しうる。血小板>150,000に回復してから代替抗凝固と overlap して開始する。"},
+    {q:"HITの病態の核となる抗原複合体はどれか。",choices:["抗PF4-heparin複合体","抗GPIIb/IIIa抗体","抗カルジオリピン抗体","抗ヘパリン抗体単独"],correct:0,explain:"HITはヘパリンとPF4(血小板第4因子)が複合体を形成し、それに対するIgG抗体が血小板を活性化させる。抗体は『heparin単独』ではなく『PF4/heparin複合体』を認識する。"},
+    {q:"HITが疑われた場合、ヘパリンの代替として日本で第一選択となる薬剤はどれか。",choices:["LMWH","ワーファリン","アルガトロバン","アスピリン"],correct:2,explain:"日本ではHIT治療にアルガトロバン(直接トロンビン阻害薬)が第一選択として承認されている。腎機能不全例でも使用可能(肝代謝)。LMWHはHITと交差反応するため禁忌。"},
+    {q:"HIT抗体陽性患者がCPB(人工心肺)を必要とする場合の対応として正しいのはどれか。",choices:["通常のヘパリン量で施行","ヘパリン量を半減","血漿交換で抗体除去後にヘパリン使用、または ビバリルジン CPB","CPB自体を回避"],correct:2,explain:"HIT抗体陽性患者のCPBでは ①plasmapheresisで抗体除去してからヘパリン使用、② ビバリルジン(直接トロンビン阻害薬)でCPB施行、のいずれかを選択。可能なら100日以上 ヘパリン回避して抗体陰性化を待つ。"},
+    {q:"HIT患者の血栓症の特徴として正しいのはどれか。",choices:["動脈系のみ","静脈系のみ","動脈・静脈とも生じうる(矛盾性)","出血傾向のみ"],correct:2,explain:"HITは血小板減少にも関わらず動脈血栓(心筋梗塞・脳梗塞・四肢虚血)と静脈血栓(DVT・PE)の両方を起こしうる『矛盾性(paradoxical)』が特徴。これがHITの臨床的重要性を高めている。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
