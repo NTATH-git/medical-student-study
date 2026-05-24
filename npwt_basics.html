@@ -73,19 +73,27 @@
   .score-display.show{display:block}
   .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
   footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
-  @media (max-width:480px){section{padding:1.1rem .9rem};.indi-grid{grid-template-columns:1fr}}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.indi-grid{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>持続陰圧療法(NPWT/VAC)はなぜ有効か</h1>
+  <h1><a href="index.html" title="目次に戻る">持続陰圧療法(NPWT/VAC)はなぜ有効か</a></h1>
   <p class="subtitle">創傷治癒を加速させる「陰圧の力」を理解する</p>
   <p class="meta">For Medical Students | 全学年対象</p>
 </header>
 
 <nav>
   <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
     <li><a href="#what">NPWTとは</a></li>
     <li><a href="#mechanism">作用機序</a></li>
     <li><a href="#indication">適応・禁忌</a></li>
@@ -317,7 +325,13 @@
   <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
 </footer>
 
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
 <script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
   const questions = [
     {q:"NPWTの作用機序として誤っているのはどれか。",choices:["創部の物理的収縮(マクロ変形)","細胞伸展刺激による細胞増殖促進","過剰滲出液・炎症メディエーターの除去","抗菌薬の局所濃度上昇"],correct:3,explain:"NPWTは抗菌薬投与とは無関係。①マクロ変形 ②ミクロ変形 ③滲出液除去 ④組織灌流改善の4つが主作用。"},
     {q:"NPWTの標準的な吸引圧設定はどれか。",choices:["−25 mmHg","−75 mmHg","−125 mmHg","−250 mmHg"],correct:2,explain:"標準は−125 mmHg(持続)。痛みや血流不良の症例では−75〜−100 mmHgに減圧する。"},
