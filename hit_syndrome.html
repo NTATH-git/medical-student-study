@@ -85,6 +85,16 @@
   .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
   .back-to-top.show{opacity:1;pointer-events:auto}
   .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  /* Top text-based page navigation (replaces hamburger) */
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;list-style:none;min-width:max-content;padding:0;margin:0}
+  .page-nav a{display:flex;align-items:center;gap:.25rem;color:#fff;text-decoration:none;padding:.55rem .85rem;font-size:.82rem;white-space:nowrap;border-bottom:3px solid transparent;transition:background .15s,border-color .15s;min-height:42px}
+  .page-nav a:hover{background:rgba(0,0,0,.12)}
+  .page-nav a.current{background:var(--accent);border-bottom-color:#fff;font-weight:700}
+  /* Stack the existing section nav below the page nav */
+  nav{top:42px}
+  /* Hide the floating hamburger now that text nav is in place */
+  .menu-toggle{display:none}
   .menu-toggle{position:fixed;top:12px;right:12px;z-index:150;width:44px;height:44px;border-radius:8px;background:var(--navy);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s}
   .menu-toggle:hover{background:var(--navy-light)}
   .menu-toggle:focus{outline:2px solid var(--accent-light);outline-offset:2px}
@@ -112,6 +122,20 @@
   <p class="subtitle">「血小板↓ + 血栓(矛盾性)」を見逃さない</p>
   <p class="meta">For Medical Students | 全学年対象</p>
 </header>
+<div class="page-nav" aria-label="全ページナビゲーション">
+  <ul>
+    <li><a href="index.html">🏠 目次</a></li>
+    <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+    <li><a href="avr_open_procedure.html">AVR手順</a></li>
+    <li><a href="evar_endoleak.html">EVAR</a></li>
+    <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+    <li><a href="drain_removal.html">ドレーン抜去</a></li>
+    <li><a href="npwt_basics.html">NPWT</a></li>
+    <li><a href="hit_syndrome.html">HIT</a></li>
+  </ul>
+</div>
+
 
 <nav>
   <ul>
@@ -501,6 +525,10 @@
   // Mark current page in drawer
   const _cur = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_cur) a.classList.add('current'); });
+  // Highlight current page in the top text-based page nav
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
 
 
   const questions = [
