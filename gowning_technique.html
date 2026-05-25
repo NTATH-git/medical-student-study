@@ -15,7 +15,7 @@
   header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
   header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
   header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
-  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav{background:var(--navy-light);position:sticky;top:56px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
   nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
   nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
   nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
@@ -80,11 +80,11 @@
   .back-to-top.show{opacity:1;pointer-events:auto}
   .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
   .menu-toggle{display:none}
-  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08);padding:.4rem .6rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;min-height:48px}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08);padding:.4rem .8rem;display:flex;align-items:center;justify-content:flex-end;gap:.5rem;height:56px}
   .page-nav-home{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.45rem .9rem;font-size:.9rem;border-radius:6px;font-weight:600;transition:background .15s;min-height:36px;white-space:nowrap}
   .page-nav-home:hover{background:rgba(0,0,0,.2)}
   .page-nav-home.current{background:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.25)}
-  .page-nav-menu-btn{display:inline-flex;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+  .page-nav-menu-btn{display:inline-flex;touch-action:manipulation;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15)}
   .page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}
   .page-nav-menu-btn:active{transform:translateY(1px)}
   .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
@@ -130,8 +130,7 @@
   <p class="meta">For Medical Students | 全学年・実習生対象</p>
 </header>
 
-<div class="page-nav" aria-label="ページナビゲーション">
-  <a href="index.html" class="page-nav-home">🏠 目次</a>
+<div class="page-nav" aria-label="ページメニュー">
   <button type="button" class="page-nav-menu-btn" id="menuOpen" aria-label="全ページメニューを開く" aria-haspopup="dialog">📚 メニュー <span class="page-nav-badge">28</span></button>
 </div>
 
@@ -510,9 +509,6 @@
       });
     });
   }
-
-  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
-  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
 
   const questions = [
     {q:"WHOが推奨する現代的な手指消毒法はどれか。",choices:["ブラッシング法(5-10分)","アルコールラビング法","水道水のみで洗浄","ブラシなし石鹸のみ"],correct:1,explain:"WHO推奨はアルコール(クロルヘキシジン含有)ラビング法。皮膚バリアへの負担が少なく、ブラッシングより消毒効果が同等以上。前提として目に見える汚れがあれば通常の手洗いを先に行う。"},
