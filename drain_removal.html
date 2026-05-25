@@ -105,22 +105,25 @@
   .menu-toggle{display:none}
   /* Top text-based page navigation (wraps on mobile) */
   .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08);padding:.4rem .8rem;display:flex;align-items:center;justify-content:flex-end;gap:.5rem;height:56px}
-  .page-nav-home{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.45rem .9rem;font-size:.9rem;border-radius:6px;font-weight:600;transition:background .15s;min-height:36px;white-space:nowrap}
-  .page-nav-home:hover{background:rgba(0,0,0,.2)}
-  .page-nav-home.current{background:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.25)}
-  .page-nav-menu-btn{display:inline-flex;touch-action:manipulation;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .page-nav-menu-btn{display:inline-flex;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15);user-select:none;-webkit-tap-highlight-color:transparent}
   @media (hover:hover){.page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}}
   .page-nav-menu-btn:active{transform:translateY(1px)}
+  .page-nav-menu-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .menu-label-close{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
   .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
-  /* Drawer */
-  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:998}
-  .drawer-backdrop.show{opacity:1;pointer-events:auto}
+  /* Drawer (CSS-only) */
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:998;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
   .drawer{position:fixed;top:0;right:0;width:min(340px,88vw);height:100vh;background:#fff;transform:translateX(100%);transition:transform .3s ease;z-index:999;box-shadow:-4px 0 16px rgba(0,0,0,.18);display:flex;flex-direction:column}
-  .drawer.show{transform:translateX(0)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
   .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
   .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
-  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0 .4rem;line-height:1;font-family:inherit;border-radius:6px;transition:background .15s}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0 .6rem;line-height:1;font-family:inherit;border-radius:6px;transition:background .15s;user-select:none;display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;-webkit-tap-highlight-color:transparent}
   .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-close:focus-visible{outline:2px solid var(--accent-light);outline-offset:2px}
   .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
   .drawer-search input{width:100%;padding:.55rem .8rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit;background:#fff;color:var(--text)}
   .drawer-search input:focus{outline:none;border-color:var(--accent)}
@@ -134,8 +137,7 @@
   .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
   .drawer-section.empty{display:none}
   .drawer-content a.hidden{display:none}
-  body.drawer-open{overflow:hidden}
-  @media (max-width:480px){.page-nav{padding:.35rem .5rem}.page-nav-home,.page-nav-menu-btn{font-size:.85rem;padding:.4rem .75rem}}
+  @media (max-width:480px){.page-nav{padding:.35rem .5rem}.page-nav-menu-btn{font-size:.85rem;padding:.4rem .75rem}}
   .menu-toggle{position:fixed;top:12px;right:12px;z-index:150;width:44px;height:44px;border-radius:8px;background:var(--navy);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s}
   .menu-toggle:hover{background:var(--navy-light)}
   .menu-toggle:focus{outline:2px solid var(--accent-light);outline-offset:2px}
@@ -158,15 +160,20 @@
 </head>
 <body>
 
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="全ページメニュー">
 <header>
   <h1><a href="index.html" title="目次に戻る">ドレーン抜去時に気をつけること</a></h1>
   <p class="subtitle">部位別の手技・タイミング・合併症</p>
   <p class="meta">For Medical Students | 全学年対象</p>
 </header>
 <div class="page-nav" aria-label="ページメニュー">
-  <button type="button" class="page-nav-menu-btn" id="menuOpen" aria-label="全ページメニューを開く" aria-haspopup="dialog">📚 メニュー <span class="page-nav-badge">28</span></button>
+  <label for="menuToggle" class="page-nav-menu-btn" role="button" tabindex="0" aria-haspopup="dialog">
+    <span class="menu-label-open">📚 メニュー</span>
+    <span class="menu-label-close">✕ 閉じる</span>
+    <span class="page-nav-badge">28</span>
+  </label>
 </div>
-
 
 <nav>
   <ul>
@@ -514,11 +521,11 @@
 </footer>
 
 
-<div class="drawer-backdrop" id="drawerBackdrop"></div>
-<aside class="drawer" id="drawer" aria-label="全ページメニュー" aria-hidden="true">
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
   <div class="drawer-head">
     <h3>📚 全ページメニュー</h3>
-    <button class="drawer-close" id="drawerClose" aria-label="閉じる" type="button">×</button>
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
   </div>
   <div class="drawer-search">
     <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
@@ -601,54 +608,26 @@
   // Highlight current page in the top text-based page nav
   const _curP = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
-  // ===== Drawer (📚 メニュー) =====
-  const _menuBtn = document.getElementById('menuOpen');
-  const _drawer = document.getElementById('drawer');
-  const _drawerBackdrop = document.getElementById('drawerBackdrop');
-  const _drawerClose = document.getElementById('drawerClose');
-  const _drawerSearch = document.getElementById('drawerSearch');
-  function _openDrawer(){ _drawer.classList.add('show'); _drawerBackdrop.classList.add('show'); _drawer.setAttribute('aria-hidden','false'); document.body.classList.add('drawer-open'); setTimeout(()=>_drawerSearch && _drawerSearch.focus(), 250); }
-// iOS touch warmup
-  document.addEventListener('touchstart', function _touchWarmup_(){}, {passive:true});
-    function _closeDrawer(){ _drawer.classList.remove('show'); _drawerBackdrop.classList.remove('show'); _drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('drawer-open'); }
-  if(_menuBtn){let _menuOpened=false;const _menuHandler=e=>{e.preventDefault();if(_menuOpened)return;_menuOpened=true;_openDrawer();setTimeout(()=>{_menuOpened=false;},400);};_menuBtn.addEventListener('pointerdown',_menuHandler,{passive:false});_menuBtn.addEventListener('click',_menuHandler);}
-  if(_drawerClose) _drawerClose.addEventListener('click', _closeDrawer);
-  if(_drawerBackdrop) _drawerBackdrop.addEventListener('click', _closeDrawer);
-  document.addEventListener('keydown', e => { if(e.key==='Escape' && _drawer && _drawer.classList.contains('show')) _closeDrawer(); });
-  // Mark current page in drawer
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
   document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
-  // Mark home link as current on index
-  if(_curP==='index.html'){ const home = document.querySelector('.page-nav-home'); if(home) home.classList.add('current'); }
-  // Drawer search
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
   if(_drawerSearch){
     _drawerSearch.addEventListener('input', e => {
       const q = e.target.value.trim().toLowerCase();
       document.querySelectorAll('.drawer-section').forEach(sec => {
-        let visible = 0;
-        sec.querySelectorAll('a').forEach(a => {
-          const m = q==='' || a.textContent.toLowerCase().includes(q);
-          a.classList.toggle('hidden', !m);
-          if(m) visible++;
-        });
-        sec.classList.toggle('empty', q!=='' && visible===0);
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
       });
     });
   }
-
-  // Dynamic offset: place section nav just below page nav (handles wrap)
-
-
-
-
-  document.querySelectorAll('.tab-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const tab=btn.dataset.tab;
-      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');document.getElementById(tab).classList.add('active');
-    });
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
   });
-
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
   const questions = [
     {q:"胸腔ドレーン抜去時、患者に行わせる呼吸法として正しいのはどれか。",choices:["深い吸気","Valsalva法または呼気停止","ゆっくりした吸気","咳き込む"],correct:1,explain:"吸気は胸腔内陰圧を増強し、抜去孔から空気が引き込まれ気胸再発のリスクとなる。Valsalvaまたは呼気停止で胸腔内陰圧を抑えてから抜去する。"},
     {q:"胸腔ドレーン抜去の条件として誤っているのはどれか。",choices:["排液 200 mL/日以下","エアリークの消失","X線で肺完全膨張","発熱がある"],correct:3,explain:"発熱・感染兆候は抜去禁忌の判断要素。膿胸の遅発化を見逃す。"},
