@@ -61,6 +61,23 @@
   .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
   .page-nav a:hover{background:rgba(0,0,0,.15)}
   .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .page-nav-home{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;min-height:36px;transition:background .15s}
+  .page-nav-home:hover{background:rgba(0,0,0,.15)}
+  .page-nav-home.current{background:var(--accent);font-weight:700}
+  .page-nav-cat{position:relative}
+  .page-nav-cat-btn{display:inline-flex;align-items:center;gap:.25rem;background:transparent;border:none;color:#fff;cursor:pointer;padding:.5rem .75rem;font-size:.82rem;font-family:inherit;border-radius:6px;min-height:36px;transition:background .15s;white-space:nowrap}
+  .page-nav-cat-btn:hover{background:rgba(0,0,0,.15)}
+  .page-nav-cat.has-current .page-nav-cat-btn{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .page-nav-cat.open .page-nav-cat-btn{background:rgba(0,0,0,.25)}
+  .page-nav-cat .caret{font-size:.7rem;transition:transform .2s;opacity:.85}
+  .page-nav-cat.open .caret{transform:rotate(180deg)}
+  .page-nav-sub{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#fff;min-width:200px;max-width:calc(100vw - 1rem);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:.35rem;list-style:none;z-index:200}
+  .page-nav-cat.open .page-nav-sub{display:block}
+  .page-nav-sub li{display:block}
+  .page-nav-sub a{display:block;color:var(--text);padding:.6rem .85rem;border-radius:5px;font-size:.88rem;white-space:nowrap;text-decoration:none;transition:background .12s}
+  .page-nav-sub a:hover{background:#fff0f0;color:var(--accent)}
+  .page-nav-sub a.current{background:var(--accent);color:#fff;font-weight:600}
+  @media (max-width:560px){.page-nav-sub{position:fixed;left:.5rem;right:.5rem;max-width:none;min-width:0}}
   @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 </style>
 </head>
@@ -73,30 +90,62 @@
 </header>
 
 <div class="page-nav" aria-label="全ページナビゲーション"><ul>
-  <li><a href="index.html">🏠 目次</a></li>
-  <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
-  <li><a href="cardiovascular_pressures.html">心血管圧</a></li>
-  <li><a href="avr_open_procedure.html">AVR手順</a></li>
-  <li><a href="evar_endoleak.html">EVAR</a></li>
-  <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
-  <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
-  <li><a href="csf_drainage.html">CSFドレナージ</a></li>
-  <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
-  <li><a href="cpb_basics.html">人工心肺</a></li>
-  <li><a href="myocardial_protection.html">心筋保護</a></li>
-  <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
-  <li><a href="surgical_instruments.html">手術器械</a></li>
-  <li><a href="gowning_technique.html">ガウンテク</a></li>
-  <li><a href="anticoagulant_management.html">抗凝固管理</a></li>
-  <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
-  <li><a href="cvs_glossary.html">用語集</a></li>
-  <li><a href="cv_catheter_removal.html">CV抜去</a></li>
-  <li><a href="drain_removal.html">ドレーン抜去</a></li>
-  <li><a href="npwt_basics.html">NPWT</a></li>
-  <li><a href="hit_syndrome.html">HIT</a></li>
-  <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
-  <li><a href="hemodialysis_basics.html">血液透析</a></li>
-  <li><a href="radiation_protection.html">放射線防御</a></li>
+  <li><a href="index.html" class="page-nav-home">🏠 目次</a></li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">🫀 総論 <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+      <li><a href="cardiovascular_pressures.html">心血管圧</a></li>
+    </ul>
+  </li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">🪡 手技 <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="avr_open_procedure.html">AVR手順</a></li>
+      <li><a href="surgical_instruments.html">手術器械</a></li>
+      <li><a href="gowning_technique.html">ガウンテク</a></li>
+    </ul>
+  </li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">🫶 補助循環 <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="iabp.html">IABP</a></li>
+      <li><a href="va_ecmo.html">VA-ECMO</a></li>
+      <li><a href="vv_ecmo.html">VV-ECMO</a></li>
+      <li><a href="impella.html">Impella</a></li>
+    </ul>
+  </li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">⚙️ CPB <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="cpb_basics.html">人工心肺</a></li>
+      <li><a href="myocardial_protection.html">心筋保護</a></li>
+      <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+    </ul>
+  </li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">🩺 血管 <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="evar_endoleak.html">EVAR</a></li>
+      <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+      <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+      <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+      <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+    </ul>
+  </li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">💊 周術期 <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+      <li><a href="drain_removal.html">ドレーン抜去</a></li>
+      <li><a href="npwt_basics.html">NPWT</a></li>
+      <li><a href="hit_syndrome.html">HIT</a></li>
+      <li><a href="anticoagulant_management.html">抗凝固管理</a></li>
+      <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+      <li><a href="hemodialysis_basics.html">血液透析</a></li>
+      <li><a href="radiation_protection.html">放射線防御</a></li>
+    </ul>
+  </li>
+  <li class="page-nav-cat"><button type="button" class="page-nav-cat-btn" aria-haspopup="true" aria-expanded="false">📚 参考 <span class="caret" aria-hidden="true">▾</span></button>
+    <ul class="page-nav-sub">
+      <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+      <li><a href="cvs_glossary.html">用語集</a></li>
+    </ul>
+  </li>
 </ul></div>
 
 <nav><ul>
@@ -170,6 +219,22 @@
   window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
   const _curP = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Page-nav dropdown: mark category containing current page
+  document.querySelectorAll('.page-nav-cat').forEach(cat => { if(cat.querySelector('a.current')) cat.classList.add('has-current'); });
+  // Dropdown toggle
+  document.querySelectorAll('.page-nav-cat-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const cat = btn.parentElement;
+      const wasOpen = cat.classList.contains('open');
+      document.querySelectorAll('.page-nav-cat.open').forEach(c => c.classList.remove('open'));
+      if(!wasOpen) cat.classList.add('open');
+      btn.setAttribute('aria-expanded', !wasOpen);
+    });
+  });
+  // Close dropdown on outside click / Escape
+  document.addEventListener('click', e => { if(!e.target.closest('.page-nav-cat')) document.querySelectorAll('.page-nav-cat.open').forEach(c => { c.classList.remove('open'); const b = c.querySelector('.page-nav-cat-btn'); if(b) b.setAttribute('aria-expanded','false'); }); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') document.querySelectorAll('.page-nav-cat.open').forEach(c => { c.classList.remove('open'); const b = c.querySelector('.page-nav-cat-btn'); if(b) b.setAttribute('aria-expanded','false'); }); });
   function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
   _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
 
