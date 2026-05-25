@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>血液透析(HD)の基礎 ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .compare-table th:first-child{background:#5a6473}
+  .compare-table tr td:nth-child(2){background:#fff0f0}
+  .compare-table tr td:nth-child(3){background:#e8f5e9}
+  .func-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .func-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .func-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .func-card p{font-size:.85rem}
+  .principle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
+  .principle-card{background:#e3f2fd;border:1px solid #bbdefb;border-top:4px solid #1565c0;border-radius:8px;padding:1rem}
+  .principle-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+  .principle-card .num{display:inline-block;background:#1565c0;color:#fff;width:1.7rem;height:1.7rem;border-radius:50%;text-align:center;line-height:1.7rem;font-weight:bold;font-size:.85rem}
+  .principle-card p{font-size:.85rem}
+  .access-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.8rem}
+  .access-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem;position:relative}
+  .access-card.first{border-top-color:var(--success)}
+  .access-card.second{border-top-color:#1565c0}
+  .access-card.temp{border-top-color:var(--warn)}
+  .access-card h4{color:var(--navy);font-size:1rem;margin-bottom:.3rem}
+  .access-card .rank{display:inline-block;font-size:.72rem;padding:.15rem .55rem;border-radius:999px;background:#e3f2fd;color:#1565c0;margin-bottom:.4rem}
+  .access-card .rank.first{background:#e8f5e9;color:var(--success)}
+  .access-card .rank.temp{background:#fff3e0;color:var(--warn)}
+  .access-card .desc{font-size:.86rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">血液透析(HD)の基礎</a></h1>
+  <p class="subtitle">なぜ必要か ― 何をしているのか ― シャント ― 持続透析との違い</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション">
+  <ul>
+    <li><a href="index.html">🏠 目次</a></li>
+    <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+    <li><a href="avr_open_procedure.html">AVR手順</a></li>
+    <li><a href="evar_endoleak.html">EVAR</a></li>
+    <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+    <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+    <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+    <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+    <li><a href="drain_removal.html">ドレーン抜去</a></li>
+    <li><a href="npwt_basics.html">NPWT</a></li>
+    <li><a href="hit_syndrome.html">HIT</a></li>
+    <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+    <li><a href="hemodialysis_basics.html">血液透析</a></li>
+  </ul>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#why">なぜ必要か</a></li>
+    <li><a href="#what">何をしているか</a></li>
+    <li><a href="#schedule">週何回・何時間</a></li>
+    <li><a href="#access">シャント・アクセス</a></li>
+    <li><a href="#hd-vs-crrt">HD vs CRRT</a></li>
+    <li><a href="#cvs">CVS患者で</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<div class="disclaimer" role="note" aria-label="重要なお知らせ">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+  </div>
+</div>
+
+<section id="why">
+  <h2>1. なぜ血液透析が必要か</h2>
+  <p>腎臓は単なる「老廃物の濾過装置」ではなく、生命維持に不可欠な複数の機能を担っています。これらが破綻すると体内環境が崩れ、最終的に致死的になります。<strong>血液透析(HD)はその一部を機械で代行する治療</strong>です。</p>
+
+  <h3>腎臓の正常機能(4つ)</h3>
+  <div class="func-grid">
+    <div class="func-card">
+      <h4>① 老廃物の排泄</h4>
+      <p>尿素・クレアチニン・尿酸など窒素代謝産物、薬物代謝物を尿として体外へ排出。蓄積すると <strong>尿毒症</strong>(意識障害・心嚢炎・出血傾向)。</p>
+    </div>
+    <div class="func-card">
+      <h4>② 水分・電解質のバランス</h4>
+      <p>Na・K・Ca・Pなどの濃度調整。破綻すると <strong>体液過剰(肺水腫)・高K血症(致死的不整脈)・高P血症</strong>。</p>
+    </div>
+    <div class="func-card">
+      <h4>③ 酸塩基平衡</h4>
+      <p>HCO₃⁻ 再吸収・H⁺ 排泄で血液pHを7.35-7.45に維持。破綻で <strong>代謝性アシドーシス</strong>(呼吸促迫・倦怠感・心機能低下)。</p>
+    </div>
+    <div class="func-card">
+      <h4>④ ホルモン分泌</h4>
+      <p><u>エリスロポエチン</u>(造血) → 不足で腎性貧血 / <u>活性型ビタミンD</u> → 不足で骨代謝異常(CKD-MBD) / <u>レニン</u> → 血圧調節。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📌 HDが代行できるもの・できないもの:</strong><br>
+    ✅ ①②③ は機械で代行可能(老廃物・水分・電解質・pH)<br>
+    ❌ ④ ホルモン機能は代行不可 → エリスロポエチン製剤・活性型VitDの<u>薬で補う</u>必要
+  </div>
+
+  <h3>血液透析が必要となる病態</h3>
+  <ul>
+    <li><strong>末期腎不全(ESRD)</strong>: 慢性腎臓病(CKD)Stage 5(eGFR <15)で症状あり</li>
+    <li><strong>急性腎障害(AKI)</strong>: 薬剤性・敗血症・心腎症候群・術後など</li>
+    <li><strong>緊急透析適応(AEIOU)</strong>:
+      <ul>
+        <li><strong>A</strong>cidosis ― 重度代謝性アシドーシス(pH<7.1)</li>
+        <li><strong>E</strong>lectrolytes ― 高K血症(>6.5 mEq/L)、薬剤抵抗性</li>
+        <li><strong>I</strong>ntoxication ― 透析可能薬物中毒(Li, methanol, salicylate, ethylene glycol)</li>
+        <li><strong>O</strong>verload ― 体液過剰(肺水腫、薬剤抵抗性)</li>
+        <li><strong>U</strong>remia ― 尿毒症症状(意識障害、心嚢炎、出血傾向)</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section id="what">
+  <h2>2. 透析は何をしているのか ― 3つの原理</h2>
+  <p>透析の核心は <strong>「半透膜を介した物質の移動」</strong> です。患者の血液と透析液を、半透膜越しに接触させて物質を交換します。物理的な原理は3つあります。</p>
+
+  <div class="principle-grid">
+    <div class="principle-card">
+      <h4><span class="num">1</span>拡散(diffusion)</h4>
+      <p>濃度の<strong>高い側 → 低い側</strong>へ物質が移動。尿素・クレアチニン・K⁺などの除去の主役。<u>HDで最も活躍する原理</u>。</p>
+    </div>
+    <div class="principle-card">
+      <h4><span class="num">2</span>限外濾過(ultrafiltration, UF)</h4>
+      <p><strong>圧較差</strong>で膜を介して水分を移動。患者の余分な水分を取り除き(<u>除水</u>)、体重を目標値まで下げる。</p>
+    </div>
+    <div class="principle-card">
+      <h4><span class="num">3</span>対流(convection)</h4>
+      <p>水と一緒に溶質が膜を通過(solvent drag)。<u>中分子量物質</u>(β2-microglobulin など)の除去に重要。CHDFで主に活用。</p>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="透析の原理">
+      <text x="270" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">血液 ↔ 半透膜 ↔ 透析液</text>
+
+      <!-- Blood side -->
+      <rect x="40" y="50" width="200" height="200" fill="#fce4e4" stroke="#c62828" stroke-width="2" rx="6"/>
+      <text x="140" y="75" font-size="12" fill="#c62828" text-anchor="middle" font-weight="bold">血液(患者側)</text>
+      <text x="140" y="100" font-size="11" fill="#c62828" text-anchor="middle">高: 尿素・Cr・K⁺・水</text>
+
+      <!-- Dialysate side -->
+      <rect x="300" y="50" width="200" height="200" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" rx="6"/>
+      <text x="400" y="75" font-size="12" fill="#1565c0" text-anchor="middle" font-weight="bold">透析液</text>
+      <text x="400" y="100" font-size="11" fill="#1565c0" text-anchor="middle">低: 老廃物 / 適切: 電解質</text>
+
+      <!-- Membrane -->
+      <rect x="245" y="55" width="50" height="190" fill="#bdbdbd" stroke="#424242" stroke-width="1" stroke-dasharray="2,2"/>
+      <text x="270" y="155" font-size="10" fill="#424242" text-anchor="middle" font-weight="bold" transform="rotate(90, 270, 155)">半透膜</text>
+
+      <!-- Diffusion arrow (urea/K from blood to dialysate) -->
+      <path d="M 200 130 L 340 130" stroke="#c62828" stroke-width="3" marker-end="url(#hd1)"/>
+      <text x="210" y="125" font-size="10" fill="#c62828">① 拡散(尿素・K)</text>
+
+      <!-- HCO3 from dialysate to blood -->
+      <path d="M 340 165 L 200 165" stroke="#1565c0" stroke-width="2" marker-end="url(#hd2)"/>
+      <text x="220" y="180" font-size="10" fill="#1565c0">① HCO₃⁻補充</text>
+
+      <!-- UF arrow (water from blood) -->
+      <path d="M 200 210 L 340 210" stroke="#7e57c2" stroke-width="3" stroke-dasharray="4,2" marker-end="url(#hd3)"/>
+      <text x="210" y="225" font-size="10" fill="#7e57c2">② 限外濾過(水分)</text>
+
+      <defs>
+        <marker id="hd1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
+        <marker id="hd2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#1565c0"/></marker>
+        <marker id="hd3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#7e57c2"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>透析液の組成(おおまかな目安)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>成分</th><th>透析液濃度</th><th>正常血清濃度</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>Na⁺</td><td>138-142 mEq/L</td><td>140</td><td>等張に維持</td></tr>
+        <tr><td>K⁺</td><td>2.0-2.5 mEq/L</td><td>3.5-5</td><td>低濃度 → 患者のK⁺を除去</td></tr>
+        <tr><td>Ca²⁺</td><td>2.5-3.0 mEq/L</td><td>4.5-5.5</td><td>調整(CKD-MBD治療兼ねる)</td></tr>
+        <tr><td>HCO₃⁻</td><td>27-32 mEq/L</td><td>22-26</td><td>高濃度 → アシドーシス補正</td></tr>
+        <tr><td>Glucose</td><td>100-200 mg/dL</td><td>80-100</td><td>低血糖防止</td></tr>
+        <tr><td>尿素・Cr</td><td>0(含まれない)</td><td>—</td><td>除去のために 0</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="schedule">
+  <h2>3. 週何回・何時間 ― HD の実際</h2>
+
+  <h3>標準的スケジュール</h3>
+  <ul>
+    <li><strong>頻度:</strong> 週3回(月・水・金 / 火・木・土 が一般的)</li>
+    <li><strong>1回の時間:</strong> 通常 <u>4時間</u>(透析量と除水量で個別調整)</li>
+    <li><strong>場所:</strong> 外来透析クリニック または 病院透析室</li>
+    <li>夜間透析・在宅HD(週5-6回・短時間)などのバリエーションあり</li>
+  </ul>
+
+  <h3>1回の透析中に起こっていること</h3>
+  <ol>
+    <li><strong>来院・体重測定:</strong> 前回からの体重増加(=ドライウェイトを超えた水分量)</li>
+    <li><strong>シャント穿刺:</strong> 16-17G太針2本(脱血用・返血用)</li>
+    <li><strong>抗凝固開始:</strong> 通常ヘパリン持続注入(透析回路の凝固防止)</li>
+    <li><strong>透析開始:</strong> 血流 200-400 mL/min、透析液 500 mL/min で4時間</li>
+    <li><strong>除水:</strong> 体重 → ドライウェイト目標で 1-4 L/回</li>
+    <li><strong>透析終了:</strong> 抜針 → 圧迫止血 5-15分 → ヘパリン中和不要(半減期短い)</li>
+    <li><strong>帰宅:</strong> しばしば疲労感あり。透析後の血圧低下に注意</li>
+  </ol>
+
+  <h3>透析量の評価 ― Kt/V</h3>
+  <ul>
+    <li><strong>Kt/V</strong>: 単回透析量の指標 (K=clearance, t=time, V=尿素分布容積)</li>
+    <li>標準目標: <strong>Kt/V ≥ 1.4</strong>(週3回の場合)</li>
+    <li>不足すると尿毒症症状残存、過剰すると低血圧・disequilibrium</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 なぜ4時間 × 週3回か:</strong> 透析間隔が長いと(中3日)体液過剰・電解質異常が蓄積、短いと社会生活が困難。研究的・臨床的バランスとして週3 × 4時間がスタンダードとして定着。
+  </div>
+</section>
+
+<section id="access">
+  <h2>4. なぜシャント・ブラッドアクセスが必要か</h2>
+
+  <h3>HDには「大量・高速の血流」が必要</h3>
+  <p>HDで効率的に老廃物を除去するには、ダイアライザに <strong>200-400 mL/min</strong> の血液を流す必要があります。</p>
+  <ul>
+    <li>通常の末梢静脈(手背・前腕): せいぜい 50-100 mL/min ― <strong>不足</strong></li>
+    <li>体表静脈は <u>細くて壁が薄い</u> ため、長期に毎回穿刺するとすぐ閉塞・血管喪失</li>
+    <li>そこで <strong>「動脈の高い血流圧」</strong>を利用して静脈を「動脈化」し、穿刺可能な太く強い血管を作る必要がある</li>
+  </ul>
+
+  <h3>シャント・アクセスの種類(3階層)</h3>
+  <div class="access-grid">
+    <div class="access-card first">
+      <span class="rank first">第一選択</span>
+      <h4>① 自己血管内シャント(AVF)</h4>
+      <p class="desc"><strong>Arteriovenous Fistula</strong>。橈骨動脈と橈側皮静脈を吻合し、静脈を動脈化(maturation 4-8週)。<u>感染・血栓リスク最小、長期開存性最良</u>。第一選択。</p>
+    </div>
+    <div class="access-card second">
+      <span class="rank">第二選択</span>
+      <h4>② 人工血管シャント(AVG)</h4>
+      <p class="desc"><strong>Arteriovenous Graft</strong>。ePTFE製のグラフトで動静脈を橋渡し。AVF作成困難例(細い血管・繰り返し閉塞例)で選択。<u>感染・血栓リスクはAVFより高い</u>。</p>
+    </div>
+    <div class="access-card temp">
+      <span class="rank temp">緊急 / 一時的</span>
+      <h4>③ 中心静脈カテーテル(CVC)</h4>
+      <p class="desc">透析用Wルーメンカテーテル。<u>Non-tunneled</u>(緊急用、内頚・大腿静脈)と <u>Tunneled cuffed</u>(数週-数ヶ月、内頚)。感染リスク最大、可能な限り早くシャント化。</p>
+    </div>
+  </div>
+
+  <h3>AVFの仕組み図</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 500 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AVFの仕組み">
+      <text x="250" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">自己血管内シャント(AVF)― 橈骨動脈と橈側皮静脈の吻合</text>
+
+      <!-- Artery (radial) -->
+      <rect x="50" y="80" width="160" height="22" fill="#c62828" rx="3"/>
+      <text x="60" y="75" font-size="11" fill="#c62828" font-weight="bold">橈骨動脈(血流豊富・高圧)</text>
+
+      <!-- Vein (cephalic) - initially thin -->
+      <line x1="50" y1="150" x2="200" y2="150" stroke="#1565c0" stroke-width="6"/>
+      <text x="60" y="170" font-size="10" fill="#1565c0">術前:橈側皮静脈(細い、低圧)</text>
+
+      <!-- Anastomosis arrow -->
+      <path d="M 210 91 Q 240 120 240 145" stroke="#000" stroke-width="2" fill="none" stroke-dasharray="3,2"/>
+      <text x="248" y="125" font-size="10" fill="#000">吻合</text>
+
+      <!-- After AVF: vein arterialized -->
+      <rect x="250" y="140" width="200" height="22" fill="#c62828" opacity="0.6" rx="3"/>
+      <rect x="250" y="138" width="200" height="26" fill="none" stroke="#1565c0" stroke-width="2" rx="3"/>
+      <text x="350" y="195" font-size="11" fill="#0b2545" text-anchor="middle" font-weight="bold">術後:静脈が動脈化(太く強く)</text>
+      <text x="350" y="210" font-size="9" fill="#5a6473" text-anchor="middle">血流 600-1500 mL/min、穿刺可能</text>
+
+      <!-- Needles -->
+      <line x1="290" y1="120" x2="290" y2="138" stroke="#000" stroke-width="2"/>
+      <line x1="290" y1="120" x2="285" y2="115" stroke="#000" stroke-width="1.5"/>
+      <line x1="290" y1="120" x2="295" y2="115" stroke="#000" stroke-width="1.5"/>
+      <text x="270" y="113" font-size="9" fill="#c62828">脱血</text>
+
+      <line x1="410" y1="120" x2="410" y2="138" stroke="#000" stroke-width="2"/>
+      <line x1="410" y1="120" x2="405" y2="115" stroke="#000" stroke-width="1.5"/>
+      <line x1="410" y1="120" x2="415" y2="115" stroke="#000" stroke-width="1.5"/>
+      <text x="395" y="113" font-size="9" fill="#1565c0">返血</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:#c62828"></i>動脈血流</span>
+      <span><i style="background:#1565c0"></i>静脈(動脈化前)</span>
+    </div>
+  </div>
+
+  <h3>シャント管理のポイント</h3>
+  <ul>
+    <li><strong>毎日の自己観察:</strong> シャント音(thrill)・拍動の確認。聞こえなくなったら閉塞</li>
+    <li><strong>圧迫禁止:</strong> シャント側で血圧測定・採血・点滴禁止</li>
+    <li><strong>定期エコー:</strong> 狭窄の早期発見(VA管理)</li>
+    <li><strong>感染兆候:</strong> 発赤・腫脹・疼痛 → 感染性心内膜炎リスク</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ シャント閉塞の対応:</strong> 突然 thrill消失 → 緊急で <u>カテーテル血栓除去 or 外科的修復</u>。発見が遅れると永続的にシャント喪失 → 別部位作成が必要。
+  </div>
+</section>
+
+<section id="hd-vs-crrt">
+  <h2>5. HD vs CRRT(持続的腎代替療法)― 比較表</h2>
+  <p>慢性透析と急性期透析では、必要な治療形態が大きく異なります。<strong>HD(間欠的)</strong>と <strong>CRRT(持続的)</strong>の主な違いを整理します。</p>
+
+  <div class="table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>HD(間欠的血液透析)<br>Hemodialysis</th>
+          <th>CRRT(持続的腎代替療法)<br>Continuous Renal Replacement Therapy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>別名・主なモード</td>
+          <td>通常透析、IHD</td>
+          <td>CHDF / CHD / CHF / CVVHDF など</td>
+        </tr>
+        <tr>
+          <td>1回の時間</td>
+          <td><strong>4時間 / 回</strong></td>
+          <td><strong>24時間連続 × 数日〜数週間</strong></td>
+        </tr>
+        <tr>
+          <td>頻度</td>
+          <td>週3回</td>
+          <td>連続(状態安定まで)</td>
+        </tr>
+        <tr>
+          <td>血流速度</td>
+          <td>200-400 mL/min(高速)</td>
+          <td>100-200 mL/min(低速)</td>
+        </tr>
+        <tr>
+          <td>透析液流速</td>
+          <td>500-800 mL/min</td>
+          <td>1-2 L/h</td>
+        </tr>
+        <tr>
+          <td>除水速度</td>
+          <td>0.5-1.5 L/h(急速)</td>
+          <td>0.05-0.3 L/h(緩徐)</td>
+        </tr>
+        <tr>
+          <td>血行動態への影響</td>
+          <td><strong>急激な変動あり</strong>(血圧低下リスク)</td>
+          <td><strong>緩徐で安定</strong>(不安定患者向き)</td>
+        </tr>
+        <tr>
+          <td>適応</td>
+          <td>慢性透析、安定したAKI、薬物中毒、高K緊急</td>
+          <td>循環不安定・心不全・敗血症性ショック・肝不全・脳浮腫合併AKI</td>
+        </tr>
+        <tr>
+          <td>場所</td>
+          <td>透析室・透析クリニック</td>
+          <td><strong>ICU</strong></td>
+        </tr>
+        <tr>
+          <td>主な原理</td>
+          <td>拡散(diffusion)中心</td>
+          <td>対流(convection)を組合せ、中分子除去にも強い</td>
+        </tr>
+        <tr>
+          <td>抗凝固</td>
+          <td>ヘパリン、ナファモスタット</td>
+          <td>ナファモスタット、<strong>クエン酸</strong>、ヘパリン</td>
+        </tr>
+        <tr>
+          <td>アクセス</td>
+          <td>AVF / AVG / Tunneled CVC</td>
+          <td>Non-tunneled CVC(内頚・大腿)</td>
+        </tr>
+        <tr>
+          <td>看護負担</td>
+          <td>透析室スタッフ管理</td>
+          <td>ICU看護師が24時間管理</td>
+        </tr>
+        <tr>
+          <td>コスト</td>
+          <td>中等度</td>
+          <td>高(機器・人員・回路交換)</td>
+        </tr>
+        <tr>
+          <td>心血管外科での適応</td>
+          <td>慢性透析患者の周術期(術前後)</td>
+          <td>術後AKI、心不全合併、人工心肺後</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>CRRTの主なモード</h3>
+  <ul>
+    <li><strong>CHD (Continuous Hemodialysis):</strong> 拡散のみ</li>
+    <li><strong>CHF (Continuous Hemofiltration):</strong> 濾過のみ(対流)</li>
+    <li><strong>CHDF (Continuous Hemodiafiltration):</strong> 拡散 + 濾過の組合せ — <u>日本のICUで最多</u></li>
+    <li><strong>CVVH / CVVHD / CVVHDF:</strong> 静脈-静脈アクセス版(欧米の呼称、機能は同じ)</li>
+    <li><strong>SLED (Sustained Low-Efficiency Dialysis):</strong> 中間型(6-12時間/回)</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 使い分けの原則:</strong> 患者の血行動態が <u>安定</u> なら HD で短時間・高効率に。<u>不安定</u> なら CRRT で緩徐に。両者は対立ではなく、患者状態に応じた選択(同一患者でICU→HDへ移行することも多い)。
+  </div>
+</section>
+
+<section id="cvs">
+  <h2>6. 心血管外科での透析の関わり</h2>
+
+  <h3>CVS患者と透析の3つのシナリオ</h3>
+  <ol>
+    <li><strong>もともと慢性透析中の患者がCVS手術を受ける場合</strong>
+      <ul>
+        <li>術前のシャント評価・最終透析タイミングの調整</li>
+        <li>術中はK・水分管理に注意、人工心肺で電解質変動大</li>
+        <li>術後にHDスケジュール再開(通常翌日〜2日目)</li>
+        <li>シャント側上肢でのCAGや動脈ライン留置は避ける</li>
+      </ul>
+    </li>
+    <li><strong>術後にAKIを発症してCRRT導入する場合</strong>
+      <ul>
+        <li>人工心肺後・大動脈手術後のAKI率は 10-30%、重症の5-10%でCRRT必要</li>
+        <li>循環不安定のため <u>HDではなくCRRT</u> が選択される</li>
+        <li>腎機能回復で離脱可能(透析依存に至るのは少数)</li>
+      </ul>
+    </li>
+    <li><strong>急性大動脈解離・心不全悪化での緊急透析</strong>
+      <ul>
+        <li>体液過剰による肺水腫 → 緊急血液濾過(ECUM等)</li>
+        <li>カテーテルアクセスは大腿または内頚から緊急留置</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>関連トピックへのリンク</h3>
+  <ul>
+    <li><a href="contrast_nephropathy.html" style="color:var(--accent)">心血管外科患者の腎機能と造影剤腎症予防</a> ― なぜCVS患者の腎機能が悪いか</li>
+    <li><a href="hit_syndrome.html" style="color:var(--accent)">HIT</a> ― 透析患者ではヘパリン暴露歴が多くHITリスク</li>
+    <li><a href="cv_catheter_removal.html" style="color:var(--accent)">CV抜去</a> ― 透析カテーテル抜去でも空気塞栓は同じ機序</li>
+  </ul>
+</section>
+
+<section id="quiz">
+  <h2>7. 理解度チェック(全8問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 8</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>8. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>HD</td><td>Hemodialysis(血液透析)。通常は間欠的HD = IHD</td></tr>
+        <tr><td>CRRT</td><td>Continuous Renal Replacement Therapy(持続的腎代替療法)</td></tr>
+        <tr><td>CHDF</td><td>Continuous Hemodiafiltration(持続的血液透析濾過)― 日本のICUで最多</td></tr>
+        <tr><td>ESRD</td><td>End-Stage Renal Disease(末期腎不全)。CKD Stage 5に相当</td></tr>
+        <tr><td>AKI</td><td>Acute Kidney Injury(急性腎障害)</td></tr>
+        <tr><td>AVF</td><td>Arteriovenous Fistula(自己血管内シャント)― 第一選択</td></tr>
+        <tr><td>AVG</td><td>Arteriovenous Graft(人工血管シャント)― AVF不可時</td></tr>
+        <tr><td>CVC(透析用)</td><td>Central Venous Catheter for HD ― Wルーメン。Tunneled/Non-tunneled</td></tr>
+        <tr><td>Thrill</td><td>シャント上で触れる連続性振動。シャント開存の指標</td></tr>
+        <tr><td>Maturation</td><td>AVF作成後の成熟期間。通常4-8週間</td></tr>
+        <tr><td>Kt/V</td><td>透析量指標。目標 ≥1.4(週3 HD)</td></tr>
+        <tr><td>Dry weight</td><td>ドライウェイト。透析後の目標体重(浮腫なし状態)</td></tr>
+        <tr><td>AEIOU</td><td>緊急透析適応の覚え方:Acidosis/Electrolytes/Intoxication/Overload/Uremia</td></tr>
+        <tr><td>Ultrafiltration</td><td>限外濾過。圧較差で水分除去</td></tr>
+        <tr><td>Diffusion / Convection</td><td>拡散 / 対流。透析の物質移動原理</td></tr>
+        <tr><td>SLED</td><td>Sustained Low-Efficiency Dialysis(中間型、6-12時間/回)</td></tr>
+        <tr><td>ECUM</td><td>Extracorporeal Ultrafiltration Method(体外限外濾過法)。除水のみ</td></tr>
+        <tr><td>CKD-MBD</td><td>CKD Mineral and Bone Disorder(CKDに伴う骨ミネラル代謝異常)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>血液透析(HD)の基礎 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"血液透析が代行できないのはどれか。",choices:["老廃物排泄","水分除去","電解質調整","エリスロポエチン分泌"],correct:3,explain:"HDは①老廃物排泄 ②水分・電解質 ③酸塩基 までは機械で代行できるが、④ホルモン分泌(EPO、活性型ビタミンD)は代行できない。これらは薬剤(ESA製剤・VitD製剤)で補う必要がある。"},
+    {q:"緊急透析適応(AEIOU)に含まれないのはどれか。",choices:["重度代謝性アシドーシス","高K血症(>6.5)","薬物中毒(リチウムなど)","高血圧"],correct:3,explain:"AEIOU = Acidosis / Electrolytes / Intoxication / Overload / Uremia。高血圧自体は緊急透析適応ではない(体液過剰による肺水腫など『Overload』なら適応)。"},
+    {q:"透析の原理で『濃度差で物質が移動』するのはどれか。",choices:["拡散(diffusion)","限外濾過(UF)","対流(convection)","重力"],correct:0,explain:"拡散は濃度勾配による物質移動で、尿素・K⁺などの除去の主役。UFは圧較差で水分除去、対流は水と一緒に溶質を移動(中分子物質に有効)。"},
+    {q:"標準的なHDのスケジュールはどれか。",choices:["毎日 8時間","週3回 × 4時間","週1回 × 1日","週6回 × 30分"],correct:1,explain:"標準は週3回(月水金 or 火木土)× 4時間。これは社会生活と尿毒症コントロールのバランスから世界的に確立した基準。"},
+    {q:"自己血管内シャント(AVF)が第一選択である主な理由はどれか。",choices:["手術が簡単","感染・血栓リスクが最も低く長期開存性が良い","透析開始が早い","費用が安い"],correct:1,explain:"AVFは自己組織のため感染リスク・血栓リスクが最小、長期開存性も最良。ただし作成から成熟まで4-8週かかるため、緊急透析には間に合わずCVCで橋渡しすることが多い。"},
+    {q:"HDで必要な血流速度として一般的なのはどれか。",choices:["20-50 mL/min","100 mL/min","200-400 mL/min","1000 mL/min"],correct:2,explain:"効率的な老廃物除去には 200-400 mL/min の血流が必要。これが通常の末梢静脈では達成困難なため、動脈圧で静脈を動脈化させたシャントが必要。"},
+    {q:"循環動態が不安定な患者のAKIに対して、HDよりCRRTが選択される主な理由はどれか。",choices:["血流速度が高い","除水・物質除去が緩徐で血行動態への影響が小さい","拡散効率が良い","費用が安い"],correct:1,explain:"CRRTは24時間連続で緩徐に行うため、急激な血圧低下を避けやすい。ICUの循環不安定患者・心不全・敗血症性ショック・人工心肺後AKIなどでHDの代わりに選択される。"},
+    {q:"日本のICUで最も使用される持続腎代替療法のモードはどれか。",choices:["CHD","CHF","CHDF","SLED"],correct:2,explain:"CHDF(Continuous Hemodiafiltration、持続的血液透析濾過)が日本のICUで最多。拡散+対流の組合せで、小分子から中分子物質まで除去できる。欧米ではCVVHDFとも呼ばれる。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
