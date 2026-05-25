@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VV-ECMO(静脈-静脈ECMO)― 医学生のために</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--danger:#c62828;--shadow:0 2px 8px rgba(11,37,69,.08);--shadow-lg:0 8px 24px rgba(11,37,69,.12)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.78rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">VV-ECMO(静脈-静脈ECMO)</a></h1>
+  <p class="subtitle">肺機能を代行する呼吸補助 ― 重症ARDS・COVID-19の最終手段</p>
+  <p class="meta">For Medical Students | 高学年対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション"><ul>
+  <li><a href="index.html">🏠 目次</a></li>
+  <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+  <li><a href="cardiovascular_pressures.html">心血管圧</a></li>
+  <li><a href="iabp.html">IABP</a></li>
+  <li><a href="va_ecmo.html">VA-ECMO</a></li>
+  <li><a href="vv_ecmo.html">VV-ECMO</a></li>
+  <li><a href="impella.html">Impella</a></li>
+  <li><a href="avr_open_procedure.html">AVR手順</a></li>
+  <li><a href="evar_endoleak.html">EVAR</a></li>
+  <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+  <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+  <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+  <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+  <li><a href="cpb_basics.html">人工心肺</a></li>
+  <li><a href="myocardial_protection.html">心筋保護</a></li>
+  <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+  <li><a href="surgical_instruments.html">手術器械</a></li>
+  <li><a href="gowning_technique.html">ガウンテク</a></li>
+  <li><a href="anticoagulant_management.html">抗凝固管理</a></li>
+  <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+  <li><a href="cvs_glossary.html">用語集</a></li>
+  <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+  <li><a href="drain_removal.html">ドレーン抜去</a></li>
+  <li><a href="npwt_basics.html">NPWT</a></li>
+  <li><a href="hit_syndrome.html">HIT</a></li>
+  <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+  <li><a href="hemodialysis_basics.html">血液透析</a></li>
+  <li><a href="radiation_protection.html">放射線防御</a></li>
+</ul></div>
+
+<nav><ul>
+  <li><a href="index.html" class="home-link">🏠 目次</a></li>
+  <li><a href="#what">VV-ECMOとは</a></li>
+  <li><a href="#vsva">VS VA-ECMO</a></li>
+  <li><a href="#cannulation">カニュレーション</a></li>
+  <li><a href="#indication">適応・禁忌</a></li>
+  <li><a href="#management">管理</a></li>
+  <li><a href="#recirculation">再循環</a></li>
+  <li><a href="#complications">合併症</a></li>
+  <li><a href="#weaning">離脱</a></li>
+  <li><a href="#quiz">クイズ</a></li>
+  <li><a href="#glossary">用語</a></li>
+</ul></nav>
+
+<main>
+
+<div class="disclaimer" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section id="what">
+  <h2>1. VV-ECMO とは</h2>
+  <p><strong>VV-ECMO(Veno-Venous ECMO、静脈-静脈ECMO)</strong>は、<u>静脈血を抜き、人工肺で酸素化・脱炭酸して静脈に戻す</u>体外循環装置です。<strong>肺機能(ガス交換)のみを代行し、循環(心ポンプ機能)は患者自身の心臓に依存</strong> します。</p>
+
+  <h3>3行サマリ</h3>
+  <ul>
+    <li><strong>機構:</strong> 静脈血 → 遠心ポンプ → 人工肺 → <u>静脈に戻す</u>(右房入口部へ高酸素血を送る)</li>
+    <li><strong>適応:</strong> 重症ARDS、COVID-19 呼吸不全、肺移植までのbridge、primary graft dysfunction</li>
+    <li><strong>条件:</strong> <u>心機能は保たれている</u>こと(VV-ECMOは循環補助しない)</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 「VV-ECMO は薬剤師の酸素ボンベ」:</strong> 高酸素血を肺の上流(右心)に注入することで、肺の換気不良があっても全身循環に酸素を届ける。心臓は自分で動く必要がある。
+  </div>
+</section>
+
+<section id="vsva">
+  <h2>2. VV-ECMO vs VA-ECMO ― 一目でわかる対比</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>項目</th><th>VV-ECMO</th><th>VA-ECMO</th></tr></thead>
+    <tbody>
+      <tr><td>代行する機能</td><td>肺(ガス交換)のみ</td><td>心+肺の両方</td></tr>
+      <tr><td>送血先</td><td>静脈(右房入口)</td><td>動脈(下行 or 上行大動脈)</td></tr>
+      <tr><td>主な適応</td><td>呼吸不全(ARDS, COVID-19)</td><td>心原性ショック, 心停止(ECPR), 心筋炎</td></tr>
+      <tr><td>循環補助</td><td><strong>なし</strong>(患者自身の心拍頼り)</td><td>あり(完全補助も可)</td></tr>
+      <tr><td>カニュレーション</td><td>2本(大腿V + 内頸V)or 二腔1本(Avalon)</td><td>大腿V + 大腿/腋窩A</td></tr>
+      <tr><td>後負荷への影響</td><td>なし</td><td>LV後負荷↑(末梢VA)</td></tr>
+      <tr><td>Harlequin症候群</td><td>起こらない</td><td>末梢VAで起こる</td></tr>
+      <tr><td>下肢虚血</td><td>原則なし</td><td>あり(動脈カニューレ)</td></tr>
+      <tr><td>抗凝固強度</td><td>VAより弱め可(ACT 140-180)</td><td>ACT 160-200</td></tr>
+      <tr><td>特有合併症</td><td>recirculation(再循環)</td><td>Harlequin, LV過伸展</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VV vs VA-ECMO比較">
+      <text x="300" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">VV(左)と VA(右) ECMO 比較</text>
+
+      <!-- VV side -->
+      <text x="150" y="45" font-size="12" fill="#0b2545" text-anchor="middle" font-weight="bold">VV-ECMO</text>
+      <text x="150" y="60" font-size="9" fill="#0b2545" text-anchor="middle">(肺のみ代行)</text>
+      <ellipse cx="150" cy="160" rx="40" ry="80" fill="#f5f8fc" stroke="#0b2545"/>
+      <!-- veins -->
+      <line x1="155" y1="230" x2="155" y2="160" stroke="#1565c0" stroke-width="5"/>
+      <line x1="145" y1="80" x2="145" y2="160" stroke="#1565c0" stroke-width="5"/>
+      <text x="120" y="245" font-size="8" fill="#1565c0">大腿V(脱血)</text>
+      <text x="125" y="80" font-size="8" fill="#1565c0">内頸V(送血)</text>
+      <!-- pump+oxy outside -->
+      <circle cx="220" cy="200" r="14" fill="#7e57c2"/>
+      <text x="220" y="203" font-size="8" fill="#fff" text-anchor="middle">P</text>
+      <rect x="240" y="190" width="35" height="20" fill="#90caf9" stroke="#1565c0"/>
+      <text x="257" y="203" font-size="8" fill="#0b2545" text-anchor="middle">膜肺</text>
+      <path d="M 155 220 Q 200 230 220 215" stroke="#1565c0" stroke-width="3" fill="none"/>
+      <path d="M 275 200 Q 250 170 165 100" stroke="#c62828" stroke-width="3" fill="none"/>
+
+      <!-- VA side -->
+      <text x="450" y="45" font-size="12" fill="#0b2545" text-anchor="middle" font-weight="bold">VA-ECMO</text>
+      <text x="450" y="60" font-size="9" fill="#0b2545" text-anchor="middle">(心+肺 代行)</text>
+      <ellipse cx="450" cy="160" rx="40" ry="80" fill="#f5f8fc" stroke="#0b2545"/>
+      <line x1="455" y1="230" x2="455" y2="160" stroke="#1565c0" stroke-width="5"/>
+      <line x1="445" y1="230" x2="445" y2="160" stroke="#c62828" stroke-width="5"/>
+      <text x="420" y="245" font-size="8" fill="#1565c0">大腿V(脱血)</text>
+      <text x="420" y="258" font-size="8" fill="#c62828">大腿A(送血)</text>
+      <circle cx="520" cy="200" r="14" fill="#7e57c2"/>
+      <text x="520" y="203" font-size="8" fill="#fff" text-anchor="middle">P</text>
+      <rect x="540" y="190" width="35" height="20" fill="#90caf9" stroke="#1565c0"/>
+      <text x="557" y="203" font-size="8" fill="#0b2545" text-anchor="middle">膜肺</text>
+      <path d="M 455 220 Q 500 230 520 215" stroke="#1565c0" stroke-width="3" fill="none"/>
+      <path d="M 575 200 Q 550 220 445 235" stroke="#c62828" stroke-width="3" fill="none"/>
+    </svg>
+  </div>
+</section>
+
+<section id="cannulation">
+  <h2>3. カニュレーション(挿入様式)</h2>
+
+  <h3>① 2本カニュレーション(femoro-jugular configuration)</h3>
+  <ul>
+    <li><strong>脱血:</strong> 大腿静脈 → IVC内に長く留置(先端は肝静脈付近)</li>
+    <li><strong>送血:</strong> 右内頸静脈 → SVC を経て <u>右房入口部</u> へ</li>
+    <li>標準的構成。挿入容易、流量大、recirculationが少ない</li>
+  </ul>
+
+  <h3>② 大腿-大腿(femoro-femoral)</h3>
+  <ul>
+    <li>同側 or 対側の大腿静脈2本。挿入容易だが <u>recirculation(再循環)が起こりやすい</u></li>
+  </ul>
+
+  <h3>③ Dual-lumen single cannula(二腔1本式 / Avalon Elite)</h3>
+  <ul>
+    <li>右内頸静脈から 1本 のカテーテルで脱血・送血を兼ねる(2腔構造)</li>
+    <li>脱血穴: SVC / IVC、送血穴: 右房内で三尖弁方向に開口</li>
+    <li><strong>利点:</strong> 体動制限が少ない、リハビリ可能、肺移植への橋渡しに最適</li>
+    <li><strong>欠点:</strong> X線・透視下での留置が必須、誤位置で recirculation 多発</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📝 Avalon Elite の位置決め:</strong> 透視下で送血孔(distal lumen)が <u>右房内で三尖弁を向く</u> ように留置。誤って心房を貫通すると致死的(心タンポナーデ・心室損傷)。
+  </div>
+</section>
+
+<section id="indication">
+  <h2>4. 適応と禁忌</h2>
+
+  <h3>主な適応</h3>
+  <ul>
+    <li><strong>重症ARDS</strong>(肺保護換気でも改善しない低酸素血症)</li>
+    <li><strong>COVID-19 重症呼吸不全</strong>(2020-)</li>
+    <li><strong>肺移植への橋渡し</strong>(bridge to lung transplant)</li>
+    <li><strong>原発性移植肺機能不全</strong>(primary graft dysfunction)</li>
+    <li><strong>外傷後 肺挫傷・煙吸入</strong></li>
+    <li><strong>気道閉塞</strong>(緊急気管手術中)</li>
+    <li><strong>肺炎(細菌性・ウイルス性)</strong></li>
+  </ul>
+
+  <h3>EOLIA / Murray score(ARDS におけるECMO適応の目安)</h3>
+  <ul>
+    <li><strong>EOLIA trial 基準:</strong> P/F &lt; 50(3時間以上)or P/F &lt; 80(6時間以上)or pH &lt; 7.25 + PaCO₂ ≥ 60(6時間以上)</li>
+    <li><strong>Murray score ≥ 3</strong> または <strong>P/F &lt; 80</strong> でECMO検討</li>
+  </ul>
+
+  <h3>禁忌</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>絶対禁忌</th><th>相対禁忌</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul>
+            <li>不可逆的呼吸不全(移植不適応)</li>
+            <li>進行末期癌</li>
+            <li>不可逆的中枢神経障害</li>
+            <li>高度心機能低下<br><small>(VV-ECMOは循環補助しない)</small></li>
+            <li>陽圧換気 7日以上(肺の不可逆化)</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>高齢(>70歳目安)+著明な併存症</li>
+            <li>制御困難な出血</li>
+            <li>免疫不全</li>
+            <li>BMI > 45</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <strong>💡 心機能の確認は必須:</strong> VV-ECMO は循環補助しないため、ショック患者には不適。導入前にエコー・カテで右室機能・LVEFを評価。心不全合併ならVA-ECMOまたはVAV-ECMOを選択。
+  </div>
+</section>
+
+<section id="management">
+  <h2>5. 管理のポイント</h2>
+
+  <h3>主要パラメータ</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>項目</th><th>目標値</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>ECMO流量</td><td>3-6 L/min</td><td>体格・必要酸素化量による</td></tr>
+      <tr><td>FiO₂(回路)</td><td>0.6-1.0</td><td>SaO₂目標 ≥88% で十分(無理に上げない)</td></tr>
+      <tr><td>Sweep gas flow</td><td>2-6 L/min</td><td>CO₂排出量を決定。流量と独立</td></tr>
+      <tr><td>SaO₂(動脈)</td><td>≥ 88%</td><td>高すぎる必要なし(肺保護)</td></tr>
+      <tr><td>PaCO₂</td><td>35-45 mmHg</td><td>低すぎは脳血管収縮 → 脳虚血</td></tr>
+      <tr><td>ACT</td><td>140-180秒</td><td>VAより低め可</td></tr>
+      <tr><td>APTT</td><td>40-60秒</td><td>抗Xa活性で管理する施設も</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>「Ultra-protective ventilation(超肺保護換気)」</h3>
+  <p>VV-ECMO中は肺の <u>休息(lung rest)</u> が治療の本質。以下の超低圧設定が推奨:</p>
+  <ul>
+    <li>Pplat ≤ 25 cmH₂O(できれば &lt; 20)</li>
+    <li>Driving pressure ≤ 15 cmH₂O</li>
+    <li>RR 10-12</li>
+    <li>FiO₂ 0.3-0.5</li>
+    <li>PEEP 10-15(肺胞虚脱予防)</li>
+  </ul>
+
+  <h3>腹臥位(prone)併用</h3>
+  <ul>
+    <li>VV-ECMO中でも腹臥位は安全に実施可能で予後改善が報告されている</li>
+    <li>カニューレ抜去・閉塞に注意</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📝 ECMO中の高酸素血症は避ける:</strong> SaO₂ 100%・PaO₂ &gt; 150 を狙うのではなく、SaO₂ 88-92% で十分。高酸素血症は肺・脳・心臓の障害を促進する。
+  </div>
+</section>
+
+<section id="recirculation">
+  <h2>6. Recirculation(再循環) ― VV特有の問題</h2>
+
+  <p><strong>Recirculation</strong> とは、<u>送血した酸素化血が脱血カニューレに直接吸い込まれてしまう</u> 現象です。患者の肺・全身を回らずに再びECMO回路に戻るため、<strong>実効的なガス交換効率が落ちる</strong>。</p>
+
+  <h3>再循環が起こる原因</h3>
+  <ul>
+    <li>脱血カニューレと送血カニューレの先端が近接(例: 大腿-大腿構成)</li>
+    <li>ECMO流量過大(血流が逆流)</li>
+    <li>送血先(右房)が脱血先(IVC)を共有</li>
+    <li>Avalon Eliteの誤位置(送血孔の向き)</li>
+  </ul>
+
+  <h3>再循環の検出</h3>
+  <ul>
+    <li><strong>SvO₂(脱血カニューレ前の静脈血酸素飽和度)が異常に高い</strong>(>80%、通常65-75%)</li>
+    <li>SaO₂(動脈)は上がらない</li>
+    <li>流量を上げてもSaO₂改善せず</li>
+  </ul>
+
+  <h3>対策</h3>
+  <ul>
+    <li>カニューレ位置の確認・調整(透視・X線・エコー)</li>
+    <li>ECMO流量の調整(過大なら減量)</li>
+    <li>構成変更(大腿-大腿 → femoro-jugular)</li>
+    <li>送血先の変更</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ 「流量を上げているのにSaO₂が上がらない」=再循環疑い:</strong> 単純に流量を上げるとさらに再循環が増えるという悪循環に。原因解析と構成見直しが優先。
+  </div>
+</section>
+
+<section id="complications">
+  <h2>7. 合併症</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>合併症</th><th>頻度</th><th>機序・対応</th></tr></thead>
+    <tbody>
+      <tr><td>出血(穿刺部・粘膜・脳)</td><td>20-40%</td><td>抗凝固+消費性凝固障害。Hb・血小板・FFP補充</td></tr>
+      <tr><td>感染(回路・血流)</td><td>10-30%</td><td>長期留置。発熱時血培、CRP/PCT</td></tr>
+      <tr><td>Recirculation</td><td>構成による</td><td>SvO₂異常高値で検知、構成見直し</td></tr>
+      <tr><td>カニューレ位置異常</td><td>変動</td><td>毎日X線、移動時の張力に注意</td></tr>
+      <tr><td>血栓・回路閉塞</td><td>変動</td><td>D-dimer、目視。重症は回路交換</td></tr>
+      <tr><td>溶血</td><td>軽度はほぼ必発</td><td>遊離Hb、LDH。流量・カニューレサイズ調整</td></tr>
+      <tr><td>HIT</td><td>1-3%</td><td>5-10日目に血小板急減 → アルガトロバンへ</td></tr>
+      <tr><td>急性腎障害</td><td>30-60%</td><td>炎症・薬剤・低灌流。CRRT併用多い</td></tr>
+      <tr><td>ICU-acquired weakness</td><td>長期化で必発</td><td>早期離床・リハビリ(可能なら覚醒下ECMO)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <strong>💡 「Awake ECMO」:</strong> 鎮静を浅くし、自発呼吸下・覚醒下で運転する戦略。挿管・人工呼吸の合併症(VILI, VAP, ICU-AW)を減らし、長期予後改善が期待される。肺移植までのbridgeでは特に重要。
+  </div>
+</section>
+
+<section id="weaning">
+  <h2>8. 離脱(weaning)</h2>
+
+  <h3>離脱基準</h3>
+  <ul>
+    <li>原疾患の改善(肺コンプライアンス改善、画像所見改善)</li>
+    <li><strong>Sweep gas flow を 0 にして</strong> SaO₂・PaCO₂ が許容範囲を維持できるか(VV特有の評価)</li>
+    <li>肺保護的設定で十分なガス交換(P/F &gt; 150 程度)</li>
+    <li>FiO₂ ≤ 0.5、PEEP ≤ 10 で安定</li>
+  </ul>
+
+  <h3>離脱手順</h3>
+  <ol>
+    <li>Sweep gas flow を段階的に下げる(6 → 4 → 2 → 0)</li>
+    <li>各段階で血液ガス・換気状態を評価</li>
+    <li>Sweep = 0 で 数時間 安定すれば抜去検討</li>
+    <li>抜去時は逆Trendelenburg・呼気末で抜き、圧迫止血(動脈側がないため出血リスク低い)</li>
+  </ol>
+
+  <div class="callout">
+    <strong>📝 VA-ECMO と離脱方法が違う:</strong> VAは <u>流量を下げて</u> 心が拍出できるか評価。VVは <u>sweep gas を切って</u> 肺がガス交換できるか評価。「ポンプではなく膜肺の電源を切る」イメージ。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>9. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>10. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>VV-ECMO</td><td>Veno-Venous ECMO。肺機能のみ代行</td></tr>
+      <tr><td>VA-ECMO</td><td>Veno-Arterial ECMO。心肺ともに代行</td></tr>
+      <tr><td>VAV-ECMO</td><td>混合構成。Harlequin/部分心不全合併時</td></tr>
+      <tr><td>Femoro-jugular</td><td>大腿V脱血+内頸V送血の標準構成</td></tr>
+      <tr><td>Avalon Elite</td><td>右内頸V挿入の二腔1本式カニューレ</td></tr>
+      <tr><td>Recirculation</td><td>送血した酸素化血が脱血孔に直接吸い込まれる現象</td></tr>
+      <tr><td>Sweep gas flow</td><td>人工肺の換気ガス流量。CO₂排出を決める</td></tr>
+      <tr><td>Lung rest</td><td>ECMO中の超肺保護換気(Pplat≤25, PEEP 10-15)</td></tr>
+      <tr><td>Ultra-protective ventilation</td><td>超肺保護換気。driving pressure ≤ 15</td></tr>
+      <tr><td>Awake ECMO</td><td>覚醒・自発呼吸下のECMO運転</td></tr>
+      <tr><td>EOLIA trial</td><td>2018 NEJM, ARDSへのECMOの大規模RCT</td></tr>
+      <tr><td>Murray score</td><td>急性肺障害の重症度スコア。≥3でECMO検討</td></tr>
+      <tr><td>P/F ratio</td><td>PaO₂/FiO₂。&lt;80 で重症ARDS</td></tr>
+      <tr><td>Primary graft dysfunction</td><td>移植後 24時間以内の重症な移植臓器機能不全</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer>
+  <p>VV-ECMO(静脈-静脈ECMO)— 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"VV-ECMOが代行する機能はどれか。",choices:["心(ポンプ)のみ","肺(ガス交換)のみ","心と肺の両方","腎臓"],correct:1,explain:"VV-ECMOは静脈血を抜き、人工肺で酸素化・脱炭酸して静脈に戻すため、ガス交換(肺)機能のみを代行する。循環補助は行わないため、心機能が保たれていることが必要条件。"},
+    {q:"VV-ECMOの標準的なカニュレーション(femoro-jugular)で送血先となるのはどこか。",choices:["大腿動脈","上行大動脈","大腿静脈","内頸静脈(SVC経由で右房入口)"],correct:3,explain:"標準構成では大腿静脈から脱血(IVC内に長く留置)、右内頸静脈から送血(SVCを経て右房入口部)。送血が動脈ではなく静脈である点がVAと最大の違い。"},
+    {q:"VV-ECMOで「再循環(recirculation)」を疑う所見はどれか。",choices:["SvO₂が異常に低い","SvO₂が異常に高い(>80%)","FiO₂を上げてSaO₂が上昇する","sweep gasを上げてPaCO₂が下がる"],correct:1,explain:"再循環は送血した酸素化血が脱血孔に直接吸い込まれる現象。SvO₂(脱血血)が異常に高く(>80%)、SaO₂は上がらない。流量を上げても改善せず、カニューレ位置・構成見直しが必要。"},
+    {q:"VV-ECMO中の換気設定として推奨されるものはどれか。",choices:["FiO₂ 1.0、PEEP 5、Pplat 35","FiO₂ 0.3-0.5、PEEP 10-15、Pplat ≤ 25(肺保護)","High frequency ventilation 必須","完全に呼吸器を切る"],correct:1,explain:"VV-ECMO中は肺の休息(lung rest)が治療の本質。Pplat≤25, driving pressure≤15, PEEP 10-15, RR 10-12, FiO₂ 0.3-0.5の超肺保護換気が推奨される。"},
+    {q:"VV-ECMOが不適応となる病態はどれか。",choices:["重症ARDS","COVID-19呼吸不全","重症心原性ショック","肺移植までの橋渡し"],correct:2,explain:"VV-ECMOは循環補助しないため、重症心原性ショックには不適。心機能が著明に低下している症例ではVA-ECMOまたはVAV構成を選択する。"},
+    {q:"VV-ECMOの離脱(weaning)で評価する操作はどれか。",choices:["流量を下げる","Sweep gas flowを0にする","FiO₂を1.0にする","ヘパリンを中止する"],correct:1,explain:"VV-ECMOの離脱では sweep gas flow を段階的に0にして、患者自身の肺で十分なガス交換ができるかを評価する。VA-ECMOが流量を下げるのと対照的(VV特有の方法)。"},
+    {q:"VV-ECMOで「Avalon Elite」の特徴として正しいのは?",choices:["大腿動脈から挿入","右内頸静脈から1本で脱血・送血(二腔)","上行大動脈に送血","ローラーポンプを使用"],correct:1,explain:"Avalon Eliteは右内頸静脈から挿入する二腔1本式カニューレ。脱血孔はSVC/IVC、送血孔は右房内で三尖弁方向に開口。体動制限が少なく、リハビリ・覚醒下ECMOに最適だが、透視下での正確な留置が必須。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+</body>
+</html>
