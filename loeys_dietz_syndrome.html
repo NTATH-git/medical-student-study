@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loeys-Dietz症候群(LDS)― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:1rem}
+  .type-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1rem}
+  .type-card h4{color:var(--navy);font-size:1rem;margin-bottom:.3rem}
+  .type-card .gene{font-size:.78rem;color:var(--accent);font-weight:700;margin-bottom:.3rem}
+  .type-card .desc{font-size:.83rem;color:var(--text)}
+  .type-card.t1{border-top-color:#c62828}
+  .type-card.t2{border-top-color:#ef6c00}
+  .type-card.t3{border-top-color:#1565c0}
+  .type-card.t4{border-top-color:#7e57c2}
+  .type-card.t5{border-top-color:#2e7d32}
+  .triad-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-top:.8rem}
+  .triad-card{background:#fff8e1;border:1px solid var(--warn);border-radius:8px;padding:1rem;text-align:center}
+  .triad-card .icon{font-size:1.8rem;margin-bottom:.3rem}
+  .triad-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .triad-card p{font-size:.82rem;color:var(--text)}
+  .compare-table{margin-top:.8rem}
+  .compare-table th:first-child{background:#5a6473}
+  .compare-table tr td:nth-child(2){background:#fff0f0}
+  .compare-table tr td:nth-child(3){background:#e3f2fd}
+  .feature-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.8rem;margin-top:.8rem}
+  .feature-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:1rem 1.2rem}
+  .feature-card h4{color:var(--navy);font-size:.98rem;margin-bottom:.4rem}
+  .feature-card ul{margin-top:.3rem;font-size:.86rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">Loeys-Dietz症候群(LDS)</a></h1>
+  <p class="subtitle">TGF-β経路異常による全身性血管脆弱症 ― マルファンとの違い・早期介入の根拠</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション">
+  <ul>
+    <li><a href="index.html">🏠 目次</a></li>
+    <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+    <li><a href="avr_open_procedure.html">AVR手順</a></li>
+    <li><a href="evar_endoleak.html">EVAR</a></li>
+    <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+    <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+    <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+    <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+    <li><a href="drain_removal.html">ドレーン抜去</a></li>
+    <li><a href="npwt_basics.html">NPWT</a></li>
+    <li><a href="hit_syndrome.html">HIT</a></li>
+  </ul>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#what">LDSとは</a></li>
+    <li><a href="#genetics">遺伝学・分類</a></li>
+    <li><a href="#triad">古典的三徴</a></li>
+    <li><a href="#features">全身所見</a></li>
+    <li><a href="#vs-marfan">マルファンとの違い</a></li>
+    <li><a href="#surgery">手術適応・術式</a></li>
+    <li><a href="#followup">フォロー</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="what">
+  <h2>1. Loeys-Dietz症候群(LDS)とは</h2>
+  <p>Loeys-Dietz症候群(LDS)は、2005年に Loeys と Dietz らが <em>Nature Genetics</em> に報告した <strong>常染色体優性遺伝の結合組織疾患</strong> です。TGF-β(Transforming Growth Factor β)シグナル経路の遺伝子変異により、<strong>大動脈瘤・大動脈解離・全身の動脈蛇行・骨格異常</strong>をきたします。</p>
+
+  <div class="callout danger">
+    <strong>⚠ 臨床的重要性:</strong><br>
+    マルファン症候群と類似するが、<u>大動脈解離が小さい径(4 cm前後)で発生し、若年から死亡しうる</u> ため、<strong>より早期の外科介入</strong>と <strong>全身の動脈系の入念な経過観察</strong>が必要。
+  </div>
+
+  <h3>頻度</h3>
+  <ul>
+    <li>正確な有病率は不明だが、おそらく <strong>1/50,000-1/100,000 未満</strong></li>
+    <li>マルファン症候群より稀だが、過小診断されている可能性</li>
+    <li>家族歴のない de novo 変異も多い(30-50%)</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 名前の由来:</strong> Bart Loeys(ベルギー)と Hal Dietz(ジョンズ・ホプキンス)らによる発見。
+  </div>
+</section>
+
+<section id="genetics">
+  <h2>2. 遺伝学・分類</h2>
+  <p>原因遺伝子は全て <strong>TGF-β シグナル経路</strong> に関わるもの。原因遺伝子により Type 1-5(6)に分類されます。</p>
+
+  <div class="type-grid">
+    <div class="type-card t1">
+      <h4>LDS Type 1</h4>
+      <div class="gene">TGFBR1 変異</div>
+      <p class="desc">頭蓋顔面所見が強い(hypertelorism, 口蓋裂など)。重症型が多い。</p>
+    </div>
+    <div class="type-card t2">
+      <h4>LDS Type 2</h4>
+      <div class="gene">TGFBR2 変異</div>
+      <p class="desc">最多の原因遺伝子。Type 1と臨床像が重なるが、皮膚所見強め(transparent skin)。</p>
+    </div>
+    <div class="type-card t3">
+      <h4>LDS Type 3</h4>
+      <div class="gene">SMAD3 変異</div>
+      <p class="desc">aneurysm-osteoarthritis症候群とも。早期発症の変形性関節症を伴う。</p>
+    </div>
+    <div class="type-card t4">
+      <h4>LDS Type 4</h4>
+      <div class="gene">TGFB2 変異</div>
+      <p class="desc">比較的軽症。マルファン類似の表現型。手術閾値もマルファンに近いことが多い。</p>
+    </div>
+    <div class="type-card t5">
+      <h4>LDS Type 5</h4>
+      <div class="gene">TGFB3 変異</div>
+      <p class="desc">比較的稀。表現型は多様、変形性関節症を伴うことあり。</p>
+    </div>
+  </div>
+
+  <h3>病態生理 ― なぜTGF-β異常が動脈瘤を起こすのか?</h3>
+  <p>TGF-β はECM(細胞外基質)形成・血管壁の構造維持・平滑筋細胞分化に関与します。受容体(TGFBR1/2)変異により、<strong>シグナル下流の調節異常 → 中膜の elastin/collagen 構造破綻 → 動脈中膜変性(medial degeneration)→ 動脈瘤・解離</strong>が起こります。</p>
+
+  <div class="callout">
+    <strong>📌 パラドックス:</strong> 受容体変異は本来「TGF-β シグナル低下」を予想させるが、実際には組織で <u>TGF-β シグナルが亢進</u> していることが観察される。代償性アップレギュレーションが病態に関与しているとされ、これがロサルタン(AT1受容体拮抗薬)の理論的根拠となっている。
+  </div>
+</section>
+
+<section id="triad">
+  <h2>3. 古典的三徴(Loeys-Dietz triad)</h2>
+  <p>歴史的に提唱された3徴。すべて揃わなくてもLDSは否定されない。</p>
+
+  <div class="triad-grid">
+    <div class="triad-card">
+      <div class="icon">👀</div>
+      <h4>① 眼間開離<br>(hypertelorism)</h4>
+      <p>両眼の間隔が広い。LDS Type 1/2で特徴的。</p>
+    </div>
+    <div class="triad-card">
+      <div class="icon">👄</div>
+      <h4>② 口蓋垂裂<br>(bifid uvula)<br>or 口蓋裂</h4>
+      <p>口蓋垂が二分。簡単に視診で確認可。口蓋裂を伴うことも。</p>
+    </div>
+    <div class="triad-card">
+      <div class="icon">🩸</div>
+      <h4>③ 動脈瘤 + 蛇行<br>(arterial tortuosity)</h4>
+      <p>大動脈瘤に加え、<u>頚動脈・椎骨動脈・脳動脈の蛇行</u>が特徴的。</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 簡易スクリーニング:</strong> 大動脈瘤患者を診察したら、<u>口を開けてもらい口蓋垂を確認</u>。bifid uvula があれば LDS を疑う(感度70%以上)。
+  </div>
+</section>
+
+<section id="features">
+  <h2>4. 全身所見の整理</h2>
+
+  <div class="feature-list">
+    <div class="feature-card">
+      <h4>🫀 心血管所見</h4>
+      <ul>
+        <li><strong>大動脈基部拡張・大動脈瘤</strong>(最重要、発症年齢若い)</li>
+        <li>大動脈解離(径4 cm前後で発生しうる)</li>
+        <li><strong>動脈蛇行(arterial tortuosity)</strong> ― 頚動脈・椎骨動脈・脳動脈</li>
+        <li>多発動脈瘤(胸部、腹部、頭蓋内、内臓動脈)</li>
+        <li>動脈管開存(PDA)、心房中隔欠損(ASD)などの先天奇形</li>
+        <li>僧帽弁逆流(MVP / mitral valve prolapse)</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4>👤 頭蓋顔面所見</h4>
+      <ul>
+        <li>Hypertelorism(眼間開離)</li>
+        <li>Bifid uvula(口蓋垂裂) / 口蓋裂</li>
+        <li>Craniosynostosis(早期頭蓋骨縫合癒合)</li>
+        <li>Micrognathia(小顎症)</li>
+        <li>Blue sclerae(青色強膜)</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4>🦴 骨格所見</h4>
+      <ul>
+        <li>Pectus excavatum / carinatum(漏斗胸 / 鳩胸)</li>
+        <li>Scoliosis(脊柱側弯症)</li>
+        <li>Arachnodactyly(クモ状指)</li>
+        <li>関節過可動性 / 脱臼傾向</li>
+        <li>Talipes equinovarus(内反足)</li>
+        <li>Cervical spine instability(頚椎不安定症)</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4>🩹 皮膚所見</h4>
+      <ul>
+        <li>Translucent skin(透けて見える薄い皮膚)</li>
+        <li>Easy bruising(易出血傾向)</li>
+        <li>Atrophic scars(萎縮性瘢痕)― Ehlers-Danlos様</li>
+        <li>創治癒不良</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4>🫁 その他</h4>
+      <ul>
+        <li>Spontaneous pneumothorax(自然気胸)</li>
+        <li>食物アレルギー / 喘息(LDS Type 1/2で高頻度)</li>
+        <li>消化管穿孔リスク(腸間膜動脈関与)</li>
+        <li>子宮破裂(妊婦)</li>
+      </ul>
+    </div>
+    <div class="feature-card">
+      <h4>🧠 神経学的所見</h4>
+      <ul>
+        <li>頭蓋内動脈瘤(多発)</li>
+        <li>Chiari I 奇形</li>
+        <li>頚椎不安定症 → 脊髄損傷リスク</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="vs-marfan">
+  <h2>5. マルファン症候群との違い ― 必須の鑑別</h2>
+  <p>LDSとマルファン症候群は症状が重なる部分が多いですが、<strong>手術タイミングや予後管理が大きく異なる</strong>ため、明確な鑑別が必須です。</p>
+
+  <div class="table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>Loeys-Dietz症候群</th>
+          <th>マルファン症候群</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>原因遺伝子</td>
+          <td>TGFBR1/2, SMAD3, TGFB2/3</td>
+          <td>FBN1(fibrillin-1)</td>
+        </tr>
+        <tr>
+          <td>パスウェイ</td>
+          <td>TGF-β シグナル経路</td>
+          <td>Fibrillin-1 → TGF-β調節</td>
+        </tr>
+        <tr>
+          <td>動脈瘤発生部位</td>
+          <td><strong>全身性</strong>(大動脈、頭蓋内、内臓動脈)</td>
+          <td>主に大動脈基部</td>
+        </tr>
+        <tr>
+          <td>動脈蛇行</td>
+          <td><strong>特徴的(必発)</strong></td>
+          <td>稀</td>
+        </tr>
+        <tr>
+          <td>大動脈解離発症径</td>
+          <td><strong>4-4.5 cm 程度で発生しうる</strong></td>
+          <td>通常 5 cm 以上で発生</td>
+        </tr>
+        <tr>
+          <td>手術介入閾値(大動脈基部)</td>
+          <td><strong>4.0-4.4 cm</strong>(高リスク特徴あれば <4.0 cm)</td>
+          <td>5.0 cm(家族歴で 4.5 cm)</td>
+        </tr>
+        <tr>
+          <td>眼科所見</td>
+          <td>水晶体偏位なし、近視あり、青色強膜</td>
+          <td><strong>水晶体偏位(ectopia lentis)</strong>が特徴</td>
+        </tr>
+        <tr>
+          <td>頭蓋顔面所見</td>
+          <td>Hypertelorism、bifid uvula、craniosynostosis</td>
+          <td>長頭、高口蓋、下顎後退</td>
+        </tr>
+        <tr>
+          <td>皮膚所見</td>
+          <td>透明感、易出血、萎縮性瘢痕</td>
+          <td>軽度伸展性、ストレッチマーク</td>
+        </tr>
+        <tr>
+          <td>診断基準</td>
+          <td>遺伝子検査 + 臨床所見(Ghent基準は適用しない)</td>
+          <td>Ghent基準(改訂版2010)</td>
+        </tr>
+        <tr>
+          <td>妊娠リスク</td>
+          <td><strong>極めて高い</strong>(子宮破裂・大動脈解離)</td>
+          <td>高い(大動脈解離)</td>
+        </tr>
+        <tr>
+          <td>平均生存年齢(無治療)</td>
+          <td>26-37歳(報告による)</td>
+          <td>40-50歳代</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠ 重要メッセージ:</strong> 「マルファン疑い」で来院した若年大動脈瘤患者では、<u>必ず口蓋垂と動脈蛇行を確認</u>。LDSなら手術閾値が大きく変わる(より早期介入)。
+  </div>
+</section>
+
+<section id="surgery">
+  <h2>6. 手術適応・術式</h2>
+
+  <h3>手術介入の閾値(大動脈基部)</h3>
+  <ul>
+    <li><strong>径 ≥ 4.0-4.4 cm</strong>: 標準的な予防的手術閾値(成人)</li>
+    <li><strong>径 ≥ 4.0 cm + 高リスク特徴</strong>: 即時手術検討
+      <ul>
+        <li>急速拡大(年6 mm以上)</li>
+        <li>大動脈解離の家族歴</li>
+        <li>動脈蛇行が高度</li>
+        <li>妊娠希望(妊娠前にelective root replacement)</li>
+      </ul>
+    </li>
+    <li>小児・思春期では BSA や成長曲線で個別判断(Z-score)</li>
+    <li>LDS Type 4(TGFB2)は マルファン同等の閾値(4.5-5.0 cm)で可とする報告も</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 なぜ早期手術か:</strong> マルファンより小さい径で解離・破裂を起こすため、「いつもの基準」より一回り早く介入する。「待ちすぎ」は致命的。
+  </div>
+
+  <h3>術式の選択</h3>
+  <ul>
+    <li><strong>大動脈基部置換術</strong>:
+      <ul>
+        <li><strong>David手術(valve-sparing root replacement)</strong> ― 弁形態良好なら第一選択。自己弁を温存し、抗凝固不要</li>
+        <li><strong>Bentall手術</strong> ― 弁形態不良なら機械弁または生体弁で置換 + コンポジットグラフト</li>
+      </ul>
+    </li>
+    <li><strong>同時に弓部・下行に瘤があれば追加置換</strong>:elephant trunk / FETなど検討</li>
+    <li>多発動脈瘤に対する <strong>staged repair</strong> を計画</li>
+    <li><strong>頚動脈・脳動脈瘤</strong>:脳神経外科との連携、coil塞栓やバイパスを検討</li>
+  </ul>
+
+  <h3>術中・周術期の注意</h3>
+  <ul>
+    <li>組織脆弱性 → <strong>縫合糸引きちぎれリスク</strong>。pledget強化、felt補強を多用</li>
+    <li>術中出血傾向あり、輸血製剤の準備</li>
+    <li>気管挿管時の <strong>頚椎不安定症</strong>に注意(用心深い首位)</li>
+    <li>術後感染リスク(創治癒不良) ― 抗菌薬期間延長検討</li>
+  </ul>
+
+  <h3>薬物療法 ― 動脈瘤拡大の抑制</h3>
+  <ul>
+    <li><strong>β遮断薬</strong>(propranolol, atenolol):血圧・心拍数・dP/dt 低下で壁ストレス低減 ― 標準</li>
+    <li><strong>ARB(losartan)</strong>:TGF-β経路への効果が期待される。RCT(COMPARE等)で有効性議論中だが、しばしば併用</li>
+    <li>運動制限:重量挙げ・コンタクトスポーツ・等尺性運動は禁止</li>
+  </ul>
+</section>
+
+<section id="followup">
+  <h2>7. フォローアップ ― 全身モニタリング</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>検査</th><th>頻度</th><th>目的</th></tr></thead>
+      <tbody>
+        <tr><td><strong>心エコー(TTE)</strong></td><td>6-12ヶ月ごと</td><td>大動脈基部・上行径測定、弁機能</td></tr>
+        <tr><td><strong>頭〜骨盤MRA / CTA</strong></td><td>診断時 + 年1回</td><td>全身動脈の動脈瘤・蛇行・拡大評価。<u>必ず頭蓋内まで含める</u></td></tr>
+        <tr><td>頚椎MRI/X線</td><td>診断時 + 必要時</td><td>頚椎不安定症(挿管前必須)</td></tr>
+        <tr><td>眼科検診</td><td>診断時 + 経過</td><td>近視・網膜剥離リスク</td></tr>
+        <tr><td>骨格・歯科</td><td>定期</td><td>側弯・口蓋裂・歯列管理</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>家族スクリーニング</h3>
+  <ul>
+    <li>常染色体優性遺伝なので <strong>第1度親族の遺伝子検査推奨</strong>(50%遺伝確率)</li>
+    <li>遺伝カウンセリングを必ず併用</li>
+    <li>De novo 変異の場合も、患児の子は遺伝するため家族計画に重要</li>
+  </ul>
+
+  <h3>妊娠管理</h3>
+  <div class="callout danger">
+    <strong>⚠ 妊娠は高リスク:</strong>
+    <ul style="margin-top:.4rem">
+      <li>大動脈解離・破裂リスク高い(妊娠中・分娩後)</li>
+      <li>子宮破裂のリスク(LDS特有)</li>
+      <li>大動脈基部 > 4 cm では妊娠回避を強く推奨</li>
+      <li>妊娠する場合は、ハイリスク産科 + 心臓血管外科 + 麻酔科の集学的管理</li>
+      <li>分娩は <strong>帝王切開</strong>(全身麻酔or硬膜外麻酔)が一般的</li>
+    </ul>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>LDS</td><td>Loeys-Dietz Syndrome(ロイス・ディーツ症候群)</td></tr>
+        <tr><td>TGF-β</td><td>Transforming Growth Factor β。細胞増殖・組織恒常性に関与</td></tr>
+        <tr><td>TGFBR1 / TGFBR2</td><td>TGF-β I型/II型受容体遺伝子</td></tr>
+        <tr><td>SMAD3</td><td>TGF-β下流シグナル伝達分子。LDS Type 3の原因遺伝子</td></tr>
+        <tr><td>Hypertelorism</td><td>眼間開離(両眼の間隔が広い)</td></tr>
+        <tr><td>Bifid uvula</td><td>口蓋垂裂(口蓋垂が二分)</td></tr>
+        <tr><td>Arterial tortuosity</td><td>動脈蛇行。LDSの特徴的所見</td></tr>
+        <tr><td>FBN1</td><td>Fibrillin-1遺伝子。マルファン症候群の原因</td></tr>
+        <tr><td>Ghent criteria</td><td>マルファン症候群の改訂診断基準(2010)。LDSには適用しない</td></tr>
+        <tr><td>David手術</td><td>Valve-sparing root replacement(自己弁温存大動脈基部置換)</td></tr>
+        <tr><td>Bentall手術</td><td>大動脈基部置換 + AVR + 冠動脈再建</td></tr>
+        <tr><td>Z-score</td><td>体格補正した径(小児・思春期で重要)</td></tr>
+        <tr><td>Ectopia lentis</td><td>水晶体偏位。マルファンに特徴的、LDSでは稀</td></tr>
+        <tr><td>Translucent skin</td><td>透明感のある薄い皮膚</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Loeys-Dietz症候群(LDS) — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"Loeys-Dietz症候群(LDS)の原因遺伝子として誤っているのはどれか。",choices:["TGFBR1","TGFBR2","FBN1","SMAD3"],correct:2,explain:"FBN1(fibrillin-1)はマルファン症候群の原因遺伝子。LDSはTGFBR1/2、SMAD3、TGFB2/3などTGF-β経路の遺伝子変異で発症する。"},
+    {q:"LDSの『古典的三徴』に含まれないのはどれか。",choices:["眼間開離(hypertelorism)","口蓋垂裂(bifid uvula)","動脈瘤と動脈蛇行","水晶体偏位(ectopia lentis)"],correct:3,explain:"水晶体偏位はマルファン症候群に特徴的。LDSの三徴は①hypertelorism、②bifid uvula(or 口蓋裂)、③動脈瘤+動脈蛇行。"},
+    {q:"LDS患者の大動脈基部に対する予防的手術介入の標準的閾値はどれか(成人、高リスク特徴なし)。",choices:["≥ 3.0 cm","≥ 4.0-4.4 cm","≥ 5.0 cm","≥ 6.0 cm"],correct:1,explain:"LDSでは径4.0-4.4 cmで予防的手術を検討。マルファン(≥5.0cm)より早期介入が標準。急速拡大や解離家族歴があればさらに早く。"},
+    {q:"マルファン症候群とLDSの鑑別ポイントとして最も適切なのはどれか。",choices:["大動脈基部拡張の有無","水晶体偏位 vs 動脈蛇行","近視の有無","身長"],correct:1,explain:"水晶体偏位はマルファン特徴的、動脈蛇行はLDS特徴的。両者とも大動脈基部拡張・骨格所見・近視は共通しうる。"},
+    {q:"LDS患者のフォローアップで必ず含めるべき画像検査はどれか。",choices:["心エコーのみ","上行大動脈CTのみ","頭〜骨盤までの全身MRA/CTA","下肢エコー"],correct:2,explain:"LDSは全身動脈に動脈瘤を生じるため、頭蓋内動脈を含む頭〜骨盤までの全身MRA/CTAが必須。年1回程度実施する。"},
+    {q:"LDS患者の妊娠管理として正しいのはどれか。",choices:["通常通り経腟分娩可","大動脈基部 > 4 cm では妊娠回避を強く推奨","ARB継続のまま妊娠可","β遮断薬中止が必要"],correct:1,explain:"LDSの妊娠は大動脈解離・子宮破裂のリスクが極めて高い。基部 > 4 cmでは妊娠回避推奨。妊娠する場合はハイリスク産科 + 心血管外科 + 麻酔科の集学的管理、帝王切開が一般的。"},
+    {q:"LDSにおける薬物療法のうち、TGF-β経路への効果を期待して使用されるのはどれか。",choices:["β遮断薬","ARB(losartan)","ACE阻害薬","Ca拮抗薬"],correct:1,explain:"ARB(特にlosartan)はAT1受容体拮抗を介してTGF-β経路への抑制効果が期待される。COMPARE試験などRCTで有効性が議論されているが、β遮断薬と併用されることが多い。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
