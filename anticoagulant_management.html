@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抗凝固薬の周術期管理 ― 医学生のために</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--danger:#c62828;--shadow:0 2px 8px rgba(11,37,69,.08)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-top:.8rem}
+  .risk-card{padding:.9rem 1rem;border-radius:8px;border-left:4px solid}
+  .risk-low{background:#e8f5e9;border-left-color:var(--success)}
+  .risk-med{background:#fff3e0;border-left-color:var(--warn)}
+  .risk-high{background:#ffebee;border-left-color:var(--danger)}
+  .risk-card .title{font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+  .risk-low .title{color:var(--success)}
+  .risk-med .title{color:var(--warn)}
+  .risk-high .title{color:var(--danger)}
+  .risk-card ul{font-size:.83rem}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">抗凝固薬の周術期管理</a></h1>
+  <p class="subtitle">術前休薬・術後再開・ブリッジング・中和薬</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション"><ul>
+  <li><a href="index.html">🏠 目次</a></li>
+  <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+  <li><a href="avr_open_procedure.html">AVR手順</a></li>
+  <li><a href="evar_endoleak.html">EVAR</a></li>
+  <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+  <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+  <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+  <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+  <li><a href="cpb_basics.html">人工心肺</a></li>
+  <li><a href="myocardial_protection.html">心筋保護</a></li>
+  <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+  <li><a href="surgical_instruments.html">手術器械</a></li>
+  <li><a href="anticoagulant_management.html">抗凝固管理</a></li>
+  <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+  <li><a href="cvs_glossary.html">用語集</a></li>
+  <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+  <li><a href="drain_removal.html">ドレーン抜去</a></li>
+  <li><a href="npwt_basics.html">NPWT</a></li>
+  <li><a href="hit_syndrome.html">HIT</a></li>
+  <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+  <li><a href="hemodialysis_basics.html">血液透析</a></li>
+  <li><a href="radiation_protection.html">放射線防御</a></li>
+</ul></div>
+
+<nav><ul>
+  <li><a href="index.html" class="home-link">🏠 目次</a></li>
+  <li><a href="#overview">薬剤一覧</a></li>
+  <li><a href="#hold">術前休薬</a></li>
+  <li><a href="#bridging">ブリッジング</a></li>
+  <li><a href="#emergency">緊急時中和</a></li>
+  <li><a href="#restart">術後再開</a></li>
+  <li><a href="#quiz">クイズ</a></li>
+  <li><a href="#glossary">用語</a></li>
+</ul></nav>
+
+<main>
+
+<div class="disclaimer" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    休薬期間は腎機能・術式・出血リスクで個別判断します。<u>診療判断には必ず最新ガイドライン・添付文書・指導医の指示をご確認ください</u>。
+  </div>
+</div>
+
+<section id="overview">
+  <h2>1. 主要な抗凝固薬・抗血小板薬の一覧</h2>
+
+  <h3>抗凝固薬</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>分類</th><th>薬剤名</th><th>機序</th><th>半減期</th><th>モニタリング</th></tr></thead>
+    <tbody>
+      <tr><td>ビタミンK拮抗薬</td><td>ワーファリン</td><td>Vit K依存因子(II/VII/IX/X)抑制</td><td>20-60h</td><td>PT-INR</td></tr>
+      <tr><td>未分画ヘパリン</td><td>UFH</td><td>AT-III依存的Xa/IIa抑制</td><td>1-2h</td><td>APTT, ACT</td></tr>
+      <tr><td>低分子ヘパリン</td><td>LMWH(エノキサパリン)</td><td>主にXa抑制</td><td>4-6h</td><td>抗Xa活性</td></tr>
+      <tr><td>直接Xa阻害薬(DOAC)</td><td>リバーロキサバン<br>アピキサバン<br>エドキサバン</td><td>Xa直接阻害</td><td>5-15h</td><td>原則不要(抗Xaで定量可)</td></tr>
+      <tr><td>直接トロンビン阻害薬(DOAC)</td><td>ダビガトラン</td><td>トロンビン(IIa)直接阻害</td><td>12-17h</td><td>原則不要</td></tr>
+      <tr><td>合成五糖類</td><td>フォンダパリヌクス</td><td>AT-III介してXa阻害</td><td>17-21h</td><td>抗Xa活性</td></tr>
+      <tr><td>直接トロンビン阻害(注射)</td><td>アルガトロバン</td><td>トロンビン直接阻害</td><td>45min</td><td>APTT(HIT適応)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>抗血小板薬</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>分類</th><th>薬剤名</th><th>機序</th><th>効果消失</th></tr></thead>
+    <tbody>
+      <tr><td>COX阻害</td><td>アスピリン</td><td>TXA₂産生阻害(不可逆)</td><td>血小板寿命7-10日</td></tr>
+      <tr><td>P2Y12阻害(不可逆)</td><td>クロピドグレル<br>プラスグレル</td><td>ADP受容体阻害</td><td>5-7日(クロピドグレル)<br>7日(プラスグレル)</td></tr>
+      <tr><td>P2Y12阻害(可逆)</td><td>チカグレロル</td><td>同上(可逆)</td><td>3-5日</td></tr>
+      <tr><td>シロスタゾール</td><td>シロスタゾール</td><td>PDE3阻害 + 血管拡張</td><td>2日</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="hold">
+  <h2>2. 術前休薬の目安</h2>
+  <p>出血リスクと血栓リスクのバランスで決定します。<strong>心臓血管外科のような大出血リスク手術</strong>では下記が目安。</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>休薬期間(目安)</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>ワーファリン</td><td><strong>5日前</strong>から中止</td><td>INR <1.5を確認。高リスク例ではブリッジング検討</td></tr>
+      <tr><td>UFH(静注)</td><td>4-6h前まで継続可</td><td>APTT正常化を確認</td></tr>
+      <tr><td>LMWH</td><td>24h前(治療量)<br>12h前(予防量)</td><td>抗Xa活性で確認可</td></tr>
+      <tr><td>ダビガトラン</td><td>CrCl≥80: 1-2日<br>50-80: 2-3日<br>30-50: 4日<br><30: 5日以上</td><td>腎機能依存性が強い</td></tr>
+      <tr><td>リバーロキサバン</td><td>2-3日(腎機能正常)</td><td>大出血リスク手術では3日</td></tr>
+      <tr><td>アピキサバン</td><td>2-3日(腎機能正常)</td><td>同上</td></tr>
+      <tr><td>エドキサバン</td><td>2-3日(腎機能正常)</td><td>同上</td></tr>
+      <tr><td>アスピリン</td><td>原則継続(CVS術中に必要)<br>or 7-10日</td><td>CABG・冠動脈疾患では継続が一般的</td></tr>
+      <tr><td>クロピドグレル</td><td>5日</td><td>緊急時はプラトレ確認</td></tr>
+      <tr><td>プラスグレル</td><td>7日</td><td>—</td></tr>
+      <tr><td>チカグレロル</td><td>3-5日</td><td>可逆的なので比較的短い</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <strong>📌 心臓外科でのアスピリン:</strong> 冠動脈疾患・最近のPCI後など、<u>アスピリンを継続したまま手術する施設も多い</u>(出血量は若干増えるが、心血管イベント予防のメリットが上回るとされる)。
+  </div>
+</section>
+
+<section id="bridging">
+  <h2>3. ブリッジング(橋渡し抗凝固)</h2>
+  <p>ワーファリン中止中の血栓予防として、半減期の短いヘパリンに置き換える戦略です。<strong>ルーチンでは行わない</strong>のが現在の主流。</p>
+
+  <h3>血栓リスク階層</h3>
+  <div class="risk-grid">
+    <div class="risk-card risk-high">
+      <div class="title">🔴 高リスク(年間血栓>10%)</div>
+      <ul>
+        <li>機械弁(僧帽弁、または<br>大動脈弁+リスク因子)</li>
+        <li>3ヶ月以内のVTE/塞栓症</li>
+        <li>3ヶ月以内の脳卒中</li>
+        <li>CHA₂DS₂-VASc ≥7</li>
+        <li>高度血栓性素因</li>
+      </ul>
+      <p style="font-size:.82rem;margin-top:.5rem"><strong>→ ブリッジング推奨</strong></p>
+    </div>
+    <div class="risk-card risk-med">
+      <div class="title">🟡 中等度リスク(5-10%/年)</div>
+      <ul>
+        <li>機械弁(2葉式 大動脈弁単独)</li>
+        <li>CHA₂DS₂-VASc 5-6</li>
+        <li>3-12ヶ月以内のVTE</li>
+        <li>再発VTE</li>
+        <li>がん活動性</li>
+      </ul>
+      <p style="font-size:.82rem;margin-top:.5rem"><strong>→ 個別判断</strong></p>
+    </div>
+    <div class="risk-card risk-low">
+      <div class="title">🟢 低リスク(<5%/年)</div>
+      <ul>
+        <li>2葉式機械弁(他リスクなし)</li>
+        <li>CHA₂DS₂-VASc 1-4</li>
+        <li>12ヶ月超のVTE</li>
+        <li>がん非活動性</li>
+      </ul>
+      <p style="font-size:.82rem;margin-top:.5rem"><strong>→ ブリッジング不要</strong></p>
+    </div>
+  </div>
+
+  <h3>ブリッジングプロトコル例(高リスクの場合)</h3>
+  <ol>
+    <li>術5日前:ワーファリン中止</li>
+    <li>術3日前頃:INR <2.0確認後、LMWH治療量 開始(エノキサパリン 1mg/kg q12h)</li>
+    <li>術前日:LMWH最終投与は <strong>24h前</strong>(夜投与なし)</li>
+    <li>術直前:INR確認 <1.5</li>
+    <li>術後出血落ち着いてから:LMWH予防量 → 治療量へ移行 + ワーファリン再開</li>
+    <li>INR目標域到達後 LMWH中止</li>
+  </ol>
+
+  <div class="callout danger">
+    <strong>⚠ DOACにはブリッジング不要:</strong> DOACは半減期短いため、適切な休薬期間を取れば<u>ブリッジングを行わない</u>のが原則。
+  </div>
+</section>
+
+<section id="emergency">
+  <h2>4. 緊急時の中和薬</h2>
+  <p>緊急手術や大出血時には、各薬剤の作用を可及的速やかに打ち消す必要があります。</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>抗凝固薬</th><th>中和薬</th><th>用法・備考</th></tr></thead>
+    <tbody>
+      <tr><td>ワーファリン</td><td>Vit K + 4F-PCC(プロトロンビン複合体製剤)</td><td>Vit K 10mg静注 + PCC 25-50 U/kg。FFPは効果遅く近年は二次選択</td></tr>
+      <tr><td>UFH</td><td><strong>プロタミン</strong></td><td>ヘパリン1 mg : プロタミン1 mg。CPB後の標準</td></tr>
+      <tr><td>LMWH</td><td>プロタミン(部分中和)</td><td>~60%しか中和できない。andexanetは無効</td></tr>
+      <tr><td>ダビガトラン</td><td><strong>イダルシズマブ(Praxbind)</strong></td><td>抗体製剤。5g 静注で速やかに中和</td></tr>
+      <tr><td>Xa阻害薬(リバ・アピ・エドキサ)</td><td><strong>アンデキサネット アルファ</strong>(本邦未承認、4F-PCCで代替)</td><td>米国承認、国内は4F-PCC 50 U/kg 使用</td></tr>
+      <tr><td>抗血小板薬</td><td>血小板輸血(効果限定的)</td><td>血小板輸血+止血操作で対応</td></tr>
+      <tr><td>フォンダパリヌクス</td><td>確実な中和薬なし</td><td>rFVIIa, 4F-PCC試行</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <strong>💡 緊急評価のポイント:</strong> 「<u>何の薬を いつ 最後に飲んだか</u>」が最重要情報。検査(PT-INR、APTT、抗Xa)で判断補助。
+  </div>
+</section>
+
+<section id="restart">
+  <h2>5. 術後再開のタイミング</h2>
+  <ul>
+    <li><strong>UFH/LMWH予防量:</strong> 術後12-24h(出血なければ)</li>
+    <li><strong>UFH/LMWH治療量:</strong> 術後48-72h(出血リスクと相談)</li>
+    <li><strong>ワーファリン:</strong> 術後24h(経口可能になり次第)。INR目標域到達まで5-7日</li>
+    <li><strong>DOAC:</strong> 術後48-72h(高出血リスク手術)</li>
+    <li><strong>抗血小板薬:</strong> 術後24h以降(出血なければ)</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📌 心血管外科後の特殊例:</strong>
+    <ul style="margin-top:.4rem">
+      <li>機械弁置換後: 術後24h以内にUFH開始 → ワーファリン重ね開始 → INR治療域でUFH中止</li>
+      <li>CABG後: 術後早期にアスピリン再開(81-100 mg/日)、生涯継続</li>
+      <li>TEVAR/EVAR後: 抗血小板療法を1-3ヶ月継続</li>
+    </ul>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>6. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>DOAC</td><td>Direct Oral Anticoagulant(直接経口抗凝固薬)</td></tr>
+      <tr><td>UFH / LMWH</td><td>未分画ヘパリン / 低分子ヘパリン</td></tr>
+      <tr><td>ブリッジング</td><td>長時間作用抗凝固薬を短時間作用薬に置き換える戦略</td></tr>
+      <tr><td>イダルシズマブ</td><td>Praxbind®。ダビガトランの特異的中和抗体</td></tr>
+      <tr><td>アンデキサネット</td><td>Andexxa®。Xa阻害薬の中和薬(本邦未承認)</td></tr>
+      <tr><td>4F-PCC</td><td>4因子プロトロンビン複合体製剤(II/VII/IX/X含有)</td></tr>
+      <tr><td>CHA₂DS₂-VASc</td><td>非弁膜症性Af患者の脳卒中リスクスコア</td></tr>
+      <tr><td>HAS-BLED</td><td>抗凝固患者の出血リスクスコア</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer>
+  <p>抗凝固薬の周術期管理 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説です。診療判断は最新ガイドライン・添付文書・指導医の指示に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"ワーファリンの術前休薬期間として一般的なのはどれか(大出血リスク手術)。",choices:["1日","3日","5日","10日"],correct:2,explain:"ワーファリンは5日前に中止しINR <1.5を確認。半減期20-60時間で、5日間中止すれば多くの患者でINRが目標下限に下がる。"},
+    {q:"ダビガトラン使用中の患者で緊急手術時の中和薬はどれか。",choices:["プロタミン","ビタミンK","イダルシズマブ","アンデキサネット"],correct:2,explain:"ダビガトランの特異的中和薬はイダルシズマブ(Praxbind)。抗体製剤で5g静注により速やかに中和できる。"},
+    {q:"ブリッジングが特に推奨される高リスク患者はどれか。",choices:["CHA₂DS₂-VASc 2点のAf","2葉式機械弁(大動脈、リスク因子なし)","機械弁(僧帽弁)","12ヶ月超前のVTE既往"],correct:2,explain:"機械弁(僧帽弁)は最も血栓リスクが高い(年間>10%)。同様に最近のVTE/脳梗塞や高CHA₂DS₂-VAScは高リスク群。"},
+    {q:"クロピドグレルの術前休薬期間として一般的なのはどれか。",choices:["1日","3日","5日","10日"],correct:2,explain:"クロピドグレルは不可逆的P2Y12阻害薬。半減期は短いが効果は血小板寿命と同じく持続するため、5日休薬で十分な血小板機能回復を期待。"},
+    {q:"未分画ヘパリン(UFH)の中和薬はどれか。",choices:["ビタミンK","プロタミン","イダルシズマブ","アンデキサネット"],correct:1,explain:"プロタミン(塩基性タンパク)が酸性のヘパリンと結合して中和。CPB後の標準中和薬。投与比はヘパリン1 mg : プロタミン1 mg。"},
+    {q:"CABG後のアスピリン管理として一般的なのはどれか。",choices:["3ヶ月で中止","術後24時間以内に再開し生涯継続(81-100mg/日)","術後1年で中止","ブリッジング後DOACへ変更"],correct:1,explain:"CABG後は術後早期(24時間以内)にアスピリン再開、低用量(81-100mg/日)で生涯継続が標準。バイパスグラフト開存性維持に必須。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+</body>
+</html>
