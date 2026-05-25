@@ -89,7 +89,20 @@
   .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
   .page-nav a:hover{background:rgba(0,0,0,.15)}
   .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-  @media (max-width:480px){section{padding:1.1rem .9rem};.highest-lowest{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+  /* Body pressure simulator */
+  .bp-sim{background:linear-gradient(135deg,#fafbfd,#eef2f7);border-radius:12px;padding:1rem;border:2px solid var(--border);margin:1rem 0}
+  .bp-display{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:1rem 1.2rem;border-radius:10px;margin-bottom:.8rem;box-shadow:var(--shadow);min-height:90px;transition:background .25s}
+  .bp-display.high{background:linear-gradient(135deg,#c62828,#ef5350)}
+  .bp-display.mid{background:linear-gradient(135deg,#ef6c00,#ff9800)}
+  .bp-display.low{background:linear-gradient(135deg,#1565c0,#42a5f5)}
+  .bp-label{font-size:.85rem;opacity:.85;margin-bottom:.2rem}
+  .bp-value{font-size:1.8rem;font-weight:700;letter-spacing:.02em}
+  .bp-detail{font-size:.82rem;opacity:.9;margin-top:.3rem}
+  .bp-hint{font-size:.78rem;color:var(--muted);text-align:center;margin-top:.5rem}
+  .body-svg{max-width:100%;height:auto;display:block;margin:0 auto;cursor:crosshair;touch-action:none}
+  .body-svg [data-name]{cursor:pointer;transition:filter .15s,opacity .15s}
+  .body-svg [data-name]:hover,.body-svg [data-name].active{filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,.9));opacity:1}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.highest-lowest{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px};.bp-value{font-size:1.4rem}}
 </style>
 </head>
 <body>
@@ -134,6 +147,7 @@
   <li><a href="#systemic">体循環の圧勾配</a></li>
   <li><a href="#pulmonary">肺循環</a></li>
   <li><a href="#all">各部位の正常圧</a></li>
+  <li><a href="#simulator">🎮 圧シミュレータ</a></li>
   <li><a href="#clinical">臨床応用</a></li>
   <li><a href="#quiz">クイズ</a></li>
   <li><a href="#glossary">用語</a></li>
@@ -347,8 +361,166 @@
   <p style="font-size:.82rem;color:var(--muted);margin-top:.5rem">※ 上のバーで一目瞭然:大動脈が最も高く、大静脈が最も低い。</p>
 </section>
 
+<section id="simulator">
+  <h2>6. 🎮 圧シミュレーター ― 部位を触って圧を確認</h2>
+  <p>下の人体模式図に <strong>マウス/指を当てる or ドラッグ</strong> すると、その部位の圧が上のパネルにリアルタイム表示されます。背景色は圧の高さで変わります(赤=高圧 / 橙=中圧 / 青=低圧)。</p>
+
+  <div class="bp-sim">
+    <div class="bp-display" id="bpDisplay">
+      <div class="bp-label" id="bpLabel">👆 下の図の血管・心腔をなぞってみよう</div>
+      <div class="bp-value" id="bpValue">— mmHg</div>
+      <div class="bp-detail" id="bpDetail">部位を選択してください</div>
+    </div>
+
+    <svg viewBox="0 0 460 640" id="bodySvg" class="body-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="人体血管模式図 圧シミュレーター">
+      <!-- Body silhouette (decorative) -->
+      <path d="M 230 40 Q 200 40 200 70 Q 200 100 230 100 Q 260 100 260 70 Q 260 40 230 40 Z
+               M 200 100 L 180 130 L 130 180 L 130 320 L 150 350 L 150 480 L 130 600 L 170 600 L 200 480 L 200 350
+               M 260 100 L 280 130 L 330 180 L 330 320 L 310 350 L 310 480 L 330 600 L 290 600 L 260 480 L 260 350"
+            fill="#f0f0f0" stroke="#bdbdbd" stroke-width="1.5" opacity="0.5"/>
+      <text x="230" y="73" font-size="12" fill="#5a6473" text-anchor="middle">🧑</text>
+
+      <!-- ===== Vessels (clickable / hoverable) ===== -->
+
+      <!-- Carotid artery (red) -->
+      <rect data-name="頚動脈(carotid)" data-mean="~95" data-pressure="120/80 mmHg(動脈系)" data-detail="脳へ向かう動脈。大動脈に近い圧。" data-level="high"
+            x="218" y="100" width="8" height="38" fill="#c62828" rx="2"/>
+      <text x="180" y="120" font-size="10" fill="#c62828">頚動脈</text>
+
+      <!-- Jugular vein (blue) -->
+      <rect data-name="頚静脈(jugular)" data-mean="~5" data-pressure="0〜8 mmHg(静脈系)" data-detail="頭から戻る静脈。中心静脈圧に近い。" data-level="low"
+            x="234" y="100" width="8" height="38" fill="#1565c0" rx="2"/>
+      <text x="245" y="120" font-size="10" fill="#1565c0">頚静脈</text>
+
+      <!-- Aortic arch -->
+      <path data-name="大動脈弓(aortic arch)" data-mean="~95" data-pressure="120/80 mmHg" data-detail="大動脈の弓部。冠動脈・頚動脈・鎖骨下動脈の分枝部。" data-level="high"
+            d="M 220 155 Q 200 145 195 165" stroke="#c62828" stroke-width="10" fill="none"/>
+
+      <!-- AORTA (descending) - LARGE, prominent red -->
+      <rect data-name="🔴 大動脈 ★最高圧" data-mean="~95" data-pressure="収縮期120 / 拡張期80(平均~95)mmHg" data-detail="心臓の出口。全身で最も圧が高い場所。" data-level="high"
+            x="216" y="165" width="14" height="180" fill="#c62828" rx="3"/>
+      <text x="148" y="240" font-size="11" fill="#c62828" font-weight="bold">大動脈</text>
+      <text x="148" y="252" font-size="10" fill="#c62828">(★最高圧)</text>
+
+      <!-- SVC (Superior Vena Cava) - blue -->
+      <rect data-name="🔵 上大静脈(SVC)" data-mean="~3" data-pressure="0〜5 mmHg" data-detail="心臓に戻る大静脈。圧は最低レベル。" data-level="low"
+            x="250" y="155" width="12" height="80" fill="#1565c0" rx="2"/>
+      <text x="270" y="190" font-size="10" fill="#1565c0">上大静脈</text>
+      <text x="270" y="202" font-size="9" fill="#1565c0">SVC(★最低)</text>
+
+      <!-- HEART (4 chambers) -->
+      <!-- Heart outline -->
+      <ellipse cx="230" cy="265" rx="60" ry="50" fill="#fce4e4" stroke="#c62828" stroke-width="1" opacity="0.3"/>
+
+      <!-- Right Atrium -->
+      <ellipse data-name="右房(RA)" data-mean="~5" data-pressure="0〜8 mmHg(=CVP)" data-detail="中心静脈圧(CVP)に相当。右心不全で上昇。" data-level="low"
+               cx="200" cy="245" rx="20" ry="18" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="200" y="248" font-size="9" fill="#0b2545" text-anchor="middle" font-weight="bold">RA</text>
+
+      <!-- Right Ventricle -->
+      <ellipse data-name="右室(RV)" data-mean="~15" data-pressure="収縮期15-25 / 拡張期0-8 mmHg" data-detail="肺動脈に向けて低圧で駆動する右心室。" data-level="mid"
+               cx="200" cy="285" rx="22" ry="22" fill="#64b5f6" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="200" y="289" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">RV</text>
+
+      <!-- Left Atrium -->
+      <ellipse data-name="左房(LA)" data-mean="~8" data-pressure="5-12 mmHg(=PAWPで代用測定)" data-detail="左房圧は通常PAWPで代用測定。" data-level="low"
+               cx="260" cy="245" rx="20" ry="18" fill="#fce4e4" stroke="#c62828" stroke-width="1.5"/>
+      <text x="260" y="248" font-size="9" fill="#0b2545" text-anchor="middle" font-weight="bold">LA</text>
+
+      <!-- Left Ventricle -->
+      <ellipse data-name="左室(LV)" data-mean="120" data-pressure="収縮期120 / 拡張期5-12 mmHg" data-detail="大動脈に向けて全身を駆動する左心室。最大120mmHgまで上昇。" data-level="high"
+               cx="260" cy="285" rx="22" ry="22" fill="#ef5350" stroke="#c62828" stroke-width="1.5"/>
+      <text x="260" y="289" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">LV</text>
+
+      <text x="330" y="265" font-size="11" fill="#0b2545" font-weight="bold">心臓</text>
+      <text x="330" y="278" font-size="8" fill="#5a6473">4腔</text>
+
+      <!-- Pulmonary Artery -->
+      <path data-name="肺動脈(PA)" data-mean="~15" data-pressure="収縮期15-25 / 拡張期8-15 mmHg" data-detail="肺循環は低圧系(>25で肺高血圧)。" data-level="mid"
+            d="M 190 230 Q 175 200 180 175" stroke="#9c27b0" stroke-width="10" fill="none"/>
+      <text x="100" y="195" font-size="10" fill="#9c27b0">肺動脈</text>
+
+      <!-- Pulmonary Vein -->
+      <path data-name="肺静脈(PV)" data-mean="~8" data-pressure="5-12 mmHg" data-detail="肺から左房へ戻る。PAWPに反映。" data-level="low"
+            d="M 285 230 Q 300 200 295 175" stroke="#1565c0" stroke-width="6" fill="none"/>
+      <text x="305" y="195" font-size="10" fill="#1565c0">肺静脈</text>
+
+      <!-- Lungs (decorative) -->
+      <ellipse cx="125" cy="170" rx="35" ry="45" fill="#e1bee7" stroke="#9c27b0" stroke-width="1" opacity="0.3"/>
+      <text x="125" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">左肺</text>
+      <ellipse cx="340" cy="170" rx="35" ry="45" fill="#e1bee7" stroke="#9c27b0" stroke-width="1" opacity="0.3"/>
+      <text x="340" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">右肺</text>
+
+      <!-- Brachial artery (upper limb) -->
+      <rect data-name="上腕動脈(brachial)" data-mean="~90" data-pressure="120/80 mmHg(末梢動脈)" data-detail="血圧測定の標準部位。" data-level="high"
+            x="105" y="220" width="6" height="100" fill="#ef5350" rx="2"/>
+      <text x="60" y="270" font-size="9" fill="#c62828">上腕動脈</text>
+
+      <!-- Brachial vein -->
+      <rect data-name="上腕静脈" data-mean="~5" data-pressure="~5 mmHg" data-detail="末梢静脈、低圧。" data-level="low"
+            x="115" y="220" width="6" height="100" fill="#42a5f5" rx="2"/>
+
+      <!-- Arteriole -->
+      <rect data-name="細動脈(arteriole)" data-mean="~60" data-pressure="平均 ~60 mmHg" data-detail="血圧調節の主役。圧低下が最大。" data-level="mid"
+            x="80" y="340" width="20" height="10" fill="#ef9a9a" rx="2"/>
+      <text x="30" y="349" font-size="9" fill="#ef6c00">細動脈</text>
+
+      <!-- Capillary -->
+      <rect data-name="毛細血管(capillary)" data-mean="~15" data-pressure="25→10 mmHg(入口→出口)" data-detail="物質交換の場。Starling forceで重要。" data-level="low"
+            x="80" y="355" width="20" height="6" fill="#9e9e9e" rx="2"/>
+      <text x="30" y="362" font-size="9" fill="#5a6473">毛細血管</text>
+
+      <!-- Venule -->
+      <rect data-name="細静脈(venule)" data-mean="~10" data-pressure="平均 ~10 mmHg" data-detail="毛細血管出口側。" data-level="low"
+            x="80" y="365" width="20" height="10" fill="#90caf9" rx="2"/>
+      <text x="30" y="374" font-size="9" fill="#1565c0">細静脈</text>
+
+      <!-- IVC (Inferior Vena Cava) -->
+      <rect data-name="🔵 下大静脈(IVC)" data-mean="~3" data-pressure="0〜5 mmHg" data-detail="心臓に戻る下大静脈。最低圧。" data-level="low"
+            x="248" y="345" width="14" height="160" fill="#1565c0" rx="3"/>
+      <text x="270" y="430" font-size="11" fill="#1565c0" font-weight="bold">下大静脈</text>
+      <text x="270" y="443" font-size="10" fill="#1565c0">IVC(★最低)</text>
+
+      <!-- Abdominal aorta -->
+      <rect data-name="腹部大動脈" data-mean="~90" data-pressure="120/80 mmHg" data-detail="大動脈下行部の腹部。AAA好発部位。" data-level="high"
+            x="216" y="345" width="14" height="160" fill="#c62828" rx="3"/>
+      <text x="148" y="430" font-size="10" fill="#c62828">腹部大動脈</text>
+
+      <!-- Femoral artery -->
+      <rect data-name="大腿動脈(femoral)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="EVAR・カテーテルアクセスの標準。" data-level="high"
+            x="155" y="510" width="6" height="90" fill="#ef5350" rx="2"/>
+      <text x="80" y="555" font-size="9" fill="#c62828">大腿動脈</text>
+
+      <!-- Femoral vein -->
+      <rect data-name="大腿静脈" data-mean="~8" data-pressure="5-10 mmHg(立位で増加)" data-detail="立位では重力で下肢静脈圧↑。" data-level="low"
+            x="165" y="510" width="6" height="90" fill="#42a5f5" rx="2"/>
+
+      <!-- Other femoral leg (right side) for symmetry -->
+      <rect data-name="大腿動脈(右)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="左右対称。" data-level="high"
+            x="298" y="510" width="6" height="90" fill="#ef5350" rx="2"/>
+      <rect data-name="大腿静脈(右)" data-mean="~8" data-pressure="5-10 mmHg" data-detail="左右対称。" data-level="low"
+            x="308" y="510" width="6" height="90" fill="#42a5f5" rx="2"/>
+
+      <!-- Bottom label -->
+      <text x="230" y="625" font-size="9" fill="#5a6473" text-anchor="middle">指で触れる・マウスで動かすと圧が表示されます</text>
+    </svg>
+
+    <div class="bp-hint">📱 スマホでは指でゆっくり動かしてください</div>
+  </div>
+
+  <div class="callout tip" style="margin-top:1rem">
+    <strong>💡 試してみる:</strong>
+    <ul style="margin-top:.3rem;font-size:.85rem">
+      <li><strong>大動脈</strong>と<strong>上大静脈/下大静脈</strong>を交互に触る → 圧の大差(~95 vs ~3 mmHg)を体感</li>
+      <li><strong>左室</strong>と<strong>右室</strong>を比べる → 体循環(120) vs 肺循環(25)の駆動圧の違い</li>
+      <li><strong>頚動脈→脳→頚静脈</strong>の順に触る → 圧勾配が動力</li>
+      <li><strong>細動脈→毛細血管→細静脈</strong> → 急激な圧低下(調節の主役)</li>
+    </ul>
+  </div>
+</section>
+
 <section id="clinical">
-  <h2>6. 臨床応用 ― 圧の理解が現場に直結する例</h2>
+  <h2>7. 臨床応用 ― 圧の理解が現場に直結する例</h2>
 
   <h3>① 血圧低下 = 流量低下</h3>
   <p>大動脈圧(=血圧)が下がる → 末梢への駆動力が低下 → 臓器灌流低下 → ショック。ショック治療の本質は <u>「圧を回復させて流量を確保する」</u>こと。</p>
@@ -376,7 +548,7 @@
 </section>
 
 <section id="quiz">
-  <h2>7. 理解度チェック(全7問)</h2>
+  <h2>8. 理解度チェック(全7問)</h2>
   <div class="quiz" id="quizContainer">
     <div class="progress" id="progress">問題 1 / 7</div>
     <div class="quiz-q" id="questionText"></div>
@@ -396,7 +568,7 @@
 </section>
 
 <section id="glossary">
-  <h2>8. 用語集</h2>
+  <h2>9. 用語集</h2>
   <div class="table-wrap"><table>
     <thead><tr><th>用語</th><th>意味</th></tr></thead>
     <tbody>
@@ -450,6 +622,49 @@
   function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
   restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
   renderQ();
+
+  // ===== Body Pressure Simulator =====
+  (function(){
+    const svg = document.getElementById('bodySvg');
+    const display = document.getElementById('bpDisplay');
+    const labelEl = document.getElementById('bpLabel');
+    const valueEl = document.getElementById('bpValue');
+    const detailEl = document.getElementById('bpDetail');
+    if(!svg) return;
+
+    function updateFromTarget(target){
+      if(!target) return;
+      // Find nearest ancestor with data-name
+      const el = target.closest && target.closest('[data-name]');
+      if(!el) return;
+      labelEl.textContent = el.dataset.name;
+      valueEl.textContent = el.dataset.pressure || '— mmHg';
+      detailEl.textContent = el.dataset.detail || '';
+      // Color the display based on pressure level
+      display.classList.remove('high','mid','low');
+      const lvl = el.dataset.level;
+      if(lvl) display.classList.add(lvl);
+      // Highlight active vessel
+      svg.querySelectorAll('[data-name]').forEach(e => e.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    svg.addEventListener('mousemove', e => updateFromTarget(e.target));
+    svg.addEventListener('click', e => updateFromTarget(e.target));
+    svg.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const t = e.touches[0];
+      if(!t) return;
+      const target = document.elementFromPoint(t.clientX, t.clientY);
+      if(target && svg.contains(target)) updateFromTarget(target);
+    }, {passive:false});
+    svg.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      if(!t) return;
+      const target = document.elementFromPoint(t.clientX, t.clientY);
+      if(target && svg.contains(target)) updateFromTarget(target);
+    }, {passive:true});
+  })();
 </script>
 
 </body>
