@@ -90,19 +90,28 @@
   .page-nav a:hover{background:rgba(0,0,0,.15)}
   .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
   /* Body pressure simulator */
-  .bp-sim{background:linear-gradient(135deg,#fafbfd,#eef2f7);border-radius:12px;padding:1rem;border:2px solid var(--border);margin:1rem 0}
-  .bp-display{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:1rem 1.2rem;border-radius:10px;margin-bottom:.8rem;box-shadow:var(--shadow);min-height:90px;transition:background .25s}
+  .bp-sim{background:linear-gradient(135deg,#fafbfd,#eef2f7);border-radius:12px;padding:1rem;border:2px solid var(--border);margin:1rem 0;position:relative}
+  /* Display panel STICKY: follows screen when scrolling through SVG */
+  .bp-display{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:.8rem 1.1rem;border-radius:10px;margin-bottom:.8rem;box-shadow:0 4px 12px rgba(0,0,0,.2);min-height:80px;transition:background .25s;position:sticky;top:140px;z-index:50}
   .bp-display.high{background:linear-gradient(135deg,#c62828,#ef5350)}
   .bp-display.mid{background:linear-gradient(135deg,#ef6c00,#ff9800)}
   .bp-display.low{background:linear-gradient(135deg,#1565c0,#42a5f5)}
-  .bp-label{font-size:.85rem;opacity:.85;margin-bottom:.2rem}
-  .bp-value{font-size:1.8rem;font-weight:700;letter-spacing:.02em}
-  .bp-detail{font-size:.82rem;opacity:.9;margin-top:.3rem}
+  .bp-label{font-size:.82rem;opacity:.9;margin-bottom:.15rem}
+  .bp-value{font-size:1.5rem;font-weight:700;letter-spacing:.02em;line-height:1.2}
+  .bp-detail{font-size:.78rem;opacity:.9;margin-top:.25rem;line-height:1.4}
   .bp-hint{font-size:.78rem;color:var(--muted);text-align:center;margin-top:.5rem}
-  .body-svg{max-width:100%;height:auto;display:block;margin:0 auto;cursor:crosshair;touch-action:none}
+  /* SVG smaller: limit height so display panel always visible */
+  .body-svg{max-width:340px;max-height:520px;width:100%;height:auto;display:block;margin:0 auto;cursor:crosshair;touch-action:none}
   .body-svg [data-name]{cursor:pointer;transition:filter .15s,opacity .15s}
   .body-svg [data-name]:hover,.body-svg [data-name].active{filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,.9));opacity:1}
-  @media (max-width:480px){section{padding:1.1rem .9rem};.highest-lowest{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px};.bp-value{font-size:1.4rem}}
+  @media (max-width:480px){
+    section{padding:1.1rem .9rem}
+    .highest-lowest{grid-template-columns:1fr}
+    .back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}
+    .bp-value{font-size:1.2rem}
+    .bp-display{padding:.6rem .8rem;min-height:70px;top:120px}
+    .body-svg{max-width:300px;max-height:420px}
+  }
 </style>
 </head>
 <body>
@@ -631,6 +640,19 @@
     const valueEl = document.getElementById('bpValue');
     const detailEl = document.getElementById('bpDetail');
     if(!svg) return;
+
+    // Dynamically set display sticky top based on combined nav height
+    function _updateBpTop(){
+      const pn = document.querySelector('.page-nav');
+      const sn = document.querySelector('nav:not(.page-nav)');
+      const total = (pn ? pn.offsetHeight : 0) + (sn ? sn.offsetHeight : 0) + 6;
+      display.style.top = total + 'px';
+    }
+    _updateBpTop();
+    window.addEventListener('resize', _updateBpTop);
+    // Re-calc after a tick in case page-nav wraps after fonts load
+    setTimeout(_updateBpTop, 100);
+    setTimeout(_updateBpTop, 500);
 
     function updateFromTarget(target){
       if(!target) return;
