@@ -638,22 +638,6 @@
 
   const _curP = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
-  // Page-nav dropdown: mark category containing current page
-  document.querySelectorAll('.page-nav-cat').forEach(cat => { if(cat.querySelector('a.current')) cat.classList.add('has-current'); });
-  // Dropdown toggle
-  document.querySelectorAll('.page-nav-cat-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const cat = btn.parentElement;
-      const wasOpen = cat.classList.contains('open');
-      document.querySelectorAll('.page-nav-cat.open').forEach(c => c.classList.remove('open'));
-      if(!wasOpen) cat.classList.add('open');
-      btn.setAttribute('aria-expanded', !wasOpen);
-    });
-  });
-  // Close dropdown on outside click / Escape
-  document.addEventListener('click', e => { if(!e.target.closest('.page-nav-cat')) document.querySelectorAll('.page-nav-cat.open').forEach(c => { c.classList.remove('open'); const b = c.querySelector('.page-nav-cat-btn'); if(b) b.setAttribute('aria-expanded','false'); }); });
-  document.addEventListener('keydown', e => { if(e.key==='Escape') document.querySelectorAll('.page-nav-cat.open').forEach(c => { c.classList.remove('open'); const b = c.querySelector('.page-nav-cat-btn'); if(b) b.setAttribute('aria-expanded','false'); }); });
   function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
   _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
 
