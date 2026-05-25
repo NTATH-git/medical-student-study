@@ -76,7 +76,7 @@
   .page-nav-home:hover{background:rgba(0,0,0,.2)}
   .page-nav-home.current{background:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.25)}
   .page-nav-menu-btn{display:inline-flex;touch-action:manipulation;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15)}
-  .page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}
+  @media (hover:hover){.page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}}
   .page-nav-menu-btn:active{transform:translateY(1px)}
   .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
   /* Drawer */
@@ -454,8 +454,10 @@
   const _drawerClose = document.getElementById('drawerClose');
   const _drawerSearch = document.getElementById('drawerSearch');
   function _openDrawer(){ _drawer.classList.add('show'); _drawerBackdrop.classList.add('show'); _drawer.setAttribute('aria-hidden','false'); document.body.classList.add('drawer-open'); setTimeout(()=>_drawerSearch && _drawerSearch.focus(), 250); }
-  function _closeDrawer(){ _drawer.classList.remove('show'); _drawerBackdrop.classList.remove('show'); _drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('drawer-open'); }
-  if(_menuBtn) _menuBtn.addEventListener('click', _openDrawer);
+// iOS touch warmup
+  document.addEventListener('touchstart', function _touchWarmup_(){}, {passive:true});
+    function _closeDrawer(){ _drawer.classList.remove('show'); _drawerBackdrop.classList.remove('show'); _drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('drawer-open'); }
+  if(_menuBtn){let _menuOpened=false;const _menuHandler=e=>{e.preventDefault();if(_menuOpened)return;_menuOpened=true;_openDrawer();setTimeout(()=>{_menuOpened=false;},400);};_menuBtn.addEventListener('pointerdown',_menuHandler,{passive:false});_menuBtn.addEventListener('click',_menuHandler);}
   if(_drawerClose) _drawerClose.addEventListener('click', _closeDrawer);
   if(_drawerBackdrop) _drawerBackdrop.addEventListener('click', _closeDrawer);
   document.addEventListener('keydown', e => { if(e.key==='Escape' && _drawer && _drawer.classList.contains('show')) _closeDrawer(); });
