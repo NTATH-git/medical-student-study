@@ -115,6 +115,13 @@
   .drawer-content a{display:block;padding:.9rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid var(--border);transition:background .15s;min-height:44px}
   .drawer-content a:hover{background:#f5f8fc;color:var(--accent)}
   .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  /* YouTube embed: responsive 16:9 */
+  .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 8px 24px rgba(11,37,69,.15);margin:1rem 0;background:#000}
+  .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-caption{font-size:.82rem;color:var(--muted);margin-top:.5rem;padding:.5rem .8rem;background:#f5f8fc;border-radius:6px;border-left:3px solid var(--accent)}
+  .video-caption strong{color:var(--navy)}
+  .video-caption a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .video-caption a:hover{text-decoration:underline}
   @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 </style>
 </head>
@@ -161,6 +168,7 @@
     <li><a href="#overview">概要</a></li>
     <li><a href="#indication">適応</a></li>
     <li><a href="#timeline">タイムライン</a></li>
+    <li><a href="#video">手術動画</a></li>
     <li><a href="#phases">7フェーズ詳細</a></li>
     <li><a href="#complications">合併症</a></li>
     <li><a href="#quiz">クイズ</a></li>
@@ -245,8 +253,39 @@
   </div>
 </section>
 
+<section id="video">
+  <h2>4. 手術動画(YouTube)</h2>
+  <p>実際の AVR 手術の動画です。文字とイラストで学んだ内容が、生きた手術映像でどう繋がるかを確認しましょう。次セクションの「7フェーズ詳細」と照らし合わせながら見ると理解が深まります。</p>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/wSfV03pNRD8"
+      title="大動脈弁置換術(AVR)手術動画"
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+
+  <div class="video-caption">
+    <strong>📺 動画の見どころチェックリスト:</strong>
+    <ul style="margin-top:.3rem;font-size:.85rem">
+      <li>胸骨正中切開・心膜開放(Phase 2に対応)</li>
+      <li>大動脈・静脈カニューレ挿入と CPB 開始(Phase 3)</li>
+      <li>大動脈遮断 → 心筋保護液注入 → 心停止(Phase 4)</li>
+      <li>大動脈切開 → 弁切除 → サイザー測定 → 縫合糸配置 → 人工弁降下・結紮(Phase 5)</li>
+      <li>大動脈閉鎖 → 脱気 → 遮断解除 → CPB離脱(Phase 6)</li>
+    </ul>
+    <p style="margin-top:.4rem;font-size:.78rem;color:var(--muted)">
+      出典: YouTube動画(<a href="https://www.youtube.com/watch?v=wSfV03pNRD8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=wSfV03pNRD8</a>)。<br>
+      ※ 著作権は投稿者に帰属。教育目的のembedで、本サイトでホストはしていません。
+    </p>
+  </div>
+</section>
+
 <section id="phases">
-  <h2>4. 7フェーズ 詳細手順(クリックで展開)</h2>
+  <h2>5. 7フェーズ 詳細手順(クリックで展開)</h2>
 
   <!-- Phase 1 -->
   <div class="phase">
@@ -400,7 +439,7 @@
 </section>
 
 <section id="complications">
-  <h2>5. 主要合併症と頻度</h2>
+  <h2>6. 主要合併症と頻度</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>合併症</th><th>頻度</th><th>主な対策</th></tr></thead>
@@ -420,7 +459,7 @@
 </section>
 
 <section id="quiz">
-  <h2>6. 理解度チェック(全7問)</h2>
+  <h2>7. 理解度チェック(全7問)</h2>
   <div class="quiz" id="quizContainer">
     <div class="progress" id="progress">問題 1 / 7</div>
     <div class="quiz-q" id="questionText"></div>
@@ -440,7 +479,7 @@
 </section>
 
 <section id="glossary">
-  <h2>7. 用語集</h2>
+  <h2>8. 用語集</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>用語</th><th>意味</th></tr></thead>
