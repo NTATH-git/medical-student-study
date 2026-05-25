@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心血管外科患者の腎機能と造影剤腎症予防 ― 医学生のために</title>
+<style>
+  :root {
+    --navy: #0b2545; --navy-light: #13315c; --accent: #c62828; --accent-light: #ef5350;
+    --bg: #f7f8fa; --card: #fff; --text: #1a1a1a; --muted: #5a6473; --border: #e1e5ea;
+    --success: #2e7d32; --warn: #ef6c00; --danger: #c62828;
+    --shadow: 0 2px 8px rgba(11,37,69,0.08); --shadow-lg: 0 8px 24px rgba(11,37,69,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .reason-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.8rem}
+  .reason-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .reason-card h4{color:var(--navy);font-size:.98rem;margin-bottom:.3rem}
+  .reason-card p{font-size:.85rem;color:var(--text)}
+  .mech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem;margin-top:1rem}
+  .mech-card{background:#e3f2fd;border:1px solid #bbdefb;border-top:4px solid #1565c0;border-radius:8px;padding:1rem}
+  .mech-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+  .mech-card .num{display:inline-block;background:#1565c0;color:#fff;width:1.8rem;height:1.8rem;border-radius:50%;text-align:center;line-height:1.8rem;font-weight:bold;font-size:.85rem;flex-shrink:0}
+  .mech-card p{font-size:.85rem}
+  .protocol-box{background:#e8f5e9;border:1px solid #c8e6c9;border-left:5px solid var(--success);padding:1rem 1.2rem;border-radius:8px;margin:.8rem 0}
+  .protocol-box h4{color:var(--success);margin-bottom:.5rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .crs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;margin-top:.8rem}
+  .crs-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:.7rem .9rem;font-size:.86rem}
+  .crs-card .type{font-weight:700;color:var(--accent);margin-bottom:.2rem}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">心血管外科患者の腎機能と造影剤腎症予防</a></h1>
+  <p class="subtitle">なぜCVS患者は腎機能が悪いのか ― そして生理食塩水輸液はなぜ効くのか</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション">
+  <ul>
+    <li><a href="index.html">🏠 目次</a></li>
+    <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+    <li><a href="avr_open_procedure.html">AVR手順</a></li>
+    <li><a href="evar_endoleak.html">EVAR</a></li>
+    <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+    <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+    <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+    <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+    <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+    <li><a href="drain_removal.html">ドレーン抜去</a></li>
+    <li><a href="npwt_basics.html">NPWT</a></li>
+    <li><a href="hit_syndrome.html">HIT</a></li>
+    <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+  </ul>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="home-link">🏠 目次</a></li>
+    <li><a href="#why-bad">なぜ腎機能不良が多いか</a></li>
+    <li><a href="#cardiorenal">心腎症候群</a></li>
+    <li><a href="#cin">造影剤腎症とは</a></li>
+    <li><a href="#saline">生食輸液のメリット</a></li>
+    <li><a href="#protocol">標準プロトコル</a></li>
+    <li><a href="#mehran">リスク評価</a></li>
+    <li><a href="#other">他の予防策</a></li>
+    <li><a href="#quiz">クイズ</a></li>
+    <li><a href="#glossary">用語</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="why-bad">
+  <h2>1. なぜ心血管外科患者は腎機能が悪い人が多いのか</h2>
+  <p>循環器内科・心臓血管外科の入院患者を診ていると、「またeGFRが30台か…」という場面が頻繁にあります。これは偶然ではなく、<strong>動脈硬化を共通基盤とする全身病態</strong>がいくつも重なっているためです。</p>
+
+  <div class="reason-grid">
+    <div class="reason-card">
+      <h4>① 動脈硬化は全身性疾患</h4>
+      <p>心血管疾患の主要原因である<strong>動脈硬化</strong>は、冠動脈・脳動脈・腎動脈に同じ機序で進行する。心血管疾患の患者は <u>腎血管にも動脈硬化を抱えている</u>。</p>
+    </div>
+    <div class="reason-card">
+      <h4>② 共通リスク因子の集積</h4>
+      <p><strong>高齢・糖尿病・高血圧・脂質異常症・喫煙</strong>はすべて、心血管疾患と慢性腎臓病(CKD)の両方を進める。CVS患者ではほぼ全例で複数が併存。</p>
+    </div>
+    <div class="reason-card">
+      <h4>③ 心腎症候群(cardio-renal syndrome)</h4>
+      <p><strong>心機能低下 → 腎灌流低下</strong>(forward failure)<br><strong>右心不全 → 腎静脈うっ血</strong>(backward failure)。<br>慢性心不全患者の30-50%にCKDを合併。</p>
+    </div>
+    <div class="reason-card">
+      <h4>④ 動脈硬化性腎血管病(RAS)</h4>
+      <p>腎動脈狭窄(renal artery stenosis)は冠動脈疾患患者の20-30%に合併。RA系亢進 → 高血圧悪化 → さらなる腎障害の悪循環。</p>
+    </div>
+    <div class="reason-card">
+      <h4>⑤ 累積的な腎障害</h4>
+      <p>過去の<strong>PCI・CAG・CT・心臓手術</strong>で繰り返し腎臓に負荷(造影剤・低灌流・人工心肺)。「気がつけばcreatinine 1.5」状態。</p>
+    </div>
+    <div class="reason-card">
+      <h4>⑥ 治療薬の影響</h4>
+      <p><strong>RAS阻害薬・利尿薬・NSAIDs</strong>は腎血流調節に影響。脱水・低血圧で腎機能が容易に悪化する状態にある。</p>
+    </div>
+    <div class="reason-card">
+      <h4>⑦ 大動脈疾患特有の要因</h4>
+      <p>腎動脈分岐近傍の <strong>動脈瘤・解離・EVAR後</strong> では腎動脈口の血流が直接影響を受ける。胸腹部大動脈瘤手術ではintraoperative AKIが高頻度。</p>
+    </div>
+    <div class="reason-card">
+      <h4>⑧ 加齢そのもの</h4>
+      <p>CVS手術患者の年齢中央値は70歳台後半。<strong>加齢に伴うnephron数減少</strong>と糸球体硬化で、若年と同じ手術侵襲でも腎機能が下がりやすい。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📌 結論:</strong> CVS患者の腎機能不良は「ひとつの原因」ではなく、<u>動脈硬化を基盤に複数の要因が累積した結果</u>。だから周術期管理では <strong>「腎臓は既に弱っている」前提</strong>で動くことが重要。
+  </div>
+</section>
+
+<section id="cardiorenal">
+  <h2>2. 心腎症候群(Cardio-Renal Syndrome; CRS)― 5つのタイプ</h2>
+  <p>Ronco分類(2008)によると、心臓と腎臓の相互作用は5つに分類されます。</p>
+
+  <div class="crs-grid">
+    <div class="crs-card">
+      <div class="type">Type 1</div>
+      <strong>急性心腎症候群</strong><br>急性心不全 → 急性腎障害(AKI)
+    </div>
+    <div class="crs-card">
+      <div class="type">Type 2</div>
+      <strong>慢性心腎症候群</strong><br>慢性心不全 → 慢性腎臓病(CKD)<br>★ <u>CVS患者で最多</u>
+    </div>
+    <div class="crs-card">
+      <div class="type">Type 3</div>
+      <strong>急性腎心症候群</strong><br>AKI → 急性心不全(肺水腫・不整脈)
+    </div>
+    <div class="crs-card">
+      <div class="type">Type 4</div>
+      <strong>慢性腎心症候群</strong><br>CKD → 慢性心血管病進行
+    </div>
+    <div class="crs-card">
+      <div class="type">Type 5</div>
+      <strong>二次性心腎症候群</strong><br>全身性疾患(敗血症・SLE等)による同時障害
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 Type 2の機序:</strong> 心拍出量↓ → 腎灌流圧↓ → GFR↓ + RAS亢進 → 体液貯留 → 右心不全 → 腎静脈圧↑ → さらにGFR↓ という <u>負のスパイラル</u>。NT-proBNPとeGFRが同時に悪化していく。
+  </div>
+</section>
+
+<section id="cin">
+  <h2>3. 造影剤腎症(CI-AKI)とは</h2>
+
+  <h3>定義</h3>
+  <p><strong>造影剤腎症(Contrast-Induced Acute Kidney Injury; CI-AKI)</strong>は、ヨード造影剤投与後 <u>48-72時間以内</u> に、他に明らかな原因なく <strong>血清クレアチニン値が 0.3 mg/dL以上 または 50%以上上昇</strong> した状態と定義されます(KDIGO基準)。</p>
+
+  <h3>頻度</h3>
+  <ul>
+    <li>一般的にはCAG・CT造影後 <strong>1-5%</strong></li>
+    <li>CKD合併例: <strong>10-25%</strong></li>
+    <li>糖尿病 + CKD: <strong>30-40%</strong></li>
+    <li>PCI後・大量造影剤後: さらに高率</li>
+  </ul>
+
+  <h3>機序</h3>
+  <ol>
+    <li><strong>髄質虚血:</strong> 造影剤による腎血管収縮(直接効果 + endothelin/adenosine放出)→ 髄質の酸素需給バランス悪化</li>
+    <li><strong>直接細胞傷害:</strong> 尿細管上皮への酸化ストレス・ROS産生</li>
+    <li><strong>浸透圧負荷:</strong> 高浸透圧造影剤は管内圧上昇 → tubular obstruction</li>
+    <li><strong>粘性増加:</strong> 尿細管内造影剤が高粘度 → 流れ停滞</li>
+  </ol>
+
+  <div class="callout danger">
+    <strong>⚠ 予後:</strong> CI-AKI を発症すると、<u>入院期間延長・心血管イベント増加・1年死亡率2-4倍</u>(可逆性でも軌跡を悪化させる)。だから「予防」が最重要。
+  </div>
+</section>
+
+<section id="saline">
+  <h2>4. 生理食塩水輸液のメリット ― 5つの機序</h2>
+  <p>造影検査前後の <strong>等張生理食塩水(0.9% NaCl)輸液</strong> は、最もエビデンスが確立したCI-AKI予防策です。なぜ効くのか、機序を5つに分けて整理します。</p>
+
+  <div class="mech-grid">
+    <div class="mech-card">
+      <h4><span class="num">1</span>髄質血流の改善</h4>
+      <p>循環血液量↑ → 心拍出量↑ → 腎血流(特に低酸素になりやすい <u>髄質</u>)の灌流改善。造影剤による血管収縮を血流量で打ち消す。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">2</span>造影剤の希釈</h4>
+      <p>尿量増加で尿細管内の造影剤濃度↓ → <u>細胞毒性・浸透圧負荷の軽減</u>。輸液していない場合の数倍に希釈される。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">3</span>造影剤の排泄促進</h4>
+      <p>尿量↑ → 尿細管通過時間↓ → 造影剤の <u>滞留時間が短縮</u>。粘性による流れ停滞を防止。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">4</span>RA系の抑制</h4>
+      <p>循環血液量↑ → renin分泌↓ → アンギオテンシンII↓ → 腎血管収縮の緩和。RA系亢進による髄質虚血を抑える。</p>
+    </div>
+    <div class="mech-card">
+      <h4><span class="num">5</span>尿pH・浸透圧の維持</h4>
+      <p>適切な尿浸透圧維持により <u>酸化ストレスを軽減</u>。重炭酸ナトリウム輸液も同様だが、近年は生食と差がないとの報告(PRESERVE試験)。</p>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="生理食塩水輸液による造影剤腎症予防の機序">
+      <text x="270" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">生食輸液による腎保護メカニズム</text>
+
+      <!-- Saline bag -->
+      <rect x="40" y="50" width="60" height="80" fill="#bbdefb" stroke="#1565c0" stroke-width="2" rx="4"/>
+      <text x="70" y="80" font-size="10" fill="#0b2545" text-anchor="middle" font-weight="bold">0.9%</text>
+      <text x="70" y="95" font-size="10" fill="#0b2545" text-anchor="middle">NaCl</text>
+      <text x="70" y="115" font-size="9" fill="#0b2545" text-anchor="middle">1mL/kg/h</text>
+
+      <!-- Arrow to body -->
+      <path d="M 100 90 L 160 90" stroke="#1565c0" stroke-width="4" marker-end="url(#ca1)"/>
+
+      <!-- Body (circulation) -->
+      <ellipse cx="220" cy="90" rx="55" ry="35" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+      <text x="220" y="88" font-size="10" fill="#0b2545" text-anchor="middle" font-weight="bold">循環血液量↑</text>
+      <text x="220" y="102" font-size="10" fill="#0b2545" text-anchor="middle">心拍出量↑</text>
+
+      <!-- Kidney -->
+      <ellipse cx="400" cy="180" rx="65" ry="80" fill="#ffe0b2" stroke="#ef6c00" stroke-width="2"/>
+      <text x="400" y="125" font-size="11" fill="#0b2545" text-anchor="middle" font-weight="bold">腎臓</text>
+
+      <!-- Cortex -->
+      <ellipse cx="400" cy="160" rx="60" ry="35" fill="#fff3e0" stroke="#ef6c00" stroke-width="1"/>
+      <text x="400" y="155" font-size="9" fill="#0b2545" text-anchor="middle">皮質</text>
+
+      <!-- Medulla (hypoxic risk area) -->
+      <ellipse cx="400" cy="210" rx="40" ry="35" fill="#ffccbc" stroke="#e64a19" stroke-width="1.5"/>
+      <text x="400" y="210" font-size="9" fill="#0b2545" text-anchor="middle">髄質</text>
+      <text x="400" y="222" font-size="8" fill="#bf360c" text-anchor="middle">★低酸素脆弱</text>
+
+      <!-- Arrow from heart to kidney -->
+      <path d="M 270 110 Q 330 130 360 160" stroke="#c62828" stroke-width="3" marker-end="url(#ca2)"/>
+      <text x="295" y="130" font-size="9" fill="#c62828">腎血流↑</text>
+
+      <!-- Effects -->
+      <text x="490" y="155" font-size="9" fill="#2e7d32">→ 希釈</text>
+      <text x="490" y="170" font-size="9" fill="#2e7d32">→ 排泄促進</text>
+      <text x="490" y="185" font-size="9" fill="#2e7d32">→ RA系抑制</text>
+
+      <!-- Urine outflow -->
+      <path d="M 400 270 L 400 305" stroke="#fdd835" stroke-width="6" marker-end="url(#ca3)"/>
+      <text x="410" y="295" font-size="10" fill="#0b2545">尿量↑</text>
+      <text x="410" y="307" font-size="9" fill="#5a6473">造影剤排泄</text>
+
+      <!-- Contrast media in -->
+      <circle cx="200" cy="160" r="6" fill="#5a6473"/>
+      <text x="170" y="180" font-size="9" fill="#5a6473">造影剤</text>
+      <text x="170" y="192" font-size="8" fill="#5a6473">(腎毒性)</text>
+      <path d="M 206 160 Q 280 180 355 200" stroke="#5a6473" stroke-width="1.5" stroke-dasharray="3,2" fill="none" marker-end="url(#ca4)"/>
+
+      <defs>
+        <marker id="ca1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#1565c0"/></marker>
+        <marker id="ca2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
+        <marker id="ca3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#fdd835"/></marker>
+        <marker id="ca4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#5a6473"/></marker>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+<section id="protocol">
+  <h2>5. 標準的なプロトコル</h2>
+
+  <div class="protocol-box">
+    <h4>💉 待機検査(CAG/CT/PCI)の場合</h4>
+    <ul>
+      <li><strong>輸液剤:</strong> 0.9% 生理食塩水(等張)</li>
+      <li><strong>速度:</strong> 1 mL/kg/h(LVEF低下例では 0.5 mL/kg/h)</li>
+      <li><strong>期間:</strong> 検査 <u>6-12時間前から開始</u>、検査後も <u>6-12時間継続</u>(合計12-24時間)</li>
+      <li><strong>総投与量:</strong> 体重に応じ 1000-2000 mL程度</li>
+      <li>外来検査ではより短期間プロトコル(検査前後1-3時間)も可</li>
+    </ul>
+  </div>
+
+  <div class="protocol-box" style="background:#fff8e1;border-color:var(--warn)">
+    <h4>🚨 緊急検査(STEMIなど)の場合</h4>
+    <ul>
+      <li>検査開始前に<u>数百mL急速輸液</u>(可能な範囲で)</li>
+      <li>検査後は<u>持続輸液6-12時間</u>を必ず実施</li>
+      <li>時間を理由に省略しない ― 心不全合併でない限り輸液は安全</li>
+    </ul>
+  </div>
+
+  <h3>輸液製剤の選択</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>製剤</th><th>有効性</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td><strong>0.9% 生理食塩水</strong></td><td>★★★ 標準</td><td>最もエビデンスあり。安価。第一選択</td></tr>
+        <tr><td>等張重炭酸Na</td><td>★★ 同等</td><td>PRESERVE試験で生食と差なし</td></tr>
+        <tr><td>半張生食(0.45%)</td><td>★ 劣る</td><td>等張に比べCI-AKI予防効果低い</td></tr>
+        <tr><td>リンゲル液</td><td>—</td><td>エビデンス少、生食と同等の可能性</td></tr>
+        <tr><td>N-アセチルシステイン</td><td>— ルーチンでは推奨されない</td><td>PRESERVE試験で有効性否定</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠ 心不全合併例の注意:</strong> 輸液過剰は <u>肺水腫</u>を誘発しうる。LVEF<35%、入院中心不全例では <u>輸液速度を減量(0.5 mL/kg/h)</u> + 体重/SpO2/呼吸数モニター。場合により利尿薬を併用。
+  </div>
+</section>
+
+<section id="mehran">
+  <h2>6. リスク評価(Mehran スコア)</h2>
+  <p>PCI患者でのCI-AKI発症リスクを点数化するスコア。<strong>≥11点で高リスク</strong>とされ、予防策を強化する目安となります。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>点数</th></tr></thead>
+      <tbody>
+        <tr><td>低血圧(SBP <80 mmHg, ≥1時間)</td><td>5</td></tr>
+        <tr><td>大動脈内バルーンパンピング(IABP)</td><td>5</td></tr>
+        <tr><td>うっ血性心不全(NYHA III-IV or 既往)</td><td>5</td></tr>
+        <tr><td>年齢 >75歳</td><td>4</td></tr>
+        <tr><td>貧血(Hct<39% 男性 / <36% 女性)</td><td>3</td></tr>
+        <tr><td>糖尿病</td><td>3</td></tr>
+        <tr><td>造影剤量 (100 mLごと)</td><td>1 × N</td></tr>
+        <tr><td>血清クレアチニン >1.5 mg/dL <br>または eGFR 40-60 (2点) / 20-40 (4点) / <20 (6点)</td><td>4 / 2-6</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap" style="margin-top:.8rem">
+    <table>
+      <thead><tr><th>合計</th><th>CI-AKI率</th><th>透析必要率</th></tr></thead>
+      <tbody>
+        <tr><td>≤ 5</td><td>7.5%</td><td>0.04%</td></tr>
+        <tr><td>6-10</td><td>14%</td><td>0.12%</td></tr>
+        <tr><td>11-15</td><td>26%</td><td>1.09%</td></tr>
+        <tr><td>≥ 16</td><td>57%</td><td>12.6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="other">
+  <h2>7. 生食以外の予防策</h2>
+  <ul>
+    <li><strong>造影剤量の最小化:</strong> 必要十分量に留める。「使用量 < eGFR × 3」が一つの目安</li>
+    <li><strong>低浸透圧 or 等浸透圧造影剤を選択:</strong> 高浸透圧造影剤は避ける(国内ではほぼ使われない)</li>
+    <li><strong>腎毒性薬剤の一時中止:</strong> NSAIDs、メトホルミン(乳酸アシドーシス回避目的、48時間休薬推奨)、aminoglycosides</li>
+    <li><strong>RA系阻害薬の一時休止:</strong> 症例により判断(完全な合意はない)</li>
+    <li><strong>段階的検査:</strong> 連日の造影検査を避ける(48時間以上空ける)</li>
+    <li><strong>術前 eGFR の評価とリスク説明:</strong> 同意取得時に CI-AKI リスクを明示</li>
+    <li><strong>非造影モダリティの活用:</strong> 非造影CT、MRI(ガドリニウムも腎機能注意)、エコー、近赤外などで代替検討</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 心血管外科の現場でよくあるシナリオ:</strong> 「術前 CAG + 心臓CT + 大動脈CT」と立て続けに造影検査が予定された場合、可能なら 1日 1検査・間に48時間以上の輸液休息日を入れる。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>CI-AKI / CIN</td><td>Contrast-Induced Acute Kidney Injury(造影剤腎症)</td></tr>
+        <tr><td>KDIGO 基準</td><td>AKIの国際基準。Cr 0.3 mg/dL以上 or 50%以上上昇 で診断</td></tr>
+        <tr><td>CRS</td><td>Cardio-Renal Syndrome(心腎症候群)。Ronco分類 Type 1-5</td></tr>
+        <tr><td>RAS(疾患)</td><td>Renal Artery Stenosis(腎動脈狭窄)</td></tr>
+        <tr><td>RAS(系)</td><td>Renin-Angiotensin System(レニン・アンギオテンシン系)</td></tr>
+        <tr><td>等張生食</td><td>0.9% NaCl。CI-AKI予防の第一選択輸液</td></tr>
+        <tr><td>PRESERVE試験</td><td>2018年大規模RCT。生食 vs 重炭酸Na/NAC で差なしを示した</td></tr>
+        <tr><td>Mehran スコア</td><td>PCI患者のCI-AKIリスク予測スコア。≥11点で高リスク</td></tr>
+        <tr><td>髄質虚血</td><td>腎髄質は低酸素に脆弱。造影剤で悪化しやすい</td></tr>
+        <tr><td>NAC</td><td>N-アセチルシステイン。かつては予防薬とされたが現在ルーチン推奨されず</td></tr>
+        <tr><td>等浸透圧造影剤</td><td>イオパミドール、イオジキサノール等。CI-AKIリスクをやや低減</td></tr>
+        <tr><td>eGFR</td><td>estimated Glomerular Filtration Rate(推算糸球体濾過量)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>心血管外科患者の腎機能と造影剤腎症予防 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"心血管外科患者に腎機能不良が多い主な理由として誤っているのはどれか。",choices:["動脈硬化が全身性疾患であるため","糖尿病・高血圧の併存が多いため","心拍出量低下で腎灌流が低下するため","若年で発症する患者が多いため"],correct:3,explain:"CVS患者は高齢が多い。若年発症ではなく、加齢+動脈硬化+糖尿病+心不全+過去の医療被曝が累積した結果として腎機能低下が高頻度となる。"},
+    {q:"心腎症候群(Ronco分類)で『慢性心不全 → CKD』に該当するのはどれか。",choices:["Type 1","Type 2","Type 3","Type 4"],correct:1,explain:"Type 2が慢性心腎症候群(慢性心不全→CKD)で、CVS患者で最多。Type 1は急性、Type 3/4は腎→心方向、Type 5は二次性。"},
+    {q:"造影剤腎症(CI-AKI)の定義(KDIGO)として正しいのはどれか。",choices:["造影剤投与直後の尿量低下","Cr 0.3 mg/dL以上 or 50%以上上昇(造影後48-72時間以内)","BUN単独の上昇","尿沈渣異常"],correct:1,explain:"KDIGO基準で、造影剤投与後48-72時間以内に他原因なくCr 0.3 mg/dL以上 or ベースラインから50%以上上昇でCI-AKIと診断する。"},
+    {q:"等張生理食塩水(0.9% NaCl)輸液による造影剤腎症予防の機序として誤っているのはどれか。",choices:["髄質血流の改善","尿細管内造影剤の希釈","造影剤の排泄促進","造影剤の化学的中和"],correct:3,explain:"生食は造影剤を化学的に中和しない。①髄質血流改善、②尿細管内希釈、③排泄促進、④RA系抑制、⑤尿浸透圧維持の5つが主要機序。"},
+    {q:"待機CAG前の標準的な生理食塩水輸液プロトコルとして適切なのはどれか。",choices:["検査5分前に500 mL急速","1 mL/kg/h で検査前後 6-12時間ずつ","検査後のみ24時間","高張食塩水を緩徐に"],correct:1,explain:"標準は0.9% NaClを1 mL/kg/hで検査6-12時間前から開始、検査後も6-12時間継続。総量1000-2000 mL程度。心不全合併例では速度を半減(0.5 mL/kg/h)。"},
+    {q:"Mehranスコアで高リスク(≥11点)と判定された患者で取るべき対応として最も適切なのはどれか。",choices:["検査を中止する","予防策(生食輸液・造影剤減量等)を強化する","透析を予防的に行う","造影剤を倍量にする"],correct:1,explain:"高リスクでも検査自体は必要なら実施するが、生食輸液の徹底・造影剤量の最小化・腎毒性薬の休止・検査後のモニタリング強化など多角的予防策を取る。"},
+    {q:"近年のRCT(PRESERVE試験2018)で、ルーチン使用が推奨されなくなった薬剤はどれか。",choices:["0.9% 生理食塩水","重炭酸ナトリウム輸液","N-アセチルシステイン(NAC)","β遮断薬"],correct:2,explain:"PRESERVE試験で N-アセチルシステイン(NAC)はプラセボと差がないことが示され、ルーチン投与は推奨されなくなった。生食と重炭酸Na輸液も同等で、生食が標準。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
