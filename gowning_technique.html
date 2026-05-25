@@ -85,6 +85,13 @@
   .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
   .page-nav a:hover{background:rgba(0,0,0,.15)}
   .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  /* YouTube embed: responsive 16:9 */
+  .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 8px 24px rgba(11,37,69,.15);margin:1rem 0;background:#000}
+  .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-caption{font-size:.82rem;color:var(--muted);margin-top:.5rem;padding:.5rem .8rem;background:#f5f8fc;border-radius:6px;border-left:3px solid var(--accent)}
+  .video-caption strong{color:var(--navy)}
+  .video-caption a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .video-caption a:hover{text-decoration:underline}
   @media (max-width:480px){section{padding:1.1rem .9rem};.sterile-grid{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 </style>
 </head>
@@ -126,6 +133,7 @@
 <nav><ul>
   <li><a href="index.html" class="home-link">🏠 目次</a></li>
   <li><a href="#why">なぜ重要か</a></li>
+  <li><a href="#video">手技動画</a></li>
   <li><a href="#preprep">入室前準備</a></li>
   <li><a href="#mask">マスク・帽子</a></li>
   <li><a href="#scrub">手指消毒(scrub)</a></li>
@@ -169,8 +177,39 @@
   </ol>
 </section>
 
+<section id="video">
+  <h2>2. 手技動画(YouTube)</h2>
+  <p>実際のガウン・手袋装着の動画です。文字で学んだ手順を映像で確認すると、手の動き・タイミング・空間感覚が一気に理解できます。動画は <strong>5:12 から自動再生開始</strong>(ガウンテクニック該当部分)。</p>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/Z74deqpSFgQ?start=312"
+      title="ガウン・手袋装着の手技動画"
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+
+  <div class="video-caption">
+    <strong>📺 動画の見どころチェックリスト:</strong>
+    <ul style="margin-top:.3rem;font-size:.85rem">
+      <li>マスク・帽子の装着順序(Section 3 と対応)</li>
+      <li>手指消毒(scrub)の手の動き(Section 4)</li>
+      <li>ガウンの広げ方・両腕の通し方・腰紐の回し方(Section 5)</li>
+      <li><strong>Closed glove technique</strong> ― 袖から手を出さずに手袋を被せる手順(Section 6)</li>
+      <li>滅菌領域を意識した動き方(Section 7)</li>
+    </ul>
+    <p style="margin-top:.4rem;font-size:.78rem;color:var(--muted)">
+      出典: YouTube動画(<a href="https://www.youtube.com/watch?v=Z74deqpSFgQ&t=312s" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Z74deqpSFgQ&t=312s</a>)。<br>
+      ※ 著作権は投稿者に帰属。教育目的のembedで、本サイトでホストはしていません。
+    </p>
+  </div>
+</section>
+
 <section id="preprep">
-  <h2>2. 入室前の準備</h2>
+  <h2>3. 入室前の準備</h2>
   <ol class="step-flow">
     <li><strong>更衣:</strong> スクラブ(術衣)に着替え、上は下に入れる。靴も手術室専用</li>
     <li><strong>装飾品の除去:</strong> 指輪・腕時計・ネックレス・ピアスは原則外す(細菌温床)</li>
@@ -185,7 +224,7 @@
 </section>
 
 <section id="mask">
-  <h2>3. マスク・帽子の装着</h2>
+  <h2>4. マスク・帽子の装着</h2>
 
   <h3>順序(必ずこの順)</h3>
   <ol class="step-flow">
@@ -216,7 +255,7 @@
 </section>
 
 <section id="scrub">
-  <h2>4. 手指消毒(scrub)― 3つの方法</h2>
+  <h2>5. 手指消毒(scrub)― 3つの方法</h2>
 
   <h3>方法A:従来法(ブラッシング法、現在は推奨度低下)</h3>
   <ul>
@@ -254,7 +293,7 @@
 </section>
 
 <section id="gown">
-  <h2>5. ガウン装着</h2>
+  <h2>6. ガウン装着</h2>
 
   <h3>ガウンの構造を理解する</h3>
   <ul>
@@ -304,7 +343,7 @@
 </section>
 
 <section id="glove">
-  <h2>6. 手袋装着 ― Closed Glove Technique</h2>
+  <h2>7. 手袋装着 ― Closed Glove Technique</h2>
 
   <h3>標準的手順</h3>
   <ol class="step-flow">
@@ -325,7 +364,7 @@
 </section>
 
 <section id="sterile">
-  <h2>7. 滅菌野ルール ― やっていい/ダメな例</h2>
+  <h2>8. 滅菌野ルール ― やっていい/ダメな例</h2>
 
   <div class="sterile-grid">
     <div class="sterile-yes">
@@ -364,7 +403,7 @@
 </section>
 
 <section id="degown">
-  <h2>8. 脱ガウンの手順</h2>
+  <h2>9. 脱ガウンの手順</h2>
   <p>術後の脱ガウンは、<strong>体表・術野・器械を汚染させない</strong>順序で行います。</p>
 
   <ol class="step-flow">
@@ -382,7 +421,7 @@
 </section>
 
 <section id="quiz">
-  <h2>9. 理解度チェック(全6問)</h2>
+  <h2>10. 理解度チェック(全6問)</h2>
   <div class="quiz" id="quizContainer">
     <div class="progress" id="progress">問題 1 / 6</div>
     <div class="quiz-q" id="questionText"></div>
@@ -402,7 +441,7 @@
 </section>
 
 <section id="glossary">
-  <h2>10. 用語集</h2>
+  <h2>11. 用語集</h2>
   <div class="table-wrap"><table>
     <thead><tr><th>用語</th><th>意味</th></tr></thead>
     <tbody>
