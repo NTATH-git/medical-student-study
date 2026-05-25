@@ -99,6 +99,13 @@
   .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
   .page-nav a:hover{background:rgba(0,0,0,.15)}
   .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  /* YouTube embed: responsive 16:9 */
+  .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 8px 24px rgba(11,37,69,.15);margin:1rem 0;background:#000}
+  .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-caption{font-size:.82rem;color:var(--muted);margin-top:.5rem;padding:.5rem .8rem;background:#f5f8fc;border-radius:6px;border-left:3px solid var(--accent)}
+  .video-caption strong{color:var(--navy)}
+  .video-caption a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .video-caption a:hover{text-decoration:underline}
   @media (max-width:480px){section{padding:1.1rem .9rem};.indi-grid{grid-template-columns:1fr};.compare-grid{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 </style>
 </head>
@@ -146,6 +153,7 @@
     <li><a href="#evidence">エビデンス</a></li>
     <li><a href="#indication">適応・禁忌</a></li>
     <li><a href="#technique">手技</a></li>
+    <li><a href="#video">手技動画</a></li>
     <li><a href="#complications">合併症</a></li>
     <li><a href="#combo">他戦略との組合せ</a></li>
     <li><a href="#quiz">クイズ</a></li>
@@ -334,8 +342,39 @@
   </ul>
 </section>
 
+<section id="video">
+  <h2>5. 手技動画(YouTube)</h2>
+  <p>CSFドレナージ留置の実際の手技動画です。文字とイラストで学んだ手順を、生きた映像で確認しましょう。穿刺の姿勢・針の角度・髄液確認・カテーテル挿入・固定の流れがわかります。</p>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/7A1wtVoSr0w"
+      title="CSFドレナージ手技動画"
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+
+  <div class="video-caption">
+    <strong>📺 動画の見どころチェックリスト:</strong>
+    <ul style="margin-top:.3rem;font-size:.85rem">
+      <li>側臥位での穿刺準備(脊髄円錐より下方=L3-L4 or L4-L5)</li>
+      <li>Tuohy針の挿入と髄液逆流の確認</li>
+      <li>軟性カテーテル(EDM)の頭側への挿入(5-10cm)</li>
+      <li>固定とドレナージ回路への接続</li>
+      <li>CSFP モニタリング開始(基準点:外耳道高位)</li>
+    </ul>
+    <p style="margin-top:.4rem;font-size:.78rem;color:var(--muted)">
+      出典: YouTube動画(<a href="https://www.youtube.com/watch?v=7A1wtVoSr0w" target="_blank" rel="noopener">https://www.youtube.com/watch?v=7A1wtVoSr0w</a>)。<br>
+      ※ 著作権は投稿者に帰属。教育目的のembedで、本サイトでホストはしていません。
+    </p>
+  </div>
+</section>
+
 <section id="complications">
-  <h2>5. 合併症 ― リスクとのバランス</h2>
+  <h2>6. 合併症 ― リスクとのバランス</h2>
   <p>CSFドレナージは有効だが、無視できない合併症があるため <strong>適応の慎重な吟味</strong> が必要です。</p>
 
   <div class="table-wrap">
@@ -358,7 +397,7 @@
 </section>
 
 <section id="combo">
-  <h2>6. 他の脊髄保護戦略との組み合わせ</h2>
+  <h2>7. 他の脊髄保護戦略との組み合わせ</h2>
   <p>CSFドレナージは単独使用ではなく、対麻痺予防の <strong>multimodal protection の中核</strong> として位置付けられます。詳細は<a href="spinal_cord_ischemia.html" style="color:var(--accent)">対麻痺メカニズム</a>のページを参照。</p>
 
   <div class="table-wrap">
@@ -381,7 +420,7 @@
 </section>
 
 <section id="quiz">
-  <h2>7. 理解度チェック(全7問)</h2>
+  <h2>8. 理解度チェック(全7問)</h2>
   <div class="quiz" id="quizContainer">
     <div class="progress" id="progress">問題 1 / 7</div>
     <div class="quiz-q" id="questionText"></div>
@@ -401,7 +440,7 @@
 </section>
 
 <section id="glossary">
-  <h2>8. 用語集</h2>
+  <h2>9. 用語集</h2>
   <div class="table-wrap">
     <table>
       <thead><tr><th>用語</th><th>意味</th></tr></thead>
