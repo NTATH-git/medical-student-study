@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心筋保護の基本 ― 医学生のために</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--danger:#c62828;--shadow:0 2px 8px rgba(11,37,69,.08)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .cp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.8rem}
+  .cp-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .cp-card.crystal{border-top-color:#1565c0}
+  .cp-card.blood{border-top-color:#c62828}
+  .cp-card.delnido{border-top-color:#7e57c2}
+  .cp-card h4{color:var(--navy);font-size:.98rem;margin-bottom:.3rem}
+  .cp-card .desc{font-size:.85rem;margin-bottom:.3rem}
+  .cp-card .detail{background:#f5f8fc;padding:.4rem .6rem;border-radius:4px;font-size:.82rem;margin-top:.4rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">心筋保護の基本</a></h1>
+  <p class="subtitle">高K心停止液で代謝を止めて心筋を守る</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション"><ul>
+  <li><a href="index.html">🏠 目次</a></li>
+  <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+  <li><a href="avr_open_procedure.html">AVR手順</a></li>
+  <li><a href="evar_endoleak.html">EVAR</a></li>
+  <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+  <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+  <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+  <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+  <li><a href="cpb_basics.html">人工心肺</a></li>
+  <li><a href="myocardial_protection.html">心筋保護</a></li>
+  <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+  <li><a href="surgical_instruments.html">手術器械</a></li>
+  <li><a href="anticoagulant_management.html">抗凝固管理</a></li>
+  <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+  <li><a href="cvs_glossary.html">用語集</a></li>
+  <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+  <li><a href="drain_removal.html">ドレーン抜去</a></li>
+  <li><a href="npwt_basics.html">NPWT</a></li>
+  <li><a href="hit_syndrome.html">HIT</a></li>
+  <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+  <li><a href="hemodialysis_basics.html">血液透析</a></li>
+  <li><a href="radiation_protection.html">放射線防御</a></li>
+</ul></div>
+
+<nav><ul>
+  <li><a href="index.html" class="home-link">🏠 目次</a></li>
+  <li><a href="#why">なぜ心筋保護が必要か</a></li>
+  <li><a href="#mech">作用機序</a></li>
+  <li><a href="#types">心停止液の種類</a></li>
+  <li><a href="#delivery">投与経路</a></li>
+  <li><a href="#protocol">投与プロトコル</a></li>
+  <li><a href="#quiz">クイズ</a></li>
+  <li><a href="#glossary">用語</a></li>
+</ul></nav>
+
+<main>
+
+<div class="disclaimer" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section id="why">
+  <h2>1. なぜ心筋保護が必要か</h2>
+  <p>心臓手術中は大動脈遮断(cross-clamp)で冠血流を止め、心臓を停止させて手術します。この間 <strong>心筋は虚血状態</strong> に陥ります。何もしなければ心筋細胞は壊死してしまうため、<strong>心筋保護(myocardial protection)</strong> が必須です。</p>
+
+  <h3>心筋保護の目的</h3>
+  <ul>
+    <li><strong>心停止の確実な誘導</strong>(電気的活動を即座に停止)</li>
+    <li><strong>代謝の最大限抑制</strong>(虚血耐性を高める)</li>
+    <li><strong>細胞内Ca²⁺過剰の防止</strong>(reperfusion injury予防)</li>
+    <li><strong>心筋構造の保護</strong>(浮腫・酸化ストレス低減)</li>
+    <li><strong>大動脈遮断解除後の心機能回復</strong>(stunned myocardiumの最小化)</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ 心筋保護失敗の代償:</strong> 不十分な心筋保護 →<u>術後Low Output Syndrome・致死的不整脈・心筋梗塞</u>。場合により補助循環(IABP, ECMO)が必要に。
+  </div>
+</section>
+
+<section id="mech">
+  <h2>2. 心筋保護液(Cardioplegia)の作用機序</h2>
+
+  <h3>核となる原理:高K⁺による脱分極停止</h3>
+  <p>正常心筋細胞の静止膜電位は約 −90 mV。<strong>高K⁺(15-25 mEq/L)</strong> を流すと細胞外K↑ → 膜電位が脱分極(−50 mV付近)で停止 → Na⁺チャネル不活化 → <u>活動電位発生不能 → 電気的心停止</u>。これは「diastolic arrest(拡張期停止)」と呼ばれます。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="高K心停止の機序">
+      <text x="250" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">高K心停止の電気的機序</text>
+
+      <!-- Normal action potential -->
+      <line x1="30" y1="180" x2="180" y2="180" stroke="#5a6473" stroke-width="1"/>
+      <path d="M 30 160 L 60 160 L 65 60 L 70 70 L 90 75 L 110 130 L 130 160 L 180 160" stroke="#c62828" stroke-width="2" fill="none"/>
+      <text x="105" y="200" font-size="10" fill="#c62828" text-anchor="middle">正常(−90mV)</text>
+      <text x="105" y="40" font-size="9" fill="#c62828" text-anchor="middle">活動電位発生</text>
+
+      <!-- Arrow -->
+      <line x1="200" y1="120" x2="240" y2="120" stroke="#0b2545" stroke-width="3" marker-end="url(#mp1)"/>
+      <text x="220" y="110" font-size="10" fill="#0b2545" text-anchor="middle">高K</text>
+
+      <!-- Depolarized arrest -->
+      <line x1="260" y1="180" x2="430" y2="180" stroke="#5a6473" stroke-width="1"/>
+      <line x1="260" y1="120" x2="430" y2="120" stroke="#7e57c2" stroke-width="3"/>
+      <text x="345" y="115" font-size="9" fill="#7e57c2" text-anchor="middle">脱分極(−50mV)で停止</text>
+      <text x="345" y="200" font-size="10" fill="#7e57c2" text-anchor="middle">心停止(Naチャネル不活化)</text>
+
+      <defs><marker id="mp1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#0b2545"/></marker></defs>
+    </svg>
+  </div>
+
+  <h3>追加の保護要素(成分による)</h3>
+  <ul>
+    <li><strong>低体温化:</strong> 心臓表面冷却 + 心停止液自体を4-10℃ → 代謝50%削減 / 10℃低下</li>
+    <li><strong>Mg²⁺:</strong> Caチャネル拮抗、虚血障害軽減</li>
+    <li><strong>緩衝剤(THAM, HCO₃⁻):</strong> 虚血性アシドーシス抑制</li>
+    <li><strong>マンニトール:</strong> 浮腫予防・フリーラジカル捕捉</li>
+    <li><strong>糖質(グルコース):</strong> 嫌気的代謝の基質提供</li>
+    <li><strong>L-アスパラギン酸/グルタミン酸:</strong> ATP産生回復促進(Buckberg)</li>
+  </ul>
+</section>
+
+<section id="types">
+  <h2>3. 心停止液の主な種類</h2>
+
+  <div class="cp-grid">
+    <div class="cp-card crystal">
+      <h4>① 結晶質心筋保護液(Crystalloid)</h4>
+      <p class="desc">電解質溶液型。代表:<strong>St. Thomas溶液、HTK(Custodiol)</strong>。</p>
+      <div class="detail">
+        <strong>特徴:</strong> 単純で安価、酸素運搬なし。HTKは1回大量(2L以上)で長時間保護可。
+      </div>
+    </div>
+    <div class="cp-card blood">
+      <h4>② 血液心筋保護液(Blood Cardioplegia)</h4>
+      <p class="desc">CPBの酸素化血液+電解質を混合。<strong>Buckberg法(4:1血液:晶質)</strong>が代表。</p>
+      <div class="detail">
+        <strong>特徴:</strong> 酸素運搬・緩衝能あり、生理的。冷血/温血、間欠/持続など多様。日本で最多。
+      </div>
+    </div>
+    <div class="cp-card delnido">
+      <h4>③ del Nido心筋保護液</h4>
+      <p class="desc">小児用に開発、近年成人にも普及。低Ca・Mg高・リドカイン含有。</p>
+      <div class="detail">
+        <strong>特徴:</strong> <u>1回投与で60-90分保護</u>。投与間隔が長く、手術中断が少ない。MICS・短時間手術で重宝。
+      </div>
+    </div>
+  </div>
+
+  <h3>代表的組成(参考)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>成分</th><th>St. Thomas (mEq/L)</th><th>Buckberg(混合後)</th><th>del Nido</th></tr></thead>
+    <tbody>
+      <tr><td>K⁺</td><td>16</td><td>20-25</td><td>26</td></tr>
+      <tr><td>Mg²⁺</td><td>16</td><td>3</td><td>2 g/L</td></tr>
+      <tr><td>Ca²⁺</td><td>2.4</td><td>0.5-0.6</td><td>0(低Ca)</td></tr>
+      <tr><td>緩衝剤</td><td>HCO₃⁻</td><td>THAM</td><td>NaHCO₃</td></tr>
+      <tr><td>その他</td><td>Procaine</td><td>L-glutamate / aspartate</td><td>Lidocaine, Mannitol</td></tr>
+      <tr><td>温度</td><td>4-10℃</td><td>4-10℃(冷) or 37℃(温)</td><td>4℃</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="delivery">
+  <h2>4. 投与経路</h2>
+
+  <h3>① 順行性(antegrade)</h3>
+  <ul>
+    <li>大動脈基部 → 冠動脈口 → 冠循環</li>
+    <li>大動脈遮断後、大動脈基部の心筋保護液カニューレから注入</li>
+    <li>生理的な経路、最も標準</li>
+    <li><strong>AR(大動脈弁閉鎖不全)では効果不十分</strong> → 大動脈切開後に直接冠動脈口注入 or 逆行性併用</li>
+  </ul>
+
+  <h3>② 逆行性(retrograde)</h3>
+  <ul>
+    <li>冠静脈洞 → 心筋静脈 → 毛細血管 → 動脈側へ逆流</li>
+    <li>冠静脈洞カニューレを右房経由で挿入</li>
+    <li><strong>AR例・重症冠動脈狭窄例</strong>で順行性を補完</li>
+    <li>注入圧 30-50 mmHg(高圧は冠静脈洞損傷リスク)</li>
+  </ul>
+
+  <h3>③ 冠動脈口直接注入</h3>
+  <ul>
+    <li>大動脈切開後、左右冠動脈口に直接 hand-held cannula で注入</li>
+    <li>大動脈基部置換(Bentall)・重症AR例で確実</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 順行 + 逆行 併用:</strong> 順行で得られない領域(LADの慢性閉塞末梢など)も逆行で灌流できる。重要症例で「順行 → 逆行 → 順行」のサンドイッチ投与が一般的。
+  </div>
+</section>
+
+<section id="protocol">
+  <h2>5. 投与プロトコル</h2>
+
+  <h3>典型的なBlood Cardioplegia(Buckberg)プロトコル</h3>
+  <ol>
+    <li><strong>導入(induction):</strong> 大動脈遮断直後、冷血液心筋保護液 1000-1500 mL 順行性に注入 → 数秒で電気的心停止</li>
+    <li><strong>維持(maintenance):</strong> 20-30分ごとに 300-500 mL 反復投与(冷却・脱K洗い出し防止)</li>
+    <li><strong>再灌流前(reperfusion):</strong> 大動脈遮断解除前に「<u>温血終末投与(warm hot shot)</u>」 ― 温血(37℃)+ アスパラギン酸/グルタミン酸でATP回復促進</li>
+    <li><strong>遮断解除:</strong> 心拍再開(自然 or 除細動 10-30J)</li>
+  </ol>
+
+  <h3>心筋温度管理</h3>
+  <ul>
+    <li>心筋温度プローブで <strong>10-15℃</strong> を目安に維持</li>
+    <li>心臓表面に <strong>氷スラッシュ(slush)</strong> や冷生食を散布</li>
+    <li>右心系は冷却されにくい(温暖化リスク) → 心筋保護液投与・心表面冷却の継続</li>
+  </ul>
+
+  <h3>大動脈遮断時間と心筋障害</h3>
+  <ul>
+    <li>適切な保護下では <strong>60-90分以内</strong> は通常安全</li>
+    <li>2時間超で reperfusion injury リスク上昇</li>
+    <li>3時間超は要注意 → cardioplegia 高頻度投与、温血終末強化</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ Reperfusion injury:</strong> 遮断解除直後の急激な酸素・Ca流入で活性酸素・Ca過剰 → 細胞障害。Warm hot shot や緩徐な再灌流(controlled reperfusion)で軽減を図る。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>6. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>Cardioplegia</td><td>心筋保護液。心停止 + 心筋代謝抑制 + 細胞保護</td></tr>
+      <tr><td>Diastolic arrest</td><td>拡張期停止。高K脱分極による電気的心停止</td></tr>
+      <tr><td>Crystalloid cardioplegia</td><td>結晶質心停止液(St. Thomas, HTK等)</td></tr>
+      <tr><td>Blood cardioplegia</td><td>血液心停止液。Buckberg法が代表</td></tr>
+      <tr><td>del Nido</td><td>1回投与で長時間保護できる新型心停止液</td></tr>
+      <tr><td>Antegrade / Retrograde</td><td>順行性(大動脈基部から) / 逆行性(冠静脈洞から)</td></tr>
+      <tr><td>Warm hot shot</td><td>遮断解除前の温血終末投与。ATP回復促進</td></tr>
+      <tr><td>Reperfusion injury</td><td>再灌流障害。活性酸素・Ca過剰による細胞障害</td></tr>
+      <tr><td>Stunned myocardium</td><td>気絶心筋。一過性心機能低下</td></tr>
+      <tr><td>Low Output Syndrome</td><td>低心拍出量症候群。CABG/弁手術後合併症</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer>
+  <p>心筋保護の基本 — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説です。診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"心停止液(cardioplegia)による心停止の主な機序はどれか。",choices:["低K による過分極停止","高K による脱分極停止","低Caによる収縮抑制","低温単独"],correct:1,explain:"高K(15-25 mEq/L)で細胞外K濃度を上げ、膜電位を脱分極(−50mV付近)で固定 → Naチャネル不活化 → 活動電位発生不能(diastolic arrest)。"},
+    {q:"AR(大動脈弁閉鎖不全)合併例で心筋保護液が逆流しやすいため特に重要なのはどれか。",choices:["順行性単独で十分","逆行性または直接冠動脈口注入の併用","冷却のみ","Mg追加"],correct:1,explain:"ARでは順行性に投与してもAVを介して左室へ逆流し、冠動脈に十分送達できない。逆行性(冠静脈洞経由)または大動脈切開後の直接冠動脈口注入を併用。"},
+    {q:"del Nido心筋保護液の主な特徴はどれか。",choices:["温血のみで使用","Caを多く含む","1回投与で60-90分保護可能","酸素運搬能が高い"],correct:2,explain:"del Nidoは低Ca・Mg高・リドカイン含有で、1回投与で60-90分の保護が可能。投与回数が少なく手術が中断しにくいため、MICSや短時間手術で重宝される。"},
+    {q:"順行性心筋保護液の標準的な注入経路はどれか。",choices:["右室から","大動脈基部 → 冠動脈口","冠静脈洞","直接心筋注射"],correct:1,explain:"順行性は大動脈遮断後、大動脈基部に挿入したカニューレから注入し、冠動脈口を経由して冠循環へ。最も標準的な投与経路。"},
+    {q:"大動脈遮断解除前の『warm hot shot』(温血終末投与)の目的はどれか。",choices:["体温低下を防ぐ","ATP回復促進・再灌流障害の軽減","出血を防ぐ","抗凝固を強化"],correct:1,explain:"遮断解除前に37℃の血液心停止液(L-アスパラギン酸/グルタミン酸添加)を注入し、ATP産生回復を促進、再灌流障害を軽減する。"},
+    {q:"心筋温度の目標範囲として一般的なのはどれか。",choices:["20-25℃","10-15℃","30-35℃","35-37℃"],correct:1,explain:"心筋温度プローブで10-15℃を維持。氷スラッシュや冷生食散布で表面冷却を併用。冷却で心筋代謝が抑制され虚血耐性が向上する(温度10℃低下で代謝50%減)。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+</body>
+</html>

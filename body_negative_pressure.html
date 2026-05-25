@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>身体の中で陰圧になるところはどこか ― 医学生のために</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--danger:#c62828;--shadow:0 2px 8px rgba(11,37,69,.08)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;margin-top:1rem}
+  .site-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:1rem 1.2rem}
+  .site-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+  .site-card .pressure{display:inline-block;font-size:.78rem;padding:.15rem .55rem;border-radius:999px;background:#fff0f0;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .site-card p{font-size:.86rem}
+  .site-card .clinical{background:#f5f8fc;padding:.5rem .7rem;border-radius:4px;font-size:.82rem;margin-top:.4rem}
+  .site-card .clinical strong{color:var(--navy)}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+  .page-nav ul{display:flex;flex-wrap:wrap;list-style:none;padding:.3rem .4rem;margin:0;gap:.25rem}
+  .page-nav a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;padding:.5rem .75rem;font-size:.82rem;white-space:nowrap;border-radius:6px;transition:background .15s;min-height:36px}
+  .page-nav a:hover{background:rgba(0,0,0,.15)}
+  .page-nav a.current{background:var(--accent);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">身体の中で陰圧になるところはどこか</a></h1>
+  <p class="subtitle">陰圧の生理と臨床への応用</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<div class="page-nav" aria-label="全ページナビゲーション"><ul>
+  <li><a href="index.html">🏠 目次</a></li>
+  <li><a href="cardiovascular_surgery_intro.html">心血管総論</a></li>
+  <li><a href="avr_open_procedure.html">AVR手順</a></li>
+  <li><a href="evar_endoleak.html">EVAR</a></li>
+  <li><a href="mesenteric_iliac_collateral.html">腸間膜/腸骨</a></li>
+  <li><a href="spinal_cord_ischemia.html">対麻痺機序</a></li>
+  <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+  <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz</a></li>
+  <li><a href="cpb_basics.html">人工心肺</a></li>
+  <li><a href="myocardial_protection.html">心筋保護</a></li>
+  <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+  <li><a href="surgical_instruments.html">手術器械</a></li>
+  <li><a href="anticoagulant_management.html">抗凝固管理</a></li>
+  <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+  <li><a href="cvs_glossary.html">用語集</a></li>
+  <li><a href="cv_catheter_removal.html">CV抜去</a></li>
+  <li><a href="drain_removal.html">ドレーン抜去</a></li>
+  <li><a href="npwt_basics.html">NPWT</a></li>
+  <li><a href="hit_syndrome.html">HIT</a></li>
+  <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+  <li><a href="hemodialysis_basics.html">血液透析</a></li>
+  <li><a href="radiation_protection.html">放射線防御</a></li>
+</ul></div>
+
+<nav><ul>
+  <li><a href="index.html" class="home-link">🏠 目次</a></li>
+  <li><a href="#why">なぜ陰圧を学ぶか</a></li>
+  <li><a href="#sites">陰圧になる部位</a></li>
+  <li><a href="#clinical">臨床応用</a></li>
+  <li><a href="#quiz">クイズ</a></li>
+  <li><a href="#glossary">用語</a></li>
+</ul></nav>
+
+<main>
+
+<div class="disclaimer" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section id="why">
+  <h2>1. なぜ「陰圧」を学ぶ意義があるか</h2>
+  <p>身体の中には、大気圧より<strong>低い圧(陰圧)</strong>になっている部位がいくつかあります。これらは <u>正常な生理機能</u> を担っている一方で、<u>医療事故(空気塞栓など)の温床</u> にもなります。「陰圧の場所」を知ることが、安全な医療実践に直結します。</p>
+
+  <div class="callout tip">
+    <strong>💡 関連ページ:</strong>
+    <ul style="margin-top:.4rem">
+      <li><a href="cv_catheter_removal.html" style="color:var(--accent)">CV抜去の注意点</a> ― 胸腔内陰圧での空気塞栓</li>
+      <li><a href="drain_removal.html" style="color:var(--accent)">ドレーン抜去</a> ― 胸腔ドレーンの陰圧管理</li>
+      <li><a href="npwt_basics.html" style="color:var(--accent)">NPWT(陰圧療法)</a> ― 治療的陰圧</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sites">
+  <h2>2. 陰圧になる部位 ― 部位別解説</h2>
+
+  <div class="site-grid">
+    <div class="site-card">
+      <h4>🫁 胸腔(胸膜腔)</h4>
+      <span class="pressure">常時 −5 〜 −8 cmH₂O(吸気時は −40 まで)</span>
+      <p><strong>機序:</strong> 肺の弾性収縮力 ⇔ 胸壁の弾性拡張力 が拮抗。両者が引っ張り合うことで胸膜腔に陰圧が生まれる。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 気胸で胸膜腔が大気圧と通じると肺虚脱。胸腔ドレーンで陰圧を再構築する。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>🩸 胸腔内の静脈(SVC・右房)</h4>
+      <span class="pressure">吸気時 −5 〜 −8 mmHg</span>
+      <p><strong>機序:</strong> 胸腔内陰圧が周囲の薄壁の静脈にも伝わり、上大静脈・右房も陰圧化する(胸腔吸引作用 thoracic suction)。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> CVカテーテル抜去・透析カテーテル抜去で<u>空気が引き込まれて空気塞栓</u>(致死的)。抜去は仰臥位・Valsalva + 閉塞性ドレッシング必須。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>👃 気道(吸気時)</h4>
+      <span class="pressure">声門〜上気道 −1 〜 −5 cmH₂O(安静吸気)、努力吸気で −80 まで</span>
+      <p><strong>機序:</strong> 横隔膜下降・胸郭拡張で肺・気道内圧が大気圧より低下 → 空気が流入。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 上気道狭窄(croup, 喉頭浮腫、両側声帯麻痺)で陰圧↑↑ → <u>陰圧性肺水腫(NPPE)</u>。挿管直後の抜管時要注意。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>❤️ 心室(拡張期早期)</h4>
+      <span class="pressure">−2 〜 −5 mmHg(suction effect)</span>
+      <p><strong>機序:</strong> 心室の弾性復元力で拡張期早期に「吸い込み」が発生(diastolic suction)。これが心室充満を能動的に助ける。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 拡張機能不全(HFpEF)ではこの吸引作用が低下。VAD(補助人工心臓)の左室抜き取り過剰でも一時的に陰圧化。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>🦴 関節腔(滑液腔)</h4>
+      <span class="pressure">−4 〜 −12 cmH₂O(静止時)</span>
+      <p><strong>機序:</strong> 関節包の表面張力 + 滑液の表面張力で陰圧維持。関節安定化に寄与。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 関節穿刺で空気混入 → 滑液機能異常。肩関節脱臼整復後に「ポン」と鳴るのは陰圧再形成。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>🍽️ 食道(嚥下時)</h4>
+      <span class="pressure">嚥下時 −5 〜 −10 cmH₂O(蠕動波後)</span>
+      <p><strong>機序:</strong> 嚥下時の蠕動収縮の前(波と波の間)に陰圧が発生し、食物を引き込む補助。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 食道アカラシアでは下部食道括約筋弛緩不全 → 食物停滞。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>👂 中耳腔</h4>
+      <span class="pressure">耳管閉塞時 −10 〜 −400 mmH₂O</span>
+      <p><strong>機序:</strong> 通常は耳管で大気圧と平衡。耳管閉塞(航空性中耳炎、上気道炎)で粘膜が酸素吸収を続け陰圧化。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 航空性中耳炎(barotrauma)、滲出性中耳炎の発症機序。あくび・嚥下で耳管を開けて圧平衡を取る。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>📦 副鼻腔</h4>
+      <span class="pressure">副鼻腔閉塞時に陰圧化</span>
+      <p><strong>機序:</strong> 中耳と同様に閉塞 + 粘膜の酸素吸収で陰圧。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> 急性副鼻腔炎での疼痛、減圧時の sinus barotrauma。</div>
+    </div>
+
+    <div class="site-card">
+      <h4>🧠 頭蓋内(腰椎穿刺後)</h4>
+      <span class="pressure">通常は陽圧(5-15 cmH₂O)、過剰CSF排液で陰圧化</span>
+      <p><strong>機序:</strong> 過剰なCSFドレナージで脳が下垂し、硬膜下が陰圧化 → 架橋静脈が裂傷。</p>
+      <div class="clinical"><strong>📌 臨床:</strong> CSFドレナージ過剰での<a href="csf_drainage.html" style="color:var(--accent)">硬膜下血腫</a>。腰椎穿刺後の低髄液圧症候群(post-LP headache)。</div>
+    </div>
+  </div>
+
+  <h3>「陰圧」のまとめ表</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>部位</th><th>通常時の圧</th><th>陰圧の意義 or 病態</th></tr></thead>
+    <tbody>
+      <tr><td>胸腔</td><td>−5〜−8 cmH₂O 常時</td><td>呼吸 / 気胸で消失</td></tr>
+      <tr><td>胸腔内静脈</td><td>吸気時 −5〜−8 mmHg</td><td>静脈還流促進 / CV抜去時 空気塞栓</td></tr>
+      <tr><td>気道(吸気)</td><td>−1〜−5 cmH₂O</td><td>呼吸 / 上気道閉塞でNPPE</td></tr>
+      <tr><td>心室拡張早期</td><td>−2〜−5 mmHg</td><td>能動充満 / HFpEFで低下</td></tr>
+      <tr><td>関節腔</td><td>−4〜−12 cmH₂O</td><td>関節安定化</td></tr>
+      <tr><td>食道(嚥下時)</td><td>−5〜−10 cmH₂O</td><td>食物搬送補助</td></tr>
+      <tr><td>中耳・副鼻腔</td><td>大気圧と平衡(閉塞で陰圧)</td><td>barotrauma</td></tr>
+      <tr><td>頭蓋内(病態時)</td><td>5-15 cmH₂O 正常</td><td>過剰排液で硬膜下血腫</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="clinical">
+  <h2>3. 臨床応用 ― 陰圧を「使う」と「避ける」</h2>
+
+  <h3>陰圧を治療に「使う」</h3>
+  <ul>
+    <li><a href="npwt_basics.html" style="color:var(--accent)"><strong>NPWT(陰圧閉鎖療法):</strong></a> −125 mmHgで創傷治癒促進(マクロ・ミクロ変形・滲出液除去・血流改善)</li>
+    <li><strong>胸腔ドレーン:</strong> 水封 + 吸引(−10〜−20 cmH₂O)で気胸・胸水の排出と肺再膨張</li>
+    <li><strong>胃管・腸管減圧:</strong> 低持続吸引で消化管内容物排出</li>
+    <li><strong>胸腔鏡・腹腔鏡前の脱気:</strong> 必要時の陰圧</li>
+    <li><strong>気管内吸引・口腔内吸引:</strong> 分泌物除去</li>
+    <li><strong>静脈採血・脱血:</strong> 真空採血管・献血バッグ</li>
+    <li><strong>歴史的:鉄の肺(iron lung):</strong> 体外陰圧式人工呼吸器(ポリオ時代)</li>
+  </ul>
+
+  <h3>陰圧の「弊害」 ― 医療事故</h3>
+  <ul>
+    <li><strong>CVカテーテル抜去時の空気塞栓</strong>(胸腔内陰圧で空気引き込み)― 致死的</li>
+    <li><strong>胸腔ドレーン抜去時の気胸再発</strong>(同じ機序)</li>
+    <li><strong>陰圧性肺水腫(NPPE):</strong> 上気道閉塞で大きな吸気陰圧 → 肺毛細血管圧↑ → 肺水腫(健常若年者でも発症)</li>
+    <li><strong>CSF過剰ドレナージ → 硬膜下血腫</strong></li>
+    <li><strong>barotrauma(中耳・副鼻腔):</strong> 急速減圧時</li>
+    <li><strong>VADの吸引イベント:</strong> 過剰流量で左室壁吸引</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ 共通原則:</strong> <u>陰圧空間と外界が直接通じる経路ができた時、空気・液体が陰圧側へ吸引される</u>。CV抜去・胸腔ドレーン抜去・腰椎穿刺後など、「経路が一時的に残る場面」では必ず気密対策(閉塞性ドレッシング・閉鎖式回路・体位)を講じる。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>4. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>5. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>胸腔内陰圧</td><td>常時 −5〜−8 cmH₂O。肺の弾性収縮vs胸壁の弾性拡張のバランス</td></tr>
+      <tr><td>Thoracic suction</td><td>胸腔吸引作用。胸腔内陰圧が静脈還流を促進</td></tr>
+      <tr><td>NPPE</td><td>Negative Pressure Pulmonary Edema(陰圧性肺水腫)</td></tr>
+      <tr><td>Diastolic suction</td><td>心室拡張期早期の能動的吸引</td></tr>
+      <tr><td>Barotrauma</td><td>気圧差による組織損傷(中耳・副鼻腔・肺)</td></tr>
+      <tr><td>NPWT</td><td>Negative Pressure Wound Therapy(陰圧閉鎖療法)</td></tr>
+      <tr><td>Valsalva</td><td>声門閉鎖下にいきむ。胸腔内圧を陽圧化</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer>
+  <p>身体の中で陰圧になるところはどこか — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説です。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  function _updateNavOffset(){ const pn = document.querySelector('.page-nav'); const sn = document.querySelector('nav'); if(pn && sn) sn.style.top = pn.offsetHeight + 'px'; }
+  _updateNavOffset(); window.addEventListener('resize', _updateNavOffset);
+
+  const questions = [
+    {q:"安静時に常時 陰圧 となっている部位はどれか。",choices:["胃","胸腔(胸膜腔)","膀胱","心房"],correct:1,explain:"胸腔(胸膜腔)は安静呼気時 −5、吸気時 −8 cmH₂O 程度の陰圧を常時維持。肺の弾性収縮と胸壁の弾性拡張のバランスで生まれる。"},
+    {q:"陰圧性肺水腫(NPPE)の典型的な原因はどれか。",choices:["体液過剰","心不全","上気道閉塞下の強い吸気努力","低アルブミン血症"],correct:2,explain:"上気道閉塞(croup、抜管後喉頭痙攣など)で吸気努力が極端に強まり、強い胸腔内陰圧 → 肺毛細血管圧↑ → 肺水腫。健常若年者でも発症する。"},
+    {q:"胸腔ドレーン抜去時の気胸再発の主な機序はどれか。",choices:["静脈血の逆流","胸腔内陰圧で抜去孔から空気引き込み","ドレーン断裂","血液凝固障害"],correct:1,explain:"胸腔内陰圧で皮膚の抜去孔から空気が引き込まれて気胸再発。Valsalvaまたは呼気停止下に抜去 + ワセリンガーゼ+フィルムで気密シールが必須。"},
+    {q:"心室拡張早期の陰圧(diastolic suction)の意義はどれか。",choices:["後負荷増加","能動的な心室充満補助","心房収縮の代わり","冠血流促進"],correct:1,explain:"心室拡張早期の陰圧(suction)は心室の能動的充満を補助する。HFpEF(拡張機能不全)ではこの作用が低下し、心房圧上昇 → うっ血をきたす。"},
+    {q:"中耳腔が陰圧化する主な機序はどれか。",choices:["耳管閉塞 + 粘膜の酸素吸収","鼓膜破裂","内耳液の漏出","三半規管機能低下"],correct:0,explain:"耳管閉塞(上気道炎・航空性)で中耳腔が外気と遮断され、粘膜の酸素吸収が続くと陰圧化。航空機降下時の耳痛・滲出性中耳炎の機序。"},
+    {q:"NPWT(陰圧閉鎖療法)の標準的な吸引圧はどれか。",choices:["−25 mmHg","−125 mmHg","−500 mmHg","−1 atm"],correct:1,explain:"NPWTの標準圧は−125 mmHg(連続)。マクロ変形・ミクロ変形・滲出液除去・血流改善の4機序で創傷治癒を促進する。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+</body>
+</html>
