@@ -33,6 +33,12 @@
   .tag.adv{background:#fff3e0;color:#e65100}
   footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
   footer a{color:var(--accent);text-decoration:none}
+  /* Disclaimer banner at top of each page */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
   .menu-toggle{display:none}
   /* Top text-based page navigation (wraps on mobile) */
   .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08)}
@@ -86,6 +92,14 @@
 
 
 <main>
+
+<div class="disclaimer" role="note" aria-label="重要なお知らせ">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+  </div>
+</div>
 
 <div class="intro">
   <h2>このサイトについて</h2>
