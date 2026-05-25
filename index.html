@@ -56,9 +56,9 @@
   #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
   .drawer{position:fixed;top:0;left:0;width:min(340px,88vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .3s ease;z-index:999;box-shadow:4px 0 16px rgba(0,0,0,.18);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
   #menuToggle:checked ~ .drawer{transform:translateX(0)}
-  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+  .drawer-head{background:var(--navy);color:#fff;padding:.85rem 1rem;display:flex;justify-content:flex-start;align-items:center;flex-shrink:0;gap:.6rem}
   .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
-  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0 .6rem;line-height:1;font-family:inherit;border-radius:6px;transition:background .15s;user-select:none;display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;-webkit-tap-highlight-color:transparent}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;user-select:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;-webkit-tap-highlight-color:transparent;flex-shrink:0;touch-action:manipulation}
   .drawer-close:hover{background:rgba(255,255,255,.15)}
   .drawer-close:focus-visible{outline:2px solid var(--accent-light);outline-offset:2px}
   .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
@@ -292,6 +292,11 @@
       <p class="desc">なぜ必要か(腎機能4つ)、何をしているか(拡散・UF・対流)、週3回×4時間の意味、シャント・AVF/AVG/CVC、HDとCRRTの比較表。8問クイズ。</p>
       <div class="tags"><span class="tag all">全学年</span><span class="tag">透析</span></div>
     </a>
+    <a href="chylothorax.html" class="card">
+      <h4>乳び胸(Chylothorax)</h4>
+      <p class="desc">胸管解剖、術後合併症の原因、TG>110で診断、MCT食+オクトレオチド保存療法、胸管結紮術(TDL)/リンパ管塞栓術(TDE)、Fontan乳び胸の特殊性。7問クイズ。</p>
+      <div class="tags"><span class="tag adv">高学年</span><span class="tag">術後合併症</span></div>
+    </a>
     <a href="radiation_protection.html" class="card">
       <h4>放射線防御の三原則</h4>
       <p class="desc">距離(逆二乗の法則)・時間(パルス透視・低線量)・遮蔽(鉛PPE)。CVS現場での実践、水晶体線量厳格化(2020)、確率的/確定的影響。8問クイズ。</p>
@@ -333,8 +338,8 @@
 <label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
 <aside class="drawer" id="drawer" aria-label="全ページメニュー">
   <div class="drawer-head">
-    <h3>📚 全ページメニュー</h3>
     <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
   </div>
   <div class="drawer-search">
     <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
@@ -397,6 +402,7 @@
         <li><a href="anticoagulant_management.html">抗凝固薬 周術期管理</a></li>
         <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
         <li><a href="hemodialysis_basics.html">血液透析</a></li>
+        <li><a href="chylothorax.html">乳び胸</a></li>
         <li><a href="radiation_protection.html">放射線防御</a></li>
       </ul>
     </div>

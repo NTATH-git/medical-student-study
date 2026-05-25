@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乳び胸(Chylothorax)― 医学生のために</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--danger:#c62828;--shadow:0 2px 8px rgba(11,37,69,.08);--shadow-lg:0 8px 24px rgba(11,37,69,.12)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:56px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.78rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}.btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08);padding:.4rem .8rem;display:flex;align-items:center;justify-content:flex-start;gap:.5rem;height:56px}
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .page-nav-menu-btn{display:inline-flex;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15);user-select:none;-webkit-tap-highlight-color:transparent}
+  @media (hover:hover){.page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}}
+  .page-nav-menu-btn:active{transform:translateY(1px)}
+  .page-nav-menu-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .menu-label-close{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  /* Drawer (CSS-only) */
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:998;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(340px,88vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .3s ease;z-index:999;box-shadow:4px 0 16px rgba(0,0,0,.18);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:.85rem 1rem;display:flex;justify-content:flex-start;align-items:center;flex-shrink:0;gap:.6rem}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;user-select:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;-webkit-tap-highlight-color:transparent;flex-shrink:0;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-close:focus-visible{outline:2px solid var(--accent-light);outline-offset:2px}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.55rem .8rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit;background:#fff;color:var(--text)}
+  .drawer-search input:focus{outline:none;border-color:var(--accent)}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 calc(2rem + env(safe-area-inset-bottom)) 0;overscroll-behavior:contain}
+  .drawer-section{padding:0}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;text-transform:none;letter-spacing:.02em;font-weight:700;margin:0;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  @media (max-width:480px){.page-nav{padding:.35rem .5rem}.page-nav-menu-btn{font-size:.85rem;padding:.4rem .75rem}}
+  @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="全ページメニュー">
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">乳び胸(Chylothorax)</a></h1>
+  <p class="subtitle">胸管損傷による胸腔内リンパ液貯留 ― 食道癌・胸部大動脈手術後の重要合併症</p>
+  <p class="meta">For Medical Students | 高学年対象</p>
+</header>
+
+<div class="page-nav" aria-label="ページメニュー">
+  <label for="menuToggle" class="page-nav-menu-btn" role="button" tabindex="0" aria-haspopup="dialog">
+    <span class="menu-label-open">📚 メニュー</span>
+    <span class="menu-label-close">✕ 閉じる</span>
+  </label>
+</div>
+
+<nav><ul>
+  <li><a href="index.html" class="home-link">🏠 目次</a></li>
+  <li><a href="#what">乳び胸とは</a></li>
+  <li><a href="#anatomy">胸管の解剖</a></li>
+  <li><a href="#causes">原因・分類</a></li>
+  <li><a href="#diagnosis">診断</a></li>
+  <li><a href="#conservative">保存的治療</a></li>
+  <li><a href="#surgery">外科治療</a></li>
+  <li><a href="#cvs">心血管術後の特殊性</a></li>
+  <li><a href="#quiz">クイズ</a></li>
+  <li><a href="#glossary">用語</a></li>
+</ul></nav>
+
+<main>
+
+<div class="disclaimer" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section id="what">
+  <h2>1. 乳び胸 とは</h2>
+  <p><strong>乳び胸(chylothorax)</strong>は、<u>胸管(thoracic duct)の損傷・閉塞により、乳び(chyle:腸由来のリンパ液+脂肪)が胸腔内に漏出・貯留する病態</u>です。</p>
+
+  <h3>3行サマリ</h3>
+  <ul>
+    <li><strong>機序:</strong> 胸管損傷 → リンパ液(1,500-2,400 mL/日)が胸腔へ漏出</li>
+    <li><strong>典型:</strong> 食道癌術後・胸部大動脈手術後の<u>大量持続白濁ドレナージ</u>(食事後に乳白色化)</li>
+    <li><strong>治療:</strong> ①保存的(MCT食 + オクトレオチド)4-6週試行 → ②外科的胸管結紮術 or 経皮的リンパ管塞栓術</li>
+  </ul>
+
+  <h3>なぜ重要か(3つの理由)</h3>
+  <ol>
+    <li><strong>栄養喪失:</strong> 蛋白(リンパ蛋白)・脂肪・脂溶性ビタミン・電解質を大量に失う → 急速な栄養不良</li>
+    <li><strong>免疫低下:</strong> リンパ球(特に T細胞)を喪失 → 易感染性</li>
+    <li><strong>循環不全:</strong> 大量ドレナージで脱水・低血圧</li>
+  </ol>
+
+  <div class="callout danger">
+    <strong>⚠ 死亡率:</strong> 保存的治療で改善しない場合、無治療では死亡率 50%以上 と歴史的に報告されてきました。早期診断・適切な治療介入が予後を決定します。
+  </div>
+</section>
+
+<section id="anatomy">
+  <h2>2. 胸管(thoracic duct)の解剖</h2>
+
+  <h3>走行</h3>
+  <ol>
+    <li><strong>始点:</strong> 第2腰椎(L2)前面の<u>乳糜槽(cisterna chyli)</u></li>
+    <li>大動脈裂孔(横隔膜T12レベル)を通って胸腔へ</li>
+    <li><strong>下部胸腔:</strong> 大動脈と奇静脈の間を上行(右側)</li>
+    <li><strong>T5-T6 レベル:</strong> 右から左へ斜めに交叉</li>
+    <li><strong>上部胸腔:</strong> 食道左後方を上行</li>
+    <li><strong>終点:</strong> 左鎖骨下静脈と左内頸静脈の合流部(<u>静脈角</u>)に注入</li>
+  </ol>
+
+  <h3>1日の流量と内容</h3>
+  <ul>
+    <li><strong>流量:</strong> 1,500-2,400 mL/day(食事内容により変動)</li>
+    <li><strong>蛋白:</strong> 30-50 g/L</li>
+    <li><strong>トリグリセリド:</strong> 食後に著明上昇(0.4-4 g/L、絶食時は低い)</li>
+    <li><strong>リンパ球:</strong> 多数(全身リンパ球の主要循環経路)</li>
+    <li><strong>脂肪:</strong> カイロミクロン(腸由来の脂肪滴)</li>
+  </ul>
+
+  <h3>解剖学的バリエーション</h3>
+  <ul>
+    <li>典型走行は <strong>40-60% のみ</strong>。残り40-60%は分岐・重複・走行異常あり</li>
+    <li>このバリエーションが手術損傷リスクを高める</li>
+    <li>右胸管・複数本走行 → 結紮位置の判断難</li>
+  </ul>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="胸管の走行">
+      <text x="230" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">胸管(thoracic duct)の走行</text>
+
+      <!-- Body silhouette -->
+      <ellipse cx="230" cy="170" rx="120" ry="130" fill="#f5f8fc" stroke="#0b2545" stroke-width="1"/>
+
+      <!-- Diaphragm -->
+      <path d="M 130 240 Q 230 220 330 240" stroke="#5a6473" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
+      <text x="345" y="245" font-size="9" fill="#5a6473">横隔膜</text>
+
+      <!-- Cisterna chyli (below diaphragm) -->
+      <ellipse cx="245" cy="270" rx="15" ry="8" fill="#90caf9" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="265" y="275" font-size="9" fill="#1565c0">乳糜槽</text>
+
+      <!-- Thoracic duct ascending (right side initially) -->
+      <path d="M 245 265 L 250 240 L 255 200 L 250 170 L 235 140 L 215 110 L 190 90 L 175 80" stroke="#1565c0" stroke-width="3" fill="none"/>
+
+      <!-- T5-T6 crossing marker -->
+      <circle cx="245" cy="170" r="3" fill="#c62828"/>
+      <text x="252" y="173" font-size="9" fill="#c62828">T5-6 交叉</text>
+
+      <!-- Subclavian vein (left) -->
+      <line x1="160" y1="75" x2="120" y2="75" stroke="#1565c0" stroke-width="4"/>
+      <text x="80" y="78" font-size="9" fill="#1565c0">左鎖骨下V</text>
+      <circle cx="175" cy="80" r="4" fill="#c62828"/>
+      <text x="155" y="55" font-size="9" fill="#c62828">静脈角(注入)</text>
+
+      <!-- Aorta (descending) for reference -->
+      <path d="M 220 90 L 220 240" stroke="#c62828" stroke-width="2.5" fill="none" opacity=".4"/>
+      <text x="195" y="200" font-size="8" fill="#c62828" opacity=".7">大動脈</text>
+
+      <!-- Esophagus -->
+      <path d="M 260 90 L 260 240" stroke="#7e57c2" stroke-width="2" fill="none" stroke-dasharray="2,2" opacity=".5"/>
+      <text x="270" y="200" font-size="8" fill="#7e57c2" opacity=".7">食道</text>
+
+      <!-- Direction arrow -->
+      <text x="230" y="305" font-size="9" fill="#0b2545" text-anchor="middle">↑ リンパ流 1,500-2,400 mL/日</text>
+    </svg>
+  </div>
+</section>
+
+<section id="causes">
+  <h2>3. 原因と分類</h2>
+
+  <h3>外傷性(医原性が大半)</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>食道癌手術</h4>
+      <div class="role">最多原因</div>
+      <p>食道全摘・リンパ節郭清で胸管周辺の操作。発生率 1-9%。胸腔鏡・ロボット支援でも一定の頻度。</p>
+    </div>
+    <div class="component-card">
+      <h4>胸部大動脈手術</h4>
+      <div class="role">CVSで最頻</div>
+      <p>弓部・下行・胸腹部大動脈置換。胸管は大動脈の近傍(右側)を上行するため損傷リスクあり。1-3%。</p>
+    </div>
+    <div class="component-card">
+      <h4>肺切除術</h4>
+      <div class="role">特に左側</div>
+      <p>肺癌に対する根治術、特に縦隔リンパ節郭清。左肺切除で胸管損傷のリスクが高い。</p>
+    </div>
+    <div class="component-card">
+      <h4>心臓手術</h4>
+      <div class="role">まれだが重要</div>
+      <p>大動脈・冠動脈・弁手術後にまれ(<1%)。小児 Fontan術後で特に頻発(高静脈圧によるリンパうっ滞)。</p>
+    </div>
+    <div class="component-card">
+      <h4>頸部手術</h4>
+      <div class="role">頸部リンパ郭清</div>
+      <p>左頸部リンパ節郭清で胸管終末部(静脈角)を損傷。乳び瘻(chyle leak)・乳び腹水と区別。</p>
+    </div>
+    <div class="component-card">
+      <h4>外傷</h4>
+      <div class="role">非医原性</div>
+      <p>胸部鈍的外傷、刺創、骨折(椎体骨折)。むち打ち損傷でも報告例あり。</p>
+    </div>
+  </div>
+
+  <h3>非外傷性</h3>
+  <ul>
+    <li><strong>悪性腫瘍:</strong> 最多。<u>リンパ腫(50%以上)</u>、肺癌・乳癌の縦隔転移、Castleman病</li>
+    <li><strong>感染:</strong> 結核(縦隔リンパ節結核)、フィラリア症(東南アジア・アフリカ)</li>
+    <li><strong>先天性:</strong> リンパ管異形成、Down症候群、Noonan症候群、Turner症候群</li>
+    <li><strong>サルコイドーシス</strong></li>
+    <li><strong>肝硬変・うっ血性心不全</strong>:高静脈圧によるリンパ漏出</li>
+  </ul>
+
+  <h3>特発性</h3>
+  <p>原因不明の症例(全乳び胸の 5-10%)。除外診断。</p>
+
+  <div class="callout tip">
+    <strong>💡 心血管外科 vs 非心血管外科:</strong> 心血管外科では「胸部大動脈手術後」「小児Fontan術後」「心移植後」が主な原因。一方、一般胸部外科では「食道癌術後」が圧倒的。原因によって治療戦略・予後が異なる。
+  </div>
+</section>
+
+<section id="diagnosis">
+  <h2>4. 診断</h2>
+
+  <h3>臨床所見</h3>
+  <ul>
+    <li><strong>胸腔ドレーンからの乳白色排液</strong>(発症2-7日で典型的)</li>
+    <li>食事(特に脂質)後に乳白色化が増強</li>
+    <li>絶食時は透明〜淡黄色になることも</li>
+    <li>大量排液(500-2,000+ mL/日)</li>
+    <li>呼吸困難・胸痛(大量胸水のとき)</li>
+    <li>体重減少・栄養不良(慢性期)</li>
+    <li>リンパ球減少・低蛋白血症</li>
+  </ul>
+
+  <h3>胸水検査(診断のキー)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>項目</th><th>乳び胸の典型値</th><th>解釈</th></tr></thead>
+    <tbody>
+      <tr><td><strong>外観</strong></td><td>乳白色(milky)</td><td>絶食時は透明〜淡黄色のことも</td></tr>
+      <tr><td><strong>トリグリセリド(TG)</strong></td><td>&gt; 110 mg/dL</td><td>✅ <u>診断確定</u>(絶食でも保たれる)</td></tr>
+      <tr><td>トリグリセリド</td><td>50-110 mg/dL</td><td>グレーゾーン → リポ蛋白電気泳動で<strong>カイロミクロン</strong>検出すれば確定</td></tr>
+      <tr><td>トリグリセリド</td><td>&lt; 50 mg/dL</td><td>乳び胸は否定的</td></tr>
+      <tr><td>コレステロール</td><td>低い</td><td>偽性乳び胸との鑑別に重要</td></tr>
+      <tr><td>コレステロール/TG比</td><td>&lt; 1</td><td>乳び胸(偽性乳び胸では &gt; 1)</td></tr>
+      <tr><td>細胞</td><td>リンパ球優位(&gt;80%)</td><td>滲出液パターンだが感染とは違う</td></tr>
+      <tr><td>蛋白</td><td>3-5 g/dL</td><td>滲出液(exudate)</td></tr>
+      <tr><td>pH</td><td>7.4-7.8</td><td>アルカリ性</td></tr>
+      <tr><td>培養</td><td>陰性</td><td>感染合併では陽性</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>偽性乳び胸(pseudochylothorax)との鑑別</h3>
+  <p>慢性胸水(結核性胸膜炎、関節リウマチ性胸水など)で <strong>コレステロール結晶が蓄積</strong> して乳白色化する病態。治療方針が全く違う。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>項目</th><th>乳び胸</th><th>偽性乳び胸</th></tr></thead>
+    <tbody>
+      <tr><td>TG</td><td>&gt; 110 mg/dL</td><td>低値</td></tr>
+      <tr><td>コレステロール</td><td>低値</td><td>&gt; 200 mg/dL(コレステロール結晶あり)</td></tr>
+      <tr><td>カイロミクロン</td><td>あり</td><td>なし</td></tr>
+      <tr><td>原因</td><td>胸管損傷・閉塞</td><td>慢性胸膜炎症(結核・RA)</td></tr>
+      <tr><td>治療</td><td>胸管修復・栄養管理</td><td>原疾患治療</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>画像検査</h3>
+  <ul>
+    <li><strong>胸部X線・CT:</strong> 胸水量・原因(腫瘍・術後変化)の評価</li>
+    <li><strong>リンパ管造影(lymphangiography):</strong> 足背のリンパ管から造影剤注入、胸管走行・漏出部位を可視化。診断+治療(油性造影剤自体が止血効果)</li>
+    <li><strong>リンパシンチグラフィー:</strong> Tc-99m標識による胸管描出</li>
+    <li><strong>MR リンパ管造影:</strong> 非侵襲的、近年普及</li>
+  </ul>
+</section>
+
+<section id="conservative">
+  <h2>5. 保存的治療(第一選択)</h2>
+
+  <p>多くの症例で <strong>2-4週間の保存的治療</strong>を試行し、効果がなければ外科介入へ移行します。改善率は 50-80%。</p>
+
+  <h3>① 胸腔ドレナージ</h3>
+  <ul>
+    <li><strong>持続吸引ドレナージ</strong>:肺の再膨張+漏出量モニタリング</li>
+    <li>毎日の排液量を厳密に記録(治療効果判定に必須)</li>
+  </ul>
+
+  <h3>② 栄養管理(最重要)</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>中鎖脂肪酸(MCT)食</h4>
+      <div class="role">原則</div>
+      <p>MCT(中鎖脂肪酸トリグリセリド)は<u>カイロミクロンを介さず門脈に直接吸収</u>される → リンパ流増加を回避。長鎖脂肪酸(LCT)を厳格に制限。</p>
+    </div>
+    <div class="component-card">
+      <h4>完全静脈栄養(TPN)</h4>
+      <div class="role">中等度〜重症</div>
+      <p>完全な腸管休止でリンパ流をほぼゼロに。漏出量が多い・MCT食で改善しない場合に選択。CV関連感染・コストに注意。</p>
+    </div>
+    <div class="component-card">
+      <h4>脂肪喪失の補充</h4>
+      <div class="role">並行管理</div>
+      <p>脂溶性ビタミン(ADEK)、電解質、蛋白補充、必要に応じてアルブミン・FFP・免疫グロブリン。</p>
+    </div>
+  </div>
+
+  <h3>③ 薬物療法</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>機序</th><th>用法</th></tr></thead>
+    <tbody>
+      <tr><td><strong>オクトレオチド</strong></td><td>ソマトスタチン類似薬。スプランクニック血流↓・腸管リンパ流↓</td><td>50-200 μg を 8時間毎 SC、または持続点滴。1週間反応みて判定</td></tr>
+      <tr><td>ソマトスタチン</td><td>同上(天然型)</td><td>持続点滴 3.5-7 μg/kg/h</td></tr>
+      <tr><td>エチレフリン</td><td>α/β刺激でリンパ管平滑筋収縮(主にドイツで使用)</td><td>持続点滴</td></tr>
+      <tr><td>ヘパリン</td><td>(歴史的)血栓予防・リンパ流改善</td><td>標準的ではない</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>排出量による外科介入判断</h3>
+  <ul>
+    <li><strong>&lt; 500 mL/day:</strong> 保存療法継続で改善傾向</li>
+    <li><strong>500-1,000 mL/day を 1-2週持続:</strong> 経過観察 or 介入検討</li>
+    <li><strong>&gt; 1,000 mL/day を 5-7日持続:</strong> 外科治療 or リンパ管塞栓術へ</li>
+    <li><strong>&gt; 1,500 mL/day:</strong> 早期外科介入を考慮</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 「待ち過ぎ」の弊害:</strong> 保存的治療を漫然と続けると栄養不良・免疫低下・敗血症リスクが急増。<u>2-4週で結論を出す</u>のが原則。
+  </div>
+</section>
+
+<section id="surgery">
+  <h2>6. 外科治療と介入療法</h2>
+
+  <h3>① 胸管結紮術(thoracic duct ligation, TDL)</h3>
+  <ul>
+    <li><strong>標準アプローチ:</strong> <u>右開胸 or 右VATS</u>(食道癌後の左側病変でも右からアクセス)</li>
+    <li><strong>結紮レベル:</strong> 横隔膜直上 T7-T9(乳糜槽出口直上で「mass ligation」)</li>
+    <li><strong>方法:</strong> 大動脈・奇静脈・椎体間の脂肪織を一塊として結紮 → バリエーションがあっても確実</li>
+    <li><strong>術前/術中マーキング:</strong> 術直前にクリーム・オリーブ油を経口/経胃管投与 → 術中に乳白色のリーク部位が見える</li>
+    <li>成功率 80-90%</li>
+  </ul>
+
+  <h3>② 経皮的リンパ管塞栓術(thoracic duct embolization, TDE)</h3>
+  <ul>
+    <li>IR(インターベンショナル放射線科)領域</li>
+    <li>リンパ管造影で漏出部位を同定 → 胸管にカテーテル挿入 → コイル + n-BCA(接着剤)で塞栓</li>
+    <li><strong>低侵襲</strong>、開胸不要</li>
+    <li>成功率 70-80%</li>
+    <li>専門施設・経験者のみ施行可能</li>
+    <li>近年は手術と並ぶ第一選択になる施設も</li>
+  </ul>
+
+  <h3>③ 胸膜癒着術(pleurodesis)</h3>
+  <ul>
+    <li><strong>タルク</strong>、<strong>OK-432(ピシバニール)</strong>、ブレオマイシンなどを胸腔内注入</li>
+    <li>胸膜の炎症を惹起 → 癒着で胸腔閉塞</li>
+    <li>胸管結紮 + 補助療法として、または不能症例の単独療法</li>
+  </ul>
+
+  <h3>④ 胸腹腔シャント(LeVeen / Denver shunt)</h3>
+  <ul>
+    <li>胸水を腹腔に流す皮下シャント</li>
+    <li>難治例の救済療法。長期の閉塞・感染リスクあり</li>
+  </ul>
+
+  <h3>治療フローチャート</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="乳び胸 治療フロー">
+      <text x="280" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">乳び胸 治療フロー</text>
+
+      <!-- Box 1: Diagnosis -->
+      <rect x="200" y="35" width="160" height="40" fill="#fce4e4" stroke="#c62828" stroke-width="2" rx="6"/>
+      <text x="280" y="58" font-size="11" fill="#c62828" text-anchor="middle" font-weight="bold">診断確定(TG &gt; 110)</text>
+
+      <!-- Arrow down -->
+      <line x1="280" y1="75" x2="280" y2="95" stroke="#0b2545" stroke-width="1.5" marker-end="url(#arr1)"/>
+
+      <!-- Box 2: Conservative -->
+      <rect x="150" y="95" width="260" height="50" fill="#fff8e1" stroke="#ef6c00" stroke-width="2" rx="6"/>
+      <text x="280" y="115" font-size="11" fill="#ef6c00" text-anchor="middle" font-weight="bold">保存療法(2-4週)</text>
+      <text x="280" y="132" font-size="9" fill="#5a6473" text-anchor="middle">MCT食 / TPN + オクトレオチド + ドレナージ</text>
+
+      <!-- Decision: success or fail -->
+      <line x1="280" y1="145" x2="280" y2="165" stroke="#0b2545" stroke-width="1.5"/>
+
+      <!-- Left branch: success -->
+      <line x1="280" y1="165" x2="130" y2="195" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <text x="155" y="180" font-size="9" fill="#2e7d32">改善(&lt;500 mL/d)</text>
+      <rect x="50" y="195" width="160" height="40" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2" rx="6"/>
+      <text x="130" y="218" font-size="11" fill="#2e7d32" text-anchor="middle" font-weight="bold">治療継続・治癒</text>
+
+      <!-- Right branch: fail -->
+      <line x1="280" y1="165" x2="430" y2="195" stroke="#c62828" stroke-width="1.5" marker-end="url(#arr3)"/>
+      <text x="405" y="180" font-size="9" fill="#c62828">改善せず(&gt;1000 mL/d)</text>
+      <rect x="345" y="195" width="170" height="80" fill="#ffebee" stroke="#c62828" stroke-width="2" rx="6"/>
+      <text x="430" y="215" font-size="11" fill="#c62828" text-anchor="middle" font-weight="bold">外科介入</text>
+      <text x="430" y="232" font-size="9" fill="#5a6473" text-anchor="middle">・胸管結紮術(TDL)</text>
+      <text x="430" y="245" font-size="9" fill="#5a6473" text-anchor="middle">・リンパ管塞栓術(TDE)</text>
+      <text x="430" y="258" font-size="9" fill="#5a6473" text-anchor="middle">・胸膜癒着術</text>
+
+      <defs>
+        <marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#0b2545"/></marker>
+        <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#2e7d32"/></marker>
+        <marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#c62828"/></marker>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+<section id="cvs">
+  <h2>7. 心血管外科術後の乳び胸 ― 特殊性</h2>
+
+  <h3>頻度と発生背景</h3>
+  <ul>
+    <li>成人心臓手術後の乳び胸: <strong>0.5-1%</strong></li>
+    <li>胸部大動脈手術後: <strong>1-3%</strong>(弓部・下行で頻度↑)</li>
+    <li>小児心臓手術後: <strong>2-5%</strong>(Fontan術後で特に頻発、5-10%以上の報告)</li>
+  </ul>
+
+  <h3>胸部大動脈手術後</h3>
+  <ul>
+    <li><strong>原因:</strong> 弓部・下行大動脈周囲の操作で胸管直接損傷</li>
+    <li>下行大動脈置換では大動脈遮断・剥離操作で胸管圧迫・断裂</li>
+    <li>術中に胸管が見えていれば縫合 or クリッピング</li>
+  </ul>
+
+  <h3>Fontan術後の乳び胸 ― 病態が違う</h3>
+  <ul>
+    <li>胸管「損傷」ではなく <strong>高静脈圧によるリンパ系うっ滞</strong></li>
+    <li>Fontan循環では中心静脈圧が常時 12-20 mmHg → 胸管の還流圧 &gt; 静脈圧 が崩れる</li>
+    <li>難治性で、心臓再手術(Fontan revision)や薬物治療(シルデナフィル等)を要することも</li>
+    <li>蛋白漏出性腸症(PLE)と病態的に類似</li>
+  </ul>
+
+  <h3>心移植後</h3>
+  <ul>
+    <li>心嚢ドレナージで判明することが多い</li>
+    <li>免疫抑制下のため感染合併リスクが高く、早期対応が必要</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📝 関連ページ:</strong> 心血管外科の周術期合併症としては <a href="hit_syndrome.html" style="color:var(--accent)">HIT</a>、<a href="contrast_nephropathy.html" style="color:var(--accent)">造影剤腎症</a>、<a href="spinal_cord_ischemia.html" style="color:var(--accent)">対麻痺</a>などを参照。胸管解剖は<a href="spinal_cord_ischemia.html" style="color:var(--accent)">脊髄血流のページ</a>と合わせて学ぶと胸部解剖が立体的に理解できる。
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>Chylothorax</td><td>乳び胸。胸管損傷による胸腔内リンパ液貯留</td></tr>
+      <tr><td>Chyle</td><td>乳び。腸由来のリンパ液 + カイロミクロン(脂肪滴)</td></tr>
+      <tr><td>Thoracic duct</td><td>胸管。乳糜槽から左静脈角への主リンパ管</td></tr>
+      <tr><td>Cisterna chyli</td><td>乳糜槽(L2前面、胸管の起始部)</td></tr>
+      <tr><td>Chylomicron</td><td>カイロミクロン。腸由来の長鎖脂肪 + 蛋白の脂肪滴</td></tr>
+      <tr><td>MCT</td><td>Medium-Chain Triglycerides。門脈に直接吸収されリンパ系を経ない</td></tr>
+      <tr><td>LCT</td><td>Long-Chain Triglycerides。長鎖脂肪、カイロミクロン化でリンパ流増</td></tr>
+      <tr><td>Octreotide</td><td>ソマトスタチン類似薬。リンパ流抑制目的に使用</td></tr>
+      <tr><td>TDL</td><td>Thoracic Duct Ligation。胸管結紮術</td></tr>
+      <tr><td>TDE</td><td>Thoracic Duct Embolization。経皮的リンパ管塞栓術</td></tr>
+      <tr><td>Pleurodesis</td><td>胸膜癒着術。タルク・OK-432等で胸腔閉塞</td></tr>
+      <tr><td>LeVeen / Denver shunt</td><td>胸腹腔シャント。難治例の救済</td></tr>
+      <tr><td>Pseudochylothorax</td><td>偽性乳び胸。慢性胸膜炎でコレステロール結晶蓄積</td></tr>
+      <tr><td>Lymphangiography</td><td>リンパ管造影。診断+治療効果</td></tr>
+      <tr><td>Fontan 乳び胸</td><td>高静脈圧によるリンパうっ滞型(損傷ではない)</td></tr>
+      <tr><td>Mass ligation</td><td>大動脈・奇静脈・椎体間の脂肪織一塊結紮(胸管走行異常に有効)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+
+<footer>
+  <p>乳び胸(Chylothorax)— 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、診療判断は最新ガイドラインと専門医の指導に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--accent);text-decoration:none">← 目次に戻る</a></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures.html">心血管の圧</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure.html">正中切開 AVR の手順</a></li>
+        <li><a href="surgical_instruments.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp.html">IABP</a></li>
+        <li><a href="va_ecmo.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo.html">VV-ECMO</a></li>
+        <li><a href="impella.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection.html">心筋保護</a></li>
+        <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome.html">HIT</a></li>
+        <li><a href="anticoagulant_management.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics.html">血液透析</a></li>
+        <li><a href="chylothorax.html">乳び胸</a></li>
+        <li><a href="radiation_protection.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+
+  const questions = [
+    {q:"乳び胸の診断を確定するために最も重要な胸水検査項目はどれか。",choices:["蛋白濃度","トリグリセリド(TG)","ブドウ糖","LDH"],correct:1,explain:"TG > 110 mg/dL で乳び胸の診断が確定する。50-110ではグレーゾーンでリポ蛋白電気泳動によるカイロミクロン検出で確定。50未満では乳び胸は否定的。"},
+    {q:"胸管の解剖学的走行で正しいのはどれか。",choices:["L2乳糜槽 → 左から右へ交叉 → 右鎖骨下静脈","L2乳糜槽 → T5-6で右から左へ交叉 → 左静脈角","頸部から下行 → 大動脈裂孔 → 腹部リンパ節","上行大動脈から発生して下行"],correct:1,explain:"胸管はL2前面の乳糜槽から始まり、大動脈裂孔を通って胸腔に入り、最初は右側を上行、T5-6レベルで右から左へ斜めに交叉、最終的に左鎖骨下静脈と内頸静脈の合流部(左静脈角)に注入する。"},
+    {q:"乳び胸の保存的栄養管理として推奨される食事はどれか。",choices:["高蛋白・高長鎖脂肪食","中鎖脂肪酸(MCT)中心の食事","完全絶食のみ","高糖質・無脂肪食"],correct:1,explain:"MCT(中鎖脂肪酸)は門脈に直接吸収されカイロミクロンを介さないため、リンパ流を増やさず栄養を供給できる。LCT(長鎖脂肪酸)はカイロミクロン化してリンパ流を増やすため厳格制限。重症例では完全静脈栄養(TPN)で腸管完全休止。"},
+    {q:"乳び胸に用いられる薬物治療はどれか。",choices:["ヘパリン","オクトレオチド","ステロイド","アルブミン静注"],correct:1,explain:"オクトレオチド(ソマトスタチン類似薬)はスプランクニック血流と腸管リンパ流を減らす作用がある。50-200μgを8時間毎SC投与、または持続点滴で使用。1週間で反応を判定する。"},
+    {q:"心血管外科で乳び胸を起こしやすい手術はどれか。",choices:["冠動脈バイパス術","僧帽弁形成術","胸部下行大動脈置換術","TAVI"],correct:2,explain:"胸部下行・弓部大動脈手術では胸管が大動脈の近傍を上行するため損傷リスクが高い(1-3%)。冠動脈・僧帽弁手術ではまれ。小児Fontan術後は高静脈圧によるリンパうっ滞型で別病態。"},
+    {q:"胸管結紮術の典型的なアプローチと結紮レベルはどれか。",choices:["左開胸でT3-4結紮","右開胸でT7-9のmass ligation","頸部アプローチで静脈角結紮","正中胸骨切開で大動脈離断"],correct:1,explain:"標準は右開胸または右VATSアプローチで、横隔膜直上T7-9レベルにて大動脈・奇静脈・椎体間の脂肪織を一塊として結紮する(mass ligation)。胸管走行のバリエーション(40-60%は典型外)に対応するためこの方法が確実。"},
+    {q:"偽性乳び胸(pseudochylothorax)の特徴として正しいのはどれか。",choices:["TG高値・コレステロール低値","TG低値・コレステロール高値(>200)・コレステロール結晶","胸管損傷直後に発生","治療は胸管結紮術"],correct:1,explain:"偽性乳び胸は慢性胸膜炎(結核・関節リウマチなど)でコレステロール結晶が胸水中に蓄積する病態。TG低値・コレステロール高値(>200)・コレステロール結晶ありが特徴。治療は原疾患治療であり、胸管結紮術は不要。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+</body>
+</html>
