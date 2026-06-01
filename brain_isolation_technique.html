@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>弓部大動脈人工血管置換術の Brain Isolation Technique ― 医学生のために</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--danger:#c62828;--shadow:0 2px 8px rgba(11,37,69,.08);--shadow-lg:0 8px 24px rgba(11,37,69,.12)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.35rem,5vw,2.05rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  nav{background:var(--navy-light);position:sticky;top:56px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow)}
+  nav ul{display:flex;list-style:none;min-width:max-content;padding:0 .5rem}
+  nav a{display:block;color:#fff;text-decoration:none;padding:.9rem 1rem;font-size:.85rem;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+  nav a:hover{background:rgba(255,255,255,.08);border-bottom-color:var(--accent-light)}
+  nav a.home-link{background:rgba(255,255,255,.15);font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  section{background:var(--card);border-radius:12px;padding:1.5rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+  section h2{color:var(--navy);font-size:clamp(1.2rem,4vw,1.5rem);border-left:5px solid var(--accent);padding-left:.75rem;margin-bottom:1rem}
+  section h3{color:var(--navy-light);font-size:1.05rem;margin:1.2rem 0 .6rem}
+  p,li{font-size:.95rem}
+  ul,ol{padding-left:1.4rem;margin:.5rem 0}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.8rem 1rem;border-radius:6px;margin:.8rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout strong{color:var(--navy)}
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:.9rem 1.1rem;margin-bottom:1.2rem;border-radius:8px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:540px}
+  th,td{padding:.7rem .6rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:hover td{background:#f9fafc}
+  .key-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .key-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .key-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .key-card .role{font-size:.78rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .key-card p{font-size:.85rem}
+  .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border);margin:.9rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .flow-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.6rem;margin:.8rem 0}
+  .flow-step{position:relative;background:#f5f8fc;border:1px solid var(--border);border-radius:8px;padding:.75rem .85rem}
+  .flow-step strong{display:block;color:var(--navy);font-size:.9rem;margin-bottom:.25rem}
+  .flow-step span{font-size:.82rem;color:var(--muted)}
+  .badge{display:inline-block;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;background:#fce4e4;color:var(--accent);font-weight:600;margin:.15rem .2rem .15rem 0}
+  .checklist{list-style:none;padding-left:0}
+  .checklist li{position:relative;padding:.45rem 0 .45rem 1.8rem;border-bottom:1px solid #eef1f5}
+  .checklist li::before{content:"✓";position:absolute;left:.3rem;top:.45rem;color:var(--success);font-weight:700}
+  .pitfall{background:#ffebee;border-left:3px solid var(--danger);padding:.6rem .75rem;font-size:.86rem;margin:.5rem 0;border-radius:4px}
+  .pitfall strong{color:var(--danger)}
+  .tip-inline{background:#e3f2fd;border-left:3px solid #1976d2;padding:.6rem .75rem;font-size:.86rem;margin:.5rem 0;border-radius:4px}
+  .tip-inline strong{color:#1976d2}
+  .quiz{background:#f5f8fc;border-radius:10px;padding:1rem}
+  .quiz-q{font-weight:600;margin-bottom:.8rem;color:var(--navy)}
+  .quiz-choices{display:grid;gap:.5rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:8px;padding:.7rem .9rem;cursor:pointer;text-align:left;font-size:.9rem;font-family:inherit;transition:all .15s}
+  .quiz-choice:hover{border-color:var(--accent-light)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.8rem;padding:.7rem;border-radius:6px;font-size:.88rem;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;gap:.8rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;font-weight:600;transition:background .2s}
+  .btn:hover{background:var(--accent-light)}
+  .btn:disabled{background:#ccc;cursor:not-allowed}
+  .progress{font-size:.8rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.5rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:10px;margin-top:1rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.5rem;font-weight:700;margin:.5rem 0}
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .25s,transform .2s;z-index:200;font-family:inherit;line-height:1}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-2px);background:var(--accent-light)}
+  .menu-toggle{display:none}
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08);padding:.4rem .8rem;display:flex;align-items:center;justify-content:flex-start;gap:.5rem;height:56px}
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .page-nav-menu-btn{display:inline-flex;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15);user-select:none;-webkit-tap-highlight-color:transparent}
+  @media (hover:hover){.page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}}
+  .page-nav-menu-btn:active{transform:translateY(1px)}
+  .page-nav-menu-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .menu-label-close{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:998;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(340px,88vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .3s ease;z-index:999;box-shadow:4px 0 16px rgba(0,0,0,.18);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:.85rem 1rem;display:flex;justify-content:flex-start;align-items:center;flex-shrink:0;gap:.6rem}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;user-select:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;-webkit-tap-highlight-color:transparent;flex-shrink:0;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-close:focus-visible{outline:2px solid var(--accent-light);outline-offset:2px}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.55rem .8rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit;background:#fff;color:var(--text)}
+  .drawer-search input:focus{outline:none;border-color:var(--accent)}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 calc(2rem + env(safe-area-inset-bottom)) 0;overscroll-behavior:contain}
+  .drawer-section{padding:0}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;text-transform:none;letter-spacing:.02em;font-weight:700;margin:0;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  @media (max-width:640px){.flow-row{grid-template-columns:1fr}.quiz-controls{align-items:flex-start;flex-direction:column}.btn{width:100%}}
+  @media (max-width:480px){.page-nav{padding:.35rem .5rem}.page-nav-menu-btn{font-size:.85rem;padding:.4rem .75rem}section{padding:1.1rem .9rem}.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="全ページメニュー">
+<header>
+  <h1><a href="index.html" title="目次に戻る">弓部大動脈人工血管置換術の Brain Isolation Technique</a></h1>
+  <p class="subtitle">脳を虚血と塞栓から守る ― 分離脳灌流と機能的脳隔離の考え方</p>
+  <p class="meta">For Medical Students | 高学年・実習生対象</p>
+</header>
+
+<div class="page-nav" aria-label="ページメニュー">
+  <label for="menuToggle" class="page-nav-menu-btn" role="button" tabindex="0" aria-haspopup="dialog">
+    <span class="menu-label-open">📚 メニュー</span>
+    <span class="menu-label-close">✕ 閉じる</span>
+  </label>
+</div>
+
+<nav><ul>
+  <li><a href="index.html" class="home-link">🏠 目次</a></li>
+  <li><a href="#overview">概要</a></li>
+  <li><a href="#why">なぜ必要か</a></li>
+  <li><a href="#diagram">回路イメージ</a></li>
+  <li><a href="#steps">手順</a></li>
+  <li><a href="#monitoring">管理目標</a></li>
+  <li><a href="#compare">比較</a></li>
+  <li><a href="#pitfalls">落とし穴</a></li>
+  <li><a href="#quiz">クイズ</a></li>
+  <li><a href="#glossary">用語</a></li>
+</ul></nav>
+
+<main>
+
+<div class="disclaimer" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断や実際の手技には必ず最新ガイドライン、原著論文、施設手順、指導医の指示を確認してください</u>。
+  </div>
+</div>
+
+<section id="overview">
+  <h2>1. 概要 ― Brain isolation technique とは</h2>
+  <p><strong>Brain isolation technique</strong> は、弓部大動脈人工血管置換術(total arch replacement: TAR)などで、<u>脳へ行く血流を病変大動脈の血流から切り離す</u>ための考え方です。日本語では「脳隔離法」「機能的脳隔離法」と呼ばれることがあります。</p>
+  <p>通常の <strong>選択的順行性脳灌流(SACP: selective antegrade cerebral perfusion)</strong> は「脳虚血を防ぐ」ことが中心です。一方、brain isolation technique はそれに加えて、<strong>shaggy aorta・可動性粥腫・弓部粥状硬化</strong>から生じる塞栓が脳へ飛ぶことを避ける目的が強くなります。</p>
+
+  <div class="callout tip">
+    <strong>学生向けの一言:</strong> 弓部置換では「大動脈を開けるために全身循環を止める時間」があります。その間も脳だけは別ルートで酸素化血を送り続け、さらに汚れた大動脈内の debris を脳へ入れないようにするのがポイントです。
+  </div>
+
+  <div class="key-grid">
+    <div class="key-card">
+      <h4>目的 1</h4>
+      <div class="role">虚血予防</div>
+      <p>低体温で脳代謝を下げ、SACPで酸素化血を送り、脳虚血時間を延ばします。</p>
+    </div>
+    <div class="key-card">
+      <h4>目的 2</h4>
+      <div class="role">塞栓予防</div>
+      <p>弓部分枝を遮断・分離し、粥腫や血栓が脳血管へ流入する経路を断ちます。</p>
+    </div>
+    <div class="key-card">
+      <h4>目的 3</h4>
+      <div class="role">術野確保</div>
+      <p>弓部を開放しても脳灌流を保つため、遠位吻合や分枝再建を落ち着いて行えます。</p>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <h2>2. なぜ弓部置換で脳保護が難しいのか</h2>
+  <p>弓部大動脈は <strong>腕頭動脈、左総頸動脈、左鎖骨下動脈</strong>が分岐する場所です。ここを人工血管に置換するには、いったん頭頸部へ向かう血流を操作しなければなりません。</p>
+
+  <h3>脳障害の主な3要素</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>要素</th><th>起こり方</th><th>対策</th></tr></thead>
+      <tbody>
+        <tr><td>脳虚血</td><td>循環停止・低灌流で酸素供給が不足する</td><td>低体温、SACP、NIRS、灌流圧管理</td></tr>
+        <tr><td>塞栓</td><td>粥腫・血栓・空気・石灰化片が脳血管へ流入する</td><td>brain isolation、送血部位選択、de-airing、no-touch操作</td></tr>
+        <tr><td>再灌流障害</td><td>虚血後の再灌流で浮腫・炎症が起こる</td><td>過灌流を避ける、温度・血圧・酸素化の調整</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>特に意識する症例</h3>
+  <ul>
+    <li><strong>shaggy aorta</strong>: 大動脈内膜にびまん性の粥腫・不整な debris が多い。</li>
+    <li><strong>mobile atheroma</strong>: 可動性粥腫があり、カニュレーションや遮断で剥がれやすい。</li>
+    <li><strong>高度石灰化・弓部分枝狭窄</strong>: 直接カニュレーションや遮断そのものが塞栓源になりうる。</li>
+    <li><strong>急性大動脈解離</strong>: 真腔・偽腔、分枝灌流、送血部位の判断が難しい。</li>
+  </ul>
+</section>
+
+<section id="diagram">
+  <h2>3. 回路イメージ ― 脳循環を大動脈から切り離す</h2>
+  <p>施設や術式により細部は異なりますが、概念は「<strong>脳へ行く回路</strong>」と「<strong>体幹へ行く回路</strong>」を分け、弓部病変からの塞栓が頭頸部へ流れないようにすることです。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brain isolation technique の模式図">
+      <rect x="0" y="0" width="720" height="420" rx="12" fill="#fafbfd"/>
+      <text x="360" y="28" text-anchor="middle" font-size="15" fill="#0b2545" font-weight="700">Brain isolation technique: concept</text>
+
+      <circle cx="360" cy="90" r="38" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+      <text x="360" y="85" text-anchor="middle" font-size="12" fill="#c62828" font-weight="700">Brain</text>
+      <text x="360" y="103" text-anchor="middle" font-size="10" fill="#c62828">NIRSで左右監視</text>
+
+      <path d="M 285 160 C 250 210, 250 270, 300 310 L 420 310 C 470 270, 470 210, 435 160" fill="none" stroke="#0b2545" stroke-width="10" stroke-linecap="round"/>
+      <text x="360" y="335" text-anchor="middle" font-size="12" fill="#0b2545" font-weight="700">Arch aneurysm / shaggy aorta</text>
+
+      <path d="M 315 160 L 300 105" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+      <path d="M 360 155 L 360 128" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+      <path d="M 405 160 L 420 105" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+      <text x="278" y="115" text-anchor="middle" font-size="10" fill="#c62828">BCA</text>
+      <text x="360" y="145" text-anchor="middle" font-size="10" fill="#c62828">LCCA</text>
+      <text x="442" y="115" text-anchor="middle" font-size="10" fill="#c62828">LSCA</text>
+
+      <rect x="255" y="138" width="34" height="14" rx="3" fill="#333"/>
+      <rect x="343" y="137" width="34" height="14" rx="3" fill="#333"/>
+      <rect x="430" y="138" width="34" height="14" rx="3" fill="#333"/>
+      <text x="360" y="132" text-anchor="middle" font-size="10" fill="#333">neck vessel clamp / occlusion</text>
+
+      <rect x="42" y="70" width="150" height="70" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+      <text x="117" y="96" text-anchor="middle" font-size="12" fill="#0b2545" font-weight="700">Cerebral pump</text>
+      <text x="117" y="116" text-anchor="middle" font-size="10" fill="#0b2545">axillary / carotid route</text>
+      <path d="M 192 105 C 245 70, 295 72, 326 85" stroke="#1976d2" stroke-width="7" fill="none" marker-end="url(#arrowBlue)"/>
+      <text x="242" y="65" font-size="10" fill="#1976d2">antegrade cerebral perfusion</text>
+
+      <rect x="528" y="255" width="150" height="70" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <text x="603" y="281" text-anchor="middle" font-size="12" fill="#0b2545" font-weight="700">Systemic pump</text>
+      <text x="603" y="301" text-anchor="middle" font-size="10" fill="#0b2545">body / graft side branch</text>
+      <path d="M 528 290 C 475 290, 450 300, 422 310" stroke="#2e7d32" stroke-width="7" fill="none" marker-end="url(#arrowGreen)"/>
+
+      <path d="M 300 250 C 345 235, 390 240, 420 260" stroke="#c62828" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+      <text x="360" y="232" text-anchor="middle" font-size="10" fill="#c62828">debris stays away from brain route</text>
+
+      <defs>
+        <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#1976d2"/></marker>
+        <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="#2e7d32"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="callout">
+    <strong>実際の回路は施設差があります:</strong> 右腋窩動脈送血、人工血管側枝送血、腕頭動脈/頸動脈直接カニュレーション、左右腋窩動脈グラフトなど、症例の病変範囲と粥腫の位置で選択されます。
+  </div>
+</section>
+
+<section id="steps">
+  <h2>4. 手術の流れで理解する</h2>
+  <p>ここでは「高度粥状硬化を伴う弓部大動脈瘤に対するTAR」を想定した概念的な流れを示します。実際には術者・施設・病変により順序が変わります。</p>
+
+  <div class="flow-row">
+    <div class="flow-step"><strong>1. 術前評価</strong><span>造影CTで shaggy aorta、弓部分枝、頸動脈、椎骨動脈、送血候補部位を確認。</span></div>
+    <div class="flow-step"><strong>2. 送血戦略</strong><span>脳灌流ルートと体幹灌流ルートを分け、粥腫の少ない部位を選ぶ。</span></div>
+    <div class="flow-step"><strong>3. CPB開始</strong><span>ヘパリン化、脱血、冷却。NIRS・動脈圧・温度を連続監視。</span></div>
+    <div class="flow-step"><strong>4. 脳灌流開始</strong><span>頭頸部血管を遮断/閉塞し、SACPで脳へ順行性に送血。</span></div>
+    <div class="flow-step"><strong>5. 弓部開放</strong><span>循環停止下に病変弓部を切除。debris が脳へ向かわない環境を保つ。</span></div>
+    <div class="flow-step"><strong>6. 再建・復温</strong><span>遠位吻合、分枝再建、側枝送血再開、脱気、遮断解除、CPB離脱。</span></div>
+  </div>
+
+  <h3>実習で見るポイント</h3>
+  <ul class="checklist">
+    <li>「どこから送血しているか」を確認する。上行大動脈、大腿動脈、腋窩動脈、人工血管側枝で意味が違う。</li>
+    <li>脳灌流が始まるタイミングと、弓部分枝を遮断するタイミングを見る。</li>
+    <li>NIRSの左右差、右橈骨/左橈骨圧、灌流圧、灌流量、温度の変化を見る。</li>
+    <li>術者が粥腫のある部位を「触らない」「遮断しない」「最後に開放する」理由を考える。</li>
+    <li>分枝再建後の de-airing と遮断解除の順序を見る。</li>
+  </ul>
+</section>
+
+<section id="monitoring">
+  <h2>5. 管理目標とモニタリング</h2>
+  <p>数値は施設プロトコルや患者背景で変わります。以下は学生が会話を追うための「よく出てくる目安」です。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>よく使われる目安</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>脳灌流量</td><td>約 8-12 mL/kg/min など</td><td>脳へ十分な酸素化血を送る。高すぎると浮腫・塞栓リスク、低すぎると虚血。</td></tr>
+        <tr><td>脳灌流圧</td><td>約 40-60 mmHg など</td><td>右橈骨圧、頸動脈圧、回路圧などで評価。測定部位に注意。</td></tr>
+        <tr><td>体温</td><td>中等度低体温(例: 24-28℃前後)が多い</td><td>低体温で脳代謝を下げる。深低体温単独からSACP併用へ移行してきた。</td></tr>
+        <tr><td>NIRS</td><td>左右差・急低下に注意</td><td>局所脳酸素飽和度。左側低下なら左総頸動脈灌流不足、Willis輪不全などを考える。</td></tr>
+        <tr><td>ACT</td><td>CPB中は十分なヘパリン化</td><td>回路内凝固を防ぐ。低すぎると血栓、高すぎると出血。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip-inline">
+    <strong>覚え方:</strong> 脳保護は「冷やす」「送る」「飛ばさない」の3つ。低体温で代謝を下げ、SACPで送血し、brain isolationで塞栓経路を断つ。
+  </div>
+</section>
+
+<section id="compare">
+  <h2>6. 脳保護法の比較</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>方法</th><th>主目的</th><th>長所</th><th>注意点</th></tr></thead>
+      <tbody>
+        <tr><td>DHCA</td><td>深低体温で脳代謝を下げ循環停止に耐える</td><td>回路が単純、術野が広い</td><td>時間制限、凝固障害、復温時間、長時間手術には不利</td></tr>
+        <tr><td>RCP</td><td>上大静脈側から逆行性に脳を冷却/洗浄</td><td>空気・debris washoutが期待される</td><td>実効灌流量が不確実で、長時間の主保護法には限界</td></tr>
+        <tr><td>SACP</td><td>頸部分枝へ順行性に酸素化血を送る</td><td>現在の弓部手術で広く使われる。中等度低体温でも長めの作業が可能</td><td>カニュレーション部位、左右差、Willis輪、塞栓に注意</td></tr>
+        <tr><td>Brain isolation</td><td>脳循環を病変大動脈から切り離す</td><td>shaggy aorta・mobile atheromaで塞栓予防を重視できる</td><td>回路と遮断操作が複雑。過灌流/低灌流、分枝損傷、空気混入に注意</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="pitfalls">
+  <h2>7. 落とし穴と合併症</h2>
+
+  <div class="pitfall">
+    <strong>塞栓は「送血前」だけではない:</strong> カニュレーション、遮断、弓部分枝切開、de-airing不足、遮断解除の瞬間にも debris や空気が動きます。
+  </div>
+  <div class="pitfall">
+    <strong>片側灌流が常に十分とは限らない:</strong> Willis輪不全、頸動脈狭窄、椎骨動脈優位性、左鎖骨下動脈灌流不足があると左右差が出ます。
+  </div>
+  <div class="pitfall">
+    <strong>過灌流も危険:</strong> 脳浮腫、出血性合併症、微小塞栓の押し込みにつながりうるため、圧と流量の両方を見ます。
+  </div>
+  <div class="pitfall">
+    <strong>脳以外も守る:</strong> 弓部置換では脊髄、腹部臓器、腎臓、心筋保護も同時に考える必要があります。脳だけに集中しすぎないことが大切です。
+  </div>
+
+  <h3>術後に確認する神経所見</h3>
+  <ul>
+    <li>覚醒遅延、片麻痺、失語、視野障害、痙攣</li>
+    <li>一過性神経機能障害(TND): せん妄、不穏、一過性の見当識障害</li>
+    <li>恒久的神経障害(PND): 画像で確認される脳梗塞、昏睡、局所神経脱落</li>
+  </ul>
+</section>
+
+<section id="evidence">
+  <h2>8. 参考になるエビデンス</h2>
+  <p>Brain isolation は標準化された単一手技というより、重症粥状硬化・shaggy aorta 症例での塞栓予防を目的とした戦略です。原著やレビューでは、SACP、低体温、送血部位、分枝遮断の組み合わせとして議論されています。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>文献</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td>Shiiya et al. Ann Thorac Surg 2001</td><td>可動性粥腫を有する近位大動脈症例に対し、脳血管を遮断して脳循環を隔離する発想を報告。</td></tr>
+        <tr><td>Tsuda et al. Eur J Cardiothorac Surg 2021</td><td>高度弓部粥状硬化を伴うTEVAR高リスク例で functional brain isolation technique を応用。</td></tr>
+        <tr><td>Kazui/OhnoらのSACP関連報告</td><td>弓部置換でSACPが複雑な分枝再建を可能にし、脳保護の中心的手段になった背景。</td></tr>
+        <tr><td>近年のレビュー/メタ解析</td><td>DHCA単独、RCP、片側/両側ACPの優劣は症例・施設差が大きく、最適戦略は一律ではない。</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);margin-top:.8rem">
+    参考リンク:
+    <a href="https://pubmed.ncbi.nlm.nih.gov/11603483/">Shiiya 2001 PubMed</a> /
+    <a href="https://academic.oup.com/ejcts/article/60/2/420/6130058">Tsuda 2021 EJCTS</a> /
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3741862/">Best strategy for cerebral protection in arch surgery</a> /
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9419700/">Systematic review and meta-analysis</a>
+  </p>
+</section>
+
+<section id="quiz">
+  <h2>9. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section id="glossary">
+  <h2>10. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>TAR</td><td>Total Arch Replacement。弓部大動脈人工血管置換術。</td></tr>
+        <tr><td>Brain isolation technique</td><td>脳循環を病変大動脈の血流から切り離し、塞栓流入を防ぐ脳保護戦略。</td></tr>
+        <tr><td>Functional brain isolation</td><td>完全な解剖学的分離ではなく、遮断・送血・流量調整で機能的に脳を隔離する考え方。</td></tr>
+        <tr><td>SACP</td><td>Selective Antegrade Cerebral Perfusion。選択的順行性脳灌流。</td></tr>
+        <tr><td>DHCA</td><td>Deep Hypothermic Circulatory Arrest。深低体温循環停止。</td></tr>
+        <tr><td>RCP</td><td>Retrograde Cerebral Perfusion。逆行性脳灌流。</td></tr>
+        <tr><td>Shaggy aorta</td><td>大動脈壁にびまん性の粥腫やdebrisが多く、塞栓リスクが高い状態。</td></tr>
+        <tr><td>Mobile atheroma</td><td>可動性粥腫。血流や操作で剥がれ脳塞栓を起こしうる。</td></tr>
+        <tr><td>Debris</td><td>粥腫片、血栓、石灰化片などの塞栓物質。</td></tr>
+        <tr><td>BCA</td><td>Brachiocephalic Artery。腕頭動脈。</td></tr>
+        <tr><td>LCCA</td><td>Left Common Carotid Artery。左総頸動脈。</td></tr>
+        <tr><td>LSCA</td><td>Left Subclavian Artery。左鎖骨下動脈。</td></tr>
+        <tr><td>NIRS</td><td>Near-infrared spectroscopy。近赤外分光法による局所脳酸素飽和度モニタ。</td></tr>
+        <tr><td>Circle of Willis</td><td>Willis動脈輪。片側灌流が対側脳へ届くかに関わる側副路。</td></tr>
+        <tr><td>De-airing</td><td>脱気。心腔・人工血管・大動脈内の空気を除去する操作。</td></tr>
+        <tr><td>PND</td><td>Permanent Neurologic Dysfunction。恒久的神経障害。</td></tr>
+        <tr><td>TND</td><td>Temporary Neurologic Dysfunction。一過性神経機能障害。</td></tr>
+        <tr><td>側枝送血</td><td>人工血管の側枝から体幹側へ送血する方法。弓部再建後の復温・全身灌流に使う。</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>弓部大動脈人工血管置換術の Brain Isolation Technique — 医学生向け学習教材</p>
+  <p>本資料は学習目的の概説であり、実際の手技は施設マニュアルと指導医の指示に従ってください。</p>
+  <p style="margin-top:.5rem"><a href="index.html">← 目次に戻る</a></p>
+</footer>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures.html">心血管の圧</a></li>
+        <li><a href="infection_control.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique.html">弓部置換 Brain Isolation</a></li>
+        <li><a href="surgical_instruments.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp.html">IABP</a></li>
+        <li><a href="va_ecmo.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo.html">VV-ECMO</a></li>
+        <li><a href="impella.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection.html">心筋保護</a></li>
+        <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome.html">HIT</a></li>
+        <li><a href="anticoagulant_management.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics.html">血液透析</a></li>
+        <li><a href="chylothorax.html">乳び胸</a></li>
+        <li><a href="radiation_protection.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" title="ページトップへ戻る">↑</button>
+
+<script>
+  const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => {
+          const m = q==='' || a.textContent.toLowerCase().includes(q);
+          a.classList.toggle('hidden', !m);
+          if(m) vis++;
+        });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+
+  const questions = [
+    {q:"Brain isolation technique の主目的として最も適切なのはどれか。",choices:["心筋保護液を冠動脈へ効率よく送る","脳循環を病変大動脈から切り離し、虚血と塞栓を防ぐ","下肢虚血を予防する","術後抗凝固を不要にする"],correct:1,explain:"Brain isolation は脳を低灌流から守るだけでなく、shaggy aorta や mobile atheroma 由来の塞栓が脳へ流入する経路を断つ考え方です。"},
+    {q:"通常のSACPと brain isolation technique の違いとして最も重要なのはどれか。",choices:["SACPは人工心肺を使わない","Brain isolation は塞栓予防のため脳循環を病変大動脈から分離する意図が強い","Brain isolation は低体温を使わない","SACPは成人では禁忌である"],correct:1,explain:"SACPは脳へ酸素化血を順行性に送る方法です。Brain isolation はその上で、弓部病変からの debris が頭頸部へ入らないように遮断・送血ルートを組み立てます。"},
+    {q:"Brain isolation を特に考慮しやすい病変はどれか。",choices:["正常大動脈の若年AS","shaggy aorta や可動性粥腫を伴う弓部大動脈瘤","単純な心房中隔欠損症","末梢静脈瘤"],correct:1,explain:"高度粥状硬化や可動性粥腫は脳塞栓の大きなリスクです。カニュレーションやワイヤー操作、遮断でdebrisが飛ぶ可能性があります。"},
+    {q:"NIRSの左側だけが急低下した場合にまず考えるべきことはどれか。",choices:["左総頸動脈側の灌流不足や遮断トラブル","必ず測定エラーなので放置する","心筋保護液の濃度不足","プロタミン過量"],correct:0,explain:"左右差は片側灌流不足、カニューレ位置、遮断、Willis輪不全、頸動脈狭窄などのサインになりえます。もちろんプローブ外れも確認します。"},
+    {q:"脳灌流量・灌流圧について正しい考え方はどれか。",choices:["高いほど必ず安全","低いほど塞栓が減るので安全","過灌流も低灌流も危険で、圧・流量・NIRSを総合して見る","NIRSだけ見れば流量は不要"],correct:2,explain:"過灌流は脳浮腫や塞栓押し込み、低灌流は虚血のリスクです。圧、流量、NIRS、温度、血液ガスを総合します。"},
+    {q:"術中の塞栓リスクが高い場面として不適切なのはどれか。",choices:["カニュレーション","弓部分枝の遮断・解除","de-airingが不十分な遮断解除","術野をまったく操作していない安定した待機時間のみ"],correct:3,explain:"塞栓はカニュレーション、遮断、分枝操作、弓部開放、de-airing不足などで問題になります。安定した待機時間は相対的には低リスクです。"},
+    {q:"学生が手術室で観察すると理解が深まるポイントはどれか。",choices:["送血部位と脳灌流開始のタイミング","手袋のメーカー名だけ","皮膚縫合糸の色だけ","麻酔器の外装色"],correct:0,explain:"弓部置換では、どこから送血し、いつ頭頸部血管を遮断し、NIRSがどう変化するかを見ると、脳保護の意味がつながります。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    qText.style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 脳保護の考え方がよく整理できています。':pct>=.75?'👏 よい理解です。手術室では送血部位とNIRSを見てみましょう。':pct>=.5?'💪 もう少し。SACPとbrain isolationの違いを復習しましょう。':'📚 まずは「冷やす・送る・飛ばさない」の3点から復習しましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+</body>
+</html>
