@@ -49,6 +49,14 @@
   .key-card p{font-size:.85rem}
   .diagram-wrap{background:#fafbfd;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border);margin:.9rem 0}
   .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-image-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid var(--border);border-radius:10px;padding:.6rem}
+  .diagram-image{display:block;width:100%;min-width:760px;height:auto;border-radius:6px}
+  .figure-source{font-size:.78rem;color:var(--muted);text-align:left;margin-top:.6rem;line-height:1.65}
+  .figure-source a{word-break:break-all}
+  .figure-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.6rem;margin:.9rem 0 0;text-align:left}
+  .figure-point{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.7rem .85rem}
+  .figure-point strong{display:block;color:var(--navy);font-size:.9rem;margin-bottom:.2rem}
+  .figure-point span{font-size:.82rem;color:var(--muted)}
   .flow-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.6rem;margin:.8rem 0}
   .flow-step{position:relative;background:#f5f8fc;border:1px solid var(--border);border-radius:8px;padding:.75rem .85rem}
   .flow-step strong{display:block;color:var(--navy);font-size:.9rem;margin-bottom:.25rem}
@@ -118,7 +126,7 @@
   .drawer-section.empty{display:none}
   .drawer-content a.hidden{display:none}
   @media (max-width:640px){.flow-row{grid-template-columns:1fr}.quiz-controls{align-items:flex-start;flex-direction:column}.btn{width:100%}}
-  @media (max-width:480px){.page-nav{padding:.35rem .5rem}.page-nav-menu-btn{font-size:.85rem;padding:.4rem .75rem}section{padding:1.1rem .9rem}.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+  @media (max-width:480px){.page-nav{padding:.35rem .5rem}.page-nav-menu-btn{font-size:.85rem;padding:.4rem .75rem}section{padding:1.1rem .9rem}.diagram-wrap{padding:.65rem}.diagram-image{min-width:820px}.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 </style>
 </head>
 <body>
@@ -218,67 +226,27 @@
   <p>施設や術式により細部は異なりますが、概念は「<strong>脳へ行く回路</strong>」と「<strong>体幹へ行く回路</strong>」を分け、弓部病変からの塞栓が頭頸部へ流れないようにすることです。</p>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brain isolation technique の模式図: 脳灌流、頸部分枝遮断、病変弓部、体循環の分離">
-      <rect x="0" y="0" width="640" height="620" rx="18" fill="#fafbfd"/>
-      <text x="320" y="34" text-anchor="middle" font-size="21" fill="#0b2545" font-weight="700">Brain isolation technique</text>
-      <text x="320" y="62" text-anchor="middle" font-size="16" fill="#5a6473">脳へ送る血流と、病変弓部の血流を分ける</text>
-
-      <rect x="48" y="86" width="544" height="128" rx="16" fill="#fff" stroke="#e1e5ea" stroke-width="2"/>
-      <ellipse cx="320" cy="143" rx="96" ry="47" fill="#fce4e4" stroke="#c62828" stroke-width="3"/>
-      <text x="320" y="138" text-anchor="middle" font-size="24" fill="#c62828" font-weight="700">Brain</text>
-      <text x="320" y="166" text-anchor="middle" font-size="16" fill="#c62828">NIRSで左右差を監視</text>
-
-      <rect x="48" y="242" width="544" height="106" rx="16" fill="#fff" stroke="#e1e5ea" stroke-width="2"/>
-      <text x="320" y="264" text-anchor="middle" font-size="17" fill="#0b2545" font-weight="700">頸部分枝を遮断して、脳を病変弓部から隔離</text>
-      <path d="M 210 330 L 265 292" stroke="#c62828" stroke-width="13" stroke-linecap="round"/>
-      <path d="M 320 330 L 320 292" stroke="#c62828" stroke-width="13" stroke-linecap="round"/>
-      <path d="M 430 330 L 375 292" stroke="#c62828" stroke-width="13" stroke-linecap="round"/>
-      <rect x="196" y="300" width="58" height="22" rx="5" fill="#1a1a1a"/>
-      <rect x="291" y="300" width="58" height="22" rx="5" fill="#1a1a1a"/>
-      <rect x="386" y="300" width="58" height="22" rx="5" fill="#1a1a1a"/>
-      <text x="210" y="356" text-anchor="middle" font-size="15" fill="#c62828" font-weight="700">BCA</text>
-      <text x="320" y="356" text-anchor="middle" font-size="15" fill="#c62828" font-weight="700">LCCA</text>
-      <text x="430" y="356" text-anchor="middle" font-size="15" fill="#c62828" font-weight="700">LSCA</text>
-      <text x="320" y="289" text-anchor="middle" font-size="14" fill="#333">clamp / occlusion</text>
-
-      <rect x="48" y="386" width="544" height="144" rx="16" fill="#fff" stroke="#e1e5ea" stroke-width="2"/>
-      <path d="M 200 437 C 235 395, 405 395, 440 437 C 475 478, 430 511, 386 493 L 254 493 C 210 511, 165 478, 200 437 Z" fill="#eef2f7" stroke="#0b2545" stroke-width="7"/>
-      <text x="320" y="459" text-anchor="middle" font-size="20" fill="#0b2545" font-weight="700">Shaggy arch / aneurysm</text>
-      <text x="320" y="485" text-anchor="middle" font-size="15" fill="#5a6473">debris・粥腫を含む病変部</text>
-      <circle cx="246" cy="444" r="7" fill="#c62828"/>
-      <circle cx="280" cy="492" r="5" fill="#c62828"/>
-      <circle cx="396" cy="438" r="6" fill="#c62828"/>
-      <path d="M 270 414 C 255 370, 232 342, 220 322" stroke="#c62828" stroke-width="5" stroke-dasharray="9 8" fill="none" marker-end="url(#stopArrow)"/>
-      <text x="143" y="381" font-size="15" fill="#c62828" font-weight="700">debrisはここで止める</text>
-
-      <rect x="46" y="132" width="158" height="72" rx="12" fill="#e3f2fd" stroke="#1976d2" stroke-width="3"/>
-      <text x="125" y="160" text-anchor="middle" font-size="17" fill="#0b2545" font-weight="700">脳灌流ポンプ</text>
-      <text x="125" y="184" text-anchor="middle" font-size="14" fill="#1976d2">腋窩/頸動脈ルート</text>
-      <path d="M 204 168 C 243 153, 266 148, 292 145" stroke="#1976d2" stroke-width="10" fill="none" marker-end="url(#arrowBlue)"/>
-      <text x="104" y="222" font-size="15" fill="#1976d2" font-weight="700">青: 脳だけに順行性送血</text>
-
-      <rect x="436" y="512" width="156" height="70" rx="12" fill="#e8f5e9" stroke="#2e7d32" stroke-width="3"/>
-      <text x="514" y="540" text-anchor="middle" font-size="17" fill="#0b2545" font-weight="700">体循環ポンプ</text>
-      <text x="514" y="563" text-anchor="middle" font-size="14" fill="#2e7d32">人工血管側枝へ</text>
-      <path d="M 436 546 C 389 534, 367 515, 350 496" stroke="#2e7d32" stroke-width="10" fill="none" marker-end="url(#arrowGreen)"/>
-      <text x="48" y="576" font-size="15" fill="#2e7d32" font-weight="700">緑: 体幹側の灌流・復温</text>
-
-      <rect x="486" y="88" width="96" height="38" rx="19" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
-      <text x="534" y="113" text-anchor="middle" font-size="15" fill="#ef6c00" font-weight="700">重要</text>
-      <text x="534" y="147" text-anchor="middle" font-size="13" fill="#5a6473">冷やす</text>
-      <text x="534" y="168" text-anchor="middle" font-size="13" fill="#5a6473">送る</text>
-      <text x="534" y="189" text-anchor="middle" font-size="13" fill="#5a6473">飛ばさない</text>
-
-      <defs>
-        <marker id="arrowBlue" markerWidth="11" markerHeight="11" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,7 L9,3.5 z" fill="#1976d2"/></marker>
-        <marker id="arrowGreen" markerWidth="11" markerHeight="11" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,7 L9,3.5 z" fill="#2e7d32"/></marker>
-        <marker id="stopArrow" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,7 L8,3.5 z" fill="#c62828"/></marker>
-      </defs>
-    </svg>
+    <div class="diagram-image-scroll" aria-label="PMC8241544 Figure 1">
+      <img
+        class="diagram-image"
+        src="images/pmc8241544_figure1_brain_protection.jpg"
+        alt="PMC8241544 Figure 1. Novel brain protection method: extracorporeal selective cerebral perfusion and precise blockage of arch branches."
+        loading="lazy">
+    </div>
+    <p class="figure-source">
+      出典: Seguchi R, Kiuchi R, Horikawa T, et al. <em>Novel Brain Protection Method for Zone 0 Endovascular Aortic Repair with Selective Cerebral Perfusion</em>. Annals of Vascular Diseases. 2021;14(2):153-158.
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8241544/" target="_blank" rel="noopener noreferrer">PMCID: PMC8241544</a> の Figure 1 を表示サイズのみ調整して転載。
+      PMC本文のCreative Commonsライセンス表記に従い、出典・リンク・変更点を明記しています。
+    </p>
+    <div class="figure-points" aria-label="図の読み方">
+      <div class="figure-point"><strong>(a) 左図</strong><span>ECMO/体外回路から頸動脈・腋窩動脈バイパスへ送血し、脳だけを選択的に灌流します。</span></div>
+      <div class="figure-point"><strong>(b) 右図</strong><span>左右鎖骨下動脈をバルーン、左頸動脈を結紮、右頸動脈をクランプして、弓部から脳への流入を遮断します。</span></div>
+      <div class="figure-point"><strong>学生向け要点</strong><span>「脳へ行く血流」と「shaggy aortaを通る体循環」を分け、stent graftやwireで飛ぶdebrisを脳へ入れない発想です。</span></div>
+    </div>
   </div>
 
   <div class="callout">
-    <strong>実際の回路は施設差があります:</strong> 右腋窩動脈送血、人工血管側枝送血、腕頭動脈/頸動脈直接カニュレーション、左右腋窩動脈グラフトなど、症例の病変範囲と粥腫の位置で選択されます。
+    <strong>この図の位置づけ:</strong> PMC8241544 の Figure 1 は Zone 0 TEVAR のための脳保護法です。開胸の弓部大動脈人工血管置換術と回路は同一ではありませんが、brain isolation technique の本質である「脳循環と病変大動脈血流の分離」を理解するシェーマとして非常に有用です。
   </div>
 </section>
 
@@ -374,6 +342,7 @@
       <thead><tr><th>文献</th><th>要点</th></tr></thead>
       <tbody>
         <tr><td>Shiiya et al. Ann Thorac Surg 2001</td><td>可動性粥腫を有する近位大動脈症例に対し、脳血管を遮断して脳循環を隔離する発想を報告。</td></tr>
+        <tr><td>Seguchi et al. Ann Vasc Dis 2021</td><td>Zone 0 TEVARで、ECMOを用いた選択的脳灌流と弓部分枝遮断により脳循環と体循環を分離する方法を図示。</td></tr>
         <tr><td>Tsuda et al. Eur J Cardiothorac Surg 2021</td><td>高度弓部粥状硬化を伴うTEVAR高リスク例で functional brain isolation technique を応用。</td></tr>
         <tr><td>Kazui/OhnoらのSACP関連報告</td><td>弓部置換でSACPが複雑な分枝再建を可能にし、脳保護の中心的手段になった背景。</td></tr>
         <tr><td>近年のレビュー/メタ解析</td><td>DHCA単独、RCP、片側/両側ACPの優劣は症例・施設差が大きく、最適戦略は一律ではない。</td></tr>
@@ -383,6 +352,7 @@
   <p style="font-size:.85rem;color:var(--muted);margin-top:.8rem">
     参考リンク:
     <a href="https://pubmed.ncbi.nlm.nih.gov/11603483/">Shiiya 2001 PubMed</a> /
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8241544/">Seguchi 2021 PMC</a> /
     <a href="https://academic.oup.com/ejcts/article/60/2/420/6130058">Tsuda 2021 EJCTS</a> /
     <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3741862/">Best strategy for cerebral protection in arch surgery</a> /
     <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9419700/">Systematic review and meta-analysis</a>
