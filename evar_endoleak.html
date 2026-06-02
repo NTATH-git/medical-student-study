@@ -136,6 +136,17 @@
   .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
   .version-switch .vs-icon{font-size:1rem;line-height:1}
   @media (max-width:480px){.version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}}
+
+  .ref-figure{background:#fff;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border);margin:1rem 0;box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:6px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.84rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.6}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.4rem;text-align:left;border-top:1px dashed var(--border);padding-top:.4rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+
 </style>
 </head>
 <body>
@@ -180,6 +191,20 @@
 
 <section id="intro">
   <h2>1. エンドリーク(Endoleak)とは</h2>
+
+  <div class="ref-figure">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Gray506.svg"
+         alt="Gray's Anatomy: 大動脈弓と分枝"
+         loading="lazy">
+    <div class="ref-caption">
+      <strong>Gray's Anatomy(1918)の大動脈図</strong> ― 上行・弓部・下行大動脈と3分枝(腕頭・左総頸・左鎖骨下)。
+    </div>
+    <div class="ref-attribution">
+      画像出典:Henry Gray <em>Anatomy of the Human Body</em> Plate 506 ―
+      <a href="https://commons.wikimedia.org/wiki/File:Gray506.svg" target="_blank" rel="noopener">Wikimedia Commons (Public Domain)</a>
+    </div>
+  </div>
+
   <p><strong>エンドリーク</strong>とは、EVAR(Endovascular Aortic Repair)やTEVAR後に、本来であれば瘤内へ流入が遮断されるはずの血流が <strong>瘤腔(aneurysm sac)内に持続的に流入する状態</strong> を指します。</p>
 
   <div class="callout">
@@ -590,17 +615,21 @@
 /* === Version switch (v1 ⇄ v2) === */
 (function(){
   if(document.querySelector('.version-switch')) return;
-  var v2={'index.html':'index_v2.html','brain_isolation_technique.html':'brain_isolation_technique_v2.html'};
-  var v1={'index_v2.html':'index.html','brain_isolation_technique_v2.html':'brain_isolation_technique.html'};
   var cur=(location.pathname.split('/').pop()||'index.html');
-  var target,label,icon,title;
-  if(v1[cur]){target=v1[cur];label='通常版(v1)';icon='↺';title='通常版に戻る';}
-  else if(v2[cur]){target=v2[cur];label='ダイナミック版(v2)';icon='✨';title='このページのv2版へ';}
-  else{target='index_v2.html';label='v2を試す';icon='✨';title='ダイナミック版トップへ';}
   var a=document.createElement('a');
-  a.href=target;a.className='version-switch';a.title=title;
-  a.innerHTML='<span class="vs-icon">'+icon+'</span><span class="vs-text">'+label+'</span>';
-  a.setAttribute('aria-label',title);
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
   document.body.appendChild(a);
 })();
 </script>

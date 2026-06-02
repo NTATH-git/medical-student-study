@@ -621,17 +621,21 @@
 /* === Version switch (v1 ⇄ v2) === */
 (function(){
   if(document.querySelector('.version-switch')) return;
-  var v2={'index.html':'index_v2.html','brain_isolation_technique.html':'brain_isolation_technique_v2.html'};
-  var v1={'index_v2.html':'index.html','brain_isolation_technique_v2.html':'brain_isolation_technique.html'};
   var cur=(location.pathname.split('/').pop()||'index.html');
-  var target,label,icon,title;
-  if(v1[cur]){target=v1[cur];label='通常版(v1)';icon='↺';title='通常版に戻る';}
-  else if(v2[cur]){target=v2[cur];label='ダイナミック版(v2)';icon='✨';title='このページのv2版へ';}
-  else{target='index_v2.html';label='v2を試す';icon='✨';title='ダイナミック版トップへ';}
   var a=document.createElement('a');
-  a.href=target;a.className='version-switch';a.title=title;
-  a.innerHTML='<span class="vs-icon">'+icon+'</span><span class="vs-text">'+label+'</span>';
-  a.setAttribute('aria-label',title);
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
   document.body.appendChild(a);
 })();
 </script>
