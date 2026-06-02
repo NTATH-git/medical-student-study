@@ -127,6 +127,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "M
 
 ### 🪡 心臓手術手技
 - `avr_open_procedure.html` — 正中切開 AVR
+- `brain_isolation_technique.html` — 弓部置換 + Brain Isolation Technique
 - `surgical_instruments.html` — 手術器械
 - `gowning_technique.html` — ガウンテクニック
 
