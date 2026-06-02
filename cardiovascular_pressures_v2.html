@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心血管の圧 ― 高いところから低いところへ ― 医学生のために (v2)</title>
+<meta name="description" content="大動脈(出口・最高圧) → 全身 → 大静脈(入り口・最低圧)">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .principle-box{background:linear-gradient(135deg,#c62828,#ef5350);color:#fff;padding:1.5rem 1.3rem;border-radius:12px;text-align:center;margin:1rem 0;box-shadow:var(--shadow-lg)}
+  .principle-box .formula{font-size:1.5rem;font-weight:700;margin:.5rem 0;letter-spacing:.03em}
+  .principle-box .desc{font-size:.95rem;opacity:.95;margin-top:.5rem}
+  .highest-lowest{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .highest-lowest > div{padding:1.2rem;border-radius:10px;text-align:center}
+  .highest{background:linear-gradient(135deg,#ffebee,#ffcdd2);border:2px solid var(--accent)}
+  .lowest{background:linear-gradient(135deg,#e3f2fd,#bbdefb);border:2px solid #1565c0}
+  .highest h4{color:var(--accent);font-size:1.1rem;margin-bottom:.3rem}
+  .lowest h4{color:#1565c0;font-size:1.1rem;margin-bottom:.3rem}
+  .highest .big-num,.lowest .big-num{font-size:2.2rem;font-weight:700;margin:.3rem 0}
+  .highest .big-num{color:var(--accent)}
+  .lowest .big-num{color:#1565c0}
+  .highest .note,.lowest .note{font-size:.85rem;color:var(--text);margin-top:.3rem}
+  .pressure-row{display:flex;align-items:center;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--border)}
+  .pressure-row .name{flex:1;font-size:.9rem}
+  .pressure-row .value{font-weight:700;color:var(--accent);min-width:90px;text-align:right}
+  .pressure-row .bar{flex:2;height:12px;background:#f0f0f0;border-radius:6px;overflow:hidden;position:relative}
+  .pressure-row .bar-fill{height:100%;background:linear-gradient(90deg,#1565c0,#c62828);border-radius:6px}
+  .menu-toggle{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .bp-sim{background:linear-gradient(135deg,#fafbfd,#eef2f7);border-radius:12px;padding:1rem;border:2px solid var(--border);margin:1rem 0;position:relative}
+  .bp-display{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:.8rem 1.1rem;border-radius:10px;margin-bottom:.8rem;box-shadow:0 4px 12px rgba(0,0,0,.2);min-height:80px;transition:background .25s;position:sticky;top:140px;z-index:50}
+  .bp-display.high{background:linear-gradient(135deg,#c62828,#ef5350)}
+  .bp-display.mid{background:linear-gradient(135deg,#ef6c00,#ff9800)}
+  .bp-display.low{background:linear-gradient(135deg,#1565c0,#42a5f5)}
+  .bp-label{font-size:.82rem;opacity:.9;margin-bottom:.15rem}
+  .bp-value{font-size:1.5rem;font-weight:700;letter-spacing:.02em;line-height:1.2}
+  .bp-detail{font-size:.78rem;opacity:.9;margin-top:.25rem;line-height:1.4}
+  .bp-hint{font-size:.78rem;color:var(--muted);text-align:center;margin-top:.5rem}
+  .body-svg{max-width:340px;max-height:520px;width:100%;height:auto;display:block;margin:0 auto;cursor:crosshair;touch-action:none}
+  .body-svg [data-name]{cursor:pointer;transition:filter .15s,opacity .15s}
+  .body-svg [data-name]:hover,.body-svg [data-name].active{filter:brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,.9));opacity:1}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#principle">大原則:高→低</a>
+      <a href="#extremes">最高圧と最低圧</a>
+      <a href="#systemic">体循環の圧勾配</a>
+      <a href="#pulmonary">肺循環</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>心血管の圧<br><span class="accent">― 高いところから低いところへ</span></h1>
+    <p class="lead">大動脈(出口・最高圧) → 全身 → 大静脈(入り口・最低圧)</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>9</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>7</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>2</strong> 図解</span>
+    </div>
+  </div>
+  <a href="#principle" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#principle">大原則:高→低</a>
+    <a href="#extremes">最高圧と最低圧</a>
+    <a href="#systemic">体循環の圧勾配</a>
+    <a href="#pulmonary">肺循環</a>
+    <a href="#all">各部位の正常圧</a>
+    <a href="#simulator">🎮 圧シミュレータ</a>
+    <a href="#clinical">臨床応用</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section class="content reveal" id="principle">
+  <h2>1. 大原則 ― 圧は高いところから低いところにしか流れない</h2>
+  <p>心臓血管系の全てを理解する <strong>たった一つの大原則</strong> です。難しい計算式の前に、これだけ頭に入れれば、心血管の話の8割は分かるようになります。</p>
+
+  <div class="principle-box">
+    <div>💡 大原則</div>
+    <div class="formula">血液は 高い圧 → 低い圧 にしか流れない</div>
+    <div class="desc">これは水と同じ。高い場所のダムから低い場所へ水が流れるのと同じ。<br>「圧の差(圧勾配)」が流れの<strong>唯一の動力</strong>。</div>
+  </div>
+
+  <h3>身近な例で考える</h3>
+  <ul>
+    <li><strong>水道:</strong> 元栓(高圧)→ 蛇口(低圧)。元栓を閉じたら、蛇口を開けても水は出ない</li>
+    <li><strong>風船:</strong> 中(高圧)→ 外(大気圧)。口を開けると勢いよく空気が出る</li>
+    <li><strong>ストロー:</strong> 口を吸う = 口の中を陰圧にする → ジュース(より高圧)が口に入ってくる</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 つまり:</strong> 心臓血管系で「血液はなぜそこへ流れる?」と聞かれたら、<u>答えは常に「高圧→低圧の圧勾配があるから」</u>。心臓はその「高圧→低圧」を作るためのポンプ。
+  </div>
+</section>
+
+<section class="content reveal" id="extremes">
+  <h2>2. 全身で最も高い圧と最も低い圧</h2>
+  <p>大原則を踏まえると、心臓血管系の<strong>圧の最高地点</strong>と<strong>最低地点</strong>がわかります。</p>
+
+  <div class="highest-lowest">
+    <div class="highest">
+      <h4>🔴 最高圧:大動脈(心臓の出口)</h4>
+      <div class="big-num">120 / 80<br><span style="font-size:.6em">(平均 ~95)</span></div>
+      <div class="note">mmHg<br>左室が全身を駆動するための動力源</div>
+    </div>
+    <div class="lowest">
+      <h4>🔵 最低圧:上大静脈・下大静脈(心臓の入り口)</h4>
+      <div class="big-num">0 〜 5<br><span style="font-size:.6em">(ほぼ大気圧)</span></div>
+      <div class="note">mmHg<br>全身を巡り終えた血液が戻る場所</div>
+    </div>
+  </div>
+
+  <div class="callout success">
+    <strong>📌 なぜこの差があるか:</strong> 心臓(左室)が <u>最大 ~120 mmHg まで圧を上げる</u> → 大動脈から末梢血管を通る間に、<u>抵抗による圧損失</u>で圧が徐々に下がる → 大静脈で <u>ほぼ 0 mmHg</u> まで下がる → この差が血液を流す動力に。
+  </div>
+
+  <h3>なぜ「心臓の出口」が最高圧で「心臓の入り口」が最低圧なのか?</h3>
+  <ul>
+    <li><strong>出口(大動脈):</strong> 心臓(ポンプ)が全身に血を送り出すために <u>最も高い圧で押し出す</u> → 当然、出てすぐが最高圧</li>
+    <li><strong>入り口(大静脈):</strong> 全身を巡る間に血管抵抗で <u>圧を使い果たして戻ってくる</u> → 心臓に戻る寸前が最低圧</li>
+    <li>もし大静脈の圧が大動脈と同じだったら、血液は流れない(高低差がない)</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="systemic">
+  <h2>3. 体循環の圧勾配 ― 大動脈 から 大静脈 まで</h2>
+  <p>左室を出てから右房に戻るまで、血液は <strong>圧を徐々に失い</strong> ながら全身を巡ります。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="体循環の圧勾配">
+      <text x="360" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">体循環の圧勾配 ― 左室出口から右房まで</text>
+
+      <!-- Heart (left ventricle) -->
+      <rect x="40" y="100" width="80" height="100" fill="#c62828" rx="6"/>
+      <text x="80" y="140" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">左室</text>
+      <text x="80" y="160" font-size="10" fill="#fff" text-anchor="middle">~120</text>
+      <text x="80" y="175" font-size="9" fill="#fff" text-anchor="middle">mmHg</text>
+
+      <!-- Aorta -->
+      <rect x="130" y="100" width="80" height="100" fill="#d32f2f" rx="6"/>
+      <text x="170" y="135" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">大動脈</text>
+      <text x="170" y="155" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">120/80</text>
+      <text x="170" y="172" font-size="9" fill="#fff" text-anchor="middle">★ 最高圧</text>
+
+      <!-- Arteries -->
+      <rect x="220" y="110" width="70" height="80" fill="#e53935" rx="5"/>
+      <text x="255" y="140" font-size="10" fill="#fff" text-anchor="middle">末梢動脈</text>
+      <text x="255" y="158" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">~90</text>
+
+      <!-- Arterioles -->
+      <rect x="295" y="120" width="60" height="60" fill="#ef5350" rx="4"/>
+      <text x="325" y="142" font-size="10" fill="#fff" text-anchor="middle">細動脈</text>
+      <text x="325" y="158" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">~60</text>
+      <text x="325" y="170" font-size="8" fill="#fff" text-anchor="middle">(抵抗最大)</text>
+
+      <!-- Capillaries -->
+      <rect x="360" y="130" width="60" height="40" fill="#9e9e9e" rx="4"/>
+      <text x="390" y="148" font-size="9" fill="#fff" text-anchor="middle">毛細血管</text>
+      <text x="390" y="162" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">25→10</text>
+
+      <!-- Venules -->
+      <rect x="425" y="120" width="60" height="60" fill="#64b5f6" rx="4"/>
+      <text x="455" y="142" font-size="10" fill="#fff" text-anchor="middle">細静脈</text>
+      <text x="455" y="158" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">~10</text>
+
+      <!-- Veins -->
+      <rect x="490" y="110" width="70" height="80" fill="#42a5f5" rx="5"/>
+      <text x="525" y="140" font-size="10" fill="#fff" text-anchor="middle">末梢静脈</text>
+      <text x="525" y="158" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">~5</text>
+
+      <!-- SVC/IVC -->
+      <rect x="565" y="100" width="80" height="100" fill="#1976d2" rx="6"/>
+      <text x="605" y="135" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">大静脈</text>
+      <text x="605" y="155" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">0〜5</text>
+      <text x="605" y="172" font-size="9" fill="#fff" text-anchor="middle">★ 最低圧</text>
+
+      <!-- Heart (right atrium) -->
+      <rect x="655" y="100" width="50" height="100" fill="#1565c0" rx="6"/>
+      <text x="680" y="140" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">右房</text>
+      <text x="680" y="160" font-size="10" fill="#fff" text-anchor="middle">0〜8</text>
+
+      <!-- Arrows / flow -->
+      <path d="M 120 150 L 130 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 210 150 L 220 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 290 150 L 295 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 355 150 L 360 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 420 150 L 425 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 485 150 L 490 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 560 150 L 565 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+      <path d="M 645 150 L 655 150" stroke="#000" stroke-width="1.5" marker-end="url(#cp1)"/>
+
+      <!-- Gradient label -->
+      <text x="360" y="245" font-size="11" fill="#0b2545" text-anchor="middle" font-weight="bold">→ 血流方向(圧の高い側から低い側へ)</text>
+      <text x="360" y="262" font-size="10" fill="#5a6473" text-anchor="middle">大動脈と大静脈の圧差(~90 mmHg)が血液を循環させる動力</text>
+
+      <defs><marker id="cp1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#000"/></marker></defs>
+    </svg>
+  </div>
+
+  <h3>どこで一番圧が下がるか?</h3>
+  <ul>
+    <li><strong>細動脈(arterioles):</strong> 圧の低下が最も大きい(~90 → ~30 mmHg)</li>
+    <li>細動脈は<strong>強い平滑筋</strong>を持ち、収縮/拡張で抵抗を変えられる(血圧調節の主役)</li>
+    <li>毛細血管・静脈側では圧低下は緩やか</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📌 Poiseuille則の話:</strong> 流量 = ΔP / R(圧差 ÷ 抵抗)。同じ流量を維持するには、抵抗が高ければ大きな圧差が必要 → 心臓は強く拍動。
+  </div>
+</section>
+
+<section class="content reveal" id="pulmonary">
+  <h2>4. 肺循環は『低圧系』 ― 体循環とは別世界</h2>
+  <p>肺循環は <strong>体循環の約1/5の圧</strong> で動いています。理由は単純で、肺は<u>右室のすぐ隣にあって距離が短く、血管抵抗も低い</u>から。</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>部位</th><th>正常圧 (mmHg)</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>右房</td><td>0〜8</td><td>= CVP(中心静脈圧)</td></tr>
+      <tr><td>右室(収縮期/拡張期)</td><td>15-25 / 0-8</td><td>肺動脈を駆動</td></tr>
+      <tr><td><strong>肺動脈(収縮期/拡張期)</strong></td><td><strong>15-25 / 8-15</strong></td><td>平均10-20 mmHg(>25で肺高血圧)</td></tr>
+      <tr><td>肺毛細血管</td><td>~10</td><td>—</td></tr>
+      <tr><td>肺静脈・左房</td><td>5-12</td><td>= PAWP(肺動脈楔入圧)で代用測定</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <strong>💡 体循環と肺循環の対比:</strong><br>
+    ・体循環:左室 120 → 大静脈 0 = <u>圧差 ~120 mmHg</u><br>
+    ・肺循環:右室 25 → 左房 10 = <u>圧差 ~15 mmHg</u><br>
+    ・流量(心拍出量)は <strong>同じ</strong>(直列回路) → 肺循環は抵抗が低い分、低圧で済む。
+  </div>
+</section>
+
+<section class="content reveal" id="all">
+  <h2>5. 各部位の正常圧 ― 一覧</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>部位</th><th>収縮期 / 拡張期 (mmHg)</th><th>平均 (mmHg)</th><th>位置づけ</th></tr></thead>
+    <tbody>
+      <tr><td>左室</td><td>120 / 5-12</td><td>—</td><td>大動脈に向けて高圧駆動</td></tr>
+      <tr><td><strong>大動脈</strong></td><td><strong>120 / 80</strong></td><td><strong>~95</strong></td><td>★ 最高圧(心臓の出口)</td></tr>
+      <tr><td>末梢動脈</td><td>—</td><td>~90</td><td>—</td></tr>
+      <tr><td>細動脈</td><td>—</td><td>~60</td><td>抵抗最大(調節の主役)</td></tr>
+      <tr><td>毛細血管</td><td>—</td><td>25→10(入口→出口)</td><td>物質交換</td></tr>
+      <tr><td>細静脈</td><td>—</td><td>~10</td><td>—</td></tr>
+      <tr><td>末梢静脈</td><td>—</td><td>~5</td><td>—</td></tr>
+      <tr><td><strong>上下大静脈</strong></td><td>—</td><td><strong>0〜5</strong></td><td>★ 最低圧(心臓の入り口)</td></tr>
+      <tr><td>右房</td><td>—</td><td>0〜8</td><td>= CVP</td></tr>
+      <tr><td>右室</td><td>15-25 / 0-8</td><td>—</td><td>肺動脈に向けて低圧駆動</td></tr>
+      <tr><td>肺動脈</td><td>15-25 / 8-15</td><td>10-20</td><td>>25で肺高血圧</td></tr>
+      <tr><td>肺毛細血管</td><td>—</td><td>~10</td><td>—</td></tr>
+      <tr><td>肺静脈・左房</td><td>—</td><td>5-12</td><td>= PAWP</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>視覚バー(平均圧の高さ比較)</h3>
+  <div class="pressure-row"><span class="name">大動脈</span><div class="bar"><div class="bar-fill" style="width:95%"></div></div><span class="value">~95</span></div>
+  <div class="pressure-row"><span class="name">末梢動脈</span><div class="bar"><div class="bar-fill" style="width:90%"></div></div><span class="value">~90</span></div>
+  <div class="pressure-row"><span class="name">細動脈</span><div class="bar"><div class="bar-fill" style="width:60%"></div></div><span class="value">~60</span></div>
+  <div class="pressure-row"><span class="name">毛細血管(入)</span><div class="bar"><div class="bar-fill" style="width:25%"></div></div><span class="value">~25</span></div>
+  <div class="pressure-row"><span class="name">毛細血管(出)</span><div class="bar"><div class="bar-fill" style="width:10%"></div></div><span class="value">~10</span></div>
+  <div class="pressure-row"><span class="name">末梢静脈</span><div class="bar"><div class="bar-fill" style="width:5%"></div></div><span class="value">~5</span></div>
+  <div class="pressure-row"><span class="name">大静脈</span><div class="bar"><div class="bar-fill" style="width:3%"></div></div><span class="value">0〜5</span></div>
+  <div class="pressure-row"><span class="name">右房 (CVP)</span><div class="bar"><div class="bar-fill" style="width:5%"></div></div><span class="value">0〜8</span></div>
+  <div class="pressure-row"><span class="name">肺動脈(平均)</span><div class="bar"><div class="bar-fill" style="width:15%"></div></div><span class="value">10-20</span></div>
+  <div class="pressure-row"><span class="name">左房 (PAWP)</span><div class="bar"><div class="bar-fill" style="width:10%"></div></div><span class="value">5-12</span></div>
+
+  <p style="font-size:.82rem;color:var(--muted);margin-top:.5rem">※ 上のバーで一目瞭然:大動脈が最も高く、大静脈が最も低い。</p>
+</section>
+
+<section class="content reveal" id="simulator">
+  <h2>6. 🎮 圧シミュレーター ― 部位を触って圧を確認</h2>
+  <p>下の人体模式図に <strong>マウス/指を当てる or ドラッグ</strong> すると、その部位の圧が上のパネルにリアルタイム表示されます。背景色は圧の高さで変わります(赤=高圧 / 橙=中圧 / 青=低圧)。</p>
+
+  <div class="bp-sim">
+    <div class="bp-display" id="bpDisplay">
+      <div class="bp-label" id="bpLabel">👆 下の図の血管・心腔をなぞってみよう</div>
+      <div class="bp-value" id="bpValue">— mmHg</div>
+      <div class="bp-detail" id="bpDetail">部位を選択してください</div>
+    </div>
+
+    <svg viewBox="0 0 460 640" id="bodySvg" class="body-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="人体血管模式図 圧シミュレーター">
+      <!-- Body silhouette (decorative) -->
+      <path d="M 230 40 Q 200 40 200 70 Q 200 100 230 100 Q 260 100 260 70 Q 260 40 230 40 Z
+               M 200 100 L 180 130 L 130 180 L 130 320 L 150 350 L 150 480 L 130 600 L 170 600 L 200 480 L 200 350
+               M 260 100 L 280 130 L 330 180 L 330 320 L 310 350 L 310 480 L 330 600 L 290 600 L 260 480 L 260 350"
+            fill="#f0f0f0" stroke="#bdbdbd" stroke-width="1.5" opacity="0.5"/>
+      <text x="230" y="73" font-size="12" fill="#5a6473" text-anchor="middle">🧑</text>
+
+      <!-- ===== Vessels (clickable / hoverable) ===== -->
+
+      <!-- Carotid artery (red) -->
+      <rect data-name="頚動脈(carotid)" data-mean="~95" data-pressure="120/80 mmHg(動脈系)" data-detail="脳へ向かう動脈。大動脈に近い圧。" data-level="high"
+            x="218" y="100" width="8" height="38" fill="#c62828" rx="2"/>
+      <text x="180" y="120" font-size="10" fill="#c62828">頚動脈</text>
+
+      <!-- Jugular vein (blue) -->
+      <rect data-name="頚静脈(jugular)" data-mean="~5" data-pressure="0〜8 mmHg(静脈系)" data-detail="頭から戻る静脈。中心静脈圧に近い。" data-level="low"
+            x="234" y="100" width="8" height="38" fill="#1565c0" rx="2"/>
+      <text x="245" y="120" font-size="10" fill="#1565c0">頚静脈</text>
+
+      <!-- Aortic arch -->
+      <path data-name="大動脈弓(aortic arch)" data-mean="~95" data-pressure="120/80 mmHg" data-detail="大動脈の弓部。冠動脈・頚動脈・鎖骨下動脈の分枝部。" data-level="high"
+            d="M 220 155 Q 200 145 195 165" stroke="#c62828" stroke-width="10" fill="none"/>
+
+      <!-- AORTA (descending) - LARGE, prominent red -->
+      <rect data-name="🔴 大動脈 ★最高圧" data-mean="~95" data-pressure="収縮期120 / 拡張期80(平均~95)mmHg" data-detail="心臓の出口。全身で最も圧が高い場所。" data-level="high"
+            x="216" y="165" width="14" height="180" fill="#c62828" rx="3"/>
+      <text x="148" y="240" font-size="11" fill="#c62828" font-weight="bold">大動脈</text>
+      <text x="148" y="252" font-size="10" fill="#c62828">(★最高圧)</text>
+
+      <!-- SVC (Superior Vena Cava) - blue -->
+      <rect data-name="🔵 上大静脈(SVC)" data-mean="~3" data-pressure="0〜5 mmHg" data-detail="心臓に戻る大静脈。圧は最低レベル。" data-level="low"
+            x="250" y="155" width="12" height="80" fill="#1565c0" rx="2"/>
+      <text x="270" y="190" font-size="10" fill="#1565c0">上大静脈</text>
+      <text x="270" y="202" font-size="9" fill="#1565c0">SVC(★最低)</text>
+
+      <!-- HEART (4 chambers) -->
+      <!-- Heart outline -->
+      <ellipse cx="230" cy="265" rx="60" ry="50" fill="#fce4e4" stroke="#c62828" stroke-width="1" opacity="0.3"/>
+
+      <!-- Right Atrium -->
+      <ellipse data-name="右房(RA)" data-mean="~5" data-pressure="0〜8 mmHg(=CVP)" data-detail="中心静脈圧(CVP)に相当。右心不全で上昇。" data-level="low"
+               cx="200" cy="245" rx="20" ry="18" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="200" y="248" font-size="9" fill="#0b2545" text-anchor="middle" font-weight="bold">RA</text>
+
+      <!-- Right Ventricle -->
+      <ellipse data-name="右室(RV)" data-mean="~15" data-pressure="収縮期15-25 / 拡張期0-8 mmHg" data-detail="肺動脈に向けて低圧で駆動する右心室。" data-level="mid"
+               cx="200" cy="285" rx="22" ry="22" fill="#64b5f6" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="200" y="289" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">RV</text>
+
+      <!-- Left Atrium -->
+      <ellipse data-name="左房(LA)" data-mean="~8" data-pressure="5-12 mmHg(=PAWPで代用測定)" data-detail="左房圧は通常PAWPで代用測定。" data-level="low"
+               cx="260" cy="245" rx="20" ry="18" fill="#fce4e4" stroke="#c62828" stroke-width="1.5"/>
+      <text x="260" y="248" font-size="9" fill="#0b2545" text-anchor="middle" font-weight="bold">LA</text>
+
+      <!-- Left Ventricle -->
+      <ellipse data-name="左室(LV)" data-mean="120" data-pressure="収縮期120 / 拡張期5-12 mmHg" data-detail="大動脈に向けて全身を駆動する左心室。最大120mmHgまで上昇。" data-level="high"
+               cx="260" cy="285" rx="22" ry="22" fill="#ef5350" stroke="#c62828" stroke-width="1.5"/>
+      <text x="260" y="289" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">LV</text>
+
+      <text x="330" y="265" font-size="11" fill="#0b2545" font-weight="bold">心臓</text>
+      <text x="330" y="278" font-size="8" fill="#5a6473">4腔</text>
+
+      <!-- Pulmonary Artery -->
+      <path data-name="肺動脈(PA)" data-mean="~15" data-pressure="収縮期15-25 / 拡張期8-15 mmHg" data-detail="肺循環は低圧系(>25で肺高血圧)。" data-level="mid"
+            d="M 190 230 Q 175 200 180 175" stroke="#9c27b0" stroke-width="10" fill="none"/>
+      <text x="100" y="195" font-size="10" fill="#9c27b0">肺動脈</text>
+
+      <!-- Pulmonary Vein -->
+      <path data-name="肺静脈(PV)" data-mean="~8" data-pressure="5-12 mmHg" data-detail="肺から左房へ戻る。PAWPに反映。" data-level="low"
+            d="M 285 230 Q 300 200 295 175" stroke="#1565c0" stroke-width="6" fill="none"/>
+      <text x="305" y="195" font-size="10" fill="#1565c0">肺静脈</text>
+
+      <!-- Lungs (decorative) -->
+      <ellipse cx="125" cy="170" rx="35" ry="45" fill="#e1bee7" stroke="#9c27b0" stroke-width="1" opacity="0.3"/>
+      <text x="125" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">左肺</text>
+      <ellipse cx="340" cy="170" rx="35" ry="45" fill="#e1bee7" stroke="#9c27b0" stroke-width="1" opacity="0.3"/>
+      <text x="340" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">右肺</text>
+
+      <!-- Brachial artery (upper limb) -->
+      <rect data-name="上腕動脈(brachial)" data-mean="~90" data-pressure="120/80 mmHg(末梢動脈)" data-detail="血圧測定の標準部位。" data-level="high"
+            x="105" y="220" width="6" height="100" fill="#ef5350" rx="2"/>
+      <text x="60" y="270" font-size="9" fill="#c62828">上腕動脈</text>
+
+      <!-- Brachial vein -->
+      <rect data-name="上腕静脈" data-mean="~5" data-pressure="~5 mmHg" data-detail="末梢静脈、低圧。" data-level="low"
+            x="115" y="220" width="6" height="100" fill="#42a5f5" rx="2"/>
+
+      <!-- Arteriole -->
+      <rect data-name="細動脈(arteriole)" data-mean="~60" data-pressure="平均 ~60 mmHg" data-detail="血圧調節の主役。圧低下が最大。" data-level="mid"
+            x="80" y="340" width="20" height="10" fill="#ef9a9a" rx="2"/>
+      <text x="30" y="349" font-size="9" fill="#ef6c00">細動脈</text>
+
+      <!-- Capillary -->
+      <rect data-name="毛細血管(capillary)" data-mean="~15" data-pressure="25→10 mmHg(入口→出口)" data-detail="物質交換の場。Starling forceで重要。" data-level="low"
+            x="80" y="355" width="20" height="6" fill="#9e9e9e" rx="2"/>
+      <text x="30" y="362" font-size="9" fill="#5a6473">毛細血管</text>
+
+      <!-- Venule -->
+      <rect data-name="細静脈(venule)" data-mean="~10" data-pressure="平均 ~10 mmHg" data-detail="毛細血管出口側。" data-level="low"
+            x="80" y="365" width="20" height="10" fill="#90caf9" rx="2"/>
+      <text x="30" y="374" font-size="9" fill="#1565c0">細静脈</text>
+
+      <!-- IVC (Inferior Vena Cava) -->
+      <rect data-name="🔵 下大静脈(IVC)" data-mean="~3" data-pressure="0〜5 mmHg" data-detail="心臓に戻る下大静脈。最低圧。" data-level="low"
+            x="248" y="345" width="14" height="160" fill="#1565c0" rx="3"/>
+      <text x="270" y="430" font-size="11" fill="#1565c0" font-weight="bold">下大静脈</text>
+      <text x="270" y="443" font-size="10" fill="#1565c0">IVC(★最低)</text>
+
+      <!-- Abdominal aorta -->
+      <rect data-name="腹部大動脈" data-mean="~90" data-pressure="120/80 mmHg" data-detail="大動脈下行部の腹部。AAA好発部位。" data-level="high"
+            x="216" y="345" width="14" height="160" fill="#c62828" rx="3"/>
+      <text x="148" y="430" font-size="10" fill="#c62828">腹部大動脈</text>
+
+      <!-- Femoral artery -->
+      <rect data-name="大腿動脈(femoral)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="EVAR・カテーテルアクセスの標準。" data-level="high"
+            x="155" y="510" width="6" height="90" fill="#ef5350" rx="2"/>
+      <text x="80" y="555" font-size="9" fill="#c62828">大腿動脈</text>
+
+      <!-- Femoral vein -->
+      <rect data-name="大腿静脈" data-mean="~8" data-pressure="5-10 mmHg(立位で増加)" data-detail="立位では重力で下肢静脈圧↑。" data-level="low"
+            x="165" y="510" width="6" height="90" fill="#42a5f5" rx="2"/>
+
+      <!-- Other femoral leg (right side) for symmetry -->
+      <rect data-name="大腿動脈(右)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="左右対称。" data-level="high"
+            x="298" y="510" width="6" height="90" fill="#ef5350" rx="2"/>
+      <rect data-name="大腿静脈(右)" data-mean="~8" data-pressure="5-10 mmHg" data-detail="左右対称。" data-level="low"
+            x="308" y="510" width="6" height="90" fill="#42a5f5" rx="2"/>
+
+      <!-- Bottom label -->
+      <text x="230" y="625" font-size="9" fill="#5a6473" text-anchor="middle">指で触れる・マウスで動かすと圧が表示されます</text>
+    </svg>
+
+    <div class="bp-hint">📱 スマホでは指でゆっくり動かしてください</div>
+  </div>
+
+  <div class="callout tip" style="margin-top:1rem">
+    <strong>💡 試してみる:</strong>
+    <ul style="margin-top:.3rem;font-size:.85rem">
+      <li><strong>大動脈</strong>と<strong>上大静脈/下大静脈</strong>を交互に触る → 圧の大差(~95 vs ~3 mmHg)を体感</li>
+      <li><strong>左室</strong>と<strong>右室</strong>を比べる → 体循環(120) vs 肺循環(25)の駆動圧の違い</li>
+      <li><strong>頚動脈→脳→頚静脈</strong>の順に触る → 圧勾配が動力</li>
+      <li><strong>細動脈→毛細血管→細静脈</strong> → 急激な圧低下(調節の主役)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="content reveal" id="clinical">
+  <h2>7. 臨床応用 ― 圧の理解が現場に直結する例</h2>
+
+  <h3>① 血圧低下 = 流量低下</h3>
+  <p>大動脈圧(=血圧)が下がる → 末梢への駆動力が低下 → 臓器灌流低下 → ショック。ショック治療の本質は <u>「圧を回復させて流量を確保する」</u>こと。</p>
+
+  <h3>② CV抜去時の空気塞栓</h3>
+  <p>胸腔内の大静脈は <strong>陰圧化(-5 mmHg)</strong> しうる。大気圧との差で空気が引き込まれる。<a href="cv_catheter_removal_v2.html" style="color:var(--accent)">CV抜去の注意</a> 参照。</p>
+
+  <h3>③ 中心静脈圧(CVP)モニタリング</h3>
+  <p>CVP = 右房圧 ≈ 大静脈圧 = 0-8 mmHg。これより高いと <u>右心不全・体液過剰・心タンポナーデ</u>を疑う。</p>
+
+  <h3>④ 肺高血圧</h3>
+  <p>肺動脈平均圧 >25 mmHg(運動時 >30)を肺高血圧と定義。右室負荷 → 右心不全へ。</p>
+
+  <h3>⑤ 脊髄灌流圧(SCPP)</h3>
+  <p>SCPP = MAP − CSFP。圧勾配の考え方そのもの。<a href="csf_drainage_v2.html" style="color:var(--accent)">CSFドレナージ</a> 参照。</p>
+
+  <h3>⑥ 透析でのアクセス必要性</h3>
+  <p>末梢静脈圧(5 mmHg)では血流量200-400 mL/minを取り出せない → <u>動脈圧で動脈化したシャント(AVF)</u>を作る。<a href="hemodialysis_basics_v2.html" style="color:var(--accent)">血液透析</a> 参照。</p>
+
+  <h3>⑦ 大動脈狭窄症(AS)</h3>
+  <p>狭窄部で大きな圧勾配(pressure gradient)が生じる → 左室は通常以上に高圧を出さねばならず → 左室肥大・心不全に進む。</p>
+
+  <h3>⑧ Eisenmenger症候群</h3>
+  <p>大きなVSDで左→右シャント → 肺血流↑ → 肺血管抵抗↑ → 肺動脈圧>大動脈圧へ反転 → シャントが右→左に逆転(チアノーゼ)。「圧は高い方から低い方へ」の典型例。</p>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>圧勾配(pressure gradient)</td><td>2点間の圧の差。血流の動力</td></tr>
+      <tr><td>MAP</td><td>Mean Arterial Pressure(平均動脈圧)。≈ 拡張期圧 + (収縮期-拡張期)/3</td></tr>
+      <tr><td>CVP</td><td>Central Venous Pressure(中心静脈圧)= 右房圧 ≈ 大静脈圧</td></tr>
+      <tr><td>PAWP / PCWP</td><td>Pulmonary Artery Wedge Pressure(肺動脈楔入圧)≈ 左房圧</td></tr>
+      <tr><td>Poiseuille則</td><td>流量 = ΔP / R(圧差 ÷ 抵抗)</td></tr>
+      <tr><td>体循環</td><td>左室→大動脈→全身→大静脈→右房(高圧系)</td></tr>
+      <tr><td>肺循環</td><td>右室→肺動脈→肺→肺静脈→左房(低圧系)</td></tr>
+      <tr><td>肺高血圧</td><td>肺動脈平均圧 >25 mmHg(運動時 >30)</td></tr>
+      <tr><td>SCPP</td><td>Spinal Cord Perfusion Pressure = MAP − CSFP</td></tr>
+      <tr><td>SVR / PVR</td><td>Systemic / Pulmonary Vascular Resistance</td></tr>
+    </tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="cardiovascular_pressures.html">このページのv1</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Division of Cardiovascular Surgery, Sapporo Medical University</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 Brain Isolation</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+  const questions = [
+    {q:"心臓血管系で最も圧が高い部位はどれか。",choices:["右房","大動脈","上大静脈","肺動脈"],correct:1,explain:"大動脈(心臓の出口)が最高圧(収縮期120 / 拡張期80、平均~95 mmHg)。左室が全身を駆動するための動力源。"},
+    {q:"心臓血管系で最も圧が低い部位はどれか。",choices:["大動脈","末梢動脈","上下大静脈","肺動脈"],correct:2,explain:"上下大静脈(心臓の入り口)が最低圧(0〜5 mmHg)。全身を巡って圧を使い果たした血液が戻る場所。"},
+    {q:"血液はなぜ大動脈から大静脈へ流れるのか。",choices:["重力により","心臓が引き戻すから","圧差(大動脈>大静脈)があるから","酸素濃度が違うから"],correct:2,explain:"大原則:『圧は高いところから低いところにしか流れない』。大動脈(~95 mmHg)と大静脈(~5 mmHg)の圧差 ~90 mmHg が血流の動力。"},
+    {q:"体循環で最も圧の低下が大きい部位はどれか。",choices:["大動脈","末梢動脈","細動脈","毛細血管"],correct:2,explain:"細動脈(arterioles)は強い平滑筋を持ち、収縮/拡張で抵抗を最も大きく変えられる。圧低下も最大(~90→~30 mmHg)で、血圧調節の主役。"},
+    {q:"肺循環の圧について正しいのはどれか。",choices:["体循環と同じ圧","体循環より高圧","体循環の約1/5の圧","左房の方が肺動脈より高圧"],correct:2,explain:"肺循環は低圧系(肺動脈平均10-20 mmHg、左房5-12 mmHg)で、体循環(大動脈95、大静脈0-5)の約1/5。肺血管抵抗が低いため低圧で済む。"},
+    {q:"中心静脈圧(CVP)が反映している圧はどれか。",choices:["左室収縮期圧","右房圧 ≈ 大静脈圧","肺動脈圧","大動脈拡張期圧"],correct:1,explain:"CVPは右房圧と等しく、ほぼ大静脈圧(0-8 mmHg)を反映。高値は右心不全・体液過剰・心タンポナーデを疑う。"},
+    {q:"CV抜去時に空気塞栓が起こる機序として正しいのはどれか。",choices:["大動脈が陰圧化","胸腔内の大静脈が陰圧化し空気が引き込まれる","ヘパリン作用","血圧低下"],correct:1,explain:"胸腔内陰圧で大静脈も-5 mmHg程度の陰圧化 → 大気圧との差で空気が抜去孔から引き込まれる。仰臥位 + Valsalva + 閉塞性ドレッシングで予防。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+
+  // ===== Body Pressure Simulator =====
+  (function(){
+    const svg = document.getElementById('bodySvg');
+    const display = document.getElementById('bpDisplay');
+    const labelEl = document.getElementById('bpLabel');
+    const valueEl = document.getElementById('bpValue');
+    const detailEl = document.getElementById('bpDetail');
+    if(!svg) return;
+
+    // Dynamically set display sticky top based on combined nav height
+    function _updateBpTop(){
+      const pn = document.querySelector('.page-nav');
+      const sn = document.querySelector('nav:not(.page-nav)');
+      const total = (pn ? pn.offsetHeight : 0) + (sn ? sn.offsetHeight : 0) + 6;
+      display.style.top = total + 'px';
+    }
+    _updateBpTop();
+    window.addEventListener('resize', _updateBpTop);
+    // Re-calc after a tick in case page-nav wraps after fonts load
+    setTimeout(_updateBpTop, 100);
+    setTimeout(_updateBpTop, 500);
+
+    function updateFromTarget(target){
+      if(!target) return;
+      // Find nearest ancestor with data-name
+      const el = target.closest && target.closest('[data-name]');
+      if(!el) return;
+      labelEl.textContent = el.dataset.name;
+      valueEl.textContent = el.dataset.pressure || '— mmHg';
+      detailEl.textContent = el.dataset.detail || '';
+      // Color the display based on pressure level
+      display.classList.remove('high','mid','low');
+      const lvl = el.dataset.level;
+      if(lvl) display.classList.add(lvl);
+      // Highlight active vessel
+      svg.querySelectorAll('[data-name]').forEach(e => e.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    svg.addEventListener('mousemove', e => updateFromTarget(e.target));
+    svg.addEventListener('click', e => updateFromTarget(e.target));
+    svg.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const t = e.touches[0];
+      if(!t) return;
+      const target = document.elementFromPoint(t.clientX, t.clientY);
+      if(target && svg.contains(target)) updateFromTarget(target);
+    }, {passive:false});
+    svg.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      if(!t) return;
+      const target = document.elementFromPoint(t.clientX, t.clientY);
+      if(target && svg.contains(target)) updateFromTarget(target);
+    }, {passive:true});
+  })();
+</script>
+
+
+<script>
+/* === Version switch (v1 ⇄ v2) === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var a=document.createElement('a');
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
+  document.body.appendChild(a);
+})();
+</script>
+
+</body>
+</html>

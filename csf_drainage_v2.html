@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>脳脊髄液(CSF)ドレナージが対麻痺に有効な理由 ― 医学生のために (v2)</title>
+<meta name="description" content="SCPP の式から、適応・手技・合併症まで">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .formula-box{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:1.5rem 1.2rem;border-radius:12px;text-align:center;margin:1rem 0;box-shadow:var(--shadow-lg)}
+  .formula-box .formula{font-size:1.6rem;font-weight:700;letter-spacing:.05em;margin:.5rem 0}
+  .formula-box .desc{font-size:.85rem;opacity:.9}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .compare-grid > div{padding:1rem;border-radius:8px}
+  .compare-bad{background:#ffebee;border-left:4px solid var(--danger)}
+  .compare-good{background:#e8f5e9;border-left:4px solid var(--success)}
+  .compare-grid h4{margin-bottom:.5rem}
+  .compare-bad h4{color:var(--danger)}
+  .compare-good h4{color:var(--success)}
+  .step-flow{counter-reset:step;list-style:none;padding-left:0}
+  .step-flow li{position:relative;padding:.5rem 0 .5rem 2.5rem;border-left:2px solid var(--accent);margin-left:1rem;padding-left:1.5rem}
+  .step-flow li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+  .indi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .indi-grid > div{padding:1rem;border-radius:8px}
+  .indi-yes{background:#e8f5e9;border-left:4px solid var(--success)}
+  .indi-no{background:#ffebee;border-left:4px solid var(--accent)}
+  .indi-grid h4{margin-bottom:.5rem}
+  .indi-yes h4{color:var(--success)}
+  .indi-no h4{color:var(--accent)}
+  .menu-toggle{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 8px 24px rgba(11,37,69,.15);margin:1rem 0;background:#000}
+  .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-caption{font-size:.82rem;color:var(--muted);margin-top:.5rem;padding:.5rem .8rem;background:#f5f8fc;border-radius:6px;border-left:3px solid var(--accent)}
+  .video-caption strong{color:var(--navy)}
+  .video-caption a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .video-caption a:hover{text-decoration:underline}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#why">なぜ効くのか</a>
+      <a href="#evidence">エビデンス</a>
+      <a href="#indication">適応・禁忌</a>
+      <a href="#technique">手技</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>脳脊髄液<br><span class="accent">(CSF)ドレナージが対麻痺に有効な理由</span></h1>
+    <p class="lead">SCPP の式から、適応・手技・合併症まで</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>高学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>9</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>7</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>1</strong> 図解</span>
+    </div>
+  </div>
+  <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#why">なぜ効くのか</a>
+    <a href="#evidence">エビデンス</a>
+    <a href="#indication">適応・禁忌</a>
+    <a href="#technique">手技</a>
+    <a href="#video">手技動画</a>
+    <a href="#complications">合併症</a>
+    <a href="#combo">他戦略との組合せ</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note" aria-label="重要なお知らせ">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+  </div>
+</div>
+
+<section class="content reveal" id="why">
+  <h2>1. なぜ効くのか ― SCPPの式から考える</h2>
+
+  <div class="ref-figure">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Gray506.svg"
+         alt="Gray's Anatomy: 大動脈弓と分枝"
+         loading="lazy">
+    <div class="ref-caption">
+      <strong>Gray's Anatomy(1918)の大動脈図</strong> ― 上行・弓部・下行大動脈と3分枝(腕頭・左総頸・左鎖骨下)。
+    </div>
+    <div class="ref-attribution">
+      画像出典:Henry Gray <em>Anatomy of the Human Body</em> Plate 506 ―
+      <a href="https://commons.wikimedia.org/wiki/File:Gray506.svg" target="_blank" rel="noopener">Wikimedia Commons (Public Domain)</a>
+    </div>
+  </div>
+
+
+  <p>対麻痺予防の本質は <strong>「脊髄に十分な血液を流し続ける」</strong> ことです。脊髄に流れる血液の圧(脊髄灌流圧、SCPP)は次の式で表されます。</p>
+
+  <div class="formula-box">
+    <div class="formula">SCPP = MAP − CSFP</div>
+    <div class="desc">脊髄灌流圧 = 平均動脈圧 − 脳脊髄液圧</div>
+  </div>
+
+  <p>つまり、脊髄を流れる血流の駆動圧は <strong>「流入圧 − 流出抵抗」</strong> の構造になっています。流出側の <u>脳脊髄液圧(CSFP)</u> は、脊髄を取り囲む硬膜内の圧で、ここが高いと血管が圧迫されて流入血流が低下します。</p>
+
+  <h3>大動脈瘤手術中・術後に起こること</h3>
+  <div class="compare-grid">
+    <div class="compare-bad">
+      <h4>❌ 介入しない場合</h4>
+      <ul>
+        <li><strong>MAP↓</strong> 大動脈遮断で遠位灌流低下</li>
+        <li><strong>CSFP↑</strong> 再灌流障害・脊髄浮腫で髄液圧上昇</li>
+        <li><strong>SCPP = MAP↓ − CSFP↑</strong> → 急激低下</li>
+        <li>→ 脊髄虚血 → 対麻痺</li>
+      </ul>
+    </div>
+    <div class="compare-good">
+      <h4>⭕ CSFドレナージ + 昇圧</h4>
+      <ul>
+        <li><strong>MAP↑</strong> 昇圧薬で >80-90mmHg維持</li>
+        <li><strong>CSFP↓</strong> ドレナージで <10mmHg維持</li>
+        <li><strong>SCPP = MAP↑ − CSFP↓</strong> → 確保</li>
+        <li>→ 脊髄灌流維持 → 対麻痺予防</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SCPPの仕組み">
+      <!-- Spinal cord cross-section -->
+      <ellipse cx="240" cy="140" rx="70" ry="55" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+      <text x="240" y="145" font-size="14" fill="#0b2545" text-anchor="middle" font-weight="bold">脊髄</text>
+
+      <!-- Dural sac (encloses CSF + cord) -->
+      <ellipse cx="240" cy="140" rx="100" ry="80" fill="none" stroke="#1565c0" stroke-width="2"/>
+      <text x="240" y="225" font-size="11" fill="#1565c0" text-anchor="middle" font-weight="bold">CSF(脳脊髄液)</text>
+      <text x="240" y="238" font-size="9" fill="#1565c0" text-anchor="middle">CSFP↑で脊髄圧迫</text>
+
+      <!-- Inflow arrow (artery, large) -->
+      <path d="M 50 140 L 165 140" stroke="#c62828" stroke-width="8" marker-end="url(#ar)"/>
+      <text x="80" y="125" font-size="11" fill="#c62828" font-weight="bold">MAP(血流)</text>
+
+      <!-- Outflow arrow (less if compressed) -->
+      <path d="M 315 140 L 430 140" stroke="#9e9e9e" stroke-width="4" marker-end="url(#ar2)"/>
+      <text x="350" y="125" font-size="11" fill="#5a6473">流出</text>
+
+      <!-- CSF lateral arrows pushing on cord -->
+      <path d="M 145 105 L 175 125" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+      <path d="M 145 175 L 175 155" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+      <path d="M 335 105 L 305 125" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+      <path d="M 335 175 L 305 155" stroke="#1565c0" stroke-width="2" marker-end="url(#ar3)"/>
+
+      <!-- CSF drain catheter -->
+      <line x1="240" y1="220" x2="240" y2="260" stroke="#7e57c2" stroke-width="3"/>
+      <circle cx="240" cy="260" r="6" fill="#7e57c2"/>
+      <text x="250" y="265" font-size="10" fill="#7e57c2" font-weight="bold">CSFドレーン → CSFP↓</text>
+
+      <defs>
+        <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <polygon points="0 0, 10 5, 0 10" fill="#c62828"/>
+        </marker>
+        <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+          <polygon points="0 0, 8 4, 0 8" fill="#9e9e9e"/>
+        </marker>
+        <marker id="ar3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 6 3, 0 6" fill="#1565c0"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 物理学的アナロジー:</strong> 脊髄血流を「ストローでジュースを吸う」と例えれば、CSFPは「ストローを外から指で押さえる力」。指の力(CSFP)が強いとジュース(血流)が流れない。CSFドレナージは「指を緩める」操作。
+  </div>
+</section>
+
+<section class="content reveal" id="evidence">
+  <h2>2. エビデンス ― Coselli 試験</h2>
+
+  <h3>Coselli ら 2002年 RCT(J Vasc Surg)</h3>
+  <ul>
+    <li>対象: <strong>胸腹部大動脈瘤 Crawford I/II型</strong> 待機手術 145例</li>
+    <li>介入群: 周術期 CSFドレナージ実施 / 対照群: 実施せず</li>
+    <li>結果: <strong>対麻痺/不全対麻痺の発生率を80%相対減少</strong>(13% → 2.6%)</li>
+    <li>これを根拠に <strong>SVS・ESVS・JSVS ガイドライン</strong> はCrawford II型などの高リスクTAAAで <u>Class I 推奨</u></li>
+  </ul>
+
+  <div class="callout success">
+    <strong>📌 主要ガイドラインの推奨(要約):</strong><br>
+    ・SVS Guidelines on Aortic Aneurysm: high-risk TAAA で CSFドレナージを Class I 推奨<br>
+    ・JSVS 大動脈瘤・大動脈解離診療ガイドライン: Crawford I/II/III型で考慮<br>
+    ・TEVAR でも 大動脈被覆範囲が広い場合 / 既往AAA術後 / 左鎖骨下被覆例で考慮
+  </div>
+
+  <h3>近年の知見</h3>
+  <ul>
+    <li>術前予防的留置 vs 術後 rescue 留置 → <strong>予防的留置の方が有効</strong>(術後発症してから入れても遅いことが多い)</li>
+    <li>合併症リスクとのバランスは継続して議論中(後述)</li>
+    <li>TEVAR 単独例での予防的留置は controversial(routine ではない)</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="indication">
+  <h2>3. 適応と禁忌</h2>
+
+  <div class="indi-grid">
+    <div class="indi-yes">
+      <h4>✅ 適応(予防的留置)</h4>
+      <ul>
+        <li>Crawford II型 TAAA(全例推奨)</li>
+        <li>Crawford I・III型 TAAA(個別判断、原則推奨)</li>
+        <li>広範囲 TEVAR(>20cm被覆)</li>
+        <li>左鎖骨下動脈被覆を伴う TEVAR</li>
+        <li>既往 AAA術後 / 既往 TEVAR後の追加TEVAR</li>
+        <li>内腸骨動脈閉塞・両側骨盤虚血の既往</li>
+      </ul>
+    </div>
+    <div class="indi-no">
+      <h4>❌ 禁忌・要注意</h4>
+      <ul>
+        <li><strong>凝固障害</strong>(INR>1.5、血小板<100,000)</li>
+        <li>抗凝固薬服用中(ワーファリン、DOAC)</li>
+        <li>髄膜炎・脊椎部位感染</li>
+        <li>頭蓋内圧亢進(出血、占拠性病変)</li>
+        <li>解剖学的に穿刺困難(脊椎変形)</li>
+        <li>意識障害で評価困難な場合は注意</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📌 タイミング:</strong> 通常 <u>麻酔導入後すぐ、手術開始前</u> にカテーテルを留置。術中・術後 48-72時間継続する。
+  </div>
+</section>
+
+<section class="content reveal" id="technique">
+  <h2>4. 手技</h2>
+
+  <h3>カテーテル留置</h3>
+  <ol class="step-flow">
+    <li><strong>体位:</strong> 側臥位または座位 で背中を丸める(腰椎穿刺と同じ)</li>
+    <li><strong>穿刺部位:</strong> <u>L3-L4 または L4-L5</u> 椎間 を清潔操作で穿刺(脊髄円錐より下方)</li>
+    <li><strong>使用カテーテル:</strong> 14-16G Tuohy 針 → 髄液逆流を確認 → 軟性カテーテル(EDM)を頭側に5-10cm挿入</li>
+    <li><strong>固定・接続:</strong> カテーテルを皮下トンネル経由でしっかり固定(自己抜去防止)→ 閉鎖式ドレナージ回路に接続</li>
+    <li><strong>圧トランスデューサ接続:</strong> CSFP モニタリング開始(基準点は外耳道高位)</li>
+  </ol>
+
+  <h3>ドレナージ管理(術中・術後)</h3>
+  <ul>
+    <li><strong>目標 CSFP:</strong> <u>< 10 mmHg</u>(8 mmHg以下が安全マージン)</li>
+    <li><strong>ドレナージ速度上限:</strong> <u>10-15 mL/h</u>(過剰排液 → 硬膜下血腫リスク)</li>
+    <li><strong>1日上限:</strong> 通常 150-250 mL/日 程度</li>
+    <li>排液は <u>清澄(clear)</u> が正常。血性なら出血、混濁なら感染を疑う</li>
+    <li>留置期間: <strong>通常 術後 48-72時間</strong>。リスク高ければ最大5日まで延長</li>
+  </ul>
+
+  <h3>抜去のタイミング</h3>
+  <ul>
+    <li>神経学的に下肢運動正常を48時間以上維持できていれば抜去検討</li>
+    <li>抜去前に <strong>凝固機能を再確認</strong>(術後出血リスク管理のため一時的に抗凝固投与している場合あり)</li>
+    <li>抜去後 24時間は仰臥位安静、頭低位は避ける</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="video">
+  <h2>5. 手技動画(YouTube)</h2>
+  <p>CSFドレナージ留置の実際の手技動画です。文字とイラストで学んだ手順を、生きた映像で確認しましょう。穿刺の姿勢・針の角度・髄液確認・カテーテル挿入・固定の流れがわかります。</p>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/7A1wtVoSr0w"
+      title="CSFドレナージ手技動画"
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+
+  <div class="video-caption">
+    <strong>📺 動画の見どころチェックリスト:</strong>
+    <ul style="margin-top:.3rem;font-size:.85rem">
+      <li>側臥位での穿刺準備(脊髄円錐より下方=L3-L4 or L4-L5)</li>
+      <li>Tuohy針の挿入と髄液逆流の確認</li>
+      <li>軟性カテーテル(EDM)の頭側への挿入(5-10cm)</li>
+      <li>固定とドレナージ回路への接続</li>
+      <li>CSFP モニタリング開始(基準点:外耳道高位)</li>
+    </ul>
+    <p style="margin-top:.4rem;font-size:.78rem;color:var(--muted)">
+      出典: YouTube動画(<a href="https://www.youtube.com/watch?v=7A1wtVoSr0w" target="_blank" rel="noopener">https://www.youtube.com/watch?v=7A1wtVoSr0w</a>)。<br>
+      ※ 著作権は投稿者に帰属。教育目的のembedで、本サイトでホストはしていません。
+    </p>
+  </div>
+</section>
+
+<section class="content reveal" id="complications">
+  <h2>6. 合併症 ― リスクとのバランス</h2>
+  <p>CSFドレナージは有効だが、無視できない合併症があるため <strong>適応の慎重な吟味</strong> が必要です。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>合併症</th><th>頻度</th><th>機序・対策</th></tr></thead>
+      <tbody>
+        <tr><td><strong>硬膜下血腫</strong></td><td>1-3%</td><td>過剰ドレナージ → 脳が下垂 → 架橋静脈裂傷。<u>ドレナージ速度上限を遵守</u></td></tr>
+        <tr><td>頭痛(post-LP headache)</td><td>5-15%</td><td>CSF漏出による低髄液圧症状。安静・水分・カフェイン・blood patch</td></tr>
+        <tr><td>カテーテル関連感染(髄膜炎)</td><td>0.5-2%</td><td>清潔操作、長期留置を避ける</td></tr>
+        <tr><td>脊髄硬膜外血腫</td><td><1%</td><td>凝固障害・抗凝固併用時。麻痺出現で疑い、緊急MRI</td></tr>
+        <tr><td>カテーテル離断・残存</td><td>稀</td><td>抜去時に抵抗あれば中止、画像評価</td></tr>
+        <tr><td>偽性麻痺・誤判定</td><td>—</td><td>抗凝固併用例で出血性発症と紛らわしい</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠ 硬膜下血腫の警告サイン:</strong> CSFドレナージ後の<u>意識障害・頭痛増悪・神経学的悪化</u>があれば即頭部CTを実施。発症すれば mortality 高い。
+  </div>
+</section>
+
+<section class="content reveal" id="combo">
+  <h2>7. 他の脊髄保護戦略との組み合わせ</h2>
+  <p>CSFドレナージは単独使用ではなく、対麻痺予防の <strong>multimodal protection の中核</strong> として位置付けられます。詳細は<a href="spinal_cord_ischemia_v2.html" style="color:var(--accent)">対麻痺メカニズム</a>のページを参照。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>戦略</th><th>SCPP式での意味</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CSFドレナージ</strong></td><td>CSFP ↓(分母を下げる)</td></tr>
+        <tr><td>MAP維持(>80-90 mmHg)</td><td>MAP ↑(分子を上げる)</td></tr>
+        <tr><td>Distal aortic perfusion</td><td>大動脈遮断中も遠位灌流圧確保 → 分節動脈圧維持</td></tr>
+        <tr><td>分節動脈再建</td><td>そもそも血流入口を保つ</td></tr>
+        <tr><td>軽度低体温</td><td>虚血耐性向上(同じ低灌流でも被害少)</td></tr>
+        <tr><td>MEP/SEPモニター</td><td>早期警告 → 上記戦略を即座に強化</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 COCKPIT プロトコル(救済時):</strong> 術後に下肢麻痺発症 → 即座に CSF排液強化(目標 <5mmHg)+ MAP↑(>100 mmHg)+ 酸素化↑(SpO2 >95%)+ 適切なヘマトクリット(30%以上)で介入。早期対応で回復例あり。
+  </div>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>CSF</td><td>Cerebrospinal Fluid(脳脊髄液)</td></tr>
+        <tr><td>CSFP</td><td>CSF Pressure。正常 5-15 cmH₂O(臥位)</td></tr>
+        <tr><td>SCPP</td><td>Spinal Cord Perfusion Pressure。SCPP = MAP − CSFP</td></tr>
+        <tr><td>MAP</td><td>Mean Arterial Pressure(平均動脈圧)</td></tr>
+        <tr><td>EDM</td><td>External Drainage Monitor(髄液ドレナージ + 圧モニター回路)</td></tr>
+        <tr><td>Tuohy 針</td><td>硬膜外/髄腔穿刺に用いる弯曲先端針</td></tr>
+        <tr><td>Coselli trial</td><td>CSFドレナージの有効性を示したRCT(2002)</td></tr>
+        <tr><td>Crawford 分類</td><td>胸腹部大動脈瘤の範囲分類。II型がCSF最適応</td></tr>
+        <tr><td>Subdural hematoma</td><td>硬膜下血腫。過剰ドレナージで生じうる重篤合併症</td></tr>
+        <tr><td>Blood patch</td><td>自家血を硬膜外腔に注入し穿刺孔を閉鎖。post-LP headacheに有効</td></tr>
+        <tr><td>COCKPIT プロトコル</td><td>遅発性対麻痺発症時の救済介入セット</td></tr>
+        <tr><td>SVS / ESVS / JSVS</td><td>米国/欧州/日本 血管外科学会</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="csf_drainage.html">このページのv1</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Division of Cardiovascular Surgery, Sapporo Medical University</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 Brain Isolation</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  // Highlight current page in the top text-based page nav
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+  const questions = [
+    {q:"SCPP(脊髄灌流圧)の公式として正しいのはどれか。",choices:["SCPP = CVP - CSFP","SCPP = MAP - CSFP","SCPP = MAP + CSFP","SCPP = MAP - PVR"],correct:1,explain:"SCPP = MAP(平均動脈圧)− CSFP(脳脊髄液圧)。CSFドレナージはCSFPを下げて分母を縮小し、SCPPを確保する操作。"},
+    {q:"CSFドレナージで維持すべきCSFPの目標値として一般的なのはどれか。",choices:["< 5 mmHg","< 10 mmHg","< 20 mmHg","< 30 mmHg"],correct:1,explain:"CSFPの目標は通常 < 10 mmHg(8mmHg以下がより安全)。ただし下げすぎると硬膜下血腫リスクが上昇するため、5mmHg未満を継続するのは避ける。"},
+    {q:"CSFドレナージの最も警戒すべき重篤合併症はどれか。",choices:["頭痛","硬膜下血腫","発熱","低血圧"],correct:1,explain:"硬膜下血腫(1-3%)は致死的合併症。過剰ドレナージで脳が下垂し架橋静脈が裂傷する。ドレナージ速度を10-15 mL/h以下に厳守すること。"},
+    {q:"CSFドレナージカテーテルの穿刺部位として標準的なのはどれか。",choices:["C7-T1","T6-T7","L3-L4 または L4-L5","S2-S3"],correct:2,explain:"脊髄円錐(終末)はL1-L2なので、L3以下で穿刺すれば脊髄損傷を回避できる。腰椎穿刺と同じくL3-L4またはL4-L5を選択する。"},
+    {q:"Coselli らのRCT(2002)で示されたCSFドレナージの効果として正しいのはどれか。",choices:["全死亡率を50%減少","対麻痺/不全対麻痺の発生を約80%相対減少","入院期間を半減","感染症の予防"],correct:1,explain:"Crawford I/II型TAAA 145例のRCTで、CSFドレナージ群は対麻痺発生率を80%相対減少(13% → 2.6%)。これがSVS等のClass I推奨の根拠。"},
+    {q:"CSFドレナージの禁忌として正しいのはどれか。",choices:["糖尿病","凝固障害(INR>1.5など)","軽度貧血","高血圧"],correct:1,explain:"凝固障害は硬膜下血腫・脊髄硬膜外血腫リスクを増大させる絶対〜相対禁忌。INR>1.5、血小板<100,000、抗凝固薬服用中は慎重判断。"},
+    {q:"術後 遅発性対麻痺(delayed paraplegia)発症時のCOCKPITプロトコルの内容として誤っているのはどれか。",choices:["CSF排液強化(CSFP < 5 mmHg)","MAP上昇(>100 mmHg)","酸素化向上(SpO2 >95%)","抗凝固薬の追加投与"],correct:3,explain:"COCKPITプロトコルは ①CSF排液強化 ②MAP↑ ③酸素化↑ ④適切なヘマトクリット(30%以上)で脊髄灌流を最大化する救済介入。抗凝固薬追加は含まれない(むしろ出血リスクで悪化させうる)。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+
+<script>
+/* === Version switch (v1 ⇄ v2) === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var a=document.createElement('a');
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
+  document.body.appendChild(a);
+})();
+</script>
+
+</body>
+</html>

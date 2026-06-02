@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IABP(大動脈内バルーンパンピング)― 医学生のために (v2)</title>
+<meta name="description" content="最も歴史が長く、最も簡便な機械的補助循環 ― 拡張期増強と後負荷軽減">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .phase-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem;margin:.7rem 0}
+  .phase-card .phase-title{color:var(--navy);font-weight:700;margin-bottom:.3rem}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#what">IABPとは</a>
+      <a href="#mechanism">作用機序</a>
+      <a href="#components">構造・回路</a>
+      <a href="#timing">タイミング</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>IABP<br><span class="accent">(大動脈内バルーンパンピング)</span></h1>
+    <p class="lead">最も歴史が長く、最も簡便な機械的補助循環 ― 拡張期増強と後負荷軽減</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>9</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>7</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>1</strong> 図解</span>
+    </div>
+  </div>
+  <a href="#what" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#what">IABPとは</a>
+    <a href="#mechanism">作用機序</a>
+    <a href="#components">構造・回路</a>
+    <a href="#timing">タイミング</a>
+    <a href="#indication">適応・禁忌</a>
+    <a href="#management">管理</a>
+    <a href="#complications">合併症</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section class="content reveal" id="what">
+  <h2>1. IABP とは</h2>
+
+  <div class="ref-figure wide">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blausen_0468_Heart-Lung_Machine.png"
+         alt="人工心肺(heart-lung machine)の回路図"
+         loading="lazy">
+    <div class="ref-caption">
+      <strong>人工心肺(CPB)の基本回路</strong>(BruceBlaus / Blausen Medical)<br>
+      ① 静脈脱血 → ② 貯血槽 → ③ ポンプ → ④ 人工肺・熱交換器 → ⑤ 動脈送血。
+      心血管手術中、心臓と肺の役割を装置が一時的に肩代わりする。
+    </div>
+    <div class="ref-attribution">
+      画像出典:BruceBlaus ―
+      <a href="https://commons.wikimedia.org/wiki/File:Blausen_0468_Heart-Lung_Machine.png" target="_blank" rel="noopener">Wikimedia Commons (CC BY 3.0)</a>
+    </div>
+  </div>
+
+  <p><strong>IABP(Intra-Aortic Balloon Pumping、大動脈内バルーンパンピング)</strong>は、<u>下行大動脈にバルーンカテーテルを留置し、心拍に同期して拡張・収縮させる補助循環装置</u>です。1968年Kantrowitzにより臨床応用された、<strong>最も歴史が長く・最も普及している機械的補助循環(MCS: Mechanical Circulatory Support)</strong>です。</p>
+
+  <h3>3行サマリ</h3>
+  <ul>
+    <li><strong>装置:</strong> 30-50mLのヘリウム充填バルーン + コンソール(ガス制御・トリガー)</li>
+    <li><strong>原理:</strong> 拡張期にバルーンを膨らませ <u>冠血流↑</u>、収縮期に縮めて <u>後負荷↓</u></li>
+    <li><strong>位置づけ:</strong> 心拍出量増加は <strong>0.5-1.0 L/min(約10-15%)</strong> 程度と限定的。重症例ではVA-ECMOやImpellaを併用・移行</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 「補助」の意味:</strong> IABPはあくまで <u>自己心拍に同期した「補助」</u>。心停止状態では機能しない(同期トリガーが取れない)。完全な代替循環が必要なら VA-ECMO や Impella を選択。
+  </div>
+</section>
+
+<section class="content reveal" id="mechanism">
+  <h2>2. 作用機序 ― 2つの効果</h2>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① Diastolic augmentation(拡張期増強)</h4>
+      <div class="role">冠血流↑</div>
+      <p>拡張期にバルーンを膨らませる → 大動脈基部圧↑ → <u>冠動脈灌流圧↑ → 心筋酸素供給↑</u>。冠血流の約80%は拡張期に流れるため効果大。</p>
+    </div>
+    <div class="component-card">
+      <h4>② Afterload reduction(後負荷軽減)</h4>
+      <div class="role">心仕事量↓</div>
+      <p>収縮期直前にバルーンを縮める → 大動脈内に「空間」を作る → <u>左室後負荷↓ → 心筋酸素需要↓・拍出量↑</u>。</p>
+    </div>
+  </div>
+
+  <h3>需給バランス改善 ― IABPの本質</h3>
+  <p>IABPは <strong>心筋酸素需給バランスを両方向から改善</strong> する点が特徴です:</p>
+  <ul>
+    <li><strong>供給(supply)↑</strong>: 拡張期増強で冠血流増加</li>
+    <li><strong>需要(demand)↓</strong>: 後負荷軽減で心仕事量低下</li>
+  </ul>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IABPの圧波形">
+      <text x="280" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">IABPによる動脈圧波形の変化</text>
+
+      <!-- Axes -->
+      <line x1="50" y1="220" x2="540" y2="220" stroke="#000" stroke-width="1"/>
+      <line x1="50" y1="50" x2="50" y2="220" stroke="#000" stroke-width="1"/>
+      <text x="30" y="60" font-size="10" fill="#000">mmHg</text>
+      <text x="540" y="240" font-size="10" fill="#000" text-anchor="end">時間→</text>
+
+      <!-- Unassisted (gray dotted): one cardiac cycle -->
+      <path d="M 60 200 L 80 200 L 100 90 L 120 110 L 140 130 L 160 140 L 180 145 L 200 150 L 220 150" stroke="#999" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+      <text x="135" y="80" font-size="10" fill="#999">補助なし</text>
+
+      <!-- Assisted -->
+      <path d="M 230 200 L 250 200 L 270 90 L 285 110 L 295 70 L 310 75 L 325 80 L 340 90 L 360 105 L 380 200" stroke="#c62828" stroke-width="2.5" fill="none"/>
+
+      <!-- Augmented diastolic pressure label -->
+      <line x1="298" y1="70" x2="380" y2="40" stroke="#c62828" stroke-width="1"/>
+      <text x="385" y="45" font-size="10" fill="#c62828" font-weight="bold">①拡張期増強 (Augmentation)</text>
+      <text x="385" y="58" font-size="9" fill="#c62828">→ 冠血流↑</text>
+
+      <!-- Reduced systolic / end-diastolic dip -->
+      <circle cx="380" cy="200" r="4" fill="#1565c0"/>
+      <line x1="383" y1="200" x2="450" y2="240" stroke="#1565c0" stroke-width="1"/>
+      <text x="455" y="245" font-size="10" fill="#1565c0" font-weight="bold">②拡張末期圧↓</text>
+      <text x="455" y="258" font-size="9" fill="#1565c0">→ 後負荷↓・需要↓</text>
+
+      <!-- Second assisted beat (partial) -->
+      <path d="M 380 200 L 400 200 L 420 95 L 435 115 L 445 75 L 460 80 L 475 85 L 490 95 L 510 110" stroke="#c62828" stroke-width="2.5" fill="none"/>
+
+      <text x="295" y="245" font-size="10" fill="#0b2545" text-anchor="middle">補助あり (1:1)</text>
+    </svg>
+  </div>
+</section>
+
+<section class="content reveal" id="components">
+  <h2>3. 構造と回路</h2>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① バルーン</h4>
+      <div class="role">主役</div>
+      <p>ポリウレタン製、容量 <strong>30-50mL(体格による)</strong>。ヘリウムガスで膨らむ(低粘性で高速移動可・万一破損時の安全性)。</p>
+    </div>
+    <div class="component-card">
+      <h4>② カテーテル(8-8.5Fr)</h4>
+      <div class="role">送達</div>
+      <p>大腿動脈経由が標準。先端は <u>左鎖骨下動脈分岐の遠位 1-2cm(下行大動脈)</u> に留置。胸部X線でカルテラ角(気管分岐部)を目安に。</p>
+    </div>
+    <div class="component-card">
+      <h4>③ ヘリウムガスコンソール</h4>
+      <div class="role">駆動装置</div>
+      <p>バルーンへのガス送排気を制御。トリガー検出(ECG/動脈圧)・タイミング・比率(1:1〜1:3)を設定。バッテリ稼働可で搬送に対応。</p>
+    </div>
+    <div class="component-card">
+      <h4>④ トリガー</h4>
+      <div class="role">同期信号</div>
+      <p><strong>ECGトリガー(R波)</strong> が最も一般的。動脈圧トリガー(立ち上がり)、内部トリガー(心停止・無脈時の固定レート)も選択可。</p>
+    </div>
+  </div>
+
+  <h3>留置位置(重要)</h3>
+  <p>バルーン先端は <strong>左鎖骨下動脈分岐の遠位、腹腔動脈の近位</strong> に留置します。具体的には:</p>
+  <ul>
+    <li>頭側に寄りすぎる → 左鎖骨下動脈・椎骨動脈閉塞、脳虚血</li>
+    <li>尾側に寄りすぎる → 腎動脈・腹腔動脈閉塞、腸管虚血・AKI</li>
+    <li>X線目安: バルーン先端が <u>気管分岐部(Th5-6相当)</u> あたり</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="timing">
+  <h2>4. タイミングと比率</h2>
+
+  <h3>Inflation / Deflation のタイミング</h3>
+  <ul>
+    <li><strong>Inflation(拡張):</strong> 大動脈弁閉鎖の瞬間(動脈圧波形の <u>dicrotic notch</u>)</li>
+    <li><strong>Deflation(収縮):</strong> 次の収縮期直前(R波付近、大動脈弁開放直前)</li>
+  </ul>
+
+  <h3>タイミング異常 ― 4パターン</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>異常</th><th>波形所見</th><th>悪影響</th></tr></thead>
+    <tbody>
+      <tr><td>Early inflation(早すぎ拡張)</td><td>dicrotic notch前に拡張波</td><td>大動脈弁閉鎖前 → 後負荷↑・心仕事量↑(逆効果)</td></tr>
+      <tr><td>Late inflation(遅すぎ拡張)</td><td>dicrotic notch遅れて拡張</td><td>拡張期増強効果が減弱</td></tr>
+      <tr><td>Early deflation(早すぎ収縮)</td><td>拡張期増強波が早く下がる</td><td>後負荷軽減効果↓、逆流(U字波形)</td></tr>
+      <tr><td>Late deflation(遅すぎ収縮)</td><td>拡張末期圧↓ なし、収縮初期がV字</td><td>後負荷↑(バルーンが残ったまま心臓が押し出すため)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>サポート比率</h3>
+  <ul>
+    <li><strong>1:1(フルサポート)</strong>: 毎心拍補助。導入時・重症時</li>
+    <li><strong>1:2 / 1:3(weaning)</strong>: 2拍/3拍に1回補助。離脱期に段階的に減らす</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 離脱の目安:</strong> 1:1 → 1:2 → 1:3 に減らしても血行動態安定(MAP維持、乳酸正常、CI ≥ 2.2)なら抜去可。一般に 24-72時間で離脱を目指す。
+  </div>
+</section>
+
+<section class="content reveal" id="indication">
+  <h2>5. 適応と禁忌</h2>
+
+  <h3>主な適応</h3>
+  <ul>
+    <li><strong>心原性ショック(cardiogenic shock)</strong>: AMI後、weaning困難、橋渡し</li>
+    <li><strong>急性心筋梗塞の機械的合併症</strong>: 急性MR(乳頭筋断裂)、VSP(心室中隔穿孔)、自由壁破裂</li>
+    <li><strong>不安定狭心症の薬物抵抗性</strong>: 待機手術までの橋渡し</li>
+    <li><strong>CPB離脱困難(post-cardiotomy)</strong>: 心筋スタニング期間の補助</li>
+    <li><strong>ハイリスクPCI / CABG 周術期</strong>: 術中・術後の予防的補助</li>
+    <li><strong>心移植・LVAD への橋渡し(bridge to decision/transplant)</strong></li>
+  </ul>
+
+  <div class="callout">
+    <strong>📝 エビデンス(IABP-SHOCK II):</strong> AMI後心原性ショックで IABP vs 通常治療の RCT(2012, NEJM)。<u>30日・1年・6年死亡率いずれも有意差なし</u>。これを受けて欧米GLでは推奨度が下がり(ESC class IIIa→III/IIb)、しかし日本含めアジア圏では依然頻用される(他のMCSへのアクセス・経験差)。
+  </div>
+
+  <h3>禁忌</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>絶対禁忌</th><th>相対禁忌</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul>
+            <li>重症大動脈弁逆流(AR)<br><small>※拡張期増強がAR悪化を加速</small></li>
+            <li>急性大動脈解離</li>
+            <li>大動脈ステントグラフト留置後(脱落リスク)</li>
+            <li>不可逆的多臓器不全</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>高度末梢動脈疾患(PAD)</li>
+            <li>大動脈瘤</li>
+            <li>重症出血傾向・血小板減少</li>
+            <li>敗血症</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal" id="management">
+  <h2>6. 管理のポイント</h2>
+
+  <h3>モニタリング項目</h3>
+  <ul>
+    <li><strong>血行動態:</strong> 動脈圧波形(diastolic augmentation・タイミング)、MAP、CI、SvO₂、乳酸</li>
+    <li><strong>下肢循環:</strong> 両足背動脈触知・SpO₂、皮膚色・温度を <u>1-2時間毎</u> に評価</li>
+    <li><strong>カテーテル位置:</strong> 毎日胸部X線、留置長(挿入長の変化)</li>
+    <li><strong>抗凝固:</strong> ヘパリン持続(APTT 50-70秒目安)。HIT既往ではアルガトロバン</li>
+    <li><strong>溶血:</strong> 血漿遊離Hb、LDH、Hb・Hct トレンド</li>
+    <li><strong>血小板:</strong> バルーンによる機械的破壊で減少傾向 → HITとの鑑別</li>
+  </ul>
+
+  <h3>体位</h3>
+  <ul>
+    <li><strong>頭部挙上 30° まで可</strong>。それ以上は鼠径屈曲によるカテーテル屈曲・断裂リスク</li>
+    <li>留置側下肢は <u>屈曲禁止</u>。シーネ固定も選択肢</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ アラーム対応の原則:</strong> 「ガス漏れ」「血液逆流(チューブが赤い)」を見たら <u>直ちにバルーンを停止し、抜去準備</u>。バルーン破損 → ヘリウムガス塞栓・血栓形成のリスク。
+  </div>
+</section>
+
+<section class="content reveal" id="complications">
+  <h2>7. 合併症</h2>
+
+  <h3>頻度の高い合併症</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>合併症</th><th>頻度</th><th>機序・対応</th></tr></thead>
+    <tbody>
+      <tr><td>下肢虚血</td><td>5-20%</td><td>大腿動脈閉塞・血栓。両足背動脈で観察。重症ならカテーテル抜去・血栓除去</td></tr>
+      <tr><td>出血(穿刺部)</td><td>2-5%</td><td>抗凝固+大口径カテーテル。圧迫止血、Hb トレンド</td></tr>
+      <tr><td>血小板減少</td><td>50%以上で軽度</td><td>機械的破壊。<u>HITとの鑑別必須</u>(4Tsスコア)</td></tr>
+      <tr><td>溶血</td><td>軽度はほぼ必発</td><td>遊離Hb・LDH↑。重症なら抜去検討</td></tr>
+      <tr><td>感染</td><td>1-3%</td><td>長期留置・大腿穿刺。発熱・WBC↑時は血培</td></tr>
+      <tr><td>バルーン破損</td><td><1%</td><td>血液逆流が指標。直ちに停止・抜去</td></tr>
+      <tr><td>大動脈解離・損傷</td><td><1%</td><td>挿入時・留置中。突然の腹背部痛・血行動態破綻</td></tr>
+      <tr><td>腎動脈閉塞</td><td>稀</td><td>カテーテル尾側偏位 → 尿量↓・Cr↑</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout danger">
+    <strong>⚠ 下肢虚血は最頻合併症:</strong> 「6P(Pain, Pallor, Pulseless, Paresthesia, Paralysis, Poikilothermia)」を意識。検知が遅れると <u>コンパートメント症候群・横紋筋融解 → AKI</u> に至る。
+  </div>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>IABP</td><td>Intra-Aortic Balloon Pumping(大動脈内バルーンパンピング)</td></tr>
+      <tr><td>MCS</td><td>Mechanical Circulatory Support(機械的補助循環)</td></tr>
+      <tr><td>Diastolic augmentation</td><td>拡張期増強。冠血流を増やす効果</td></tr>
+      <tr><td>Afterload reduction</td><td>後負荷軽減。心仕事量を減らす効果</td></tr>
+      <tr><td>Dicrotic notch</td><td>動脈圧波形の重複切痕。大動脈弁閉鎖の指標</td></tr>
+      <tr><td>Trigger</td><td>同期信号。ECG(R波)・動脈圧・内部</td></tr>
+      <tr><td>1:1 / 1:2 / 1:3</td><td>サポート比率。離脱時に段階的に減らす</td></tr>
+      <tr><td>Helium gas</td><td>バルーン充填ガス。低粘性・破損時の塞栓リスク低</td></tr>
+      <tr><td>IABP-SHOCK II</td><td>2012 NEJM RCT。AMI後ショックで生存利益なし</td></tr>
+      <tr><td>Cardiogenic shock</td><td>心原性ショック。最大の適応</td></tr>
+      <tr><td>Weaning</td><td>離脱。1:1 → 1:2 → 1:3 で段階的に</td></tr>
+      <tr><td>6P</td><td>下肢虚血の症候。Pain/Pallor/Pulseless/Paresthesia/Paralysis/Poikilothermia</td></tr>
+    </tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="iabp.html">このページのv1</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Division of Cardiovascular Surgery, Sapporo Medical University</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 Brain Isolation</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+  const questions = [
+    {q:"IABPの2大効果として正しいのは?",choices:["拡張期増強 + 前負荷軽減","拡張期増強 + 後負荷軽減","収縮期増強 + 後負荷軽減","収縮期増強 + 前負荷軽減"],correct:1,explain:"IABPは①拡張期にバルーンを膨らませて冠血流を増やす(diastolic augmentation)、②収縮期直前に縮めて後負荷を軽減する(afterload reduction)。心筋の需給両面を改善する。"},
+    {q:"IABPバルーン先端の標準的な留置位置はどこか。",choices:["腕頭動脈分岐","左鎖骨下動脈分岐の遠位 1-2cm","腹腔動脈の遠位","総腸骨動脈分岐"],correct:1,explain:"バルーン先端は左鎖骨下動脈分岐の遠位 1-2cm(下行大動脈)に留置。頭側偏位で左鎖骨下/椎骨動脈閉塞、尾側偏位で腎・腹腔動脈閉塞のリスク。胸部X線で気管分岐部を目安にする。"},
+    {q:"IABPの絶対禁忌はどれか。",choices:["軽症ASR","重症大動脈弁逆流(AR)","軽症MR","僧帽弁狭窄"],correct:1,explain:"重症ARではIABPの拡張期増強が逆流を悪化させ、肺水腫・LV負荷増大を招く。急性大動脈解離・大動脈ステントグラフト留置後も絶対禁忌。"},
+    {q:"IABPに使用されるガスとして適切なのは?",choices:["酸素","二酸化炭素","ヘリウム","窒素"],correct:2,explain:"ヘリウムは低粘性で高速移動が可能、また万一バルーン破損で血中に漏出してもガス塞栓のリスクが他のガスより低いため選択される。"},
+    {q:"IABPで最も頻度の高い合併症はどれか。",choices:["脳梗塞","下肢虚血","大動脈解離","ヘリウム塞栓"],correct:1,explain:"下肢虚血は5-20%と最も頻度が高い。大口径カテーテル(8-8.5Fr)による大腿動脈閉塞・血栓が原因。両足背動脈の触知を1-2時間毎にチェック。"},
+    {q:"IABPの離脱(weaning)の方法として正しいのは?",choices:["突然停止して抜去","1:1 → 1:2 → 1:3 と段階的に補助比率を下げる","ガス容量を半分にする","心拍数を下げる"],correct:1,explain:"離脱は補助比率(支援頻度)を 1:1 → 1:2 → 1:3 と段階的に下げ、各段階で血行動態(MAP、CI、乳酸)が安定することを確認してから抜去する。ガス容量を変えるのではない。"},
+    {q:"IABP-SHOCK II 試験(2012, NEJM)の結論として正しいのは?",choices:["AMI後ショックでIABPが30日死亡率を有意に改善","AMI後ショックでIABPと通常治療で生存率に差はなかった","AMI後ショックでIABPが脳卒中を増やした","VA-ECMOよりIABPが優れていた"],correct:1,explain:"IABP-SHOCK IIではAMI後心原性ショック患者でIABPと通常治療を比較し、30日・1年・6年死亡率いずれも有意差を認めなかった。これを受けて欧米ガイドラインでは推奨度が下がった。ただし日本では依然頻用されている。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+
+<script>
+/* === Version switch (v1 ⇄ v2) === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var a=document.createElement('a');
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
+  document.body.appendChild(a);
+})();
+</script>
+
+</body>
+</html>

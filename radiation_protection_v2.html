@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>放射線防御の三原則 ― 医学生のために (v2)</title>
+<meta name="description" content="距離・時間・遮蔽 ― ハイブリッド手術時代の必須知識">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .principle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.9rem;margin-top:1rem}
+  .principle-card{background:linear-gradient(135deg,#fff,#fafbfd);border:1px solid var(--border);border-top:5px solid var(--accent);border-radius:10px;padding:1.2rem 1.1rem;text-align:center;box-shadow:var(--shadow)}
+  .principle-card .icon{font-size:2.5rem;margin-bottom:.3rem}
+  .principle-card .label{font-size:.8rem;color:var(--muted);letter-spacing:.05em;margin-bottom:.2rem}
+  .principle-card h4{color:var(--navy);font-size:1.2rem;margin-bottom:.4rem}
+  .principle-card p{font-size:.85rem;text-align:left;margin-top:.5rem}
+  .principle-card.p1{border-top-color:#c62828}
+  .principle-card.p2{border-top-color:#ef6c00}
+  .principle-card.p3{border-top-color:#1565c0}
+  .distance-table{margin-top:.8rem}
+  .distance-table td:first-child{background:#fff0f0;font-weight:600}
+  .shield-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-top:.8rem}
+  .shield-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.8rem 1rem}
+  .shield-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .shield-card .protect{font-size:.78rem;color:var(--accent);margin-bottom:.3rem}
+  .shield-card p{font-size:.83rem}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .effect-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .effect-grid > div{padding:1rem;border-radius:8px}
+  .effect-stoch{background:#fff3e0;border-left:4px solid var(--warn)}
+  .effect-det{background:#ffebee;border-left:4px solid var(--danger)}
+  .effect-grid h4{margin-bottom:.5rem}
+  .effect-stoch h4{color:var(--warn)}
+  .effect-det h4{color:var(--danger)}
+  .alara-box{background:linear-gradient(135deg,#0b2545,#13315c);color:#fff;padding:1.2rem;border-radius:10px;text-align:center;margin:1rem 0;box-shadow:var(--shadow-lg)}
+  .alara-box .acronym{font-size:1.5rem;font-weight:700;letter-spacing:.1em;margin-bottom:.4rem}
+  .alara-box .desc{font-size:.95rem;opacity:.95}
+  .menu-toggle{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#why">なぜ重要か</a>
+      <a href="#basics">放射線の基礎</a>
+      <a href="#three">三原則</a>
+      <a href="#distance">距離</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>放射線防御の三原則</h1>
+    <p class="lead">距離・時間・遮蔽 ― ハイブリッド手術時代の必須知識</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>10</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>1</strong> 図解</span>
+    </div>
+  </div>
+  <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#why">なぜ重要か</a>
+    <a href="#basics">放射線の基礎</a>
+    <a href="#three">三原則</a>
+    <a href="#distance">距離</a>
+    <a href="#time">時間</a>
+    <a href="#shield">遮蔽</a>
+    <a href="#limit">線量限度</a>
+    <a href="#cvs">CVS現場で</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note" aria-label="重要なお知らせ">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+  </div>
+</div>
+
+<section class="content reveal" id="why">
+  <h2>1. なぜ放射線防御が重要か</h2>
+  <p>心血管外科の現場では、医師・看護師・技師が <strong>透視を伴う手技</strong> に頻繁に関わります。被曝は累積する一方であり、若いうちから正しい防護習慣を身につけることが、将来の健康(発癌・白内障など)を守ります。</p>
+
+  <h3>CVS現場での放射線被曝シーン</h3>
+  <ul>
+    <li><strong>ハイブリッド手術室での TEVAR / EVAR</strong>(術者・助手・看護師全員が透視下)</li>
+    <li><strong>PCI / CAG</strong>(冠動脈造影・形成術)</li>
+    <li><strong>TAVI / MitraClip</strong>(構造的心疾患カテーテル治療)</li>
+    <li><strong>術中血管造影</strong>(open手術 + 術中DSA)</li>
+    <li>術後のフォローCT撮影室付近</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ 被曝の特徴:</strong>
+    <ul style="margin-top:.4rem">
+      <li><strong>蓄積性</strong>:数十年単位で蓄積、若手のうちから対策が重要</li>
+      <li><strong>無症状</strong>:被曝した直後に痛みなどの自覚症状はない</li>
+      <li><strong>不可逆性</strong>:後から「やり直し」がきかない</li>
+      <li><strong>個人差</strong>:被曝感受性は遺伝的差異あり</li>
+    </ul>
+  </div>
+</section>
+
+<section class="content reveal" id="basics">
+  <h2>2. 放射線の基礎</h2>
+
+  <h3>医療で扱う電離放射線</h3>
+  <ul>
+    <li><strong>X線:</strong> 透視・CT・血管造影で使用(最も頻度高い)</li>
+    <li><strong>γ線:</strong> 核医学検査・放射線治療</li>
+    <li><strong>α線・β線:</strong> 放射性同位元素治療</li>
+  </ul>
+
+  <h3>線量の単位</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>単位</th><th>意味</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Gy(グレイ)</strong></td><td>吸収線量(物質1kgが吸収するエネルギー)</td><td>装置から発する物理量</td></tr>
+        <tr><td><strong>Sv(シーベルト)</strong></td><td>等価線量・実効線量(放射線の人体影響を反映)</td><td>被曝量の管理に使う標準</td></tr>
+        <tr><td>mSv</td><td>1/1000 Sv</td><td>個人線量計の表示</td></tr>
+        <tr><td>μSv</td><td>1/1000 mSv</td><td>1日分の被曝など微量</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>身近な被曝量の目安</h3>
+  <ul>
+    <li>自然放射線(日本平均): 約 <strong>2.1 mSv/年</strong></li>
+    <li>胸部単純X線1回: 約 <strong>0.05 mSv</strong></li>
+    <li>胸部CT1回: 約 <strong>5-10 mSv</strong></li>
+    <li>CAG / PCI(術者の被曝): 1回あたり 0.05-0.5 mSv</li>
+    <li>EVAR(術者): 1回あたり 0.1-0.5 mSv(症例による)</li>
+  </ul>
+
+  <div class="alara-box">
+    <div class="acronym">ALARA 原則</div>
+    <div class="desc"><strong>A</strong>s <strong>L</strong>ow <strong>A</strong>s <strong>R</strong>easonably <strong>A</strong>chievable<br>「合理的に達成可能な限り低く」― 全ての放射線業務の基本姿勢</div>
+  </div>
+</section>
+
+<section class="content reveal" id="three">
+  <h2>3. 放射線防御の三原則</h2>
+  <p>外部被曝を低減するための <strong>3つの柱</strong> です。これらは独立ではなく、組み合わせて最大効果を発揮します。</p>
+
+  <div class="principle-grid">
+    <div class="principle-card p1">
+      <div class="icon">📏</div>
+      <div class="label">PRINCIPLE 1</div>
+      <h4>距離(Distance)</h4>
+      <p>線源から離れる。<strong>距離の二乗に反比例</strong>して線量が減衰(逆二乗の法則)。2倍離れると 1/4 に。</p>
+    </div>
+    <div class="principle-card p2">
+      <div class="icon">⏱️</div>
+      <div class="label">PRINCIPLE 2</div>
+      <h4>時間(Time)</h4>
+      <p>被曝時間を短縮。透視時間に <strong>比例</strong> して被曝量が増える。パルス透視・低線量モードの活用。</p>
+    </div>
+    <div class="principle-card p3">
+      <div class="icon">🛡️</div>
+      <div class="label">PRINCIPLE 3</div>
+      <h4>遮蔽(Shielding)</h4>
+      <p>鉛などで物理的に遮断。<strong>0.5 mmPb の鉛エプロン</strong> で X線の 95%以上を吸収。</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 覚え方:</strong> 「<u>遠く・短く・遮る</u>(Distance, Time, Shielding)」― この順で考えると最も効果的。<br>
+    まず可能な限り離れて(距離が最強)、それでも被曝する分を時間短縮で減らし、残りを鉛で遮蔽する。
+  </div>
+</section>
+
+<section class="content reveal" id="distance">
+  <h2>4. 原則1:距離 ― 逆二乗の法則</h2>
+  <p>線源(患者体内)からの距離を <strong>r</strong> とすると、被曝線量は <strong>1/r²</strong> に比例します。これは点線源から放出された放射線が球面状に広がるためです。</p>
+
+  <h3>距離 vs 線量 ― 早見表</h3>
+  <div class="table-wrap">
+    <table class="distance-table">
+      <thead><tr><th>距離(m)</th><th>相対線量</th><th>具体例</th></tr></thead>
+      <tbody>
+        <tr><td>0.5 m</td><td>4.0(基準)</td><td>術者の標準位置</td></tr>
+        <tr><td>1.0 m</td><td>1.0(1/4)</td><td>第二介助の位置</td></tr>
+        <tr><td>2.0 m</td><td>0.25(1/16)</td><td>麻酔科医・看護師の標準位置</td></tr>
+        <tr><td>3.0 m</td><td>0.11(1/36)</td><td>透視室の外周</td></tr>
+        <tr><td>5.0 m</td><td>0.04(1/100)</td><td>操作室・コントロール室</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 540 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="逆二乗の法則の模式図">
+      <text x="270" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">逆二乗の法則:距離2倍 → 線量1/4</text>
+
+      <!-- Source -->
+      <circle cx="60" cy="130" r="15" fill="#c62828"/>
+      <text x="60" y="135" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">線源</text>
+      <text x="60" y="160" font-size="9" fill="#c62828" text-anchor="middle">(患者体内)</text>
+
+      <!-- Distance 0.5m circle (small, red) -->
+      <circle cx="60" cy="130" r="60" fill="none" stroke="#c62828" stroke-width="2" stroke-dasharray="3,2"/>
+      <text x="120" y="80" font-size="10" fill="#c62828">0.5m: 線量 4</text>
+
+      <!-- Distance 1m circle -->
+      <circle cx="60" cy="130" r="120" fill="none" stroke="#ef6c00" stroke-width="2" stroke-dasharray="3,2"/>
+      <text x="185" y="50" font-size="10" fill="#ef6c00">1m: 線量 1</text>
+
+      <!-- Distance 2m circle -->
+      <circle cx="60" cy="130" r="200" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="3,2"/>
+      <text x="270" y="25" font-size="10" fill="#2e7d32">2m: 線量 0.25</text>
+
+      <!-- People at distances -->
+      <text x="115" y="135" font-size="20">🧑‍⚕️</text>
+      <text x="170" y="135" font-size="20">👨‍⚕️</text>
+      <text x="255" y="135" font-size="20">👩‍⚕️</text>
+
+      <text x="135" y="190" font-size="9" fill="#c62828">術者</text>
+      <text x="180" y="190" font-size="9" fill="#ef6c00">助手</text>
+      <text x="260" y="190" font-size="9" fill="#2e7d32">麻酔/看護</text>
+    </svg>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem">距離は最も効果が大きく、コストもかからない最強の防御策。</p>
+  </div>
+
+  <h3>距離を稼ぐ具体的な工夫</h3>
+  <ul>
+    <li><strong>必要のない時は1歩後ろに下がる</strong>(透視中、自分が処置していない瞬間)</li>
+    <li>術中の補助業務は <u>透視Off の時</u> にまとめて行う</li>
+    <li>遠隔操作可能な機器(注入器のリモコン等)を活用</li>
+    <li>透視室の中で必要のない人員は <u>退室 or 衝立の後ろへ</u></li>
+  </ul>
+</section>
+
+<section class="content reveal" id="time">
+  <h2>5. 原則2:時間 ― 短縮の工夫</h2>
+  <p>被曝量は <strong>透視時間に直接比例</strong> します。「漫然と透視を流し続けない」が鉄則。</p>
+
+  <h3>時間短縮のテクニック</h3>
+  <ul>
+    <li><strong>パルス透視:</strong> 連続透視ではなく、1秒間に7.5・15・30回などのパルスにする。フレームレート低下で被曝量を1/2-1/4に</li>
+    <li><strong>低線量モード:</strong> 機種により low-dose mode で線量を50-70%削減可能</li>
+    <li><strong>Last Image Hold:</strong> 透視を切っても最後の画像が表示される機能を活用、確認のための透視を減らす</li>
+    <li><strong>Image collimation(絞り):</strong> 必要な範囲だけ透視 → 散乱線も減る</li>
+    <li><strong>術前計画の徹底:</strong> 不確実な手探りで透視時間を延ばさない</li>
+    <li><strong>シネ撮影は最小限に:</strong> シネ(高画質撮影)は透視の10-30倍の線量</li>
+    <li><strong>角度変更は静止画で確認:</strong> 透視Onのまま動かない</li>
+  </ul>
+
+  <div class="callout">
+    <strong>📌 透視時間の記録:</strong> 多くの装置は累積透視時間・線量を表示する。手技後に確認・記録する習慣をつけると、自分の手技改善につながる。
+  </div>
+</section>
+
+<section class="content reveal" id="shield">
+  <h2>6. 原則3:遮蔽 ― 何を、どう守るか</h2>
+  <p>鉛(Pb)や鉛相当物で物理的に X線を吸収します。<strong>0.5 mmPb</strong> 相当で X線の約 95%以上を遮断できます。</p>
+
+  <h3>個人用防護具(PPE)</h3>
+  <div class="shield-grid">
+    <div class="shield-card">
+      <h4>🦺 鉛エプロン</h4>
+      <div class="protect">守るもの:体幹・性腺・骨髄</div>
+      <p>0.25-0.5 mmPb相当。ラップ式(前後二重)が望ましい。重量5-8kg → 整形外科疾患リスク。</p>
+    </div>
+    <div class="shield-card">
+      <h4>🛡 甲状腺プロテクター</h4>
+      <div class="protect">守るもの:甲状腺</div>
+      <p>甲状腺は放射線感受性が高い。エプロンと別に必ず装着。0.5 mmPb相当。</p>
+    </div>
+    <div class="shield-card">
+      <h4>👓 鉛入り眼鏡</h4>
+      <div class="protect">守るもの:水晶体</div>
+      <p>水晶体は被曝に弱く、白内障の原因。0.07-0.5 mmPb相当。<u>近年 限度値が厳格化</u>(後述)。</p>
+    </div>
+    <div class="shield-card">
+      <h4>🧤 鉛入り手袋</h4>
+      <div class="protect">守るもの:手指</div>
+      <p>透視直下に手を入れる手技で。ただし手袋に頼りすぎず、<u>透視外に手を出す習慣</u>が優先。</p>
+    </div>
+  </div>
+
+  <h3>固定式防護具</h3>
+  <ul>
+    <li><strong>鉛ガラス衝立(Pb glass barrier):</strong> 透視台の頭側に立てる。麻酔科医を守る</li>
+    <li><strong>天井吊り下げ式 鉛ガラス:</strong> 術者の頭部・眼を守る。CAG・PCI室の標準装備</li>
+    <li><strong>テーブルサイド 鉛カーテン:</strong> 透視台下にぶら下げ、患者からの散乱線を防ぐ</li>
+    <li><strong>個室の鉛壁:</strong> 透視室自体が鉛入り壁・扉で囲まれている</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ 散乱線(scatter)が主な被曝源:</strong> 術者・看護師の被曝は <u>X線管から直接ではなく、患者の体内で散乱した線</u> がメイン。だから「患者から離れる」「患者と自分の間に遮蔽物を置く」が重要。
+  </div>
+
+  <h3>装着順序の覚え方</h3>
+  <ol>
+    <li>① 鉛エプロン(下から)</li>
+    <li>② 甲状腺プロテクター</li>
+    <li>③ 鉛眼鏡</li>
+    <li>④ 鉛手袋(必要時)</li>
+    <li>⑤ 個人線量計 ― エプロン外側(襟元)と内側(腰)の2点が理想</li>
+  </ol>
+</section>
+
+<section class="content reveal" id="limit">
+  <h2>7. 線量限度と健康影響</h2>
+
+  <h3>職業被曝の線量限度(日本・ICRP勧告)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>限度</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>実効線量</td><td>100 mSv / 5年</td><td>かつ 50 mSv / 年を超えない</td></tr>
+        <tr><td><strong>水晶体(等価線量)</strong></td><td>100 mSv / 5年(かつ 50 mSv/年)</td><td>2020年改訂で <u>大幅厳格化</u>(以前は 150 mSv/年)</td></tr>
+        <tr><td>皮膚(等価線量)</td><td>500 mSv / 年</td><td>—</td></tr>
+        <tr><td>手・足(等価線量)</td><td>500 mSv / 年</td><td>—</td></tr>
+        <tr><td>妊娠中の女性(腹部)</td><td>2 mSv / 妊娠期間中</td><td>妊娠申告後</td></tr>
+        <tr><td>一般公衆</td><td>1 mSv / 年</td><td>医療従事者ではない人</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>放射線の生物学的影響(2分類)</h3>
+  <div class="effect-grid">
+    <div class="effect-stoch">
+      <h4>📊 確率的影響(stochastic)</h4>
+      <ul style="font-size:.86rem">
+        <li>線量に比例して <strong>発生確率</strong> が上昇(閾値なし)</li>
+        <li><strong>発癌</strong>(白血病、固形がん)</li>
+        <li>遺伝的影響(理論上)</li>
+        <li>低線量でも 0 ではない</li>
+      </ul>
+    </div>
+    <div class="effect-det">
+      <h4>⚠️ 確定的影響(deterministic)</h4>
+      <ul style="font-size:.86rem">
+        <li>閾値以上で <strong>必ず発症</strong>、重症度も線量依存</li>
+        <li><strong>白内障</strong>(閾値 0.5 Gy)</li>
+        <li>皮膚障害(脱毛・紅斑)</li>
+        <li>生殖機能低下</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 水晶体の閾値改訂:</strong> 2011年 ICRP勧告で白内障の閾値が <u>0.5 Gy</u> と従来より低く設定され、それを受けて日本でも2020年に職業限度を「水晶体 100 mSv/5年」と大幅厳格化。<u>循環器・IVR医師は鉛眼鏡が必須</u>に。
+  </div>
+</section>
+
+<section class="content reveal" id="cvs">
+  <h2>8. CVS現場での実践</h2>
+
+  <h3>ハイブリッド手術室(TEVAR / EVAR)</h3>
+  <ul>
+    <li>術者だけでなく <u>助手・スクラブナース・麻酔科・臨床工学技士・放射線技師</u> 全員がPPE装着</li>
+    <li>必要のない人員は <strong>鉛ガラスの後ろ・コントロール室</strong> へ退避</li>
+    <li>angio C-armの位置決めは透視Off状態で行う</li>
+    <li>DSA撮影中は、可能なら術者も鉛ガラス後ろへ一時退避</li>
+  </ul>
+
+  <h3>open手術中の透視併用(術中CAG・血管造影)</h3>
+  <ul>
+    <li>清潔野を維持しつつ可能な範囲で鉛防護</li>
+    <li>術者は透視中に手を直接照射野に入れない(手袋でも遮蔽不十分)</li>
+  </ul>
+
+  <h3>鉛エプロンの重量問題</h3>
+  <p>鉛エプロンは <strong>5-8 kg</strong> あり、長時間着用で腰痛・頚椎症の原因に。対策:</p>
+  <ul>
+    <li>2ピース型(上下分離)で重量分散</li>
+    <li>軽量化複合素材(0.25 mmPb相当でより軽い)</li>
+    <li>使わない時はハンガーへ(放置すると鉛がよれる)</li>
+    <li>定期点検 ― 経年劣化で鉛にひびが入ると遮蔽性能↓</li>
+  </ul>
+
+  <h3>個人線量計の重要性</h3>
+  <ul>
+    <li>胸部(エプロン外側) + 腰部(エプロン内側)の2点装着が理想</li>
+    <li>毎月の線量読取り・記録を確認する習慣</li>
+    <li>異常高値があれば手技・防護法を見直す</li>
+    <li>退職後も記録は法定保存(50年間)</li>
+  </ul>
+
+  <div class="callout success">
+    <strong>✅ 結論:</strong> 「距離・時間・遮蔽」の三原則を毎日意識して、習慣化することが <u>キャリア40年間の自分を守る</u> 最大の投資。若いうちから手を抜かない。
+  </div>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>9. 理解度チェック(全8問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 8</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>10. 用語集</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>ALARA原則</td><td>As Low As Reasonably Achievable。「合理的に達成可能な限り低く」</td></tr>
+        <tr><td>三原則</td><td>距離(Distance)・時間(Time)・遮蔽(Shielding)</td></tr>
+        <tr><td>逆二乗の法則</td><td>線量は距離の二乗に反比例(2倍離れれば1/4)</td></tr>
+        <tr><td>Gy(グレイ)</td><td>吸収線量の単位</td></tr>
+        <tr><td>Sv(シーベルト)</td><td>等価線量・実効線量の単位(人体影響を反映)</td></tr>
+        <tr><td>散乱線</td><td>患者体内でX線が散乱して周囲に飛び散る線。術者の被曝主因</td></tr>
+        <tr><td>パルス透視</td><td>連続ではなくフレームを間引いた透視。被曝量を1/2-1/4に</td></tr>
+        <tr><td>Last Image Hold</td><td>透視Off後も最後の画像が表示される機能</td></tr>
+        <tr><td>シネ撮影</td><td>高画質連続撮影。透視の10-30倍の線量</td></tr>
+        <tr><td>0.5 mmPb相当</td><td>鉛換算 0.5 mm の遮蔽効果。X線の約95%以上吸収</td></tr>
+        <tr><td>確率的影響</td><td>線量に比例して発生確率が上がる影響(癌など、閾値なし)</td></tr>
+        <tr><td>確定的影響</td><td>閾値以上で必ず発症する影響(白内障・皮膚障害など)</td></tr>
+        <tr><td>水晶体限度(2020年改訂)</td><td>等価線量 100 mSv/5年、50 mSv/年(以前の 150 mSv/年から厳格化)</td></tr>
+        <tr><td>ICRP</td><td>International Commission on Radiological Protection(国際放射線防護委員会)</td></tr>
+        <tr><td>個人線量計</td><td>OSL/ガラスバッジ等。胸部・腰部の2点装着が理想</td></tr>
+        <tr><td>IVR</td><td>Interventional Radiology(画像下治療)。透視時間が長く高被曝</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="radiation_protection.html">このページのv1</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Division of Cardiovascular Surgery, Sapporo Medical University</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 Brain Isolation</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+  const questions = [
+    {q:"放射線防御の三原則として正しい組合せはどれか。",choices:["距離・時間・遮蔽","距離・量・速度","時間・温度・湿度","距離・遮蔽・薬物"],correct:0,explain:"放射線防御の三原則は『距離(Distance)・時間(Time)・遮蔽(Shielding)』。これは外部被曝低減の3つの柱で、組み合わせて使う。"},
+    {q:"線源から2m離れた場合の相対線量はどれか(0.5mを基準4とした場合)。",choices:["2","1","0.25","0.04"],correct:2,explain:"逆二乗の法則:線量∝1/r²。0.5m → 2m は4倍の距離 = 線量は1/16。0.5mで4なら2mで0.25。距離は最も効果的な防御。"},
+    {q:"術者の被曝の主な原因はどれか。",choices:["X線管からの直接照射","患者体内での散乱線","鉛エプロンの劣化","透視装置の漏洩"],correct:1,explain:"術者の被曝の大部分は患者体内でX線が散乱した『散乱線』。だから患者から離れる・患者と自分の間に遮蔽物を置くことが重要。"},
+    {q:"鉛エプロン標準(0.5 mmPb相当)で吸収できるX線の割合はおおよそ何%か。",choices:["20-30%","50-60%","95%以上","100%(完全遮断)"],correct:2,explain:"0.5 mmPb相当のエプロンで通常の透視X線の95%以上を吸収。完全(100%)ではないため、距離・時間原則と併用が前提。"},
+    {q:"放射線の確率的影響(stochastic effects)に含まれるのはどれか。",choices:["白内障","皮膚紅斑","発癌","脱毛"],correct:2,explain:"発癌・遺伝的影響が確率的影響(閾値なし、線量比例で確率上昇)。白内障・皮膚障害・脱毛・生殖機能低下は確定的影響(閾値あり)。"},
+    {q:"2020年に大幅に厳格化された職業被曝の線量限度はどの臓器か。",choices:["甲状腺","水晶体","骨髄","皮膚"],correct:1,explain:"水晶体の等価線量限度が、従来の150 mSv/年から100 mSv/5年(かつ50 mSv/年)へ厳格化。IVR・循環器医では鉛眼鏡装着がより重要に。"},
+    {q:"透視時間短縮のためのテクニックとして正しいのはどれか。",choices:["連続透視(30fps)を維持","パルス透視・Last Image Hold・絞り(collimation)を活用","シネ撮影を多用","透視中もずっと手元を見ながら作業"],correct:1,explain:"パルス透視で被曝量を1/2-1/4に、Last Image Holdで確認透視を減らし、collimationで照射範囲を絞る(散乱線も減る)。シネは透視の10-30倍線量のため最小限に。"},
+    {q:"妊娠中の女性医療従事者(妊娠申告後)の腹部線量限度はどれか。",choices:["1 mSv / 妊娠期間中","2 mSv / 妊娠期間中","50 mSv / 年","100 mSv / 5年"],correct:1,explain:"妊娠申告後は腹部表面の等価線量を妊娠期間中の合計で 2 mSv 以下に制限。胎児被曝を最小限に。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+
+<script>
+/* === Version switch (v1 ⇄ v2) === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var a=document.createElement('a');
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
+  document.body.appendChild(a);
+})();
+</script>
+
+</body>
+</html>

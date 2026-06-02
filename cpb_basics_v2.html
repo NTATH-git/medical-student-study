@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人工心肺(CPB)の基本 ― 医学生のために (v2)</title>
+<meta name="description" content="構成要素・回路・管理・合併症 ― 心臓を止めて手術するための装置">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  .menu-toggle{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#what">CPBとは</a>
+      <a href="#components">構成要素</a>
+      <a href="#circuit">回路と流れ</a>
+      <a href="#management">運転管理</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>人工心肺<br><span class="accent">(CPB)の基本</span></h1>
+    <p class="lead">構成要素・回路・管理・合併症 ― 心臓を止めて手術するための装置</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>7</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>6</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>1</strong> 図解</span>
+    </div>
+  </div>
+  <a href="#what" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#what">CPBとは</a>
+    <a href="#components">構成要素</a>
+    <a href="#circuit">回路と流れ</a>
+    <a href="#management">運転管理</a>
+    <a href="#complications">合併症</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+  </div>
+</div>
+
+<section class="content reveal" id="what">
+  <h2>1. 人工心肺(CPB)とは</h2>
+
+  <div class="ref-figure wide">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blausen_0468_Heart-Lung_Machine.png"
+         alt="人工心肺(heart-lung machine)の回路図"
+         loading="lazy">
+    <div class="ref-caption">
+      <strong>人工心肺(CPB)の基本回路</strong>(BruceBlaus / Blausen Medical)<br>
+      ① 静脈脱血 → ② 貯血槽 → ③ ポンプ → ④ 人工肺・熱交換器 → ⑤ 動脈送血。
+      心血管手術中、心臓と肺の役割を装置が一時的に肩代わりする。
+    </div>
+    <div class="ref-attribution">
+      画像出典:BruceBlaus ―
+      <a href="https://commons.wikimedia.org/wiki/File:Blausen_0468_Heart-Lung_Machine.png" target="_blank" rel="noopener">Wikimedia Commons (CC BY 3.0)</a>
+    </div>
+  </div>
+
+  <p><strong>CPB(Cardiopulmonary Bypass、人工心肺)</strong>は、心臓と肺の機能を体外の機械で一時的に代行することで、<u>心臓を止めて手術可能にする装置</u>です。1953年Gibbonによる世界初の臨床応用以来、現代心臓血管外科の根幹を成します。</p>
+
+  <h3>CPBが代行する2つの機能</h3>
+  <ul>
+    <li><strong>心臓(ポンプ機能)</strong>: 全身への血液送出を <u>血液ポンプ</u> で代行</li>
+    <li><strong>肺(ガス交換機能)</strong>: O₂取り込み・CO₂排出を <u>人工肺(oxygenator)</u> で代行</li>
+  </ul>
+
+  <h3>使用する代表的手術</h3>
+  <ul>
+    <li>冠動脈バイパス術(CABG ― on-pump)</li>
+    <li>大動脈弁・僧帽弁・三尖弁手術(AVR、MVP、MVR、TAP)</li>
+    <li>大動脈基部・上行・弓部置換術(Bentall、David、TAR)</li>
+    <li>先天性心疾患手術(VSD、ASD、Fontan)</li>
+    <li>心臓移植・補助人工心臓(VAD)植込み</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 OPCABとの違い:</strong> CABGは人工心肺を使わない「<u>off-pump CABG(OPCAB)</u>」も可能。一方、心内手術(弁・先天性・大動脈基部)は CPBが必須。
+  </div>
+</section>
+
+<section class="content reveal" id="components">
+  <h2>2. CPB の主要構成要素</h2>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 静脈脱血カニューレ</h4>
+      <div class="role">脱血(venous drainage)</div>
+      <p>右心房または上下大静脈から脱血。重力 or 補助吸引で血液を回路へ。二段(two-stage)型が一般的。</p>
+    </div>
+    <div class="component-card">
+      <h4>② 貯血槽(リザーバー)</h4>
+      <div class="role">血液プール</div>
+      <p>脱血血液を一時貯留。気泡除去・薬剤投与・容量バッファ。Hard-shell型(開放式)とSoft-bag型(閉鎖式)。</p>
+    </div>
+    <div class="component-card">
+      <h4>③ 血液ポンプ</h4>
+      <div class="role">心臓代行</div>
+      <p>ローラーポンプ(定容量)or 遠心ポンプ(回転数依存)。遠心ポンプは血液損傷が少なく近年主流。</p>
+    </div>
+    <div class="component-card">
+      <h4>④ 人工肺(oxygenator)</h4>
+      <div class="role">肺代行(ガス交換)</div>
+      <p>中空糸膜型が主流。血液側に膜越しにO₂・CO₂を交換。FiO₂とガス流量で調節。</p>
+    </div>
+    <div class="component-card">
+      <h4>⑤ 熱交換器(heat exchanger)</h4>
+      <div class="role">体温管理</div>
+      <p>人工肺に内蔵されることが多い。<u>冷却(32-34℃)</u>でCMRO₂↓、復温で37℃へ。</p>
+    </div>
+    <div class="component-card">
+      <h4>⑥ 動脈送血カニューレ</h4>
+      <div class="role">送血(arterial return)</div>
+      <p>上行大動脈に挿入(標準)。心臓・大動脈基部手術では大腿動脈・腋窩動脈を選択することも。</p>
+    </div>
+    <div class="component-card">
+      <h4>⑦ Vent line</h4>
+      <div class="role">左心減圧</div>
+      <p>右上肺静脈・左房から左室へ。CPB中の左室過伸展(over-distension)を防ぐ。</p>
+    </div>
+    <div class="component-card">
+      <h4>⑧ 心筋保護回路</h4>
+      <div class="role">心停止液注入</div>
+      <p>大動脈基部(順行性)・冠静脈洞(逆行性)から cardioplegia 注入。詳しくは<a href="myocardial_protection_v2.html" style="color:var(--accent)">心筋保護</a>を参照。</p>
+    </div>
+    <div class="component-card">
+      <h4>⑨ サクション・カーディオトミー</h4>
+      <div class="role">術野回収</div>
+      <p>術野の出血を貯血槽へ回収・再利用。空気混入・凝固活性化に注意。</p>
+    </div>
+    <div class="component-card">
+      <h4>⑩ フィルター・トラップ</h4>
+      <div class="role">微小塞栓予防</div>
+      <p>動脈側ラインフィルター(40μm)で微小気泡・凝集塊を捕捉。</p>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="circuit">
+  <h2>3. CPB回路と血液の流れ</h2>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CPB回路模式図">
+      <text x="280" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">CPB回路の流れ</text>
+
+      <!-- Patient (heart) -->
+      <ellipse cx="100" cy="180" rx="55" ry="65" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
+      <text x="100" y="175" font-size="11" fill="#c62828" text-anchor="middle" font-weight="bold">心臓</text>
+      <text x="100" y="190" font-size="9" fill="#c62828" text-anchor="middle">(停止中)</text>
+
+      <!-- Venous return tube -->
+      <path d="M 130 140 Q 200 110 250 110" stroke="#1565c0" stroke-width="6" fill="none"/>
+      <text x="170" y="100" font-size="9" fill="#1565c0">①脱血(静脈血)</text>
+
+      <!-- Reservoir -->
+      <rect x="250" y="90" width="50" height="60" fill="#bbdefb" stroke="#1565c0" stroke-width="2" rx="4"/>
+      <text x="275" y="115" font-size="9" fill="#0b2545" text-anchor="middle">②貯血槽</text>
+      <text x="275" y="130" font-size="8" fill="#0b2545" text-anchor="middle">reservoir</text>
+
+      <!-- Pump -->
+      <circle cx="350" cy="120" r="22" fill="#7e57c2" stroke="#4a148c" stroke-width="2"/>
+      <text x="350" y="118" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">③ポンプ</text>
+      <text x="350" y="130" font-size="8" fill="#fff" text-anchor="middle">PUMP</text>
+      <line x1="300" y1="120" x2="328" y2="120" stroke="#7e57c2" stroke-width="4"/>
+
+      <!-- Oxygenator -->
+      <rect x="395" y="90" width="70" height="60" fill="#90caf9" stroke="#1565c0" stroke-width="2" rx="4"/>
+      <text x="430" y="115" font-size="9" fill="#0b2545" text-anchor="middle">④人工肺</text>
+      <text x="430" y="128" font-size="8" fill="#0b2545" text-anchor="middle">oxygenator</text>
+      <line x1="372" y1="120" x2="395" y2="120" stroke="#7e57c2" stroke-width="4"/>
+
+      <!-- O2 in/CO2 out arrows -->
+      <line x1="430" y1="80" x2="430" y2="65" stroke="#000" stroke-width="2" marker-end="url(#cpb1)"/>
+      <text x="436" y="60" font-size="9" fill="#000">CO₂↑</text>
+      <line x1="450" y1="65" x2="450" y2="80" stroke="#c62828" stroke-width="2" marker-end="url(#cpb2)"/>
+      <text x="455" y="60" font-size="9" fill="#c62828">O₂↓</text>
+
+      <!-- Heat exchanger label -->
+      <text x="430" y="165" font-size="8" fill="#5a6473" text-anchor="middle">⑤熱交換器(内蔵)</text>
+
+      <!-- Arterial line (oxygenated) -->
+      <path d="M 465 130 Q 470 200 380 250 Q 280 280 200 230 Q 160 210 130 200" stroke="#c62828" stroke-width="6" fill="none"/>
+      <text x="350" y="270" font-size="9" fill="#c62828">⑥送血(動脈血)</text>
+
+      <!-- Aortic cannula site -->
+      <text x="140" y="232" font-size="9" fill="#c62828">大動脈</text>
+
+      <!-- Filter -->
+      <rect x="305" y="240" width="30" height="20" fill="#fff" stroke="#5a6473" stroke-width="1.5"/>
+      <text x="320" y="252" font-size="7" fill="#5a6473" text-anchor="middle">⑩フィルター</text>
+
+      <!-- Vent line -->
+      <line x1="115" y1="220" x2="220" y2="250" stroke="#1565c0" stroke-width="3" stroke-dasharray="3,2"/>
+      <text x="160" y="265" font-size="8" fill="#1565c0">⑦Vent</text>
+
+      <!-- Cardioplegia line -->
+      <line x1="465" y1="105" x2="490" y2="80" stroke="#ef6c00" stroke-width="3"/>
+      <text x="495" y="85" font-size="8" fill="#ef6c00">⑧心筋保護液へ</text>
+
+      <defs>
+        <marker id="cpb1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#000"/></marker>
+        <marker id="cpb2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>流れの順序(英数字で覚える)</h3>
+  <ol>
+    <li>① 静脈脱血カニューレ(右房→)</li>
+    <li>② 貯血槽(reservoir)</li>
+    <li>③ 血液ポンプ(roller or centrifugal)</li>
+    <li>④ 人工肺(ガス交換)</li>
+    <li>⑤ 熱交換器(温度調節)</li>
+    <li>⑥ 動脈ラインフィルター(微小塞栓除去)</li>
+    <li>⑦ 動脈送血カニューレ(→上行大動脈)</li>
+  </ol>
+</section>
+
+<section class="content reveal" id="management">
+  <h2>4. 運転管理の基本パラメータ</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>目標値</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td>灌流量(pump flow)</td><td>2.2-2.4 L/min/m²</td><td>体表面積あたり。冷却で低下可</td></tr>
+        <tr><td>平均動脈圧(MAP)</td><td>60-80 mmHg</td><td>動脈硬化・脳梗塞既往例では高めに(>75)</td></tr>
+        <tr><td>静脈酸素飽和度(SvO₂)</td><td>≥ 70%</td><td>組織酸素需給バランスの指標</td></tr>
+        <tr><td>ヘマトクリット(Hct)</td><td>20-25%</td><td>血液希釈で必ず低下。<20では輸血検討</td></tr>
+        <tr><td>体温</td><td>32-34℃(中等度低体温)</td><td>代謝抑制・脳保護。極低温(18-22℃)は弓部置換等</td></tr>
+        <tr><td>ACT(活性化凝固時間)</td><td>≥ 400-480秒</td><td>ヘパリン投与下で維持。15-30分毎にチェック</td></tr>
+        <tr><td>pH / PaCO₂</td><td>α-stat または pH-stat</td><td>温度補正の管理戦略。施設により異なる</td></tr>
+        <tr><td>K⁺</td><td>3.5-5.0 mEq/L</td><td>cardioplegia高K の影響を頻回チェック</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>抗凝固管理</h3>
+  <ul>
+    <li><strong>導入時:</strong> ヘパリン 300-400 U/kg(中心静脈ルートから)</li>
+    <li><strong>ACT測定:</strong> 投与3-5分後 → 目標達成確認 → CPB開始可</li>
+    <li><strong>維持:</strong> 15-30分毎にACT測定、必要に応じ追加投与</li>
+    <li><strong>離脱後:</strong> プロタミンで中和(ヘパリン1mg : プロタミン1mg)</li>
+  </ul>
+
+  <h3>α-stat vs pH-stat</h3>
+  <ul>
+    <li><strong>α-stat:</strong> 体温補正せず37℃換算でpH7.40を維持。脳血流の自動調節維持(成人)</li>
+    <li><strong>pH-stat:</strong> 実温度でpH7.40維持(CO₂追加)。脳血流増加 → 小児・深部低体温で選択</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="complications">
+  <h2>5. CPB関連合併症</h2>
+  <ul>
+    <li><strong>全身性炎症反応症候群(SIRS):</strong> 血液-人工表面接触で補体・サイトカイン活性化。<u>体液貯留・血管透過性亢進</u></li>
+    <li><strong>出血傾向:</strong> 血小板機能低下、希釈、凝固因子消費、ヘパリン残存</li>
+    <li><strong>脳神経合併症:</strong> 脳梗塞(1-3%)、認知機能低下、せん妄。微小塞栓・低灌流が原因</li>
+    <li><strong>急性腎障害(AKI):</strong> 5-30%。脱拍動性灌流・低血圧・炎症の複合</li>
+    <li><strong>心機能低下:</strong> Stunned myocardium(気絶心筋)、reperfusion injury</li>
+    <li><strong>肺合併症:</strong> ARDS、無気肺、CPB lung</li>
+    <li><strong>溶血:</strong> ローラーポンプ・吸引・乱流による</li>
+    <li><strong>空気塞栓:</strong> 回路への空気混入、脱気不十分 ― 致命的</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ CPB時間と合併症:</strong> CPB時間が長いほど合併症リスクが直線的に上昇(SIRS、AKI、出血)。<u>「短時間で効率よく」</u> が外科医の腕の見せ所。
+  </div>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>6. 理解度チェック(全6問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 6</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>7. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>CPB</td><td>Cardiopulmonary Bypass(人工心肺)</td></tr>
+      <tr><td>OPCAB</td><td>Off-Pump CABG(人工心肺非使用CABG)</td></tr>
+      <tr><td>Reservoir</td><td>貯血槽。Hard-shell / Soft-bag型</td></tr>
+      <tr><td>Roller pump</td><td>ローラーポンプ(定容量)</td></tr>
+      <tr><td>Centrifugal pump</td><td>遠心ポンプ(血液損傷少、近年主流)</td></tr>
+      <tr><td>Oxygenator</td><td>人工肺。中空糸膜型が主流</td></tr>
+      <tr><td>Vent line</td><td>左室減圧用ライン。右上肺静脈経由が多い</td></tr>
+      <tr><td>ACT</td><td>Activated Clotting Time。CPB中 ≥400-480秒</td></tr>
+      <tr><td>α-stat / pH-stat</td><td>体温補正pH管理戦略</td></tr>
+      <tr><td>SvO₂</td><td>静脈酸素飽和度。≥70%維持</td></tr>
+      <tr><td>SIRS</td><td>全身性炎症反応症候群。CPBで必発</td></tr>
+      <tr><td>Stunned myocardium</td><td>気絶心筋。reperfusion後の一時的心機能低下</td></tr>
+    </tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="cpb_basics.html">このページのv1</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Division of Cardiovascular Surgery, Sapporo Medical University</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 Brain Isolation</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+  const questions = [
+    {q:"CPB(人工心肺)が代行する機能はどれか。",choices:["心臓と腎臓","心臓と肺","肺と肝臓","脳と腎臓"],correct:1,explain:"CPBは心臓(ポンプ機能)と肺(ガス交換)の2機能を代行する。腎臓・肝臓・脳の機能は代行できないため、これらの保護は別途必要(腎灌流圧維持、脳保護プロトコル等)。"},
+    {q:"CPB中の標準的なACT目標値はどれか。",choices:["150-200秒","200-300秒","≥ 400-480秒","≥ 1000秒"],correct:2,explain:"ACT ≥ 400-480秒が標準。これ未満では回路内血栓形成リスクが急増する。15-30分毎に測定し、必要に応じてヘパリン追加投与。"},
+    {q:"CPB中の標準的な灌流量(pump flow)はどれか。",choices:["0.5 L/min/m²","2.2-2.4 L/min/m²","5 L/min/m²","10 L/min"],correct:1,explain:"2.2-2.4 L/min/m²(体表面積あたり)が標準。これは正常心拍出量に相当。冷却時は代謝低下に応じて減量可能。"},
+    {q:"CPB離脱後にヘパリンを中和する薬剤はどれか。",choices:["ビタミンK","プロタミン","フィブリノゲン","ワーファリン"],correct:1,explain:"プロタミン(塩基性タンパク)が酸性のヘパリンと結合して中和。投与比は約1mg:1mg。急速投与で血圧低下・アナフィラキシーのリスクあり、緩徐投与が原則。"},
+    {q:"CPB中に左室の過伸展を防ぐためのラインはどれか。",choices:["静脈脱血","動脈送血","ベント(vent)","カーディオトミーサクション"],correct:2,explain:"Vent lineは右上肺静脈から左房・左室に挿入し、CPB中の左室過伸展(over-distension)を防ぐ。左室過伸展は心筋障害・術後心機能低下の原因。"},
+    {q:"CPB回路で動脈ラインに設置されるフィルターのメッシュサイズの目安は?",choices:["1μm","40μm","500μm","5mm"],correct:1,explain:"動脈ラインフィルターは40μm程度。微小気泡・凝集塊・破片を捕捉し、脳・冠動脈塞栓を予防する。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+
+<script>
+/* === Version switch (v1 ⇄ v2) === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var a=document.createElement('a');
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
+  document.body.appendChild(a);
+})();
+</script>
+
+</body>
+</html>
