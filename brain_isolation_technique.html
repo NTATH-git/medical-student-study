@@ -137,6 +137,13 @@
   .timeline-step{flex:1;min-width:120px;text-align:center;padding:.6rem .4rem;background:#fff;border-radius:8px;border-left:3px solid var(--accent);font-size:.82rem}
   .timeline-step strong{display:block;color:var(--navy);font-size:.92rem;margin-bottom:.2rem}
   @media (max-width:480px){section{padding:1.1rem .9rem};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
+
+  /* === Version switch (v1 ⇄ v2) === */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){.version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}}
 </style>
 </head>
 <body>
@@ -982,5 +989,24 @@
   renderQ();
 </script>
 
+
+<script>
+/* === Version switch (v1 ⇄ v2) === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var v2={'index.html':'index_v2.html','brain_isolation_technique.html':'brain_isolation_technique_v2.html'};
+  var v1={'index_v2.html':'index.html','brain_isolation_technique_v2.html':'brain_isolation_technique.html'};
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var target,label,icon,title;
+  if(v1[cur]){target=v1[cur];label='通常版(v1)';icon='↺';title='通常版に戻る';}
+  else if(v2[cur]){target=v2[cur];label='ダイナミック版(v2)';icon='✨';title='このページのv2版へ';}
+  else{target='index_v2.html';label='v2を試す';icon='✨';title='ダイナミック版トップへ';}
+  var a=document.createElement('a');
+  a.href=target;a.className='version-switch';a.title=title;
+  a.innerHTML='<span class="vs-icon">'+icon+'</span><span class="vs-text">'+label+'</span>';
+  a.setAttribute('aria-label',title);
+  document.body.appendChild(a);
+})();
+</script>
 </body>
 </html>
