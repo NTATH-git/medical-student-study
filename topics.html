@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トピックス一覧 ― 医学生向け学習教材</title>
+<style>
+  :root{--navy:#0b2545;--navy-light:#13315c;--accent:#c62828;--accent-light:#ef5350;--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--muted:#5a6473;--border:#e1e5ea;--success:#2e7d32;--warn:#ef6c00;--shadow:0 2px 8px rgba(11,37,69,.08);--shadow-lg:0 8px 24px rgba(11,37,69,.12)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:2.5rem 1rem 2rem;text-align:center}
+  header h1{font-size:clamp(1.4rem,5vw,2.1rem);margin-bottom:.5rem}
+  header h1 a{color:inherit;text-decoration:none;border-bottom:1px dashed transparent;transition:border-color .2s}
+  header h1 a:hover{border-bottom-color:rgba(255,255,255,.5)}
+  header .subtitle{opacity:.85;font-size:clamp(.85rem,2.5vw,1rem)}
+  header .meta{margin-top:1rem;font-size:.8rem;opacity:.7}
+  main{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  /* Page nav (red bar) */
+  .page-nav{background:var(--accent-light);position:sticky;top:0;z-index:101;box-shadow:0 1px 0 rgba(0,0,0,.08);padding:.4rem .8rem;display:flex;align-items:center;justify-content:flex-start;gap:.5rem;height:56px}
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .page-nav-menu-btn{display:inline-flex;align-items:center;gap:.4rem;color:#fff;background:rgba(0,0,0,.22);border:none;cursor:pointer;padding:.5rem .95rem;font-size:.9rem;font-family:inherit;font-weight:600;border-radius:6px;transition:background .15s;min-height:36px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.15);user-select:none;-webkit-tap-highlight-color:transparent}
+  @media (hover:hover){.page-nav-menu-btn:hover{background:rgba(0,0,0,.35)}}
+  .page-nav-menu-btn:active{transform:translateY(1px)}
+  .menu-label-close{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  /* Drawer */
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:998;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(340px,88vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .3s ease;z-index:999;box-shadow:4px 0 16px rgba(0,0,0,.18);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:.85rem 1rem;display:flex;justify-content:flex-start;align-items:center;flex-shrink:0;gap:.6rem}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);background:#fafbfd;flex-shrink:0}
+  .drawer-search input{width:100%;padding:.55rem .8rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 calc(2rem + env(safe-area-inset-bottom)) 0}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+
+  /* === Weekly focus section === */
+  .weekly{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.5rem 1.4rem;margin-bottom:2.5rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .weekly::before{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(198,40,40,.15),transparent 70%);border-radius:50%}
+  .weekly-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;flex-wrap:wrap;position:relative}
+  .weekly-badge{background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;padding:.25rem .65rem;border-radius:99px;letter-spacing:.05em;text-transform:uppercase;animation:weeklyPulse 2.5s ease-in-out infinite}
+  @keyframes weeklyPulse{0%,100%{box-shadow:0 0 0 0 rgba(198,40,40,.5)}50%{box-shadow:0 0 0 8px rgba(198,40,40,0)}}
+  .weekly h2{color:var(--navy);font-size:clamp(1.15rem,3vw,1.4rem);font-weight:700;margin:0}
+  .weekly-sub{color:var(--muted);font-size:.88rem;margin-bottom:1.2rem;position:relative}
+  .weekly-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;position:relative}
+  .weekly-card{background:#fff;border-radius:12px;padding:1.2rem 1.3rem;text-decoration:none;color:inherit;border:1.5px solid var(--border);transition:all .25s ease;display:flex;flex-direction:column;gap:.5rem;position:relative}
+  .weekly-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+  .weekly-card .wk-num{position:absolute;top:-12px;left:1.2rem;background:var(--accent);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;box-shadow:0 2px 8px rgba(198,40,40,.4)}
+  .weekly-card h4{color:var(--navy);font-size:1.02rem;font-weight:700;margin-top:.4rem;line-height:1.4}
+  .weekly-card .why{font-size:.85rem;color:var(--text);line-height:1.6;flex:1}
+  .weekly-card .why strong{color:var(--accent)}
+  .weekly-card .keypoints{list-style:none;padding:0;margin:.4rem 0 0;font-size:.82rem;color:var(--text)}
+  .weekly-card .keypoints li{padding:.3rem 0 .3rem 1.3rem;position:relative;line-height:1.55}
+  .weekly-card .keypoints li::before{content:"●";position:absolute;left:.3rem;color:var(--accent);font-size:.7rem;top:.55rem}
+  .weekly-card .go{display:inline-flex;align-items:center;gap:.3rem;color:var(--accent);font-size:.85rem;font-weight:600;margin-top:.4rem;align-self:flex-start}
+  .weekly-card .go::after{content:"→";transition:transform .2s}
+  .weekly-card:hover .go::after{transform:translateX(4px)}
+
+  /* === All topics === */
+  .toolbar{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem;background:#fff;padding:1rem 1.1rem;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--border)}
+  .toolbar input[type=search]{flex:1;min-width:200px;padding:.6rem .9rem .6rem 2.3rem;font-size:.95rem;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%235a6473' d='M11.74 10.34l3.42 3.43-1.4 1.4-3.4-3.42a6.5 6.5 0 11.99-.99zM6.5 11A4.5 4.5 0 102 6.5 4.5 4.5 0 006.5 11z'/></svg>") no-repeat .65rem center/16px}
+  .toolbar input[type=search]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(198,40,40,.12)}
+  .filter-pills{display:flex;gap:.4rem;flex-wrap:wrap}
+  .filter-pills button{background:#fff;border:1.5px solid var(--border);color:var(--text);font-size:.8rem;padding:.4rem .85rem;border-radius:99px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .15s}
+  .filter-pills button:hover{border-color:var(--accent-light)}
+  .filter-pills button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  .topics-table-wrap{background:#fff;border-radius:12px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border)}
+  .topics-table{width:100%;border-collapse:collapse;font-size:.88rem}
+  .topics-table thead th{background:var(--navy);color:#fff;text-align:left;padding:.8rem .85rem;font-weight:600;font-size:.82rem;letter-spacing:.04em;position:sticky;top:56px}
+  .topics-table tbody tr{border-bottom:1px solid #f0f2f6;transition:background .15s}
+  .topics-table tbody tr:hover{background:#fff5f5}
+  .topics-table tbody tr:last-child{border-bottom:none}
+  .topics-table td{padding:.75rem .85rem;vertical-align:middle}
+  .topics-table .col-cat{width:140px;white-space:nowrap;color:var(--navy);font-weight:600;font-size:.82rem}
+  .topics-table .col-cat .cat-emoji{margin-right:.2rem}
+  .topics-table .col-title{font-weight:600;color:var(--navy)}
+  .topics-table .col-title a{color:inherit;text-decoration:none}
+  .topics-table .col-title a:hover{color:var(--accent);text-decoration:underline}
+  .topics-table .col-desc{color:var(--muted);font-size:.82rem;line-height:1.5}
+  .topics-table .col-grade{white-space:nowrap;width:80px}
+  .topics-table .grade-pill{display:inline-block;font-size:.7rem;padding:.18rem .55rem;border-radius:99px;font-weight:600}
+  .topics-table .grade-pill.all{background:#e8f5e9;color:var(--success)}
+  .topics-table .grade-pill.adv{background:#fce4ec;color:var(--accent)}
+  .topics-table .col-actions{white-space:nowrap;width:130px;text-align:right}
+  .topics-table .col-actions a{display:inline-block;font-size:.74rem;padding:.28rem .6rem;border-radius:6px;text-decoration:none;font-weight:600;margin-left:.25rem;border:1px solid var(--border);transition:all .15s}
+  .topics-table .col-actions a.v1{color:var(--navy);background:#fff}
+  .topics-table .col-actions a.v1:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .topics-table .col-actions a.v2{color:var(--accent);background:#fff5f5;border-color:#ffcdd2}
+  .topics-table .col-actions a.v2:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  /* Stats summary */
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem}
+  .summary-card{background:#fff;border-radius:12px;padding:1rem 1.1rem;text-align:center;box-shadow:var(--shadow);border:1px solid var(--border)}
+  .summary-card .num{font-size:1.7rem;font-weight:800;color:var(--accent);line-height:1}
+  .summary-card .lbl{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+
+  .row-hidden{display:none !important}
+  .intro{background:#fff;border-radius:12px;padding:1.2rem 1.3rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border-left:5px solid var(--accent)}
+  .intro h2{color:var(--navy);font-size:1.15rem;margin-bottom:.5rem}
+  .intro p{font-size:.92rem;color:var(--text)}
+
+  footer{text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--muted)}
+  footer a{color:var(--accent);text-decoration:none}
+
+  /* Version switch (top-right) */
+  .version-switch{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;align-items:center;gap:.35rem;background:rgba(11,37,69,.9);color:#fff;padding:.4rem .85rem;border-radius:99px;text-decoration:none;font-size:.78rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;-webkit-tap-highlight-color:transparent;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25)}
+  .version-switch:hover{background:rgba(198,40,40,.95);border-color:rgba(255,255,255,.7);transform:translateY(-1px);box-shadow:0 4px 16px rgba(198,40,40,.4)}
+  .version-switch .vs-icon{font-size:.95rem;line-height:1}
+  @media (max-width:480px){.version-switch{top:9px;right:9px;padding:.32rem .55rem;font-size:.7rem}.version-switch .vs-text{display:none}.version-switch .vs-icon{font-size:1.05rem}}
+
+  @media (max-width:600px){
+    .topics-table thead{display:none}
+    .topics-table tbody tr{display:block;padding:.9rem;border-bottom:1px solid var(--border)}
+    .topics-table td{display:block;padding:.25rem 0}
+    .topics-table .col-actions{text-align:left;margin-top:.5rem}
+  }
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="全ページメニュー">
+
+<header>
+  <h1><a href="index.html" title="目次に戻る">📑 トピックス一覧</a></h1>
+  <p class="subtitle">全 32 トピックを一覧で。今週の症例で押さえてほしいポイントもこちらから。</p>
+  <p class="meta">For Medical Students | 全学年対象</p>
+</header>
+
+<div class="page-nav" aria-label="ページメニュー">
+  <label for="menuToggle" class="page-nav-menu-btn" role="button" tabindex="0" aria-haspopup="dialog">
+    <span class="menu-label-open">📚 メニュー</span>
+    <span class="menu-label-close">✕ 閉じる</span>
+  </label>
+</div>
+
+<main>
+
+<!-- ========== 今週の症例で押さえておきたいこと ========== -->
+<section class="weekly" aria-labelledby="weekly-h">
+  <div class="weekly-head">
+    <span class="weekly-badge">📌 This Week</span>
+    <h2 id="weekly-h">今週の症例で押さえておきたいこと</h2>
+  </div>
+  <p class="weekly-sub">今週の手術・回診で出てくるテーマ。<u>下の3つを先に読んでおく</u>と、症例検討・術後管理の理解がぐっと深まります。</p>
+
+  <div class="weekly-grid">
+    <a href="brain_isolation_technique.html" class="weekly-card">
+      <span class="wk-num">1</span>
+      <h4>弓部置換 + Brain Isolation Technique</h4>
+      <p class="why"><strong>核心:</strong> 弓部の血管を遮断しながらどうやって脳を守るか。SACPで脳と体を別回路で同時に灌流する考え方を理解すること。</p>
+      <ul class="keypoints">
+        <li>3分枝(BCA / LCC / LSCA)の解剖</li>
+        <li>SACP + 中等度低体温(25-28°C)が現在の標準</li>
+        <li>右腋窩動脈送血が主流(解離例で真腔送血)</li>
+        <li>NIRS で rSO₂ をモニタ・20-25%低下で介入</li>
+      </ul>
+      <span class="go">このトピックを開く</span>
+    </a>
+
+    <a href="spinal_cord_ischemia.html" class="weekly-card">
+      <span class="wk-num">2</span>
+      <h4>対麻痺(脊髄虚血)のメカニズム</h4>
+      <p class="why"><strong>核心:</strong> 胸部・胸腹部置換 / TEVAR / FETで最大の合併症である対麻痺は、<u>SCPP = MAP − CSFP</u>の式で考える。</p>
+      <ul class="keypoints">
+        <li>Adamkiewicz動脈(通常 Th9-L1)が脊髄前2/3を養う</li>
+        <li>Crawford分類:I-IIで対麻痺リスク最大</li>
+        <li>4機序:虚血・再灌流障害・浮腫・血栓塞栓</li>
+        <li>予防:CSFドレナージ、MAP維持、segmental artery保存</li>
+      </ul>
+      <span class="go">このトピックを開く</span>
+    </a>
+
+    <a href="chylothorax.html" class="weekly-card">
+      <span class="wk-num">3</span>
+      <h4>乳び胸(Chylothorax)</h4>
+      <p class="why"><strong>核心:</strong> 心臓・胸部手術後の遅発性合併症。<u>胸管解剖を理解</u>すれば、なぜ術後数日たって乳白色排液が出るかが見える。</p>
+      <ul class="keypoints">
+        <li>胸管は乳び槽→T5-T7で右→左へクロスオーバー</li>
+        <li>診断:胸水TG &gt; 110 mg/dL(または chylomicron陽性)</li>
+        <li>保存療法:MCT食 + オクトレオチド</li>
+        <li>難治例:胸管結紮(TDL)・リンパ管塞栓術(TDE)</li>
+      </ul>
+      <span class="go">このトピックを開く</span>
+    </a>
+  </div>
+</section>
+
+<!-- ========== Intro ========== -->
+<div class="intro">
+  <h2>📚 全トピックス一覧</h2>
+  <p>32 ページの全トピックを、検索・カテゴリフィルタ付きで一覧表示しています。タイトルクリックで通常版(v1)を開きます。右端の「v1 / v2」ボタンでデザイン違いを選べます。</p>
+</div>
+
+<!-- Summary stats -->
+<div class="summary">
+  <div class="summary-card"><div class="num" id="sumTotal">32</div><div class="lbl">公開トピック</div></div>
+  <div class="summary-card"><div class="num" id="sumVisible">32</div><div class="lbl">表示中</div></div>
+  <div class="summary-card"><div class="num">7</div><div class="lbl">カテゴリ</div></div>
+  <div class="summary-card"><div class="num">250+</div><div class="lbl">クイズ問数</div></div>
+</div>
+
+<!-- Toolbar -->
+<div class="toolbar">
+  <input type="search" id="topicSearch" placeholder="トピック名・キーワードで検索…(例: 弓部、ECMO、対麻痺)" aria-label="トピック検索">
+  <div class="filter-pills" id="filterPills">
+    <button data-cat="all" class="active">全て</button>
+    <button data-cat="心血管総論">🫀 総論</button>
+    <button data-cat="心臓手術手技">🪡 手技</button>
+    <button data-cat="補助循環">🫶 MCS</button>
+    <button data-cat="体外循環">⚙️ CPB</button>
+    <button data-cat="血管外科">🩺 血管</button>
+    <button data-cat="周術期管理">💊 周術期</button>
+    <button data-cat="リファレンス">📚 基礎</button>
+  </div>
+</div>
+
+<!-- Topics table -->
+<div class="topics-table-wrap">
+<table class="topics-table" id="topicsTable">
+  <thead>
+    <tr>
+      <th class="col-cat">カテゴリ</th>
+      <th>トピック</th>
+      <th class="col-grade">対象</th>
+      <th class="col-actions" style="text-align:right">バージョン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 心血管総論 -->
+    <tr data-cat="心血管総論" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🫀</span>心血管総論</td>
+      <td class="col-title"><a href="cardiovascular_surgery_intro.html">心血管外科 総論</a><div class="col-desc">解剖・主要疾患・代表術式・周術期管理を網羅</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="cardiovascular_surgery_intro.html" class="v1">v1</a><a href="cardiovascular_surgery_intro_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="心血管総論" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🫀</span>心血管総論</td>
+      <td class="col-title"><a href="cardiovascular_pressures.html">心血管の圧</a><div class="col-desc">大動脈〜大静脈の圧勾配、各部位の正常圧</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="cardiovascular_pressures.html" class="v1">v1</a><a href="cardiovascular_pressures_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="心血管総論" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🫀</span>心血管総論</td>
+      <td class="col-title"><a href="infection_control.html">感染制御の総論</a><div class="col-desc">SSI予防バンドル・抗菌薬コーティング縫合糸・縦隔炎</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="infection_control.html" class="v1">v1</a><a href="infection_control_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="心血管総論" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🫀</span>心血管総論</td>
+      <td class="col-title"><a href="fr_vs_gauge.html">Fr とゲージの違い</a><div class="col-desc">カテーテルはFr(大きい=太い)、針はG(大きい=細い)</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="fr_vs_gauge.html" class="v1">v1</a><a href="fr_vs_gauge_v2.html" class="v2">v2</a></td>
+    </tr>
+
+    <!-- 心臓手術手技 -->
+    <tr data-cat="心臓手術手技" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🪡</span>心臓手技</td>
+      <td class="col-title"><a href="avr_open_procedure.html">正中切開 AVRの手順</a><div class="col-desc">術前準備から閉胸まで7フェーズ、TEE活用、合併症対策</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="avr_open_procedure.html" class="v1">v1</a><a href="avr_open_procedure_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="心臓手術手技" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🪡</span>心臓手技</td>
+      <td class="col-title"><a href="brain_isolation_technique.html">弓部置換 + Brain Isolation Technique <span style="background:var(--accent);color:#fff;font-size:.65rem;padding:.1rem .4rem;border-radius:99px;margin-left:.3rem">今週</span></a><div class="col-desc">3分枝の解剖、SACP/DHCA/RCPの3戦略、2系統並列回路</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="brain_isolation_technique.html" class="v1">v1</a><a href="brain_isolation_technique_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="心臓手術手技" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🪡</span>心臓手技</td>
+      <td class="col-title"><a href="surgical_instruments.html">手術器械 図鑑</a><div class="col-desc">血管遮断鉗子、心臓特有器械、縫合糸の使い分け</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="surgical_instruments.html" class="v1">v1</a><a href="surgical_instruments_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="心臓手術手技" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🪡</span>心臓手技</td>
+      <td class="col-title"><a href="gowning_technique.html">ガウンテクニック</a><div class="col-desc">手指消毒、マスク・帽子、closed glove、滅菌野ルール</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="gowning_technique.html" class="v1">v1</a><a href="gowning_technique_v2.html" class="v2">v2</a></td>
+    </tr>
+
+    <!-- 補助循環 -->
+    <tr data-cat="補助循環" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🫶</span>補助循環</td>
+      <td class="col-title"><a href="iabp.html">IABP</a><div class="col-desc">拡張期増強+後負荷軽減、IABP-SHOCK II試験</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="iabp.html" class="v1">v1</a><a href="iabp_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="補助循環" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🫶</span>補助循環</td>
+      <td class="col-title"><a href="va_ecmo.html">VA-ECMO</a><div class="col-desc">心肺ともに代行、Harlequin症候群、LV unloading</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="va_ecmo.html" class="v1">v1</a><a href="va_ecmo_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="補助循環" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🫶</span>補助循環</td>
+      <td class="col-title"><a href="vv_ecmo.html">VV-ECMO</a><div class="col-desc">重症ARDS、Avalon Elite、recirculation</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="vv_ecmo.html" class="v1">v1</a><a href="vv_ecmo_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="補助循環" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🫶</span>補助循環</td>
+      <td class="col-title"><a href="impella.html">Impella</a><div class="col-desc">LV→大動脈の順行性拍出、LV unloading、ECPELLA</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="impella.html" class="v1">v1</a><a href="impella_v2.html" class="v2">v2</a></td>
+    </tr>
+
+    <!-- 体外循環 -->
+    <tr data-cat="体外循環" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">⚙️</span>体外循環</td>
+      <td class="col-title"><a href="cpb_basics.html">人工心肺(CPB)の基本</a><div class="col-desc">構成要素・回路・運転管理・合併症</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="cpb_basics.html" class="v1">v1</a><a href="cpb_basics_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="体外循環" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">⚙️</span>体外循環</td>
+      <td class="col-title"><a href="myocardial_protection.html">心筋保護</a><div class="col-desc">高K心停止、del Nido、warm hot shot、再灌流障害</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="myocardial_protection.html" class="v1">v1</a><a href="myocardial_protection_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="体外循環" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">⚙️</span>体外循環</td>
+      <td class="col-title"><a href="cpb_simulator.html">CPBシミュレータ</a><div class="col-desc">灌流量・体温・Hct・FiO₂を操作するインタラクティブ</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="cpb_simulator.html" class="v1">v1</a><a href="cpb_simulator_v2.html" class="v2">v2</a></td>
+    </tr>
+
+    <!-- 血管外科 -->
+    <tr data-cat="血管外科" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🩺</span>血管外科</td>
+      <td class="col-title"><a href="evar_endoleak.html">EVAR エンドリーク</a><div class="col-desc">Type I-Vの機序・頻度・治療を整理</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="evar_endoleak.html" class="v1">v1</a><a href="evar_endoleak_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="血管外科" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">🩺</span>血管外科</td>
+      <td class="col-title"><a href="mesenteric_iliac_collateral.html">腸間膜・腸骨 血流ネットワーク</a><div class="col-desc">Drummond、Arc of Riolan、AAA手術での結紮可否</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="mesenteric_iliac_collateral.html" class="v1">v1</a><a href="mesenteric_iliac_collateral_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="血管外科" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🩺</span>血管外科</td>
+      <td class="col-title"><a href="spinal_cord_ischemia.html">対麻痺メカニズム <span style="background:var(--accent);color:#fff;font-size:.65rem;padding:.1rem .4rem;border-radius:99px;margin-left:.3rem">今週</span></a><div class="col-desc">Adamkiewicz動脈、SCPP式、Crawford分類、予防戦略</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="spinal_cord_ischemia.html" class="v1">v1</a><a href="spinal_cord_ischemia_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="血管外科" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🩺</span>血管外科</td>
+      <td class="col-title"><a href="csf_drainage.html">CSFドレナージ</a><div class="col-desc">SCPP = MAP − CSFP、Coselli RCT、適応・手技・合併症</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="csf_drainage.html" class="v1">v1</a><a href="csf_drainage_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="血管外科" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🩺</span>血管外科</td>
+      <td class="col-title"><a href="marfan_syndrome.html">Marfan症候群</a><div class="col-desc">FBN1変異、Revised Ghent、David手術、Loeys-Dietz鑑別</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="marfan_syndrome.html" class="v1">v1</a><a href="marfan_syndrome_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="血管外科" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">🩺</span>血管外科</td>
+      <td class="col-title"><a href="loeys_dietz_syndrome.html">Loeys-Dietz症候群</a><div class="col-desc">TGF-β経路、早期手術閾値(4.0-4.4 cm)、全身モニタ</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="loeys_dietz_syndrome.html" class="v1">v1</a><a href="loeys_dietz_syndrome_v2.html" class="v2">v2</a></td>
+    </tr>
+
+    <!-- 周術期管理 -->
+    <tr data-cat="周術期管理" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="cv_catheter_removal.html">CVカテーテル抜去</a><div class="col-desc">空気塞栓予防、体位・呼吸法、PMDA No.71</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="cv_catheter_removal.html" class="v1">v1</a><a href="cv_catheter_removal_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="drain_removal.html">ドレーン抜去</a><div class="col-desc">部位別抜去手技と合併症、PMDA事例</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="drain_removal.html" class="v1">v1</a><a href="drain_removal_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="npwt_basics.html">NPWT(陰圧療法)</a><div class="col-desc">創傷治癒の4機序、適応・禁忌、心臓外科後縦隔炎</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="npwt_basics.html" class="v1">v1</a><a href="npwt_basics_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="hit_syndrome.html">HIT(ヘパリン誘発性血小板減少症)</a><div class="col-desc">Type 1/2、PF4抗体、4Tsスコア、ビバリルジン</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="hit_syndrome.html" class="v1">v1</a><a href="hit_syndrome_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="anticoagulant_management.html">抗凝固薬 周術期管理</a><div class="col-desc">休薬・ブリッジング・中和・術後再開</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="anticoagulant_management.html" class="v1">v1</a><a href="anticoagulant_management_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="contrast_nephropathy.html">造影剤腎症</a><div class="col-desc">CVS患者の腎機能、CI-AKI機序、生食輸液、Mehran</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="contrast_nephropathy.html" class="v1">v1</a><a href="contrast_nephropathy_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="hemodialysis_basics.html">血液透析(HD)の基礎</a><div class="col-desc">腎機能4つ、拡散/UF/対流、シャント、CRRT比較</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="hemodialysis_basics.html" class="v1">v1</a><a href="hemodialysis_basics_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="adv">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="chylothorax.html">乳び胸 <span style="background:var(--accent);color:#fff;font-size:.65rem;padding:.1rem .4rem;border-radius:99px;margin-left:.3rem">今週</span></a><div class="col-desc">胸管解剖、TG>110で診断、MCT食+オクトレオチド、TDL/TDE</div></td>
+      <td class="col-grade"><span class="grade-pill adv">高学年</span></td>
+      <td class="col-actions"><a href="chylothorax.html" class="v1">v1</a><a href="chylothorax_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="周術期管理" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">💊</span>周術期</td>
+      <td class="col-title"><a href="radiation_protection.html">放射線防御の三原則</a><div class="col-desc">距離・時間・遮蔽、水晶体線量厳格化(2020)</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="radiation_protection.html" class="v1">v1</a><a href="radiation_protection_v2.html" class="v2">v2</a></td>
+    </tr>
+
+    <!-- リファレンス -->
+    <tr data-cat="リファレンス" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">📚</span>リファレンス</td>
+      <td class="col-title"><a href="body_negative_pressure.html">陰圧の生理</a><div class="col-desc">胸腔・気道・心室・関節腔・食道・中耳の陰圧</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="body_negative_pressure.html" class="v1">v1</a><a href="body_negative_pressure_v2.html" class="v2">v2</a></td>
+    </tr>
+    <tr data-cat="リファレンス" data-grade="all">
+      <td class="col-cat"><span class="cat-emoji">📚</span>リファレンス</td>
+      <td class="col-title"><a href="cvs_glossary.html">心血管外科 用語集</a><div class="col-desc">200+項目の英日対訳・カテゴリフィルタ付き</div></td>
+      <td class="col-grade"><span class="grade-pill all">全学年</span></td>
+      <td class="col-actions"><a href="cvs_glossary.html" class="v1">v1</a><a href="cvs_glossary_v2.html" class="v2">v2</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</main>
+
+<footer>
+  <p>📑 トピックス一覧 — 医学生向け学習教材</p>
+  <p style="margin-top:.5rem"><a href="index.html">← 目次に戻る</a></p>
+</footer>
+
+<!-- Drawer -->
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul>
+        <li><a href="index.html">目次トップ</a></li>
+        <li><a href="topics.html" class="current">トピックス一覧</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures.html">心血管の圧</a></li>
+        <li><a href="infection_control.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="surgical_instruments.html">手術器械</a></li>
+        <li><a href="gowning_technique.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp.html">IABP</a></li>
+        <li><a href="va_ecmo.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo.html">VV-ECMO</a></li>
+        <li><a href="impella.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環</h4>
+      <ul>
+        <li><a href="cpb_basics.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection.html">心筋保護</a></li>
+        <li><a href="cpb_simulator.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics.html">NPWT</a></li>
+        <li><a href="hit_syndrome.html">HIT</a></li>
+        <li><a href="anticoagulant_management.html">抗凝固薬</a></li>
+        <li><a href="contrast_nephropathy.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics.html">血液透析</a></li>
+        <li><a href="chylothorax.html">乳び胸</a></li>
+        <li><a href="radiation_protection.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+  const rows = Array.from(document.querySelectorAll('#topicsTable tbody tr'));
+  const search = document.getElementById('topicSearch');
+  const pills = document.querySelectorAll('#filterPills button');
+  const sumVisible = document.getElementById('sumVisible');
+  let currentCat = 'all';
+
+  function applyFilter(){
+    const q = (search.value || '').trim().toLowerCase();
+    let visible = 0;
+    rows.forEach(tr => {
+      const cat = tr.dataset.cat;
+      const text = tr.textContent.toLowerCase();
+      const catMatch = currentCat === 'all' || cat === currentCat;
+      const qMatch = q === '' || text.includes(q);
+      const show = catMatch && qMatch;
+      tr.classList.toggle('row-hidden', !show);
+      if(show) visible++;
+    });
+    sumVisible.textContent = visible;
+  }
+
+  search.addEventListener('input', applyFilter);
+  pills.forEach(p => {
+    p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      currentCat = p.dataset.cat;
+      applyFilter();
+    });
+  });
+
+  // Drawer close on link
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; }});
+
+  // Drawer search
+  const ds = document.getElementById('drawerSearch');
+  if(ds){
+    ds.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.style.display = m ? '' : 'none'; if(m) vis++; });
+        sec.style.display = (q !== '' && vis === 0) ? 'none' : '';
+      });
+    });
+  }
+</script>
+
+<script>
+/* === Version switch (v1 ⇄ v2) — fixed top-right === */
+(function(){
+  if(document.querySelector('.version-switch')) return;
+  var cur=(location.pathname.split('/').pop()||'index.html');
+  var a=document.createElement('a');
+  var v1Target=null;
+  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
+  if(v1Target){
+    a.href=v1Target;a.title='通常版に戻る';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">v1</span>';
+  } else {
+    var v2Target=cur.replace('.html','_v2.html');
+    if(cur==='index.html') v2Target='index_v2.html';
+    a.href=v2Target;a.title='このページのv2版へ';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">v2</span>';
+  }
+  a.className='version-switch';
+  a.setAttribute('aria-label',a.title);
+  document.body.appendChild(a);
+})();
+</script>
+
+</body>
+</html>
