@@ -465,15 +465,23 @@
   .ref-attribution a{color:var(--accent);text-decoration:none}
   .ref-attribution a:hover{text-decoration:underline}
 
-  /* === Version switch (v1 ⇄ v2) - fixed top-right === */
-  .version-switch{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;align-items:center;gap:.35rem;background:rgba(11,37,69,.9);color:#fff;padding:.4rem .85rem;border-radius:99px;text-decoration:none;font-size:.78rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;-webkit-tap-highlight-color:transparent;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25)}
-  .version-switch:hover{background:rgba(198,40,40,.95);border-color:rgba(255,255,255,.7);transform:translateY(-1px);box-shadow:0 4px 16px rgba(198,40,40,.4)}
-  .version-switch:focus-visible{outline:2px solid #fff;outline-offset:2px}
-  .version-switch .vs-icon{font-size:.95rem;line-height:1}
+  /* === Topbar actions cluster (Menu + v1/v2) === */
+  .topbar-actions{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;gap:.35rem;align-items:center}
+  .topbar-btn{display:inline-flex;align-items:center;gap:.3rem;background:rgba(11,37,69,.9);color:#fff;padding:.42rem .8rem;border-radius:99px;text-decoration:none;font-size:.76rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25);user-select:none;-webkit-tap-highlight-color:transparent}
+  .topbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.7);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .topbar-menu:hover{background:rgba(11,37,69,1)}
+  .topbar-switch:hover{background:rgba(198,40,40,.95);box-shadow:0 4px 16px rgba(198,40,40,.4)}
+  .topbar-btn .tb-icon{font-size:.95rem;line-height:1}
+  /* Hide old red page-nav bar and v2 in-header menu button (replaced by topbar) */
+  .page-nav{display:none !important}
+  .site-header .menu-btn{display:none !important}
+  /* Hide old floating .version-switch (superseded by .topbar-actions) */
+  .version-switch{display:none !important}
   @media (max-width:480px){
-    .version-switch{top:9px;right:9px;padding:.32rem .55rem;font-size:.7rem}
-    .version-switch .vs-text{display:none}
-    .version-switch .vs-icon{font-size:1.05rem}
+    .topbar-actions{top:9px;right:9px;gap:.25rem}
+    .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
+    .topbar-btn .tb-text{display:none}
+    .topbar-btn .tb-icon{font-size:1.05rem}
   }
 </style>
 </head>
@@ -1132,25 +1140,40 @@
 
 
 <script>
-/* === Version switch (v1 ⇄ v2) — fixed top-right === */
+/* === Topbar actions: Menu + v1/v2 (top-right cluster) === */
 (function(){
-  if(document.querySelector('.version-switch')) return;
+  if(document.querySelector('.topbar-actions')) return;
+  var wrap=document.createElement('div');
+  wrap.className='topbar-actions';
+  // Menu button (only if #menuToggle exists)
+  if(document.getElementById('menuToggle')){
+    var mb=document.createElement('label');
+    mb.setAttribute('for','menuToggle');
+    mb.className='topbar-btn topbar-menu';
+    mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
+    mb.setAttribute('aria-label','ページメニュー');
+    mb.setAttribute('role','button');
+    mb.setAttribute('tabindex','0');
+    wrap.appendChild(mb);
+  }
+  // V1/V2 switch
   var cur=(location.pathname.split('/').pop()||'index.html');
-  var a=document.createElement('a');
+  var sw=document.createElement('a');
   var v1Target=null;
   if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
   if(v1Target){
-    a.href=v1Target;a.title='通常版に戻る';
-    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">v1</span>';
+    sw.href=v1Target;sw.title='通常版に戻る';
+    sw.innerHTML='<span class="tb-icon">↺</span><span class="tb-text">v1</span>';
   } else {
     var v2Target=cur.replace('.html','_v2.html');
     if(cur==='index.html') v2Target='index_v2.html';
-    a.href=v2Target;a.title='このページのv2版へ';
-    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">v2</span>';
+    sw.href=v2Target;sw.title='このページのv2版へ';
+    sw.innerHTML='<span class="tb-icon">✨</span><span class="tb-text">v2</span>';
   }
-  a.className='version-switch';
-  a.setAttribute('aria-label',a.title);
-  document.body.appendChild(a);
+  sw.className='topbar-btn topbar-switch';
+  sw.setAttribute('aria-label',sw.title);
+  wrap.appendChild(sw);
+  document.body.appendChild(wrap);
 })();
 </script>
 </body>
