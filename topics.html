@@ -44,8 +44,9 @@
   .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
   .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
 
-  /* === Weekly focus section === */
-  .weekly{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.5rem 1.4rem;margin-bottom:2.5rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  /* === Weekly focus section (placed between header and page-nav) === */
+  .weekly-wrap{background:linear-gradient(180deg,#fff,#fef6f6);border-bottom:1px solid var(--border);padding:1.5rem 1rem 1.8rem}
+  .weekly{max-width:1100px;margin:0 auto;background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.5rem 1.4rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
   .weekly::before{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(198,40,40,.15),transparent 70%);border-radius:50%}
   .weekly-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;flex-wrap:wrap;position:relative}
   .weekly-badge{background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;padding:.25rem .65rem;border-radius:99px;letter-spacing:.05em;text-transform:uppercase;animation:weeklyPulse 2.5s ease-in-out infinite}
@@ -137,6 +138,58 @@
   <p class="meta">For Medical Students | 全学年対象</p>
 </header>
 
+<!-- ========== 今週の症例で押さえておきたいこと(タイトル直下・page-nav の上) ========== -->
+<div class="weekly-wrap">
+  <section class="weekly" aria-labelledby="weekly-h">
+    <div class="weekly-head">
+      <span class="weekly-badge">📌 This Week</span>
+      <h2 id="weekly-h">今週の症例で押さえておきたいこと</h2>
+    </div>
+    <p class="weekly-sub">今週の手術・回診で出てくるテーマ。<u>下の3つを先に読んでおく</u>と、症例検討・術後管理の理解がぐっと深まります。</p>
+
+    <div class="weekly-grid">
+      <a href="brain_isolation_technique.html" class="weekly-card">
+        <span class="wk-num">1</span>
+        <h4>弓部置換 + Brain Isolation Technique</h4>
+        <p class="why"><strong>核心:</strong> 弓部の血管を遮断しながらどうやって脳を守るか。SACPで脳と体を別回路で同時に灌流する考え方を理解すること。</p>
+        <ul class="keypoints">
+          <li>3分枝(BCA / LCC / LSCA)の解剖</li>
+          <li>SACP + 中等度低体温(25-28°C)が現在の標準</li>
+          <li>右腋窩動脈送血が主流(解離例で真腔送血)</li>
+          <li>NIRS で rSO₂ をモニタ・20-25%低下で介入</li>
+        </ul>
+        <span class="go">このトピックを開く</span>
+      </a>
+
+      <a href="spinal_cord_ischemia.html" class="weekly-card">
+        <span class="wk-num">2</span>
+        <h4>対麻痺(脊髄虚血)のメカニズム</h4>
+        <p class="why"><strong>核心:</strong> 胸部・胸腹部置換 / TEVAR / FETで最大の合併症である対麻痺は、<u>SCPP = MAP − CSFP</u>の式で考える。</p>
+        <ul class="keypoints">
+          <li>Adamkiewicz動脈(通常 Th9-L1)が脊髄前2/3を養う</li>
+          <li>Crawford分類:I-IIで対麻痺リスク最大</li>
+          <li>4機序:虚血・再灌流障害・浮腫・血栓塞栓</li>
+          <li>予防:CSFドレナージ、MAP維持、segmental artery保存</li>
+        </ul>
+        <span class="go">このトピックを開く</span>
+      </a>
+
+      <a href="chylothorax.html" class="weekly-card">
+        <span class="wk-num">3</span>
+        <h4>乳び胸(Chylothorax)</h4>
+        <p class="why"><strong>核心:</strong> 心臓・胸部手術後の遅発性合併症。<u>胸管解剖を理解</u>すれば、なぜ術後数日たって乳白色排液が出るかが見える。</p>
+        <ul class="keypoints">
+          <li>胸管は乳び槽→T5-T7で右→左へクロスオーバー</li>
+          <li>診断:胸水TG &gt; 110 mg/dL(または chylomicron陽性)</li>
+          <li>保存療法:MCT食 + オクトレオチド</li>
+          <li>難治例:胸管結紮(TDL)・リンパ管塞栓術(TDE)</li>
+        </ul>
+        <span class="go">このトピックを開く</span>
+      </a>
+    </div>
+  </section>
+</div>
+
 <div class="page-nav" aria-label="ページメニュー">
   <label for="menuToggle" class="page-nav-menu-btn" role="button" tabindex="0" aria-haspopup="dialog">
     <span class="menu-label-open">📚 メニュー</span>
@@ -145,56 +198,6 @@
 </div>
 
 <main>
-
-<!-- ========== 今週の症例で押さえておきたいこと ========== -->
-<section class="weekly" aria-labelledby="weekly-h">
-  <div class="weekly-head">
-    <span class="weekly-badge">📌 This Week</span>
-    <h2 id="weekly-h">今週の症例で押さえておきたいこと</h2>
-  </div>
-  <p class="weekly-sub">今週の手術・回診で出てくるテーマ。<u>下の3つを先に読んでおく</u>と、症例検討・術後管理の理解がぐっと深まります。</p>
-
-  <div class="weekly-grid">
-    <a href="brain_isolation_technique.html" class="weekly-card">
-      <span class="wk-num">1</span>
-      <h4>弓部置換 + Brain Isolation Technique</h4>
-      <p class="why"><strong>核心:</strong> 弓部の血管を遮断しながらどうやって脳を守るか。SACPで脳と体を別回路で同時に灌流する考え方を理解すること。</p>
-      <ul class="keypoints">
-        <li>3分枝(BCA / LCC / LSCA)の解剖</li>
-        <li>SACP + 中等度低体温(25-28°C)が現在の標準</li>
-        <li>右腋窩動脈送血が主流(解離例で真腔送血)</li>
-        <li>NIRS で rSO₂ をモニタ・20-25%低下で介入</li>
-      </ul>
-      <span class="go">このトピックを開く</span>
-    </a>
-
-    <a href="spinal_cord_ischemia.html" class="weekly-card">
-      <span class="wk-num">2</span>
-      <h4>対麻痺(脊髄虚血)のメカニズム</h4>
-      <p class="why"><strong>核心:</strong> 胸部・胸腹部置換 / TEVAR / FETで最大の合併症である対麻痺は、<u>SCPP = MAP − CSFP</u>の式で考える。</p>
-      <ul class="keypoints">
-        <li>Adamkiewicz動脈(通常 Th9-L1)が脊髄前2/3を養う</li>
-        <li>Crawford分類:I-IIで対麻痺リスク最大</li>
-        <li>4機序:虚血・再灌流障害・浮腫・血栓塞栓</li>
-        <li>予防:CSFドレナージ、MAP維持、segmental artery保存</li>
-      </ul>
-      <span class="go">このトピックを開く</span>
-    </a>
-
-    <a href="chylothorax.html" class="weekly-card">
-      <span class="wk-num">3</span>
-      <h4>乳び胸(Chylothorax)</h4>
-      <p class="why"><strong>核心:</strong> 心臓・胸部手術後の遅発性合併症。<u>胸管解剖を理解</u>すれば、なぜ術後数日たって乳白色排液が出るかが見える。</p>
-      <ul class="keypoints">
-        <li>胸管は乳び槽→T5-T7で右→左へクロスオーバー</li>
-        <li>診断:胸水TG &gt; 110 mg/dL(または chylomicron陽性)</li>
-        <li>保存療法:MCT食 + オクトレオチド</li>
-        <li>難治例:胸管結紮(TDL)・リンパ管塞栓術(TDE)</li>
-      </ul>
-      <span class="go">このトピックを開く</span>
-    </a>
-  </div>
-</section>
 
 <!-- ========== Intro ========== -->
 <div class="intro">
