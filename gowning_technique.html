@@ -123,12 +123,19 @@
   .video-caption a:hover{text-decoration:underline}
   @media (max-width:480px){section{padding:1.1rem .9rem};.sterile-grid{grid-template-columns:1fr};.back-to-top{bottom:14px;right:14px;width:44px;height:44px;font-size:20px}}
 
-  /* === Version switch (v1 ⇄ v2) === */
-  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
-  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
-  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
-  .version-switch .vs-icon{font-size:1rem;line-height:1}
-  @media (max-width:480px){.version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}}
+  /* === Version switch (v1 ⇄ v2) - inline next to menu button === */
+  .version-switch{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.18);color:#fff;padding:.35rem .75rem;border-radius:99px;text-decoration:none;font-size:.78rem;font-weight:600;border:1.5px solid rgba(255,255,255,.4);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;-webkit-tap-highlight-color:transparent;cursor:pointer}
+  .version-switch:hover{background:rgba(255,255,255,.32);border-color:rgba(255,255,255,.7);transform:translateY(-1px)}
+  .version-switch:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .version-switch .vs-icon{font-size:.95rem;line-height:1}
+  /* On v1 red page-nav: slightly stronger fill for contrast */
+  .page-nav .version-switch{background:rgba(0,0,0,.22);border-color:rgba(255,255,255,.35)}
+  .page-nav .version-switch:hover{background:rgba(0,0,0,.4);border-color:rgba(255,255,255,.55)}
+  @media (max-width:480px){
+    .version-switch{padding:.3rem .6rem;font-size:.72rem}
+    .version-switch .vs-text{display:none}
+    .version-switch .vs-icon{font-size:1.1rem}
+  }
 </style>
 </head>
 <body>
@@ -618,7 +625,7 @@
 
 
 <script>
-/* === Version switch (v1 ⇄ v2) === */
+/* === Version switch (v1 ⇄ v2) — placed next to hamburger button === */
 (function(){
   if(document.querySelector('.version-switch')) return;
   var cur=(location.pathname.split('/').pop()||'index.html');
@@ -627,16 +634,26 @@
   if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
   if(v1Target){
     a.href=v1Target;a.title='通常版に戻る';
-    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">通常版(v1)</span>';
+    a.innerHTML='<span class="vs-icon">↺</span><span class="vs-text">v1</span>';
   } else {
     var v2Target=cur.replace('.html','_v2.html');
     if(cur==='index.html') v2Target='index_v2.html';
     a.href=v2Target;a.title='このページのv2版へ';
-    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">ダイナミック版(v2)</span>';
+    a.innerHTML='<span class="vs-icon">✨</span><span class="vs-text">v2</span>';
   }
   a.className='version-switch';
   a.setAttribute('aria-label',a.title);
-  document.body.appendChild(a);
+  // Find the menu button. v1: .page-nav-menu-btn (label). v2: .menu-btn (label).
+  var menuBtn = document.querySelector('.page-nav-menu-btn, .menu-btn');
+  if(menuBtn && menuBtn.parentNode){
+    // Insert immediately after the menu button so they sit side-by-side
+    menuBtn.parentNode.insertBefore(a, menuBtn.nextSibling);
+  } else {
+    // Fallback: append to body with a fixed position
+    a.style.position='fixed';a.style.bottom='20px';a.style.left='20px';a.style.zIndex='250';
+    a.style.background='var(--navy)';a.style.borderColor='rgba(255,255,255,.12)';
+    document.body.appendChild(a);
+  }
 })();
 </script>
 </body>
