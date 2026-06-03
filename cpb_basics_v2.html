@@ -568,7 +568,6 @@
     <div class="footer-links">
       <a href="index_v2.html">トップ(v2)</a>
       <a href="index_v2.html">通常版(v1)</a>
-      <a href="cpb_basics.html">このページのv1</a>
       <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
     </div>
     <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
@@ -759,39 +758,20 @@ const btt = document.getElementById('backToTop');
 
 
 <script>
-/* === Topbar actions: Menu + v1/v2 (top-right cluster) === */
+/* === Topbar actions: Menu only (v1/v2 unified to v2) === */
 (function(){
   if(document.querySelector('.topbar-actions')) return;
+  if(!document.getElementById('menuToggle')) return;
   var wrap=document.createElement('div');
   wrap.className='topbar-actions';
-  // Menu button (only if #menuToggle exists)
-  if(document.getElementById('menuToggle')){
-    var mb=document.createElement('label');
-    mb.setAttribute('for','menuToggle');
-    mb.className='topbar-btn topbar-menu';
-    mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
-    mb.setAttribute('aria-label','ページメニュー');
-    mb.setAttribute('role','button');
-    mb.setAttribute('tabindex','0');
-    wrap.appendChild(mb);
-  }
-  // V1/V2 switch
-  var cur=(location.pathname.split('/').pop()||'index.html');
-  var sw=document.createElement('a');
-  var v1Target=null;
-  if(cur.endsWith('_v2.html')) v1Target=cur.replace('_v2.html','.html');
-  if(v1Target){
-    sw.href=v1Target;sw.title='通常版に戻る';
-    sw.innerHTML='<span class="tb-icon">↺</span><span class="tb-text">v1</span>';
-  } else {
-    var v2Target=cur.replace('.html','_v2.html');
-    if(cur==='index.html') v2Target='index_v2.html';
-    sw.href=v2Target;sw.title='このページのv2版へ';
-    sw.innerHTML='<span class="tb-icon">✨</span><span class="tb-text">v2</span>';
-  }
-  sw.className='topbar-btn topbar-switch';
-  sw.setAttribute('aria-label',sw.title);
-  wrap.appendChild(sw);
+  var mb=document.createElement('label');
+  mb.setAttribute('for','menuToggle');
+  mb.className='topbar-btn topbar-menu';
+  mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
+  mb.setAttribute('aria-label','ページメニュー');
+  mb.setAttribute('role','button');
+  mb.setAttribute('tabindex','0');
+  wrap.appendChild(mb);
   document.body.appendChild(wrap);
 })();
 </script>
