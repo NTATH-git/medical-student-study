@@ -336,7 +336,46 @@
   </div>
   <div class="no-result" id="noResult" style="display:none">該当する用語が見つかりません</div>
 </section>
+
+<section class="content reveal" id="quiz">
+  <h2>用語クイズ(全5問)</h2>
+  <p>主要略語の確認テスト。</p>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 5</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 5</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
 </main>
+
+<script>
+  const questions = [
+    {q:"「CABG」の正式名称はどれか。",choices:["Coronary Artery Bypass Grafting","Cardiac Arrhythmia Beat Group","Central Aortic Blood Gas","Cerebral Arterial Bridge Graft"],correct:0,explain:"CABG = Coronary Artery Bypass Grafting(冠動脈バイパス術)。LITA-LAD吻合と SVG が代表。"},
+    {q:"「ACT」が示すのはどれか。",choices:["Acute Cardiac Tamponade","Activated Clotting Time","Aortic Cross-clamp Time","Anti-Coagulation Therapy"],correct:1,explain:"ACT = Activated Clotting Time(活性化凝固時間)。CPB中のヘパリン化指標で、≥400-480秒を維持する。"},
+    {q:"「LVAD」の意味として正しいのはどれか。",choices:["Left Vertebral Artery Disease","Low Volume Atrial Drainage","Left Ventricular Assist Device","Lung Vasodilator"],correct:2,explain:"LVAD = Left Ventricular Assist Device(左室補助人工心臓)。重症心不全の橋渡し治療または DT(destination therapy)として使用。"},
+    {q:"「TAVI」/「TAVR」の意味として正しいのはどれか。",choices:["経カテーテル大動脈弁植え込み術","総合心血管リハビリ","三尖弁形成術","胸部下行大動脈瘤修復"],correct:0,explain:"TAVI(欧)/TAVR(米)= Transcatheter Aortic Valve Implantation/Replacement。重症AS、特に高齢ハイリスク症例で標準治療。"},
+    {q:"「PAWP」(肺動脈楔入圧)は近似的に何の代用とされるか。",choices:["右房圧(RAP)","左房圧(LAP)","平均動脈圧(MAP)","脳灌流圧"],correct:1,explain:"PAWP = Pulmonary Artery Wedge Pressure。バルーン閉塞して肺毛細血管圧を測ることで、左房圧 ≒ LVEDP の代用となる。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">

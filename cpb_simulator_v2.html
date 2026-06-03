@@ -479,7 +479,45 @@
     <strong>📌 シミュレーターを終えたら:</strong> <a href="cpb_basics_v2.html" style="color:var(--accent)">人工心肺の基本</a> と <a href="myocardial_protection_v2.html" style="color:var(--accent)">心筋保護</a> のページも合わせて読むと、知識が立体化します。
   </div>
 </section>
+
+<section class="content reveal" id="quiz">
+  <h2>理解度チェック(全5問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 5</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 5</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
 </main>
+
+<script>
+  const questions = [
+    {q:"成人の標準的なCPB灌流量(L/min/m²)はどれか。",choices:["0.5-1.0","1.5-2.0","2.2-2.5","4.0以上"],correct:2,explain:"成人標準は2.2-2.5 L/min/m²(CI 換算)。これより低いと組織灌流不全、高いと血液損傷リスク。体温・代謝率により調整する。"},
+    {q:"中等度低体温(28-32°C)でのCPBの主な利点はどれか。",choices:["体温を維持して凝固を保つ","脳代謝を低下させ虚血耐性を延長","赤血球の溶血を増やす","ヘパリン効果を強める"],correct:1,explain:"低体温は脳の酸素需要を Q₁₀≒2.4 に従って減らし、虚血耐性時間を延長する。28°Cで代謝率は約30-40%まで低下。"},
+    {q:"CPB中のヘパリン化目標 ACT(activated clotting time)はどれか。",choices:["100秒","200秒","≥400-480秒","1000秒"],correct:2,explain:"CPB回路内の凝固を防ぐため、ACT ≥ 400-480秒を維持する。15-30分ごとに測定し、必要ならヘパリン追加。離脱時にプロタミンで中和。"},
+    {q:"CPB中のSvO₂(混合静脈血酸素飽和度)の正常範囲はどれか。",choices:["20-30%","40-50%","65-75%","95-100%"],correct:2,explain:"SvO₂ 65-75% が組織灌流の指標。低下(<60%)は灌流不足・貧血・酸素消費増加を示唆し、灌流量↑ or Hct↑ or 体温↓で改善を試みる。"},
+    {q:"血液希釈(Hct低下)がCPBで生じる主な理由はどれか。",choices:["プライミング液による希釈","ヘパリンの作用","低体温による赤血球破壊","心停止液の影響"],correct:0,explain:"CPB回路を満たすプライミング液(通常1.5-2L)が患者血液と混和し、Hctは20-25%程度まで低下する。Hct < 20%では酸素運搬↓のため輸血を考慮。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">
