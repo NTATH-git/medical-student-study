@@ -860,10 +860,10 @@ const btt = document.getElementById('backToTop');
   btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
   window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
 
-  const _curP = (location.pathname.split('/').pop() || 'index.html');
-  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  const _curP_alt = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
   // Mark current page in the drawer & page nav (CSS-only otherwise)
-  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
   // Drawer-internal search filter
   const _drawerSearch = document.getElementById('drawerSearch');
   if(_drawerSearch){
