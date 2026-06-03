@@ -222,6 +222,27 @@
   #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
   #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
   #menuToggle:checked ~ .drawer{transform:translateX(0)}
+
+  /* === Topbar actions cluster (Menu + v1/v2) === */
+  .topbar-actions{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;gap:.35rem;align-items:center}
+  .topbar-btn{display:inline-flex;align-items:center;gap:.3rem;background:rgba(11,37,69,.9);color:#fff;padding:.42rem .8rem;border-radius:99px;text-decoration:none;font-size:.76rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25);user-select:none;-webkit-tap-highlight-color:transparent}
+  .topbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.7);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .topbar-menu:hover{background:rgba(11,37,69,1)}
+  .topbar-switch:hover{background:rgba(198,40,40,.95);box-shadow:0 4px 16px rgba(198,40,40,.4)}
+  .topbar-btn .tb-icon{font-size:.95rem;line-height:1}
+  /* Hide old red page-nav bar and v2 in-header menu button (replaced by topbar) */
+  .page-nav{display:none !important}
+  .site-header .menu-btn{display:none !important}
+  /* Hide v2 in-header site-nav (links overlapped with topbar chips) */
+  .site-header .site-nav{display:none !important}
+  /* Hide old floating .version-switch (superseded by .topbar-actions) */
+  .version-switch{display:none !important}
+  @media (max-width:480px){
+    .topbar-actions{top:9px;right:9px;gap:.25rem}
+    .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
+    .topbar-btn .tb-text{display:none}
+    .topbar-btn .tb-icon{font-size:1.05rem}
+  }
 </style>
 </head>
 <body>
