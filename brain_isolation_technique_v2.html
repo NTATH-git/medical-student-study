@@ -141,9 +141,10 @@
   /* Ref figure (Wikimedia) */
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
-  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure img{max-width:100%;max-height:70vh;height:auto;width:auto;object-fit:contain;border-radius:8px;background:#fff;display:block;margin:0 auto}
+  .ref-figure.compact img{max-width:min(380px,100%);max-height:60vh}
+  .ref-figure.wide img{max-width:min(560px,100%);max-height:65vh}
+  @media (max-width:600px){.ref-figure img{max-height:55vh}.ref-figure.wide img,.ref-figure.compact img{max-width:100%;max-height:55vh}}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
