@@ -174,12 +174,18 @@
   .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
   .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
   .drawer-close:hover{background:rgba(255,255,255,.15)}
-  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.5rem 0 2rem}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.55rem .8rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit;background:#fff;color:var(--text)}
+  .drawer-search input:focus{outline:none;border-color:var(--accent)}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.5rem 0 2rem;overscroll-behavior:contain}
   .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
   .drawer-section:first-child h4{border-top:none}
   .drawer ul{list-style:none;padding:0;margin:0}
   .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
   .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
 
   /* === Mobile responsive === */
   @media (max-width:600px){
@@ -641,27 +647,89 @@
 
 <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
 
-<!-- === DRAWER (mobile menu) === -->
+<!-- === DRAWER (full all-pages menu, right-side) === -->
 <label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
-<aside class="drawer" id="drawer" aria-label="ページメニュー">
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
   <div class="drawer-head">
-    <h3>📚 メニュー</h3>
-    <label for="menuToggle" class="drawer-close" role="button" aria-label="閉じる">×</label>
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
   </div>
   <div class="drawer-content">
     <div class="drawer-section">
-      <h4>このページ内</h4>
+      <h4>🏠 ホーム</h4>
       <ul>
-        <li><a href="#top">トップへ</a></li>
-        <li><a href="#featured">最新の追加ページ</a></li>
-        <li><a href="#topics">全トピック</a></li>
-        <li><a href="#about">サイトについて</a></li>
+        <li><a href="index_v2.html">目次トップ</a></li>
+        <li><a href="topics_v2.html">📑 トピックス一覧</a></li>
       </ul>
     </div>
     <div class="drawer-section">
-      <h4>切り替え</h4>
+      <h4>🫀 心血管総論</h4>
       <ul>
-        <li><a href="index_v2.html">通常版トップ(v1)</a></li>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
       </ul>
     </div>
   </div>
@@ -732,6 +800,26 @@
       });
     });
   }
+
+  // === Drawer: search filter ===
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => {
+          const m = q === '' || a.textContent.toLowerCase().includes(q);
+          a.classList.toggle('hidden', !m);
+          if(m) vis++;
+        });
+        sec.classList.toggle('empty', q !== '' && vis === 0);
+      });
+    });
+  }
+  // === Drawer: current page highlight ===
+  const _curP = (location.pathname.split('/').pop() || 'index_v2.html');
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
 
   // === Drawer: close on link click / Escape ===
   document.querySelectorAll('.drawer-content a').forEach(a => {
