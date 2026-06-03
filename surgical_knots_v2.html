@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糸結びの基礎(男結び・女結び・外科結び・機械結び)― 医学生のために (v2)</title>
+<meta name="description" content="男結び・女結び・外科結び・機械結び ― なぜ「ほどけない結び目」を作れるのか">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  .knot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0}
+  .knot-card{background:#fafbfd;border-radius:12px;padding:1rem 1.2rem;border:2px solid var(--border);display:flex;flex-direction:column;gap:.5rem}
+  .knot-card.good{border-color:var(--success);background:#f1f8e9}
+  .knot-card.warn{border-color:var(--warn);background:#fff8e1}
+  .knot-card.bad{border-color:var(--accent);background:#fff5f5}
+  .knot-card h4{color:var(--navy);font-size:1.05rem;margin:0}
+  .knot-card .label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.05em;padding:.18rem .6rem;border-radius:99px;align-self:flex-start;text-transform:uppercase}
+  .knot-card.good .label{background:var(--success);color:#fff}
+  .knot-card.warn .label{background:var(--warn);color:#fff}
+  .knot-card.bad .label{background:var(--accent);color:#fff}
+  .knot-card .desc{font-size:.86rem;line-height:1.65}
+  .knot-card ul{margin:.3rem 0 0;padding-left:1.2rem;font-size:.85rem}
+  .knot-svg-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1rem 0;text-align:center}
+  .knot-svg-wrap svg{max-width:100%;height:auto}
+  .knot-caption{font-size:.83rem;color:var(--text);margin-top:.6rem;text-align:left;line-height:1.65}
+  .knot-caption strong{color:var(--navy)}
+  .step-list{counter-reset:step;list-style:none;padding-left:0}
+  .step-list li{position:relative;padding:.4rem 0 .4rem 2.4rem;font-size:.92rem;line-height:1.65;counter-increment:step}
+  .step-list li::before{content:counter(step);position:absolute;left:0;top:.55rem;width:1.8rem;height:1.8rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+  .youtube-wrap{background:#f5f8fc;border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1rem 0}
+  .youtube-wrap h4{color:var(--navy);font-size:.95rem;margin-bottom:.6rem}
+  .youtube-wrap ul{margin:0;padding-left:1.4rem}
+  .youtube-wrap ul li{font-size:.88rem;margin:.4rem 0;line-height:1.55}
+  .youtube-wrap a{color:var(--accent);text-decoration:none}
+  .youtube-wrap a:hover{text-decoration:underline}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#why">なぜ重要か</a>
+      <a href="#basics">基本用語</a>
+      <a href="#square">男結び(square)</a>
+      <a href="#granny">女結び(granny)</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>糸結びの基礎</h1>
+    <p class="lead">男結び・女結び・外科結び・機械結び ― なぜ「ほどけない結び目」を作れるのか</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>10</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>3</strong> 図解</span>
+    </div>
+  </div>
+  <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#why">なぜ重要か</a>
+    <a href="#basics">基本用語</a>
+    <a href="#square">男結び(square)</a>
+    <a href="#granny">女結び(granny)</a>
+    <a href="#surgeon">外科結び</a>
+    <a href="#instrument">機械結び</a>
+    <a href="#compare">4結びの比較</a>
+    <a href="#practice">練習のコツ</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    内容は概要的・教育目的のため、<u>実際の手技は必ず指導医の監督下で練習してください</u>。糸の種類・部位・組織によって最適な結び方は異なります。
+  </div>
+</div>
+
+<div class="key-box">
+  外科で「ほどけない結び」を作るには、<span style="color:var(--accent)">「方向を反対にして2回かける」</span>のがコツ。<br>
+  これを <strong>square knot(男結び)</strong>と言い、すべての外科結びの基礎です。
+</div>
+
+<section class="content reveal" id="why">
+  <h2>1. なぜ糸結びは重要か</h2>
+  <p>糸結びは外科医にとって <strong>「呼吸と同じ」</strong>と言われる基本中の基本。手術中に1日に何百回も結ぶ動作なので、確実な技術が <u>止血・吻合の信頼性 → 患者の安全</u> に直結します。</p>
+
+  <h3>結び目に求められる4条件</h3>
+  <ol>
+    <li><strong>ほどけない</strong>(slip しない)― 緩むと再出血・縫合離開</li>
+    <li><strong>組織を傷つけない</strong>― 強く締めすぎると壊死</li>
+    <li><strong>適切な張力で締まる</strong>― 緩すぎると死腔・出血、強すぎると虚血</li>
+    <li><strong>糸を断裂させない</strong>― 摩擦・剪断で切れることがある</li>
+  </ol>
+
+  <h3>結び方には大きく2系統</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 手結び(hand tie)</h4>
+      <div class="role">Hand-tied</div>
+      <p>糸を手指だけで結ぶ。深部・狭い術野・繊細な組織に強い。練習が必要。</p>
+    </div>
+    <div class="component-card">
+      <h4>② 機械結び(instrument tie)</h4>
+      <div class="role">Instrument-tied</div>
+      <p>持針器(needle holder)で糸を巻く方式。針付き糸を続けて使え、糸の節約になる。皮膚縫合や血管縫合で多用。</p>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="basics">
+  <h2>2. 基本用語 ― hitch / loop / throw</h2>
+  <ul>
+    <li><strong>Throw(スロー)</strong>:糸を1回交差させて作る半結び(half hitch)。<u>2 throw を重ねて1つの「結び目」となる</u>。</li>
+    <li><strong>Square(スクエア)</strong>:1回目の throw と <u>反対方向</u> に2回目を重ねる ⇒ 男結び。</li>
+    <li><strong>Granny(グラニー)</strong>:1回目と <u>同じ方向</u> に2回目を重ねる ⇒ 女結び(ほどけやすい)。</li>
+    <li><strong>Surgeon's throw</strong>:1回目に <u>2重に絡ませる</u> (double-loop)。摩擦↑で緩みにくい。</li>
+    <li><strong>Slip knot</strong>:両端の張力が同方向 → ほどけてくる。<u>避けるべき結び</u>。</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 結び目の安全性 = throw の数 × 締めの確実性。</strong>
+    1 throw だけでは緩んでほどけます。最低 <u>3 throw 重ねる</u>のが標準(square 3つなど)。
+  </div>
+</section>
+
+<section class="content reveal" id="square">
+  <h2>3. 男結び(square knot / reef knot)</h2>
+  <p>外科で <strong>最も多用される基本の結び方</strong>。「2回目を反対方向にかける」ことで上下対称の構造になり、ほどけにくい。</p>
+
+  <div class="knot-svg-wrap">
+    <svg viewBox="0 0 400 160" aria-label="男結び 模式図">
+      <!-- Top throw: right over left -->
+      <text x="200" y="22" font-size="12" font-weight="700" fill="#0b2545" text-anchor="middle">男結び(square knot)</text>
+      <!-- 1st throw -->
+      <path d="M40,70 Q120,60 160,90 Q190,105 220,90 Q260,60 360,70"
+            fill="none" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40,90 Q120,100 160,70 Q190,55 220,70 Q260,100 360,90"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round"/>
+      <text x="120" y="135" font-size="10" fill="#666" text-anchor="middle">1回目:右→左</text>
+      <text x="280" y="135" font-size="10" fill="#666" text-anchor="middle">2回目:左→右(反対方向)</text>
+    </svg>
+    <div class="knot-caption">
+      <strong>男結びの本質:</strong> 1回目と2回目を<u>反対方向</u>にクロスする。両側を引くと自動的にロックされ、ほどけにくい。
+    </div>
+  </div>
+
+  <h3>手結びの手順(右利き)</h3>
+  <ol class="step-list">
+    <li>左手の糸を糸先(短い方)、右手の糸を本線(長い方)に持つ</li>
+    <li>右手糸を左手糸の<strong>上から</strong>かぶせる(1回目の throw)</li>
+    <li>そのまま左手糸を上から引き抜き、左右に均等に引いて締める</li>
+    <li>2回目は <strong>逆方向</strong>(右手糸を左手糸の<u>下から</u>)にかぶせる</li>
+    <li>左右に均等に締める(必ず両手を <u>同じ高さ</u>で引く)</li>
+    <li>必要に応じてもう1 throw(square knot 3つ)で完了</li>
+  </ol>
+
+  <h3>利点と欠点</h3>
+  <ul>
+    <li>✅ 構造的にほどけにくい(両側張力でロック)</li>
+    <li>✅ 慣れれば最も速く結べる</li>
+    <li>⚠️ <u>締めるとき両手の高さが揃わないと、自動的に slip knot になる</u> ― これが初心者の最大の落とし穴</li>
+    <li>⚠️ 滑りやすい糸(モノフィラメント・ePTFE等)では緩みやすい → 追加 throw が必要</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="granny">
+  <h2>4. 女結び(granny knot)― 避けるべき間違い</h2>
+  <p>男結びと似て非なる、<strong>2回とも同方向にかけてしまった結び</strong>。一見できているように見えますが、片側を引くと容易にほどけます。</p>
+
+  <div class="knot-svg-wrap">
+    <svg viewBox="0 0 400 160" aria-label="女結び 模式図">
+      <text x="200" y="22" font-size="12" font-weight="700" fill="#c62828" text-anchor="middle">女結び(granny knot)― ほどけやすい</text>
+      <!-- Both throws same direction -->
+      <path d="M40,70 Q120,60 160,90 Q190,105 220,90 Q260,60 360,70"
+            fill="none" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40,90 Q120,100 160,70 Q190,55 220,70 Q260,100 360,90"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round" transform="translate(0,-30) scale(1,-1) translate(0,-130)" style="display:none"/>
+      <!-- Second throw in SAME direction (forms granny) -->
+      <path d="M40,90 Q120,80 160,110 Q190,125 220,110 Q260,80 360,90"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round" opacity="0"/>
+      <!-- Visual: two crossings in same direction means top of first === top of second -->
+      <text x="120" y="135" font-size="10" fill="#666" text-anchor="middle">1回目:右→左</text>
+      <text x="280" y="135" font-size="10" fill="#c62828" text-anchor="middle" font-weight="700">2回目:右→左(同方向 ❌)</text>
+    </svg>
+    <div class="knot-caption">
+      <strong>女結びの問題:</strong> 1回目と2回目が同方向だと、結び目が <u>非対称</u> になり、軽く引っ張ると一気にほどける(slip knot 化)。
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠️ 女結びは外科では完全に NG:</strong> 自分が「男結びを作ったつもり」で女結びになっていないか、必ず<u>結び目を観察して確認</u>すること。指導医からのフィードバックを受けながら、繰り返し練習することが大切。
+  </div>
+
+  <h3>男結び vs 女結びの見分け方</h3>
+  <div class="knot-grid">
+    <div class="knot-card good">
+      <span class="label">✅ Square(男)</span>
+      <h4>糸が水平に並ぶ</h4>
+      <p class="desc">結び目の<strong>上下が対称</strong>で、両糸が結び目の片側から並んで出る。</p>
+    </div>
+    <div class="knot-card bad">
+      <span class="label">❌ Granny(女)</span>
+      <h4>糸がねじれる</h4>
+      <p class="desc">結び目から<strong>糸が交差して垂直方向に出る</strong>。形が「8」の字のようにねじれて見える。</p>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="surgeon">
+  <h2>5. 外科結び(surgeon's knot)</h2>
+  <p>1回目の throw で <strong>2重に糸を絡ませる</strong>(double loop)結び方。摩擦が増えて締めた後緩みにくいため、結紮中に張力を保ちたい場面で有用。</p>
+
+  <div class="knot-svg-wrap">
+    <svg viewBox="0 0 400 200" aria-label="外科結び 模式図">
+      <text x="200" y="22" font-size="12" font-weight="700" fill="#0b2545" text-anchor="middle">外科結び(surgeon's knot)</text>
+      <!-- First throw: double loop -->
+      <path d="M40,80 Q120,70 160,100 Q175,108 195,100 Q210,92 195,80 Q175,68 195,55 Q220,40 260,70 Q300,90 360,80"
+            fill="none" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40,100 Q120,110 160,80 Q175,72 195,80 Q210,88 195,100 Q175,112 195,125 Q220,140 260,110 Q300,90 360,100"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round"/>
+      <text x="200" y="170" font-size="10" fill="#666" text-anchor="middle">1回目:2重ループ(摩擦↑)→ 締めても緩まない</text>
+      <text x="200" y="186" font-size="10" fill="#666" text-anchor="middle">2回目以降は通常の square で固定</text>
+    </svg>
+    <div class="knot-caption">
+      <strong>外科結びの利点:</strong> 1回目の2重ループで摩擦が高まり、<u>2回目を結ぶまでの間に緩まない</u>。張力をかけた状態で組織を寄せたい時(血管縫合・吻合)に重宝する。
+    </div>
+  </div>
+
+  <h3>使う場面</h3>
+  <ul>
+    <li><strong>血管吻合の最初の結び</strong>(緩むと致命的)</li>
+    <li><strong>張力のかかる組織</strong>(筋膜・腱・離開した皮下)</li>
+    <li><strong>滑りやすい糸</strong>(モノフィラメント PDS、Prolene、ePTFE Gore-Tex 等)</li>
+    <li><strong>結紮中に保持力が必要な場面</strong>(深部結紮、片手結び)</li>
+  </ul>
+
+  <h3>注意点</h3>
+  <ul>
+    <li>1回目の double loop は <u>同じ方向</u> に2回巻く ― 2回目以降は通常の square に戻す</li>
+    <li>結び目がやや嵩高くなる → 皮膚縫合では美容的に劣る場合あり</li>
+    <li>滑らかな糸では追加の throw が必要(計 4-5 throws)</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="instrument">
+  <h2>6. 機械結び(instrument tie)</h2>
+  <p>持針器(needle holder)を使って糸を巻く結び方。手結びと違って <strong>針付き糸を続けて使える</strong>ため、皮膚縫合・血管縫合・連続縫合で多用されます。</p>
+
+  <h3>手順(基本の square 結び)</h3>
+  <ol class="step-list">
+    <li>針を組織から引き抜き、糸の長い方(本線)を組織側、短い方(糸先)を反対側に置く</li>
+    <li>左手で本線をつまみ、針付き側を <strong>持針器に2回(または1回)巻き付ける</strong></li>
+    <li>持針器の先端で <u>糸先をつかむ</u> ― この時の方向で結びの種類が決まる</li>
+    <li>つかんだ糸先を引き、本線側の手と <u>反対方向</u> に引いて締める(1回目)</li>
+    <li>2回目は <strong>巻き方向を逆</strong>にする ― 持針器の上下を変える</li>
+    <li>同じ要領で3 throw 目まで重ねる(square knot 3つ)</li>
+  </ol>
+
+  <div class="callout tip">
+    <strong>💡 ポイント:</strong> 機械結びでも <u>巻く方向を交互に変える</u>のが基本。どちらも同方向だと granny になる。
+  </div>
+
+  <h3>1巻き vs 2巻き</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>1巻き(single wrap)</h4>
+      <div class="role">通常の throw</div>
+      <p>軽量・スピーディ。皮膚縫合・浅い組織で。3-4 throw重ねる。</p>
+    </div>
+    <div class="component-card">
+      <h4>2巻き(double wrap = surgeon's)</h4>
+      <div class="role">外科結び相当</div>
+      <p>1回目だけ 2 巻きして摩擦↑。張力下の結紮、滑りやすい糸で。</p>
+    </div>
+  </div>
+
+  <h3>利点と欠点</h3>
+  <ul>
+    <li>✅ <strong>糸の節約</strong>:針付き糸の短い側(15-20cm)で結べる</li>
+    <li>✅ 細い糸・繊細な縫合(マイクロ・血管)に最適</li>
+    <li>✅ 狭い術野でも結べる(手が入らない場所)</li>
+    <li>⚠️ 締めるときの<u>張力コントロールが難しい</u> ― 持針器が滑ると糸が痛む</li>
+    <li>⚠️ 太い糸(0号以上)・滑りやすい糸では緩みやすい</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="compare">
+  <h2>7. 4つの結びの比較</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>結び方</th><th>1回目</th><th>2回目以降</th><th>強度</th><th>主な用途</th></tr></thead>
+    <tbody>
+      <tr><td><strong>男結び(square)</strong></td><td>1回 throw</td><td>反対方向 throw</td><td>★★★★</td><td>すべての基本、組織結紮、血管</td></tr>
+      <tr><td><strong>女結び(granny)</strong></td><td>1回 throw</td><td><u>同じ方向</u> throw</td><td>★(NG)</td><td>避けるべき(誤って作ってしまう)</td></tr>
+      <tr><td><strong>外科結び(surgeon's)</strong></td><td><strong>2重ループ</strong></td><td>反対方向 throw</td><td>★★★★★</td><td>血管吻合、張力下、滑りやすい糸</td></tr>
+      <tr><td><strong>機械結び(instrument)</strong></td><td>持針器に1-2巻</td><td>反対方向に1-2巻</td><td>★★★★(手結び同等)</td><td>皮膚、血管、細糸、深部</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>糸の種類と必要 throw 数(目安)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>糸の種類</th><th>必要 throw 数</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>絹糸(Silk)</td><td>3 throws</td><td>摩擦大、安定。古典的</td></tr>
+      <tr><td>編糸(Braided)― Vicryl, Ethibond</td><td>3-4 throws</td><td>表面ザラザラ、保持◎</td></tr>
+      <tr><td>モノフィラメント ― PDS, Monocryl, Maxon</td><td>5-6 throws</td><td>滑りやすい、要追加</td></tr>
+      <tr><td>Prolene(ポリプロピレン)</td><td>5-7 throws</td><td>最も滑りやすい、surgeon's 推奨</td></tr>
+      <tr><td>ePTFE(Gore-Tex)</td><td>5-7 throws + surgeon's</td><td>記憶形状、専用法あり</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal" id="practice">
+  <h2>8. 練習のコツ</h2>
+
+  <h3>基本姿勢</h3>
+  <ul>
+    <li>両手の <u>高さを揃える</u>(締める瞬間に水平に引く)</li>
+    <li>糸先と本線の <u>長さは 1:3 程度</u> から練習開始</li>
+    <li><strong>結び目を見ながら締める</strong>― 完成形を意識する</li>
+  </ul>
+
+  <h3>段階的に練習</h3>
+  <ol class="step-list">
+    <li><strong>第1段階</strong>:机の上で糸 2本を square knot で結ぶ(両手練習)</li>
+    <li><strong>第2段階</strong>:練習用パッド・グレープフルーツ・鶏肉で組織への結紮</li>
+    <li><strong>第3段階</strong>:片手結び(one-handed tie)― 深部結紮に必須</li>
+    <li><strong>第4段階</strong>:両手結び・片手結びを<u>左右両手で</u>できるように</li>
+    <li><strong>第5段階</strong>:機械結び ― 持針器の操作と組み合わせる</li>
+  </ol>
+
+  <div class="callout tip">
+    <strong>💡 1日30分 × 1週間 = 100回以上の結び:</strong> 練習量が結果に直結します。最初は遅くても、正しい型(square)を覚えること。スピードは後からついてきます。
+  </div>
+
+  <h3>練習用具</h3>
+  <ul>
+    <li><strong>糸結び練習パッド</strong>:市販品(2-5千円程度)</li>
+    <li><strong>練習用糸</strong>:絹糸 2-0、3-0 が定番(視認性◎)</li>
+    <li><strong>鶏肉・グレープフルーツ</strong>:組織の感触に近い</li>
+    <li><strong>動画教材</strong>:下記参照</li>
+  </ul>
+
+  <div class="youtube-wrap">
+    <h4>📺 おすすめ参考動画(YouTube 検索キーワード)</h4>
+    <ul>
+      <li><strong>"surgical knot tying square knot"</strong> ― 基本の手結び解説</li>
+      <li><strong>"surgeon's knot technique"</strong> ― 2重ループの作り方</li>
+      <li><strong>"instrument tie technique"</strong> ― 機械結びの巻き方</li>
+      <li><strong>"one-handed knot tying"</strong> ― 片手結び(深部結紮)</li>
+      <li><strong>"square knot vs granny knot"</strong> ― 違いの見分け方</li>
+    </ul>
+    <p style="font-size:.83rem;color:var(--muted);margin-top:.6rem">※ 「医学教育の動画は無数にあるので、複数を比較して自分に合う動きを見つけてください。可能なら指導医とのface-to-faceでの確認が最良です。」</p>
+  </div>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>9. 理解度チェック(全8問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 8</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>10. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>Throw</td><td>1回の交差(half hitch)。2つで結び目1つ</td></tr>
+      <tr><td>Square knot(reef knot)</td><td>男結び。反対方向に2回 throw</td></tr>
+      <tr><td>Granny knot</td><td>女結び。同方向に2回 throw(NG)</td></tr>
+      <tr><td>Surgeon's knot</td><td>外科結び。1回目を2重ループにする</td></tr>
+      <tr><td>Instrument tie</td><td>機械結び。持針器で糸を巻く方式</td></tr>
+      <tr><td>Hand tie / one-handed</td><td>手結び・片手結び(深部結紮)</td></tr>
+      <tr><td>Slip knot</td><td>ほどけてしまう「滑り結び」。避ける</td></tr>
+      <tr><td>Half hitch</td><td>半結び = throw と同義</td></tr>
+      <tr><td>Needle holder</td><td>持針器。機械結びに使用</td></tr>
+      <tr><td>Monofilament</td><td>単線糸。滑りやすい(Prolene, PDS, Nylon)</td></tr>
+      <tr><td>Braided</td><td>編糸。摩擦が高い(Silk, Vicryl, Ethibond)</td></tr>
+      <tr><td>Tensile strength</td><td>糸の引張強度。USP 規格に従う</td></tr>
+      <tr><td>Knot security</td><td>結び目の安定性。糸の種類×throw数で決まる</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal">
+  <h2>📎 関連ページ</h2>
+  <ul>
+    <li><a href="surgical_instruments_v2.html" style="color:var(--accent)">手術器械(心血管外科)</a> ― 持針器の使い方</li>
+    <li><a href="gowning_technique_v2.html" style="color:var(--accent)">ガウンテクニック</a> ― 滅菌野での操作</li>
+    <li><a href="avr_open_procedure_v2.html" style="color:var(--accent)">正中切開 AVR の手順</a> ― 実際の手術での結紮</li>
+    <li><a href="brain_isolation_technique_v2.html" style="color:var(--accent)">弓部置換 + Brain Isolation</a> ― 4-branched graft の吻合</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Heart of Medicine</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li><li><a href="topics_v2.html">📑 トピックス一覧</a></li></ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="surgical_knots_v2.html">糸結びの基礎</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+  const ds = document.getElementById('drawerSearch');
+  if(ds){
+    ds.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.style.display = m ? '' : 'none'; if(m) vis++; });
+        sec.style.display = (q !== '' && vis === 0) ? 'none' : '';
+      });
+    });
+  }
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+
+  const questions = [
+    {q:"男結び(square knot)の本質は何か。",choices:["糸を2重に巻く","1回目と2回目を反対方向にかける","糸を強く引っ張る","結び目を1回だけ作る"],correct:1,explain:"男結びの本質は<u>反対方向</u>に2回 throw を重ねること。これにより構造が上下対称になり、両側を引くと自動的にロックされてほどけにくい。"},
+    {q:"女結び(granny knot)が外科で避けられる理由はどれか。",choices:["糸が短くて結べない","2回とも同方向にかけたため軽く引くとほどける","作るのに時間がかかる","美容的に劣る"],correct:1,explain:"女結びは1回目と2回目を同方向にかけてしまった非対称な結び。slip knot 化してほどけやすく、術後の再出血・縫合離開の原因になる。"},
+    {q:"外科結び(surgeon's knot)の特徴はどれか。",choices:["持針器で結ぶ","1回目を2重ループにする","糸を切らずに連続で結ぶ","左手だけで結ぶ"],correct:1,explain:"外科結びは1回目の throw で<strong>2重ループ(double loop)</strong>を作る結び方。摩擦が増えて締めた後緩まないため、血管吻合や張力下の結紮に有用。"},
+    {q:"機械結び(instrument tie)の主な利点はどれか。",choices:["最も強固な結びになる","針付き糸を続けて使え糸の節約になる","完全にほどけない","深部でしか使えない"],correct:1,explain:"機械結びは持針器で糸を巻く方式。短い糸先(15-20cm)で結べるので<u>糸の節約</u>になり、針付き糸を続けて使える。皮膚縫合・血管縫合の連続縫合で多用。"},
+    {q:"Prolene(ポリプロピレン)モノフィラメント糸での結紮に推奨される最小 throw 数はどれか。",choices:["2","3","5-7","10以上"],correct:2,explain:"Prolene は最も滑りやすい糸の一つ。確実に保持するには <strong>5-7 throws</strong> または surgeon's knot 推奨。絹糸なら3 throws で十分だが、糸の種類で必要 throw 数は変わる。"},
+    {q:"締めるとき square knot が slip knot 化する主な原因はどれか。",choices:["両手の高さが揃わない","結び目を見ない","糸が長すぎる","2回目の方向を反対にした"],correct:0,explain:"square knot は両手を<u>同じ高さで水平に引く</u>ことで上下対称に締まる。片手だけ高く引くと、結び目が斜めになり構造的に slip knot に変わってしまう ― 初心者の最大の落とし穴。"},
+    {q:"血管吻合の最初の結びとして最も推奨されるのはどれか。",choices:["1 throw の square","3 throw の granny","Surgeon's knot(2重ループ)","1巻きの機械結び"],correct:2,explain:"血管吻合は緩むと致命的なため、1回目で<u>確実に保持できる</u>外科結び(surgeon's knot)が推奨される。2重ループの摩擦で締めた瞬間から緩まず、2回目を結ぶ間に張力が逃げない。"},
+    {q:"片手結び(one-handed tie)が必要な場面はどれか。",choices:["皮膚の浅い縫合","狭い深部術野での結紮(手が片方しか入らない)","美容縫合","糸の途中で切る時"],correct:1,explain:"片手結びは<u>深部・狭い術野</u>で手が片方しか入らない時に使う技術。利き手だけで square knot を作れるよう、両手練習(右でも左でも)が必要。心臓外科・腹腔深部・骨盤深部などで多用。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+
+<script>
+/* === Topbar actions: Menu only (v1/v2 unified to v2) === */
+(function(){
+  if(document.querySelector('.topbar-actions')) return;
+  if(!document.getElementById('menuToggle')) return;
+  var wrap=document.createElement('div');
+  wrap.className='topbar-actions';
+  var mb=document.createElement('label');
+  mb.setAttribute('for','menuToggle');
+  mb.className='topbar-btn topbar-menu';
+  mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
+  mb.setAttribute('aria-label','ページメニュー');
+  mb.setAttribute('role','button');
+  mb.setAttribute('tabindex','0');
+  wrap.appendChild(mb);
+  document.body.appendChild(wrap);
+})();
+</script>
+
+</body>
+</html>
