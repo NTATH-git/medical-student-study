@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>持続陰圧療法(NPWT/VAC)はなぜ有効か ― 医学生のために (v2)</title>
-<meta name="description" content="創傷治癒を加速させる「陰圧の力」を理解する">
+<title>糸結びの基礎(男結び・女結び・外科結び・機械結び)― 医学生のために (v2)</title>
+<meta name="description" content="男結び・女結び・外科結び・機械結び ― なぜ「ほどけない結び目」を作れるのか">
 <style>
   :root{
     --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
@@ -160,7 +160,7 @@
   .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
   .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
   #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
-  .drawer{position:fixed;top:0;right:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:-8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  .drawer{position:fixed;top:0;left:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
   #menuToggle:checked ~ .drawer{transform:translateX(0)}
   .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
   .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
@@ -181,6 +181,10 @@
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
   .reveal.visible{opacity:1;transform:translateY(0)}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  /* Version switch */
+  .version-switch{position:fixed;bottom:20px;left:20px;z-index:250;background:var(--navy);color:#fff;padding:.55rem 1rem;border-radius:99px;text-decoration:none;font-size:.82rem;font-weight:600;box-shadow:0 4px 16px rgba(11,37,69,.3);display:inline-flex;align-items:center;gap:.4rem;transition:all .25s ease;font-family:inherit;border:2px solid rgba(255,255,255,.12);white-space:nowrap}
+  .version-switch:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(198,40,40,.4);border-color:rgba(255,255,255,.2)}
+  .version-switch .vs-icon{font-size:1rem;line-height:1}
   @media (max-width:480px){
     main{padding:1.5rem .8rem 3rem}
     section.content{padding:1.3rem 1rem}
@@ -189,50 +193,35 @@
     .site-logo .logo-text{max-width:48vw}
     .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
   }
-  .mech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
-  .mech-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:1rem}
-  .mech-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
-  .mech-card .num{display:inline-block;background:var(--accent);color:#fff;width:1.8rem;height:1.8rem;border-radius:50%;text-align:center;line-height:1.8rem;font-weight:bold;margin-right:.4rem}
-  .mech-card p{font-size:.85rem}
-  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
-  .legend span{display:flex;align-items:center;gap:.3rem}
-  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
-  .indi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
-  .indi-grid > div{padding:1rem;border-radius:8px}
-  .indi-yes{background:#e8f5e9;border-left:4px solid var(--success)}
-  .indi-no{background:#ffebee;border-left:4px solid var(--accent)}
-  .indi-grid h4{margin-bottom:.5rem}
-  .indi-yes h4{color:var(--success)}
-  .indi-no h4{color:var(--accent)}
-  nav a.home-link:hover{background:rgba(255,255,255,.25)}
-  .menu-toggle{display:none}
+  .knot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0}
+  .knot-card{background:#fafbfd;border-radius:12px;padding:1rem 1.2rem;border:2px solid var(--border);display:flex;flex-direction:column;gap:.5rem}
+  .knot-card.good{border-color:var(--success);background:#f1f8e9}
+  .knot-card.warn{border-color:var(--warn);background:#fff8e1}
+  .knot-card.bad{border-color:var(--accent);background:#fff5f5}
+  .knot-card h4{color:var(--navy);font-size:1.05rem;margin:0}
+  .knot-card .label{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.05em;padding:.18rem .6rem;border-radius:99px;align-self:flex-start;text-transform:uppercase}
+  .knot-card.good .label{background:var(--success);color:#fff}
+  .knot-card.warn .label{background:var(--warn);color:#fff}
+  .knot-card.bad .label{background:var(--accent);color:#fff}
+  .knot-card .desc{font-size:.86rem;line-height:1.65}
+  .knot-card ul{margin:.3rem 0 0;padding-left:1.2rem;font-size:.85rem}
+  .knot-svg-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1rem 0;text-align:center}
+  .knot-svg-wrap svg{max-width:100%;height:auto}
+  .knot-caption{font-size:.83rem;color:var(--text);margin-top:.6rem;text-align:left;line-height:1.65}
+  .knot-caption strong{color:var(--navy)}
+  .step-list{counter-reset:step;list-style:none;padding-left:0}
+  .step-list li{position:relative;padding:.4rem 0 .4rem 2.4rem;font-size:.92rem;line-height:1.65;counter-increment:step}
+  .step-list li::before{content:counter(step);position:absolute;left:0;top:.55rem;width:1.8rem;height:1.8rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+  .youtube-wrap{background:#f5f8fc;border:1px solid var(--border);border-radius:10px;padding:1rem;margin:1rem 0}
+  .youtube-wrap h4{color:var(--navy);font-size:.95rem;margin-bottom:.6rem}
+  .youtube-wrap ul{margin:0;padding-left:1.4rem}
+  .youtube-wrap ul li{font-size:.88rem;margin:.4rem 0;line-height:1.55}
+  .youtube-wrap a{color:var(--accent);text-decoration:none}
+  .youtube-wrap a:hover{text-decoration:underline}
   #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
-  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
   #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
   #menuToggle:checked ~ .drawer{transform:translateX(0)}
-  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
-
-  /* === Topbar actions cluster (Menu + v1/v2) === */
-  .topbar-actions{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;gap:.35rem;align-items:center}
-  .topbar-btn{display:inline-flex;align-items:center;gap:.3rem;background:rgba(11,37,69,.9);color:#fff;padding:.42rem .8rem;border-radius:99px;text-decoration:none;font-size:.76rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25);user-select:none;-webkit-tap-highlight-color:transparent}
-  .topbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.7);box-shadow:0 4px 16px rgba(0,0,0,.3)}
-  .topbar-menu:hover{background:rgba(11,37,69,1)}
-  .topbar-switch:hover{background:rgba(198,40,40,.95);box-shadow:0 4px 16px rgba(198,40,40,.4)}
-  .topbar-btn .tb-icon{font-size:.95rem;line-height:1}
-  /* Hide old red page-nav bar and v2 in-header menu button (replaced by topbar) */
-  .page-nav{display:none !important}
-  .site-header .menu-btn{display:none !important}
-  /* Hide v2 in-header site-nav (links overlapped with topbar chips) */
-  .site-header .site-nav{display:none !important}
-  /* Hide old floating .version-switch (superseded by .topbar-actions) */
-  .version-switch{display:none !important}
-  @media (max-width:480px){
-    .topbar-actions{top:9px;right:9px;gap:.25rem}
-    .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
-    .topbar-btn .tb-text{display:none}
-    .topbar-btn .tb-icon{font-size:1.05rem}
-  }
 </style>
 </head>
 <body>
@@ -246,10 +235,10 @@
       <span class="logo-text">Heart of Medicine</span>
     </a>
     <nav class="site-nav">
-      <a href="#what">NPWTとは</a>
-      <a href="#mechanism">作用機序</a>
-      <a href="#indication">適応・禁忌</a>
-      <a href="#setup">設定・手順</a>
+      <a href="#why">なぜ重要か</a>
+      <a href="#basics">基本用語</a>
+      <a href="#square">男結び(square)</a>
+      <a href="#granny">女結び(granny)</a>
       <a href="index_v2.html" class="cta">トップ</a>
     </nav>
     <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
@@ -271,16 +260,16 @@
   </svg>
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
-    <h1>持続陰圧療法<br><span class="accent">(NPWT/VAC)はなぜ有効か</span></h1>
-    <p class="lead">創傷治癒を加速させる「陰圧の力」を理解する</p>
+    <h1>糸結びの基礎</h1>
+    <p class="lead">男結び・女結び・外科結び・機械結び ― なぜ「ほどけない結び目」を作れるのか</p>
     <div class="hero-meta">
       <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
-      <span class="hero-chip">📊 <strong>7</strong> セクション</span>
-      <span class="hero-chip">❓ <strong>6</strong> 問クイズ</span>
-      <span class="hero-chip">🖼 <strong>1</strong> 図解</span>
+      <span class="hero-chip">📊 <strong>10</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">🖼 <strong>3</strong> 図解</span>
     </div>
   </div>
-  <a href="#what" class="scroll-indicator" aria-label="下にスクロール">
+  <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
     <div class="mouse"></div>
     <span>SCROLL</span>
   </a>
@@ -289,200 +278,310 @@
 <nav class="section-nav" aria-label="セクション">
   <div class="section-nav-inner">
     <a href="index_v2.html" class="home">🏠 目次</a>
-    <a href="#what">NPWTとは</a>
-    <a href="#mechanism">作用機序</a>
-    <a href="#indication">適応・禁忌</a>
-    <a href="#setup">設定・手順</a>
-    <a href="#cvs">心血管外科での応用</a>
+    <a href="#why">なぜ重要か</a>
+    <a href="#basics">基本用語</a>
+    <a href="#square">男結び(square)</a>
+    <a href="#granny">女結び(granny)</a>
+    <a href="#surgeon">外科結び</a>
+    <a href="#instrument">機械結び</a>
+    <a href="#compare">4結びの比較</a>
+    <a href="#practice">練習のコツ</a>
     <a href="#quiz">クイズ</a>
     <a href="#glossary">用語</a>
   </div>
 </nav>
 
 <main>
-<div class="disclaimer reveal" role="note" aria-label="重要なお知らせ">
+<div class="disclaimer reveal" role="note">
   <div class="disclaimer-icon">⚠️</div>
   <div class="disclaimer-text">
     <strong>本ページは学習用の参考資料です</strong>
-    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+    内容は概要的・教育目的のため、<u>実際の手技は必ず指導医の監督下で練習してください</u>。糸の種類・部位・組織によって最適な結び方は異なります。
   </div>
 </div>
 
-<section class="content reveal" id="what">
-  <h2>1. 持続陰圧療法(NPWT)とは</h2>
-  <p><strong>NPWT</strong>(Negative Pressure Wound Therapy)は、創部を密封し、専用ポンプで持続的に<strong>陰圧</strong>(通常 −125 mmHg)をかけることで、創傷治癒を促進する治療法です。商品名から<strong>VAC療法</strong>(Vacuum-Assisted Closure)、TNP(Topical Negative Pressure)とも呼ばれます。</p>
+<div class="key-box">
+  外科で「ほどけない結び」を作るには、<span style="color:var(--accent)">「方向を反対にして2回かける」</span>のがコツ。<br>
+  これを <strong>square knot(男結び)</strong>と言い、すべての外科結びの基礎です。
+</div>
+
+<section class="content reveal" id="why">
+  <h2>1. なぜ糸結びは重要か</h2>
+  <p>糸結びは外科医にとって <strong>「呼吸と同じ」</strong>と言われる基本中の基本。手術中に1日に何百回も結ぶ動作なので、確実な技術が <u>止血・吻合の信頼性 → 患者の安全</u> に直結します。</p>
+
+  <h3>結び目に求められる4条件</h3>
+  <ol>
+    <li><strong>ほどけない</strong>(slip しない)― 緩むと再出血・縫合離開</li>
+    <li><strong>組織を傷つけない</strong>― 強く締めすぎると壊死</li>
+    <li><strong>適切な張力で締まる</strong>― 緩すぎると死腔・出血、強すぎると虚血</li>
+    <li><strong>糸を断裂させない</strong>― 摩擦・剪断で切れることがある</li>
+  </ol>
+
+  <h3>結び方には大きく2系統</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 手結び(hand tie)</h4>
+      <div class="role">Hand-tied</div>
+      <p>糸を手指だけで結ぶ。深部・狭い術野・繊細な組織に強い。練習が必要。</p>
+    </div>
+    <div class="component-card">
+      <h4>② 機械結び(instrument tie)</h4>
+      <div class="role">Instrument-tied</div>
+      <p>持針器(needle holder)で糸を巻く方式。針付き糸を続けて使え、糸の節約になる。皮膚縫合や血管縫合で多用。</p>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="basics">
+  <h2>2. 基本用語 ― hitch / loop / throw</h2>
+  <ul>
+    <li><strong>Throw(スロー)</strong>:糸を1回交差させて作る半結び(half hitch)。<u>2 throw を重ねて1つの「結び目」となる</u>。</li>
+    <li><strong>Square(スクエア)</strong>:1回目の throw と <u>反対方向</u> に2回目を重ねる ⇒ 男結び。</li>
+    <li><strong>Granny(グラニー)</strong>:1回目と <u>同じ方向</u> に2回目を重ねる ⇒ 女結び(ほどけやすい)。</li>
+    <li><strong>Surgeon's throw</strong>:1回目に <u>2重に絡ませる</u> (double-loop)。摩擦↑で緩みにくい。</li>
+    <li><strong>Slip knot</strong>:両端の張力が同方向 → ほどけてくる。<u>避けるべき結び</u>。</li>
+  </ul>
 
   <div class="callout tip">
-    <strong>💡 1995年:</strong> Argentaらが報告して以来、世界中で標準的な創傷管理法となりました。日本では2010年に保険収載。
+    <strong>💡 結び目の安全性 = throw の数 × 締めの確実性。</strong>
+    1 throw だけでは緩んでほどけます。最低 <u>3 throw 重ねる</u>のが標準(square 3つなど)。
+  </div>
+</section>
+
+<section class="content reveal" id="square">
+  <h2>3. 男結び(square knot / reef knot)</h2>
+  <p>外科で <strong>最も多用される基本の結び方</strong>。「2回目を反対方向にかける」ことで上下対称の構造になり、ほどけにくい。</p>
+
+  <div class="knot-svg-wrap">
+    <svg viewBox="0 0 400 160" aria-label="男結び 模式図">
+      <!-- Top throw: right over left -->
+      <text x="200" y="22" font-size="12" font-weight="700" fill="#0b2545" text-anchor="middle">男結び(square knot)</text>
+      <!-- 1st throw -->
+      <path d="M40,70 Q120,60 160,90 Q190,105 220,90 Q260,60 360,70"
+            fill="none" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40,90 Q120,100 160,70 Q190,55 220,70 Q260,100 360,90"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round"/>
+      <text x="120" y="135" font-size="10" fill="#666" text-anchor="middle">1回目:右→左</text>
+      <text x="280" y="135" font-size="10" fill="#666" text-anchor="middle">2回目:左→右(反対方向)</text>
+    </svg>
+    <div class="knot-caption">
+      <strong>男結びの本質:</strong> 1回目と2回目を<u>反対方向</u>にクロスする。両側を引くと自動的にロックされ、ほどけにくい。
+    </div>
   </div>
 
-  <h3>基本構成</h3>
+  <h3>手結びの手順(右利き)</h3>
+  <ol class="step-list">
+    <li>左手の糸を糸先(短い方)、右手の糸を本線(長い方)に持つ</li>
+    <li>右手糸を左手糸の<strong>上から</strong>かぶせる(1回目の throw)</li>
+    <li>そのまま左手糸を上から引き抜き、左右に均等に引いて締める</li>
+    <li>2回目は <strong>逆方向</strong>(右手糸を左手糸の<u>下から</u>)にかぶせる</li>
+    <li>左右に均等に締める(必ず両手を <u>同じ高さ</u>で引く)</li>
+    <li>必要に応じてもう1 throw(square knot 3つ)で完了</li>
+  </ol>
+
+  <h3>利点と欠点</h3>
   <ul>
-    <li><strong>フィラー:</strong> ポリウレタンフォーム(黒)またはポリビニルアルコールフォーム(白)を創腔に充填</li>
-    <li><strong>密封ドレープ:</strong> 透明フィルムで創部を気密シール</li>
-    <li><strong>吸引チューブ + キャニスター:</strong> 滲出液を回収</li>
-    <li><strong>ポンプ:</strong> 設定圧で持続吸引</li>
+    <li>✅ 構造的にほどけにくい(両側張力でロック)</li>
+    <li>✅ 慣れれば最も速く結べる</li>
+    <li>⚠️ <u>締めるとき両手の高さが揃わないと、自動的に slip knot になる</u> ― これが初心者の最大の落とし穴</li>
+    <li>⚠️ 滑りやすい糸(モノフィラメント・ePTFE等)では緩みやすい → 追加 throw が必要</li>
   </ul>
 </section>
 
-<section class="content reveal" id="mechanism">
-  <h2>2. なぜ有効か ― 4つの作用機序</h2>
-  <p>NPWTの効果は<strong>4つの異なる機序</strong>が同時に働くことで生まれます。</p>
+<section class="content reveal" id="granny">
+  <h2>4. 女結び(granny knot)― 避けるべき間違い</h2>
+  <p>男結びと似て非なる、<strong>2回とも同方向にかけてしまった結び</strong>。一見できているように見えますが、片側を引くと容易にほどけます。</p>
 
-  <div class="mech-grid">
-    <div class="mech-card">
-      <h4><span class="num">1</span>マクロ変形</h4>
-      <p><strong>創部の収縮(Macro-deformation)</strong><br>陰圧でスポンジが圧縮され、創縁が中心に引き寄せられる。物理的に創を縮小し、二次的縫合や植皮の足場を作る。</p>
-    </div>
-    <div class="mech-card">
-      <h4><span class="num">2</span>ミクロ変形</h4>
-      <p><strong>細胞レベルの伸展刺激(Micro-deformation)</strong><br>スポンジの細孔が組織を微小に引き伸ばし、機械的刺激で細胞増殖・血管新生・コラーゲン産生を促進(mechanotransduction)。</p>
-    </div>
-    <div class="mech-card">
-      <h4><span class="num">3</span>滲出液除去</h4>
-      <p><strong>過剰滲出液・炎症メディエーター・細菌の除去</strong><br>創部の浮腫を軽減し、MMP(matrix metalloproteinase)など治癒を阻害する因子を持続的に排出。感染リスクも低減。</p>
-    </div>
-    <div class="mech-card">
-      <h4><span class="num">4</span>血流改善</h4>
-      <p><strong>組織灌流の改善</strong><br>間質浮腫の減少と微小循環の改善により、酸素・栄養供給が増加。肉芽形成が早まる。</p>
-    </div>
-  </div>
-
-  <h3>機序の模式図</h3>
-  <div class="diagram-wrap">
-    <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NPWTの作用機序模式図">
-      <!-- 皮膚 -->
-      <rect x="20" y="40" width="380" height="20" fill="#fce4e4" stroke="#c62828"/>
-      <rect x="20" y="160" width="380" height="50" fill="#ffe0b2" stroke="#ef6c00"/>
-      <text x="25" y="200" font-size="11" fill="#5a6473">皮下組織</text>
-      <text x="25" y="55" font-size="11" fill="#5a6473">皮膚</text>
-
-      <!-- 創 -->
-      <path d="M 140 60 L 130 160 L 290 160 L 280 60 Z" fill="#f0f4f8" stroke="#0b2545" stroke-dasharray="3,2"/>
-
-      <!-- スポンジ -->
-      <rect x="135" y="65" width="150" height="90" fill="#424242" opacity="0.85"/>
-      <text x="180" y="115" font-size="11" fill="#fff" font-weight="bold">フォーム</text>
-      <text x="180" y="130" font-size="9" fill="#fff">(陰圧で圧縮)</text>
-
-      <!-- ドレープ -->
-      <line x1="20" y1="40" x2="400" y2="40" stroke="#1565c0" stroke-width="3"/>
-      <text x="25" y="35" font-size="10" fill="#1565c0">フィルム(気密)</text>
-
-      <!-- 吸引管 -->
-      <path d="M 210 40 Q 210 15 350 15" stroke="#0b2545" stroke-width="4" fill="none"/>
-      <text x="290" y="10" font-size="10" fill="#0b2545" font-weight="bold">→ ポンプへ</text>
-
-      <!-- 収縮矢印 -->
-      <path d="M 100 100 L 130 110" stroke="#c62828" stroke-width="2" marker-end="url(#a2)"/>
-      <path d="M 320 100 L 290 110" stroke="#c62828" stroke-width="2" marker-end="url(#a2)"/>
-      <text x="60" y="100" font-size="10" fill="#c62828">収縮</text>
-      <text x="325" y="100" font-size="10" fill="#c62828">収縮</text>
-
-      <!-- 滲出液矢印 -->
-      <path d="M 210 180 L 210 70" stroke="#1976d2" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#a3)"/>
-      <text x="215" y="180" font-size="9" fill="#1976d2">滲出液除去</text>
-
-      <defs>
-        <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <polygon points="0 0, 8 4, 0 8" fill="#c62828"/>
-        </marker>
-        <marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <polygon points="0 0, 8 4, 0 8" fill="#1976d2"/>
-        </marker>
-      </defs>
+  <div class="knot-svg-wrap">
+    <svg viewBox="0 0 400 160" aria-label="女結び 模式図">
+      <text x="200" y="22" font-size="12" font-weight="700" fill="#c62828" text-anchor="middle">女結び(granny knot)― ほどけやすい</text>
+      <!-- Both throws same direction -->
+      <path d="M40,70 Q120,60 160,90 Q190,105 220,90 Q260,60 360,70"
+            fill="none" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40,90 Q120,100 160,70 Q190,55 220,70 Q260,100 360,90"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round" transform="translate(0,-30) scale(1,-1) translate(0,-130)" style="display:none"/>
+      <!-- Second throw in SAME direction (forms granny) -->
+      <path d="M40,90 Q120,80 160,110 Q190,125 220,110 Q260,80 360,90"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round" opacity="0"/>
+      <!-- Visual: two crossings in same direction means top of first === top of second -->
+      <text x="120" y="135" font-size="10" fill="#666" text-anchor="middle">1回目:右→左</text>
+      <text x="280" y="135" font-size="10" fill="#c62828" text-anchor="middle" font-weight="700">2回目:右→左(同方向 ❌)</text>
     </svg>
-    <div class="legend">
-      <span><i style="background:#c62828"></i>マクロ収縮</span>
-      <span><i style="background:#1976d2"></i>滲出液排出</span>
-      <span><i style="background:#424242"></i>フォーム</span>
-    </div>
-  </div>
-</section>
-
-<section class="content reveal" id="indication">
-  <h2>3. 適応と禁忌</h2>
-
-  <div class="indi-grid">
-    <div class="indi-yes">
-      <h4>✅ 良い適応</h4>
-      <ul>
-        <li>急性外傷性創傷(挫滅創、汚染創)</li>
-        <li>術後創離開・腹部開放創</li>
-        <li><strong>胸骨正中切開後の縦隔炎</strong>(心臓外科)</li>
-        <li>慢性難治性潰瘍(褥瘡、糖尿病性足潰瘍、静脈性潰瘍)</li>
-        <li>植皮の固定(bolster)</li>
-        <li>四肢の開放骨折(整形)</li>
-      </ul>
-    </div>
-    <div class="indi-no">
-      <h4>❌ 禁忌・要注意</h4>
-      <ul>
-        <li>創部の悪性腫瘍(細胞増殖を促進してしまう)</li>
-        <li>未治療の骨髄炎</li>
-        <li>壊死組織(先にデブリードマン必須)</li>
-        <li>露出した血管・神経・臓器(直接吸引で損傷)</li>
-        <li>非腸管系/腸管系の瘻孔(腸液漏出 → 全身性合併症)</li>
-        <li>凝固障害(相対的禁忌)</li>
-      </ul>
+    <div class="knot-caption">
+      <strong>女結びの問題:</strong> 1回目と2回目が同方向だと、結び目が <u>非対称</u> になり、軽く引っ張ると一気にほどける(slip knot 化)。
     </div>
   </div>
 
   <div class="callout danger">
-    <strong>⚠ 露出大血管は絶対禁忌:</strong> 心血管外科領域では、大動脈・吻合部・グラフト露出創への直接NPWTは破裂・出血の原因に。<u>白色フォーム + 低圧</u>または<u>パラフィンガーゼで被覆してから黒スポンジ</u>などの工夫が必要。
+    <strong>⚠️ 女結びは外科では完全に NG:</strong> 自分が「男結びを作ったつもり」で女結びになっていないか、必ず<u>結び目を観察して確認</u>すること。指導医からのフィードバックを受けながら、繰り返し練習することが大切。
+  </div>
+
+  <h3>男結び vs 女結びの見分け方</h3>
+  <div class="knot-grid">
+    <div class="knot-card good">
+      <span class="label">✅ Square(男)</span>
+      <h4>糸が水平に並ぶ</h4>
+      <p class="desc">結び目の<strong>上下が対称</strong>で、両糸が結び目の片側から並んで出る。</p>
+    </div>
+    <div class="knot-card bad">
+      <span class="label">❌ Granny(女)</span>
+      <h4>糸がねじれる</h4>
+      <p class="desc">結び目から<strong>糸が交差して垂直方向に出る</strong>。形が「8」の字のようにねじれて見える。</p>
+    </div>
   </div>
 </section>
 
-<section class="content reveal" id="setup">
-  <h2>4. 設定とドレッシング</h2>
+<section class="content reveal" id="surgeon">
+  <h2>5. 外科結び(surgeon's knot)</h2>
+  <p>1回目の throw で <strong>2重に糸を絡ませる</strong>(double loop)結び方。摩擦が増えて締めた後緩みにくいため、結紮中に張力を保ちたい場面で有用。</p>
 
-  <h3>標準設定</h3>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>項目</th><th>標準</th><th>備考</th></tr></thead>
-      <tbody>
-        <tr><td>吸引圧</td><td>−125 mmHg</td><td>痛みが強い・血流不良で −75〜−100 mmHgへ減圧</td></tr>
-        <tr><td>モード</td><td>持続(continuous)</td><td>肉芽が立ちにくければ間欠(5min ON / 2min OFF)も検討</td></tr>
-        <tr><td>フォーム</td><td>黒(PU)が基本</td><td>露出組織・植皮上では白(PVA)</td></tr>
-        <tr><td>交換頻度</td><td>48〜72時間ごと</td><td>感染創は24時間ごと。固着して取れにくければ生食浸潤させる</td></tr>
-        <tr><td>使用期間</td><td>1〜数週間</td><td>1か月以上は長期使用 — 効果再評価</td></tr>
-      </tbody>
-    </table>
+  <div class="knot-svg-wrap">
+    <svg viewBox="0 0 400 200" aria-label="外科結び 模式図">
+      <text x="200" y="22" font-size="12" font-weight="700" fill="#0b2545" text-anchor="middle">外科結び(surgeon's knot)</text>
+      <!-- First throw: double loop -->
+      <path d="M40,80 Q120,70 160,100 Q175,108 195,100 Q210,92 195,80 Q175,68 195,55 Q220,40 260,70 Q300,90 360,80"
+            fill="none" stroke="#c62828" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40,100 Q120,110 160,80 Q175,72 195,80 Q210,88 195,100 Q175,112 195,125 Q220,140 260,110 Q300,90 360,100"
+            fill="none" stroke="#0b2545" stroke-width="6" stroke-linecap="round"/>
+      <text x="200" y="170" font-size="10" fill="#666" text-anchor="middle">1回目:2重ループ(摩擦↑)→ 締めても緩まない</text>
+      <text x="200" y="186" font-size="10" fill="#666" text-anchor="middle">2回目以降は通常の square で固定</text>
+    </svg>
+    <div class="knot-caption">
+      <strong>外科結びの利点:</strong> 1回目の2重ループで摩擦が高まり、<u>2回目を結ぶまでの間に緩まない</u>。張力をかけた状態で組織を寄せたい時(血管縫合・吻合)に重宝する。
+    </div>
   </div>
+
+  <h3>使う場面</h3>
+  <ul>
+    <li><strong>血管吻合の最初の結び</strong>(緩むと致命的)</li>
+    <li><strong>張力のかかる組織</strong>(筋膜・腱・離開した皮下)</li>
+    <li><strong>滑りやすい糸</strong>(モノフィラメント PDS、Prolene、ePTFE Gore-Tex 等)</li>
+    <li><strong>結紮中に保持力が必要な場面</strong>(深部結紮、片手結び)</li>
+  </ul>
 
   <h3>注意点</h3>
   <ul>
-    <li>毎日 滲出液量・性状を観察。急激な血性増加 → 出血を疑い即停止</li>
-    <li>ドレープの剥がれ = 陰圧維持できず効果消失 — 早期に貼り替え</li>
-    <li>創周囲皮膚の浸軟・水疱形成に注意(スキンプレップでバリア)</li>
-    <li>フォームの断片を創内に残さないよう全て回収を確認</li>
+    <li>1回目の double loop は <u>同じ方向</u> に2回巻く ― 2回目以降は通常の square に戻す</li>
+    <li>結び目がやや嵩高くなる → 皮膚縫合では美容的に劣る場合あり</li>
+    <li>滑らかな糸では追加の throw が必要(計 4-5 throws)</li>
   </ul>
 </section>
 
-<section class="content reveal" id="cvs">
-  <h2>5. 心血管外科での代表的応用</h2>
+<section class="content reveal" id="instrument">
+  <h2>6. 機械結び(instrument tie)</h2>
+  <p>持針器(needle holder)を使って糸を巻く結び方。手結びと違って <strong>針付き糸を続けて使える</strong>ため、皮膚縫合・血管縫合・連続縫合で多用されます。</p>
 
-  <h3>胸骨縦隔炎(Mediastinitis)に対するNPWT</h3>
-  <p>心臓外科後の<strong>深部胸骨創感染(DSWI: Deep Sternal Wound Infection)</strong>は死亡率10-25%と重篤。NPWTは縦隔炎治療の<strong>標準的なブリッジ療法</strong>として確立されています。</p>
-
-  <h4>手順の流れ</h4>
-  <ol>
-    <li>胸骨ワイヤー抜去 + デブリードマン</li>
-    <li>大血管・心臓表面をパラフィンガーゼまたは白色フォームで保護</li>
-    <li>黒色フォーム充填 + ドレープ密封 + −75〜−125 mmHgで吸引</li>
-    <li>48-72時間ごとに交換、培養陰性化・肉芽形成を確認</li>
-    <li>最終的に大網充填術や筋皮弁による胸骨再建へ</li>
+  <h3>手順(基本の square 結び)</h3>
+  <ol class="step-list">
+    <li>針を組織から引き抜き、糸の長い方(本線)を組織側、短い方(糸先)を反対側に置く</li>
+    <li>左手で本線をつまみ、針付き側を <strong>持針器に2回(または1回)巻き付ける</strong></li>
+    <li>持針器の先端で <u>糸先をつかむ</u> ― この時の方向で結びの種類が決まる</li>
+    <li>つかんだ糸先を引き、本線側の手と <u>反対方向</u> に引いて締める(1回目)</li>
+    <li>2回目は <strong>巻き方向を逆</strong>にする ― 持針器の上下を変える</li>
+    <li>同じ要領で3 throw 目まで重ねる(square knot 3つ)</li>
   </ol>
 
-  <div class="callout">
-    <strong>📌 重要:</strong> 大動脈・グラフト・冠動脈バイパス露出例では出血リスクが高い。低圧設定(−75 mmHg)とパラフィンガーゼ保護が原則。
+  <div class="callout tip">
+    <strong>💡 ポイント:</strong> 機械結びでも <u>巻く方向を交互に変える</u>のが基本。どちらも同方向だと granny になる。
+  </div>
+
+  <h3>1巻き vs 2巻き</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>1巻き(single wrap)</h4>
+      <div class="role">通常の throw</div>
+      <p>軽量・スピーディ。皮膚縫合・浅い組織で。3-4 throw重ねる。</p>
+    </div>
+    <div class="component-card">
+      <h4>2巻き(double wrap = surgeon's)</h4>
+      <div class="role">外科結び相当</div>
+      <p>1回目だけ 2 巻きして摩擦↑。張力下の結紮、滑りやすい糸で。</p>
+    </div>
+  </div>
+
+  <h3>利点と欠点</h3>
+  <ul>
+    <li>✅ <strong>糸の節約</strong>:針付き糸の短い側(15-20cm)で結べる</li>
+    <li>✅ 細い糸・繊細な縫合(マイクロ・血管)に最適</li>
+    <li>✅ 狭い術野でも結べる(手が入らない場所)</li>
+    <li>⚠️ 締めるときの<u>張力コントロールが難しい</u> ― 持針器が滑ると糸が痛む</li>
+    <li>⚠️ 太い糸(0号以上)・滑りやすい糸では緩みやすい</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="compare">
+  <h2>7. 4つの結びの比較</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>結び方</th><th>1回目</th><th>2回目以降</th><th>強度</th><th>主な用途</th></tr></thead>
+    <tbody>
+      <tr><td><strong>男結び(square)</strong></td><td>1回 throw</td><td>反対方向 throw</td><td>★★★★</td><td>すべての基本、組織結紮、血管</td></tr>
+      <tr><td><strong>女結び(granny)</strong></td><td>1回 throw</td><td><u>同じ方向</u> throw</td><td>★(NG)</td><td>避けるべき(誤って作ってしまう)</td></tr>
+      <tr><td><strong>外科結び(surgeon's)</strong></td><td><strong>2重ループ</strong></td><td>反対方向 throw</td><td>★★★★★</td><td>血管吻合、張力下、滑りやすい糸</td></tr>
+      <tr><td><strong>機械結び(instrument)</strong></td><td>持針器に1-2巻</td><td>反対方向に1-2巻</td><td>★★★★(手結び同等)</td><td>皮膚、血管、細糸、深部</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>糸の種類と必要 throw 数(目安)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>糸の種類</th><th>必要 throw 数</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>絹糸(Silk)</td><td>3 throws</td><td>摩擦大、安定。古典的</td></tr>
+      <tr><td>編糸(Braided)― Vicryl, Ethibond</td><td>3-4 throws</td><td>表面ザラザラ、保持◎</td></tr>
+      <tr><td>モノフィラメント ― PDS, Monocryl, Maxon</td><td>5-6 throws</td><td>滑りやすい、要追加</td></tr>
+      <tr><td>Prolene(ポリプロピレン)</td><td>5-7 throws</td><td>最も滑りやすい、surgeon's 推奨</td></tr>
+      <tr><td>ePTFE(Gore-Tex)</td><td>5-7 throws + surgeon's</td><td>記憶形状、専用法あり</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal" id="practice">
+  <h2>8. 練習のコツ</h2>
+
+  <h3>基本姿勢</h3>
+  <ul>
+    <li>両手の <u>高さを揃える</u>(締める瞬間に水平に引く)</li>
+    <li>糸先と本線の <u>長さは 1:3 程度</u> から練習開始</li>
+    <li><strong>結び目を見ながら締める</strong>― 完成形を意識する</li>
+  </ul>
+
+  <h3>段階的に練習</h3>
+  <ol class="step-list">
+    <li><strong>第1段階</strong>:机の上で糸 2本を square knot で結ぶ(両手練習)</li>
+    <li><strong>第2段階</strong>:練習用パッド・グレープフルーツ・鶏肉で組織への結紮</li>
+    <li><strong>第3段階</strong>:片手結び(one-handed tie)― 深部結紮に必須</li>
+    <li><strong>第4段階</strong>:両手結び・片手結びを<u>左右両手で</u>できるように</li>
+    <li><strong>第5段階</strong>:機械結び ― 持針器の操作と組み合わせる</li>
+  </ol>
+
+  <div class="callout tip">
+    <strong>💡 1日30分 × 1週間 = 100回以上の結び:</strong> 練習量が結果に直結します。最初は遅くても、正しい型(square)を覚えること。スピードは後からついてきます。
+  </div>
+
+  <h3>練習用具</h3>
+  <ul>
+    <li><strong>糸結び練習パッド</strong>:市販品(2-5千円程度)</li>
+    <li><strong>練習用糸</strong>:絹糸 2-0、3-0 が定番(視認性◎)</li>
+    <li><strong>鶏肉・グレープフルーツ</strong>:組織の感触に近い</li>
+    <li><strong>動画教材</strong>:下記参照</li>
+  </ul>
+
+  <div class="youtube-wrap">
+    <h4>📺 おすすめ参考動画(YouTube 検索キーワード)</h4>
+    <ul>
+      <li><strong>"surgical knot tying square knot"</strong> ― 基本の手結び解説</li>
+      <li><strong>"surgeon's knot technique"</strong> ― 2重ループの作り方</li>
+      <li><strong>"instrument tie technique"</strong> ― 機械結びの巻き方</li>
+      <li><strong>"one-handed knot tying"</strong> ― 片手結び(深部結紮)</li>
+      <li><strong>"square knot vs granny knot"</strong> ― 違いの見分け方</li>
+    </ul>
+    <p style="font-size:.83rem;color:var(--muted);margin-top:.6rem">※ 「医学教育の動画は無数にあるので、複数を比較して自分に合う動きを見つけてください。可能なら指導医とのface-to-faceでの確認が最良です。」</p>
   </div>
 </section>
 
 <section class="content reveal" id="quiz">
-  <h2>6. 理解度チェック(全6問)</h2>
+  <h2>9. 理解度チェック(全8問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="progress" id="progress">問題 1 / 8</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -492,7 +591,7 @@
     </div>
     <div class="score-display" id="scoreDisplay">
       <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 6</div>
+      <div class="big" id="finalScore">0 / 8</div>
       <div id="comment"></div>
       <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
     </div>
@@ -500,23 +599,35 @@
 </section>
 
 <section class="content reveal" id="glossary">
-  <h2>7. 用語集</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>用語</th><th>意味</th></tr></thead>
-      <tbody>
-        <tr><td>NPWT</td><td>Negative Pressure Wound Therapy(陰圧閉鎖療法)</td></tr>
-        <tr><td>VAC</td><td>Vacuum-Assisted Closure(NPWTの商品名由来)</td></tr>
-        <tr><td>マクロ変形</td><td>Macro-deformation。創部全体の収縮</td></tr>
-        <tr><td>ミクロ変形</td><td>Micro-deformation。細胞レベルの伸展刺激</td></tr>
-        <tr><td>Mechanotransduction</td><td>機械刺激を細胞内シグナルに変換する現象</td></tr>
-        <tr><td>DSWI</td><td>Deep Sternal Wound Infection(深部胸骨創感染)</td></tr>
-        <tr><td>MMP</td><td>Matrix Metalloproteinase。慢性創傷で増加し治癒を阻害</td></tr>
-        <tr><td>PU フォーム</td><td>ポリウレタンフォーム(黒)。肉芽促進に優れる</td></tr>
-        <tr><td>PVA フォーム</td><td>ポリビニルアルコールフォーム(白)。露出組織保護に</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <h2>10. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>Throw</td><td>1回の交差(half hitch)。2つで結び目1つ</td></tr>
+      <tr><td>Square knot(reef knot)</td><td>男結び。反対方向に2回 throw</td></tr>
+      <tr><td>Granny knot</td><td>女結び。同方向に2回 throw(NG)</td></tr>
+      <tr><td>Surgeon's knot</td><td>外科結び。1回目を2重ループにする</td></tr>
+      <tr><td>Instrument tie</td><td>機械結び。持針器で糸を巻く方式</td></tr>
+      <tr><td>Hand tie / one-handed</td><td>手結び・片手結び(深部結紮)</td></tr>
+      <tr><td>Slip knot</td><td>ほどけてしまう「滑り結び」。避ける</td></tr>
+      <tr><td>Half hitch</td><td>半結び = throw と同義</td></tr>
+      <tr><td>Needle holder</td><td>持針器。機械結びに使用</td></tr>
+      <tr><td>Monofilament</td><td>単線糸。滑りやすい(Prolene, PDS, Nylon)</td></tr>
+      <tr><td>Braided</td><td>編糸。摩擦が高い(Silk, Vicryl, Ethibond)</td></tr>
+      <tr><td>Tensile strength</td><td>糸の引張強度。USP 規格に従う</td></tr>
+      <tr><td>Knot security</td><td>結び目の安定性。糸の種類×throw数で決まる</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal">
+  <h2>📎 関連ページ</h2>
+  <ul>
+    <li><a href="surgical_instruments_v2.html" style="color:var(--accent)">手術器械(心血管外科)</a> ― 持針器の使い方</li>
+    <li><a href="gowning_technique_v2.html" style="color:var(--accent)">ガウンテクニック</a> ― 滅菌野での操作</li>
+    <li><a href="avr_open_procedure_v2.html" style="color:var(--accent)">正中切開 AVR の手順</a> ― 実際の手術での結紮</li>
+    <li><a href="brain_isolation_technique_v2.html" style="color:var(--accent)">弓部置換 + Brain Isolation</a> ― 4-branched graft の吻合</li>
+  </ul>
 </section>
 </main>
 
@@ -547,8 +658,7 @@
   <div class="drawer-content">
     <div class="drawer-section">
       <h4>🏠 ホーム</h4>
-      <ul><li><a href="index_v2.html">目次トップ</a></li><li><a href="topics_v2.html">📑 トピックス一覧</a></li>
-        </ul>
+      <ul><li><a href="index_v2.html">目次トップ</a></li><li><a href="topics_v2.html">📑 トピックス一覧</a></li></ul>
     </div>
     <div class="drawer-section">
       <h4>🫀 心血管総論</h4>
@@ -675,67 +785,41 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = do
 const btt = document.getElementById('backToTop');
   btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
   window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
-  // Highlight current page in the top text-based page nav
   const _curP = (location.pathname.split('/').pop() || 'index.html');
-  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
-  // Mark current page in the drawer & page nav (CSS-only otherwise)
   document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
-  // Drawer-internal search filter
-  const _drawerSearch = document.getElementById('drawerSearch');
-  if(_drawerSearch){
-    _drawerSearch.addEventListener('input', e => {
+  const ds = document.getElementById('drawerSearch');
+  if(ds){
+    ds.addEventListener('input', e => {
       const q = e.target.value.trim().toLowerCase();
       document.querySelectorAll('.drawer-section').forEach(sec => {
         let vis = 0;
-        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
-        sec.classList.toggle('empty', q!=='' && vis===0);
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.style.display = m ? '' : 'none'; if(m) vis++; });
+        sec.style.display = (q !== '' && vis === 0) ? 'none' : '';
       });
     });
   }
-  // Close drawer on link click (so :checked clears when navigating)
   document.querySelectorAll('.drawer-content a').forEach(a => {
     a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
   });
-  // Escape to close
   document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+
   const questions = [
-    {q:"NPWTの作用機序として誤っているのはどれか。",choices:["創部の物理的収縮(マクロ変形)","細胞伸展刺激による細胞増殖促進","過剰滲出液・炎症メディエーターの除去","抗菌薬の局所濃度上昇"],correct:3,explain:"NPWTは抗菌薬投与とは無関係。①マクロ変形 ②ミクロ変形 ③滲出液除去 ④組織灌流改善の4つが主作用。"},
-    {q:"NPWTの標準的な吸引圧設定はどれか。",choices:["−25 mmHg","−75 mmHg","−125 mmHg","−250 mmHg"],correct:2,explain:"標準は−125 mmHg(持続)。痛みや血流不良の症例では−75〜−100 mmHgに減圧する。"},
-    {q:"NPWTの禁忌として正しいのはどれか。",choices:["糖尿病性足潰瘍","胸骨縦隔炎","創部の悪性腫瘍","褥瘡(深達性)"],correct:2,explain:"悪性創傷では細胞増殖促進が腫瘍進展を助長する可能性がある。露出大血管・未治療骨髄炎・腸瘻なども禁忌。"},
-    {q:"心臓外科後の深部胸骨創感染(DSWI)に対してNPWTを使う際、最も注意すべきことはどれか。",choices:["陰圧を最大(−250 mmHg)に設定する","大血管・グラフトを直接吸引しないよう保護する","フォームを毎日交換する","抗菌薬投与を中止する"],correct:1,explain:"大動脈・グラフト露出例では破裂・出血のリスクあり。パラフィンガーゼや白色フォームで保護し低圧設定にする。"},
-    {q:"NPWTのフォーム種類とその使い分けで正しいのはどれか。",choices:["白色PVAは肉芽形成に最適","黒色PUは露出血管に直接使う","黒色PUは肉芽形成に優れ、白色PVAは露出組織保護に用いる","どちらも同じ用途"],correct:2,explain:"黒色PUフォームは細孔構造により肉芽形成を強く促進。白色PVAは滑らかで露出組織や植皮上に使う。"},
-    {q:"ミクロ変形(micro-deformation)の効果として正しいのはどれか。",choices:["創部全体を物理的に縮める","細胞を引き伸ばして増殖シグナルを活性化する","滲出液を回収する","間質浮腫を軽減する"],correct:1,explain:"スポンジの細孔が組織表面を微小に引き伸ばす機械刺激(mechanotransduction)が細胞増殖・血管新生・コラーゲン産生を促進する。"}
+    {q:"男結び(square knot)の本質は何か。",choices:["糸を2重に巻く","1回目と2回目を反対方向にかける","糸を強く引っ張る","結び目を1回だけ作る"],correct:1,explain:"男結びの本質は<u>反対方向</u>に2回 throw を重ねること。これにより構造が上下対称になり、両側を引くと自動的にロックされてほどけにくい。"},
+    {q:"女結び(granny knot)が外科で避けられる理由はどれか。",choices:["糸が短くて結べない","2回とも同方向にかけたため軽く引くとほどける","作るのに時間がかかる","美容的に劣る"],correct:1,explain:"女結びは1回目と2回目を同方向にかけてしまった非対称な結び。slip knot 化してほどけやすく、術後の再出血・縫合離開の原因になる。"},
+    {q:"外科結び(surgeon's knot)の特徴はどれか。",choices:["持針器で結ぶ","1回目を2重ループにする","糸を切らずに連続で結ぶ","左手だけで結ぶ"],correct:1,explain:"外科結びは1回目の throw で<strong>2重ループ(double loop)</strong>を作る結び方。摩擦が増えて締めた後緩まないため、血管吻合や張力下の結紮に有用。"},
+    {q:"機械結び(instrument tie)の主な利点はどれか。",choices:["最も強固な結びになる","針付き糸を続けて使え糸の節約になる","完全にほどけない","深部でしか使えない"],correct:1,explain:"機械結びは持針器で糸を巻く方式。短い糸先(15-20cm)で結べるので<u>糸の節約</u>になり、針付き糸を続けて使える。皮膚縫合・血管縫合の連続縫合で多用。"},
+    {q:"Prolene(ポリプロピレン)モノフィラメント糸での結紮に推奨される最小 throw 数はどれか。",choices:["2","3","5-7","10以上"],correct:2,explain:"Prolene は最も滑りやすい糸の一つ。確実に保持するには <strong>5-7 throws</strong> または surgeon's knot 推奨。絹糸なら3 throws で十分だが、糸の種類で必要 throw 数は変わる。"},
+    {q:"締めるとき square knot が slip knot 化する主な原因はどれか。",choices:["両手の高さが揃わない","結び目を見ない","糸が長すぎる","2回目の方向を反対にした"],correct:0,explain:"square knot は両手を<u>同じ高さで水平に引く</u>ことで上下対称に締まる。片手だけ高く引くと、結び目が斜めになり構造的に slip knot に変わってしまう ― 初心者の最大の落とし穴。"},
+    {q:"血管吻合の最初の結びとして最も推奨されるのはどれか。",choices:["1 throw の square","3 throw の granny","Surgeon's knot(2重ループ)","1巻きの機械結び"],correct:2,explain:"血管吻合は緩むと致命的なため、1回目で<u>確実に保持できる</u>外科結び(surgeon's knot)が推奨される。2重ループの摩擦で締めた瞬間から緩まず、2回目を結ぶ間に張力が逃げない。"},
+    {q:"片手結び(one-handed tie)が必要な場面はどれか。",choices:["皮膚の浅い縫合","狭い深部術野での結紮(手が片方しか入らない)","美容縫合","糸の途中で切る時"],correct:1,explain:"片手結びは<u>深部・狭い術野</u>で手が片方しか入らない時に使う技術。利き手だけで square knot を作れるよう、両手練習(右でも左でも)が必要。心臓外科・腹腔深部・骨盤深部などで多用。"}
   ];
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
-  function renderQ(){
-    answered=false;const q=questions[idx];
-    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
-    qText.textContent=q.q;choicesEl.innerHTML='';
-    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
-    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
-  }
-  function selectAnswer(i,btn){
-    if(answered)return;answered=true;const q=questions[idx];
-    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
-    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
-    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
-    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
-    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
-  }
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
   nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
-  function showResult(){
-    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
-    finalScore.textContent=`${score} / ${questions.length}`;
-    const pct=score/questions.length;
-    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
-    scoreDisplay.classList.add('show');
-  }
-  restartBtn.addEventListener('click',()=>{
-    idx=0;score=0;
-    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
-    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
-  });
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
   renderQ();
 </script>
 
