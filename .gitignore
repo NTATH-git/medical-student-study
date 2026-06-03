@@ -10,3 +10,16 @@
 .vscode/
 .idea/
 *.swp
+
+# Original CT images (un-cropped, with burned-in metadata) — keep local only
+VR2.jpg
+*.dcm
+*.DCM
+
+# Other source CT / DICOM / reference PDFs (keep local only)
+Early*.jpg
+VR*.jpg
+*.pdf
+Screenshot*.png
+.VR*.jpg-*
+.Early*.jpg-*
