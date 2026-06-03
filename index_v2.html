@@ -94,6 +94,31 @@
   .section-head h2{font-size:clamp(1.5rem,4vw,2.2rem);color:var(--navy);font-weight:700;letter-spacing:.01em;margin-bottom:.7rem}
   .section-head .sub{color:var(--muted);font-size:.95rem;max-width:640px;margin:0 auto;line-height:1.8}
 
+  /* === WEEKLY FOCUS (embedded directly on top page) === */
+  .weekly-wrap{padding:0 1.2rem}
+  .weekly{max-width:1100px;margin:0 auto;background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.6rem 1.5rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;animation:weeklyFrame 1.8s ease-in-out infinite}
+  @keyframes weeklyFrame{0%,100%{box-shadow:0 0 0 0 rgba(198,40,40,.55),var(--shadow-lg)}50%{box-shadow:0 0 0 10px rgba(198,40,40,0),var(--shadow-lg)}}
+  .weekly::before{content:"";position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(198,40,40,.15),transparent 70%);border-radius:50%;pointer-events:none}
+  .weekly-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;flex-wrap:wrap;position:relative}
+  .weekly-badge{background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;padding:.25rem .65rem;border-radius:99px;letter-spacing:.05em;text-transform:uppercase;animation:weeklyBlink 1.1s ease-in-out infinite}
+  @keyframes weeklyBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.94)}}
+  .weekly h2{color:var(--navy);font-size:clamp(1.15rem,3vw,1.5rem);font-weight:700;margin:0}
+  .weekly-sub{color:var(--muted);font-size:.92rem;margin-bottom:1.3rem;position:relative}
+  .weekly-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;position:relative}
+  .weekly-card{background:#fff;border-radius:12px;padding:1.2rem 1.3rem;text-decoration:none;color:inherit;border:1.5px solid var(--border);transition:all .25s ease;display:flex;flex-direction:column;gap:.5rem;position:relative}
+  .weekly-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+  .weekly-card .wk-num{position:absolute;top:-12px;left:1.2rem;background:var(--accent);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;box-shadow:0 2px 8px rgba(198,40,40,.4);animation:weeklyNum 2s ease-in-out infinite}
+  @keyframes weeklyNum{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+  .weekly-card h4{color:var(--navy);font-size:1.02rem;font-weight:700;margin-top:.4rem;line-height:1.4}
+  .weekly-card .why{font-size:.85rem;color:var(--text);line-height:1.6;flex:1}
+  .weekly-card .why strong{color:var(--accent)}
+  .weekly-card .keypoints{list-style:none;padding:0;margin:.4rem 0 0;font-size:.82rem;color:var(--text)}
+  .weekly-card .keypoints li{padding:.3rem 0 .3rem 1.3rem;position:relative;line-height:1.55}
+  .weekly-card .keypoints li::before{content:"●";position:absolute;left:.3rem;color:var(--accent);font-size:.7rem;top:.55rem}
+  .weekly-card .go{display:inline-flex;align-items:center;gap:.3rem;color:var(--accent);font-size:.85rem;font-weight:600;margin-top:.4rem;align-self:flex-start}
+  .weekly-card .go::after{content:"→";transition:transform .2s}
+  .weekly-card:hover .go::after{transform:translateX(4px)}
+  @media (prefers-reduced-motion:reduce){.weekly,.weekly-badge,.weekly-card .wk-num{animation:none}}
   /* === FEATURED (newest topics) === */
   .featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
   .featured-card{background:#fff;border-radius:14px;padding:1.6rem 1.4rem;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:all .35s var(--ease);border:1px solid var(--border)}
@@ -273,12 +298,12 @@
       <strong>32 ページの実践教材</strong> と <strong>250 問以上のインタラクティブクイズ</strong> で、教科書では見えない現場の知識を体験してください。
     </p>
     <div class="hero-ctas">
-      <a href="#featured" class="btn-primary">学習を始める <span aria-hidden="true">→</span></a>
+      <a href="#weekly" class="btn-primary">📌 今週のトピック <span aria-hidden="true">→</span></a>
       <a href="#topics" class="btn-secondary">全トピックを見る</a>
     </div>
   </div>
 
-  <a href="#stats" class="scroll-indicator" aria-label="下にスクロール">
+  <a href="#weekly" class="scroll-indicator" aria-label="下にスクロール">
     <div class="mouse"></div>
     <span>SCROLL</span>
   </a>
@@ -310,18 +335,83 @@
   </div>
 </section>
 
-<!-- === WEEKLY FOCUS BANNER === -->
-<section class="section" style="padding-bottom:0">
-  <div class="section-inner">
-    <a href="topics_v2.html" class="reveal" style="display:flex;align-items:center;gap:1rem;background:linear-gradient(135deg,#c62828,#ef5350);color:#fff;padding:1.4rem 1.6rem;border-radius:14px;text-decoration:none;box-shadow:0 8px 28px rgba(198,40,40,.35);transition:transform .3s,box-shadow .3s;flex-wrap:wrap" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 36px rgba(198,40,40,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 28px rgba(198,40,40,.35)'">
-      <div style="font-size:2rem;flex-shrink:0">📌</div>
-      <div style="flex:1;min-width:200px">
-        <div style="font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;opacity:.9;margin-bottom:.3rem">This Week's Focus</div>
-        <div style="font-size:clamp(1rem,2.5vw,1.25rem);font-weight:700;line-height:1.4">今週の症例で押さえておきたい5つのテーマ</div>
-        <div style="font-size:.88rem;opacity:.92;margin-top:.4rem;font-weight:400">弓部置換 + Brain Isolation・対麻痺メカニズム・乳び胸・CVカテーテル抜去・NPWT — まとめて読む</div>
+<!-- === WEEKLY FOCUS (本体を埋め込み) === -->
+<section class="section" id="weekly" style="padding-top:2.5rem;padding-bottom:2rem">
+  <div class="weekly-wrap">
+    <section class="weekly reveal" aria-labelledby="weekly-h">
+      <div class="weekly-head">
+        <span class="weekly-badge">📌 This Week</span>
+        <h2 id="weekly-h">今週の症例で押さえておきたいこと</h2>
       </div>
-      <div style="font-size:1.5rem;opacity:.9">→</div>
-    </a>
+      <p class="weekly-sub">今週の手術・回診で出てくるテーマ。<u>下の5つを先に読んでおく</u>と、症例検討・術後管理の理解がぐっと深まります。</p>
+
+      <div class="weekly-grid">
+        <a href="brain_isolation_technique_v2.html" class="weekly-card">
+          <span class="wk-num">1</span>
+          <h4>弓部置換 + Brain Isolation Technique</h4>
+          <p class="why"><strong>核心:</strong> 弓部の血管を遮断しながらどうやって脳を守るか。SACPで脳と体を別回路で同時に灌流する考え方を理解すること。</p>
+          <ul class="keypoints">
+            <li>3分枝(BCA / LCC / LSCA)の解剖</li>
+            <li>SACP + 中等度低体温(25-28°C)が現在の標準</li>
+            <li>右腋窩動脈送血が主流(解離例で真腔送血)</li>
+            <li>NIRS で rSO₂ をモニタ・20-25%低下で介入</li>
+          </ul>
+          <span class="go">このトピックを開く</span>
+        </a>
+
+        <a href="spinal_cord_ischemia_v2.html" class="weekly-card">
+          <span class="wk-num">2</span>
+          <h4>対麻痺(脊髄虚血)のメカニズム</h4>
+          <p class="why"><strong>核心:</strong> 胸部・胸腹部置換 / TEVAR / FETで最大の合併症である対麻痺は、<u>SCPP = MAP − CSFP</u>の式で考える。</p>
+          <ul class="keypoints">
+            <li>Adamkiewicz動脈(通常 Th9-L1)が脊髄前2/3を養う</li>
+            <li>Crawford分類:I-IIで対麻痺リスク最大</li>
+            <li>4機序:虚血・再灌流障害・浮腫・血栓塞栓</li>
+            <li>予防:CSFドレナージ、MAP維持、segmental artery保存</li>
+          </ul>
+          <span class="go">このトピックを開く</span>
+        </a>
+
+        <a href="chylothorax_v2.html" class="weekly-card">
+          <span class="wk-num">3</span>
+          <h4>乳び胸(Chylothorax)</h4>
+          <p class="why"><strong>核心:</strong> 心臓・胸部手術後の遅発性合併症。<u>胸管解剖を理解</u>すれば、なぜ術後数日たって乳白色排液が出るかが見える。</p>
+          <ul class="keypoints">
+            <li>胸管は乳び槽→T5-T7で右→左へクロスオーバー</li>
+            <li>診断:胸水TG &gt; 110 mg/dL(または chylomicron陽性)</li>
+            <li>保存療法:MCT食 + オクトレオチド</li>
+            <li>難治例:胸管結紮(TDL)・リンパ管塞栓術(TDE)</li>
+          </ul>
+          <span class="go">このトピックを開く</span>
+        </a>
+
+        <a href="cv_catheter_removal_v2.html" class="weekly-card">
+          <span class="wk-num">4</span>
+          <h4>CV(中心静脈)カテーテル抜去の注意点</h4>
+          <p class="why"><strong>核心:</strong> 抜去は単純そうに見えて、<u>空気塞栓は致死的</u>。「いつ・どの体位で・呼吸はどうするか」を必ず守ること。PMDA医療安全情報 No.71 で繰り返し注意喚起されている。</p>
+          <ul class="keypoints">
+            <li>抜去時は <strong>仰臥位 or Trendelenburg</strong>(座位は禁忌)</li>
+            <li>抜去のタイミングは <strong>呼気終末で息止め</strong>(Valsalva)</li>
+            <li>抜去後は <u>閉塞性ドレッシング</u> を最低24時間貼付</li>
+            <li>抜去後30分以上は安静臥床、突然の胸痛・呼吸困難に注意</li>
+          </ul>
+          <span class="go">このトピックを開く</span>
+        </a>
+
+        <a href="npwt_basics_v2.html" class="weekly-card">
+          <span class="wk-num">5</span>
+          <h4>持続陰圧療法(NPWT / VAC)</h4>
+          <p class="why"><strong>核心:</strong> 単なる「吸引している」ではなく、<u>4つの機序</u>(浮腫除去・血流促進・肉芽形成・創縁収縮)で創傷治癒を加速する治療。心臓外科の<u>縦隔炎</u>では救命的に使われる。</p>
+          <ul class="keypoints">
+            <li>標準設定:<strong>-125 mmHg、持続吸引</strong>(間欠もあり)</li>
+            <li>適応:開放創、術後創離開、縦隔炎、糖尿病性潰瘍 等</li>
+            <li>禁忌:<u>露出血管・腸瘻・悪性腫瘍・未デブリ壊死</u></li>
+            <li>交換は <strong>48-72時間ごと</strong>、出血・感染徴候に注意</li>
+          </ul>
+          <span class="go">このトピックを開く</span>
+        </a>
+      </div>
+    </section>
   </div>
 </section>
 
