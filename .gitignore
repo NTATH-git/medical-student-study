@@ -23,3 +23,6 @@ VR*.jpg
 Screenshot*.png
 .VR*.jpg-*
 .Early*.jpg-*
+
+# Third-party figures (journal Fig prints) — keep local only
+Schema*.png
