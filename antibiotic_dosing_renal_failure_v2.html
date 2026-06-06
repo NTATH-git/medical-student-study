@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>身体の中で陰圧になるところはどこか ― 医学生のために (v2)</title>
-<meta name="description" content="陰圧の生理と臨床への応用">
+<title>腎機能悪化時の抗生剤投与一覧 ― 医学生のために (v2)</title>
+<meta name="description" content="CKD・術後AKI・透析患者での抗菌薬用量調整。PK/PD三型、20+薬剤の腎機能別投与量、TDM、CVS患者の落とし穴。">
 <style>
   :root{
     --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
@@ -189,13 +189,16 @@
     .site-logo .logo-text{max-width:48vw}
     .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
   }
-  .site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;margin-top:1rem}
-  .site-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:1rem 1.2rem}
-  .site-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
-  .site-card .pressure{display:inline-block;font-size:.78rem;padding:.15rem .55rem;border-radius:999px;background:#fff0f0;color:var(--accent);margin-bottom:.3rem;font-weight:600}
-  .site-card p{font-size:.86rem}
-  .site-card .clinical{background:#f5f8fc;padding:.5rem .7rem;border-radius:4px;font-size:.82rem;margin-top:.4rem}
-  .site-card .clinical strong{color:var(--navy)}
+  .risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-top:.8rem}
+  .risk-card{padding:.9rem 1rem;border-radius:8px;border-left:4px solid}
+  .risk-low{background:#e8f5e9;border-left-color:var(--success)}
+  .risk-med{background:#fff3e0;border-left-color:var(--warn)}
+  .risk-high{background:#ffebee;border-left-color:var(--danger)}
+  .risk-card .title{font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+  .risk-low .title{color:var(--success)}
+  .risk-med .title{color:var(--warn)}
+  .risk-high .title{color:var(--danger)}
+  .risk-card ul{font-size:.83rem}
   .menu-toggle{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
@@ -243,10 +246,10 @@
       <span class="logo-text">Heart of Medicine</span>
     </a>
     <nav class="site-nav">
-      <a href="#why">なぜ陰圧を学ぶか</a>
-      <a href="#sites">陰圧になる部位</a>
-      <a href="#clinical">臨床応用</a>
-      <a href="#quiz">クイズ</a>
+      <a href="#overview">薬剤一覧</a>
+      <a href="#hold">術前休薬</a>
+      <a href="#bridging">ブリッジング</a>
+      <a href="#emergency">緊急時中和</a>
       <a href="index_v2.html" class="cta">トップ</a>
     </nav>
     <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
@@ -268,12 +271,13 @@
   </svg>
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
-    <h1>身体の中で陰圧に<br><span class="accent">なるところはどこか</span></h1>
-    <p class="lead">陰圧の生理と臨床への応用</p>
+    <h1>腎機能と抗生剤投与<br><span class="accent">用量調整の原則と一覧</span></h1>
+    <p class="lead">CKD・術後 AKI・透析患者で抗菌薬を盛らず削らず効かせる</p>
     <div class="hero-meta">
-      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
-      <span class="hero-chip">📊 <strong>5</strong> セクション</span>
-      <span class="hero-chip">❓ <strong>6</strong> 問クイズ</span>
+      <span class="hero-chip">🎓 <strong>高学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>9</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>7</strong> 問クイズ</span>
+      <span class="hero-chip">💊 <strong>20+</strong> 薬剤</span>
     </div>
   </div>
   <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
@@ -285,9 +289,13 @@
 <nav class="section-nav" aria-label="セクション">
   <div class="section-nav-inner">
     <a href="index_v2.html" class="home">🏠 目次</a>
-    <a href="#why">なぜ陰圧を学ぶか</a>
-    <a href="#sites">陰圧になる部位</a>
-    <a href="#clinical">臨床応用</a>
+    <a href="#why">なぜ調整</a>
+    <a href="#renal-eval">腎機能評価</a>
+    <a href="#class">分類と PK/PD</a>
+    <a href="#dose-table">用量表</a>
+    <a href="#tdm">TDM</a>
+    <a href="#cvs-clinical">CVS 臨床</a>
+    <a href="#pitfalls">落とし穴</a>
     <a href="#quiz">クイズ</a>
     <a href="#glossary">用語</a>
   </div>
@@ -298,141 +306,380 @@
   <div class="disclaimer-icon">⚠️</div>
   <div class="disclaimer-text">
     <strong>本ページは学習用の参考資料です</strong>
-    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。
+    用量は <u>PMDA 添付文書</u> に基づく一般的目安(KDIGO 2024 / 日本腎臓学会 CKD 診療ガイドライン 2023 を補助参照)。実際の投与は必ず<u>最新の添付文書・院内プロトコル・薬剤師確認</u>のうえ、指導医の指示に従ってください。
   </div>
 </div>
 
+<div class="key-box reveal">
+  抗生剤の多くは腎排泄。<span style="color:var(--accent)">「腎機能を測る → 薬剤クラスを知る → PK/PD で調整型を決める」</span>の3段階で考える。
+</div>
+
 <section class="content reveal" id="why">
-  <h2>1. なぜ「陰圧」を学ぶ意義があるか</h2>
-  <p>身体の中には、大気圧より<strong>低い圧(陰圧)</strong>になっている部位がいくつかあります。これらは <u>正常な生理機能</u> を担っている一方で、<u>医療事故(空気塞栓など)の温床</u> にもなります。「陰圧の場所」を知ることが、安全な医療実践に直結します。</p>
+  <h2>1. なぜ腎機能と抗生剤投与量を考えるか</h2>
+
+  <h3>蓄積で出る毒性 ― 抗菌薬は「効く・効かない」だけではない</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 腎毒性</h4>
+      <div class="role">AG / VCM / コリスチン</div>
+      <p>急性尿細管壊死。AG はトラフ高値で進行、VCM は AUC>700 でリスク↑。腎機能低下 → 用量過剰 → さらに腎機能悪化の悪循環。</p>
+    </div>
+    <div class="component-card">
+      <h4>② 神経毒性</h4>
+      <div class="role">セフェピム脳症 / メロペネム痙攣</div>
+      <p>セフェピム脳症は <u>意識障害・ミオクローヌス・非痙攣性てんかん</u>。腎機能低下例での蓄積が原因。「術後せん妄」と誤診されやすい。</p>
+    </div>
+    <div class="component-card">
+      <h4>③ 聴覚・血液毒性</h4>
+      <div class="role">AG / リネゾリド</div>
+      <p>AG は内耳毒性 → 不可逆性難聴・前庭機能障害。リネゾリドは長期(>2週)で <u>血小板減少・乳酸アシドーシス・末梢神経障害</u>。腎機能低下で発症率↑。</p>
+    </div>
+  </div>
+
+  <h3>CVS 患者は「腎機能の二重苦」</h3>
+  <ul>
+    <li><strong>慢性側</strong>:CKD(高齢・糖尿病・心不全による腎前性低灌流)</li>
+    <li><strong>急性側</strong>:術後 AKI(CPB・低血圧・造影剤・敗血症)</li>
+    <li>術後 ICU では <u>クレアチニンが「遅れて」上昇</u>するため、eGFR 換算値は楽観的になりがち</li>
+  </ul>
 
   <div class="callout tip">
     <strong>💡 関連ページ:</strong>
-    <ul style="margin-top:.4rem">
-      <li><a href="cv_catheter_removal_v2.html" style="color:var(--accent)">CV抜去の注意点</a> ― 胸腔内陰圧での空気塞栓</li>
-      <li><a href="drain_removal_v2.html" style="color:var(--accent)">ドレーン抜去</a> ― 胸腔ドレーンの陰圧管理</li>
-      <li><a href="npwt_basics_v2.html" style="color:var(--accent)">NPWT(陰圧療法)</a> ― 治療的陰圧</li>
-    </ul>
+    <a href="contrast_nephropathy_v2.html" style="color:var(--accent)">造影剤腎症</a>(CI-AKI 機序)、
+    <a href="hemodialysis_basics_v2.html" style="color:var(--accent)">血液透析</a>(HD vs CRRT)、
+    <a href="infection_control_v2.html" style="color:var(--accent)">感染制御の総論</a>(SSI予防・縦隔炎)を併読すると理解が深まる。
   </div>
 </section>
 
-<section class="content reveal" id="sites">
-  <h2>2. 陰圧になる部位 ― 部位別解説</h2>
+<section class="content reveal" id="renal-eval">
+  <h2>2. 腎機能の評価</h2>
 
-  <div class="site-grid">
-    <div class="site-card">
-      <h4>🫁 胸腔(胸膜腔)</h4>
-      <span class="pressure">常時 −5 〜 −8 cmH₂O(吸気時は −40 まで)</span>
-      <p><strong>機序:</strong> 肺の弾性収縮力 ⇔ 胸壁の弾性拡張力 が拮抗。両者が引っ張り合うことで胸膜腔に陰圧が生まれる。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 気胸で胸膜腔が大気圧と通じると肺虚脱。胸腔ドレーンで陰圧を再構築する。</div>
-    </div>
+  <h3>3つの推算式の使い分け</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>推算式</th><th>単位</th><th>主な用途</th><th>添付文書での扱い</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cockcroft-Gault Ccr</strong></td><td>mL/min(実測値)</td><td>抗菌薬・DOAC の用量調整</td><td><u>添付文書で多用</u>される基準</td></tr>
+      <tr><td><strong>eGFR</strong>(日本人 GFR 推算式)</td><td>mL/min/1.73m²(体表面積補正)</td><td>CKD ステージ分類</td><td>用量調整には体表補正を <u>外す</u>必要あり</td></tr>
+      <tr><td><strong>CKD-EPI</strong></td><td>mL/min/1.73m²</td><td>国際比較・予後評価</td><td>添付文書では一般的でない</td></tr>
+    </tbody>
+  </table></div>
 
-    <div class="site-card">
-      <h4>🩸 胸腔内の静脈(SVC・右房)</h4>
-      <span class="pressure">吸気時 −5 〜 −8 mmHg</span>
-      <p><strong>機序:</strong> 胸腔内陰圧が周囲の薄壁の静脈にも伝わり、上大静脈・右房も陰圧化する(胸腔吸引作用 thoracic suction)。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> CVカテーテル抜去・透析カテーテル抜去で<u>空気が引き込まれて空気塞栓</u>(致死的)。抜去は仰臥位・Valsalva + 閉塞性ドレッシング必須。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>👃 気道(吸気時)</h4>
-      <span class="pressure">声門〜上気道 −1 〜 −5 cmH₂O(安静吸気)、努力吸気で −80 まで</span>
-      <p><strong>機序:</strong> 横隔膜下降・胸郭拡張で肺・気道内圧が大気圧より低下 → 空気が流入。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 上気道狭窄(croup, 喉頭浮腫、両側声帯麻痺)で陰圧↑↑ → <u>陰圧性肺水腫(NPPE)</u>。挿管直後の抜管時要注意。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>❤️ 心室(拡張期早期)</h4>
-      <span class="pressure">−2 〜 −5 mmHg(suction effect)</span>
-      <p><strong>機序:</strong> 心室の弾性復元力で拡張期早期に「吸い込み」が発生(diastolic suction)。これが心室充満を能動的に助ける。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 拡張機能不全(HFpEF)ではこの吸引作用が低下。VAD(補助人工心臓)の左室抜き取り過剰でも一時的に陰圧化。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>🦴 関節腔(滑液腔)</h4>
-      <span class="pressure">−4 〜 −12 cmH₂O(静止時)</span>
-      <p><strong>機序:</strong> 関節包の表面張力 + 滑液の表面張力で陰圧維持。関節安定化に寄与。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 関節穿刺で空気混入 → 滑液機能異常。肩関節脱臼整復後に「ポン」と鳴るのは陰圧再形成。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>🍽️ 食道(嚥下時)</h4>
-      <span class="pressure">嚥下時 −5 〜 −10 cmH₂O(蠕動波後)</span>
-      <p><strong>機序:</strong> 嚥下時の蠕動収縮の前(波と波の間)に陰圧が発生し、食物を引き込む補助。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 食道アカラシアでは下部食道括約筋弛緩不全 → 食物停滞。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>👂 中耳腔</h4>
-      <span class="pressure">耳管閉塞時 −10 〜 −400 mmH₂O</span>
-      <p><strong>機序:</strong> 通常は耳管で大気圧と平衡。耳管閉塞(航空性中耳炎、上気道炎)で粘膜が酸素吸収を続け陰圧化。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 航空性中耳炎(barotrauma)、滲出性中耳炎の発症機序。あくび・嚥下で耳管を開けて圧平衡を取る。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>📦 副鼻腔</h4>
-      <span class="pressure">副鼻腔閉塞時に陰圧化</span>
-      <p><strong>機序:</strong> 中耳と同様に閉塞 + 粘膜の酸素吸収で陰圧。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> 急性副鼻腔炎での疼痛、減圧時の sinus barotrauma。</div>
-    </div>
-
-    <div class="site-card">
-      <h4>🧠 頭蓋内(腰椎穿刺後)</h4>
-      <span class="pressure">通常は陽圧(5-15 cmH₂O)、過剰CSF排液で陰圧化</span>
-      <p><strong>機序:</strong> 過剰なCSFドレナージで脳が下垂し、硬膜下が陰圧化 → 架橋静脈が裂傷。</p>
-      <div class="clinical"><strong>📌 臨床:</strong> CSFドレナージ過剰での<a href="csf_drainage_v2.html" style="color:var(--accent)">硬膜下血腫</a>。腰椎穿刺後の低髄液圧症候群(post-LP headache)。</div>
-    </div>
+  <div class="callout danger">
+    <strong>⚠️ AKI 時に eGFR が信頼できない理由:</strong>
+    eGFR は <u>定常状態</u> でのクレアチニン値に基づく推算。AKI のように Cr が刻々と上昇している局面では、① Cr 産生(筋肉量)、② 分布容積、③ 排泄が全て非定常 ⇒ 推算値が実 GFR を大幅に過大評価。AKI 急性期は <u>Cr 推移と尿量</u>を見るのが基本。
   </div>
 
-  <h3>「陰圧」のまとめ表</h3>
+  <h3>血液浄化中の薬物除去性 ― 3因子</h3>
+  <ul>
+    <li><strong>分子量</strong>:小さい(<500 Da)ほど除去されやすい。VCM(1450 Da)は中間、コリスチン(1750 Da)は除去されにくい。</li>
+    <li><strong>蛋白結合率</strong>:低いほど除去されやすい(セフトリアキソンは結合率85-95%で透析でほぼ除去されない)。</li>
+    <li><strong>分布容積(Vd)</strong>:大きい(組織分布が広い)と除去効率が下がる(VCM は Vd 0.7 L/kg で除去率20-40%)。</li>
+  </ul>
+
+  <h3>HD / CRRT の薬物除去性のざっくり目安</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>部位</th><th>通常時の圧</th><th>陰圧の意義 or 病態</th></tr></thead>
+    <thead><tr><th>療法</th><th>Ccr 相当</th><th>薬物除去性</th><th>抗菌薬用量の考え方</th></tr></thead>
     <tbody>
-      <tr><td>胸腔</td><td>−5〜−8 cmH₂O 常時</td><td>呼吸 / 気胸で消失</td></tr>
-      <tr><td>胸腔内静脈</td><td>吸気時 −5〜−8 mmHg</td><td>静脈還流促進 / CV抜去時 空気塞栓</td></tr>
-      <tr><td>気道(吸気)</td><td>−1〜−5 cmH₂O</td><td>呼吸 / 上気道閉塞でNPPE</td></tr>
-      <tr><td>心室拡張早期</td><td>−2〜−5 mmHg</td><td>能動充満 / HFpEFで低下</td></tr>
-      <tr><td>関節腔</td><td>−4〜−12 cmH₂O</td><td>関節安定化</td></tr>
-      <tr><td>食道(嚥下時)</td><td>−5〜−10 cmH₂O</td><td>食物搬送補助</td></tr>
-      <tr><td>中耳・副鼻腔</td><td>大気圧と平衡(閉塞で陰圧)</td><td>barotrauma</td></tr>
-      <tr><td>頭蓋内(病態時)</td><td>5-15 cmH₂O 正常</td><td>過剰排液で硬膜下血腫</td></tr>
+      <tr><td><strong>間欠的 HD(IHD)</strong></td><td>~0 mL/min(透析間)</td><td>透析中 大量除去</td><td><u>透析後追加投与</u>が必要な薬あり(VCM・PIPC/TAZ・セファゾリン)</td></tr>
+      <tr><td><strong>CRRT(CVVH / CVVHDF)</strong></td><td>25-50 mL/min 相当</td><td>持続的に中等度除去</td><td>「<u>無尿だから減量</u>」は誤り。<u>Ccr 30 相当</u>として考える</td></tr>
+      <tr><td><strong>SLED</strong></td><td>~30 mL/min 相当(6-12時間)</td><td>IHD と CRRT の中間</td><td>各薬剤の添付文書・院内プロトコルに従う</td></tr>
+      <tr><td><strong>SCUF</strong></td><td>―(除水のみ)</td><td>薬物除去は限定的</td><td>原則調整不要(除水量に注意)</td></tr>
     </tbody>
   </table></div>
 </section>
 
-<section class="content reveal" id="clinical">
-  <h2>3. 臨床応用 ― 陰圧を「使う」と「避ける」</h2>
+<section class="content reveal" id="class">
+  <h2>3. 抗生剤の分類と PK/PD</h2>
 
-  <h3>陰圧を治療に「使う」</h3>
-  <ul>
-    <li><a href="npwt_basics_v2.html" style="color:var(--accent)"><strong>NPWT(陰圧閉鎖療法):</strong></a> −125 mmHgで創傷治癒促進(マクロ・ミクロ変形・滲出液除去・血流改善)</li>
-    <li><strong>胸腔ドレーン:</strong> 水封 + 吸引(−10〜−20 cmH₂O)で気胸・胸水の排出と肺再膨張</li>
-    <li><strong>胃管・腸管減圧:</strong> 低持続吸引で消化管内容物排出</li>
-    <li><strong>胸腔鏡・腹腔鏡前の脱気:</strong> 必要時の陰圧</li>
-    <li><strong>気管内吸引・口腔内吸引:</strong> 分泌物除去</li>
-    <li><strong>静脈採血・脱血:</strong> 真空採血管・献血バッグ</li>
-    <li><strong>歴史的:鉄の肺(iron lung):</strong> 体外陰圧式人工呼吸器(ポリオ時代)</li>
-  </ul>
+  <h3>排泄経路で分ける ― 調整必須 vs 原則不要</h3>
+  <div class="vs-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0">
+    <div style="background:#fff5f5;border:2px solid var(--accent);border-radius:10px;padding:1rem 1.1rem">
+      <h4 style="color:var(--accent);margin-bottom:.4rem">🔴 腎排泄主体 ― 調整必須</h4>
+      <p style="font-size:.88rem;line-height:1.65">アミノグリコシド(AG)、バンコマイシン(VCM)、テイコプラニン、大半のβ-ラクタム(セファゾリン、セフェピム、メロペネム、PIPC/TAZ)、フルオロキノロン(LVFX、CPFX)、ダプトマイシン、コリスチン</p>
+    </div>
+    <div style="background:#e8f5e9;border:2px solid var(--success);border-radius:10px;padding:1rem 1.1rem">
+      <h4 style="color:var(--success);margin-bottom:.4rem">🟢 肝代謝・胆汁排泄主体 ― 原則調整不要</h4>
+      <p style="font-size:.88rem;line-height:1.65">マクロライド(クラリスロマイシン、アジスロマイシン)、クリンダマイシン、リネゾリド、メトロニダゾール、<strong>モキシフロキサシン</strong>(他のFQと違う)、セフトリアキソン(胆汁排泄優位)、チゲサイクリン</p>
+    </div>
+  </div>
 
-  <h3>陰圧の「弊害」 ― 医療事故</h3>
-  <ul>
-    <li><strong>CVカテーテル抜去時の空気塞栓</strong>(胸腔内陰圧で空気引き込み)― 致死的</li>
-    <li><strong>胸腔ドレーン抜去時の気胸再発</strong>(同じ機序)</li>
-    <li><strong>陰圧性肺水腫(NPPE):</strong> 上気道閉塞で大きな吸気陰圧 → 肺毛細血管圧↑ → 肺水腫(健常若年者でも発症)</li>
-    <li><strong>CSF過剰ドレナージ → 硬膜下血腫</strong></li>
-    <li><strong>barotrauma(中耳・副鼻腔):</strong> 急速減圧時</li>
-    <li><strong>VADの吸引イベント:</strong> 過剰流量で左室壁吸引</li>
-  </ul>
+  <h3>PK/PD 三型 ― 効果を決める指標で分ける</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 300" aria-label="PK/PD三型の概念図">
+      <defs>
+        <linearGradient id="gAUC" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#7b1fa2" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#7b1fa2" stop-opacity=".1"/>
+        </linearGradient>
+        <linearGradient id="gTMIC" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1976d2" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#1976d2" stop-opacity=".1"/>
+        </linearGradient>
+      </defs>
+      <!-- Title -->
+      <rect x="5" y="5" width="590" height="26" rx="6" fill="#0b2545"/>
+      <text x="300" y="23" font-size="13" fill="#fff" font-weight="700" text-anchor="middle">PK/PD 三型 ― 効果を決める指標</text>
+
+      <!-- Axes -->
+      <line x1="60" y1="60" x2="60" y2="260" stroke="#0b2545" stroke-width="2"/>
+      <line x1="60" y1="260" x2="560" y2="260" stroke="#0b2545" stroke-width="2"/>
+      <text x="20" y="160" font-size="11" font-weight="700" fill="#0b2545" text-anchor="middle" transform="rotate(-90 20 160)">血中濃度</text>
+      <text x="310" y="285" font-size="11" font-weight="700" fill="#0b2545" text-anchor="middle">時間</text>
+
+      <!-- MIC line -->
+      <line x1="60" y1="200" x2="560" y2="200" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="565" y="204" font-size="10" font-weight="700" fill="#ef6c00">MIC</text>
+
+      <!-- 濃度依存(AG/FQ): tall narrow pulses -->
+      <path d="M80,260 L80,80 L120,80 L120,180 L160,180 L160,260" fill="none" stroke="#c62828" stroke-width="2.5"/>
+      <text x="120" y="75" font-size="10" font-weight="700" fill="#c62828" text-anchor="middle">C_max</text>
+      <text x="100" y="120" font-size="9" fill="#c62828" font-weight="700">濃度依存</text>
+      <text x="100" y="133" font-size="9" fill="#c62828">AG / FQ</text>
+      <text x="100" y="146" font-size="9" fill="#c62828">→ C_max/MIC</text>
+
+      <!-- 時間依存(β-lactam): low sustained, T>MIC area shaded -->
+      <path d="M220,260 L220,140 L290,140 L290,220 L300,220 L300,140 L370,140 L370,220 L380,220 L380,140 L450,140 L450,260" fill="none" stroke="#1976d2" stroke-width="2.5"/>
+      <rect x="220" y="140" width="70" height="60" fill="url(#gTMIC)"/>
+      <rect x="300" y="140" width="70" height="60" fill="url(#gTMIC)"/>
+      <rect x="380" y="140" width="70" height="60" fill="url(#gTMIC)"/>
+      <text x="335" y="125" font-size="10" font-weight="700" fill="#1976d2" text-anchor="middle">T &gt; MIC エリア</text>
+      <text x="335" y="245" font-size="9" font-weight="700" fill="#1976d2" text-anchor="middle">時間依存(β-ラクタム)</text>
+      <text x="335" y="257" font-size="9" fill="#1976d2" text-anchor="middle">→ T&gt;MIC %</text>
+
+      <!-- AUC依存(VCM): rolling area under curve -->
+      <path d="M470,260 Q485,150 510,150 Q535,150 540,200 L540,260 Z" fill="url(#gAUC)" stroke="#7b1fa2" stroke-width="2"/>
+      <text x="505" y="140" font-size="10" font-weight="700" fill="#7b1fa2" text-anchor="middle">AUC</text>
+      <text x="505" y="245" font-size="9" font-weight="700" fill="#7b1fa2" text-anchor="middle">AUC依存(VCM)</text>
+      <text x="505" y="257" font-size="9" fill="#7b1fa2" text-anchor="middle">→ AUC/MIC</text>
+    </svg>
+    <div class="diagram-caption">
+      <strong>PK/PD 三型(自作模式図):</strong>
+      <ul style="margin-top:.4rem">
+        <li><strong style="color:#c62828">濃度依存(C_max/MIC)</strong>:AG・FQ。<u>1回量を大きく、間隔を空ける</u>(extended interval)。腎機能↓では「間隔延長」が基本。</li>
+        <li><strong style="color:#1976d2">時間依存(T&gt;MIC %)</strong>:β-ラクタム。<u>MIC を超える時間</u>を稼ぐ。腎機能↓では「1回量減量 or 持続点滴」、頻度は維持。</li>
+        <li><strong style="color:#7b1fa2">AUC依存(AUC/MIC)</strong>:VCM・リネゾリド。<u>曲線下面積</u>を一定に保つ。VCM は AUC 400-600 を目標に両軸で調整。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 Extended interval vs Reduced dose の選択則:</strong>
+    <ul style="margin-top:.4rem">
+      <li>濃度依存 → 1回量はキープ、<strong>間隔を延長</strong>(AG once-daily 5-7 mg/kg、Ccr 30-50 で 36h、<30 で 48h)</li>
+      <li>時間依存 → 頻度は維持、<strong>1回量を減らす or 持続点滴</strong>(β-ラクタムは T&gt;MIC を 40-100% 維持)</li>
+      <li>AUC 依存 → <strong>両軸で AUC ターゲット維持</strong>(VCM は TDM 必須)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="content reveal" id="dose-table">
+  <h2>4. 代表的抗菌薬の腎機能別投与量 ― CVS で出会う薬剤</h2>
+
+  <div class="callout" style="background:#fff5f5;border-left-color:var(--accent);font-size:.86rem">
+    <strong>📌 出典スタンス:</strong> 以下の用量はすべて <u>PMDA 添付文書</u> に基づく一般的目安。KDIGO 2024 / 日腎学会 CKD 診療ガイドライン 2023 を補助参照。<strong>実投与は最新の添付文書・院内プロトコル・薬剤師確認</strong>のうえで決定してください。本ページの表は学習目的の概念整理であり、処方の根拠にはなりません。
+  </div>
+
+  <h3>4-1. アミノグリコシド(AG)― 濃度依存</h3>
+  <p>現代は <strong>once-daily(extended interval)</strong> が主流。1回量大きく、腎機能低下で「間隔を延長」する。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>通常量(once-daily)</th><th>Ccr 30-50</th><th>Ccr 10-30</th><th>HD / Ccr&lt;10</th><th>CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>ゲンタマイシン</td><td>5-7 mg/kg q24h</td><td>q36h</td><td>q48h</td><td>HD後 2-3 mg/kg</td><td>q24-36h</td><td>TDM必須(ピーク・トラフ)</td></tr>
+      <tr><td>トブラマイシン</td><td>5-7 mg/kg q24h</td><td>q36h</td><td>q48h</td><td>HD後追加</td><td>q24-36h</td><td>同上</td></tr>
+      <tr><td>アミカシン</td><td>15-20 mg/kg q24h</td><td>q36h</td><td>q48h</td><td>HD後 5-7.5 mg/kg</td><td>q24-36h</td><td>同上</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-2. グリコペプチド ― AUC 依存</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>Loading</th><th>維持量(目安)</th><th>Ccr 30-50</th><th>Ccr 10-30 / HD</th><th>CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>バンコマイシン(VCM)</td><td>25-30 mg/kg(腎機能で減らさない)</td><td>15-20 mg/kg q8-12h</td><td>q12-24h</td><td>HD後 7.5-10 mg/kg</td><td>q24h(濃度モニタ)</td><td><strong>AUC 400-600 ターゲット</strong>(TDM必須)</td></tr>
+      <tr><td>テイコプラニン</td><td>6-12 mg/kg q12h × 3回</td><td>6 mg/kg q24h</td><td>q24-48h</td><td>q48-72h</td><td>q24-48h</td><td>トラフ 15-30 µg/mL</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-3. β-ラクタム ― 時間依存</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>通常量</th><th>Ccr 30-50</th><th>Ccr 10-30</th><th>HD / Ccr&lt;10</th><th>CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td><strong>セファゾリン</strong>(周術期予防)</td><td>1-2 g q8h</td><td>q8-12h</td><td>q12-24h</td><td>HD後 1 g</td><td>通常量</td><td>CVS で最頻用。CPB中再投与</td></tr>
+      <tr><td>セフトリアキソン</td><td>1-2 g q24h</td><td>調整不要</td><td>調整不要</td><td>調整不要</td><td>調整不要</td><td>胆汁排泄優位。HD後追加不要</td></tr>
+      <tr><td><strong>セフェピム</strong></td><td>1-2 g q8-12h</td><td>q12h</td><td>q24h</td><td>HD後 1 g</td><td>q12h</td><td><u>セフェピム脳症</u>の落とし穴</td></tr>
+      <tr><td><strong>メロペネム</strong></td><td>1 g q8h</td><td>1 g q12h</td><td>0.5 g q12h</td><td>0.5 g q24h</td><td><u>通常量に近づける</u>(1 g q12h)</td><td>痙攣リスク。CRRT で減量しすぎ注意</td></tr>
+      <tr><td><strong>PIPC/TAZ</strong></td><td>4.5 g q6-8h</td><td>3.375 g q6h</td><td>2.25 g q6h</td><td>2.25 g q8h + HD後追加</td><td>3.375 g q6h</td><td>HD後追加必要</td></tr>
+      <tr><td>アンピシリン/スルバクタム</td><td>3 g q6h</td><td>q8h</td><td>q12h</td><td>HD後 1.5-3 g</td><td>q8-12h</td><td>―</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-4. フルオロキノロン(FQ)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>排泄</th><th>通常量</th><th>Ccr 30-50</th><th>Ccr&lt;30 / HD</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>レボフロキサシン(LVFX)</td><td>腎排泄</td><td>500-750 mg q24h</td><td>q48h</td><td>250-500 mg q48h</td><td>濃度依存。腱断裂・QT延長注意</td></tr>
+      <tr><td>シプロフロキサシン(CPFX)</td><td>腎排泄</td><td>400 mg q8-12h(IV)</td><td>q12h</td><td>q24h</td><td>同上</td></tr>
+      <tr><td><strong>モキシフロキサシン</strong></td><td><u>肝代謝</u></td><td>400 mg q24h</td><td>調整不要</td><td>調整不要</td><td>FQ で唯一 腎調整不要(対比で覚える)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-5. その他(MNZ / リネゾリド / ダプトマイシン / コリスチン)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>排泄</th><th>通常量</th><th>Ccr&lt;30 / HD / CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>メトロニダゾール(MNZ)</td><td>肝代謝</td><td>500 mg q8h</td><td>原則調整不要(HD で除去されるので HD 後追加 検討)</td><td>嫌気性菌・C. difficile</td></tr>
+      <tr><td><strong>リネゾリド</strong></td><td>非腎排泄</td><td>600 mg q12h</td><td>調整不要(ただし腎機能↓で <u>血小板減少リスク↑</u>)</td><td>MRSA・VRE。長期で乳酸アシドーシス・末梢神経障害</td></tr>
+      <tr><td><strong>ダプトマイシン</strong></td><td>腎排泄</td><td>6-10 mg/kg q24h</td><td><strong>Ccr&lt;30 で q48h</strong>(HD は透析後)</td><td>CPK上昇モニタ。肺炎には使えない(サーファクタント不活化)</td></tr>
+      <tr><td><strong>コリスチン</strong></td><td>腎排泄</td><td>Loading + 維持(添付文書参照)</td><td>大幅減量必要(腎毒性最強)</td><td>多剤耐性 GNR の最後の選択。腎毒性・神経毒性</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal" id="tdm">
+  <h2>5. TDM(治療薬物濃度モニタリング)</h2>
+
+  <h3>TDM が必須・推奨される抗菌薬</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>モニタ指標</th><th>ターゲット</th><th>採血タイミング</th></tr></thead>
+    <tbody>
+      <tr><td><strong>バンコマイシン</strong></td><td>AUC<sub>0-24</sub>(2点法 or ベイズ推定)</td><td><strong>AUC 400-600 mg·h/L</strong></td><td>定常状態(3-4回投与後)、Loading 翌日採血推奨</td></tr>
+      <tr><td>VCM(従来法)</td><td>トラフ</td><td>10-20 µg/mL(MRSA重症は15-20)</td><td>次回投与直前(IDSA 2020 では AUC 推奨)</td></tr>
+      <tr><td><strong>アミノグリコシド</strong></td><td>ピーク・トラフ</td><td>once-daily:トラフ&lt;1(48時間時点)<br>従来法:ピーク 5-10、トラフ&lt;2</td><td>ピーク:投与終了30分後<br>トラフ:次回投与直前</td></tr>
+      <tr><td>テイコプラニン</td><td>トラフ</td><td>15-30 µg/mL(重症は20-40)</td><td>次回投与直前</td></tr>
+      <tr><td>ボリコナゾール(参考)</td><td>トラフ</td><td>1-5 µg/mL</td><td>次回投与直前(感染症内科判断)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 240" aria-label="TDM サンプリングタイミング">
+      <rect x="5" y="5" width="590" height="26" rx="6" fill="#0b2545"/>
+      <text x="300" y="23" font-size="13" fill="#fff" font-weight="700" text-anchor="middle">TDM サンプリングタイミング(once-daily AG の例)</text>
+
+      <!-- Axes -->
+      <line x1="50" y1="50" x2="50" y2="200" stroke="#0b2545" stroke-width="2"/>
+      <line x1="50" y1="200" x2="570" y2="200" stroke="#0b2545" stroke-width="2"/>
+      <text x="20" y="125" font-size="10" font-weight="700" fill="#0b2545" text-anchor="middle" transform="rotate(-90 20 125)">濃度</text>
+      <text x="310" y="225" font-size="10" font-weight="700" fill="#0b2545" text-anchor="middle">時間</text>
+
+      <!-- 3 doses (peaks and troughs) -->
+      <path d="M70,200 L70,70 Q90,70 90,80 Q100,180 130,195 L130,200" fill="none" stroke="#c62828" stroke-width="2.5"/>
+      <path d="M230,200 L230,70 Q250,70 250,80 Q260,180 290,195 L290,200" fill="none" stroke="#c62828" stroke-width="2.5"/>
+      <path d="M390,200 L390,70 Q410,70 410,80 Q420,180 450,195 L450,200" fill="none" stroke="#c62828" stroke-width="2.5"/>
+
+      <!-- Peak arrows -->
+      <line x1="95" y1="60" x2="95" y2="78" stroke="#ef6c00" stroke-width="2" marker-end="url(#arrPk)"/>
+      <text x="95" y="50" font-size="10" font-weight="700" fill="#ef6c00" text-anchor="middle">ピーク</text>
+      <text x="95" y="38" font-size="9" fill="#ef6c00" text-anchor="middle">(投与後30分)</text>
+
+      <!-- Trough arrows -->
+      <line x1="220" y1="210" x2="220" y2="195" stroke="#1976d2" stroke-width="2" marker-end="url(#arrTr)"/>
+      <text x="220" y="225" font-size="10" font-weight="700" fill="#1976d2" text-anchor="middle">トラフ</text>
+
+      <line x1="380" y1="210" x2="380" y2="195" stroke="#1976d2" stroke-width="2" marker-end="url(#arrTr)"/>
+      <text x="380" y="225" font-size="10" font-weight="700" fill="#1976d2" text-anchor="middle">トラフ</text>
+
+      <defs>
+        <marker id="arrPk" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,0 L4,7 L8,0 z" fill="#ef6c00"/></marker>
+        <marker id="arrTr" markerWidth="8" markerHeight="8" refX="4" refY="1" orient="auto"><path d="M0,7 L4,0 L8,7 z" fill="#1976d2"/></marker>
+      </defs>
+
+      <!-- Dose labels -->
+      <text x="100" y="215" font-size="9" fill="#666" text-anchor="middle">投与 #1</text>
+      <text x="260" y="215" font-size="9" fill="#666" text-anchor="middle">投与 #2</text>
+      <text x="420" y="215" font-size="9" fill="#666" text-anchor="middle">投与 #3</text>
+    </svg>
+    <div class="diagram-caption">
+      <strong>採血タイミングの基本(自作模式図):</strong>
+      <ul style="margin-top:.4rem">
+        <li><strong style="color:#ef6c00">ピーク</strong>:投与終了 30 分後 ― 効果判定(濃度依存薬で重要)</li>
+        <li><strong style="color:#1976d2">トラフ</strong>:次回投与<u>直前</u> ― 蓄積・毒性判定(腎機能変動時に頻回測定)</li>
+        <li>定常状態は通常 3-4 回投与後。Loading dose 例ではより早く到達</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-box">
+    🔑 <strong>Loading dose は腎機能で減らさない</strong> ― ECMO・敗血症・浮腫例では Vd 増加で初期濃度が不足する。「腎不全だから減量」と Loading から減らすと <u>初期濃度不足で治療失敗</u>。
+  </div>
 
   <div class="callout danger">
-    <strong>⚠ 共通原則:</strong> <u>陰圧空間と外界が直接通じる経路ができた時、空気・液体が陰圧側へ吸引される</u>。CV抜去・胸腔ドレーン抜去・腰椎穿刺後など、「経路が一時的に残る場面」では必ず気密対策(閉塞性ドレッシング・閉鎖式回路・体位)を講じる。
+    <strong>⚠️ 腎機能変動時は採血頻度を増やす:</strong> AKI 進行 / 回復期 / 透析開始直後は薬物動態が刻々と変化。週 1 回の TDM では追いつかないことがある。
+  </div>
+</section>
+
+<section class="content reveal" id="cvs-clinical">
+  <h2>6. CVS 患者で特に気をつける場面</h2>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 縦隔炎</h4>
+      <div class="role">VCM + メロペネム 長期</div>
+      <p>術後縦隔炎(死亡率 20-40%)では <u>長期広域抗菌薬</u>。VCM の AUC モニタ + AKI 監視。AKI 合併で頻回 TDM。<a href="infection_control_v2.html" style="color:var(--accent)">感染制御</a> 参照。</p>
+    </div>
+    <div class="component-card">
+      <h4>② ECMO 患者</h4>
+      <div class="role">Vd 増加 + CRRT 併用</div>
+      <p>ECMO 回路で <u>Vd 増加</u>(VCM・AG)+ 親水性薬剤の吸着。CRRT 併用例では VCM・β-ラクタムの濃度低下が起きやすい。<strong>濃度モニタは頻回</strong>に。</p>
+    </div>
+    <div class="component-card">
+      <h4>③ LVAD 患者</h4>
+      <div class="role">ドライバーライン感染</div>
+      <p>慢性経過のドライバーライン感染で長期点滴抗菌薬。腎機能・血液毒性の長期モニタ。<u>リネゾリド長期使用</u>では血小板減少・末梢神経障害に注意。</p>
+    </div>
+    <div class="component-card">
+      <h4>④ 心移植後</h4>
+      <div class="role">免疫抑制 + 腎機能変動</div>
+      <p>カルシニューリン阻害薬で慢性腎機能低下。日和見感染で広域抗菌薬使用も腎機能・薬物相互作用に注意(タクロリムス・シクロスポリンとの相互作用)。</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 共通原則:</strong> CVS で「長期点滴抗菌薬 + 腎機能変動」 となる場面は多い。<u>用量設定の翌日には Cr/BUN 再評価、3-4 日後には TDM</u> を習慣に。
+  </div>
+</section>
+
+<section class="content reveal" id="pitfalls">
+  <h2>7. 臨床的落とし穴</h2>
+
+  <div class="callout danger">
+    <strong>① 「Ccr 50 までは普通量」の誤解</strong><br>
+    多くの薬剤は <u>Ccr 60(または 50)未満</u>で減量開始。添付文書を確認する習慣を。
+  </div>
+
+  <div class="callout danger">
+    <strong>② HD 後追加投与が必要な薬を忘れる</strong><br>
+    VCM・セファゾリン・PIPC/TAZ などは <u>透析で除去される</u>ため、<strong>透析日は透析後に追加</strong>が必要。透析翌日に「効いていない」と気づくのは遅い。
+  </div>
+
+  <div class="callout danger">
+    <strong>③ PK/PD の違いで Extended interval と Reduced dose を間違える</strong><br>
+    β-ラクタムを「腎不全だから 1日 1回」にすると T&gt;MIC が不足。逆に AG を頻回投与にするとピーク不足 + トラフ高値で <u>耳腎毒性</u>。
+  </div>
+
+  <div class="callout danger">
+    <strong>④ AKI で eGFR が 24-48h 遅れる</strong><br>
+    Cr 上昇は AKI 発症から 1-2 日遅延。<u>尿量低下や血圧低下の方が早期サイン</u>。eGFR を見て「まだ大丈夫」と通常量を続けるのは危険。
+  </div>
+
+  <div class="callout danger">
+    <strong>⑤ CRRT 中に減量しすぎ ⇒ 治療失敗</strong><br>
+    CRRT は <u>Ccr 25-50 相当</u>の薬物除去。「無尿だから半量」とすると治療濃度に達しない。<strong>メロペネム・PIPC/TAZ は通常量に近づける</strong>。
+  </div>
+
+  <div class="callout danger">
+    <strong>⑥ CPB 後 24 時間は Vd 増 ⇒ 血中濃度低い</strong><br>
+    CPB で <u>体液量増加 + 炎症性血管透過性亢進</u>。Loading は通常量を維持。維持量も初期は高めから開始 + TDM。
+  </div>
+
+  <div class="callout danger">
+    <strong>⑦ セフェピム脳症は「術後せん妄」と誤診される</strong><br>
+    高齢腎機能低下例で <u>意識障害・ミオクローヌス・非痙攣性てんかん</u>。脳波で非痙攣性発作の所見。中止+透析で改善する。鑑別に必ず入れる。
   </div>
 </section>
 
 <section class="content reveal" id="quiz">
-  <h2>4. 理解度チェック(全6問)</h2>
+  <h2>8. 理解度チェック(全7問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="progress" id="progress">問題 1 / 7</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -442,7 +689,7 @@
     </div>
     <div class="score-display" id="scoreDisplay">
       <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 6</div>
+      <div class="big" id="finalScore">0 / 7</div>
       <div id="comment"></div>
       <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
     </div>
@@ -450,20 +697,48 @@
 </section>
 
 <section class="content reveal" id="glossary">
-  <h2>5. 用語集</h2>
+  <h2>9. 用語集</h2>
   <div class="table-wrap"><table>
     <thead><tr><th>用語</th><th>意味</th></tr></thead>
     <tbody>
-      <tr><td>胸腔内陰圧</td><td>常時 −5〜−8 cmH₂O。肺の弾性収縮vs胸壁の弾性拡張のバランス</td></tr>
-      <tr><td>Thoracic suction</td><td>胸腔吸引作用。胸腔内陰圧が静脈還流を促進</td></tr>
-      <tr><td>NPPE</td><td>Negative Pressure Pulmonary Edema(陰圧性肺水腫)</td></tr>
-      <tr><td>Diastolic suction</td><td>心室拡張期早期の能動的吸引</td></tr>
-      <tr><td>Barotrauma</td><td>気圧差による組織損傷(中耳・副鼻腔・肺)</td></tr>
-      <tr><td>NPWT</td><td>Negative Pressure Wound Therapy(陰圧閉鎖療法)</td></tr>
-      <tr><td>Valsalva</td><td>声門閉鎖下にいきむ。胸腔内圧を陽圧化</td></tr>
+      <tr><td>PK / PD</td><td>Pharmacokinetics(薬物動態) / Pharmacodynamics(薬力学)</td></tr>
+      <tr><td>T &gt; MIC</td><td>血中濃度が MIC を超える時間の割合(時間依存型の効果指標)</td></tr>
+      <tr><td>AUC / MIC</td><td>曲線下面積を MIC で除した値(AUC 依存型の効果指標)</td></tr>
+      <tr><td>C_max / MIC</td><td>最高濃度を MIC で除した値(濃度依存型の効果指標)</td></tr>
+      <tr><td>Vd</td><td>Volume of distribution(分布容積)。組織分布の広さの指標</td></tr>
+      <tr><td>Cl</td><td>Clearance(クリアランス)。単位時間あたりの薬物除去量</td></tr>
+      <tr><td>Ccr</td><td>Creatinine clearance(クレアチニンクリアランス)、実測 mL/min</td></tr>
+      <tr><td>eGFR</td><td>estimated GFR(推算糸球体濾過量)、mL/min/1.73m²</td></tr>
+      <tr><td>Cockcroft-Gault</td><td>Ccr 推算式(年齢・体重・Cr・性別)。添付文書で多用</td></tr>
+      <tr><td>CKD-EPI</td><td>国際標準の eGFR 推算式</td></tr>
+      <tr><td>TDM</td><td>Therapeutic Drug Monitoring(治療薬物濃度モニタリング)</td></tr>
+      <tr><td>トラフ</td><td>次回投与直前の最低濃度</td></tr>
+      <tr><td>ピーク</td><td>投与後の最高濃度(IV 終了 30 分後)</td></tr>
+      <tr><td>Extended interval</td><td>投与間隔延長(once-daily AG など)</td></tr>
+      <tr><td>Loading dose</td><td>初回大量投与。腎機能で減らさないのが原則</td></tr>
+      <tr><td>CRRT</td><td>Continuous Renal Replacement Therapy(CVVH/CVVHDF)</td></tr>
+      <tr><td>SLED</td><td>Sustained Low-Efficiency Dialysis(緩徐型 HD)</td></tr>
+      <tr><td>Red man syndrome</td><td>VCM 急速投与で起きる非アレルギー性紅潮(投与速度&lt;10 mg/min で予防)</td></tr>
+      <tr><td>セフェピム脳症</td><td>腎機能低下例でセフェピム蓄積 → 意識障害・ミオクローヌス</td></tr>
+      <tr><td>AG / β-ラクタム / FQ</td><td>Aminoglycoside / β-lactam / Fluoroquinolone</td></tr>
     </tbody>
   </table></div>
 </section>
+
+<section class="content reveal">
+  <h2>📎 関連リソース・参考図書</h2>
+  <ul>
+    <li><a href="contrast_nephropathy_v2.html" style="color:var(--accent)">造影剤腎症</a> ― CI-AKI 機序と予防</li>
+    <li><a href="hemodialysis_basics_v2.html" style="color:var(--accent)">血液透析(HD)の基礎</a> ― HD vs CRRT 比較</li>
+    <li><a href="infection_control_v2.html" style="color:var(--accent)">感染制御の総論</a> ― SSI 予防・縦隔炎</li>
+    <li><a href="hit_syndrome_v2.html" style="color:var(--accent)">HIT</a> ― ヘパリン関連の落とし穴</li>
+  </ul>
+  <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)">
+    <strong>参考図書(本ページの執筆参照、コンテンツ転載なし):</strong>
+    PMDA 各薬剤添付文書(<a href="https://www.pmda.go.jp/" target="_blank" rel="noopener" style="color:var(--accent)">pmda.go.jp</a>)、KDIGO 2024 CKD Clinical Practice Guidelines、日本腎臓学会「CKD 診療ガイドライン 2023」、Sanford Guide to Antimicrobial Therapy、UpToDate "Dosing of antibacterial drugs in adult patients with impaired kidney function"。
+  </p>
+</section>
+
 </main>
 
 <footer class="site-footer">
@@ -646,12 +921,13 @@ const btt = document.getElementById('backToTop');
   // Escape to close
   document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
   const questions = [
-    {q:"安静時に常時 陰圧 となっている部位はどれか。",choices:["胃","胸腔(胸膜腔)","膀胱","心房"],correct:1,explain:"胸腔(胸膜腔)は安静呼気時 −5、吸気時 −8 cmH₂O 程度の陰圧を常時維持。肺の弾性収縮と胸壁の弾性拡張のバランスで生まれる。"},
-    {q:"陰圧性肺水腫(NPPE)の典型的な原因はどれか。",choices:["体液過剰","心不全","上気道閉塞下の強い吸気努力","低アルブミン血症"],correct:2,explain:"上気道閉塞(croup、抜管後喉頭痙攣など)で吸気努力が極端に強まり、強い胸腔内陰圧 → 肺毛細血管圧↑ → 肺水腫。健常若年者でも発症する。"},
-    {q:"胸腔ドレーン抜去時の気胸再発の主な機序はどれか。",choices:["静脈血の逆流","胸腔内陰圧で抜去孔から空気引き込み","ドレーン断裂","血液凝固障害"],correct:1,explain:"胸腔内陰圧で皮膚の抜去孔から空気が引き込まれて気胸再発。Valsalvaまたは呼気停止下に抜去 + ワセリンガーゼ+フィルムで気密シールが必須。"},
-    {q:"心室拡張早期の陰圧(diastolic suction)の意義はどれか。",choices:["後負荷増加","能動的な心室充満補助","心房収縮の代わり","冠血流促進"],correct:1,explain:"心室拡張早期の陰圧(suction)は心室の能動的充満を補助する。HFpEF(拡張機能不全)ではこの作用が低下し、心房圧上昇 → うっ血をきたす。"},
-    {q:"中耳腔が陰圧化する主な機序はどれか。",choices:["耳管閉塞 + 粘膜の酸素吸収","鼓膜破裂","内耳液の漏出","三半規管機能低下"],correct:0,explain:"耳管閉塞(上気道炎・航空性)で中耳腔が外気と遮断され、粘膜の酸素吸収が続くと陰圧化。航空機降下時の耳痛・滲出性中耳炎の機序。"},
-    {q:"NPWT(陰圧閉鎖療法)の標準的な吸引圧はどれか。",choices:["−25 mmHg","−125 mmHg","−500 mmHg","−1 atm"],correct:1,explain:"NPWTの標準圧は−125 mmHg(連続)。マクロ変形・ミクロ変形・滲出液除去・血流改善の4機序で創傷治癒を促進する。"}
+    {q:"バンコマイシン(VCM)の TDM ターゲット(AUC法)として推奨されるのはどれか。",choices:["AUC 100-200 mg·h/L","AUC 400-600 mg·h/L","AUC 800-1000 mg·h/L","トラフ 30-40 µg/mL のみ"],correct:1,explain:"IDSA 2020 ガイドライン以降、MRSA 重症感染症に対する VCM は <u>AUC 400-600 mg·h/L</u> がターゲット。従来のトラフ 15-20 µg/mL 単独管理から AUC ベイズ推定 or 2 点法に移行している。AUC>700 は腎毒性リスク↑。"},
+    {q:"アミノグリコシド(AG)を once-daily で投与している患者で、用量・間隔の判断のためのトラフはいつ採血するのが標準か。",choices:["投与終了 30 分後","投与終了 2 時間後","次回投与直前(投与直前トラフ)","食後 1 時間"],correct:2,explain:"トラフは <u>次回投与直前</u>に採血する(最低濃度)。once-daily AG ではトラフ &lt;1 µg/mL を確認し、高値なら間隔を延長する(例:Ccr 30-50 で q36h)。投与終了 30 分後はピーク採血のタイミング。"},
+    {q:"ピペラシリン/タゾバクタム(PIPC/TAZ)で HD 後追加投与が必要となる主な理由はどれか。",choices:["蛋白結合率が高く透析で除去されないため","分子量が小さく蛋白結合率も低いので透析で除去されるため","肝代謝薬で透析と関係しないため","脂溶性で組織にとどまるため"],correct:1,explain:"PIPC/TAZ は <u>分子量が小さく蛋白結合率も低い</u>ため透析中に除去される。VCM、セファゾリン、メロペネムなども同様の理由で透析日は<u>透析後追加投与</u>が必要。セフトリアキソンは蛋白結合 85-95% で透析でほぼ除去されない(対比)。"},
+    {q:"β-ラクタムの効果を最もよく予測する PK/PD 指標はどれか。",choices:["C_max/MIC(濃度依存)","T &gt; MIC(時間依存)","AUC/MIC(AUC依存)","Vd/MIC"],correct:1,explain:"β-ラクタムは <u>T &gt; MIC(MIC を超える時間)</u> が効果指標(時間依存型)。腎機能低下時は「1 回量を減らして頻度維持」あるいは「持続点滴」で T&gt;MIC を維持する。1 日 1 回への変更は T&gt;MIC 不足になりやすく不適切。"},
+    {q:"次のうち、腎機能低下時に原則として用量調整が不要な抗菌薬はどれか。",choices:["バンコマイシン","セフェピム","モキシフロキサシン","ゲンタマイシン"],correct:2,explain:"<u>モキシフロキサシン</u>は他のフルオロキノロンと違い肝代謝主体で、腎機能低下時も調整不要。リネゾリド・メトロニダゾール・クリンダマイシン・セフトリアキソンも同様に原則調整不要。VCM・セフェピム・AG はすべて腎排泄主体で調整必須。"},
+    {q:"CRRT(CVVH/CVVHDF)中の患者でメロペネム用量を決める際の考え方として正しいのはどれか。",choices:["無尿だから半量にする","Ccr &lt;10 と同等として大幅減量","Ccr 25-50 相当として通常量に近づける","透析中なので投与しない"],correct:2,explain:"CRRT は <u>Ccr 25-50 mL/min 相当</u>の薬物除去能を持つ。「無尿だから減量」と判断しすぎると治療濃度不足で<u>治療失敗</u>になる。メロペネム・PIPC/TAZ は通常量に近づける(例:1 g q12h)。"},
+    {q:"AKI(急性腎障害)患者で eGFR を抗菌薬の用量調整に使ってはいけない理由として最も適切なのはどれか。",choices:["eGFR の単位が違うから","Cr 産生・分布・除去が非定常で推算値が実 GFR を過大評価するから","AKI では Cr が下がるから","HD 中は eGFR が無意味だから"],correct:1,explain:"eGFR は <u>定常状態</u>でのクレアチニンに基づく推算式。AKI のように Cr が刻々と上昇している局面では、産生・分布・除去すべてが非定常で、<u>推算値が実 GFR を過大評価</u>する。AKI 急性期は尿量低下や Cr 推移を見るのが基本で、eGFR を見て「まだ大丈夫」と通常量を続けるのは危険。"}
   ];
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
