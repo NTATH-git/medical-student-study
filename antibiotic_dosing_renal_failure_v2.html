@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腎機能悪化時の抗生剤投与一覧 ― 医学生のために (v2)</title>
+<meta name="description" content="CKD・術後AKI・透析患者での抗菌薬用量調整。PK/PD三型、20+薬剤の腎機能別投与量、TDM、CVS患者の落とし穴。">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:-8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  .risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-top:.8rem}
+  .risk-card{padding:.9rem 1rem;border-radius:8px;border-left:4px solid}
+  .risk-low{background:#e8f5e9;border-left-color:var(--success)}
+  .risk-med{background:#fff3e0;border-left-color:var(--warn)}
+  .risk-high{background:#ffebee;border-left-color:var(--danger)}
+  .risk-card .title{font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+  .risk-low .title{color:var(--success)}
+  .risk-med .title{color:var(--warn)}
+  .risk-high .title{color:var(--danger)}
+  .risk-card ul{font-size:.83rem}
+  .menu-toggle{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+
+  /* === Topbar actions cluster (Menu + v1/v2) === */
+  .topbar-actions{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;gap:.35rem;align-items:center}
+  .topbar-btn{display:inline-flex;align-items:center;gap:.3rem;background:rgba(11,37,69,.9);color:#fff;padding:.42rem .8rem;border-radius:99px;text-decoration:none;font-size:.76rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25);user-select:none;-webkit-tap-highlight-color:transparent}
+  .topbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.7);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .topbar-menu:hover{background:rgba(11,37,69,1)}
+  .topbar-switch:hover{background:rgba(198,40,40,.95);box-shadow:0 4px 16px rgba(198,40,40,.4)}
+  .topbar-btn .tb-icon{font-size:.95rem;line-height:1}
+  /* Hide old red page-nav bar and v2 in-header menu button (replaced by topbar) */
+  .page-nav{display:none !important}
+  .site-header .menu-btn{display:none !important}
+  /* Hide v2 in-header site-nav (links overlapped with topbar chips) */
+  .site-header .site-nav{display:none !important}
+  /* Hide old floating .version-switch (superseded by .topbar-actions) */
+  .version-switch{display:none !important}
+  @media (max-width:480px){
+    .topbar-actions{top:9px;right:9px;gap:.25rem}
+    .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
+    .topbar-btn .tb-text{display:none}
+    .topbar-btn .tb-icon{font-size:1.05rem}
+  }
+
+  .drawer-content a.weekly-link{background:linear-gradient(135deg,#fff5f5,#ffebee);color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px);position:relative;animation:weeklyLinkBlink 2.2s ease-in-out infinite}
+  .drawer-content a.weekly-link:hover{background:linear-gradient(135deg,#ffebee,#ffcdd2);color:var(--accent-dark,#8e0000)}
+  .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
+  @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
+  @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#overview">薬剤一覧</a>
+      <a href="#hold">術前休薬</a>
+      <a href="#bridging">ブリッジング</a>
+      <a href="#emergency">緊急時中和</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>腎機能と抗生剤投与<br><span class="accent">用量調整の原則と一覧</span></h1>
+    <p class="lead">CKD・術後 AKI・透析患者で抗菌薬を盛らず削らず効かせる</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>高学年</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>9</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>7</strong> 問クイズ</span>
+      <span class="hero-chip">💊 <strong>20+</strong> 薬剤</span>
+    </div>
+  </div>
+  <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#why">なぜ調整</a>
+    <a href="#renal-eval">腎機能評価</a>
+    <a href="#class">分類と PK/PD</a>
+    <a href="#dose-table">用量表</a>
+    <a href="#tdm">TDM</a>
+    <a href="#cvs-clinical">CVS 臨床</a>
+    <a href="#pitfalls">落とし穴</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは学習用の参考資料です</strong>
+    用量は <u>PMDA 添付文書</u> に基づく一般的目安(KDIGO 2024 / 日本腎臓学会 CKD 診療ガイドライン 2023 を補助参照)。実際の投与は必ず<u>最新の添付文書・院内プロトコル・薬剤師確認</u>のうえ、指導医の指示に従ってください。
+  </div>
+</div>
+
+<div class="key-box reveal">
+  抗生剤の多くは腎排泄。<span style="color:var(--accent)">「腎機能を測る → 薬剤クラスを知る → PK/PD で調整型を決める」</span>の3段階で考える。
+</div>
+
+<section class="content reveal" id="why">
+  <h2>1. なぜ腎機能と抗生剤投与量を考えるか</h2>
+
+  <h3>蓄積で出る毒性 ― 抗菌薬は「効く・効かない」だけではない</h3>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 腎毒性</h4>
+      <div class="role">AG / VCM / コリスチン</div>
+      <p>急性尿細管壊死。AG はトラフ高値で進行、VCM は AUC>700 でリスク↑。腎機能低下 → 用量過剰 → さらに腎機能悪化の悪循環。</p>
+    </div>
+    <div class="component-card">
+      <h4>② 神経毒性</h4>
+      <div class="role">セフェピム脳症 / メロペネム痙攣</div>
+      <p>セフェピム脳症は <u>意識障害・ミオクローヌス・非痙攣性てんかん</u>。腎機能低下例での蓄積が原因。「術後せん妄」と誤診されやすい。</p>
+    </div>
+    <div class="component-card">
+      <h4>③ 聴覚・血液毒性</h4>
+      <div class="role">AG / リネゾリド</div>
+      <p>AG は内耳毒性 → 不可逆性難聴・前庭機能障害。リネゾリドは長期(>2週)で <u>血小板減少・乳酸アシドーシス・末梢神経障害</u>。腎機能低下で発症率↑。</p>
+    </div>
+  </div>
+
+  <h3>CVS 患者は「腎機能の二重苦」</h3>
+  <ul>
+    <li><strong>慢性側</strong>:CKD(高齢・糖尿病・心不全による腎前性低灌流)</li>
+    <li><strong>急性側</strong>:術後 AKI(CPB・低血圧・造影剤・敗血症)</li>
+    <li>術後 ICU では <u>クレアチニンが「遅れて」上昇</u>するため、eGFR 換算値は楽観的になりがち</li>
+  </ul>
+
+  <div class="callout tip">
+    <strong>💡 関連ページ:</strong>
+    <a href="contrast_nephropathy_v2.html" style="color:var(--accent)">造影剤腎症</a>(CI-AKI 機序)、
+    <a href="hemodialysis_basics_v2.html" style="color:var(--accent)">血液透析</a>(HD vs CRRT)、
+    <a href="infection_control_v2.html" style="color:var(--accent)">感染制御の総論</a>(SSI予防・縦隔炎)を併読すると理解が深まる。
+  </div>
+</section>
+
+<section class="content reveal" id="renal-eval">
+  <h2>2. 腎機能の評価</h2>
+
+  <h3>3つの推算式の使い分け</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>推算式</th><th>単位</th><th>主な用途</th><th>添付文書での扱い</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cockcroft-Gault Ccr</strong></td><td>mL/min(実測値)</td><td>抗菌薬・DOAC の用量調整</td><td><u>添付文書で多用</u>される基準</td></tr>
+      <tr><td><strong>eGFR</strong>(日本人 GFR 推算式)</td><td>mL/min/1.73m²(体表面積補正)</td><td>CKD ステージ分類</td><td>用量調整には体表補正を <u>外す</u>必要あり</td></tr>
+      <tr><td><strong>CKD-EPI</strong></td><td>mL/min/1.73m²</td><td>国際比較・予後評価</td><td>添付文書では一般的でない</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout danger">
+    <strong>⚠️ AKI 時に eGFR が信頼できない理由:</strong>
+    eGFR は <u>定常状態</u> でのクレアチニン値に基づく推算。AKI のように Cr が刻々と上昇している局面では、① Cr 産生(筋肉量)、② 分布容積、③ 排泄が全て非定常 ⇒ 推算値が実 GFR を大幅に過大評価。AKI 急性期は <u>Cr 推移と尿量</u>を見るのが基本。
+  </div>
+
+  <h3>血液浄化中の薬物除去性 ― 3因子</h3>
+  <ul>
+    <li><strong>分子量</strong>:小さい(<500 Da)ほど除去されやすい。VCM(1450 Da)は中間、コリスチン(1750 Da)は除去されにくい。</li>
+    <li><strong>蛋白結合率</strong>:低いほど除去されやすい(セフトリアキソンは結合率85-95%で透析でほぼ除去されない)。</li>
+    <li><strong>分布容積(Vd)</strong>:大きい(組織分布が広い)と除去効率が下がる(VCM は Vd 0.7 L/kg で除去率20-40%)。</li>
+  </ul>
+
+  <h3>HD / CRRT の薬物除去性のざっくり目安</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>療法</th><th>Ccr 相当</th><th>薬物除去性</th><th>抗菌薬用量の考え方</th></tr></thead>
+    <tbody>
+      <tr><td><strong>間欠的 HD(IHD)</strong></td><td>~0 mL/min(透析間)</td><td>透析中 大量除去</td><td><u>透析後追加投与</u>が必要な薬あり(VCM・PIPC/TAZ・セファゾリン)</td></tr>
+      <tr><td><strong>CRRT(CVVH / CVVHDF)</strong></td><td>25-50 mL/min 相当</td><td>持続的に中等度除去</td><td>「<u>無尿だから減量</u>」は誤り。<u>Ccr 30 相当</u>として考える</td></tr>
+      <tr><td><strong>SLED</strong></td><td>~30 mL/min 相当(6-12時間)</td><td>IHD と CRRT の中間</td><td>各薬剤の添付文書・院内プロトコルに従う</td></tr>
+      <tr><td><strong>SCUF</strong></td><td>―(除水のみ)</td><td>薬物除去は限定的</td><td>原則調整不要(除水量に注意)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal" id="class">
+  <h2>3. 抗生剤の分類と PK/PD</h2>
+
+  <h3>排泄経路で分ける ― 調整必須 vs 原則不要</h3>
+  <div class="vs-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0">
+    <div style="background:#fff5f5;border:2px solid var(--accent);border-radius:10px;padding:1rem 1.1rem">
+      <h4 style="color:var(--accent);margin-bottom:.4rem">🔴 腎排泄主体 ― 調整必須</h4>
+      <p style="font-size:.88rem;line-height:1.65">アミノグリコシド(AG)、バンコマイシン(VCM)、テイコプラニン、大半のβ-ラクタム(セファゾリン、セフェピム、メロペネム、PIPC/TAZ)、フルオロキノロン(LVFX、CPFX)、ダプトマイシン、コリスチン</p>
+    </div>
+    <div style="background:#e8f5e9;border:2px solid var(--success);border-radius:10px;padding:1rem 1.1rem">
+      <h4 style="color:var(--success);margin-bottom:.4rem">🟢 肝代謝・胆汁排泄主体 ― 原則調整不要</h4>
+      <p style="font-size:.88rem;line-height:1.65">マクロライド(クラリスロマイシン、アジスロマイシン)、クリンダマイシン、リネゾリド、メトロニダゾール、<strong>モキシフロキサシン</strong>(他のFQと違う)、セフトリアキソン(胆汁排泄優位)、チゲサイクリン</p>
+    </div>
+  </div>
+
+  <h3>PK/PD 三型 ― 効果を決める指標で分ける</h3>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 300" aria-label="PK/PD三型の概念図">
+      <defs>
+        <linearGradient id="gAUC" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#7b1fa2" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#7b1fa2" stop-opacity=".1"/>
+        </linearGradient>
+        <linearGradient id="gTMIC" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1976d2" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#1976d2" stop-opacity=".1"/>
+        </linearGradient>
+      </defs>
+      <!-- Title -->
+      <rect x="5" y="5" width="590" height="26" rx="6" fill="#0b2545"/>
+      <text x="300" y="23" font-size="13" fill="#fff" font-weight="700" text-anchor="middle">PK/PD 三型 ― 効果を決める指標</text>
+
+      <!-- Axes -->
+      <line x1="60" y1="60" x2="60" y2="260" stroke="#0b2545" stroke-width="2"/>
+      <line x1="60" y1="260" x2="560" y2="260" stroke="#0b2545" stroke-width="2"/>
+      <text x="20" y="160" font-size="11" font-weight="700" fill="#0b2545" text-anchor="middle" transform="rotate(-90 20 160)">血中濃度</text>
+      <text x="310" y="285" font-size="11" font-weight="700" fill="#0b2545" text-anchor="middle">時間</text>
+
+      <!-- MIC line -->
+      <line x1="60" y1="200" x2="560" y2="200" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="565" y="204" font-size="10" font-weight="700" fill="#ef6c00">MIC</text>
+
+      <!-- 濃度依存(AG/FQ): tall narrow pulses -->
+      <path d="M80,260 L80,80 L120,80 L120,180 L160,180 L160,260" fill="none" stroke="#c62828" stroke-width="2.5"/>
+      <text x="120" y="75" font-size="10" font-weight="700" fill="#c62828" text-anchor="middle">C_max</text>
+      <text x="100" y="120" font-size="9" fill="#c62828" font-weight="700">濃度依存</text>
+      <text x="100" y="133" font-size="9" fill="#c62828">AG / FQ</text>
+      <text x="100" y="146" font-size="9" fill="#c62828">→ C_max/MIC</text>
+
+      <!-- 時間依存(β-lactam): low sustained, T>MIC area shaded -->
+      <path d="M220,260 L220,140 L290,140 L290,220 L300,220 L300,140 L370,140 L370,220 L380,220 L380,140 L450,140 L450,260" fill="none" stroke="#1976d2" stroke-width="2.5"/>
+      <rect x="220" y="140" width="70" height="60" fill="url(#gTMIC)"/>
+      <rect x="300" y="140" width="70" height="60" fill="url(#gTMIC)"/>
+      <rect x="380" y="140" width="70" height="60" fill="url(#gTMIC)"/>
+      <text x="335" y="125" font-size="10" font-weight="700" fill="#1976d2" text-anchor="middle">T &gt; MIC エリア</text>
+      <text x="335" y="245" font-size="9" font-weight="700" fill="#1976d2" text-anchor="middle">時間依存(β-ラクタム)</text>
+      <text x="335" y="257" font-size="9" fill="#1976d2" text-anchor="middle">→ T&gt;MIC %</text>
+
+      <!-- AUC依存(VCM): rolling area under curve -->
+      <path d="M470,260 Q485,150 510,150 Q535,150 540,200 L540,260 Z" fill="url(#gAUC)" stroke="#7b1fa2" stroke-width="2"/>
+      <text x="505" y="140" font-size="10" font-weight="700" fill="#7b1fa2" text-anchor="middle">AUC</text>
+      <text x="505" y="245" font-size="9" font-weight="700" fill="#7b1fa2" text-anchor="middle">AUC依存(VCM)</text>
+      <text x="505" y="257" font-size="9" fill="#7b1fa2" text-anchor="middle">→ AUC/MIC</text>
+    </svg>
+    <div class="diagram-caption">
+      <strong>PK/PD 三型(自作模式図):</strong>
+      <ul style="margin-top:.4rem">
+        <li><strong style="color:#c62828">濃度依存(C_max/MIC)</strong>:AG・FQ。<u>1回量を大きく、間隔を空ける</u>(extended interval)。腎機能↓では「間隔延長」が基本。</li>
+        <li><strong style="color:#1976d2">時間依存(T&gt;MIC %)</strong>:β-ラクタム。<u>MIC を超える時間</u>を稼ぐ。腎機能↓では「1回量減量 or 持続点滴」、頻度は維持。</li>
+        <li><strong style="color:#7b1fa2">AUC依存(AUC/MIC)</strong>:VCM・リネゾリド。<u>曲線下面積</u>を一定に保つ。VCM は AUC 400-600 を目標に両軸で調整。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 Extended interval vs Reduced dose の選択則:</strong>
+    <ul style="margin-top:.4rem">
+      <li>濃度依存 → 1回量はキープ、<strong>間隔を延長</strong>(AG once-daily 5-7 mg/kg、Ccr 30-50 で 36h、<30 で 48h)</li>
+      <li>時間依存 → 頻度は維持、<strong>1回量を減らす or 持続点滴</strong>(β-ラクタムは T&gt;MIC を 40-100% 維持)</li>
+      <li>AUC 依存 → <strong>両軸で AUC ターゲット維持</strong>(VCM は TDM 必須)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="content reveal" id="dose-table">
+  <h2>4. 代表的抗菌薬の腎機能別投与量 ― CVS で出会う薬剤</h2>
+
+  <div class="callout" style="background:#fff5f5;border-left-color:var(--accent);font-size:.86rem">
+    <strong>📌 出典スタンス:</strong> 以下の用量はすべて <u>PMDA 添付文書</u> に基づく一般的目安。KDIGO 2024 / 日腎学会 CKD 診療ガイドライン 2023 を補助参照。<strong>実投与は最新の添付文書・院内プロトコル・薬剤師確認</strong>のうえで決定してください。本ページの表は学習目的の概念整理であり、処方の根拠にはなりません。
+  </div>
+
+  <h3>4-1. アミノグリコシド(AG)― 濃度依存</h3>
+  <p>現代は <strong>once-daily(extended interval)</strong> が主流。1回量大きく、腎機能低下で「間隔を延長」する。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>通常量(once-daily)</th><th>Ccr 30-50</th><th>Ccr 10-30</th><th>HD / Ccr&lt;10</th><th>CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>ゲンタマイシン</td><td>5-7 mg/kg q24h</td><td>q36h</td><td>q48h</td><td>HD後 2-3 mg/kg</td><td>q24-36h</td><td>TDM必須(ピーク・トラフ)</td></tr>
+      <tr><td>トブラマイシン</td><td>5-7 mg/kg q24h</td><td>q36h</td><td>q48h</td><td>HD後追加</td><td>q24-36h</td><td>同上</td></tr>
+      <tr><td>アミカシン</td><td>15-20 mg/kg q24h</td><td>q36h</td><td>q48h</td><td>HD後 5-7.5 mg/kg</td><td>q24-36h</td><td>同上</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-2. グリコペプチド ― AUC 依存</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>Loading</th><th>維持量(目安)</th><th>Ccr 30-50</th><th>Ccr 10-30 / HD</th><th>CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>バンコマイシン(VCM)</td><td>25-30 mg/kg(腎機能で減らさない)</td><td>15-20 mg/kg q8-12h</td><td>q12-24h</td><td>HD後 7.5-10 mg/kg</td><td>q24h(濃度モニタ)</td><td><strong>AUC 400-600 ターゲット</strong>(TDM必須)</td></tr>
+      <tr><td>テイコプラニン</td><td>6-12 mg/kg q12h × 3回</td><td>6 mg/kg q24h</td><td>q24-48h</td><td>q48-72h</td><td>q24-48h</td><td>トラフ 15-30 µg/mL</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-3. β-ラクタム ― 時間依存</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>通常量</th><th>Ccr 30-50</th><th>Ccr 10-30</th><th>HD / Ccr&lt;10</th><th>CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td><strong>セファゾリン</strong>(周術期予防)</td><td>1-2 g q8h</td><td>q8-12h</td><td>q12-24h</td><td>HD後 1 g</td><td>通常量</td><td>CVS で最頻用。CPB中再投与</td></tr>
+      <tr><td>セフトリアキソン</td><td>1-2 g q24h</td><td>調整不要</td><td>調整不要</td><td>調整不要</td><td>調整不要</td><td>胆汁排泄優位。HD後追加不要</td></tr>
+      <tr><td><strong>セフェピム</strong></td><td>1-2 g q8-12h</td><td>q12h</td><td>q24h</td><td>HD後 1 g</td><td>q12h</td><td><u>セフェピム脳症</u>の落とし穴</td></tr>
+      <tr><td><strong>メロペネム</strong></td><td>1 g q8h</td><td>1 g q12h</td><td>0.5 g q12h</td><td>0.5 g q24h</td><td><u>通常量に近づける</u>(1 g q12h)</td><td>痙攣リスク。CRRT で減量しすぎ注意</td></tr>
+      <tr><td><strong>PIPC/TAZ</strong></td><td>4.5 g q6-8h</td><td>3.375 g q6h</td><td>2.25 g q6h</td><td>2.25 g q8h + HD後追加</td><td>3.375 g q6h</td><td>HD後追加必要</td></tr>
+      <tr><td>アンピシリン/スルバクタム</td><td>3 g q6h</td><td>q8h</td><td>q12h</td><td>HD後 1.5-3 g</td><td>q8-12h</td><td>―</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-4. フルオロキノロン(FQ)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>排泄</th><th>通常量</th><th>Ccr 30-50</th><th>Ccr&lt;30 / HD</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>レボフロキサシン(LVFX)</td><td>腎排泄</td><td>500-750 mg q24h</td><td>q48h</td><td>250-500 mg q48h</td><td>濃度依存。腱断裂・QT延長注意</td></tr>
+      <tr><td>シプロフロキサシン(CPFX)</td><td>腎排泄</td><td>400 mg q8-12h(IV)</td><td>q12h</td><td>q24h</td><td>同上</td></tr>
+      <tr><td><strong>モキシフロキサシン</strong></td><td><u>肝代謝</u></td><td>400 mg q24h</td><td>調整不要</td><td>調整不要</td><td>FQ で唯一 腎調整不要(対比で覚える)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4-5. その他(MNZ / リネゾリド / ダプトマイシン / コリスチン)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>排泄</th><th>通常量</th><th>Ccr&lt;30 / HD / CRRT</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>メトロニダゾール(MNZ)</td><td>肝代謝</td><td>500 mg q8h</td><td>原則調整不要(HD で除去されるので HD 後追加 検討)</td><td>嫌気性菌・C. difficile</td></tr>
+      <tr><td><strong>リネゾリド</strong></td><td>非腎排泄</td><td>600 mg q12h</td><td>調整不要(ただし腎機能↓で <u>血小板減少リスク↑</u>)</td><td>MRSA・VRE。長期で乳酸アシドーシス・末梢神経障害</td></tr>
+      <tr><td><strong>ダプトマイシン</strong></td><td>腎排泄</td><td>6-10 mg/kg q24h</td><td><strong>Ccr&lt;30 で q48h</strong>(HD は透析後)</td><td>CPK上昇モニタ。肺炎には使えない(サーファクタント不活化)</td></tr>
+      <tr><td><strong>コリスチン</strong></td><td>腎排泄</td><td>Loading + 維持(添付文書参照)</td><td>大幅減量必要(腎毒性最強)</td><td>多剤耐性 GNR の最後の選択。腎毒性・神経毒性</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal" id="tdm">
+  <h2>5. TDM(治療薬物濃度モニタリング)</h2>
+
+  <h3>TDM が必須・推奨される抗菌薬</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>薬剤</th><th>モニタ指標</th><th>ターゲット</th><th>採血タイミング</th></tr></thead>
+    <tbody>
+      <tr><td><strong>バンコマイシン</strong></td><td>AUC<sub>0-24</sub>(2点法 or ベイズ推定)</td><td><strong>AUC 400-600 mg·h/L</strong></td><td>定常状態(3-4回投与後)、Loading 翌日採血推奨</td></tr>
+      <tr><td>VCM(従来法)</td><td>トラフ</td><td>10-20 µg/mL(MRSA重症は15-20)</td><td>次回投与直前(IDSA 2020 では AUC 推奨)</td></tr>
+      <tr><td><strong>アミノグリコシド</strong></td><td>ピーク・トラフ</td><td>once-daily:トラフ&lt;1(48時間時点)<br>従来法:ピーク 5-10、トラフ&lt;2</td><td>ピーク:投与終了30分後<br>トラフ:次回投与直前</td></tr>
+      <tr><td>テイコプラニン</td><td>トラフ</td><td>15-30 µg/mL(重症は20-40)</td><td>次回投与直前</td></tr>
+      <tr><td>ボリコナゾール(参考)</td><td>トラフ</td><td>1-5 µg/mL</td><td>次回投与直前(感染症内科判断)</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 240" aria-label="TDM サンプリングタイミング">
+      <rect x="5" y="5" width="590" height="26" rx="6" fill="#0b2545"/>
+      <text x="300" y="23" font-size="13" fill="#fff" font-weight="700" text-anchor="middle">TDM サンプリングタイミング(once-daily AG の例)</text>
+
+      <!-- Axes -->
+      <line x1="50" y1="50" x2="50" y2="200" stroke="#0b2545" stroke-width="2"/>
+      <line x1="50" y1="200" x2="570" y2="200" stroke="#0b2545" stroke-width="2"/>
+      <text x="20" y="125" font-size="10" font-weight="700" fill="#0b2545" text-anchor="middle" transform="rotate(-90 20 125)">濃度</text>
+      <text x="310" y="225" font-size="10" font-weight="700" fill="#0b2545" text-anchor="middle">時間</text>
+
+      <!-- 3 doses (peaks and troughs) -->
+      <path d="M70,200 L70,70 Q90,70 90,80 Q100,180 130,195 L130,200" fill="none" stroke="#c62828" stroke-width="2.5"/>
+      <path d="M230,200 L230,70 Q250,70 250,80 Q260,180 290,195 L290,200" fill="none" stroke="#c62828" stroke-width="2.5"/>
+      <path d="M390,200 L390,70 Q410,70 410,80 Q420,180 450,195 L450,200" fill="none" stroke="#c62828" stroke-width="2.5"/>
+
+      <!-- Peak arrows -->
+      <line x1="95" y1="60" x2="95" y2="78" stroke="#ef6c00" stroke-width="2" marker-end="url(#arrPk)"/>
+      <text x="95" y="50" font-size="10" font-weight="700" fill="#ef6c00" text-anchor="middle">ピーク</text>
+      <text x="95" y="38" font-size="9" fill="#ef6c00" text-anchor="middle">(投与後30分)</text>
+
+      <!-- Trough arrows -->
+      <line x1="220" y1="210" x2="220" y2="195" stroke="#1976d2" stroke-width="2" marker-end="url(#arrTr)"/>
+      <text x="220" y="225" font-size="10" font-weight="700" fill="#1976d2" text-anchor="middle">トラフ</text>
+
+      <line x1="380" y1="210" x2="380" y2="195" stroke="#1976d2" stroke-width="2" marker-end="url(#arrTr)"/>
+      <text x="380" y="225" font-size="10" font-weight="700" fill="#1976d2" text-anchor="middle">トラフ</text>
+
+      <defs>
+        <marker id="arrPk" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,0 L4,7 L8,0 z" fill="#ef6c00"/></marker>
+        <marker id="arrTr" markerWidth="8" markerHeight="8" refX="4" refY="1" orient="auto"><path d="M0,7 L4,0 L8,7 z" fill="#1976d2"/></marker>
+      </defs>
+
+      <!-- Dose labels -->
+      <text x="100" y="215" font-size="9" fill="#666" text-anchor="middle">投与 #1</text>
+      <text x="260" y="215" font-size="9" fill="#666" text-anchor="middle">投与 #2</text>
+      <text x="420" y="215" font-size="9" fill="#666" text-anchor="middle">投与 #3</text>
+    </svg>
+    <div class="diagram-caption">
+      <strong>採血タイミングの基本(自作模式図):</strong>
+      <ul style="margin-top:.4rem">
+        <li><strong style="color:#ef6c00">ピーク</strong>:投与終了 30 分後 ― 効果判定(濃度依存薬で重要)</li>
+        <li><strong style="color:#1976d2">トラフ</strong>:次回投与<u>直前</u> ― 蓄積・毒性判定(腎機能変動時に頻回測定)</li>
+        <li>定常状態は通常 3-4 回投与後。Loading dose 例ではより早く到達</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-box">
+    🔑 <strong>Loading dose は腎機能で減らさない</strong> ― ECMO・敗血症・浮腫例では Vd 増加で初期濃度が不足する。「腎不全だから減量」と Loading から減らすと <u>初期濃度不足で治療失敗</u>。
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠️ 腎機能変動時は採血頻度を増やす:</strong> AKI 進行 / 回復期 / 透析開始直後は薬物動態が刻々と変化。週 1 回の TDM では追いつかないことがある。
+  </div>
+</section>
+
+<section class="content reveal" id="cvs-clinical">
+  <h2>6. CVS 患者で特に気をつける場面</h2>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>① 縦隔炎</h4>
+      <div class="role">VCM + メロペネム 長期</div>
+      <p>術後縦隔炎(死亡率 20-40%)では <u>長期広域抗菌薬</u>。VCM の AUC モニタ + AKI 監視。AKI 合併で頻回 TDM。<a href="infection_control_v2.html" style="color:var(--accent)">感染制御</a> 参照。</p>
+    </div>
+    <div class="component-card">
+      <h4>② ECMO 患者</h4>
+      <div class="role">Vd 増加 + CRRT 併用</div>
+      <p>ECMO 回路で <u>Vd 増加</u>(VCM・AG)+ 親水性薬剤の吸着。CRRT 併用例では VCM・β-ラクタムの濃度低下が起きやすい。<strong>濃度モニタは頻回</strong>に。</p>
+    </div>
+    <div class="component-card">
+      <h4>③ LVAD 患者</h4>
+      <div class="role">ドライバーライン感染</div>
+      <p>慢性経過のドライバーライン感染で長期点滴抗菌薬。腎機能・血液毒性の長期モニタ。<u>リネゾリド長期使用</u>では血小板減少・末梢神経障害に注意。</p>
+    </div>
+    <div class="component-card">
+      <h4>④ 心移植後</h4>
+      <div class="role">免疫抑制 + 腎機能変動</div>
+      <p>カルシニューリン阻害薬で慢性腎機能低下。日和見感染で広域抗菌薬使用も腎機能・薬物相互作用に注意(タクロリムス・シクロスポリンとの相互作用)。</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 共通原則:</strong> CVS で「長期点滴抗菌薬 + 腎機能変動」 となる場面は多い。<u>用量設定の翌日には Cr/BUN 再評価、3-4 日後には TDM</u> を習慣に。
+  </div>
+</section>
+
+<section class="content reveal" id="pitfalls">
+  <h2>7. 臨床的落とし穴</h2>
+
+  <div class="callout danger">
+    <strong>① 「Ccr 50 までは普通量」の誤解</strong><br>
+    多くの薬剤は <u>Ccr 60(または 50)未満</u>で減量開始。添付文書を確認する習慣を。
+  </div>
+
+  <div class="callout danger">
+    <strong>② HD 後追加投与が必要な薬を忘れる</strong><br>
+    VCM・セファゾリン・PIPC/TAZ などは <u>透析で除去される</u>ため、<strong>透析日は透析後に追加</strong>が必要。透析翌日に「効いていない」と気づくのは遅い。
+  </div>
+
+  <div class="callout danger">
+    <strong>③ PK/PD の違いで Extended interval と Reduced dose を間違える</strong><br>
+    β-ラクタムを「腎不全だから 1日 1回」にすると T&gt;MIC が不足。逆に AG を頻回投与にするとピーク不足 + トラフ高値で <u>耳腎毒性</u>。
+  </div>
+
+  <div class="callout danger">
+    <strong>④ AKI で eGFR が 24-48h 遅れる</strong><br>
+    Cr 上昇は AKI 発症から 1-2 日遅延。<u>尿量低下や血圧低下の方が早期サイン</u>。eGFR を見て「まだ大丈夫」と通常量を続けるのは危険。
+  </div>
+
+  <div class="callout danger">
+    <strong>⑤ CRRT 中に減量しすぎ ⇒ 治療失敗</strong><br>
+    CRRT は <u>Ccr 25-50 相当</u>の薬物除去。「無尿だから半量」とすると治療濃度に達しない。<strong>メロペネム・PIPC/TAZ は通常量に近づける</strong>。
+  </div>
+
+  <div class="callout danger">
+    <strong>⑥ CPB 後 24 時間は Vd 増 ⇒ 血中濃度低い</strong><br>
+    CPB で <u>体液量増加 + 炎症性血管透過性亢進</u>。Loading は通常量を維持。維持量も初期は高めから開始 + TDM。
+  </div>
+
+  <div class="callout danger">
+    <strong>⑦ セフェピム脳症は「術後せん妄」と誤診される</strong><br>
+    高齢腎機能低下例で <u>意識障害・ミオクローヌス・非痙攣性てんかん</u>。脳波で非痙攣性発作の所見。中止+透析で改善する。鑑別に必ず入れる。
+  </div>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>8. 理解度チェック(全7問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>最終得点</div>
+      <div class="big" id="finalScore">0 / 7</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>9. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>PK / PD</td><td>Pharmacokinetics(薬物動態) / Pharmacodynamics(薬力学)</td></tr>
+      <tr><td>T &gt; MIC</td><td>血中濃度が MIC を超える時間の割合(時間依存型の効果指標)</td></tr>
+      <tr><td>AUC / MIC</td><td>曲線下面積を MIC で除した値(AUC 依存型の効果指標)</td></tr>
+      <tr><td>C_max / MIC</td><td>最高濃度を MIC で除した値(濃度依存型の効果指標)</td></tr>
+      <tr><td>Vd</td><td>Volume of distribution(分布容積)。組織分布の広さの指標</td></tr>
+      <tr><td>Cl</td><td>Clearance(クリアランス)。単位時間あたりの薬物除去量</td></tr>
+      <tr><td>Ccr</td><td>Creatinine clearance(クレアチニンクリアランス)、実測 mL/min</td></tr>
+      <tr><td>eGFR</td><td>estimated GFR(推算糸球体濾過量)、mL/min/1.73m²</td></tr>
+      <tr><td>Cockcroft-Gault</td><td>Ccr 推算式(年齢・体重・Cr・性別)。添付文書で多用</td></tr>
+      <tr><td>CKD-EPI</td><td>国際標準の eGFR 推算式</td></tr>
+      <tr><td>TDM</td><td>Therapeutic Drug Monitoring(治療薬物濃度モニタリング)</td></tr>
+      <tr><td>トラフ</td><td>次回投与直前の最低濃度</td></tr>
+      <tr><td>ピーク</td><td>投与後の最高濃度(IV 終了 30 分後)</td></tr>
+      <tr><td>Extended interval</td><td>投与間隔延長(once-daily AG など)</td></tr>
+      <tr><td>Loading dose</td><td>初回大量投与。腎機能で減らさないのが原則</td></tr>
+      <tr><td>CRRT</td><td>Continuous Renal Replacement Therapy(CVVH/CVVHDF)</td></tr>
+      <tr><td>SLED</td><td>Sustained Low-Efficiency Dialysis(緩徐型 HD)</td></tr>
+      <tr><td>Red man syndrome</td><td>VCM 急速投与で起きる非アレルギー性紅潮(投与速度&lt;10 mg/min で予防)</td></tr>
+      <tr><td>セフェピム脳症</td><td>腎機能低下例でセフェピム蓄積 → 意識障害・ミオクローヌス</td></tr>
+      <tr><td>AG / β-ラクタム / FQ</td><td>Aminoglycoside / β-lactam / Fluoroquinolone</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal">
+  <h2>📎 関連リソース・参考図書</h2>
+  <ul>
+    <li><a href="contrast_nephropathy_v2.html" style="color:var(--accent)">造影剤腎症</a> ― CI-AKI 機序と予防</li>
+    <li><a href="hemodialysis_basics_v2.html" style="color:var(--accent)">血液透析(HD)の基礎</a> ― HD vs CRRT 比較</li>
+    <li><a href="infection_control_v2.html" style="color:var(--accent)">感染制御の総論</a> ― SSI 予防・縦隔炎</li>
+    <li><a href="hit_syndrome_v2.html" style="color:var(--accent)">HIT</a> ― ヘパリン関連の落とし穴</li>
+  </ul>
+  <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)">
+    <strong>参考図書(本ページの執筆参照、コンテンツ転載なし):</strong>
+    PMDA 各薬剤添付文書(<a href="https://www.pmda.go.jp/" target="_blank" rel="noopener" style="color:var(--accent)">pmda.go.jp</a>)、KDIGO 2024 CKD Clinical Practice Guidelines、日本腎臓学会「CKD 診療ガイドライン 2023」、Sanford Guide to Antimicrobial Therapy、UpToDate "Dosing of antibacterial drugs in adult patients with impaired kidney function"。
+  </p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Heart of Medicine</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li><li><a href="topics_v2.html" class="weekly-link">📑 今週のトピックス一覧</a></li>
+        </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+        <li><a href="inhaled_no_v2.html">吸入NO(iNO)</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="surgical_knots_v2.html">糸結びの基礎</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="antibiotic_dosing_renal_failure_v2.html">腎機能と抗生剤</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+  const _curP_alt = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+  const questions = [
+    {q:"バンコマイシン(VCM)の TDM ターゲット(AUC法)として推奨されるのはどれか。",choices:["AUC 100-200 mg·h/L","AUC 400-600 mg·h/L","AUC 800-1000 mg·h/L","トラフ 30-40 µg/mL のみ"],correct:1,explain:"IDSA 2020 ガイドライン以降、MRSA 重症感染症に対する VCM は <u>AUC 400-600 mg·h/L</u> がターゲット。従来のトラフ 15-20 µg/mL 単独管理から AUC ベイズ推定 or 2 点法に移行している。AUC>700 は腎毒性リスク↑。"},
+    {q:"アミノグリコシド(AG)を once-daily で投与している患者で、用量・間隔の判断のためのトラフはいつ採血するのが標準か。",choices:["投与終了 30 分後","投与終了 2 時間後","次回投与直前(投与直前トラフ)","食後 1 時間"],correct:2,explain:"トラフは <u>次回投与直前</u>に採血する(最低濃度)。once-daily AG ではトラフ &lt;1 µg/mL を確認し、高値なら間隔を延長する(例:Ccr 30-50 で q36h)。投与終了 30 分後はピーク採血のタイミング。"},
+    {q:"ピペラシリン/タゾバクタム(PIPC/TAZ)で HD 後追加投与が必要となる主な理由はどれか。",choices:["蛋白結合率が高く透析で除去されないため","分子量が小さく蛋白結合率も低いので透析で除去されるため","肝代謝薬で透析と関係しないため","脂溶性で組織にとどまるため"],correct:1,explain:"PIPC/TAZ は <u>分子量が小さく蛋白結合率も低い</u>ため透析中に除去される。VCM、セファゾリン、メロペネムなども同様の理由で透析日は<u>透析後追加投与</u>が必要。セフトリアキソンは蛋白結合 85-95% で透析でほぼ除去されない(対比)。"},
+    {q:"β-ラクタムの効果を最もよく予測する PK/PD 指標はどれか。",choices:["C_max/MIC(濃度依存)","T &gt; MIC(時間依存)","AUC/MIC(AUC依存)","Vd/MIC"],correct:1,explain:"β-ラクタムは <u>T &gt; MIC(MIC を超える時間)</u> が効果指標(時間依存型)。腎機能低下時は「1 回量を減らして頻度維持」あるいは「持続点滴」で T&gt;MIC を維持する。1 日 1 回への変更は T&gt;MIC 不足になりやすく不適切。"},
+    {q:"次のうち、腎機能低下時に原則として用量調整が不要な抗菌薬はどれか。",choices:["バンコマイシン","セフェピム","モキシフロキサシン","ゲンタマイシン"],correct:2,explain:"<u>モキシフロキサシン</u>は他のフルオロキノロンと違い肝代謝主体で、腎機能低下時も調整不要。リネゾリド・メトロニダゾール・クリンダマイシン・セフトリアキソンも同様に原則調整不要。VCM・セフェピム・AG はすべて腎排泄主体で調整必須。"},
+    {q:"CRRT(CVVH/CVVHDF)中の患者でメロペネム用量を決める際の考え方として正しいのはどれか。",choices:["無尿だから半量にする","Ccr &lt;10 と同等として大幅減量","Ccr 25-50 相当として通常量に近づける","透析中なので投与しない"],correct:2,explain:"CRRT は <u>Ccr 25-50 mL/min 相当</u>の薬物除去能を持つ。「無尿だから減量」と判断しすぎると治療濃度不足で<u>治療失敗</u>になる。メロペネム・PIPC/TAZ は通常量に近づける(例:1 g q12h)。"},
+    {q:"AKI(急性腎障害)患者で eGFR を抗菌薬の用量調整に使ってはいけない理由として最も適切なのはどれか。",choices:["eGFR の単位が違うから","Cr 産生・分布・除去が非定常で推算値が実 GFR を過大評価するから","AKI では Cr が下がるから","HD 中は eGFR が無意味だから"],correct:1,explain:"eGFR は <u>定常状態</u>でのクレアチニンに基づく推算式。AKI のように Cr が刻々と上昇している局面では、産生・分布・除去すべてが非定常で、<u>推算値が実 GFR を過大評価</u>する。AKI 急性期は尿量低下や Cr 推移を見るのが基本で、eGFR を見て「まだ大丈夫」と通常量を続けるのは危険。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+
+<script>
+/* === Topbar actions: Menu only (v1/v2 unified to v2) === */
+(function(){
+  if(document.querySelector('.topbar-actions')) return;
+  if(!document.getElementById('menuToggle')) return;
+  var wrap=document.createElement('div');
+  wrap.className='topbar-actions';
+  var mb=document.createElement('label');
+  mb.setAttribute('for','menuToggle');
+  mb.className='topbar-btn topbar-menu';
+  mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
+  mb.setAttribute('aria-label','ページメニュー');
+  mb.setAttribute('role','button');
+  mb.setAttribute('tabindex','0');
+  wrap.appendChild(mb);
+  document.body.appendChild(wrap);
+})();
+</script>
+
+</body>
+</html>
