@@ -258,6 +258,63 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+
+  /* ===== Interactive widgets (Fable dynamic upgrade) ===== */
+  .ix-wrap{background:linear-gradient(135deg,#f7fbff,#eef4fb);border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.3rem 1.5rem;margin:1.5rem 0;box-shadow:var(--shadow-sm);position:relative}
+  .ix-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-light));padding:.3rem .75rem;border-radius:99px;margin-bottom:.7rem}
+  .ix-title{font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:.25rem;line-height:1.4}
+  .ix-sub{font-size:.85rem;color:var(--muted);margin-bottom:.6rem;line-height:1.65}
+  .ix-svg-frame{background:#fff;border:1px solid var(--border);border-radius:12px;padding:.5rem;margin:.6rem 0}
+  .ix-svg-frame svg{max-width:100%;height:auto;display:block;margin:0 auto}
+  .ix-controls{display:flex;flex-wrap:wrap;gap:.5rem;margin:.7rem 0 .2rem}
+  .ix-btn{background:#fff;border:2px solid var(--border);color:var(--navy);border-radius:10px;padding:.5rem .85rem;font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .18s var(--ease);min-height:42px;display:inline-flex;align-items:center;gap:.35rem;-webkit-tap-highlight-color:transparent}
+  .ix-btn:hover{border-color:var(--accent-light);transform:translateY(-1px)}
+  .ix-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 3px 10px rgba(198,40,40,.28)}
+  .ix-btn.play{background:var(--navy);color:#fff;border-color:var(--navy);margin-left:auto}
+  .ix-btn.play:hover{background:var(--navy-light)}
+  .ix-btn.play.active{background:var(--accent);border-color:var(--accent)}
+  /* flowing blood: marching ants */
+  .flow{stroke-dasharray:7 11;animation:flowMove 1s linear infinite}
+  .flow.rev{animation-direction:reverse}
+  @keyframes flowMove{to{stroke-dashoffset:-18}}
+  .flow-off{animation:none;opacity:.22}
+  /* readout chips */
+  .ix-readout{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem}
+  .ix-chip{flex:1 1 130px;background:#fff;border:1px solid var(--border);border-left:4px solid var(--navy-light);border-radius:9px;padding:.5rem .7rem}
+  .ix-chip .k{font-size:.66rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+  .ix-chip .v{font-size:1rem;font-weight:800;color:var(--navy);line-height:1.25}
+  .ix-phase-desc{background:#fff;border:1px dashed var(--border);border-radius:10px;padding:.7rem .9rem;margin-top:.7rem;font-size:.88rem;color:var(--text);line-height:1.75;min-height:3.4em}
+  .ix-phase-desc b{color:var(--accent)}
+  .ix-step-track{display:flex;gap:.3rem;margin:.4rem 0 .2rem}
+  .ix-step-dot{flex:1;height:6px;border-radius:3px;background:var(--border);transition:background .3s}
+  .ix-step-dot.done{background:var(--accent-light)}
+  .ix-step-dot.cur{background:var(--accent)}
+  /* temp explorer */
+  .tempx-head{display:flex;align-items:baseline;gap:.5rem}
+  .tempx-val{font-size:2.1rem;font-weight:800;color:var(--accent);line-height:1}
+  .tempx-zone{margin-left:auto;font-weight:800;font-size:.9rem}
+  .tempx-slider{width:100%;-webkit-appearance:none;appearance:none;height:10px;border-radius:6px;background:linear-gradient(90deg,#4527a0,#1976d2,#2e7d32,#ef6c00,#c62828);outline:none;margin:.7rem 0 .4rem}
+  .tempx-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--accent);cursor:pointer;box-shadow:var(--shadow)}
+  .tempx-slider::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--accent);cursor:pointer}
+  .tempx-scale{display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-bottom:.5rem}
+  .tempx-bar-track{background:#eef2f7;border-radius:8px;height:32px;overflow:hidden;position:relative;border:1px solid var(--border);margin-top:.5rem}
+  .tempx-bar-fill{height:100%;border-radius:8px;transition:width .4s var(--ease-out),background .4s;display:flex;align-items:center;justify-content:flex-end;padding-right:.6rem;color:#fff;font-weight:800;font-size:.82rem;white-space:nowrap;min-width:2.5rem}
+  /* nirs */
+  .ix-toggle-row{display:flex;flex-wrap:wrap;gap:1rem;margin:.4rem 0 .2rem}
+  .ix-toggle-grp{flex:1 1 210px}
+  .ix-toggle-grp .lbl{font-size:.76rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+  .nirs-monitor{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.7rem 0 0}
+  .nirs-side{background:#0b1a2e;border-radius:12px;padding:.8rem;text-align:center;color:#fff}
+  .nirs-side .lab{font-size:.72rem;letter-spacing:.08em;opacity:.8}
+  .nirs-side .num{font-size:2.4rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;color:#43ea9a;transition:color .3s}
+  .nirs-side .num .u{font-size:1rem;opacity:.7;margin-left:.1rem}
+  .nirs-gauge{height:8px;border-radius:4px;background:rgba(255,255,255,.15);margin-top:.45rem;overflow:hidden}
+  .nirs-gauge span{display:block;height:100%;width:0;border-radius:4px;background:#43ea9a;transition:width .5s var(--ease-out),background .3s}
+  .nirs-alarm{margin-top:.6rem;padding:.55rem .8rem;border-radius:8px;font-size:.85rem;font-weight:700;text-align:center;transition:background .3s,color .3s;background:#e8f5e9;color:var(--success)}
+  .nirs-alarm.warn{background:#ffebee;color:var(--danger);animation:nirsBlink 1s ease-in-out infinite}
+  @keyframes nirsBlink{0%,100%{opacity:1}50%{opacity:.5}}
+  @media (prefers-reduced-motion:reduce){.flow{animation:none}.nirs-alarm.warn{animation:none}}
+  @media (max-width:560px){.nirs-side .num{font-size:2rem}.tempx-val{font-size:1.7rem}.ix-btn.play{margin-left:0}}
 </style>
 </head>
 <body>
@@ -312,6 +369,7 @@
       <span class="hero-chip">📊 <strong>12</strong> セクション</span>
       <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
       <span class="hero-chip">🖼 <strong>4</strong> 図解</span>
+      <span class="hero-chip">🎮 <strong>3</strong> インタラクティブ</span>
     </div>
   </div>
 
@@ -401,6 +459,8 @@
         <path d="M180,270 Q180,200 180,170 Q180,110 230,100" stroke="url(#lumenGrad)" stroke-width="22" fill="none" stroke-linecap="round"/>
         <path d="M230,100 Q295,100 320,170" stroke="url(#lumenGrad)" stroke-width="22" fill="none" stroke-linecap="round"/>
         <path d="M320,170 L320,290" stroke="url(#lumenGrad)" stroke-width="22" fill="none" stroke-linecap="round"/>
+        <!-- animated blood flow overlay (marching ants) -->
+        <path d="M180,290 L180,270 Q180,200 180,170 Q180,110 230,100 Q295,100 320,170 L320,290" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" class="flow" opacity=".8"/>
         <path d="M205,98 Q200,80 195,65" stroke="#c62828" stroke-width="10" fill="none" stroke-linecap="round" marker-end="url(#arrR)"/>
         <path d="M250,92 Q255,75 257,60" stroke="#c62828" stroke-width="8" fill="none" stroke-linecap="round" marker-end="url(#arrR)"/>
         <path d="M285,98 Q300,80 315,67" stroke="#c62828" stroke-width="8" fill="none" stroke-linecap="round" marker-end="url(#arrR)"/>
@@ -582,6 +642,25 @@
       温度が低いほど安全時間は延長するが、凝固障害・rewarming時間を考慮し、現在は <strong>「中等度低体温 25-28°C + 順行性脳灌流」</strong> が主流。
     </div>
   </div>
+
+  <div class="ix-wrap" id="tempx">
+    <span class="ix-tag">🎚 インタラクティブ</span>
+    <div class="ix-title">体温を動かして「安全な循環停止時間」を体感する</div>
+    <div class="ix-sub">スライダーで中核温を変えると、<strong>Q₁₀ = 2.4</strong> に基づく脳代謝率と、<u>循環停止のみ(灌流なし)</u>で許容される時間の目安が連動して変化します。SACP を併用すればこの制約は大きく緩和されます。</div>
+    <div class="tempx-head">
+      <span class="tempx-val" id="tempxVal">28</span><span style="font-weight:700;color:var(--navy)">°C</span>
+      <span class="tempx-zone" id="tempxZone">—</span>
+    </div>
+    <input type="range" min="15" max="37" value="28" step="1" class="tempx-slider" id="tempxSlider" aria-label="中核温(℃)">
+    <div class="tempx-scale"><span>15°C</span><span>18</span><span>25</span><span>28</span><span>32</span><span>37°C</span></div>
+    <div class="ix-readout">
+      <div class="ix-chip"><div class="k">脳代謝率(37°C比)</div><div class="v" id="tempxMeta">—</div></div>
+      <div class="ix-chip"><div class="k">安全停止時間(目安)</div><div class="v" id="tempxTime">—</div></div>
+      <div class="ix-chip"><div class="k">戦略</div><div class="v" id="tempxStrat" style="font-size:.82rem">—</div></div>
+    </div>
+    <div class="tempx-bar-track"><div class="tempx-bar-fill" id="tempxBar">—</div></div>
+    <div class="ix-phase-desc" id="tempxNote"></div>
+  </div>
 </section>
 
 <section class="content reveal" id="brain-isolation">
@@ -673,6 +752,79 @@
       左(緑) = 脳灌流系、右(青) = 体循環。中央の<span style="color:#888">破線部分</span>が弓部(切除・置換中)。
       この2系統が <u>並列で動作</u>することにより、弓部血管が遮断されている間も脳血流と全身灌流の両方を維持できる。
     </div>
+  </div>
+
+  <div class="ix-wrap" id="bisim">
+    <span class="ix-tag">🎬 インタラクティブ回路</span>
+    <div class="ix-title">2系統並列循環を「動かして」理解する</div>
+    <div class="ix-sub">手技フェーズを送ると、どの回路(<span style="color:#2e7d32;font-weight:700">緑=脳</span> / <span style="color:#1976d2;font-weight:700">青=体</span>)に血液が流れているかがアニメーションで切り替わります。弓部を切除している間も脳灌流が途切れない ― それが Brain Isolation の核心です。</div>
+
+    <div class="ix-svg-frame">
+      <svg viewBox="0 0 640 360" role="img" aria-label="Brain Isolation 2系統回路シミュレータ">
+        <!-- pumps -->
+        <rect x="14" y="150" width="150" height="118" rx="12" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="89" y="172" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">脳灌流ポンプ</text>
+        <text x="89" y="188" font-size="9.5" fill="#2e7d32" text-anchor="middle">緑回路 / SACP</text>
+        <text x="89" y="210" font-size="9.5" fill="#2e7d32" text-anchor="middle">25-28°C</text>
+        <text x="89" y="225" font-size="9.5" fill="#2e7d32" text-anchor="middle">6-10 mL/kg/min</text>
+        <text x="89" y="246" font-size="9" fill="#5e7d72" text-anchor="middle">NIRS で監視</text>
+        <rect x="476" y="150" width="150" height="118" rx="12" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+        <text x="551" y="172" font-size="12" font-weight="700" fill="#1976d2" text-anchor="middle">体循環ポンプ</text>
+        <text x="551" y="188" font-size="9.5" fill="#1976d2" text-anchor="middle">青回路 / メインCPB</text>
+        <text x="551" y="210" font-size="9.5" fill="#1976d2" text-anchor="middle">中等度低体温</text>
+        <text x="551" y="225" font-size="9.5" fill="#1976d2" text-anchor="middle">下半身を灌流</text>
+        <text x="551" y="246" font-size="9" fill="#5e6f7d" text-anchor="middle">静脈脱血 → 送血</text>
+        <!-- brain & body -->
+        <ellipse cx="320" cy="58" rx="56" ry="33" fill="#ffe082" stroke="#f57c00" stroke-width="2"/>
+        <text x="320" y="64" font-size="15" text-anchor="middle">🧠 脳</text>
+        <text x="390" y="38" font-size="13">🧊</text>
+        <rect x="252" y="250" width="136" height="84" rx="14" fill="#eef2f7" stroke="#0b2545" stroke-width="1.5"/>
+        <text x="320" y="288" font-size="12.5" font-weight="700" fill="#0b2545" text-anchor="middle">体幹・下半身</text>
+        <text x="320" y="305" font-size="8.5" fill="#5a6473" text-anchor="middle">腹部臓器・脊髄・下肢</text>
+        <!-- 3 branches (static) -->
+        <line x1="322" y1="150" x2="316" y2="92" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+        <line x1="350" y1="140" x2="350" y2="90" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+        <line x1="378" y1="150" x2="388" y2="94" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+        <text x="300" y="118" font-size="8" font-weight="700" fill="#c62828">BCA</text>
+        <text x="357" y="116" font-size="8" font-weight="700" fill="#c62828">LCC</text>
+        <text x="395" y="118" font-size="8" font-weight="700" fill="#c62828">LSCA</text>
+        <!-- ascending / descending (static base) -->
+        <path d="M320,250 L305,152" stroke="#c62828" stroke-width="15" fill="none" stroke-linecap="round" opacity=".85"/>
+        <path d="M395,152 L405,250" stroke="#c62828" stroke-width="15" fill="none" stroke-linecap="round" opacity=".85"/>
+        <!-- arch states -->
+        <path id="bi-arch-native" d="M305,152 Q350,116 395,152" stroke="#c62828" stroke-width="17" fill="none" stroke-linecap="round"/>
+        <g id="bi-arch-cut" style="display:none">
+          <path d="M305,152 Q332,128 344,124" stroke="#b0b6be" stroke-width="15" fill="none" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <path d="M356,124 Q368,128 395,152" stroke="#b0b6be" stroke-width="15" fill="none" stroke-linecap="round" stroke-dasharray="6 6"/>
+          <text x="350" y="112" font-size="15" text-anchor="middle">✂️</text>
+        </g>
+        <path id="bi-arch-graft" d="M305,152 Q350,116 395,152" stroke="#26a69a" stroke-width="17" fill="none" stroke-linecap="round" style="display:none"/>
+        <!-- flow overlays (JS toggles .flow / .flow-off) -->
+        <path id="bi-natbrain" class="flow-off" d="M320,250 L305,152 Q350,116 395,152" stroke="#42a5f5" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path id="bi-green" class="flow-off" d="M150,178 Q235,150 300,150 L322,150" stroke="#2e7d32" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+        <path id="bi-bluebody" class="flow-off" d="M485,205 Q450,250 392,268" stroke="#1976d2" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+        <path id="bi-venous" class="flow-off rev" d="M388,300 Q450,282 485,235" stroke="#7b1fa2" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <text x="150" y="320" font-size="8.5" fill="#7b1fa2">紫=静脈脱血</text>
+      </svg>
+    </div>
+
+    <div class="ix-step-track"><div class="ix-step-dot"></div><div class="ix-step-dot"></div><div class="ix-step-dot"></div></div>
+    <div class="ix-controls">
+      <button class="ix-btn" data-ph="0">① 冷却</button>
+      <button class="ix-btn" data-ph="1">② 循環停止+SACP</button>
+      <button class="ix-btn" data-ph="2">③ 全身再開・復温</button>
+      <button class="ix-btn" id="bi-prev" aria-label="前のフェーズ">◀</button>
+      <button class="ix-btn" id="bi-next" aria-label="次のフェーズ">▶</button>
+      <button class="ix-btn play" id="bi-play"><span>▶</span> 自動再生</button>
+    </div>
+    <div style="font-weight:800;color:var(--navy);margin-top:.4rem" id="bi-name">—</div>
+    <div class="ix-readout">
+      <div class="ix-chip" style="border-left-color:#2e7d32"><div class="k">脳灌流(緑)</div><div class="v" id="bi-r-brain" style="font-size:.86rem">—</div></div>
+      <div class="ix-chip" style="border-left-color:#1976d2"><div class="k">下半身(青)</div><div class="v" id="bi-r-body" style="font-size:.86rem">—</div></div>
+      <div class="ix-chip" style="border-left-color:#ef6c00"><div class="k">中枢温</div><div class="v" id="bi-r-temp" style="font-size:.86rem">—</div></div>
+      <div class="ix-chip" style="border-left-color:#c62828"><div class="k">NIRS L / R</div><div class="v" id="bi-r-nirs" style="font-size:.86rem">—</div></div>
+    </div>
+    <div class="ix-phase-desc" id="bi-desc"></div>
   </div>
 
   <h3>脳灌流の典型条件</h3>
@@ -984,6 +1136,34 @@
     <li>非侵襲、連続表示が可能 ― 弓部手術での標準モニタリング</li>
   </ul>
 
+  <div class="ix-wrap" id="nirs">
+    <span class="ix-tag">🧠 インタラクティブ</span>
+    <div class="ix-title">NIRS モニタで「片側 SACP の落とし穴」を体験する</div>
+    <div class="ix-sub">灌流モードと Willis 輪の状態を切り替えると、左右の rSO₂ がどう動くかをシミュレートします。<u>右半球は腋窩 → BCA で灌流され安定</u>、左半球は灌流モードと Willis 輪に依存します。</div>
+    <div class="ix-toggle-row">
+      <div class="ix-toggle-grp">
+        <div class="lbl">灌流モード</div>
+        <div class="ix-controls" id="nirsMode">
+          <button class="ix-btn" data-mode="uni">片側 SACP(BCAのみ)</button>
+          <button class="ix-btn active" data-mode="bi">両側 SACP(BCA+LCC)</button>
+        </div>
+      </div>
+      <div class="ix-toggle-grp">
+        <div class="lbl">Willis 輪</div>
+        <div class="ix-controls" id="nirsWillis">
+          <button class="ix-btn active" data-willis="complete">完全(交通良好)</button>
+          <button class="ix-btn" data-willis="incomplete">不完全(40-60%)</button>
+        </div>
+      </div>
+    </div>
+    <div class="nirs-monitor">
+      <div class="nirs-side"><div class="lab">左 rSO₂(L半球)</div><div class="num" id="nirsL">64<span class="u">%</span></div><div class="nirs-gauge"><span id="nirsLBar"></span></div></div>
+      <div class="nirs-side"><div class="lab">右 rSO₂(R半球)</div><div class="num" id="nirsR">66<span class="u">%</span></div><div class="nirs-gauge"><span id="nirsRBar"></span></div></div>
+    </div>
+    <div class="nirs-alarm" id="nirsAlarm">✅ 左右差なし ― 両半球とも十分に灌流</div>
+    <div class="ix-phase-desc" id="nirsNote"></div>
+  </div>
+
   <h3>その他のモニタリング</h3>
   <div class="component-grid">
     <div class="component-card">
@@ -1272,6 +1452,137 @@
   function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
   restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
   renderQ();
+</script>
+
+
+<script>
+/* === Interactive widgets (Fable dynamic upgrade) === */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---------- Widget A: Brain Isolation circuit simulator ---------- */
+  var A = document.getElementById('bisim');
+  if(A){
+    var phases = [
+      { name:'① 冷却(通常CPB)', brain:'自然循環', body:'全身灌流', temp:'32 → 28°C', nirs:'68 / 68',
+        desc:'まだ <b>1系統</b>。体循環ポンプが全身と脳をまとめて灌流しながら、目標体温(25-28°C)まで冷却する。弓部はまだ遮断していない。',
+        green:false, bodyBlue:true, natBrain:true, venous:true, arch:'native' },
+      { name:'② 循環停止 → SACP 切替', brain:'SACP(緑)独立灌流', body:'循環停止', temp:'28°C 維持', nirs:'64 / 66',
+        desc:'ここが <b>Brain Isolation の核心</b>。下半身は循環停止(青オフ)、脳だけを緑回路で <b>順行性に灌流(SACP)</b>。弓部を開放・切除しても脳血流は途切れない。',
+        green:true, bodyBlue:false, natBrain:false, venous:false, arch:'cut' },
+      { name:'③ 吻合完了 → 全身再開・復温', brain:'SACP 継続', body:'灌流再開', temp:'28 → 36.5°C', nirs:'66 / 67',
+        desc:'グラフト吻合が終わり <b>青回路(体循環)を再開</b>。緑と青が <b>並列</b> で回りながら、緩徐に復温(1°C / 4-5分)していく。',
+        green:true, bodyBlue:true, natBrain:false, venous:true, arch:'graft' }
+    ];
+    var cur=0, timer=null;
+    var q = function(s){ return A.querySelector(s); };
+    var archN=q('#bi-arch-native'), archC=q('#bi-arch-cut'), archG=q('#bi-arch-graft');
+    var fGreen=q('#bi-green'), fBody=q('#bi-bluebody'), fNat=q('#bi-natbrain'), fVen=q('#bi-venous');
+    var elName=q('#bi-name'), rBrain=q('#bi-r-brain'), rBody=q('#bi-r-body'), rTemp=q('#bi-r-temp'), rNirs=q('#bi-r-nirs'), elDesc=q('#bi-desc');
+    var dots=A.querySelectorAll('.ix-step-dot'), phBtns=A.querySelectorAll('[data-ph]'), playBtn=q('#bi-play');
+    function setFlow(el, on, rev){
+      if(!el) return;
+      el.classList.remove('flow','flow-off');
+      if(on && !reduce){ el.classList.add('flow'); if(rev) el.classList.add('rev'); }
+      else { el.classList.add('flow-off'); }
+    }
+    function render(){
+      var p=phases[cur];
+      setFlow(fGreen, p.green);
+      setFlow(fBody, p.bodyBlue);
+      setFlow(fNat, p.natBrain);
+      setFlow(fVen, p.venous, true);
+      if(archN) archN.style.display = p.arch==='native'?'':'none';
+      if(archC) archC.style.display = p.arch==='cut'?'':'none';
+      if(archG) archG.style.display = p.arch==='graft'?'':'none';
+      elName.textContent=p.name; rBrain.textContent=p.brain; rBody.textContent=p.body; rTemp.textContent=p.temp; rNirs.textContent=p.nirs;
+      elDesc.innerHTML=p.desc;
+      for(var i=0;i<dots.length;i++){ dots[i].classList.toggle('cur', i===cur); dots[i].classList.toggle('done', i<cur); }
+      phBtns.forEach(function(b){ b.classList.toggle('active', +b.dataset.ph===cur); });
+    }
+    function go(i){ cur=(i+phases.length)%phases.length; render(); }
+    function stop(){ if(timer){ clearInterval(timer); timer=null; playBtn.classList.remove('active'); playBtn.innerHTML='<span>▶</span> 自動再生'; } }
+    function play(){ if(timer){ stop(); return; } playBtn.classList.add('active'); playBtn.innerHTML='<span>⏸</span> 停止'; timer=setInterval(function(){ go(cur+1); }, 2600); }
+    phBtns.forEach(function(b){ b.addEventListener('click', function(){ stop(); go(+b.dataset.ph); }); });
+    q('#bi-prev').addEventListener('click', function(){ stop(); go(cur-1); });
+    q('#bi-next').addEventListener('click', function(){ stop(); go(cur+1); });
+    playBtn.addEventListener('click', play);
+    render();
+  }
+
+  /* ---------- Widget B: temperature explorer ---------- */
+  var slider=document.getElementById('tempxSlider');
+  if(slider){
+    var val=document.getElementById('tempxVal'), meta=document.getElementById('tempxMeta'),
+        timeEl=document.getElementById('tempxTime'), strat=document.getElementById('tempxStrat'),
+        bar=document.getElementById('tempxBar'), zoneEl=document.getElementById('tempxZone'),
+        note=document.getElementById('tempxNote');
+    function zoneOf(T){
+      if(T>=32) return {c:'#c62828',z:'常温〜軽度',s:'循環停止は危険',n:'この温度帯での循環停止は数分で不可逆的脳損傷。冷却が前提。'};
+      if(T>=29) return {c:'#ef6c00',z:'軽度低体温',s:'緊急避難的',n:'軽度低体温のみでは安全時間は短い。通常は SACP を併用する。'};
+      if(T>=25) return {c:'#2e7d32',z:'中等度低体温 ⭐',s:'25-28°C + SACP(主流)',n:'現在の主流。SACP を併用すれば <b>60-90分以上</b> の複雑な弓部操作が可能で、凝固・復温の負担も小さい。'};
+      if(T>=18) return {c:'#1976d2',z:'低〜深低体温',s:'DHCA 寄り',n:'深めの低体温。安全時間は延びるが、凝固障害・復温時間の増大がトレードオフ。'};
+      return {c:'#4527a0',z:'超低体温(DHCA)',s:'≤18°C(歴史的)',n:'DHCA の古典域。30-40分まで循環停止できるが、現在は SACP 併用が標準。'};
+    }
+    function upd(){
+      var T=+slider.value;
+      var metaPct=Math.pow(2.4,(T-37)/10)*100;
+      var t=5*Math.pow(2.4,(37-T)/10);
+      var z=zoneOf(T);
+      val.textContent=T;
+      meta.textContent=Math.round(metaPct)+' %';
+      timeEl.textContent = (t<60? '約 '+t.toFixed(t<10?1:0)+' 分' : '約 '+(t/60).toFixed(1)+' 時間');
+      strat.textContent=z.s;
+      zoneEl.textContent=z.z; zoneEl.style.color=z.c;
+      var w=Math.min(100, t/40*100);
+      bar.style.width=Math.max(7,w)+'%'; bar.style.background=z.c;
+      bar.textContent=(t<60? t.toFixed(t<10?1:0)+'分' : '>60分');
+      note.innerHTML='<b>'+z.z+'</b>(循環停止のみ・灌流なしの目安):'+z.n;
+    }
+    slider.addEventListener('input', upd); upd();
+  }
+
+  /* ---------- Widget C: NIRS rSO2 simulator ---------- */
+  var nirs=document.getElementById('nirs');
+  if(nirs){
+    var mode='bi', willis='complete';
+    var Lnum=document.getElementById('nirsL'), Rnum=document.getElementById('nirsR'),
+        Lbar=document.getElementById('nirsLBar'), Rbar=document.getElementById('nirsRBar'),
+        alarm=document.getElementById('nirsAlarm'), note=document.getElementById('nirsNote');
+    function targets(){
+      var R=66, L, n;
+      if(mode==='bi'){ L=64; n='<b>両側 SACP</b>:LCC を直接灌流しているため、左半球は Willis 輪に依存せず安定。左右差はほぼ出ない。'; }
+      else if(willis==='complete'){ L=58; n='<b>片側 SACP + Willis 完全</b>:左半球は Willis 輪(前・後交通動脈)経由で代償され、やや低いが許容範囲。ただし過信は禁物。'; }
+      else { L=40; n='<b>⚠ 片側 SACP + Willis 不完全</b>:左半球への側副が不足し rSO₂ が急落。<b>両側 SACP へ切替</b> を要する典型シナリオ。'; }
+      return {L:L,R:R,n:n};
+    }
+    function colr(v){ return v>=55?'#43ea9a':(v>=45?'#ffb74d':'#ff5252'); }
+    function setNIRS(elNum, elBar, v){ elNum.firstChild.nodeValue=v; elNum.style.color=colr(v); elBar.style.width=v+'%'; elBar.style.background=colr(v); }
+    function animateTo(elNum, elBar, target){
+      if(elNum._raf){ cancelAnimationFrame(elNum._raf); elNum._raf=null; }
+      if(elNum._to){ clearTimeout(elNum._to); elNum._to=null; }
+      var start=parseInt(elNum.firstChild.nodeValue,10); if(isNaN(start)) start=60;
+      if(reduce){ setNIRS(elNum, elBar, target); return; }
+      var t0=null, dur=420;
+      function frame(ts){ if(t0===null)t0=ts; var k=Math.min(1,(ts-t0)/dur); setNIRS(elNum, elBar, Math.round(start+(target-start)*k)); if(k<1){ elNum._raf=requestAnimationFrame(frame); } else { elNum._raf=null; setNIRS(elNum, elBar, target); } }
+      elNum._raf=requestAnimationFrame(frame);
+      /* hard-guarantee the final value even if rAF is throttled (background tab / mobile) */
+      elNum._to=setTimeout(function(){ if(elNum._raf){ cancelAnimationFrame(elNum._raf); elNum._raf=null; } setNIRS(elNum, elBar, target); }, 700);
+    }
+    function upd(){
+      var t=targets();
+      animateTo(Lnum, Lbar, t.L); animateTo(Rnum, Rbar, t.R);
+      var diff=Math.abs(t.R-t.L);
+      if(t.L<50){ alarm.className='nirs-alarm warn'; alarm.textContent='⚠ 左 rSO₂ 低下(左右差 '+diff+'%)― 左半球が乏血。両側 SACP へ!'; }
+      else if(diff>=8){ alarm.className='nirs-alarm'; alarm.style.background='#fff3e0'; alarm.style.color='#ef6c00'; alarm.textContent='△ 軽度の左右差('+diff+'%)― 経過に注意'; }
+      else { alarm.className='nirs-alarm'; alarm.style.background=''; alarm.style.color=''; alarm.textContent='✅ 左右差なし ― 両半球とも十分に灌流'; }
+      note.innerHTML=t.n;
+    }
+    nirs.querySelectorAll('#nirsMode .ix-btn').forEach(function(b){ b.addEventListener('click', function(){ mode=b.dataset.mode; nirs.querySelectorAll('#nirsMode .ix-btn').forEach(function(x){ x.classList.toggle('active', x===b); }); upd(); }); });
+    nirs.querySelectorAll('#nirsWillis .ix-btn').forEach(function(b){ b.addEventListener('click', function(){ willis=b.dataset.willis; nirs.querySelectorAll('#nirsWillis .ix-btn').forEach(function(x){ x.classList.toggle('active', x===b); }); upd(); }); });
+    upd();
+  }
+})();
 </script>
 
 
