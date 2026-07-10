@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ステントグラフト治療(EVAR)とは ― 患者さん・ご家族のために (v2)</title>
+<meta name="description" content="腹部大動脈瘤のステントグラフト内挿術(EVAR)を、患者さん・ご家族向けにやさしく解説。病気の説明、開腹手術との違い、手術の流れ、入院・退院後の生活、定期検査の大切さ、よくある質問まで。">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --teal:#26a69a;--teal-dark:#00695c;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* HERO */
+  .hero{position:relative;min-height:66vh;min-height:66dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 4.5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(38,166,154,.12) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.16em;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.5rem,4.6vw,2.7rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.4;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,#5eead4,#80deea);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.95rem,2.2vw,1.12rem);opacity:.95;max-width:660px;margin:0 auto 1.6rem;line-height:1.95;font-weight:400}
+  .hero-meta{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500}
+  .hero-chip strong{font-weight:700;color:#a7f3d0}
+  .scroll-indicator{position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  /* Section nav */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#e0f2f1;color:var(--teal-dark)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* MAIN */
+  main{max-width:900px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.5rem);font-weight:700;padding:0;margin-bottom:1.1rem;display:flex;align-items:center;gap:.75rem}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--teal),#4db6ac);border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.08rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.97rem;line-height:1.95}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* Disclaimer */
+  .disclaimer{background:linear-gradient(135deg,#e0f2f1,#e3f2fd);border-left:5px solid var(--teal);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.9rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#0d3b36;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.98rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--teal);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.9rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.92rem;line-height:1.85}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.safe{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Analogy box (patient-friendly) */
+  .analogy{display:flex;gap:.9rem;align-items:flex-start;background:linear-gradient(135deg,#e8f5e9,#e3f2fd);border:1px solid #b2dfdb;border-left:5px solid var(--teal);border-radius:12px;padding:1rem 1.2rem;margin:1.1rem 0}
+  .analogy .emoji{font-size:1.9rem;line-height:1;flex-shrink:0}
+  .analogy .t{font-size:.94rem;line-height:1.9}
+  .analogy .t b{color:var(--teal-dark)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:460px}
+  th,td{padding:.8rem .75rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* vs grid */
+  .vs-grid{display:grid;grid-template-columns:1fr;gap:.9rem;margin-top:.8rem}
+  @media (min-width:720px){.vs-grid{grid-template-columns:1fr 1fr}}
+  .vs-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem}
+  .vs-card.open{border-color:#8e6a3a}
+  .vs-card.evar{border-color:var(--teal)}
+  .vs-card h4{font-size:1.02rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+  .vs-card.open h4{color:#8e6a3a}
+  .vs-card.evar h4{color:var(--teal-dark)}
+  .vs-card ul{padding-left:1.2rem;font-size:.9rem}
+  .vs-card li{margin-bottom:.3rem;line-height:1.75}
+  /* Steps */
+  .steps{list-style:none;padding:0;margin:1rem 0;counter-reset:step}
+  .steps li{position:relative;padding:.6rem 0 .8rem 3rem;border-left:2px dashed var(--border);margin-left:1rem}
+  .steps li:last-child{border-left:2px solid transparent}
+  .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--teal);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;box-shadow:var(--shadow-sm)}
+  .steps li b{color:var(--navy)}
+  /* component cards */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:10px;padding:1rem 1.1rem}
+  .component-card h4{color:var(--navy);font-size:.98rem;margin-bottom:.3rem}
+  .component-card p{font-size:.88rem;line-height:1.8}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.86rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.8}
+  /* Key box */
+  .key-box{background:linear-gradient(135deg,#e0f2f1,#e8f5e9);border:2px solid var(--teal);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  .num-highlight{display:inline-block;background:var(--teal);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* FAQ */
+  details.faq{background:#fff;border:1px solid var(--border);border-radius:10px;margin:.6rem 0;overflow:hidden;transition:box-shadow .2s}
+  details.faq[open]{box-shadow:var(--shadow-sm)}
+  details.faq summary{cursor:pointer;padding:.9rem 1.1rem;font-weight:700;color:var(--navy);font-size:.95rem;list-style:none;display:flex;gap:.6rem;align-items:flex-start;background:#f2fbfa;transition:background .15s}
+  details.faq summary:hover{background:#e0f2f1}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::before{content:"Q";flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:.78rem;display:inline-flex;align-items:center;justify-content:center;font-weight:800;margin-top:.05rem}
+  details.faq[open] summary{border-bottom:1px solid var(--border)}
+  details.faq .a{padding:.9rem 1.1rem;font-size:.92rem;line-height:1.95;color:var(--text)}
+  details.faq .a b{color:var(--teal-dark)}
+  /* QUIZ */
+  .quiz{background:#f2fbfa;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.85rem 1rem;cursor:pointer;text-align:left;font-size:.94rem;font-family:inherit;transition:all .15s var(--ease);min-height:46px}
+  .quiz-choice:hover{border-color:var(--teal);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.85rem 1rem;border-radius:8px;font-size:.9rem;display:none;line-height:1.85}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--teal);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.94rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(38,166,154,.3)}
+  .btn:hover{background:var(--teal-dark);transform:translateY(-1px)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* Footer */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:#5eead4;text-decoration:none}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* Back to top */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--teal);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(38,166,154,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px)}
+  /* Drawer */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:-8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#e0f2f1;color:var(--teal-dark)}
+  .drawer-content a.current{background:#e0f2f1;color:var(--teal-dark);font-weight:600;border-left:4px solid var(--teal);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+  }
+  /* Topbar */
+  .topbar-actions{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;gap:.35rem;align-items:center}
+  .topbar-btn{display:inline-flex;align-items:center;gap:.3rem;background:rgba(11,37,69,.9);color:#fff;padding:.42rem .8rem;border-radius:99px;text-decoration:none;font-size:.76rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25);user-select:none;-webkit-tap-highlight-color:transparent}
+  .topbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.7)}
+  .topbar-btn .tb-icon{font-size:.95rem;line-height:1}
+  .page-nav{display:none !important}
+  .site-header .menu-btn{display:none !important}
+  @media (max-width:480px){
+    .topbar-actions{top:9px;right:9px;gap:.25rem}
+    .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
+    .topbar-btn .tb-text{display:none}
+    .topbar-btn .tb-icon{font-size:1.05rem}
+  }
+  .drawer-content a.weekly-link{background:linear-gradient(135deg,#e0f2f1,#e8f5e9);color:var(--teal-dark);font-weight:700;border-left:4px solid var(--teal);padding-left:calc(1.2rem - 4px);position:relative}
+  .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--teal);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> 血管外科 · 患者さん・ご家族のための解説</span>
+    <h1>おなかの動脈のこぶを、<br><span class="accent">体の中から治す</span>(EVAR)</h1>
+    <p class="lead">
+      「腹部大動脈瘤(ふくぶ だいどうみゃくりゅう)」と、その治療法である
+      <strong>ステントグラフト内挿術(EVAR)</strong> について、
+      むずかしい言葉をできるだけ使わずに、やさしく説明します。
+    </p>
+    <div class="hero-meta">
+      <span class="hero-chip">👨‍👩‍👧 <strong>患者さん・ご家族</strong> 向け</span>
+      <span class="hero-chip">📖 <strong>やさしい</strong> 言葉</span>
+      <span class="hero-chip">❓ よくある質問</span>
+      <span class="hero-chip">✅ 確認クイズ</span>
+    </div>
+  </div>
+  <a href="#about" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#about">この病気とは</a>
+    <a href="#why">なぜ治療</a>
+    <a href="#two-ways">2つの治療</a>
+    <a href="#what-evar">EVARとは</a>
+    <a href="#day">手術の流れ</a>
+    <a href="#recovery">入院と回復</a>
+    <a href="#after">退院後の生活</a>
+    <a href="#fit">向き・不向き</a>
+    <a href="#faq">よくある質問</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note">
+  <div class="disclaimer-icon">💛</div>
+  <div class="disclaimer-text">
+    <strong>このページについて</strong>
+    病気や治療を理解していただくための、一般的なやさしい説明です。実際の診断や治療方針は一人ひとり異なります。<u>必ず主治医の説明を優先し、わからないことは遠慮なく担当の医師・看護師におたずねください</u>。
+  </div>
+</div>
+
+<section class="content reveal" id="about">
+  <h2>1. 「腹部大動脈瘤」ってどんな病気?</h2>
+  <p><strong>大動脈(だいどうみゃく)</strong>は、心臓から送り出された血液が最初に通る、体でいちばん太い血管です。胸からおなかへと1本の管のように下りていきます。</p>
+  <p>この大動脈の <strong>おなかの部分の壁が弱くなり、風船のようにふくらんでしまった状態</strong> が <strong>「腹部大動脈瘤(ふくぶ だいどうみゃくりゅう)」</strong>です。ふくらんだ部分を「こぶ(瘤)」と呼びます。</p>
+
+  <div class="analogy">
+    <div class="emoji">🎈</div>
+    <div class="t">
+      <b>たとえるなら…</b> 古くなったゴムホースの一部が、水の勢いでプクッとふくらんでしまうのに似ています。ふくらんだところは壁がうすく弱くなっているので、放っておくとさらに大きくなり、やがて破れてしまう心配があります。
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 600 280" role="img" aria-label="正常な大動脈とこぶ(動脈瘤)の比較イラスト">
+      <rect width="600" height="280" fill="#fff"/>
+      <text x="300" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2545">正常な血管 と こぶ(動脈瘤)</text>
+      <!-- normal -->
+      <rect x="135" y="55" width="30" height="170" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
+      <path d="M150,60 L150,220" stroke="#fff" stroke-width="4" stroke-dasharray="6 8" opacity=".8"/>
+      <text x="150" y="245" text-anchor="middle" font-size="12" font-weight="700" fill="#2e7d32">正常</text>
+      <text x="150" y="262" text-anchor="middle" font-size="9.5" fill="#5a6473">すーっと まっすぐ</text>
+      <!-- aneurysm: top tube, bulge, bottom tube -->
+      <rect x="385" y="55" width="30" height="58" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
+      <rect x="385" y="188" width="30" height="37" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
+      <ellipse cx="400" cy="150" rx="62" ry="46" fill="#ffcdd2" stroke="#c62828" stroke-width="2.5"/>
+      <path d="M400,60 L400,222" stroke="#fff" stroke-width="4" stroke-dasharray="6 8" opacity=".7"/>
+      <text x="400" y="155" text-anchor="middle" font-size="12" font-weight="700" fill="#8e0000">こぶ</text>
+      <text x="400" y="252" text-anchor="middle" font-size="12" font-weight="700" fill="#c62828">動脈瘤</text>
+      <text x="400" y="268" text-anchor="middle" font-size="9.5" fill="#5a6473">壁が弱くなり ふくらむ</text>
+      <text x="270" y="150" font-size="22" fill="#9e9e9e">→</text>
+    </svg>
+    <div class="diagram-caption">
+      <strong>イラスト:</strong> 左が正常な大動脈。右のように壁がふくらんだものが「こぶ(動脈瘤)」です。多くは<u>おへその少し下あたり</u>にできます。
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <strong>💡 大切なこと:</strong> 腹部大動脈瘤は、<u>ほとんどの場合、痛みなどの症状がありません</u>。健康診断のエコー(超音波)や、ほかの病気で撮ったCT検査で「たまたま」見つかることがとても多い病気です。
+  </div>
+</section>
+
+<section class="content reveal" id="why">
+  <h2>2. なぜ治療した方がよいの?</h2>
+  <p>こぶ自体は痛くありませんが、<strong>大きくなると壁がさらにうすくなり、ある日突然「破裂(はれつ)」してしまう</strong>ことがあります。破裂すると、おなかの中で大出血が起こり、命に関わるとても危険な状態になります。</p>
+
+  <div class="callout danger">
+    <strong>⚠️ こぶは大きいほど破れやすくなります。</strong> だから、破裂してしまう<u>前に</u>、計画的に治療をして「破裂を防ぐ」ことが目的です。破裂してからの緊急手術は、体への負担も危険もずっと大きくなります。
+  </div>
+
+  <h3>治療を考える目安</h3>
+  <p>一般的には、こぶの大きさ(直径)が <span class="num-highlight">およそ 5cm(50mm)</span> を超えるあたりから、治療が検討されます。ただし、これはあくまで目安です。</p>
+  <ul>
+    <li>こぶが<strong>大きくなるスピードが速い</strong>とき</li>
+    <li>こぶの<strong>形がいびつ</strong>なとき</li>
+    <li>おなかや腰に<strong>痛みが出てきた</strong>とき(破裂の前ぶれのことがあります)</li>
+  </ul>
+  <p>などは、大きさが目安より小さくても治療をすすめられることがあります。<strong>年齢・体力・ほかの病気なども合わせて、担当の医師が総合的に判断します。</strong></p>
+
+  <div class="callout tip">
+    <strong>💡 まだ小さいこぶは?</strong> すぐに手術をせず、<u>定期的にCTやエコーで大きさを見守る(経過観察)</u>こともよくあります。血圧をよくコントロールし、禁煙することが、こぶの進行をゆるやかにする助けになります。
+  </div>
+</section>
+
+<section class="content reveal" id="two-ways">
+  <h2>3. 治療は大きく2つの方法があります</h2>
+  <p>腹部大動脈瘤の治療には、大きく分けて <strong>「開腹手術(かいふく しゅじゅつ)」</strong> と、このページで説明する <strong>「ステントグラフト内挿術(EVAR)」</strong> の2つがあります。</p>
+
+  <div class="vs-grid">
+    <div class="vs-card open">
+      <h4>🔪 開腹手術(人工血管置換術)</h4>
+      <ul>
+        <li>おなかを大きく切り開いて、こぶの部分を <strong>人工血管に取りかえる</strong>方法。</li>
+        <li>歴史が長く、<strong>治療としては確実</strong>で、その後の追加治療が少なめ。</li>
+        <li>体への負担は大きく、<strong>入院・回復に時間</strong>がかかる。</li>
+        <li>若くて体力のある方や、EVARに向かない形のこぶに向く。</li>
+      </ul>
+    </div>
+    <div class="vs-card evar">
+      <h4>🩹 ステントグラフト内挿術(EVAR)</h4>
+      <ul>
+        <li>おなかを大きく切らず、<strong>足の付け根の血管から</strong>器具を入れて、<strong>血管の内側から</strong>治す方法。</li>
+        <li>傷が小さく体の負担が軽い。<strong>入院が短く、回復が早い</strong>。</li>
+        <li>ご高齢の方や、持病のある方にも行いやすい。</li>
+        <li>その代わり、<strong>退院後も定期的な検査</strong>がずっと必要。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📝 どちらが良い・悪いではありません。</strong> こぶの形・場所・大きさ、そしてあなたの年齢や体の状態によって、<u>向いている方法は変わります</u>。担当の医師とよく相談して決めることが大切です。
+  </div>
+</section>
+
+<section class="content reveal" id="what-evar">
+  <h2>4. EVAR(ステントグラフト内挿術)とは</h2>
+  <p><strong>EVAR</strong>(イーバー)は英語の頭文字で、「血管の内側から動脈瘤を治す治療」という意味です。使う器具を <strong>「ステントグラフト」</strong> といいます。</p>
+
+  <div class="analogy">
+    <div class="emoji">🛠️</div>
+    <div class="t">
+      <b>たとえるなら…</b> 古くなって傷んだ水道管を、道路を掘り返して取りかえるのではなく、<b>管の内側に新しい「内張り(うちばり)」の筒を通して補強する</b>工事に似ています。外から大きく切らずに、内側から丈夫にするイメージです。
+    </div>
+  </div>
+
+  <h3>ステントグラフトってどんなもの?</h3>
+  <p>ステントグラフトは、<strong>金属のバネ(ステント)</strong>と <strong>じょうぶな布の筒(グラフト=人工血管)</strong>を組み合わせた器具です。ふだんは細くたたんで筒(カテーテル)の中に収めておき、こぶの位置まで運んでから、その場で <strong>パッと広げて血管の内側に張りつけて固定</strong>します。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 620 380" role="img" aria-label="EVAR ステントグラフト留置のしくみ">
+      <rect width="620" height="380" fill="#fff"/>
+      <text x="310" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2545">EVAR のしくみ ― 足の付け根から、こぶの内側に筒を通す</text>
+      <!-- heart -->
+      <text x="310" y="58" text-anchor="middle" font-size="16">❤</text>
+      <text x="345" y="56" font-size="9" fill="#5a6473">心臓</text>
+      <!-- aneurysm sac -->
+      <ellipse cx="310" cy="180" rx="72" ry="66" fill="#ffe0e0" stroke="#e59a9a" stroke-width="2"/>
+      <text x="405" y="150" font-size="9.5" fill="#b06a6a">こぶ(動脈瘤)</text>
+      <text x="405" y="164" font-size="9.5" fill="#b06a6a">のふくらみ</text>
+      <!-- aorta above -->
+      <rect x="298" y="66" width="24" height="55" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
+      <!-- stent graft main body (teal) -->
+      <path d="M300,70 L300,175 L272,300" stroke="#26a69a" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path d="M320,70 L320,175 L348,300" stroke="#26a69a" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <!-- stent rings -->
+      <g stroke="#00695c" stroke-width="1.6" opacity=".85">
+        <line x1="293" y1="86" x2="327" y2="86"/><line x1="293" y1="104" x2="327" y2="104"/>
+        <line x1="285" y1="210" x2="300" y2="240"/><line x1="335" y1="210" x2="320" y2="240"/>
+      </g>
+      <!-- blood flow inside graft -->
+      <path d="M310,74 L310,170" stroke="#fff" stroke-width="4" stroke-dasharray="6 7" opacity=".9"/>
+      <text x="360" y="205" font-size="9.5" fill="#00695c">血液は筒の</text>
+      <text x="360" y="219" font-size="9.5" fill="#00695c">中だけを通る</text>
+      <!-- legs / iliac -->
+      <rect x="255" y="298" width="22" height="60" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
+      <rect x="343" y="298" width="22" height="60" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
+      <text x="230" y="372" font-size="9" fill="#5a6473">右足の付け根</text>
+      <text x="352" y="372" font-size="9" fill="#5a6473">左足の付け根</text>
+      <!-- catheter access arrows -->
+      <path d="M266,368 L266,330" stroke="#1976d2" stroke-width="3" fill="none" marker-end="url(#upArrow)"/>
+      <path d="M354,368 L354,330" stroke="#1976d2" stroke-width="3" fill="none" marker-end="url(#upArrow)"/>
+      <defs><marker id="upArrow" markerWidth="9" markerHeight="9" refX="4.5" refY="2" orient="auto"><path d="M0,8 L4.5,0 L9,8 z" fill="#1976d2"/></marker></defs>
+      <!-- sac depressurized label -->
+      <text x="150" y="180" font-size="9.5" fill="#b06a6a" text-anchor="middle">こぶの中には</text>
+      <text x="150" y="194" font-size="9.5" fill="#b06a6a" text-anchor="middle">血の勢いが</text>
+      <text x="150" y="208" font-size="9.5" fill="#b06a6a" text-anchor="middle">かからなくなる</text>
+      <path d="M195,190 Q225,185 245,180" stroke="#b06a6a" stroke-width="1.2" fill="none" stroke-dasharray="3 3"/>
+    </svg>
+    <div class="diagram-caption">
+      <strong>イラスト:</strong> 足の付け根(左右の太ももの血管)から細い筒でステントグラフト(<span style="color:#00695c;font-weight:700">緑</span>)を運び、こぶの中に置きます。血液は<u>じょうぶな筒の内側だけを通る</u>ようになり、こぶのふくらみには血の勢い(圧力)がかからなくなるので、<strong>破裂しにくくなります</strong>。
+    </div>
+  </div>
+
+  <div class="key-box">
+    EVAR の考え方 ── <u>こぶを取り除くのではなく、内側に丈夫な筒を通して「血の勢いをこぶに伝えない」ようにする</u>
+  </div>
+</section>
+
+<section class="content reveal" id="day">
+  <h2>5. 手術当日の流れ</h2>
+  <p>手術のやり方は施設や患者さんの状態によって異なりますが、一般的にはこのような流れです。</p>
+
+  <ol class="steps">
+    <li><b>麻酔をかけます</b> ― 全身麻酔、または下半身の麻酔(腰の麻酔)などで、痛みを感じないようにします。</li>
+    <li><b>足の付け根を準備します</b> ― 左右の太ももの付け根を、数cm切開する、または針を刺すだけ(体にやさしい方法)で血管に入り口を作ります。</li>
+    <li><b>筒(カテーテル)を通します</b> ― レントゲン(透視)で位置を確認しながら、血管の中を通してこぶの位置まで、たたんだステントグラフトを運びます。</li>
+    <li><b>ステントグラフトを広げます</b> ― こぶの中でパッと広げ、上と下の健康な血管にしっかり固定します。</li>
+    <li><b>位置と漏れを確認します</b> ― 造影剤を流して、きちんと固定され、すき間から血が漏れていないかを確認します。</li>
+    <li><b>入り口を閉じて終了です</b> ― 足の付け根を縫合、または圧迫して止血します。手術時間は<strong>おおよそ1〜3時間</strong>ほどが目安です。</li>
+  </ol>
+
+  <div class="callout safe">
+    <strong>😊 傷はとても小さめです:</strong> 開腹手術のようにおなかを大きく切らないため、傷は<u>足の付け根の数cm(または針穴程度)</u>だけのことが多いです。
+  </div>
+</section>
+
+<section class="content reveal" id="recovery">
+  <h2>6. 入院と回復について</h2>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>🛏️ 入院期間</h4>
+      <p>数日〜1週間程度が目安。開腹手術より短いことが多いです(状態により異なります)。</p>
+    </div>
+    <div class="component-card">
+      <h4>🚶 体の回復</h4>
+      <p>手術の翌日〜数日で歩く練習を始められることが多く、日常生活への復帰も比較的早めです。</p>
+    </div>
+    <div class="component-card">
+      <h4>💊 痛み</h4>
+      <p>傷が小さいため、開腹手術に比べると痛みは軽めのことが多いです。痛み止めで調整します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🏠 退院後</h4>
+      <p>重い物を持つ・激しい運動は少しの間ひかえます。いつから何をしてよいかは担当医の指示に従いましょう。</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>📝 個人差があります:</strong> 入院期間や回復のはやさは、年齢・持病・こぶの状態・手術のやり方によって変わります。ここでの数字は<u>あくまで一般的な目安</u>とお考えください。
+  </div>
+</section>
+
+<section class="content reveal" id="after">
+  <h2>7. 退院後の生活 ― 定期検査がとても大切です</h2>
+  <p>EVAR は体にやさしい治療ですが、<strong>「治療して終わり」ではなく、退院後も定期的な検査(多くはCT検査)をずっと続けること</strong>がとても重要です。これは EVAR のいちばん大事なポイントです。</p>
+
+  <h3>なぜ定期検査が必要なの?</h3>
+  <p>まれに、時間がたつと <strong>ステントグラフトのすき間から、こぶの中へ血液がまた入り込んでしまう</strong>ことがあります。これを <strong>「エンドリーク」</strong>と呼びます。エンドリークが起こると、こぶにまた血の勢いがかかって、再び大きくなってしまうことがあります。</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 560 250" role="img" aria-label="エンドリークの概念イラスト">
+      <rect width="560" height="250" fill="#fff"/>
+      <text x="280" y="26" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0b2545">まれに「すき間からの血のもれ(エンドリーク)」が起こることも</text>
+      <!-- sac -->
+      <ellipse cx="280" cy="140" rx="90" ry="66" fill="#ffe0e0" stroke="#e59a9a" stroke-width="2"/>
+      <!-- graft -->
+      <rect x="262" y="74" width="36" height="132" rx="10" fill="#b2dfdb" stroke="#26a69a" stroke-width="2.5"/>
+      <path d="M280,80 L280,200" stroke="#fff" stroke-width="4" stroke-dasharray="6 7" opacity=".9"/>
+      <text x="280" y="145" text-anchor="middle" font-size="9" fill="#00695c">ステント</text>
+      <text x="280" y="157" text-anchor="middle" font-size="9" fill="#00695c">グラフト</text>
+      <!-- leak arrow -->
+      <path d="M264,96 Q235,110 232,140" stroke="#c62828" stroke-width="2.5" fill="none" marker-end="url(#leakA)"/>
+      <defs><marker id="leakA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="#c62828"/></marker></defs>
+      <circle cx="232" cy="150" r="8" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
+      <text x="150" y="120" font-size="10" fill="#c62828" text-anchor="middle">すき間から</text>
+      <text x="150" y="134" font-size="10" fill="#c62828" text-anchor="middle">血液がもれて</text>
+      <text x="150" y="148" font-size="10" fill="#c62828" text-anchor="middle">こぶに入る</text>
+      <!-- follow -->
+      <text x="430" y="130" font-size="11" font-weight="700" fill="#00695c" text-anchor="middle">だから</text>
+      <text x="430" y="148" font-size="11" font-weight="700" fill="#00695c" text-anchor="middle">定期的なCTで</text>
+      <text x="430" y="166" font-size="11" font-weight="700" fill="#00695c" text-anchor="middle">確認します</text>
+      <text x="430" y="100" font-size="22" text-anchor="middle">🔍</text>
+    </svg>
+    <div class="diagram-caption">
+      <strong>イラスト:</strong> エンドリークが起きても、<u>定期検査で早めに見つければ、多くはカテーテルによる追加治療で対応できます</u>。だからこそ、症状がなくても検査を欠かさないことが大切なのです。
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <strong>⚠️ いちばんのお願い:</strong> 体調が良くても、<u>指示された定期検査(CTなど)は必ず受けてください</u>。エンドリークやこぶの変化は、症状が出ないまま進むことがあります。早めに見つけることが、破裂を防ぐいちばんの近道です。
+  </div>
+
+  <h3>退院後に気をつけたいこと</h3>
+  <ul>
+    <li><strong>定期検査を欠かさない</strong>(いちばん大切)</li>
+    <li><strong>血圧をよくコントロールする</strong> ― 高い血圧はこぶや血管の負担になります</li>
+    <li><strong>禁煙する</strong> ― 喫煙は動脈瘤の大敵です</li>
+    <li>急な<strong>おなか・背中・腰の強い痛み</strong>を感じたら、すぐに受診・救急連絡を</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="fit">
+  <h2>8. EVARが「向く人」「向きにくい人」</h2>
+  <p>EVAR は誰にでもできるわけではなく、<strong>こぶの形や血管の状態が、ステントグラフトを安全に固定できる条件を満たしているか</strong>が大切です。CT検査でくわしく調べて判断します。</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th></th><th>EVARが向きやすい</th><th>開腹手術が向きやすいことも</th></tr></thead>
+    <tbody>
+      <tr><td><strong>体の状態</strong></td><td>ご高齢、持病があり大きな手術が負担な方</td><td>若く体力があり、長期の確実性を優先する方</td></tr>
+      <tr><td><strong>こぶの形</strong></td><td>筒を固定する「のりしろ」(健康な血管)が十分にある</td><td>のりしろが短い・曲がりが強い・枝分かれにかかる</td></tr>
+      <tr><td><strong>足の血管</strong></td><td>器具を通せる太さ・性状がある</td><td>細い・曲がり・石灰化が強い</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <strong>💡 最近は工夫も進んでいます:</strong> 枝分かれの血管を温存する特殊なステントグラフトなど、技術は進歩しています。「自分はどちらが向いているか」は、CTの結果をもとに担当医とご相談ください。
+  </div>
+</section>
+
+<section class="content reveal" id="faq">
+  <h2>9. よくある質問(FAQ)</h2>
+
+  <details class="faq">
+    <summary>手術の傷あとは大きく残りますか?</summary>
+    <div class="a"><b>A.</b> おなかを大きく切らないため、傷は<b>足の付け根の数cm、または針穴ほど</b>のことが多く、目立ちにくいです。</div>
+  </details>
+  <details class="faq">
+    <summary>どのくらい入院しますか?</summary>
+    <div class="a"><b>A.</b> 一般的には<b>数日〜1週間ほど</b>が目安です。体の状態や施設の方針によって変わります。</div>
+  </details>
+  <details class="faq">
+    <summary>手術のあと、ふつうの生活に戻れますか?</summary>
+    <div class="a"><b>A.</b> 多くの方が比較的<b>早く日常生活へ戻れます</b>。ただし、しばらくは重い物を持つ・激しい運動はひかえます。時期は担当医の指示に従ってください。</div>
+  </details>
+  <details class="faq">
+    <summary>なぜ退院後もCT検査を続けるのですか?</summary>
+    <div class="a"><b>A.</b> ステントグラフトの位置や、<b>エンドリーク(すき間からの血のもれ)</b>がないかを確認するためです。症状がなくても変化が起こることがあるため、定期検査はとても大切です。</div>
+  </details>
+  <details class="faq">
+    <summary>ステントグラフトは一生もちますか?</summary>
+    <div class="a"><b>A.</b> 多くは長期にわたって働きますが、まれに位置がずれたり、すき間ができたりすることがあります。だからこそ<b>定期的な検査で見守る</b>ことが必要です。</div>
+  </details>
+  <details class="faq">
+    <summary>また手術(追加の治療)が必要になることはありますか?</summary>
+    <div class="a"><b>A.</b> 一部の方では、エンドリークなどに対して<b>追加の治療</b>が必要になることがあります。その多くは、再び<b>カテーテルを使った体にやさしい方法</b>で行えます。</div>
+  </details>
+  <details class="faq">
+    <summary>MRI検査や、空港の金属探知機は大丈夫ですか?</summary>
+    <div class="a"><b>A.</b> 現在使われている多くのステントグラフトは<b>MRIを受けられる</b>ものですが、念のため主治医に確認してください。空港の金属探知機は通常問題ありません。心配なときは手術を受けたことを伝えましょう。</div>
+  </details>
+  <details class="faq">
+    <summary>家族が気をつけてあげられることは?</summary>
+    <div class="a"><b>A.</b> <b>定期検査の日を一緒に管理</b>したり、禁煙・血圧管理を支えてあげることが大きな助けになります。急なおなか・背中・腰の強い痛みがあれば、ためらわず救急受診してください。</div>
+  </details>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>10. やさしい確認クイズ(全4問)</h2>
+  <p style="font-size:.9rem;color:var(--muted)">読んだ内容のおさらいです。気軽に挑戦してみてください。</p>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 4</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">正解: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+    <div class="score-display" id="scoreDisplay">
+      <div>結果</div>
+      <div class="big" id="finalScore">0 / 4</div>
+      <div id="comment"></div>
+      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
+    </div>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>11. 用語集(やさしい言葉で)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>言葉</th><th>やさしい意味</th></tr></thead>
+    <tbody>
+      <tr><td>大動脈(だいどうみゃく)</td><td>心臓から出た血液が最初に通る、体でいちばん太い血管</td></tr>
+      <tr><td>腹部大動脈瘤(りゅう)</td><td>おなかの大動脈の壁がふくらんで「こぶ」になった状態</td></tr>
+      <tr><td>破裂(はれつ)</td><td>こぶが破れて大出血すること。命に関わる危険な状態</td></tr>
+      <tr><td>EVAR(イーバー)</td><td>血管の内側からこぶを治すステントグラフト治療</td></tr>
+      <tr><td>ステントグラフト</td><td>金属のバネ + じょうぶな布の筒でできた、血管の内張りの器具</td></tr>
+      <tr><td>カテーテル</td><td>血管の中を通す細い管。器具を運ぶのに使う</td></tr>
+      <tr><td>開腹手術</td><td>おなかを切り開いて、こぶを人工血管に取りかえる手術</td></tr>
+      <tr><td>エンドリーク</td><td>ステントグラフトのすき間から、こぶの中へ血液がもれること</td></tr>
+      <tr><td>経過観察(けいかかんさつ)</td><td>すぐ治療せず、検査でこぶの大きさを定期的に見守ること</td></tr>
+      <tr><td>造影剤(ぞうえいざい)</td><td>血管や血の流れをレントゲン・CTで見やすくする薬</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="content reveal">
+  <h2>📎 関連ページ</h2>
+  <ul>
+    <li><a href="evar_endoleak_v2.html">EVAR術後 エンドリークの種類と対応(くわしい版・医療者向け)</a></li>
+    <li><a href="contrast_nephropathy_v2.html">造影剤と腎臓のはなし</a></li>
+    <li><a href="hemodialysis_basics_v2.html">血液透析の基礎</a></li>
+    <li><a href="index_v2.html">教材トップへ戻る</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 心臓血管外科の学びと患者さんのための解説</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ</a>
+      <a href="evar_endoleak_v2.html">エンドリーク(医療者向け)</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本ページは病気の理解を助けるための一般的な説明です。実際の診断・治療は個々の状態によって異なります。必ず主治医の説明・指示に従ってください。</p>
+    <div class="copyright">© 2026 Division of Cardiovascular Surgery, Sapporo Medical University</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li><li><a href="topics_v2.html" class="weekly-link">📑 今週のトピックス一覧</a></li>
+        </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+        <li><a href="inhaled_no_v2.html">吸入NO(iNO)</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="selective_cerebral_perfusion_v2.html">選択的脳灌流(SACP)</a></li>
+        <li><a href="surgical_knots_v2.html">糸結びの基礎</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="evar_stentgraft_v2.html">EVAR(ステントグラフト・患者さん向け)</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="antibiotic_dosing_renal_failure_v2.html">腎機能と抗生剤</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); _io.unobserve(e.target); }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+  const questions = [
+    {q:"腹部大動脈瘤で、いちばん心配なことは何でしょう?",choices:["こぶが破れてしまう(破裂)","こぶが痛くてたまらない","背が縮む","声が出なくなる"],correct:0,explain:"こぶ自体はふだん症状がありませんが、大きくなると破れて(破裂して)大出血を起こす危険があります。破裂を防ぐことが治療の目的です。"},
+    {q:"EVAR(ステントグラフト内挿術)は、体のどこから治療しますか?",choices:["おなかを大きく切り開く","足の付け根の血管から","背中から","首から"],correct:1,explain:"EVAR は足の付け根(太ももの血管)から細い筒を通し、血管の内側からこぶを治します。おなかを大きく切らないのが特長です。"},
+    {q:"EVAR のあと、退院してからも定期的なCT検査を続ける理由は?",choices:["体重をはかるため","ステントグラフトの位置やエンドリーク(すき間からの血のもれ)を確認するため","毎回手術をするため","検査は本当は不要"],correct:1,explain:"まれに、すき間から血液がこぶに入る「エンドリーク」が起こることがあります。早く見つけて対応するために、症状がなくても定期検査がとても大切です。"},
+    {q:"腹部大動脈瘤について、正しいのはどれでしょう?",choices:["いつも強い痛みがある","多くは症状がなく、検査でたまたま見つかる","子どもに多い","風邪の一種"],correct:1,explain:"腹部大動脈瘤の多くは症状がなく、健康診断のエコーや、別の目的で撮ったCTで偶然見つかることがよくあります。だからこそ早期発見が大切です。"}
+  ];
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>惜しい!</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`正解: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 すばらしい!よく理解されています':pct>=.5?'😊 いいですね!もう一度おさらいしてみましょう':'📖 ぜひもう一度読んでみてください';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='正解: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
+  renderQ();
+</script>
+
+
+<script>
+(function(){
+  if(document.querySelector('.topbar-actions')) return;
+  if(!document.getElementById('menuToggle')) return;
+  var wrap=document.createElement('div');
+  wrap.className='topbar-actions';
+  var mb=document.createElement('label');
+  mb.setAttribute('for','menuToggle');
+  mb.className='topbar-btn topbar-menu';
+  mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
+  mb.setAttribute('aria-label','ページメニュー');
+  mb.setAttribute('role','button');
+  mb.setAttribute('tabindex','0');
+  wrap.appendChild(mb);
+  document.body.appendChild(wrap);
+})();
+</script>
+
+</body>
+</html>
