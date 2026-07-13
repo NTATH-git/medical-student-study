@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ステントグラフト治療(EVAR)とは ― 患者さん・ご家族のために (v2)</title>
-<meta name="description" content="腹部大動脈瘤のステントグラフト内挿術(EVAR)を、患者さん・ご家族向けにやさしく解説。病気の説明、開腹手術との違い、手術の流れ、入院・退院後の生活、定期検査の大切さ、よくある質問まで。">
+<title>下肢静脈瘤とは ― 足の血管のこぶをやさしく解説 (v2)</title>
+<meta name="description" content="下肢静脈瘤の原因、症状、受診の目安、超音波検査、弾性ストッキング、カテーテル治療、硬化療法、手術後の生活を患者さん・ご家族向けにやさしく解説。">
 <style>
   :root{
     --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
@@ -116,13 +116,6 @@
   .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
   .diagram-wrap svg{max-width:100%;height:auto}
   .diagram-caption{font-size:.86rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.8}
-  .source-figure{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1rem;margin:1.2rem auto;box-shadow:var(--shadow-sm);text-align:center;max-width:720px}
-  .source-figure img{display:block;width:min(100%,540px);height:auto;margin:0 auto;border-radius:8px}
-  .source-figure.wide img{width:min(100%,620px)}
-  .source-figure .figure-guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;margin-top:.9rem;text-align:left}
-  .source-figure .figure-guide div{background:#f2f7fc;border-radius:8px;padding:.65rem .75rem;font-size:.85rem;line-height:1.7}
-  .source-figure .credit{font-size:.72rem;color:var(--muted);line-height:1.65;margin-top:.75rem;text-align:left;border-top:1px solid var(--border);padding-top:.65rem}
-  .source-figure .credit a{color:var(--teal-dark)}
   /* Key box */
   .key-box{background:linear-gradient(135deg,#e0f2f1,#e8f5e9);border:2px solid var(--teal);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
   .num-highlight{display:inline-block;background:var(--teal);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
@@ -216,6 +209,18 @@
   }
   .drawer-content a.weekly-link{background:linear-gradient(135deg,#e0f2f1,#e8f5e9);color:var(--teal-dark);font-weight:700;border-left:4px solid var(--teal);padding-left:calc(1.2rem - 4px);position:relative}
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--teal);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
+  /* Public-domain medical illustration */
+  .source-figure{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1rem;margin:1.2rem auto;box-shadow:var(--shadow-sm);text-align:center;max-width:680px}
+  .source-figure img{display:block;width:min(100%,500px);height:auto;margin:0 auto;border-radius:8px}
+  .source-figure .figure-guide{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.9rem;text-align:left}
+  .source-figure .figure-guide div{background:#f2f7fc;border-radius:8px;padding:.65rem .75rem;font-size:.85rem;line-height:1.7}
+  .source-figure .credit{font-size:.72rem;color:var(--muted);line-height:1.65;margin-top:.75rem;text-align:left;border-top:1px solid var(--border);padding-top:.65rem}
+  .source-figure .credit a{color:var(--teal-dark)}
+  .urgent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin:.9rem 0}
+  .urgent-card{background:#fff5f5;border:1px solid #ffcdd2;border-top:4px solid var(--danger);border-radius:10px;padding:1rem}
+  .urgent-card h4{color:var(--danger);font-size:.98rem;margin-bottom:.35rem}
+  .urgent-card p{font-size:.88rem;line-height:1.75}
+  @media (max-width:560px){.source-figure .figure-guide{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -235,356 +240,190 @@
 <section class="hero" id="top">
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span> 血管外科 · 患者さん・ご家族のための解説</span>
-    <h1>おなかの動脈のこぶを、<br><span class="accent">体の中から治す</span>(EVAR)</h1>
-    <p class="lead">
-      「腹部大動脈瘤(ふくぶ だいどうみゃくりゅう)」と、その治療法である
-      <strong>ステントグラフト内挿術(EVAR)</strong> について、
-      むずかしい言葉をできるだけ使わずに、やさしく説明します。
-    </p>
+    <h1>足の血管が浮き出る、<br><span class="accent">下肢静脈瘤</span>を知る</h1>
+    <p class="lead">足の静脈にある「逆流防止弁」がうまく閉じなくなり、血液がたまって血管がふくらむ病気です。原因、症状、検査、治療をやさしく説明します。</p>
     <div class="hero-meta">
       <span class="hero-chip">👨‍👩‍👧 <strong>患者さん・ご家族</strong> 向け</span>
-      <span class="hero-chip">📖 <strong>やさしい</strong> 言葉</span>
+      <span class="hero-chip">🦵 足のだるさ・むくみ</span>
       <span class="hero-chip">❓ よくある質問</span>
-      <span class="hero-chip">✅ 確認クイズ</span>
+      <span class="hero-chip">✅ 8問クイズ</span>
     </div>
   </div>
-  <a href="#about" class="scroll-indicator" aria-label="下にスクロール">
-    <div class="mouse"></div>
-    <span>SCROLL</span>
-  </a>
+  <a href="#about" class="scroll-indicator" aria-label="下にスクロール"><div class="mouse"></div><span>SCROLL</span></a>
 </section>
 
 <nav class="section-nav" aria-label="セクション">
   <div class="section-nav-inner">
     <a href="index_v2.html" class="home">🏠 目次</a>
-    <a href="#about">この病気とは</a>
-    <a href="#why">なぜ治療</a>
-    <a href="#two-ways">2つの治療</a>
-    <a href="#what-evar">EVARとは</a>
-    <a href="#day">手術の流れ</a>
-    <a href="#recovery">入院と回復</a>
-    <a href="#after">退院後の生活</a>
-    <a href="#fit">向き・不向き</a>
-    <a href="#faq">よくある質問</a>
-    <a href="#quiz">クイズ</a>
-    <a href="#glossary">用語</a>
+    <a href="#about">静脈瘤とは</a><a href="#symptoms">症状</a><a href="#urgent">受診の目安</a>
+    <a href="#exam">検査</a><a href="#selfcare">セルフケア</a><a href="#treatment">治療</a>
+    <a href="#after">治療後</a><a href="#faq">FAQ</a><a href="#quiz">クイズ</a><a href="#glossary">用語</a>
   </div>
 </nav>
 
 <main>
 <div class="disclaimer reveal" role="note">
   <div class="disclaimer-icon">💛</div>
-  <div class="disclaimer-text">
-    <strong>このページについて</strong>
-    病気や治療を理解していただくための、一般的なやさしい説明です。実際の診断や治療方針は一人ひとり異なります。<u>必ず主治医の説明を優先し、わからないことは遠慮なく担当の医師・看護師におたずねください</u>。
-  </div>
+  <div class="disclaimer-text"><strong>このページについて</strong>病気や治療を理解していただくための一般的な説明です。診断や治療は、症状、超音波検査、持病などによって異なります。<u>必ず担当医の説明を優先してください</u>。</div>
 </div>
 
 <section class="content reveal" id="about">
-  <h2>1. 「腹部大動脈瘤」ってどんな病気?</h2>
-  <p><strong>大動脈(だいどうみゃく)</strong>は、心臓から送り出された血液が最初に通る、体でいちばん太い血管です。胸からおなかへと1本の管のように下りていきます。</p>
-  <p>この大動脈の <strong>おなかの部分の壁が弱くなり、風船のようにふくらんでしまった状態</strong> が <strong>「腹部大動脈瘤(ふくぶ だいどうみゃくりゅう)」</strong>です。ふくらんだ部分を「こぶ(瘤)」と呼びます。</p>
-
-  <div class="analogy">
-    <div class="emoji">🎈</div>
-    <div class="t">
-      <b>たとえるなら…</b> 古くなったゴムホースの一部が、水の勢いでプクッとふくらんでしまうのに似ています。ふくらんだところは壁がうすく弱くなっているので、放っておくとさらに大きくなり、やがて破れてしまう心配があります。
-    </div>
-  </div>
-
+  <h2>1. 下肢静脈瘤ってどんな病気?</h2>
+  <p><strong>静脈</strong>は、足で使われた血液を心臓へ戻す血管です。足の静脈には、重力で血液が下へ戻らないようにする<strong>逆流防止弁</strong>があります。</p>
+  <p>弁がうまく閉じなくなると血液が足にたまり、静脈の圧が高くなります。その結果、皮膚の近くの血管が<strong>太く、曲がりくねって浮き出た状態</strong>が下肢静脈瘤です。</p>
   <figure class="source-figure">
-    <img src="images/aortic_aneurysm_nih.jpg" alt="正常な大動脈、胸部大動脈瘤、腎動脈より下にできた腹部大動脈瘤を比較した医学図" width="480" height="491" loading="lazy">
+    <img src="images/varicose_veins_nih.jpg" alt="正常な静脈弁と、弁が変形して血液が逆流する下肢静脈瘤を比較した医学図" width="400" height="425" loading="lazy">
     <figcaption>
       <div class="figure-guide">
-        <div><strong>A：正常な大動脈</strong><br>心臓から胸、おなかを通って両脚へ血液を送ります。</div>
-        <div><strong>B：胸部大動脈瘤</strong><br>胸の中の大動脈がふくらんだ状態です。</div>
-        <div><strong>C：腹部大動脈瘤</strong><br>腎臓へ向かう血管より下で、大動脈がこぶ状にふくらんでいます。</div>
+        <div><strong>A：正常な静脈</strong><br>弁が閉じ、血液を心臓へ一方向に送ります。</div>
+        <div><strong>B：静脈瘤のある静脈</strong><br>弁が閉じにくく、血液が逆流して静脈が拡張します。</div>
       </div>
-      <p class="credit">出典：National Institutes of Health (NIH), <a href="https://commons.wikimedia.org/wiki/File:Aortic_aneurysm.jpg">Wikimedia Commons「Aortic aneurysm.jpg」</a>。米国連邦政府の著作物としてパブリックドメイン。</p>
+      <p class="credit">出典：National Heart, Lung, and Blood Institute (NHLBI / NIH), <a href="https://commons.wikimedia.org/wiki/File:Varicose_veins.jpg">Wikimedia Commons「Varicose veins.jpg」</a>。米国連邦政府の著作物としてパブリックドメイン。</p>
     </figcaption>
   </figure>
-
-  <div class="callout tip">
-    <strong>💡 大切なこと:</strong> 腹部大動脈瘤は、<u>ほとんどの場合、痛みなどの症状がありません</u>。健康診断のエコー(超音波)や、ほかの病気で撮ったCT検査で「たまたま」見つかることがとても多い病気です。
-  </div>
-</section>
-
-<section class="content reveal" id="why">
-  <h2>2. なぜ治療した方がよいの?</h2>
-  <p>こぶ自体は痛くありませんが、<strong>大きくなると壁がさらにうすくなり、ある日突然「破裂(はれつ)」してしまう</strong>ことがあります。破裂すると、おなかの中で大出血が起こり、命に関わるとても危険な状態になります。</p>
-
-  <div class="callout danger">
-    <strong>⚠️ こぶは大きいほど破れやすくなります。</strong> だから、破裂してしまう<u>前に</u>、計画的に治療をして「破裂を防ぐ」ことが目的です。破裂してからの緊急手術は、体への負担も危険もずっと大きくなります。
-  </div>
-
-  <h3>治療を考える目安</h3>
-  <p>一般的には、こぶの大きさ(直径)が <span class="num-highlight">およそ 5cm(50mm)</span> を超えるあたりから、治療が検討されます。ただし、これはあくまで目安です。</p>
-  <ul>
-    <li>こぶが<strong>大きくなるスピードが速い</strong>とき</li>
-    <li>こぶの<strong>形がいびつ</strong>なとき</li>
-    <li>おなかや腰に<strong>痛みが出てきた</strong>とき(破裂の前ぶれのことがあります)</li>
-  </ul>
-  <p>などは、大きさが目安より小さくても治療をすすめられることがあります。<strong>年齢・体力・ほかの病気なども合わせて、担当の医師が総合的に判断します。</strong></p>
-
-  <div class="callout tip">
-    <strong>💡 まだ小さいこぶは?</strong> すぐに手術をせず、<u>定期的にCTやエコーで大きさを見守る(経過観察)</u>こともよくあります。血圧をよくコントロールし、禁煙することが、こぶの進行をゆるやかにする助けになります。
-  </div>
-</section>
-
-<section class="content reveal" id="two-ways">
-  <h2>3. 治療は大きく2つの方法があります</h2>
-  <p>腹部大動脈瘤の治療には、大きく分けて <strong>「開腹手術(かいふく しゅじゅつ)」</strong> と、このページで説明する <strong>「ステントグラフト内挿術(EVAR)」</strong> の2つがあります。</p>
-
-  <div class="vs-grid">
-    <div class="vs-card open">
-      <h4>🔪 開腹手術(人工血管置換術)</h4>
-      <ul>
-        <li>おなかを大きく切り開いて、こぶの部分を <strong>人工血管に取りかえる</strong>方法。</li>
-        <li>歴史が長く、<strong>治療としては確実</strong>で、その後の追加治療が少なめ。</li>
-        <li>体への負担は大きく、<strong>入院・回復に時間</strong>がかかる。</li>
-        <li>若くて体力のある方や、EVARに向かない形のこぶに向く。</li>
-      </ul>
-    </div>
-    <div class="vs-card evar">
-      <h4>🩹 ステントグラフト内挿術(EVAR)</h4>
-      <ul>
-        <li>おなかを大きく切らず、<strong>足の付け根の血管から</strong>器具を入れて、<strong>血管の内側から</strong>治す方法。</li>
-        <li>傷が小さく体の負担が軽い。<strong>入院が短く、回復が早い</strong>。</li>
-        <li>ご高齢の方や、持病のある方にも行いやすい。</li>
-        <li>その代わり、<strong>退院後も定期的な検査</strong>がずっと必要。</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout">
-    <strong>📝 どちらが良い・悪いではありません。</strong> こぶの形・場所・大きさ、そしてあなたの年齢や体の状態によって、<u>向いている方法は変わります</u>。担当の医師とよく相談して決めることが大切です。
-  </div>
-</section>
-
-<section class="content reveal" id="what-evar">
-  <h2>4. EVAR(ステントグラフト内挿術)とは</h2>
-  <p><strong>EVAR</strong>(イーバー)は英語の頭文字で、「血管の内側から動脈瘤を治す治療」という意味です。使う器具を <strong>「ステントグラフト」</strong> といいます。</p>
-
-  <div class="analogy">
-    <div class="emoji">🛠️</div>
-    <div class="t">
-      <b>たとえるなら…</b> 古くなって傷んだ水道管を、道路を掘り返して取りかえるのではなく、<b>管の内側に新しい「内張り(うちばり)」の筒を通して補強する</b>工事に似ています。外から大きく切らずに、内側から丈夫にするイメージです。
-    </div>
-  </div>
-
-  <h3>ステントグラフトってどんなもの?</h3>
-  <p>ステントグラフトは、<strong>金属のバネ(ステント)</strong>と <strong>じょうぶな布の筒(グラフト=人工血管)</strong>を組み合わせた器具です。ふだんは細くたたんで筒(カテーテル)の中に収めておき、こぶの位置まで運んでから、その場で <strong>パッと広げて血管の内側に張りつけて固定</strong>します。</p>
-
-  <figure class="source-figure wide">
-    <img src="images/evar_stent_graft_nih.jpg" alt="足の付け根からカテーテルでステントグラフトを運び、腹部大動脈瘤の内側で展開するEVARの医学図" width="360" height="353" loading="lazy">
-    <figcaption>
-      <div class="figure-guide">
-        <div><strong>A：ステントグラフトを運ぶ</strong><br>足の付け根からカテーテルを入れ、たたまれたステントグラフトを動脈瘤まで進めます。</div>
-        <div><strong>B：動脈瘤の内側で広げる</strong><br>血液はステントグラフトの中を流れ、こぶには血圧が直接かかりにくくなります。</div>
-      </div>
-      <p class="credit">出典：National Heart, Lung, and Blood Institute (NHLBI / NIH), <a href="https://www.nhlbi.nih.gov/health/aortic-aneurysm/treatment">Aortic Aneurysm — Treatment</a>「Illustration of aortic aneurysm repair」。<a href="https://www.nih.gov/about-nih/frequently-asked-questions#copyright">NIHの著作権FAQ</a>に基づきパブリックドメインとして利用（無改変、出典明記）。</p>
-    </figcaption>
-  </figure>
-
-  <div class="key-box">
-    EVAR の考え方 ── <u>こぶを取り除くのではなく、内側に丈夫な筒を通して「血の勢いをこぶに伝えない」ようにする</u>
-  </div>
-</section>
-
-<section class="content reveal" id="day">
-  <h2>5. 手術当日の流れ</h2>
-  <p>手術のやり方は施設や患者さんの状態によって異なりますが、一般的にはこのような流れです。</p>
-
-  <ol class="steps">
-    <li><b>麻酔をかけます</b> ― 全身麻酔、または下半身の麻酔(腰の麻酔)などで、痛みを感じないようにします。</li>
-    <li><b>足の付け根を準備します</b> ― 左右の太ももの付け根を、数cm切開する、または針を刺すだけ(体にやさしい方法)で血管に入り口を作ります。</li>
-    <li><b>筒(カテーテル)を通します</b> ― レントゲン(透視)で位置を確認しながら、血管の中を通してこぶの位置まで、たたんだステントグラフトを運びます。</li>
-    <li><b>ステントグラフトを広げます</b> ― こぶの中でパッと広げ、上と下の健康な血管にしっかり固定します。</li>
-    <li><b>位置と漏れを確認します</b> ― 造影剤を流して、きちんと固定され、すき間から血が漏れていないかを確認します。</li>
-    <li><b>入り口を閉じて終了です</b> ― 足の付け根を縫合、または圧迫して止血します。手術時間は<strong>おおよそ1〜3時間</strong>ほどが目安です。</li>
-  </ol>
-
-  <div class="callout safe">
-    <strong>😊 傷はとても小さめです:</strong> 開腹手術のようにおなかを大きく切らないため、傷は<u>足の付け根の数cm(または針穴程度)</u>だけのことが多いです。
-  </div>
-</section>
-
-<section class="content reveal" id="recovery">
-  <h2>6. 入院と回復について</h2>
+  <div class="analogy"><div class="emoji">🚪</div><div class="t"><b>たとえるなら…</b> 静脈の弁は一方通行のドアです。ドアがきちんと閉まらないと血液が下へ戻り、足の血管に負担がかかります。</div></div>
+  <h3>なりやすい要因</h3>
   <div class="component-grid">
-    <div class="component-card">
-      <h4>🛏️ 入院期間</h4>
-      <p>数日〜1週間程度が目安。開腹手術より短いことが多いです(状態により異なります)。</p>
-    </div>
-    <div class="component-card">
-      <h4>🚶 体の回復</h4>
-      <p>手術の翌日〜数日で歩く練習を始められることが多く、日常生活への復帰も比較的早めです。</p>
-    </div>
-    <div class="component-card">
-      <h4>💊 痛み</h4>
-      <p>傷が小さいため、開腹手術に比べると痛みは軽めのことが多いです。痛み止めで調整します。</p>
-    </div>
-    <div class="component-card">
-      <h4>🏠 退院後</h4>
-      <p>重い物を持つ・激しい運動は少しの間ひかえます。いつから何をしてよいかは担当医の指示に従いましょう。</p>
-    </div>
+    <div class="component-card"><h4>年齢・体質</h4><p>年齢とともに弁や血管壁が弱くなります。家族に静脈瘤がある方もなりやすい傾向があります。</p></div>
+    <div class="component-card"><h4>立ち仕事・座り仕事</h4><p>長時間同じ姿勢が続くと、ふくらはぎのポンプが働きにくくなります。</p></div>
+    <div class="component-card"><h4>妊娠・出産</h4><p>ホルモン変化や子宮による静脈の圧迫で、妊娠中に目立つことがあります。</p></div>
+    <div class="component-card"><h4>肥満・運動不足</h4><p>足から心臓へ血液を戻す働きに負担がかかることがあります。</p></div>
   </div>
+</section>
 
-  <div class="callout">
-    <strong>📝 個人差があります:</strong> 入院期間や回復のはやさは、年齢・持病・こぶの状態・手術のやり方によって変わります。ここでの数字は<u>あくまで一般的な目安</u>とお考えください。
+<section class="content reveal" id="symptoms">
+  <h2>2. どんな症状がありますか?</h2>
+  <p>見た目だけで症状がない方もいます。一方で、夕方や長く立ったあとに症状が強くなることがあります。</p>
+  <div class="component-grid">
+    <div class="component-card"><h4>🦵 だるさ・重さ</h4><p>足が重い、疲れやすい、鈍い痛みがある。</p></div>
+    <div class="component-card"><h4>💧 むくみ</h4><p>夕方に靴下の跡がつく、足首が腫れる。</p></div>
+    <div class="component-card"><h4>🌙 こむら返り</h4><p>夜中や明け方に、ふくらはぎがつる。</p></div>
+    <div class="component-card"><h4>🔥 かゆみ・ほてり</h4><p>皮膚がむずむずする、熱く感じる。</p></div>
   </div>
+  <h3>進行すると起こること</h3>
+  <ul>
+    <li>足首の皮膚が茶色くなる<strong>色素沈着</strong>、湿疹、皮膚が硬くなる変化</li>
+    <li>静脈が赤く硬く痛む<strong>表在性静脈血栓症</strong></li>
+    <li>傷が治りにくい<strong>静脈性潰瘍</strong></li>
+    <li>皮膚の近くの静脈瘤からの<strong>出血</strong></li>
+  </ul>
+  <div class="callout tip"><strong>💡 見た目の太さだけでは重症度は決まりません。</strong> 症状や皮膚の変化、血液の逆流の範囲を合わせて判断します。</div>
+</section>
+
+<section class="content reveal" id="urgent">
+  <h2>3. 受診の目安と、急いで受診する症状</h2>
+  <p>痛み、だるさ、むくみ、かゆみなどで生活に困る場合や、皮膚の変化がある場合は、血管外科などの専門医へ相談してください。</p>
+  <div class="urgent-grid">
+    <div class="urgent-card"><h4>出血が止まりにくい</h4><p>横になって足を上げ、清潔な布で直接圧迫します。止まりにくい場合は救急受診してください。</p></div>
+    <div class="urgent-card"><h4>片足が急に腫れて痛い</h4><p>深部静脈血栓症(DVT)などの可能性があります。早めに医療機関へ連絡してください。</p></div>
+    <div class="urgent-card"><h4>息苦しさ・胸の痛み</h4><p>肺血栓塞栓症の可能性があります。救急要請を含め、直ちに医療機関へ相談してください。</p></div>
+  </div>
+  <div class="callout danger"><strong>⚠️ 自分で強くもんだり、針で刺したりしないでください。</strong> 血栓や出血が疑われるときは、自己判断でマッサージせず受診してください。</div>
+</section>
+
+<section class="content reveal" id="exam">
+  <h2>4. 診察と超音波検査</h2>
+  <p>診察では、立った状態で静脈瘤、むくみ、皮膚の変化を確認します。治療を考える場合は、通常<strong>下肢静脈超音波(デュプレックス・エコー)</strong>で調べます。</p>
+  <ol class="steps">
+    <li><b>症状と経過を確認</b> ― いつから、どんなときにつらいか、血栓症や妊娠、治療歴などを聞きます。</li>
+    <li><b>足を診察</b> ― 静脈のふくらみ、左右差、むくみ、湿疹、色素沈着、潰瘍を見ます。</li>
+    <li><b>超音波で逆流を確認</b> ― 血液の流れる方向、弁の逆流、深い静脈の血栓の有無を調べます。</li>
+    <li><b>治療の地図を作る</b> ― どの静脈が原因かを確認して、治療方法を選びます。</li>
+  </ol>
+  <div class="callout safe"><strong>😊 超音波検査は放射線を使いません。</strong> ゼリーを塗って機械を当てる検査で、通常は大きな痛みはありません。</div>
+</section>
+
+<section class="content reveal" id="selfcare">
+  <h2>5. 日常生活と圧迫療法</h2>
+  <div class="component-grid">
+    <div class="component-card"><h4>🚶 歩く</h4><p>ふくらはぎの筋肉を動かすと、血液を心臓へ押し戻す「筋ポンプ」が働きます。</p></div>
+    <div class="component-card"><h4>🪑 同じ姿勢を減らす</h4><p>長時間の立ちっぱなし・座りっぱなしを避け、足首を動かします。</p></div>
+    <div class="component-card"><h4>🛏️ 足を少し高く</h4><p>休むときに足を心臓より少し高くすると、むくみが楽になることがあります。</p></div>
+    <div class="component-card"><h4>⚖️ 体重管理</h4><p>無理のない運動と適切な体重管理は、足の静脈への負担を減らす助けになります。</p></div>
+  </div>
+  <h3>弾性ストッキング</h3>
+  <p>足を外から段階的に圧迫し、血液がたまりにくいようにします。だるさやむくみの軽減に役立ちますが、<strong>壊れた弁や逆流そのものを元に戻す治療ではありません</strong>。</p>
+  <div class="callout"><strong>🧦 サイズと圧の強さが重要です。</strong> 動脈の血流が悪い方など、使い方に注意が必要な場合があります。医師や看護師、弾性ストッキング・圧迫療法コンダクターに相談してください。</div>
+  <div class="callout tip"><strong>🤰 妊娠中:</strong> 多くは出産後に軽くなる可能性があり、通常は圧迫療法などで症状を和らげます。妊娠中の治療は例外的な場合を除き行いません。</div>
+</section>
+
+<section class="content reveal" id="treatment">
+  <h2>6. 主な治療方法</h2>
+  <p>症状、皮膚の変化、超音波で確認した逆流の場所、持病、希望をもとに選びます。現在は、原因となる伏在静脈の逆流に対して<strong>血管内治療</strong>が広く行われています。</p>
+  <div class="vs-grid">
+    <div class="vs-card evar"><h4>🔥 血管内焼灼術(EVLA・RFA)</h4><ul><li>細いカテーテルを静脈内へ入れ、レーザーまたは高周波の熱で原因静脈を閉じます。</li><li>多くは局所麻酔で行い、傷が小さい治療です。</li><li>周囲の皮下に麻酔液を入れることがあります。</li></ul></div>
+    <div class="vs-card open"><h4>🧴 接着材治療</h4><ul><li>医療用の接着材で原因静脈を閉じる非熱治療です。</li><li>熱を使わず、周囲への多数の麻酔注射が不要な場合があります。</li><li>アレルギーや炎症反応などを含め、適応を判断します。</li></ul></div>
+    <div class="vs-card evar"><h4>💉 硬化療法</h4><ul><li>薬剤を液体または泡にして注入し、静脈を閉じます。</li><li>細い静脈瘤や残った枝、再発例などに用います。</li><li>複数回の治療が必要なことがあります。</li></ul></div>
+    <div class="vs-card open"><h4>✂️ 静脈瘤切除・ストリッピング</h4><ul><li>小さな切開から枝の静脈瘤を取り除く方法や、原因静脈を抜去する手術です。</li><li>血管の形や再発例などで選ばれることがあります。</li><li>ほかの治療と組み合わせることもあります。</li></ul></div>
+  </div>
+  <div class="key-box">治療の目的は、見た目だけでなく、<u>症状を軽くし、皮膚障害や潰瘍などの合併症を防ぐこと</u>です。</div>
+  <div class="callout"><strong>📝 治療後に新しい静脈瘤ができることもあります。</strong> 1回で完全に終わらない場合や、時間がたって再発する場合があることも含めて説明を受けましょう。</div>
 </section>
 
 <section class="content reveal" id="after">
-  <h2>7. 退院後の生活 ― 定期検査がとても大切です</h2>
-  <p>EVAR は体にやさしい治療ですが、<strong>「治療して終わり」ではなく、退院後も定期的な検査(多くはCT検査)をずっと続けること</strong>がとても重要です。これは EVAR のいちばん大事なポイントです。</p>
-
-  <h3>なぜ定期検査が必要なの?</h3>
-  <p>まれに、時間がたつと <strong>ステントグラフトのすき間から、こぶの中へ血液がまた入り込んでしまう</strong>ことがあります。これを <strong>「エンドリーク」</strong>と呼びます。エンドリークが起こると、こぶにまた血の勢いがかかって、再び大きくなってしまうことがあります。</p>
-
-  <div class="diagram-wrap">
-    <svg viewBox="0 0 560 250" role="img" aria-label="エンドリークの概念イラスト">
-      <rect width="560" height="250" fill="#fff"/>
-      <text x="280" y="26" text-anchor="middle" font-size="13.5" font-weight="700" fill="#0b2545">まれに「すき間からの血のもれ(エンドリーク)」が起こることも</text>
-      <!-- sac -->
-      <ellipse cx="280" cy="140" rx="90" ry="66" fill="#ffe0e0" stroke="#e59a9a" stroke-width="2"/>
-      <!-- graft -->
-      <rect x="262" y="74" width="36" height="132" rx="10" fill="#b2dfdb" stroke="#26a69a" stroke-width="2.5"/>
-      <path d="M280,80 L280,200" stroke="#fff" stroke-width="4" stroke-dasharray="6 7" opacity=".9"/>
-      <text x="280" y="145" text-anchor="middle" font-size="9" fill="#00695c">ステント</text>
-      <text x="280" y="157" text-anchor="middle" font-size="9" fill="#00695c">グラフト</text>
-      <!-- leak arrow -->
-      <path d="M264,96 Q235,110 232,140" stroke="#c62828" stroke-width="2.5" fill="none" marker-end="url(#leakA)"/>
-      <defs><marker id="leakA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="#c62828"/></marker></defs>
-      <circle cx="232" cy="150" r="8" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
-      <text x="150" y="120" font-size="10" fill="#c62828" text-anchor="middle">すき間から</text>
-      <text x="150" y="134" font-size="10" fill="#c62828" text-anchor="middle">血液がもれて</text>
-      <text x="150" y="148" font-size="10" fill="#c62828" text-anchor="middle">こぶに入る</text>
-      <!-- follow -->
-      <text x="430" y="130" font-size="11" font-weight="700" fill="#00695c" text-anchor="middle">だから</text>
-      <text x="430" y="148" font-size="11" font-weight="700" fill="#00695c" text-anchor="middle">定期的なCTで</text>
-      <text x="430" y="166" font-size="11" font-weight="700" fill="#00695c" text-anchor="middle">確認します</text>
-      <text x="430" y="100" font-size="22" text-anchor="middle">🔍</text>
-    </svg>
-    <div class="diagram-caption">
-      <strong>イラスト:</strong> エンドリークが起きても、<u>定期検査で早めに見つければ、多くはカテーテルによる追加治療で対応できます</u>。だからこそ、症状がなくても検査を欠かさないことが大切なのです。
-    </div>
-  </div>
-
-  <div class="callout danger">
-    <strong>⚠️ いちばんのお願い:</strong> 体調が良くても、<u>指示された定期検査(CTなど)は必ず受けてください</u>。エンドリークやこぶの変化は、症状が出ないまま進むことがあります。早めに見つけることが、破裂を防ぐいちばんの近道です。
-  </div>
-
-  <h3>退院後に気をつけたいこと</h3>
+  <h2>7. 治療当日と治療後</h2>
+  <ol class="steps">
+    <li><b>治療する静脈を確認</b> ― 超音波で位置を確認し、皮膚に印をつけます。</li>
+    <li><b>麻酔と治療</b> ― 方法に応じて局所麻酔などを行い、カテーテルや薬剤で治療します。</li>
+    <li><b>歩行して帰宅・入院</b> ― 日帰りが可能な治療もありますが、病状や施設により異なります。</li>
+    <li><b>術後の確認</b> ― 超音波などで治療部位と血栓の有無を確認することがあります。</li>
+  </ol>
+  <h3>治療後に気をつけること</h3>
   <ul>
-    <li><strong>定期検査を欠かさない</strong>(いちばん大切)</li>
-    <li><strong>血圧をよくコントロールする</strong> ― 高い血圧はこぶや血管の負担になります</li>
-    <li><strong>禁煙する</strong> ― 喫煙は動脈瘤の大敵です</li>
-    <li>急な<strong>おなか・背中・腰の強い痛み</strong>を感じたら、すぐに受診・救急連絡を</li>
+    <li>歩行、入浴、仕事、運動、弾性ストッキングの期間は施設の指示に従う</li>
+    <li>強い痛み、急な腫れ、赤みの拡大、発熱、息苦しさがあれば医療機関へ連絡する</li>
+    <li>しこりや皮下出血、つっぱり感は起こることがありますが、程度や経過を確認する</li>
   </ul>
-</section>
-
-<section class="content reveal" id="fit">
-  <h2>8. EVARが「向く人」「向きにくい人」</h2>
-  <p>EVAR は誰にでもできるわけではなく、<strong>こぶの形や血管の状態が、ステントグラフトを安全に固定できる条件を満たしているか</strong>が大切です。CT検査でくわしく調べて判断します。</p>
-
-  <div class="table-wrap"><table>
-    <thead><tr><th></th><th>EVARが向きやすい</th><th>開腹手術が向きやすいことも</th></tr></thead>
-    <tbody>
-      <tr><td><strong>体の状態</strong></td><td>ご高齢、持病があり大きな手術が負担な方</td><td>若く体力があり、長期の確実性を優先する方</td></tr>
-      <tr><td><strong>こぶの形</strong></td><td>筒を固定する「のりしろ」(健康な血管)が十分にある</td><td>のりしろが短い・曲がりが強い・枝分かれにかかる</td></tr>
-      <tr><td><strong>足の血管</strong></td><td>器具を通せる太さ・性状がある</td><td>細い・曲がり・石灰化が強い</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="callout tip">
-    <strong>💡 最近は工夫も進んでいます:</strong> 枝分かれの血管を温存する特殊なステントグラフトなど、技術は進歩しています。「自分はどちらが向いているか」は、CTの結果をもとに担当医とご相談ください。
-  </div>
+  <div class="callout danger"><strong>⚠️ 息苦しさ、胸痛、失神、急な片脚の腫れは緊急サインです。</strong> すぐに医療機関へ相談してください。</div>
 </section>
 
 <section class="content reveal" id="faq">
-  <h2>9. よくある質問(FAQ)</h2>
-
-  <details class="faq">
-    <summary>手術の傷あとは大きく残りますか?</summary>
-    <div class="a"><b>A.</b> おなかを大きく切らないため、傷は<b>足の付け根の数cm、または針穴ほど</b>のことが多く、目立ちにくいです。</div>
-  </details>
-  <details class="faq">
-    <summary>どのくらい入院しますか?</summary>
-    <div class="a"><b>A.</b> 一般的には<b>数日〜1週間ほど</b>が目安です。体の状態や施設の方針によって変わります。</div>
-  </details>
-  <details class="faq">
-    <summary>手術のあと、ふつうの生活に戻れますか?</summary>
-    <div class="a"><b>A.</b> 多くの方が比較的<b>早く日常生活へ戻れます</b>。ただし、しばらくは重い物を持つ・激しい運動はひかえます。時期は担当医の指示に従ってください。</div>
-  </details>
-  <details class="faq">
-    <summary>なぜ退院後もCT検査を続けるのですか?</summary>
-    <div class="a"><b>A.</b> ステントグラフトの位置や、<b>エンドリーク(すき間からの血のもれ)</b>がないかを確認するためです。症状がなくても変化が起こることがあるため、定期検査はとても大切です。</div>
-  </details>
-  <details class="faq">
-    <summary>ステントグラフトは一生もちますか?</summary>
-    <div class="a"><b>A.</b> 多くは長期にわたって働きますが、まれに位置がずれたり、すき間ができたりすることがあります。だからこそ<b>定期的な検査で見守る</b>ことが必要です。</div>
-  </details>
-  <details class="faq">
-    <summary>また手術(追加の治療)が必要になることはありますか?</summary>
-    <div class="a"><b>A.</b> 一部の方では、エンドリークなどに対して<b>追加の治療</b>が必要になることがあります。その多くは、再び<b>カテーテルを使った体にやさしい方法</b>で行えます。</div>
-  </details>
-  <details class="faq">
-    <summary>MRI検査や、空港の金属探知機は大丈夫ですか?</summary>
-    <div class="a"><b>A.</b> 現在使われている多くのステントグラフトは<b>MRIを受けられる</b>ものですが、念のため主治医に確認してください。空港の金属探知機は通常問題ありません。心配なときは手術を受けたことを伝えましょう。</div>
-  </details>
-  <details class="faq">
-    <summary>家族が気をつけてあげられることは?</summary>
-    <div class="a"><b>A.</b> <b>定期検査の日を一緒に管理</b>したり、禁煙・血圧管理を支えてあげることが大きな助けになります。急なおなか・背中・腰の強い痛みがあれば、ためらわず救急受診してください。</div>
-  </details>
+  <h2>8. よくある質問(FAQ)</h2>
+  <details class="faq"><summary>放っておくと必ず悪くなりますか?</summary><div class="a"><b>A.</b> 進み方には個人差があります。見た目だけで症状がない場合は経過をみることもありますが、痛み・むくみ・皮膚変化・血栓・出血があれば相談してください。</div></details>
+  <details class="faq"><summary>薬で静脈瘤は消えますか?</summary><div class="a"><b>A.</b> 症状を和らげる薬が使われることはありますが、逆流している静脈を薬だけで元に戻すことはできません。</div></details>
+  <details class="faq"><summary>弾性ストッキングだけで治りますか?</summary><div class="a"><b>A.</b> だるさやむくみを軽くする助けになりますが、原因となる弁の逆流を消す治療ではありません。適切なサイズと圧で使うことが大切です。</div></details>
+  <details class="faq"><summary>血管を閉じても血液は流れますか?</summary><div class="a"><b>A.</b> はい。治療対象は逆流して役割を果たしにくい表在静脈です。血液は主に深部静脈など、健康な経路を通って心臓へ戻ります。</div></details>
+  <details class="faq"><summary>治療は痛いですか?</summary><div class="a"><b>A.</b> 局所麻酔の注射や治療後のつっぱり感などはあります。痛みの程度は方法や個人で異なるため、麻酔や痛み止めについて事前に確認してください。</div></details>
+  <details class="faq"><summary>再発しますか?</summary><div class="a"><b>A.</b> 治療した静脈が再び開く場合や、別の静脈に新たな逆流が起こる場合があります。症状が戻ったら超音波で原因を確認します。</div></details>
+  <details class="faq"><summary>妊娠中でも治療できますか?</summary><div class="a"><b>A.</b> 妊娠中の介入治療は例外的な場合を除いて行わず、弾性ストッキングなどで症状を和らげます。産婦人科と血管専門医に相談してください。</div></details>
+  <details class="faq"><summary>静脈瘤と深部静脈血栓症は同じですか?</summary><div class="a"><b>A.</b> 同じではありません。静脈瘤は主に皮膚近くの静脈の逆流、DVTは深い静脈に血栓ができる病気です。急な片脚の腫れや痛みはDVTの可能性があるため受診が必要です。</div></details>
 </section>
 
 <section class="content reveal" id="quiz">
-  <h2>10. やさしい確認クイズ(全4問)</h2>
+  <h2>9. やさしい確認クイズ(全8問)</h2>
   <p style="font-size:.9rem;color:var(--muted)">読んだ内容のおさらいです。気軽に挑戦してみてください。</p>
-  <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 4</div>
-    <div class="quiz-q" id="questionText"></div>
-    <div class="quiz-choices" id="choices"></div>
-    <div class="quiz-feedback" id="feedback"></div>
-    <div class="quiz-controls">
-      <span class="progress" id="score">正解: 0 / 0</span>
-      <button class="btn" id="nextBtn" disabled>次へ →</button>
-    </div>
-    <div class="score-display" id="scoreDisplay">
-      <div>結果</div>
-      <div class="big" id="finalScore">0 / 4</div>
-      <div id="comment"></div>
-      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
-    </div>
-  </div>
+  <div class="quiz" id="quizContainer"><div class="progress" id="progress">問題 1 / 8</div><div class="quiz-q" id="questionText"></div><div class="quiz-choices" id="choices"></div><div class="quiz-feedback" id="feedback"></div><div class="quiz-controls"><span class="progress" id="score">正解: 0 / 0</span><button class="btn" id="nextBtn" disabled>次へ →</button></div><div class="score-display" id="scoreDisplay"><div>結果</div><div class="big" id="finalScore">0 / 8</div><div id="comment"></div><button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button></div></div>
 </section>
 
 <section class="content reveal" id="glossary">
-  <h2>11. 用語集(やさしい言葉で)</h2>
-  <div class="table-wrap"><table>
-    <thead><tr><th>言葉</th><th>やさしい意味</th></tr></thead>
-    <tbody>
-      <tr><td>大動脈(だいどうみゃく)</td><td>心臓から出た血液が最初に通る、体でいちばん太い血管</td></tr>
-      <tr><td>腹部大動脈瘤(りゅう)</td><td>おなかの大動脈の壁がふくらんで「こぶ」になった状態</td></tr>
-      <tr><td>破裂(はれつ)</td><td>こぶが破れて大出血すること。命に関わる危険な状態</td></tr>
-      <tr><td>EVAR(イーバー)</td><td>血管の内側からこぶを治すステントグラフト治療</td></tr>
-      <tr><td>ステントグラフト</td><td>金属のバネ + じょうぶな布の筒でできた、血管の内張りの器具</td></tr>
-      <tr><td>カテーテル</td><td>血管の中を通す細い管。器具を運ぶのに使う</td></tr>
-      <tr><td>開腹手術</td><td>おなかを切り開いて、こぶを人工血管に取りかえる手術</td></tr>
-      <tr><td>エンドリーク</td><td>ステントグラフトのすき間から、こぶの中へ血液がもれること</td></tr>
-      <tr><td>経過観察(けいかかんさつ)</td><td>すぐ治療せず、検査でこぶの大きさを定期的に見守ること</td></tr>
-      <tr><td>造影剤(ぞうえいざい)</td><td>血管や血の流れをレントゲン・CTで見やすくする薬</td></tr>
-    </tbody>
-  </table></div>
+  <h2>10. 用語集(やさしい言葉で)</h2>
+  <div class="table-wrap"><table><thead><tr><th>言葉</th><th>やさしい意味</th></tr></thead><tbody>
+    <tr><td>静脈</td><td>体で使われた血液を心臓へ戻す血管</td></tr>
+    <tr><td>下肢静脈瘤</td><td>足の静脈が太く曲がり、皮膚の近くに浮き出た状態</td></tr>
+    <tr><td>静脈弁</td><td>血液が足の方へ戻らないようにする一方通行の弁</td></tr>
+    <tr><td>逆流</td><td>弁が閉じず、血液が重力で足の方へ戻ること</td></tr>
+    <tr><td>表在静脈</td><td>皮膚の近くを走る静脈</td></tr>
+    <tr><td>深部静脈</td><td>筋肉の間など、足の深いところを走る静脈</td></tr>
+    <tr><td>伏在静脈</td><td>足の代表的な表在静脈。大伏在静脈と小伏在静脈がある</td></tr>
+    <tr><td>筋ポンプ</td><td>歩行でふくらはぎの筋肉が静脈を押し、血液を心臓へ戻す働き</td></tr>
+    <tr><td>デュプレックス超音波</td><td>静脈の形と血液の流れを同時に調べるエコー検査</td></tr>
+    <tr><td>弾性ストッキング</td><td>足を段階的に圧迫し、血液がたまりにくくする医療用靴下</td></tr>
+    <tr><td>EVLA</td><td>レーザーの熱で原因静脈を閉じる血管内治療</td></tr>
+    <tr><td>RFA</td><td>高周波の熱で原因静脈を閉じる血管内治療</td></tr>
+    <tr><td>硬化療法</td><td>薬剤を注入して静脈を閉じる治療</td></tr>
+    <tr><td>表在性静脈血栓症</td><td>皮膚近くの静脈に血栓と炎症が起こり、赤く硬く痛む状態</td></tr>
+    <tr><td>DVT</td><td>深部静脈血栓症。足の深い静脈に血栓ができる病気</td></tr>
+    <tr><td>静脈性潰瘍</td><td>静脈の圧が高い状態が続き、足に治りにくい傷ができること</td></tr>
+  </tbody></table></div>
 </section>
 
-<section class="content reveal">
-  <h2>📎 関連ページ</h2>
+<section class="content reveal" id="references">
+  <h2>📚 参考にした主なガイドライン</h2>
   <ul>
-    <li><a href="evar_endoleak_v2.html">EVAR術後 エンドリークの種類と対応(くわしい版・医療者向け)</a></li>
-    <li><a href="contrast_nephropathy_v2.html">造影剤と腎臓のはなし</a></li>
-    <li><a href="hemodialysis_basics_v2.html">血液透析の基礎</a></li>
+    <li><a href="https://js-phlebology.jp/?page_id=3099">日本静脈学会: ガイドライン・適正使用指針・静脈評価指標</a></li>
+    <li><a href="https://www.jstage.jst.go.jp/article/phlebol/30/Supplement/30_19-supplement/_article/-char/ja/">日本静脈学会: 下肢静脈瘤に対する血管内焼灼術のガイドライン2019</a></li>
+    <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11523430/">SVS / AVF / AVLS Clinical Practice Guidelines 2023, Part II</a></li>
+    <li><a href="https://www.nice.org.uk/guidance/cg168/chapter/1-recommendations">NICE CG168: Varicose veins — recommendations</a></li>
     <li><a href="index_v2.html">教材トップへ戻る</a></li>
   </ul>
 </section>
@@ -596,7 +435,7 @@
     <h4>Heart of Medicine — 心臓血管外科の学びと患者さんのための解説</h4>
     <div class="footer-links">
       <a href="index_v2.html">トップ</a>
-      <a href="evar_endoleak_v2.html">エンドリーク(医療者向け)</a>
+      <a href="#references">参考ガイドライン</a>
       <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
     </div>
     <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本ページは病気の理解を助けるための一般的な説明です。実際の診断・治療は個々の状態によって異なります。必ず主治医の説明・指示に従ってください。</p>
@@ -740,10 +579,14 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = do
 
 <script>
   const questions = [
-    {q:"腹部大動脈瘤で、いちばん心配なことは何でしょう?",choices:["こぶが破れてしまう(破裂)","こぶが痛くてたまらない","背が縮む","声が出なくなる"],correct:0,explain:"こぶ自体はふだん症状がありませんが、大きくなると破れて(破裂して)大出血を起こす危険があります。破裂を防ぐことが治療の目的です。"},
-    {q:"EVAR(ステントグラフト内挿術)は、体のどこから治療しますか?",choices:["おなかを大きく切り開く","足の付け根の血管から","背中から","首から"],correct:1,explain:"EVAR は足の付け根(太ももの血管)から細い筒を通し、血管の内側からこぶを治します。おなかを大きく切らないのが特長です。"},
-    {q:"EVAR のあと、退院してからも定期的なCT検査を続ける理由は?",choices:["体重をはかるため","ステントグラフトの位置やエンドリーク(すき間からの血のもれ)を確認するため","毎回手術をするため","検査は本当は不要"],correct:1,explain:"まれに、すき間から血液がこぶに入る「エンドリーク」が起こることがあります。早く見つけて対応するために、症状がなくても定期検査がとても大切です。"},
-    {q:"腹部大動脈瘤について、正しいのはどれでしょう?",choices:["いつも強い痛みがある","多くは症状がなく、検査でたまたま見つかる","子どもに多い","風邪の一種"],correct:1,explain:"腹部大動脈瘤の多くは症状がなく、健康診断のエコーや、別の目的で撮ったCTで偶然見つかることがよくあります。だからこそ早期発見が大切です。"}
+    {q:"下肢静脈瘤の主なしくみはどれでしょう?",choices:["静脈の弁が閉じにくくなり血液が逆流する","動脈が突然破裂する","骨が静脈を作る","皮膚だけの病気"],correct:0,explain:"足の静脈弁がうまく閉じなくなると血液が逆流し、静脈の圧が高くなって血管がふくらみます。"},
+    {q:"足の血液を心臓へ戻す助けになる日常動作は?",choices:["長時間じっと立つ","歩いてふくらはぎを動かす","一日中座る","強く静脈瘤をもむ"],correct:1,explain:"歩くとふくらはぎの筋ポンプが働き、静脈血を心臓へ戻す助けになります。"},
+    {q:"治療計画でよく使う検査はどれでしょう?",choices:["下肢静脈超音波検査","聴力検査","胃カメラ","脳波検査"],correct:0,explain:"デュプレックス超音波で静脈の逆流、血栓、原因静脈の範囲を調べます。"},
+    {q:"弾性ストッキングについて正しいのは?",choices:["逆流した弁を必ず元どおりにする","サイズや圧を確認して使う","誰でも最強の圧を選ぶ","寝るときも必ず自己判断で着ける"],correct:1,explain:"弾性ストッキングは症状軽減に役立ちますが、適切なサイズと圧が重要です。病気によっては注意が必要です。"},
+    {q:"血管内焼灼術は何をする治療でしょう?",choices:["レーザーや高周波の熱で原因静脈を閉じる","足の骨を削る","動脈を太くする","心臓に人工弁を入れる"],correct:0,explain:"EVLAやRFAは、カテーテルを使い、熱で逆流の原因となる静脈を閉じる治療です。"},
+    {q:"すぐに医療機関へ相談すべき症状は?",choices:["夕方に軽く靴下の跡がつく","片脚の急な腫れと痛み","以前からある細い血管","歩くと足が温かくなる"],correct:1,explain:"片脚の急な腫れや痛みは深部静脈血栓症の可能性があります。息苦しさや胸痛も緊急サインです。"},
+    {q:"静脈瘤を治療しても再発することはありますか?",choices:["絶対に再発しない","別の静脈に新しい逆流が起こることがある","必ず翌日に再発する","治療すると全員DVTになる"],correct:1,explain:"治療静脈の再開通や、別の静脈の新たな逆流によって再発することがあります。"},
+    {q:"妊娠中の静脈瘤について一般的に正しいのは?",choices:["全員すぐ手術する","例外を除き介入治療を避け、圧迫などで症状を和らげる","何も相談してはいけない","必ず永久に悪化する"],correct:1,explain:"妊娠中の介入治療は例外的な場合を除いて行わず、弾性ストッキングなどで症状を軽減します。"}
   ];
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
