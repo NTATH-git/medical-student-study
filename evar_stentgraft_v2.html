@@ -116,6 +116,13 @@
   .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
   .diagram-wrap svg{max-width:100%;height:auto}
   .diagram-caption{font-size:.86rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.8}
+  .source-figure{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1rem;margin:1.2rem auto;box-shadow:var(--shadow-sm);text-align:center;max-width:720px}
+  .source-figure img{display:block;width:min(100%,540px);height:auto;margin:0 auto;border-radius:8px}
+  .source-figure.wide img{width:min(100%,620px)}
+  .source-figure .figure-guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;margin-top:.9rem;text-align:left}
+  .source-figure .figure-guide div{background:#f2f7fc;border-radius:8px;padding:.65rem .75rem;font-size:.85rem;line-height:1.7}
+  .source-figure .credit{font-size:.72rem;color:var(--muted);line-height:1.65;margin-top:.75rem;text-align:left;border-top:1px solid var(--border);padding-top:.65rem}
+  .source-figure .credit a{color:var(--teal-dark)}
   /* Key box */
   .key-box{background:linear-gradient(135deg,#e0f2f1,#e8f5e9);border:2px solid var(--teal);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
   .num-highlight{display:inline-block;background:var(--teal);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
@@ -285,29 +292,17 @@
     </div>
   </div>
 
-  <div class="diagram-wrap">
-    <svg viewBox="0 0 600 280" role="img" aria-label="正常な大動脈とこぶ(動脈瘤)の比較イラスト">
-      <rect width="600" height="280" fill="#fff"/>
-      <text x="300" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2545">正常な血管 と こぶ(動脈瘤)</text>
-      <!-- normal -->
-      <rect x="135" y="55" width="30" height="170" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
-      <path d="M150,60 L150,220" stroke="#fff" stroke-width="4" stroke-dasharray="6 8" opacity=".8"/>
-      <text x="150" y="245" text-anchor="middle" font-size="12" font-weight="700" fill="#2e7d32">正常</text>
-      <text x="150" y="262" text-anchor="middle" font-size="9.5" fill="#5a6473">すーっと まっすぐ</text>
-      <!-- aneurysm: top tube, bulge, bottom tube -->
-      <rect x="385" y="55" width="30" height="58" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
-      <rect x="385" y="188" width="30" height="37" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
-      <ellipse cx="400" cy="150" rx="62" ry="46" fill="#ffcdd2" stroke="#c62828" stroke-width="2.5"/>
-      <path d="M400,60 L400,222" stroke="#fff" stroke-width="4" stroke-dasharray="6 8" opacity=".7"/>
-      <text x="400" y="155" text-anchor="middle" font-size="12" font-weight="700" fill="#8e0000">こぶ</text>
-      <text x="400" y="252" text-anchor="middle" font-size="12" font-weight="700" fill="#c62828">動脈瘤</text>
-      <text x="400" y="268" text-anchor="middle" font-size="9.5" fill="#5a6473">壁が弱くなり ふくらむ</text>
-      <text x="270" y="150" font-size="22" fill="#9e9e9e">→</text>
-    </svg>
-    <div class="diagram-caption">
-      <strong>イラスト:</strong> 左が正常な大動脈。右のように壁がふくらんだものが「こぶ(動脈瘤)」です。多くは<u>おへその少し下あたり</u>にできます。
-    </div>
-  </div>
+  <figure class="source-figure">
+    <img src="images/aortic_aneurysm_nih.jpg" alt="正常な大動脈、胸部大動脈瘤、腎動脈より下にできた腹部大動脈瘤を比較した医学図" width="480" height="491" loading="lazy">
+    <figcaption>
+      <div class="figure-guide">
+        <div><strong>A：正常な大動脈</strong><br>心臓から胸、おなかを通って両脚へ血液を送ります。</div>
+        <div><strong>B：胸部大動脈瘤</strong><br>胸の中の大動脈がふくらんだ状態です。</div>
+        <div><strong>C：腹部大動脈瘤</strong><br>腎臓へ向かう血管より下で、大動脈がこぶ状にふくらんでいます。</div>
+      </div>
+      <p class="credit">出典：National Institutes of Health (NIH), <a href="https://commons.wikimedia.org/wiki/File:Aortic_aneurysm.jpg">Wikimedia Commons「Aortic aneurysm.jpg」</a>。米国連邦政府の著作物としてパブリックドメイン。</p>
+    </figcaption>
+  </figure>
 
   <div class="callout tip">
     <strong>💡 大切なこと:</strong> 腹部大動脈瘤は、<u>ほとんどの場合、痛みなどの症状がありません</u>。健康診断のエコー(超音波)や、ほかの病気で撮ったCT検査で「たまたま」見つかることがとても多い病気です。
@@ -380,50 +375,16 @@
   <h3>ステントグラフトってどんなもの?</h3>
   <p>ステントグラフトは、<strong>金属のバネ(ステント)</strong>と <strong>じょうぶな布の筒(グラフト=人工血管)</strong>を組み合わせた器具です。ふだんは細くたたんで筒(カテーテル)の中に収めておき、こぶの位置まで運んでから、その場で <strong>パッと広げて血管の内側に張りつけて固定</strong>します。</p>
 
-  <div class="diagram-wrap">
-    <svg viewBox="0 0 620 380" role="img" aria-label="EVAR ステントグラフト留置のしくみ">
-      <rect width="620" height="380" fill="#fff"/>
-      <text x="310" y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2545">EVAR のしくみ ― 足の付け根から、こぶの内側に筒を通す</text>
-      <!-- heart -->
-      <text x="310" y="58" text-anchor="middle" font-size="16">❤</text>
-      <text x="345" y="56" font-size="9" fill="#5a6473">心臓</text>
-      <!-- aneurysm sac -->
-      <ellipse cx="310" cy="180" rx="72" ry="66" fill="#ffe0e0" stroke="#e59a9a" stroke-width="2"/>
-      <text x="405" y="150" font-size="9.5" fill="#b06a6a">こぶ(動脈瘤)</text>
-      <text x="405" y="164" font-size="9.5" fill="#b06a6a">のふくらみ</text>
-      <!-- aorta above -->
-      <rect x="298" y="66" width="24" height="55" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
-      <!-- stent graft main body (teal) -->
-      <path d="M300,70 L300,175 L272,300" stroke="#26a69a" stroke-width="13" fill="none" stroke-linecap="round"/>
-      <path d="M320,70 L320,175 L348,300" stroke="#26a69a" stroke-width="13" fill="none" stroke-linecap="round"/>
-      <!-- stent rings -->
-      <g stroke="#00695c" stroke-width="1.6" opacity=".85">
-        <line x1="293" y1="86" x2="327" y2="86"/><line x1="293" y1="104" x2="327" y2="104"/>
-        <line x1="285" y1="210" x2="300" y2="240"/><line x1="335" y1="210" x2="320" y2="240"/>
-      </g>
-      <!-- blood flow inside graft -->
-      <path d="M310,74 L310,170" stroke="#fff" stroke-width="4" stroke-dasharray="6 7" opacity=".9"/>
-      <text x="360" y="205" font-size="9.5" fill="#00695c">血液は筒の</text>
-      <text x="360" y="219" font-size="9.5" fill="#00695c">中だけを通る</text>
-      <!-- legs / iliac -->
-      <rect x="255" y="298" width="22" height="60" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
-      <rect x="343" y="298" width="22" height="60" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="1.5"/>
-      <text x="230" y="372" font-size="9" fill="#5a6473">右足の付け根</text>
-      <text x="352" y="372" font-size="9" fill="#5a6473">左足の付け根</text>
-      <!-- catheter access arrows -->
-      <path d="M266,368 L266,330" stroke="#1976d2" stroke-width="3" fill="none" marker-end="url(#upArrow)"/>
-      <path d="M354,368 L354,330" stroke="#1976d2" stroke-width="3" fill="none" marker-end="url(#upArrow)"/>
-      <defs><marker id="upArrow" markerWidth="9" markerHeight="9" refX="4.5" refY="2" orient="auto"><path d="M0,8 L4.5,0 L9,8 z" fill="#1976d2"/></marker></defs>
-      <!-- sac depressurized label -->
-      <text x="150" y="180" font-size="9.5" fill="#b06a6a" text-anchor="middle">こぶの中には</text>
-      <text x="150" y="194" font-size="9.5" fill="#b06a6a" text-anchor="middle">血の勢いが</text>
-      <text x="150" y="208" font-size="9.5" fill="#b06a6a" text-anchor="middle">かからなくなる</text>
-      <path d="M195,190 Q225,185 245,180" stroke="#b06a6a" stroke-width="1.2" fill="none" stroke-dasharray="3 3"/>
-    </svg>
-    <div class="diagram-caption">
-      <strong>イラスト:</strong> 足の付け根(左右の太ももの血管)から細い筒でステントグラフト(<span style="color:#00695c;font-weight:700">緑</span>)を運び、こぶの中に置きます。血液は<u>じょうぶな筒の内側だけを通る</u>ようになり、こぶのふくらみには血の勢い(圧力)がかからなくなるので、<strong>破裂しにくくなります</strong>。
-    </div>
-  </div>
+  <figure class="source-figure wide">
+    <img src="images/evar_stent_graft_nih.jpg" alt="足の付け根からカテーテルでステントグラフトを運び、腹部大動脈瘤の内側で展開するEVARの医学図" width="360" height="353" loading="lazy">
+    <figcaption>
+      <div class="figure-guide">
+        <div><strong>A：ステントグラフトを運ぶ</strong><br>足の付け根からカテーテルを入れ、たたまれたステントグラフトを動脈瘤まで進めます。</div>
+        <div><strong>B：動脈瘤の内側で広げる</strong><br>血液はステントグラフトの中を流れ、こぶには血圧が直接かかりにくくなります。</div>
+      </div>
+      <p class="credit">出典：National Heart, Lung, and Blood Institute (NHLBI / NIH), <a href="https://www.nhlbi.nih.gov/health/aortic-aneurysm/treatment">Aortic Aneurysm — Treatment</a>「Illustration of aortic aneurysm repair」。<a href="https://www.nih.gov/about-nih/frequently-asked-questions#copyright">NIHの著作権FAQ</a>に基づきパブリックドメインとして利用（無改変、出典明記）。</p>
+    </figcaption>
+  </figure>
 
   <div class="key-box">
     EVAR の考え方 ── <u>こぶを取り除くのではなく、内側に丈夫な筒を通して「血の勢いをこぶに伝えない」ようにする</u>
@@ -703,6 +664,7 @@
       <ul>
         <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
         <li><a href="evar_stentgraft_v2.html">EVAR(ステントグラフト・患者さん向け)</a></li>
+        <li><a href="varicose_veins_v2.html">下肢静脈瘤(患者さん向け)</a></li>
         <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
         <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
         <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
