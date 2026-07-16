@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内シャント手術 ― 自己血管AVFと人工血管AVG | 医学生のための心臓血管外科</title>
+<meta name="description" content="血液透析の内シャント手術を、自己血管内シャント(AVF)と人工血管内シャント(AVG)に分けて解説。術前評価、術式、使い分け、成熟・穿刺、合併症、診察法を学ぶ医学生向け教材。">
+<style>
+  :root{
+    --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
+    --accent:#c62828;--accent-light:#ef5350;--accent-dark:#8e0000;
+    --bg:#f7f8fa;--bg-alt:#eef2f7;--card:#fff;
+    --text:#1a1a1a;--text-light:#3a4150;--muted:#5a6473;--border:#e1e5ea;
+    --success:#2e7d32;--warn:#ef6c00;--danger:#c62828;
+    --shadow-sm:0 2px 8px rgba(11,37,69,.06);
+    --shadow:0 4px 16px rgba(11,37,69,.10);
+    --shadow-lg:0 12px 32px rgba(11,37,69,.18);
+    --shadow-xl:0 20px 48px rgba(11,37,69,.25);
+    --ease:cubic-bezier(.4,0,.2,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  /* === STICKY HEADER === */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,37,69,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:padding .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);padding:.9rem 1.2rem}
+  .site-header.scrolled{padding:.5rem 1.2rem;background:rgba(11,37,69,.96);box-shadow:0 2px 16px rgba(0,0,0,.18)}
+  .site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .site-logo{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;transition:font-size .3s var(--ease);line-height:1.3}
+  .site-logo .logo-icon{font-size:1.3rem;line-height:1}
+  .site-logo .logo-text{letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+  .site-header.scrolled .site-logo{font-size:.88rem}
+  .site-nav{display:none;gap:.3rem;align-items:center}
+  @media (min-width:880px){.site-nav{display:flex}}
+  .site-nav a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.83rem;padding:.4rem .75rem;border-radius:6px;transition:all .2s var(--ease);font-weight:500}
+  .site-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+  .site-nav a.cta{background:var(--accent);color:#fff}
+  .site-nav a.cta:hover{background:var(--accent-light);box-shadow:0 4px 12px rgba(198,40,40,.4)}
+  .menu-btn{background:rgba(255,255,255,.15);color:#fff;border:none;width:42px;height:42px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:background .2s;font-family:inherit;line-height:1}
+  .menu-btn:hover{background:rgba(255,255,255,.25)}
+  /* === HERO === */
+  .hero{position:relative;min-height:72vh;min-height:72dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;padding:7rem 1.2rem 5rem;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 35%,var(--navy-light) 70%,#1a3a6b 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1px, transparent 0),radial-gradient(circle at 1px 1px, rgba(239,83,80,.10) 1px, transparent 0);background-size:36px 36px,72px 72px;background-position:0 0,18px 18px;opacity:.45;pointer-events:none}
+  .hero::after{content:"";position:absolute;top:-20%;right:-10%;width:60%;height:140%;background:linear-gradient(135deg,transparent 0%,rgba(198,40,40,.18) 50%,transparent 100%);transform:rotate(-12deg);pointer-events:none}
+  .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.10;pointer-events:none;mix-blend-mode:screen}
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto;text-align:center;animation:heroIn 1s var(--ease-out) both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;background:rgba(255,255,255,.12);padding:.45rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);margin-bottom:1.3rem;font-weight:500}
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light);box-shadow:0 0 12px var(--accent-light);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+  .hero h1{font-size:clamp(1.6rem,5vw,3rem);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;line-height:1.32;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+  .hero h1 .accent{background:linear-gradient(135deg,var(--accent-light),#ff8a80);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+  .hero .lead{font-size:clamp(.92rem,2.2vw,1.1rem);opacity:.94;max-width:680px;margin:0 auto 1.6rem;line-height:1.85;font-weight:400}
+  .hero-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+  .hero-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;padding:.35rem .85rem;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;backdrop-filter:blur(4px)}
+  .hero-chip strong{font-weight:700;color:#ffcdd2}
+  .scroll-indicator{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-align:center;animation:fadeIn 1.5s ease 1s both;text-decoration:none}
+  .scroll-indicator .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:13px;margin:0 auto .5rem;position:relative}
+  .scroll-indicator .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:6px;background:#fff;border-radius:2px;animation:scrollDot 1.8s ease-in-out infinite}
+  @keyframes scrollDot{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  /* === Section nav === */
+  .section-nav{background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-sm)}
+  .section-nav-inner{display:flex;gap:.2rem;padding:.5rem .8rem;min-width:max-content;max-width:1200px;margin:0 auto}
+  .section-nav a{color:var(--text-light);text-decoration:none;font-size:.82rem;padding:.5rem .9rem;border-radius:6px;white-space:nowrap;transition:all .15s var(--ease);font-weight:500}
+  .section-nav a:hover{background:#fff0f0;color:var(--accent)}
+  .section-nav a.home{background:var(--navy);color:#fff}
+  .section-nav a.home:hover{background:var(--navy-light);color:#fff}
+  /* === MAIN === */
+  main{max-width:980px;margin:0 auto;padding:2rem 1.2rem 3rem}
+  section.content{background:#fff;border-radius:14px;padding:1.8rem 1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);border:1px solid transparent;transition:box-shadow .3s var(--ease)}
+  section.content:hover{box-shadow:var(--shadow-lg)}
+  section.content h2{color:var(--navy);font-size:clamp(1.2rem,3.5vw,1.55rem);font-weight:700;padding:0;margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem;border:none}
+  section.content h2::before{content:"";display:inline-block;width:6px;height:1.6em;background:linear-gradient(180deg,var(--accent),var(--accent-light));border-radius:3px;flex-shrink:0}
+  section.content h3{color:var(--navy-light);font-size:1.05rem;margin:1.4rem 0 .7rem;font-weight:700}
+  section.content p,section.content li{font-size:.95rem;line-height:1.85}
+  section.content ul,section.content ol{padding-left:1.4rem;margin:.6rem 0}
+  section.content a{color:var(--accent)}
+  /* === Disclaimer === */
+  .disclaimer{background:linear-gradient(135deg,#fff8e1,#ffe082);border-left:5px solid var(--warn);padding:1rem 1.2rem;margin-bottom:1.5rem;border-radius:10px;font-size:.88rem;display:flex;gap:.7rem;align-items:flex-start;box-shadow:var(--shadow-sm)}
+  .disclaimer-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
+  .disclaimer-text{color:#5a3000;flex:1}
+  .disclaimer-text strong{color:var(--navy);display:block;margin-bottom:.25rem;font-size:.95rem}
+  .disclaimer-text u{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+  /* Callouts */
+  .callout{background:#fff8e1;border-left:4px solid var(--warn);padding:.85rem 1.1rem;border-radius:8px;margin:.9rem 0;font-size:.88rem}
+  .callout.tip{background:#e3f2fd;border-left-color:#1976d2}
+  .callout.danger{background:#ffebee;border-left-color:var(--danger)}
+  .callout.evidence{background:#e8f5e9;border-left-color:var(--success)}
+  .callout strong{color:var(--navy)}
+  /* Tables */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--border);margin:.8rem 0}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th,td{padding:.75rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fafbfd}
+  /* Component grid */
+  .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem}
+  .component-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem 1.1rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .component-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .component-card .role{font-size:.76rem;color:var(--accent);margin-bottom:.3rem;font-weight:600}
+  .component-card p{font-size:.85rem}
+  /* Diagrams */
+  .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
+  .diagram-wrap svg{max-width:100%;height:auto}
+  .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Ref figure */
+  .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
+  .ref-figure:hover{box-shadow:var(--shadow)}
+  .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
+  .ref-figure.compact img{max-width:380px}
+  .ref-figure.wide img{max-width:560px}
+  .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
+  .ref-caption strong{color:var(--navy)}
+  .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
+  .ref-attribution a{color:var(--accent);text-decoration:none}
+  .ref-attribution a:hover{text-decoration:underline}
+  .fig-pair{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.2rem 0}
+  @media (min-width:780px){.fig-pair{grid-template-columns:1fr 1fr}}
+  /* Highlight */
+  .num-highlight{display:inline-block;background:var(--accent);color:#fff;padding:.1rem .5rem;border-radius:5px;font-weight:700;font-size:.95rem}
+  /* Key-box */
+  .key-box{background:linear-gradient(135deg,#fff5f5,#ffebee);border:2px solid var(--accent);border-radius:14px;padding:1.2rem 1.5rem;margin:1.5rem 0;color:var(--navy);font-weight:600;font-size:1.02rem;text-align:center;box-shadow:var(--shadow)}
+  /* === QUIZ === */
+  .quiz{background:#f5f8fc;border-radius:12px;padding:1.2rem;border:1px solid var(--border)}
+  .quiz-q{font-weight:600;margin-bottom:.9rem;color:var(--navy);font-size:1rem}
+  .quiz-choices{display:grid;gap:.55rem}
+  .quiz-choice{background:#fff;border:2px solid var(--border);border-radius:10px;padding:.8rem 1rem;cursor:pointer;text-align:left;font-size:.92rem;font-family:inherit;transition:all .15s var(--ease);min-height:44px}
+  .quiz-choice:hover{border-color:var(--accent-light);transform:translateX(2px)}
+  .quiz-choice.correct{background:#e8f5e9;border-color:var(--success);color:var(--success)}
+  .quiz-choice.wrong{background:#ffebee;border-color:var(--accent);color:var(--accent)}
+  .quiz-choice:disabled{cursor:default}
+  .quiz-feedback{margin-top:.9rem;padding:.8rem 1rem;border-radius:8px;font-size:.88rem;display:none;line-height:1.7}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.ok{background:#e8f5e9;color:var(--success)}
+  .quiz-feedback.ng{background:#ffebee;color:var(--accent)}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
+  .btn{background:var(--accent);color:#fff;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.92rem;font-family:inherit;font-weight:600;transition:all .2s var(--ease);box-shadow:0 2px 8px rgba(198,40,40,.25)}
+  .btn:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(198,40,40,.35)}
+  .btn:disabled{background:#ccc;cursor:not-allowed;box-shadow:none;transform:none}
+  .progress{font-size:.82rem;color:var(--muted)}
+  .score-display{text-align:center;padding:1.6rem;background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:12px;margin-top:1.2rem;display:none}
+  .score-display.show{display:block}
+  .score-display .big{font-size:2.6rem;font-weight:800;margin:.5rem 0}
+  /* === FOOTER === */
+  .site-footer{background:var(--navy-dark);color:rgba(255,255,255,.75);padding:3rem 1.2rem 1.5rem;text-align:center;margin-top:2rem}
+  .site-footer .footer-inner{max-width:1100px;margin:0 auto}
+  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.5rem}
+  .site-footer .copyright{font-size:.78rem;opacity:.55;margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.12)}
+  .site-footer a{color:var(--accent-light);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#fff}
+  .footer-links{display:flex;gap:1.4rem;justify-content:center;margin:1rem 0;flex-wrap:wrap;font-size:.85rem}
+  /* === Back to top === */
+  .back-to-top{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(198,40,40,.4);opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:200;font-family:inherit;line-height:1;display:flex;align-items:center;justify-content:center}
+  .back-to-top.show{opacity:1;pointer-events:auto}
+  .back-to-top:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(198,40,40,.55)}
+  /* === Drawer === */
+  .menu-toggle-input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:1500;cursor:pointer}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(100%);transition:transform .35s var(--ease-out);z-index:1501;box-shadow:-8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .drawer-head{background:var(--navy);color:#fff;padding:1rem 1.2rem;display:flex;justify-content:flex-start;align-items:center;gap:.6rem;flex-shrink:0}
+  .drawer-head h3{font-size:1.05rem;font-weight:600;margin:0}
+  .drawer-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;padding:0;line-height:1;font-family:inherit;border-radius:8px;transition:background .15s;display:flex;align-items:center;justify-content:center;width:44px;height:44px;touch-action:manipulation}
+  .drawer-close:hover{background:rgba(255,255,255,.15)}
+  .drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border);flex-shrink:0;background:#fafbfd}
+  .drawer-search input{width:100%;padding:.6rem .85rem;font-size:.92rem;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  .drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.4rem 0 2rem}
+  .drawer-section h4{color:var(--navy);font-size:.78rem;padding:1rem 1.2rem .35rem;font-weight:700;background:#f5f8fc;border-top:1px solid var(--border)}
+  .drawer-section:first-child h4{border-top:none}
+  .drawer ul{list-style:none;padding:0;margin:0}
+  .drawer-content a{display:block;padding:.75rem 1.2rem;color:var(--text);text-decoration:none;font-size:.92rem;border-bottom:1px solid #f0f2f6;transition:background .15s;min-height:44px}
+  .drawer-content a:hover{background:#fff0f0;color:var(--accent)}
+  .drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:600;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}
+  .drawer-section.empty{display:none}
+  .drawer-content a.hidden{display:none}
+  /* Reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero-eyebrow .dot,.scroll-indicator .mouse::after{animation:none}}
+  @media (max-width:480px){
+    main{padding:1.5rem .8rem 3rem}
+    section.content{padding:1.3rem 1rem}
+    .hero{padding:6rem 1rem 4rem;min-height:auto}
+    .key-box{font-size:.95rem;padding:1rem 1.1rem}
+    .site-logo .logo-text{max-width:48vw}
+    .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
+  }
+  nav a.home-link:hover{background:rgba(255,255,255,.25)}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .compare-table th:first-child{background:#5a6473}
+  .compare-table tr td:nth-child(2){background:#fff0f0}
+  .compare-table tr td:nth-child(3){background:#e8f5e9}
+  .func-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .func-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .func-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .func-card p{font-size:.85rem}
+  .principle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
+  .principle-card{background:#e3f2fd;border:1px solid #bbdefb;border-top:4px solid #1565c0;border-radius:8px;padding:1rem}
+  .principle-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+  .principle-card .num{display:inline-block;background:#1565c0;color:#fff;width:1.7rem;height:1.7rem;border-radius:50%;text-align:center;line-height:1.7rem;font-weight:bold;font-size:.85rem}
+  .principle-card p{font-size:.85rem}
+  .access-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.8rem}
+  .access-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem;position:relative}
+  .access-card.first{border-top-color:var(--success)}
+  .access-card.second{border-top-color:#1565c0}
+  .access-card.temp{border-top-color:var(--warn)}
+  .access-card h4{color:var(--navy);font-size:1rem;margin-bottom:.3rem}
+  .access-card .rank{display:inline-block;font-size:.72rem;padding:.15rem .55rem;border-radius:999px;background:#e3f2fd;color:#1565c0;margin-bottom:.4rem}
+  .access-card .rank.first{background:#e8f5e9;color:var(--success)}
+  .access-card .rank.temp{background:#fff3e0;color:var(--warn)}
+  .access-card .desc{font-size:.86rem}
+  /* Dialysis shunt surgery */
+  .shunt-concept{display:grid;grid-template-columns:1fr;gap:.9rem;margin:1rem 0}
+  @media (min-width:700px){.shunt-concept{grid-template-columns:1fr 1fr}}
+  .shunt-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:1.05rem 1.15rem;overflow:hidden}
+  .shunt-card.avf{border-color:var(--success)}
+  .shunt-card.avg{border-color:#1565c0}
+  .shunt-card h3{margin:0 0 .45rem;color:var(--navy);font-size:1.05rem}
+  .shunt-card p{font-size:.88rem}
+  .flow-schematic{display:flex;align-items:center;justify-content:center;gap:.25rem;margin:.8rem 0;padding:.75rem .35rem;background:#f7f9fc;border-radius:10px;min-height:80px;overflow:hidden}
+  .flow-segment{height:24px;min-width:54px;flex:1;border-radius:99px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;font-weight:700;position:relative;white-space:nowrap}
+  .flow-segment.artery{background:linear-gradient(90deg,#c62828,#ef5350)}
+  .flow-segment.vein{background:linear-gradient(90deg,#7e57c2,#1565c0)}
+  .flow-segment.graft{background:repeating-linear-gradient(135deg,#00897b 0,#00897b 8px,#26a69a 8px,#26a69a 16px);min-width:72px}
+  .flow-join{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;box-shadow:0 2px 6px rgba(11,37,69,.2)}
+  .flow-arrow{color:var(--accent);font-weight:800;flex:0 0 auto}
+  .shunt-points{list-style:none!important;padding:0!important;margin:.65rem 0 0!important}
+  .shunt-points li{position:relative;padding:.3rem 0 .3rem 1.35rem;font-size:.86rem!important;line-height:1.65!important}
+  .shunt-points li::before{content:"✓";position:absolute;left:0;color:var(--success);font-weight:800}
+  .shunt-card.avg .shunt-points li::before{color:#1565c0}
+  .shunt-compare th:nth-child(2){background:var(--success)}
+  .shunt-compare th:nth-child(3){background:#1565c0}
+  .shunt-compare tr td:nth-child(2){background:#f1f8f1}
+  .shunt-compare tr td:nth-child(3){background:#f0f6ff}
+  .op-steps{list-style:none!important;padding:0!important;margin:1rem 0!important;counter-reset:opstep}
+  .op-steps li{position:relative;padding:.55rem 0 .75rem 3rem;border-left:2px dashed var(--border);margin-left:1rem;font-size:.9rem!important}
+  .op-steps li:last-child{border-left-color:transparent}
+  .op-steps li::before{counter-increment:opstep;content:counter(opstep);position:absolute;left:-1rem;top:.45rem;width:2rem;height:2rem;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:var(--shadow-sm)}
+  .op-steps li strong{color:var(--navy)}
+  .exam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;margin:.8rem 0}
+  .exam-card{border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:10px;padding:.9rem 1rem;background:#fff}
+  .exam-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .exam-card p{font-size:.84rem;line-height:1.75}
+  .timing-lane{display:grid;grid-template-columns:92px 1fr;gap:.65rem;align-items:start;padding:.75rem 0;border-bottom:1px solid var(--border)}
+  .timing-lane:last-child{border-bottom:none}
+  .timing-label{font-size:.8rem;font-weight:700;padding:.25rem .5rem;border-radius:99px;text-align:center;color:#fff;background:var(--navy)}
+  .timing-lane p{font-size:.88rem!important;margin:0}
+  .reference-list{padding-left:1.3rem!important}
+  .reference-list li{margin:.55rem 0;font-size:.86rem!important;line-height:1.7!important}
+  @media (max-width:480px){
+    .flow-schematic{gap:.15rem;padding:.65rem .2rem}
+    .flow-segment{min-width:43px;font-size:.62rem}
+    .flow-segment.graft{min-width:58px}
+    .flow-join{width:30px;height:30px;flex-basis:30px;font-size:.58rem}
+    .timing-lane{grid-template-columns:1fr}
+    .timing-label{width:max-content}
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .menu-toggle{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
+  #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
+  .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
+  #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
+  #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
+
+  /* === Topbar actions cluster (Menu + v1/v2) === */
+  .topbar-actions{position:fixed;top:12px;right:12px;z-index:2000;display:inline-flex;gap:.35rem;align-items:center}
+  .topbar-btn{display:inline-flex;align-items:center;gap:.3rem;background:rgba(11,37,69,.9);color:#fff;padding:.42rem .8rem;border-radius:99px;text-decoration:none;font-size:.76rem;font-weight:600;border:1.5px solid rgba(255,255,255,.45);font-family:inherit;transition:all .2s ease;white-space:nowrap;line-height:1.2;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.25);user-select:none;-webkit-tap-highlight-color:transparent}
+  .topbar-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.7);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+  .topbar-menu:hover{background:rgba(11,37,69,1)}
+  .topbar-switch:hover{background:rgba(198,40,40,.95);box-shadow:0 4px 16px rgba(198,40,40,.4)}
+  .topbar-btn .tb-icon{font-size:.95rem;line-height:1}
+  /* Hide old red page-nav bar and v2 in-header menu button (replaced by topbar) */
+  .page-nav{display:none !important}
+  .site-header .menu-btn{display:none !important}
+  /* Hide v2 in-header site-nav (links overlapped with topbar chips) */
+  .site-header .site-nav{display:none !important}
+  /* Hide old floating .version-switch (superseded by .topbar-actions) */
+  .version-switch{display:none !important}
+  @media (max-width:480px){
+    .topbar-actions{top:9px;right:9px;gap:.25rem}
+    .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
+    .topbar-btn .tb-text{display:none}
+    .topbar-btn .tb-icon{font-size:1.05rem}
+  }
+
+  .drawer-content a.weekly-link{background:linear-gradient(135deg,#fff5f5,#ffebee);color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px);position:relative;animation:weeklyLinkBlink 2.2s ease-in-out infinite}
+  .drawer-content a.weekly-link:hover{background:linear-gradient(135deg,#ffebee,#ffcdd2);color:var(--accent-dark,#8e0000)}
+  .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
+  @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
+  @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="menuToggle" class="menu-toggle-input" aria-label="ページメニュー">
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header-inner">
+    <a href="index_v2.html" class="site-logo">
+      <span class="logo-icon">🫀</span>
+      <span class="logo-text">Heart of Medicine</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#basics">内シャントとは</a>
+      <a href="#avf">自己血管AVF</a>
+      <a href="#avg">人工血管AVG</a>
+      <a href="#compare">使い分け</a>
+      <a href="index_v2.html" class="cta">トップ</a>
+    </nav>
+    <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ef5350" stop-opacity=".8"/>
+        <stop offset="100%" stop-color="#ef5350" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="100,100 300,200 200,400" fill="none" stroke="#fff" stroke-width="1"/>
+    <polygon points="900,150 1100,300 950,450" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
+    <circle cx="200" cy="600" r="80" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
+    <h1>内シャント手術<br><span class="accent">AVFとAVG</span></h1>
+    <p class="lead">自己血管と人工血管 ― 選択・吻合・成熟・合併症を一つにつなげる</p>
+    <div class="hero-meta">
+      <span class="hero-chip">🎓 <strong>医学生・初期研修医</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>10</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">⚖️ <strong>AVF / AVG</strong> 比較</span>
+    </div>
+  </div>
+  <a href="#basics" class="scroll-indicator" aria-label="下にスクロール">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+  </a>
+</section>
+
+<nav class="section-nav" aria-label="セクション">
+  <div class="section-nav-inner">
+    <a href="index_v2.html" class="home">🏠 目次</a>
+    <a href="#basics">内シャント</a>
+    <a href="#preop">術前評価</a>
+    <a href="#avf">AVF</a>
+    <a href="#avg">AVG</a>
+    <a href="#compare">比較</a>
+    <a href="#postop">術後</a>
+    <a href="#complications">合併症</a>
+    <a href="#exam">診察</a>
+    <a href="#quiz">クイズ</a>
+    <a href="#glossary">用語</a>
+  </div>
+</nav>
+
+<main>
+<div class="disclaimer reveal" role="note" aria-label="重要なお知らせ">
+  <div class="disclaimer-icon">⚠️</div>
+  <div class="disclaimer-text">
+    <strong>本ページは医学生向けの学習資料です</strong>
+    実際のアクセス選択・手術・穿刺開始は、患者ごとの腎代替療法計画、血管条件、心機能、施設方針、使用する人工血管の添付文書に従って判断します。<u>診療判断には最新ガイドラインと担当チームの評価をご確認ください</u>。
+  </div>
+</div>
+
+<section class="content reveal" id="basics">
+  <h2>1. 内シャントとは ― 動脈と静脈をつなぐ</h2>
+  <p>血液透析では、1回の治療中に十分な血液を安定して取り出し、浄化した血液を体へ戻すための <strong>バスキュラーアクセス(vascular access)</strong> が必要です。内シャントは、皮下にある動脈と静脈を外科的につなぎ、静脈へ多くの血液を流して太く丈夫にする方法です。</p>
+
+  <div class="key-box">
+    内シャントの本質 = <u>動脈の高い流量で静脈を「動脈化」し、反復穿刺できる血管を作る</u>
+  </div>
+
+  <div class="shunt-concept">
+    <article class="shunt-card avf">
+      <h3>① 自己血管内シャント(AVF)</h3>
+      <p><strong>Arteriovenous Fistula</strong>。患者自身の動脈と静脈を直接吻合します。</p>
+      <div class="flow-schematic" role="img" aria-label="動脈と自己静脈を直接吻合するAVFの模式図">
+        <span class="flow-segment artery">動脈</span><span class="flow-arrow">→</span><span class="flow-join">吻合</span><span class="flow-arrow">→</span><span class="flow-segment vein">自己静脈</span>
+      </div>
+      <ul class="shunt-points">
+        <li>感染・血栓が比較的少なく、長期使用に向く</li>
+        <li>使用前に静脈が発達する「成熟」が必要</li>
+      </ul>
+    </article>
+
+    <article class="shunt-card avg">
+      <h3>② 人工血管内シャント(AVG)</h3>
+      <p><strong>Arteriovenous Graft</strong>。動脈と静脈の間を人工血管で橋渡しします。</p>
+      <div class="flow-schematic" role="img" aria-label="動脈と静脈を人工血管で橋渡しするAVGの模式図">
+        <span class="flow-segment artery">動脈</span><span class="flow-arrow">→</span><span class="flow-segment graft">人工血管</span><span class="flow-arrow">→</span><span class="flow-segment vein">静脈</span>
+      </div>
+      <ul class="shunt-points">
+        <li>穿刺可能な自己静脈が乏しい場合の重要な選択肢</li>
+        <li>AVFより感染・血栓・流出路狭窄に注意</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="callout tip">
+    <strong>用語の注意:</strong> 日本で「内シャント」と呼ばれるものの中心はAVFとAVGです。AVFは自己血管を直接つなぎ、AVGは人工血管を介在させます。どちらも皮下にあり、体外へチューブが出ているわけではありません。
+  </div>
+</section>
+
+<section class="content reveal" id="preop">
+  <h2>2. 術前評価 ― 血管だけを見ない</h2>
+  <p>KDOQI 2019は、単純な「Fistula First」ではなく、患者ごとの <strong>ESKD Life-Plan</strong> に合わせて「適切な患者に、適切なアクセスを、適切な時期に」選ぶ考え方を重視しています。最初のアクセスだけでなく、閉塞時の次の候補と血管温存まで計画します。</p>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>🫀 全身・心機能</h4>
+      <p>心不全、弁膜症、虚血性心疾患、予後、フレイルを評価。高流量アクセスは心負荷になり得ます。</p>
+    </div>
+    <div class="component-card">
+      <h4>🖐 末梢循環</h4>
+      <p>橈骨・尺骨・上腕動脈の拍動、左右血圧差、手指の冷感・虚血、動脈石灰化を確認します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🩸 静脈・流出路</h4>
+      <p>駆血前後の視診・触診、静脈の連続性、深さ、狭窄、上肢浮腫や側副血行路を確認します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🩻 超音波マッピング</h4>
+      <p>動静脈径、走行、深さ、石灰化、血流を評価。血管条件や既往に応じて選択的に行います。</p>
+    </div>
+    <div class="component-card">
+      <h4>🧭 既往と将来計画</h4>
+      <p>中心静脈カテーテル、ペースメーカー、乳房・腋窩手術、麻痺、利き手、移植予定を確認します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🦠 感染と皮膚</h4>
+      <p>全身・局所感染、浮腫、発赤、創傷を確認。特にAVGでは人工物感染を避ける計画が重要です。</p>
+    </div>
+  </div>
+
+  <div class="callout evidence">
+    <strong>作製部位の基本:</strong> 将来の選択肢を残すため、条件が許せば末梢側から中枢側へ検討します。ただし「非利き手・手関節AVF」を機械的に選ぶのではなく、血管条件、穿刺可能性、生活、心機能、透析開始時期を統合して決めます。
+  </div>
+</section>
+
+<section class="content reveal" id="avf">
+  <h2>3. 自己血管内シャント(AVF)</h2>
+  <p>AVFは、患者自身の動脈と静脈を直接吻合します。自己組織のみで構成されるため、成熟して安定すれば感染が少なく、長期開存が期待できるのが最大の利点です。</p>
+
+  <h3>代表的なAVF</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>術式</th><th>吻合する血管</th><th>特徴</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Radiocephalic AVF</strong><br>Brescia-Cimino</td><td>橈骨動脈 ― 橈側皮静脈</td><td>手関節〜前腕。末梢側の代表で、将来の血管を温存しやすい。</td></tr>
+        <tr><td><strong>Brachiocephalic AVF</strong></td><td>上腕動脈 ― 橈側皮静脈</td><td>肘部。血流を得やすい一方、過剰血流やスチールに注意。</td></tr>
+        <tr><td><strong>Brachiobasilic AVF</strong></td><td>上腕動脈 ― 尺側皮静脈</td><td>深い尺側皮静脈を表在化・転位して穿刺可能にする。二期的手術の場合もある。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>手術の基本手順</h3>
+  <ol class="op-steps">
+    <li><strong>術式と走行を決める</strong> ― 視診・触診と必要に応じた超音波で、流入動脈と流出静脈を選びます。</li>
+    <li><strong>局所麻酔・血管露出</strong> ― 皮切し、静脈と動脈を愛護的に剥離します。静脈の分枝やねじれに注意します。</li>
+    <li><strong>静脈を授動する</strong> ― 静脈を吻合位置へ無理なく届かせ、屈曲や過緊張がないよう整えます。</li>
+    <li><strong>動静脈吻合</strong> ― 一般には動脈側―静脈端の端側吻合を細い非吸収性モノフィラメント糸で行います。</li>
+    <li><strong>遮断解除・開存確認</strong> ― 吻合部から流出静脈へ連続するthrill、止血、末梢手指の灌流を確認します。</li>
+    <li><strong>閉創</strong> ― 流出静脈を圧迫・屈曲させないように閉創し、術後の診察へつなげます。</li>
+  </ol>
+
+  <div class="callout danger">
+    <strong>AVFは「作ればすぐ使える」わけではありません。</strong> 静脈が太く、穿刺しやすく、十分な流量を得られる状態へ成熟する必要があります。初期不成功や成熟不全があり、再評価や追加治療を要することがあります。
+  </div>
+</section>
+
+<section class="content reveal" id="avg">
+  <h2>4. 人工血管内シャント(AVG)</h2>
+  <p>AVGは、動脈と静脈の間に <strong>人工血管(graft)</strong> を介在させるアクセスです。穿刺できる自己静脈が乏しい場合、AVFの成熟が期待しにくい場合、複数回のAVF不成功などで検討します。</p>
+
+  <div class="shunt-concept">
+    <div class="shunt-card avg">
+      <h3>前腕ループ型</h3>
+      <div class="flow-schematic" role="img" aria-label="前腕で動脈と静脈をループ状人工血管でつなぐ模式図">
+        <span class="flow-segment artery">動脈</span><span class="flow-arrow">→</span><span class="flow-segment graft">ループ状AVG</span><span class="flow-arrow">→</span><span class="flow-segment vein">静脈</span>
+      </div>
+      <p>前腕皮下にループ状に留置し、穿刺できる距離を確保します。将来の上腕側アクセスを残せる利点があります。</p>
+    </div>
+    <div class="shunt-card avg">
+      <h3>上腕ストレート／ループ型</h3>
+      <div class="flow-schematic" role="img" aria-label="上腕で動脈と静脈を人工血管でつなぐ模式図">
+        <span class="flow-segment artery">上腕動脈</span><span class="flow-arrow">→</span><span class="flow-segment graft">AVG</span><span class="flow-arrow">→</span><span class="flow-segment vein">上腕静脈</span>
+      </div>
+      <p>より太い中枢血管を利用できますが、血流量、手指虚血、心負荷を慎重に評価します。</p>
+    </div>
+  </div>
+
+  <h3>材質と手術の基本</h3>
+  <ul>
+    <li><strong>ePTFE</strong>(expanded polytetrafluoroethylene): 広く使用される多孔質人工血管。</li>
+    <li><strong>PU</strong>(polyurethane): 製品特性により早期穿刺が可能なものがあります。</li>
+    <li>ストレート、カーブ、ループなど、穿刺と将来の再建を考えて形態を選びます。</li>
+  </ul>
+
+  <ol class="op-steps">
+    <li><strong>流入動脈・流出静脈と皮下走行を設計</strong>します。</li>
+    <li><strong>動脈側・静脈側を露出</strong>し、人工血管が通る皮下トンネルを作ります。</li>
+    <li><strong>人工血管をトンネルへ通し</strong>、ねじれ、屈曲、過度な深さがないことを確認します。</li>
+    <li><strong>動脈側と静脈側の2か所を吻合</strong>します。静脈側吻合部は将来の狭窄好発部位です。</li>
+    <li><strong>遮断解除後にbruit・thrill、出血、手指灌流</strong>を確認して閉創します。</li>
+  </ol>
+
+  <div class="callout danger">
+    <strong>人工物を入れる手術:</strong> AVG感染は単なる皮膚感染ではなく、人工血管抜去やアクセス再建を要する重篤な問題になり得ます。無菌操作、周術期感染対策、穿刺部ローテーションが重要です。
+  </div>
+</section>
+
+<section class="content reveal" id="compare">
+  <h2>5. AVFとAVGの使い分け</h2>
+  <div class="table-wrap">
+    <table class="shunt-compare">
+      <thead><tr><th>比較項目</th><th>自己血管 AVF</th><th>人工血管 AVG</th></tr></thead>
+      <tbody>
+        <tr><td><strong>構造</strong></td><td>動脈と自己静脈を直接吻合</td><td>動脈―人工血管―静脈</td></tr>
+        <tr><td><strong>吻合部</strong></td><td>通常1か所</td><td>動脈側・静脈側の2か所</td></tr>
+        <tr><td><strong>使い始め</strong></td><td>静脈の成熟を待つ</td><td>材質により比較的早期から評価可能</td></tr>
+        <tr><td><strong>感染</strong></td><td>比較的少ない</td><td>AVFより多く、人工物感染になり得る</td></tr>
+        <tr><td><strong>血栓・狭窄</strong></td><td>成熟不全、吻合部・流出路狭窄</td><td>血栓と静脈側吻合部狭窄が重要</td></tr>
+        <tr><td><strong>長期使用</strong></td><td>成熟すれば長期開存が期待できる</td><td>維持にPTA・血栓除去・再建を要しやすい</td></tr>
+        <tr><td><strong>主な選択場面</strong></td><td>使える自己動静脈と成熟を待つ時間がある</td><td>自己静脈が不適、AVF不成功、早めの使用が必要</td></tr>
+        <tr><td><strong>共通の注意</strong></td><td colspan="2">スチール症候群、過剰血流、心負荷、静脈高血圧、瘤形成はいずれでも起こり得る</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout evidence">
+    <strong>現代的な結論:</strong> AVFは多くの患者で優れた長期アクセスですが、すべての患者に常に最優先とは限りません。短い予後、血管不良、成熟不全の高い可能性、透析開始の切迫、患者の希望などを考慮し、AVGやカテーテルを含むアクセス計画を個別化します(KDOQI 2019)。
+  </div>
+</section>
+
+<section class="content reveal" id="postop">
+  <h2>6. 術後評価・成熟・穿刺開始</h2>
+  <p>穿刺開始日はカレンダーだけで決めません。創部、浮腫、感染、アクセスの発達、bruit・thrill、穿刺可能な長さと深さを経験者が評価します。</p>
+
+  <div class="timing-lane">
+    <span class="timing-label">術直後</span>
+    <p>thrill・bruit、出血、手指の色・温度・痛み・感覚、橈骨動脈拍動を確認します。急な手指虚血は緊急評価が必要です。</p>
+  </div>
+  <div class="timing-lane">
+    <span class="timing-label">約2週</span>
+    <p>創傷治癒、感染、持続痛、上肢腫脹、神経症状、スチール症候群、アクセス開存を手術チームが確認します。</p>
+  </div>
+  <div class="timing-lane">
+    <span class="timing-label">AVF 4–6週</span>
+    <p>成熟と穿刺可能性を評価します。未成熟なら狭窄・側枝・深さなどの原因を調べ、観察、VAIVT、表在化、再建を検討します。</p>
+  </div>
+  <div class="timing-lane">
+    <span class="timing-label">AVG 1–4週</span>
+    <p>人工血管の材質と創部の状態に応じて穿刺可能性を評価します。早期穿刺型ではより早く使用できる場合があります。</p>
+  </div>
+
+  <div class="callout tip">
+    <strong>KDOQI 2019 implementation tool:</strong> AVFは術後4–6週、AVGは材質に応じて術後1–4週に穿刺可能性を評価する流れを示しています。これは「その週になれば自動的に穿刺してよい」という意味ではありません。
+  </div>
+</section>
+
+<section class="content reveal" id="complications">
+  <h2>7. 合併症 ― どこで何が起きるか</h2>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>🧱 狭窄・成熟不全</h4>
+      <p>AVFの吻合部近傍・流出静脈、AVGの静脈側吻合部が重要。脱血不良、静脈圧上昇、透析後止血延長の原因になります。</p>
+    </div>
+    <div class="component-card">
+      <h4>🩸 血栓閉塞</h4>
+      <p>狭窄、低血圧、圧迫などを背景に閉塞。thrill消失は緊急サインで、早期の血栓除去と原因治療が必要です。</p>
+    </div>
+    <div class="component-card">
+      <h4>🦠 感染</h4>
+      <p>発赤、熱感、排膿、疼痛、発熱。特にAVG感染では菌血症や人工血管抜去を要する可能性があります。</p>
+    </div>
+    <div class="component-card">
+      <h4>🧊 スチール症候群</h4>
+      <p>血流がアクセスへ奪われ手指が虚血に。冷感、疼痛、しびれ、潰瘍。急性の神経障害は迅速な評価が必要です。</p>
+    </div>
+    <div class="component-card">
+      <h4>💪 静脈高血圧</h4>
+      <p>中枢静脈狭窄などで上肢腫脹、皮下静脈怒張、穿刺部出血延長が出現します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🎈 瘤・仮性瘤</h4>
+      <p>反復穿刺や吻合部変化で拡大。皮膚菲薄化、急速な増大、出血、感染兆候は要注意です。</p>
+    </div>
+    <div class="component-card">
+      <h4>🫀 過剰血流・心不全</h4>
+      <p>高流量アクセスは心拍出量を増やし、心不全や肺高血圧に関与することがあります。</p>
+    </div>
+    <div class="component-card">
+      <h4>💧 血清腫(AVG)</h4>
+      <p>人工血管周囲に漿液が貯留。増大、皮膚障害、感染リスクがあれば治療を検討します。</p>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <strong>すぐ連絡する所見:</strong> thrillが突然消えた、手が急に冷たい・痛い・しびれる、創部出血が止まらない、急速な腫脹、排膿や発熱。放置するとアクセス喪失や手指障害につながります。
+  </div>
+</section>
+
+<section class="content reveal" id="exam">
+  <h2>8. 内シャントの診察 ― Look, Listen, Feel</h2>
+  <div class="exam-grid">
+    <div class="exam-card">
+      <h4>👀 Look：見る</h4>
+      <p>発赤、腫脹、創離開、排膿、穿刺痕、皮膚菲薄化、瘤、側副静脈、左右差を観察します。</p>
+    </div>
+    <div class="exam-card">
+      <h4>🩺 Listen：聴く</h4>
+      <p>吻合部から流出路までbruitを聴取。連続性から高調な収縮期優位へ変化すれば狭窄を疑います。</p>
+    </div>
+    <div class="exam-card">
+      <h4>✋ Feel：触る</h4>
+      <p>連続性thrill、拍動性、圧迫による変化、走行、深さ、手指温度、末梢動脈拍動を確認します。</p>
+    </div>
+  </div>
+
+  <h3>医学生がベッドサイドで言えるとよい一文</h3>
+  <div class="key-box">
+    「吻合部から流出静脈にかけて連続性thrillを触れ、発赤・腫脹・手指虚血はありません」
+  </div>
+
+  <ul>
+    <li>アクセス側上肢での<strong>血圧測定、採血、末梢点滴、長時間の圧迫</strong>を避けます。</li>
+    <li>患者自身が毎日、見る・聴く・触る短時間の自己チェックを行うことが早期発見につながります。</li>
+    <li>透析前には訓練されたスタッフがアクセスを診察し、前回との変化を確認します。</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="quiz">
+  <h2>9. 理解度チェック(全8問)</h2>
+  <div class="quiz" id="quizContainer">
+    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="quiz-q" id="questionText"></div>
+    <div class="quiz-choices" id="choices"></div>
+    <div class="quiz-feedback" id="feedback"></div>
+    <div class="quiz-controls">
+      <span class="progress" id="score">得点: 0 / 0</span>
+      <button class="btn" id="nextBtn" disabled>次へ →</button>
+    </div>
+  </div>
+  <div class="score-display" id="scoreDisplay">
+    <div>あなたの得点</div>
+    <div class="big" id="finalScore"></div>
+    <p id="comment"></p>
+    <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度挑戦</button>
+  </div>
+</section>
+
+<section class="content reveal" id="glossary">
+  <h2>10. 用語集・参考資料</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>用語</th><th>英語</th><th>意味</th></tr></thead>
+      <tbody>
+        <tr><td>バスキュラーアクセス</td><td>Vascular access (VA)</td><td>血液透析で血液を出し入れする経路の総称</td></tr>
+        <tr><td>自己血管内シャント</td><td>Arteriovenous fistula (AVF)</td><td>自己動脈と自己静脈を直接吻合したアクセス</td></tr>
+        <tr><td>人工血管内シャント</td><td>Arteriovenous graft (AVG)</td><td>動脈と静脈を人工血管で橋渡ししたアクセス</td></tr>
+        <tr><td>吻合</td><td>Anastomosis</td><td>血管同士、または血管と人工血管を縫い合わせること</td></tr>
+        <tr><td>橈骨動脈―橈側皮静脈AVF</td><td>Radiocephalic AVF</td><td>手関節付近に作る代表的AVF</td></tr>
+        <tr><td>上腕動脈―橈側皮静脈AVF</td><td>Brachiocephalic AVF</td><td>肘部で作るAVF</td></tr>
+        <tr><td>上腕動脈―尺側皮静脈AVF</td><td>Brachiobasilic AVF</td><td>尺側皮静脈を用いる上腕AVF</td></tr>
+        <tr><td>転位・表在化</td><td>Transposition / superficialization</td><td>深い静脈を穿刺しやすい皮下へ移す操作</td></tr>
+        <tr><td>流入動脈</td><td>Inflow artery</td><td>アクセスへ血液を送る動脈</td></tr>
+        <tr><td>流出静脈</td><td>Outflow vein</td><td>アクセスから心臓側へ血液を戻す静脈</td></tr>
+        <tr><td>ePTFE</td><td>Expanded polytetrafluoroethylene</td><td>AVGに広く使われる人工血管材料</td></tr>
+        <tr><td>PU</td><td>Polyurethane</td><td>人工血管材料の一つ</td></tr>
+        <tr><td>成熟</td><td>Maturation</td><td>AVF静脈が発達し、安全に穿刺できるようになる過程</td></tr>
+        <tr><td>スリル</td><td>Thrill</td><td>シャント上で触れる振動</td></tr>
+        <tr><td>シャント音</td><td>Bruit</td><td>聴診器で聴くアクセス血流音</td></tr>
+        <tr><td>狭窄</td><td>Stenosis</td><td>アクセス回路の一部が狭くなること</td></tr>
+        <tr><td>血栓閉塞</td><td>Thrombosis</td><td>血栓でアクセスが閉じること</td></tr>
+        <tr><td>スチール症候群</td><td>Steal syndrome</td><td>アクセスへ血流が奪われて手指が虚血になる状態</td></tr>
+        <tr><td>静脈高血圧</td><td>Venous hypertension</td><td>流出路障害で上肢静脈圧が上昇する状態</td></tr>
+        <tr><td>仮性瘤</td><td>Pseudoaneurysm</td><td>穿刺孔などから血液が周囲へ広がり形成される瘤</td></tr>
+        <tr><td>血清腫</td><td>Seroma</td><td>人工血管周囲に漿液が貯留した状態</td></tr>
+        <tr><td>VAIVT</td><td>Vascular access intervention therapy</td><td>狭窄拡張や血栓除去などの血管内治療</td></tr>
+        <tr><td>一次開存</td><td>Primary patency</td><td>追加治療なしでアクセスが開存している期間</td></tr>
+        <tr><td>二次開存</td><td>Secondary patency</td><td>修復治療を行いながらアクセスを維持できた期間</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>主な参考資料</h3>
+  <ol class="reference-list">
+    <li><a href="https://www.kidney.org/2019-vascular-access-guidelines-and-implementation-tools">National Kidney Foundation: KDOQI 2019 Vascular Access Guidelines and Implementation Tools</a></li>
+    <li><a href="https://www.kidney.org/sites/default/files/vait-08_new_av_access_creation_follow_up-best_practices-surgeons.pdf">KDOQI: New AV Access Creation &amp; Follow-up — Best Practices for Surgeons</a></li>
+    <li><a href="https://www.kidney.org/sites/default/files/vait-10_post-operative_av_access_monitoring_and_management.pdf">KDOQI: Post-operative AV Access Monitoring and Management</a></li>
+    <li><a href="https://www.jsdt.or.jp/jsdt/17.shtml">日本透析医学会: 慢性血液透析用バスキュラーアクセスの作製および修復に関するガイドライン</a></li>
+    <li><a href="https://esvs.org/guideline/vascular-access-2/">European Society for Vascular Surgery: 2018 Vascular Access Guidelines</a></li>
+  </ol>
+
+  <div class="callout">
+    <strong>更新上の注意:</strong> 日本透析医学会のAVF・AVG作製章は2005年版です。本ページでは国内術式の基本を参照しつつ、アクセス選択と術後評価はKDOQI 2019の個別化方針を併記しています。
+  </div>
+
+  <h3>関連ページ</h3>
+  <ul>
+    <li><a href="hemodialysis_basics_v2.html">血液透析(HD)の基礎</a></li>
+    <li><a href="cardiovascular_pressures_v2.html">心血管の圧 ― シャント血流を理解する</a></li>
+    <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+  </ul>
+</section>
+
+</main>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <h4>Heart of Medicine — 医学生のための心臓血管外科</h4>
+    <div class="footer-links">
+      <a href="index_v2.html">トップ(v2)</a>
+      <a href="index_v2.html">通常版(v1)</a>
+      <a href="https://github.com/NTATH-git/medical-student-study">GitHub</a>
+    </div>
+    <p style="font-size:.85rem;opacity:.7;max-width:680px;margin:1rem auto 0">本サイトの内容は学習目的の参考資料です。実際の診療判断には必ず最新ガイドラインおよび専門医の指導に従ってください。</p>
+    <div class="copyright">© 2026 Heart of Medicine</div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">↑</button>
+
+<label for="menuToggle" class="drawer-backdrop" aria-hidden="true"></label>
+<aside class="drawer" id="drawer" aria-label="全ページメニュー">
+  <div class="drawer-head">
+    <label for="menuToggle" class="drawer-close" role="button" tabindex="0" aria-label="閉じる">×</label>
+    <h3>📚 全ページメニュー</h3>
+  </div>
+  <div class="drawer-search">
+    <input type="search" id="drawerSearch" placeholder="🔍 ページ名で絞り込み..." aria-label="ドロワー内検索" autocomplete="off">
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h4>🏠 ホーム</h4>
+      <ul><li><a href="index_v2.html">目次トップ</a></li><li><a href="topics_v2.html" class="weekly-link">📑 今週のトピックス一覧</a></li>
+        </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫀 心血管総論</h4>
+      <ul>
+        <li><a href="cardiovascular_surgery_intro_v2.html">心血管外科 総論</a></li>
+        <li><a href="cardiovascular_pressures_v2.html">心血管の圧</a></li>
+        <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+        <li><a href="fr_vs_gauge_v2.html">Fr とゲージの違い</a></li>
+        <li><a href="inhaled_no_v2.html">吸入NO(iNO)</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🪡 心臓手術手技</h4>
+      <ul>
+        <li><a href="avr_open_procedure_v2.html">正中切開 AVR の手順</a></li>
+        <li><a href="brain_isolation_technique_v2.html">弓部置換 + Brain Isolation</a></li>
+        <li><a href="selective_cerebral_perfusion_v2.html">選択的脳灌流(SACP)</a></li>
+        <li><a href="surgical_knots_v2.html">糸結びの基礎</a></li>
+        <li><a href="surgical_instruments_v2.html">手術器械(心血管外科)</a></li>
+        <li><a href="gowning_technique_v2.html">ガウンテクニック</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🫶 補助循環(MCS)</h4>
+      <ul>
+        <li><a href="iabp_v2.html">IABP</a></li>
+        <li><a href="va_ecmo_v2.html">VA-ECMO</a></li>
+        <li><a href="vv_ecmo_v2.html">VV-ECMO</a></li>
+        <li><a href="impella_v2.html">Impella</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>⚙️ 体外循環・心筋保護</h4>
+      <ul>
+        <li><a href="cpb_basics_v2.html">人工心肺(CPB)</a></li>
+        <li><a href="myocardial_protection_v2.html">心筋保護</a></li>
+        <li><a href="cpb_simulator_v2.html">CPBシミュレータ</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>🩺 血管外科</h4>
+      <ul>
+        <li><a href="evar_endoleak_v2.html">EVAR エンドリーク</a></li>
+        <li><a href="evar_stentgraft_v2.html">EVAR(ステントグラフト・患者さん向け)</a></li>
+        <li><a href="varicose_veins_v2.html">下肢静脈瘤(患者さん向け)</a></li>
+        <li><a href="mesenteric_iliac_collateral_v2.html">腸間膜・腸骨 血流</a></li>
+        <li><a href="spinal_cord_ischemia_v2.html">対麻痺メカニズム</a></li>
+        <li><a href="csf_drainage_v2.html">CSFドレナージ</a></li>
+        <li><a href="marfan_syndrome_v2.html">Marfan症候群</a></li>
+        <li><a href="loeys_dietz_syndrome_v2.html">Loeys-Dietz症候群</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>💊 周術期管理</h4>
+      <ul>
+        <li><a href="cv_catheter_removal_v2.html">CVカテーテル抜去</a></li>
+        <li><a href="drain_removal_v2.html">ドレーン抜去</a></li>
+        <li><a href="npwt_basics_v2.html">NPWT(陰圧療法)</a></li>
+        <li><a href="hit_syndrome_v2.html">HIT</a></li>
+        <li><a href="anticoagulant_management_v2.html">抗凝固薬 周術期管理</a></li>
+        <li><a href="antibiotic_dosing_renal_failure_v2.html">腎機能と抗生剤</a></li>
+        <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
+        <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="dialysis_shunt_surgery_v2.html">内シャント手術(AVF/AVG)</a></li>
+        <li><a href="chylothorax_v2.html">乳び胸</a></li>
+        <li><a href="radiation_protection_v2.html">放射線防御</a></li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h4>📚 リファレンス</h4>
+      <ul>
+        <li><a href="body_negative_pressure_v2.html">陰圧の生理</a></li>
+        <li><a href="cvs_glossary_v2.html">用語集</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* === Sticky header shrink === */
+const _siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  if(_siteHeader) _siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+}, {passive:true});
+
+/* === Reveal on scroll === */
+const _io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      _io.unobserve(e.target);
+    }
+  });
+}, {threshold:.08, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => _io.observe(el));
+
+/* === Back to top === */
+const _btt = document.getElementById('backToTop');
+if(_btt){
+  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => _btt.classList.toggle('show', window.scrollY > 600), {passive:true});
+}
+
+/* === Current page mark in drawer === */
+const _curP = (location.pathname.split('/').pop() || 'index.html');
+document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP) a.classList.add('current'); });
+
+/* === Drawer search === */
+const _ds = document.getElementById('drawerSearch');
+if(_ds){
+  _ds.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('.drawer-section').forEach(sec => {
+      let vis = 0;
+      sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+      sec.classList.toggle('empty', q!=='' && vis===0);
+    });
+  });
+}
+
+/* === Drawer close on link / Escape === */
+document.querySelectorAll('.drawer-content a').forEach(a => {
+  a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+
+<script>
+const btt = document.getElementById('backToTop');
+  btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
+
+  const _curP_alt = (location.pathname.split('/').pop() || 'index.html');
+  document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
+  // Mark current page in the drawer & page nav (CSS-only otherwise)
+  document.querySelectorAll('.drawer-content a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
+  // Drawer-internal search filter
+  const _drawerSearch = document.getElementById('drawerSearch');
+  if(_drawerSearch){
+    _drawerSearch.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('.drawer-section').forEach(sec => {
+        let vis = 0;
+        sec.querySelectorAll('a').forEach(a => { const m = q==='' || a.textContent.toLowerCase().includes(q); a.classList.toggle('hidden', !m); if(m) vis++; });
+        sec.classList.toggle('empty', q!=='' && vis===0);
+      });
+    });
+  }
+  // Close drawer on link click (so :checked clears when navigating)
+  document.querySelectorAll('.drawer-content a').forEach(a => {
+    a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
+  });
+  // Escape to close
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+const questions = [
+    {q:"自己血管内シャント(AVF)の構造として正しいのはどれか。",choices:["動脈と自己静脈を直接吻合する","動脈と静脈を必ず人工血管でつなぐ","中心静脈カテーテルを皮下に埋める","動脈だけを表在化する"],correct:0,explain:"AVFは患者自身の動脈と静脈を直接吻合するアクセス。人工血管を介在させるのはAVGです。"},
+    {q:"人工血管内シャント(AVG)を検討する代表的な状況はどれか。",choices:["使える自己静脈が十分で成熟を待てる","自己静脈が不適でAVFの作製・成熟が期待しにくい","一時的に1回だけ透析する","全身感染症が治療されていない"],correct:1,explain:"AVGは自己静脈が乏しい、AVF不成功、より早い穿刺可能性が必要などで検討します。活動性感染があれば人工物植え込みは避ける方向で評価します。"},
+    {q:"KDOQI 2019がアクセス選択で重視する考え方はどれか。",choices:["全員に手関節AVFを作る","ESKD Life-Planに沿って個別化する","年齢だけでAVGを選ぶ","最初のアクセスだけ考えればよい"],correct:1,explain:"患者の腎代替療法計画、血管条件、透析開始時期、希望、予後、次のアクセス候補まで含めて個別化します。"},
+    {q:"AVFで一般的な吻合法はどれか。",choices:["動脈側―静脈端の端側吻合","動脈端―動脈端吻合","静脈側―静脈側吻合だけ","吻合せず近接させる"],correct:0,explain:"AVFでは動脈側に静脈端を吻合する端側吻合が一般的です。解剖と術式により例外はあります。"},
+    {q:"術後の穿刺可能性評価としてKDOQI実装ツールに沿う組み合わせはどれか。",choices:["AVF翌日・AVG翌日","AVF 4–6週・AVG 1–4週を目安に評価","AVF 6か月・AVG 1年","どちらも術後3日で必ず穿刺"],correct:1,explain:"AVFは4–6週、AVGは材質により1–4週に評価する流れです。ただし日数だけでなく、創部とアクセスの診察で判断します。"},
+    {q:"AVGで狭窄の好発部位として特に重要なのはどれか。",choices:["人工血管中央だけ","静脈側吻合部・流出路","手指末梢動脈だけ","皮膚切開部だけ"],correct:1,explain:"AVGでは静脈側吻合部から流出静脈の狭窄が血栓閉塞の重要な原因です。"},
+    {q:"内シャントのthrillが突然触れなくなった。最も適切なのはどれか。",choices:["翌月まで様子を見る","閉塞を疑い早急にアクセスチームへ連絡する","強く揉み続ける","シャント側で血圧を測定する"],correct:1,explain:"thrill消失は血栓閉塞の重要なサインです。アクセス救済のため早期評価・治療が必要です。"},
+    {q:"内シャント作製後、手が冷たく強く痛み、しびれが出た。疑うべき合併症はどれか。",choices:["スチール症候群・手指虚血","血清腫だけ","正常な成熟反応","尿毒症性心膜炎"],correct:0,explain:"アクセスへ血流が偏り手指灌流が低下するスチール症候群を疑います。急性の疼痛・冷感・神経症状は迅速な評価が必要です。"}
+  ];
+
+  let idx=0,score=0,answered=false;
+  const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
+  function renderQ(){
+    answered=false;const q=questions[idx];
+    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
+    qText.textContent=q.q;choicesEl.innerHTML='';
+    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
+    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
+  }
+  function selectAnswer(i,btn){
+    if(answered)return;answered=true;const q=questions[idx];
+    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
+    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
+    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
+    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
+    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
+  }
+  nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
+  function showResult(){
+    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
+    finalScore.textContent=`${score} / ${questions.length}`;
+    const pct=score/questions.length;
+    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
+    scoreDisplay.classList.add('show');
+  }
+  restartBtn.addEventListener('click',()=>{
+    idx=0;score=0;
+    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
+    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
+  });
+  renderQ();
+</script>
+
+
+<script>
+/* === Topbar actions: Menu only (v1/v2 unified to v2) === */
+(function(){
+  if(document.querySelector('.topbar-actions')) return;
+  if(!document.getElementById('menuToggle')) return;
+  var wrap=document.createElement('div');
+  wrap.className='topbar-actions';
+  var mb=document.createElement('label');
+  mb.setAttribute('for','menuToggle');
+  mb.className='topbar-btn topbar-menu';
+  mb.innerHTML='<span class="tb-icon">📚</span><span class="tb-text">メニュー</span>';
+  mb.setAttribute('aria-label','ページメニュー');
+  mb.setAttribute('role','button');
+  mb.setAttribute('tabindex','0');
+  wrap.appendChild(mb);
+  document.body.appendChild(wrap);
+})();
+</script>
+
+</body>
+</html>

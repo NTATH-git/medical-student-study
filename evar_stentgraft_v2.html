@@ -116,6 +116,60 @@
   .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
   .diagram-wrap svg{max-width:100%;height:auto}
   .diagram-caption{font-size:.86rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.8}
+  /* Interactive EVAR explainer */
+  .evar-simulator{background:linear-gradient(145deg,#f7fbff,#eef8f7);border:1px solid #c8e1df;border-radius:14px;padding:1rem;margin:1.2rem 0;overflow:hidden}
+  .sim-step-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:.45rem;margin-bottom:.9rem}
+  .sim-step{min-height:48px;border:2px solid var(--border);border-radius:9px;background:#fff;color:var(--navy);padding:.55rem .45rem;font:600 .82rem/1.35 inherit;cursor:pointer;touch-action:manipulation;transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease)}
+  .sim-step .step-no{display:block;font-size:.68rem;color:var(--muted);font-weight:600;margin-bottom:.1rem}
+  .sim-step[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(11,37,69,.2)}
+  .sim-step[aria-pressed="true"] .step-no{color:#b2dfdb}
+  .sim-step:focus-visible{outline:3px solid rgba(38,166,154,.38);outline-offset:2px}
+  @media (hover:hover){.sim-step:hover{border-color:var(--teal);transform:translateY(-1px)}}
+  .sim-stage{position:relative;background:#fff;border:1px solid var(--border);border-radius:12px;padding:.45rem;min-height:360px;display:flex;justify-content:center;align-items:center;overflow:hidden}
+  .sim-stage svg{display:block;width:min(100%,560px);height:auto;max-height:480px}
+  .sim-status{display:flex;align-items:flex-start;gap:.65rem;background:#fff;border-left:4px solid var(--teal);border-radius:8px;padding:.8rem .9rem;margin-top:.8rem;color:var(--navy);font-size:.9rem;line-height:1.75;min-height:64px}
+  .sim-status-badge{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .45rem;border-radius:99px;background:var(--teal);color:#fff;font-size:.78rem;font-weight:800}
+  .sim-vessel{fill:#ffe8e8;stroke:#a94444;stroke-width:5;stroke-linejoin:round}
+  .sim-artery{fill:none;stroke:#a94444;stroke-width:25;stroke-linecap:round}
+  .sim-artery-inner{fill:none;stroke:#ffe8e8;stroke-width:16;stroke-linecap:round}
+  .sim-sac{fill:#ef9a9a;opacity:.28;transform-origin:270px 232px}
+  .sim-sac-ring{fill:none;stroke:var(--accent);stroke-width:3;opacity:.55;transform-origin:270px 232px;animation:sacPulse 1.8s ease-in-out infinite}
+  @keyframes sacPulse{0%,100%{transform:scale(.92);opacity:.25}50%{transform:scale(1.04);opacity:.7}}
+  .sim-label{font:600 15px/1.3 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;fill:var(--navy)}
+  .sim-label-soft{font:500 13px/1.3 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;fill:var(--muted)}
+  .sim-guidewire,.sim-delivery,.sim-partial,.sim-graft,.sim-excluded,.sim-flow-after{opacity:0;transition:opacity .45s var(--ease)}
+  .sim-guidewire path{fill:none;stroke:#263238;stroke-width:4;stroke-linecap:round;stroke-dasharray:8 7;animation:wireAdvance 1.3s linear infinite}
+  @keyframes wireAdvance{to{stroke-dashoffset:-30}}
+  .sim-delivery path{fill:none;stroke:#607d8b;stroke-width:15;stroke-linecap:round}
+  .sim-delivery .packed{fill:var(--teal);stroke:var(--teal-dark);stroke-width:2}
+  .sim-partial path,.sim-graft path{fill:none;stroke:var(--teal);stroke-width:27;stroke-linecap:round;stroke-linejoin:round}
+  .sim-partial .mesh,.sim-graft .mesh{stroke:#fff;stroke-width:3;stroke-dasharray:5 7;opacity:.85}
+  .sim-partial .pending{stroke:#607d8b;stroke-width:11;stroke-dasharray:7 7}
+  .sim-flow-before,.sim-flow-after{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-dasharray:5 17;animation:flowMove 1.15s linear infinite}
+  .sim-flow-before{opacity:.88}
+  @keyframes flowMove{to{stroke-dashoffset:-44}}
+  .sim-excluded path{fill:none;stroke:var(--success);stroke-width:3;stroke-dasharray:7 5}
+  .sim-excluded text{fill:var(--success)}
+  .evar-simulator[data-step="1"] .sim-guidewire,
+  .evar-simulator[data-step="2"] .sim-guidewire,
+  .evar-simulator[data-step="3"] .sim-guidewire{opacity:1}
+  .evar-simulator[data-step="2"] .sim-delivery,
+  .evar-simulator[data-step="3"] .sim-delivery{opacity:1}
+  .evar-simulator[data-step="3"] .sim-partial{opacity:1}
+  .evar-simulator[data-step="4"] .sim-graft,
+  .evar-simulator[data-step="4"] .sim-excluded,
+  .evar-simulator[data-step="4"] .sim-flow-after{opacity:1}
+  .evar-simulator[data-step="4"] .sim-flow-before,
+  .evar-simulator[data-step="4"] .sim-sac-ring{opacity:0;animation:none}
+  .evar-simulator[data-step="4"] .sim-sac{fill:#b0bec5;opacity:.18}
+  @media (max-width:480px){
+    .evar-simulator{padding:.75rem}
+    .sim-step-controls{grid-template-columns:repeat(2,1fr)}
+    .sim-step:first-child{grid-column:1/-1}
+    .sim-stage{min-height:300px;padding:.2rem}
+    .sim-status{font-size:.86rem}
+  }
+  @media (prefers-reduced-motion:reduce){.sim-sac-ring,.sim-guidewire path,.sim-flow-before,.sim-flow-after{animation:none}.sim-guidewire,.sim-delivery,.sim-partial,.sim-graft,.sim-excluded,.sim-flow-after{transition:none}}
   .source-figure{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1rem;margin:1.2rem auto;box-shadow:var(--shadow-sm);text-align:center;max-width:720px}
   .source-figure img{display:block;width:min(100%,540px);height:auto;margin:0 auto;border-radius:8px}
   .source-figure.wide img{width:min(100%,620px)}
@@ -374,6 +428,75 @@
 
   <h3>ステントグラフトってどんなもの?</h3>
   <p>ステントグラフトは、<strong>金属のバネ(ステント)</strong>と <strong>じょうぶな布の筒(グラフト=人工血管)</strong>を組み合わせた器具です。ふだんは細くたたんで筒(カテーテル)の中に収めておき、こぶの位置まで運んでから、その場で <strong>パッと広げて血管の内側に張りつけて固定</strong>します。</p>
+
+  <h3>画面をタップして、EVARの流れを見てみましょう</h3>
+  <div class="evar-simulator" id="evarSimulator" data-step="0">
+    <div class="sim-step-controls" role="group" aria-label="EVARの治療ステップ">
+      <button type="button" class="sim-step" data-sim-step="0" aria-pressed="true"><span class="step-no">治療前</span>動脈瘤</button>
+      <button type="button" class="sim-step" data-sim-step="1" aria-pressed="false"><span class="step-no">STEP 1</span>血管に入る</button>
+      <button type="button" class="sim-step" data-sim-step="2" aria-pressed="false"><span class="step-no">STEP 2</span>器具を運ぶ</button>
+      <button type="button" class="sim-step" data-sim-step="3" aria-pressed="false"><span class="step-no">STEP 3</span>広げる</button>
+      <button type="button" class="sim-step" data-sim-step="4" aria-pressed="false"><span class="step-no">STEP 4</span>血流を切り替える</button>
+    </div>
+
+    <div class="sim-stage">
+      <svg viewBox="0 0 540 520" role="img" aria-labelledby="evarSimTitle evarSimDesc">
+        <title id="evarSimTitle">EVARの治療手順</title>
+        <desc id="evarSimDesc">腹部大動脈瘤に対し、足の付け根からガイドワイヤーとステントグラフトを運び、瘤の内側で広げて血流を新しい通り道へ切り替える模式図です。</desc>
+
+        <g aria-hidden="true">
+          <path class="sim-artery" d="M228 82 L112 82 M312 82 L428 82"/>
+          <path class="sim-artery-inner" d="M228 82 L112 82 M312 82 L428 82"/>
+          <path class="sim-vessel" d="M230 25 L230 104 C230 132 184 150 178 225 C171 307 220 333 230 365 L230 400 L187 482 L224 502 L270 420 L316 502 L353 482 L310 400 L310 365 C320 333 369 307 362 225 C356 150 310 132 310 104 L310 25 Z"/>
+          <ellipse class="sim-sac" cx="270" cy="232" rx="91" ry="112"/>
+          <ellipse class="sim-sac-ring" cx="270" cy="232" rx="79" ry="98"/>
+          <text class="sim-label" x="70" y="58">腎動脈</text>
+          <path d="M134 62 L151 77" fill="none" stroke="#5a6473" stroke-width="2"/>
+          <text class="sim-label" x="382" y="214">動脈瘤</text>
+          <path d="M377 221 L354 228" fill="none" stroke="#5a6473" stroke-width="2"/>
+          <text class="sim-label-soft" x="365" y="462">足の付け根から</text>
+          <path d="M360 466 L333 480" fill="none" stroke="#5a6473" stroke-width="2"/>
+        </g>
+
+        <path class="sim-flow-before" aria-hidden="true" d="M270 34 L270 390 M270 390 L211 489 M270 390 L329 489"/>
+
+        <g class="sim-guidewire" aria-hidden="true">
+          <path d="M332 500 C320 456 306 428 270 397 L270 88"/>
+          <circle cx="332" cy="500" r="8" fill="#263238"/>
+        </g>
+
+        <g class="sim-delivery" aria-hidden="true">
+          <path d="M332 500 C320 456 306 428 270 397 L270 120"/>
+          <rect class="packed" x="260" y="112" width="20" height="144" rx="8"/>
+          <path d="M264 130 L276 142 M264 151 L276 163 M264 172 L276 184 M264 193 L276 205 M264 214 L276 226" stroke="#fff" stroke-width="2"/>
+        </g>
+
+        <g class="sim-partial" aria-hidden="true">
+          <path d="M270 105 L270 352 L226 482"/>
+          <path class="mesh" d="M270 105 L270 352 L226 482"/>
+          <path class="pending" d="M270 352 L316 487"/>
+        </g>
+
+        <g class="sim-graft" aria-hidden="true">
+          <path d="M270 105 L270 352 M270 352 L226 482 M270 352 L316 482"/>
+          <path class="mesh" d="M270 105 L270 352 M270 352 L226 482 M270 352 L316 482"/>
+        </g>
+
+        <path class="sim-flow-after" aria-hidden="true" d="M270 108 L270 352 M270 352 L226 480 M270 352 L316 480"/>
+
+        <g class="sim-excluded" aria-hidden="true">
+          <path d="M184 146 C142 195 144 292 184 330"/>
+          <text class="sim-label" x="38" y="226">瘤への直接の</text>
+          <text class="sim-label" x="38" y="248">血圧を減らす</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="sim-status" aria-live="polite">
+      <span class="sim-status-badge" id="simStatusBadge">前</span>
+      <span id="simStatusText">治療前は、血液の圧が薄くなった血管の壁に直接かかり、こぶが大きくなることがあります。</span>
+    </div>
+  </div>
 
   <figure class="source-figure wide">
     <img src="images/evar_stent_graft_nih.jpg" alt="足の付け根からカテーテルでステントグラフトを運び、腹部大動脈瘤の内側で展開するEVARの医学図" width="360" height="353" loading="lazy">
@@ -669,6 +792,7 @@
         <li><a href="antibiotic_dosing_renal_failure_v2.html">腎機能と抗生剤</a></li>
         <li><a href="contrast_nephropathy_v2.html">造影剤腎症</a></li>
         <li><a href="hemodialysis_basics_v2.html">血液透析</a></li>
+        <li><a href="dialysis_shunt_surgery_v2.html">内シャント手術(AVF/AVG)</a></li>
         <li><a href="chylothorax_v2.html">乳び胸</a></li>
         <li><a href="radiation_protection_v2.html">放射線防御</a></li>
       </ul>
@@ -721,6 +845,32 @@ document.querySelectorAll('.drawer-content a').forEach(a => {
   a.addEventListener('click', () => { const t = document.getElementById('menuToggle'); if(t) t.checked = false; });
 });
 document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
+</script>
+
+<script>
+(function(){
+  const sim = document.getElementById('evarSimulator');
+  if(!sim) return;
+  const buttons = Array.from(sim.querySelectorAll('[data-sim-step]'));
+  const badge = document.getElementById('simStatusBadge');
+  const status = document.getElementById('simStatusText');
+  const steps = [
+    {badge:'前',text:'治療前は、血液の圧が薄くなった血管の壁に直接かかり、こぶが大きくなることがあります。'},
+    {badge:'1',text:'左右いずれか、または両方の足の付け根から血管に入り、細いガイドワイヤーを大動脈まで進めます。'},
+    {badge:'2',text:'小さく折りたたんだステントグラフトを、カテーテルに収めて動脈瘤まで運びます。'},
+    {badge:'3',text:'腎動脈をふさがない位置から、ステントグラフト本体と左右の脚を順に広げて固定します。'},
+    {badge:'4',text:'血液はステントグラフトの中を流れます。こぶを切り取らず、こぶの壁に伝わる直接の血圧を減らします。'}
+  ];
+  function showStep(step){
+    if(!Number.isInteger(step) || step < 0 || step >= steps.length) return;
+    sim.dataset.step = String(step);
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.simStep) === step)));
+    badge.textContent = steps[step].badge;
+    status.textContent = steps[step].text;
+  }
+  buttons.forEach(button => button.addEventListener('click', () => showStep(Number(button.dataset.simStep))));
+  showStep(0);
+})();
 </script>
 
 
