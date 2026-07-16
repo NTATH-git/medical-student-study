@@ -106,6 +106,93 @@
   .diagram-wrap{background:#fafbfd;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0}
   .diagram-wrap svg{max-width:100%;height:auto}
   .diagram-caption{font-size:.83rem;color:var(--text);margin-top:.7rem;text-align:left;line-height:1.7}
+  /* Responsive teaching figures */
+  .teaching-figure{margin:1.4rem 0;background:linear-gradient(145deg,#f8fafc,#eef3f8);border:1px solid var(--border);border-radius:16px;padding:1.25rem;box-shadow:var(--shadow-sm)}
+  .figure-message{display:flex;align-items:center;gap:.65rem;margin-bottom:1rem;color:var(--navy);font-weight:700;text-align:left}
+  .figure-message .badge{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;border-radius:50%;background:var(--accent);color:#fff;font-size:1rem}
+  .pressure-story{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.8rem;align-items:stretch;margin-bottom:1rem}
+  .pressure-card{display:flex;align-items:center;gap:.8rem;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.85rem 1rem;text-align:left}
+  .pressure-card.outside{border-color:#90a4ae}
+  .pressure-card.inside{border-color:#1565c0;background:#eef6ff}
+  .pressure-value{display:flex;align-items:center;justify-content:center;flex:0 0 3.2rem;height:3.2rem;border-radius:50%;background:#eceff1;color:var(--navy);font-size:1.05rem;font-weight:800}
+  .pressure-card.inside .pressure-value{background:#1565c0;color:#fff}
+  .pressure-copy strong{display:block;color:var(--navy);font-size:.92rem}
+  .pressure-copy small{display:block;color:var(--muted);font-size:.76rem;line-height:1.45;margin-top:.15rem}
+  .pressure-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:8.5rem;color:var(--accent);font-size:.74rem;font-weight:700;text-align:center}
+  .pressure-arrow::after{content:'\2192';font-size:2rem;line-height:1;margin-top:.15rem}
+  .mechanism-flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:.65rem;align-items:stretch}
+  .mechanism-step{position:relative;background:#fff;border:1px solid var(--border);border-radius:13px;padding:.8rem;text-align:left;overflow:hidden}
+  .mechanism-step h4{color:var(--navy);font-size:.88rem;margin:.55rem 0 .25rem;padding-right:.15rem}
+  .mechanism-step p{font-size:.78rem;line-height:1.55;color:var(--text);margin:0}
+  .step-number{position:absolute;top:.55rem;left:.55rem;z-index:3;display:flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:50%;background:var(--navy);color:#fff;font-size:.86rem;font-weight:800;box-shadow:0 2px 6px rgba(11,37,69,.2)}
+  .mechanism-link{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--accent);font-size:.7rem;font-weight:700;min-width:3.2rem;text-align:center}
+  .mechanism-link::after{content:'\2192';font-size:1.8rem;line-height:1;margin-top:.15rem}
+  .mini-cutaway{position:relative;height:132px;border-radius:9px;overflow:hidden;background:#f7f9fb;border:1px solid var(--border)}
+  .mini-cutaway .air-zone{position:absolute;inset:0 0 auto;height:38px;background:linear-gradient(#fff,#f4f7fa)}
+  .mini-cutaway .skin-layer{position:absolute;left:0;right:0;top:38px;height:20px;background:#f8c8c8;border-top:2px solid #d98484;border-bottom:2px solid #d98484}
+  .mini-cutaway .subcut-layer{position:absolute;left:0;right:0;top:58px;height:39px;background:repeating-linear-gradient(135deg,#ffe0b2 0 8px,#ffd59a 8px 16px)}
+  .mini-cutaway .vein-layer{position:absolute;left:7%;right:7%;bottom:9px;height:28px;background:#1565c0;border-radius:15px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
+  .mini-cutaway .vein-label{position:absolute;left:0;right:0;bottom:15px;color:#fff;font-size:.67rem;font-weight:700;text-align:center;z-index:2}
+  .mini-cutaway .tract{position:absolute;top:31px;left:calc(50% - 7px);width:14px;height:78px;background:#fff;border:2px dashed var(--accent);z-index:2}
+  .mini-cutaway .air-dot{position:absolute;width:10px;height:10px;border:2px solid var(--accent);background:#fff;border-radius:50%;z-index:3}
+  .mini-cutaway .air-dot.d1{top:8px;left:calc(50% - 5px)}
+  .mini-cutaway .air-dot.d2{top:25px;left:calc(50% + 7px)}
+  .mini-cutaway .air-dot.d3{top:69px;left:calc(50% - 5px)}
+  .mini-cutaway .air-dot.d4{bottom:17px;left:calc(50% + 7px)}
+  .mini-cutaway .down-arrow{position:absolute;top:11px;left:calc(50% - 19px);height:91px;border-left:4px solid var(--accent);z-index:2}
+  .mini-cutaway .down-arrow::after{content:'';position:absolute;left:-9px;bottom:-1px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:11px solid var(--accent)}
+  .mini-cutaway .tract-label{position:absolute;right:5px;top:64px;color:var(--accent);font-size:.66rem;font-weight:700;z-index:3}
+  .heart-scene{height:132px;border-radius:9px;background:radial-gradient(circle at 50% 48%,#fff 0 28%,#f7e8eb 29% 50%,#f4f7fa 51%);border:1px solid var(--border);position:relative;overflow:hidden}
+  .heart-shape{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%) rotate(-45deg);width:58px;height:58px;background:#d84343;border-radius:10px 0 10px 10px;box-shadow:0 4px 10px rgba(198,40,40,.25)}
+  .heart-shape::before,.heart-shape::after{content:'';position:absolute;width:58px;height:58px;background:#d84343;border-radius:50%}
+  .heart-shape::before{top:-29px;left:0}
+  .heart-shape::after{top:0;left:29px}
+  .heart-bubbles{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);z-index:2;color:#fff;font-size:1.35rem;letter-spacing:-.15rem;font-weight:800}
+  .outflow-arrow{position:absolute;right:8px;top:22px;color:var(--accent);font-size:.68rem;font-weight:700;text-align:right}
+  .outflow-arrow::after{content:'\2197';display:block;font-size:1.8rem;line-height:1}
+  .figure-legend{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:.85rem;font-size:.73rem;color:var(--muted)}
+  .legend-item{display:inline-flex;align-items:center;gap:.35rem}
+  .legend-mark{display:inline-block;width:1.1rem;height:.45rem;border-radius:4px;background:#1565c0}
+  .legend-mark.air{height:.15rem;background:var(--accent);position:relative}
+  .legend-mark.air::after{content:'';position:absolute;right:-1px;top:-3px;border-left:5px solid var(--accent);border-top:3px solid transparent;border-bottom:3px solid transparent}
+  .legend-mark.tract{height:.8rem;background:#fff;border:2px dashed var(--accent)}
+  .teaching-figure figcaption{margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.82rem;line-height:1.65;color:var(--text);text-align:left}
+  .dressing-compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .dressing-panel{background:#fff;border:2px solid var(--border);border-radius:14px;padding:1rem;text-align:left}
+  .dressing-panel.unsafe{border-color:#ef9a9a}
+  .dressing-panel.safe{border-color:#81c784}
+  .dressing-title{display:flex;align-items:center;gap:.55rem;margin-bottom:.7rem;font-weight:800;color:var(--navy)}
+  .dressing-title .status{display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;color:#fff;background:var(--accent)}
+  .safe .dressing-title .status{background:var(--success)}
+  .dressing-visual{position:relative;height:220px;border-radius:10px;overflow:hidden;background:#f6f8fb;border:1px solid var(--border)}
+  .dressing-visual .air-label{position:absolute;top:7px;left:10px;color:var(--accent);font-size:.7rem;font-weight:800}
+  .gauze-pad,.film-sheet,.vaseline-pad{position:absolute;left:20%;right:20%;z-index:5;text-align:center;font-size:.66rem;font-weight:700;border-radius:5px}
+  .gauze-pad{top:35px;height:26px;line-height:26px;background:repeating-linear-gradient(45deg,#fff8e1 0 5px,#ffe0a6 5px 8px);border:2px dashed #ef6c00;color:#9a4a00}
+  .film-sheet{top:24px;height:18px;background:rgba(21,101,192,.2);border:2px solid #1565c0;color:#0b4f95;line-height:14px}
+  .vaseline-pad{top:42px;height:24px;line-height:22px;background:#fff59d;border:2px solid #f9a825;color:#7a5300}
+  .dressing-visual .skin-strip{position:absolute;left:5%;right:5%;top:82px;height:24px;background:#f8c8c8;border-top:2px solid #d98484;border-bottom:2px solid #d98484}
+  .dressing-visual .subcut-strip{position:absolute;left:5%;right:5%;top:106px;height:53px;background:repeating-linear-gradient(135deg,#ffe0b2 0 9px,#ffd59a 9px 18px)}
+  .dressing-visual .vein-strip{position:absolute;left:8%;right:8%;bottom:18px;height:34px;background:#1565c0;border-radius:18px;color:#fff;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .dressing-visual .open-tract{position:absolute;top:75px;left:calc(50% - 8px);width:16px;height:105px;background:#fff;border:2px dashed var(--accent);z-index:3}
+  .air-stream{position:absolute;top:6px;left:calc(50% - 2px);height:177px;border-left:4px solid var(--accent);z-index:7}
+  .air-stream::after{content:'';position:absolute;left:-9px;bottom:-1px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid var(--accent)}
+  .air-stream.blocked{height:27px}
+  .air-stream.blocked::after{display:none}
+  .seal-stop{position:absolute;top:15px;right:12%;z-index:8;width:42px;height:42px;border-radius:50%;background:var(--success);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:800;border:3px solid #fff;box-shadow:0 2px 7px rgba(46,125,50,.3)}
+  .dressing-outcome{margin-top:.7rem;padding:.65rem .75rem;border-radius:8px;background:#ffebee;color:#8f1717;font-size:.79rem;line-height:1.55;font-weight:600}
+  .safe .dressing-outcome{background:#e8f5e9;color:#1b5e20}
+  @media (max-width:720px){
+    .teaching-figure{padding:1rem .8rem}
+    .pressure-story,.mechanism-flow{grid-template-columns:1fr}
+    .pressure-arrow,.mechanism-link{min-width:0;min-height:2.4rem}
+    .pressure-arrow::after,.mechanism-link::after{content:'\2193';font-size:1.55rem}
+    .mechanism-link{flex-direction:row;gap:.45rem}
+    .dressing-compare{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .mechanism-step:nth-child(3) .air-dot,.unsafe .air-stream{animation:airPulse 1.8s ease-in-out infinite}
+    @keyframes airPulse{0%,100%{opacity:.45}50%{opacity:1}}
+  }
   /* Ref figure */
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
@@ -359,38 +446,70 @@
   </ul>
   <p>この陰圧で肺が膨らみ、同時に<strong>胸腔内の静脈(上大静脈・右房)も陰圧化</strong>します。これが「<u>胸腔吸引作用</u>(thoracic suction)」と呼ばれ、静脈還流を促進する正常な生理です。</p>
 
-  <div class="diagram-wrap">
-    <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CV抜去時の空気塞栓の機序">
-      <!-- 胸郭 -->
-      <ellipse cx="200" cy="140" rx="160" ry="80" fill="#e8eef5" stroke="#0b2545" stroke-width="2"/>
-      <text x="160" y="40" font-size="11" fill="#0b2545" font-weight="bold">胸腔内陰圧 (−5〜−40 cmH₂O)</text>
+  <figure class="teaching-figure" aria-labelledby="air-mechanism-title">
+    <div class="figure-message" id="air-mechanism-title">
+      <span class="badge" aria-hidden="true">!</span>
+      <span>空気は「圧の高い外」から「圧の低い胸腔内静脈」へ流れ込みます</span>
+    </div>
 
-      <!-- 上大静脈 -->
-      <rect x="180" y="60" width="20" height="100" fill="#1565c0" rx="3"/>
-      <text x="205" y="105" font-size="10" fill="#1565c0" font-weight="bold">上大静脈</text>
+    <div class="pressure-story" aria-label="外気と胸腔内の圧較差">
+      <div class="pressure-card outside">
+        <span class="pressure-value">0</span>
+        <span class="pressure-copy"><strong>外気</strong><small>大気圧を基準に 0 cmH₂O</small></span>
+      </div>
+      <div class="pressure-arrow">圧の高い方から低い方へ</div>
+      <div class="pressure-card inside">
+        <span class="pressure-value">低圧</span>
+        <span class="pressure-copy"><strong>胸腔内</strong><small>吸気で陰圧が強くなる</small></span>
+      </div>
+    </div>
 
-      <!-- カテーテル経路 (抜去後の管腔) -->
-      <line x1="60" y1="80" x2="190" y2="100" stroke="#999" stroke-width="3" stroke-dasharray="6,3"/>
-      <circle cx="60" cy="80" r="6" fill="#fff" stroke="#c62828" stroke-width="2"/>
-      <text x="15" y="65" font-size="10" fill="#c62828" font-weight="bold">抜去部位</text>
-      <text x="15" y="78" font-size="9" fill="#5a6473">(皮膚穿刺孔)</text>
+    <div class="mechanism-flow">
+      <article class="mechanism-step">
+        <span class="step-number">1</span>
+        <div class="mini-cutaway" aria-hidden="true">
+          <div class="air-zone"></div><div class="skin-layer"></div><div class="subcut-layer"></div>
+          <div class="vein-layer"></div><span class="vein-label">胸腔内静脈</span>
+          <div class="tract"></div><span class="tract-label">瘻孔</span>
+        </div>
+        <h4>抜去後も通り道が残る</h4>
+        <p>カテーテルを抜いても、皮膚から静脈へ続く瘻孔はすぐには閉じません。</p>
+      </article>
 
-      <!-- 空気の流れ矢印 -->
-      <path d="M 35 100 L 55 88" stroke="#c62828" stroke-width="2" fill="none" marker-end="url(#arr)"/>
-      <text x="10" y="110" font-size="10" fill="#c62828">空気</text>
+      <div class="mechanism-link">吸気で陰圧</div>
 
-      <defs>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <polygon points="0 0, 8 4, 0 8" fill="#c62828"/>
-        </marker>
-      </defs>
+      <article class="mechanism-step">
+        <span class="step-number">2</span>
+        <div class="mini-cutaway" aria-hidden="true">
+          <div class="air-zone"></div><div class="skin-layer"></div><div class="subcut-layer"></div>
+          <div class="vein-layer"></div><span class="vein-label">胸腔内静脈</span>
+          <div class="tract"></div><div class="down-arrow"></div>
+          <i class="air-dot d1"></i><i class="air-dot d2"></i><i class="air-dot d3"></i><i class="air-dot d4"></i>
+        </div>
+        <h4>空気が静脈内へ入る</h4>
+        <p>吸気時の圧較差により、開いた瘻孔が外気の入口になります。</p>
+      </article>
 
-      <!-- 心臓 -->
-      <ellipse cx="220" cy="170" rx="40" ry="35" fill="#fce4e4" stroke="#c62828" stroke-width="1.5"/>
-      <text x="205" y="175" font-size="11" fill="#c62828" font-weight="bold">右房/右室</text>
-      <text x="200" y="200" font-size="9" fill="#c62828">→ 空気塞栓へ</text>
-    </svg>
-  </div>
+      <div class="mechanism-link">静脈血流</div>
+
+      <article class="mechanism-step">
+        <span class="step-number">3</span>
+        <div class="heart-scene" aria-hidden="true">
+          <div class="heart-shape"></div><span class="heart-bubbles">○○</span>
+          <span class="outflow-arrow">肺動脈方向へ</span>
+        </div>
+        <h4>右心系に空気が集まる</h4>
+        <p>空気が右房・右室へ流入し、肺血流を妨げると循環虚脱につながります。</p>
+      </article>
+    </div>
+
+    <div class="figure-legend" aria-label="図の凡例">
+      <span class="legend-item"><i class="legend-mark air"></i>空気の流れ</span>
+      <span class="legend-item"><i class="legend-mark tract"></i>抜去後の瘻孔</span>
+      <span class="legend-item"><i class="legend-mark"></i>静脈</span>
+    </div>
+    <figcaption><strong>要点:</strong> 「瘻孔が残る」「吸気で胸腔内圧が下がる」「外気と静脈がつながる」の3条件が重なると、空気塞栓が起こり得ます。</figcaption>
+  </figure>
 
   <h3>抜去時に空気が引き込まれる条件</h3>
   <ol>
@@ -507,107 +626,40 @@
     <h4>抜去後 ガーゼ圧迫のみで遅発性に容態急変したケース</h4>
     <p class="scenario">中心静脈カテーテル抜去後、ガーゼで圧迫保護を行っていたが、<strong>1時間後</strong>に患者の容態が急変。レントゲン検査で<strong>空気塞栓</strong>が確認された。</p>
 
-    <div class="diagram-wrap" style="margin:.8rem 0">
-      <svg viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ガーゼのみ vs 閉塞性ドレッシングの比較図">
-        <!-- Title bar -->
-        <text x="140" y="22" font-size="14" fill="#c62828" font-weight="bold" text-anchor="middle">❌ ガーゼ圧迫のみ</text>
-        <text x="420" y="22" font-size="14" fill="#2e7d32" font-weight="bold" text-anchor="middle">⭕ 閉塞性ドレッシング</text>
+    <figure class="teaching-figure" aria-labelledby="dressing-compare-title">
+      <div class="figure-message" id="dressing-compare-title">
+        <span class="badge" aria-hidden="true">!</span>
+        <span>違いは「止血できるか」だけではなく、「外気を遮断できるか」です</span>
+      </div>
 
-        <!-- Divider -->
-        <line x1="280" y1="35" x2="280" y2="320" stroke="#e1e5ea" stroke-width="2" stroke-dasharray="4,4"/>
+      <div class="dressing-compare">
+        <article class="dressing-panel unsafe">
+          <div class="dressing-title"><span class="status" aria-hidden="true">×</span><span>通常ガーゼのみ</span></div>
+          <div class="dressing-visual" aria-label="ガーゼの隙間を通って空気が瘻孔から静脈へ入る図">
+            <span class="air-label">外気</span>
+            <div class="gauze-pad">ガーゼ（隙間あり）</div>
+            <div class="skin-strip"></div><div class="subcut-strip"></div>
+            <div class="open-tract"></div><div class="air-stream"></div>
+            <div class="vein-strip">胸腔内静脈（吸気時に圧が低下）</div>
+          </div>
+          <div class="dressing-outcome">空気がガーゼと瘻孔を通過し、遅れて空気塞栓を起こす可能性があります。</div>
+        </article>
 
-        <!-- ===== LEFT PANEL: Gauze only ===== -->
-        <!-- Gauze (porous - shown with dots/dashes) -->
-        <rect x="70" y="55" width="140" height="22" fill="#fff8e1" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="3,2"/>
-        <text x="140" y="71" font-size="10" fill="#ef6c00" text-anchor="middle">ガーゼ(隙間あり)</text>
-
-        <!-- Air arrows passing through gauze -->
-        <text x="90" y="50" font-size="11" fill="#c62828">空気</text>
-        <path d="M 100 40 L 100 90" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
-        <path d="M 140 40 L 140 90" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
-        <path d="M 180 40 L 180 90" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
-
-        <!-- Skin -->
-        <rect x="50" y="95" width="180" height="18" fill="#fce4e4" stroke="#c62828"/>
-        <text x="55" y="108" font-size="9" fill="#5a6473">皮膚</text>
-        <!-- Hole in skin -->
-        <rect x="135" y="95" width="12" height="18" fill="#fff" stroke="#c62828"/>
-
-        <!-- Subcutaneous + fistula tract -->
-        <rect x="50" y="113" width="180" height="50" fill="#ffe0b2" stroke="#ef6c00"/>
-        <text x="55" y="128" font-size="9" fill="#5a6473">皮下</text>
-        <line x1="138" y1="113" x2="138" y2="163" stroke="#fff" stroke-width="6"/>
-        <line x1="148" y1="113" x2="148" y2="163" stroke="#fff" stroke-width="6"/>
-        <text x="160" y="145" font-size="9" fill="#999">瘻孔</text>
-
-        <!-- Vein -->
-        <rect x="50" y="170" width="180" height="35" fill="#1565c0" rx="3"/>
-        <text x="55" y="190" font-size="10" fill="#fff" font-weight="bold">上大静脈(陰圧)</text>
-
-        <!-- Air entering vein -->
-        <circle cx="143" cy="180" r="3" fill="#fff" stroke="#c62828" stroke-width="1.5"/>
-        <circle cx="138" cy="190" r="2.5" fill="#fff" stroke="#c62828" stroke-width="1.5"/>
-        <circle cx="148" cy="195" r="2" fill="#fff" stroke="#c62828" stroke-width="1.5"/>
-
-        <!-- Time + outcome -->
-        <rect x="60" y="220" width="160" height="32" fill="#ffebee" stroke="#c62828" rx="4"/>
-        <text x="140" y="234" font-size="10" fill="#c62828" font-weight="bold" text-anchor="middle">1時間後…</text>
-        <text x="140" y="247" font-size="10" fill="#c62828" text-anchor="middle">💀 空気塞栓 → 容態急変</text>
-
-        <text x="140" y="280" font-size="9" fill="#5a6473" text-anchor="middle">通常ガーゼは気密性なし。</text>
-        <text x="140" y="293" font-size="9" fill="#5a6473" text-anchor="middle">瘻孔が閉鎖する前に呼吸の</text>
-        <text x="140" y="306" font-size="9" fill="#5a6473" text-anchor="middle">陰圧で空気が引き込まれる。</text>
-
-        <!-- ===== RIGHT PANEL: Occlusive dressing ===== -->
-        <!-- Film (transparent solid layer) -->
-        <rect x="350" y="50" width="140" height="8" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
-        <text x="420" y="46" font-size="9" fill="#1565c0" text-anchor="middle">フィルム(透明・気密)</text>
-
-        <!-- Vaseline gauze (solid) -->
-        <rect x="350" y="58" width="140" height="22" fill="#fff59d" stroke="#f57f17" stroke-width="1.5"/>
-        <text x="420" y="73" font-size="10" fill="#f57f17" text-anchor="middle">ワセリンガーゼ</text>
-
-        <!-- Air blocked -->
-        <text x="370" y="42" font-size="11" fill="#c62828">空気</text>
-        <path d="M 380 32 L 380 46" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
-        <path d="M 420 32 L 420 46" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
-        <path d="M 460 32 L 460 46" stroke="#c62828" stroke-width="2" marker-end="url(#a4)"/>
-        <text x="370" y="100" font-size="20" fill="#2e7d32" font-weight="bold">✕</text>
-        <text x="415" y="100" font-size="20" fill="#2e7d32" font-weight="bold">✕</text>
-        <text x="455" y="100" font-size="20" fill="#2e7d32" font-weight="bold">✕</text>
-
-        <!-- Skin -->
-        <rect x="330" y="103" width="180" height="18" fill="#fce4e4" stroke="#c62828"/>
-        <text x="335" y="116" font-size="9" fill="#5a6473">皮膚</text>
-        <rect x="415" y="103" width="12" height="18" fill="#fff" stroke="#c62828"/>
-
-        <!-- Subcutaneous + fistula -->
-        <rect x="330" y="121" width="180" height="50" fill="#ffe0b2" stroke="#ef6c00"/>
-        <text x="335" y="136" font-size="9" fill="#5a6473">皮下</text>
-        <line x1="418" y1="121" x2="418" y2="171" stroke="#fff" stroke-width="6"/>
-        <line x1="428" y1="121" x2="428" y2="171" stroke="#fff" stroke-width="6"/>
-        <text x="440" y="153" font-size="9" fill="#999">瘻孔</text>
-
-        <!-- Vein - clean -->
-        <rect x="330" y="178" width="180" height="35" fill="#1565c0" rx="3"/>
-        <text x="335" y="198" font-size="10" fill="#fff" font-weight="bold">上大静脈(陰圧)</text>
-
-        <!-- Outcome - safe -->
-        <rect x="340" y="228" width="160" height="32" fill="#e8f5e9" stroke="#2e7d32" rx="4"/>
-        <text x="420" y="242" font-size="10" fill="#2e7d32" font-weight="bold" text-anchor="middle">瘻孔が閉鎖するまで</text>
-        <text x="420" y="255" font-size="10" fill="#2e7d32" text-anchor="middle">✅ 空気進入をブロック</text>
-
-        <text x="420" y="288" font-size="9" fill="#5a6473" text-anchor="middle">ワセリンが油性で気密性を作り、</text>
-        <text x="420" y="301" font-size="9" fill="#5a6473" text-anchor="middle">透明フィルムが二重に密閉。</text>
-        <text x="420" y="314" font-size="9" fill="#5a6473" text-anchor="middle">最低24時間継続(72時間が安全)。</text>
-
-        <defs>
-          <marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-            <polygon points="0 0, 8 4, 0 8" fill="#c62828"/>
-          </marker>
-        </defs>
-      </svg>
-    </div>
+        <article class="dressing-panel safe">
+          <div class="dressing-title"><span class="status" aria-hidden="true">✓</span><span>閉塞性ドレッシング</span></div>
+          <div class="dressing-visual" aria-label="フィルムとワセリンガーゼが空気を遮断する図">
+            <span class="air-label">外気</span>
+            <div class="film-sheet">透明フィルム</div>
+            <div class="vaseline-pad">ワセリンガーゼ</div>
+            <div class="skin-strip"></div><div class="subcut-strip"></div>
+            <div class="open-tract"></div><div class="air-stream blocked"></div><div class="seal-stop" aria-hidden="true">止</div>
+            <div class="vein-strip">胸腔内静脈（吸気時に圧が低下）</div>
+          </div>
+          <div class="dressing-outcome">ワセリンガーゼと透明フィルムで気密性を作り、瘻孔が閉じるまで外気を遮断します。</div>
+        </article>
+      </div>
+      <figcaption><strong>左:</strong> ガーゼは血液を吸収しても、空気を密閉できません。<strong>右:</strong> 閉塞性ドレッシングは穿刺部を面で覆い、外気の入口をふさぎます。</figcaption>
+    </figure>
 
     <div class="lesson"><strong>📌 学び:</strong> 通常のガーゼでは気密性がなく、瘻孔が閉じる前に呼吸サイクルで空気が引き込まれる。抜去直後に <u>密閉性のドレッシング材で被覆 + 5分以上圧迫</u> が必須。</div>
   </div>
