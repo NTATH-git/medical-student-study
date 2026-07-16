@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>正中切開 大動脈弁置換術(AVR)の手順 ― 医学生のために (v2)</title>
-<meta name="description" content="術前準備から閉胸まで ― 7フェーズで理解する">
+<title>内シャント手術 ― 自己血管AVFと人工血管AVG | 医学生のための心臓血管外科</title>
+<meta name="description" content="血液透析の内シャント手術を、自己血管内シャント(AVF)と人工血管内シャント(AVG)に分けて解説。術前評価、術式、使い分け、成熟・穿刺、合併症、診察法を学ぶ医学生向け教材。">
 <style>
   :root{
     --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
@@ -190,38 +190,84 @@
     .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
   }
   nav a.home-link:hover{background:rgba(255,255,255,.25)}
-  .phase{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:.8rem 0}
-  .phase-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;cursor:pointer;user-select:none}
-  .phase-num{background:var(--accent);color:#fff;width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.05rem;flex-shrink:0}
-  .phase-title{color:var(--navy);font-size:1.05rem;font-weight:600;flex-grow:1}
-  .phase-chev{color:var(--accent);font-size:1.3rem;transition:transform .25s}
-  .phase.open .phase-chev{transform:rotate(90deg)}
-  .phase-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
-  .phase.open .phase-body{max-height:2500px}
-  .phase-body-inner{padding-top:.8rem}
-  .step-list{list-style:none;padding-left:0}
-  .step-list > li{position:relative;padding:.5rem 0 .5rem 1.8rem;border-left:2px solid var(--border);margin-left:.5rem;padding-left:1.2rem}
-  .step-list > li::before{content:"▸";position:absolute;left:-.6rem;top:.5rem;background:#fff;color:var(--accent);font-weight:bold;padding:0 .3rem}
-  .step-list strong{color:var(--navy)}
-  .pitfall{background:#ffebee;border-left:3px solid var(--danger);padding:.5rem .7rem;font-size:.85rem;margin:.4rem 0;border-radius:4px}
-  .pitfall strong{color:var(--danger)}
-  .tip-inline{background:#e3f2fd;border-left:3px solid #1976d2;padding:.5rem .7rem;font-size:.85rem;margin:.4rem 0;border-radius:4px}
-  .tip-inline strong{color:#1976d2}
-  .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;margin-top:.8rem;font-size:.82rem}
-  .timeline div{padding:.6rem .8rem;background:#f5f8fc;border-left:3px solid var(--accent);border-radius:4px}
-  .timeline strong{color:var(--navy);display:block;margin-bottom:.2rem}
+  .callout.success{background:#e8f5e9;border-left-color:var(--success)}
+  .compare-table th:first-child{background:#5a6473}
+  .compare-table tr td:nth-child(2){background:#fff0f0}
+  .compare-table tr td:nth-child(3){background:#e8f5e9}
+  .func-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.8rem}
+  .func-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem}
+  .func-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .func-card p{font-size:.85rem}
+  .principle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
+  .principle-card{background:#e3f2fd;border:1px solid #bbdefb;border-top:4px solid #1565c0;border-radius:8px;padding:1rem}
+  .principle-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+  .principle-card .num{display:inline-block;background:#1565c0;color:#fff;width:1.7rem;height:1.7rem;border-radius:50%;text-align:center;line-height:1.7rem;font-weight:bold;font-size:.85rem}
+  .principle-card p{font-size:.85rem}
+  .access-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.8rem}
+  .access-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:8px;padding:.9rem 1.1rem;position:relative}
+  .access-card.first{border-top-color:var(--success)}
+  .access-card.second{border-top-color:#1565c0}
+  .access-card.temp{border-top-color:var(--warn)}
+  .access-card h4{color:var(--navy);font-size:1rem;margin-bottom:.3rem}
+  .access-card .rank{display:inline-block;font-size:.72rem;padding:.15rem .55rem;border-radius:999px;background:#e3f2fd;color:#1565c0;margin-bottom:.4rem}
+  .access-card .rank.first{background:#e8f5e9;color:var(--success)}
+  .access-card .rank.temp{background:#fff3e0;color:var(--warn)}
+  .access-card .desc{font-size:.86rem}
+  /* Dialysis shunt surgery */
+  .shunt-concept{display:grid;grid-template-columns:1fr;gap:.9rem;margin:1rem 0}
+  @media (min-width:700px){.shunt-concept{grid-template-columns:1fr 1fr}}
+  .shunt-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:1.05rem 1.15rem;overflow:hidden}
+  .shunt-card.avf{border-color:var(--success)}
+  .shunt-card.avg{border-color:#1565c0}
+  .shunt-card h3{margin:0 0 .45rem;color:var(--navy);font-size:1.05rem}
+  .shunt-card p{font-size:.88rem}
+  .flow-schematic{display:flex;align-items:center;justify-content:center;gap:.25rem;margin:.8rem 0;padding:.75rem .35rem;background:#f7f9fc;border-radius:10px;min-height:80px;overflow:hidden}
+  .flow-segment{height:24px;min-width:54px;flex:1;border-radius:99px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;font-weight:700;position:relative;white-space:nowrap}
+  .flow-segment.artery{background:linear-gradient(90deg,#c62828,#ef5350)}
+  .flow-segment.vein{background:linear-gradient(90deg,#7e57c2,#1565c0)}
+  .flow-segment.graft{background:repeating-linear-gradient(135deg,#00897b 0,#00897b 8px,#26a69a 8px,#26a69a 16px);min-width:72px}
+  .flow-join{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;box-shadow:0 2px 6px rgba(11,37,69,.2)}
+  .flow-arrow{color:var(--accent);font-weight:800;flex:0 0 auto}
+  .shunt-points{list-style:none!important;padding:0!important;margin:.65rem 0 0!important}
+  .shunt-points li{position:relative;padding:.3rem 0 .3rem 1.35rem;font-size:.86rem!important;line-height:1.65!important}
+  .shunt-points li::before{content:"✓";position:absolute;left:0;color:var(--success);font-weight:800}
+  .shunt-card.avg .shunt-points li::before{color:#1565c0}
+  .shunt-compare th:nth-child(2){background:var(--success)}
+  .shunt-compare th:nth-child(3){background:#1565c0}
+  .shunt-compare tr td:nth-child(2){background:#f1f8f1}
+  .shunt-compare tr td:nth-child(3){background:#f0f6ff}
+  .op-steps{list-style:none!important;padding:0!important;margin:1rem 0!important;counter-reset:opstep}
+  .op-steps li{position:relative;padding:.55rem 0 .75rem 3rem;border-left:2px dashed var(--border);margin-left:1rem;font-size:.9rem!important}
+  .op-steps li:last-child{border-left-color:transparent}
+  .op-steps li::before{counter-increment:opstep;content:counter(opstep);position:absolute;left:-1rem;top:.45rem;width:2rem;height:2rem;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:var(--shadow-sm)}
+  .op-steps li strong{color:var(--navy)}
+  .exam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;margin:.8rem 0}
+  .exam-card{border:1px solid var(--border);border-top:4px solid var(--accent);border-radius:10px;padding:.9rem 1rem;background:#fff}
+  .exam-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.3rem}
+  .exam-card p{font-size:.84rem;line-height:1.75}
+  .timing-lane{display:grid;grid-template-columns:92px 1fr;gap:.65rem;align-items:start;padding:.75rem 0;border-bottom:1px solid var(--border)}
+  .timing-lane:last-child{border-bottom:none}
+  .timing-label{font-size:.8rem;font-weight:700;padding:.25rem .5rem;border-radius:99px;text-align:center;color:#fff;background:var(--navy)}
+  .timing-lane p{font-size:.88rem!important;margin:0}
+  .reference-list{padding-left:1.3rem!important}
+  .reference-list li{margin:.55rem 0;font-size:.86rem!important;line-height:1.7!important}
+  @media (max-width:480px){
+    .flow-schematic{gap:.15rem;padding:.65rem .2rem}
+    .flow-segment{min-width:43px;font-size:.62rem}
+    .flow-segment.graft{min-width:58px}
+    .flow-join{width:30px;height:30px;flex-basis:30px;font-size:.58rem}
+    .timing-lane{grid-template-columns:1fr}
+    .timing-label{width:max-content}
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
+  .legend span{display:flex;align-items:center;gap:.3rem}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
   .menu-toggle{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
   .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
   #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
   #menuToggle:checked ~ .drawer{transform:translateX(0)}
-  .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 8px 24px rgba(11,37,69,.15);margin:1rem 0;background:#000}
-  .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-  .video-caption{font-size:.82rem;color:var(--muted);margin-top:.5rem;padding:.5rem .8rem;background:#f5f8fc;border-radius:6px;border-left:3px solid var(--accent)}
-  .video-caption strong{color:var(--navy)}
-  .video-caption a{color:var(--accent);text-decoration:none;word-break:break-all}
-  .video-caption a:hover{text-decoration:underline}
   .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
 
   /* === Topbar actions cluster (Menu + v1/v2) === */
@@ -263,10 +309,10 @@
       <span class="logo-text">Heart of Medicine</span>
     </a>
     <nav class="site-nav">
-      <a href="#overview">概要</a>
-      <a href="#indication">適応</a>
-      <a href="#timeline">タイムライン</a>
-      <a href="#video">手術動画</a>
+      <a href="#basics">内シャントとは</a>
+      <a href="#avf">自己血管AVF</a>
+      <a href="#avg">人工血管AVG</a>
+      <a href="#compare">使い分け</a>
       <a href="index_v2.html" class="cta">トップ</a>
     </nav>
     <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
@@ -288,15 +334,16 @@
   </svg>
   <div class="hero-inner">
     <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
-    <h1>正中切開 大動脈弁置換術<br><span class="accent">(AVR)の手順</span></h1>
-    <p class="lead">術前準備から閉胸まで ― 7フェーズで理解する</p>
+    <h1>内シャント手術<br><span class="accent">AVFとAVG</span></h1>
+    <p class="lead">自己血管と人工血管 ― 選択・吻合・成熟・合併症を一つにつなげる</p>
     <div class="hero-meta">
-      <span class="hero-chip">🎓 <strong>高学年</strong> 対象</span>
-      <span class="hero-chip">📊 <strong>8</strong> セクション</span>
-      <span class="hero-chip">❓ <strong>7</strong> 問クイズ</span>
+      <span class="hero-chip">🎓 <strong>医学生・初期研修医</strong> 対象</span>
+      <span class="hero-chip">📊 <strong>10</strong> セクション</span>
+      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">⚖️ <strong>AVF / AVG</strong> 比較</span>
     </div>
   </div>
-  <a href="#overview" class="scroll-indicator" aria-label="下にスクロール">
+  <a href="#basics" class="scroll-indicator" aria-label="下にスクロール">
     <div class="mouse"></div>
     <span>SCROLL</span>
   </a>
@@ -305,12 +352,14 @@
 <nav class="section-nav" aria-label="セクション">
   <div class="section-nav-inner">
     <a href="index_v2.html" class="home">🏠 目次</a>
-    <a href="#overview">概要</a>
-    <a href="#indication">適応</a>
-    <a href="#timeline">タイムライン</a>
-    <a href="#video">手術動画</a>
-    <a href="#phases">7フェーズ詳細</a>
+    <a href="#basics">内シャント</a>
+    <a href="#preop">術前評価</a>
+    <a href="#avf">AVF</a>
+    <a href="#avg">AVG</a>
+    <a href="#compare">比較</a>
+    <a href="#postop">術後</a>
     <a href="#complications">合併症</a>
+    <a href="#exam">診察</a>
     <a href="#quiz">クイズ</a>
     <a href="#glossary">用語</a>
   </div>
@@ -320,339 +369,282 @@
 <div class="disclaimer reveal" role="note" aria-label="重要なお知らせ">
   <div class="disclaimer-icon">⚠️</div>
   <div class="disclaimer-text">
-    <strong>本ページは学習用の参考資料です</strong>
-    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+    <strong>本ページは医学生向けの学習資料です</strong>
+    実際のアクセス選択・手術・穿刺開始は、患者ごとの腎代替療法計画、血管条件、心機能、施設方針、使用する人工血管の添付文書に従って判断します。<u>診療判断には最新ガイドラインと担当チームの評価をご確認ください</u>。
   </div>
 </div>
 
-<section class="content reveal" id="overview">
-  <h2>1. 概要</h2>
+<section class="content reveal" id="basics">
+  <h2>1. 内シャントとは ― 動脈と静脈をつなぐ</h2>
+  <p>血液透析では、1回の治療中に十分な血液を安定して取り出し、浄化した血液を体へ戻すための <strong>バスキュラーアクセス(vascular access)</strong> が必要です。内シャントは、皮下にある動脈と静脈を外科的につなぎ、静脈へ多くの血液を流して太く丈夫にする方法です。</p>
 
-  <div class="ref-figure">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coronary_artery_bypass_surgery_Image_657C-PH.jpg"
-         alt="心臓手術中の手術室"
-         loading="lazy">
-    <div class="ref-caption">
-      <strong>参考:心臓血管外科の手術室(実機写真)</strong>。
-      右上に人工心肺装置、患者の周囲には麻酔器・モニター・手術灯。多職種チームによる協働で行う。
+  <div class="key-box">
+    内シャントの本質 = <u>動脈の高い流量で静脈を「動脈化」し、反復穿刺できる血管を作る</u>
+  </div>
+
+  <div class="shunt-concept">
+    <article class="shunt-card avf">
+      <h3>① 自己血管内シャント(AVF)</h3>
+      <p><strong>Arteriovenous Fistula</strong>。患者自身の動脈と静脈を直接吻合します。</p>
+      <div class="flow-schematic" role="img" aria-label="動脈と自己静脈を直接吻合するAVFの模式図">
+        <span class="flow-segment artery">動脈</span><span class="flow-arrow">→</span><span class="flow-join">吻合</span><span class="flow-arrow">→</span><span class="flow-segment vein">自己静脈</span>
+      </div>
+      <ul class="shunt-points">
+        <li>感染・血栓が比較的少なく、長期使用に向く</li>
+        <li>使用前に静脈が発達する「成熟」が必要</li>
+      </ul>
+    </article>
+
+    <article class="shunt-card avg">
+      <h3>② 人工血管内シャント(AVG)</h3>
+      <p><strong>Arteriovenous Graft</strong>。動脈と静脈の間を人工血管で橋渡しします。</p>
+      <div class="flow-schematic" role="img" aria-label="動脈と静脈を人工血管で橋渡しするAVGの模式図">
+        <span class="flow-segment artery">動脈</span><span class="flow-arrow">→</span><span class="flow-segment graft">人工血管</span><span class="flow-arrow">→</span><span class="flow-segment vein">静脈</span>
+      </div>
+      <ul class="shunt-points">
+        <li>穿刺可能な自己静脈が乏しい場合の重要な選択肢</li>
+        <li>AVFより感染・血栓・流出路狭窄に注意</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="callout tip">
+    <strong>用語の注意:</strong> 日本で「内シャント」と呼ばれるものの中心はAVFとAVGです。AVFは自己血管を直接つなぎ、AVGは人工血管を介在させます。どちらも皮下にあり、体外へチューブが出ているわけではありません。
+  </div>
+</section>
+
+<section class="content reveal" id="preop">
+  <h2>2. 術前評価 ― 血管だけを見ない</h2>
+  <p>KDOQI 2019は、単純な「Fistula First」ではなく、患者ごとの <strong>ESKD Life-Plan</strong> に合わせて「適切な患者に、適切なアクセスを、適切な時期に」選ぶ考え方を重視しています。最初のアクセスだけでなく、閉塞時の次の候補と血管温存まで計画します。</p>
+
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>🫀 全身・心機能</h4>
+      <p>心不全、弁膜症、虚血性心疾患、予後、フレイルを評価。高流量アクセスは心負荷になり得ます。</p>
     </div>
-    <div class="ref-attribution">
-      画像出典:U.S. National Institutes of Health ―
-      <a href="https://commons.wikimedia.org/wiki/File:Coronary_artery_bypass_surgery_Image_657C-PH.jpg" target="_blank" rel="noopener">Wikimedia Commons (Public Domain)</a>
+    <div class="component-card">
+      <h4>🖐 末梢循環</h4>
+      <p>橈骨・尺骨・上腕動脈の拍動、左右血圧差、手指の冷感・虚血、動脈石灰化を確認します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🩸 静脈・流出路</h4>
+      <p>駆血前後の視診・触診、静脈の連続性、深さ、狭窄、上肢浮腫や側副血行路を確認します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🩻 超音波マッピング</h4>
+      <p>動静脈径、走行、深さ、石灰化、血流を評価。血管条件や既往に応じて選択的に行います。</p>
+    </div>
+    <div class="component-card">
+      <h4>🧭 既往と将来計画</h4>
+      <p>中心静脈カテーテル、ペースメーカー、乳房・腋窩手術、麻痺、利き手、移植予定を確認します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🦠 感染と皮膚</h4>
+      <p>全身・局所感染、浮腫、発赤、創傷を確認。特にAVGでは人工物感染を避ける計画が重要です。</p>
     </div>
   </div>
 
-  <p>大動脈弁置換術(AVR: Aortic Valve Replacement)は、重度大動脈弁狭窄症(AS)・大動脈弁閉鎖不全症(AR)に対する標準的な外科治療です。胸骨正中切開 + 人工心肺(CPB)下に大動脈を切開し、自己弁を切除して人工弁を縫着します。</p>
+  <div class="callout evidence">
+    <strong>作製部位の基本:</strong> 将来の選択肢を残すため、条件が許せば末梢側から中枢側へ検討します。ただし「非利き手・手関節AVF」を機械的に選ぶのではなく、血管条件、穿刺可能性、生活、心機能、透析開始時期を統合して決めます。
+  </div>
+</section>
 
-  <h3>所要時間の目安(単独AVR)</h3>
-  <ul>
-    <li>全体手術時間: <strong>3-4時間</strong></li>
-    <li>体外循環時間: <strong>60-90分</strong></li>
-    <li>大動脈遮断時間: <strong>40-70分</strong></li>
-  </ul>
+<section class="content reveal" id="avf">
+  <h2>3. 自己血管内シャント(AVF)</h2>
+  <p>AVFは、患者自身の動脈と静脈を直接吻合します。自己組織のみで構成されるため、成熟して安定すれば感染が少なく、長期開存が期待できるのが最大の利点です。</p>
 
-  <h3>使用する人工弁の種類</h3>
+  <h3>代表的なAVF</h3>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>種類</th><th>耐久性</th><th>抗凝固</th><th>選択基準</th></tr></thead>
+      <thead><tr><th>術式</th><th>吻合する血管</th><th>特徴</th></tr></thead>
       <tbody>
-        <tr><td>機械弁(St. Jude, ATS など)</td><td>半永久</td><td>ワーファリン生涯</td><td>65歳未満、抗凝固管理可能例</td></tr>
-        <tr><td>生体弁(Perimount, Mosaic など)</td><td>10-20年</td><td>不要(術後3-6ヶ月のみ)</td><td>65歳以上、抗凝固禁忌、妊娠希望女性</td></tr>
-        <tr><td>Sutureless弁(Perceval)</td><td>10-15年(短)</td><td>生体弁同様</td><td>高齢・短時間手術希望例</td></tr>
+        <tr><td><strong>Radiocephalic AVF</strong><br>Brescia-Cimino</td><td>橈骨動脈 ― 橈側皮静脈</td><td>手関節〜前腕。末梢側の代表で、将来の血管を温存しやすい。</td></tr>
+        <tr><td><strong>Brachiocephalic AVF</strong></td><td>上腕動脈 ― 橈側皮静脈</td><td>肘部。血流を得やすい一方、過剰血流やスチールに注意。</td></tr>
+        <tr><td><strong>Brachiobasilic AVF</strong></td><td>上腕動脈 ― 尺側皮静脈</td><td>深い尺側皮静脈を表在化・転位して穿刺可能にする。二期的手術の場合もある。</td></tr>
       </tbody>
     </table>
   </div>
+
+  <h3>手術の基本手順</h3>
+  <ol class="op-steps">
+    <li><strong>術式と走行を決める</strong> ― 視診・触診と必要に応じた超音波で、流入動脈と流出静脈を選びます。</li>
+    <li><strong>局所麻酔・血管露出</strong> ― 皮切し、静脈と動脈を愛護的に剥離します。静脈の分枝やねじれに注意します。</li>
+    <li><strong>静脈を授動する</strong> ― 静脈を吻合位置へ無理なく届かせ、屈曲や過緊張がないよう整えます。</li>
+    <li><strong>動静脈吻合</strong> ― 一般には動脈側―静脈端の端側吻合を細い非吸収性モノフィラメント糸で行います。</li>
+    <li><strong>遮断解除・開存確認</strong> ― 吻合部から流出静脈へ連続するthrill、止血、末梢手指の灌流を確認します。</li>
+    <li><strong>閉創</strong> ― 流出静脈を圧迫・屈曲させないように閉創し、術後の診察へつなげます。</li>
+  </ol>
+
+  <div class="callout danger">
+    <strong>AVFは「作ればすぐ使える」わけではありません。</strong> 静脈が太く、穿刺しやすく、十分な流量を得られる状態へ成熟する必要があります。初期不成功や成熟不全があり、再評価や追加治療を要することがあります。
+  </div>
 </section>
 
-<section class="content reveal" id="indication">
-  <h2>2. 手術適応</h2>
+<section class="content reveal" id="avg">
+  <h2>4. 人工血管内シャント(AVG)</h2>
+  <p>AVGは、動脈と静脈の間に <strong>人工血管(graft)</strong> を介在させるアクセスです。穿刺できる自己静脈が乏しい場合、AVFの成熟が期待しにくい場合、複数回のAVF不成功などで検討します。</p>
 
-  <h3>AS(大動脈弁狭窄症)</h3>
+  <div class="shunt-concept">
+    <div class="shunt-card avg">
+      <h3>前腕ループ型</h3>
+      <div class="flow-schematic" role="img" aria-label="前腕で動脈と静脈をループ状人工血管でつなぐ模式図">
+        <span class="flow-segment artery">動脈</span><span class="flow-arrow">→</span><span class="flow-segment graft">ループ状AVG</span><span class="flow-arrow">→</span><span class="flow-segment vein">静脈</span>
+      </div>
+      <p>前腕皮下にループ状に留置し、穿刺できる距離を確保します。将来の上腕側アクセスを残せる利点があります。</p>
+    </div>
+    <div class="shunt-card avg">
+      <h3>上腕ストレート／ループ型</h3>
+      <div class="flow-schematic" role="img" aria-label="上腕で動脈と静脈を人工血管でつなぐ模式図">
+        <span class="flow-segment artery">上腕動脈</span><span class="flow-arrow">→</span><span class="flow-segment graft">AVG</span><span class="flow-arrow">→</span><span class="flow-segment vein">上腕静脈</span>
+      </div>
+      <p>より太い中枢血管を利用できますが、血流量、手指虚血、心負荷を慎重に評価します。</p>
+    </div>
+  </div>
+
+  <h3>材質と手術の基本</h3>
   <ul>
-    <li>有症候性 重症AS(失神・狭心症・心不全)</li>
-    <li>無症候性 重症AS + EF低下(<50%) or 弁口面積 ≤1.0 cm²</li>
-    <li>運動負荷で症状誘発</li>
+    <li><strong>ePTFE</strong>(expanded polytetrafluoroethylene): 広く使用される多孔質人工血管。</li>
+    <li><strong>PU</strong>(polyurethane): 製品特性により早期穿刺が可能なものがあります。</li>
+    <li>ストレート、カーブ、ループなど、穿刺と将来の再建を考えて形態を選びます。</li>
   </ul>
 
-  <h3>AR(大動脈弁閉鎖不全症)</h3>
-  <ul>
-    <li>有症候性 重症AR</li>
-    <li>無症候性 重症AR + EF ≤50% or LVESD ≥50 mm</li>
-  </ul>
+  <ol class="op-steps">
+    <li><strong>流入動脈・流出静脈と皮下走行を設計</strong>します。</li>
+    <li><strong>動脈側・静脈側を露出</strong>し、人工血管が通る皮下トンネルを作ります。</li>
+    <li><strong>人工血管をトンネルへ通し</strong>、ねじれ、屈曲、過度な深さがないことを確認します。</li>
+    <li><strong>動脈側と静脈側の2か所を吻合</strong>します。静脈側吻合部は将来の狭窄好発部位です。</li>
+    <li><strong>遮断解除後にbruit・thrill、出血、手指灌流</strong>を確認して閉創します。</li>
+  </ol>
 
-  <h3>TAVI(経カテーテル弁置換)との選択</h3>
-  <ul>
-    <li>低リスク(STS Score <4%)・若年・解剖不適 → 外科AVR</li>
-    <li>高リスク・高齢(80歳以上)・併存疾患多い → TAVI</li>
-    <li>中リスクは Heart Team で判断</li>
-  </ul>
-</section>
-
-<section class="content reveal" id="timeline">
-  <h2>3. 全体タイムライン</h2>
-  <div class="timeline">
-    <div><strong>0:00</strong> 入室・全身麻酔導入</div>
-    <div><strong>0:30</strong> ライン挿入(動脈圧, 中心静脈)・TEE挿入</div>
-    <div><strong>1:00</strong> 切皮 → 胸骨正中切開</div>
-    <div><strong>1:15</strong> 心膜開放・カニュレーション準備</div>
-    <div><strong>1:30</strong> ヘパリン投与 → 動静脈カニュレーション → CPB開始</div>
-    <div><strong>1:45</strong> 体温冷却(32-34℃)・大動脈遮断 → 心停止液注入</div>
-    <div><strong>2:00</strong> 大動脈切開 → 弁切除 → サイザー測定</div>
-    <div><strong>2:30</strong> 弁輪縫合糸配置(15-18本)→ 人工弁通糸・降下・結紮</div>
-    <div><strong>3:00</strong> 大動脈閉鎖 → 脱気 → 大動脈遮断解除</div>
-    <div><strong>3:15</strong> 復温 → 心拍再開 → TEE check → CPB離脱</div>
-    <div><strong>3:30</strong> プロタミン投与 → カニューレ抜去 → 止血</div>
-    <div><strong>3:45</strong> ペーシングワイヤー・ドレーン留置</div>
-    <div><strong>4:00</strong> 胸骨ワイヤー閉鎖 → 皮膚閉鎖 → ICU搬入</div>
+  <div class="callout danger">
+    <strong>人工物を入れる手術:</strong> AVG感染は単なる皮膚感染ではなく、人工血管抜去やアクセス再建を要する重篤な問題になり得ます。無菌操作、周術期感染対策、穿刺部ローテーションが重要です。
   </div>
 </section>
 
-<section class="content reveal" id="video">
-  <h2>4. 手術動画集(YouTube)</h2>
-  <p>実際の AVR 手術の動画を <strong>3本</strong> 集めました。文字とイラストで学んだ内容が、生きた手術映像でどう繋がるかを確認しましょう。複数の動画を見比べることで、術者の流派・施設による違い、機械弁と生体弁の差なども理解できます。</p>
-
-  <h3>📹 動画 ① ― AVR overview</h3>
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/wSfV03pNRD8"
-      title="大動脈弁置換術(AVR)手術動画 ①"
-      frameborder="0"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  </div>
-  <div class="video-caption">
-    出典: <a href="https://www.youtube.com/watch?v=wSfV03pNRD8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=wSfV03pNRD8</a>
-  </div>
-
-  <h3>📹 動画 ② ― AVR 手技解説</h3>
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/-i_03kYUo2s"
-      title="大動脈弁置換術(AVR)手術動画 ②"
-      frameborder="0"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  </div>
-  <div class="video-caption">
-    出典: <a href="https://www.youtube.com/watch?v=-i_03kYUo2s" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-i_03kYUo2s</a>
+<section class="content reveal" id="compare">
+  <h2>5. AVFとAVGの使い分け</h2>
+  <div class="table-wrap">
+    <table class="shunt-compare">
+      <thead><tr><th>比較項目</th><th>自己血管 AVF</th><th>人工血管 AVG</th></tr></thead>
+      <tbody>
+        <tr><td><strong>構造</strong></td><td>動脈と自己静脈を直接吻合</td><td>動脈―人工血管―静脈</td></tr>
+        <tr><td><strong>吻合部</strong></td><td>通常1か所</td><td>動脈側・静脈側の2か所</td></tr>
+        <tr><td><strong>使い始め</strong></td><td>静脈の成熟を待つ</td><td>材質により比較的早期から評価可能</td></tr>
+        <tr><td><strong>感染</strong></td><td>比較的少ない</td><td>AVFより多く、人工物感染になり得る</td></tr>
+        <tr><td><strong>血栓・狭窄</strong></td><td>成熟不全、吻合部・流出路狭窄</td><td>血栓と静脈側吻合部狭窄が重要</td></tr>
+        <tr><td><strong>長期使用</strong></td><td>成熟すれば長期開存が期待できる</td><td>維持にPTA・血栓除去・再建を要しやすい</td></tr>
+        <tr><td><strong>主な選択場面</strong></td><td>使える自己動静脈と成熟を待つ時間がある</td><td>自己静脈が不適、AVF不成功、早めの使用が必要</td></tr>
+        <tr><td><strong>共通の注意</strong></td><td colspan="2">スチール症候群、過剰血流、心負荷、静脈高血圧、瘤形成はいずれでも起こり得る</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <h3>📹 動画 ③ ― AVR 別アプローチ</h3>
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/8nApy-rYevg"
-      title="大動脈弁置換術(AVR)手術動画 ③"
-      frameborder="0"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  <div class="callout evidence">
+    <strong>現代的な結論:</strong> AVFは多くの患者で優れた長期アクセスですが、すべての患者に常に最優先とは限りません。短い予後、血管不良、成熟不全の高い可能性、透析開始の切迫、患者の希望などを考慮し、AVGやカテーテルを含むアクセス計画を個別化します(KDOQI 2019)。
   </div>
-  <div class="video-caption">
-    出典: <a href="https://www.youtube.com/watch?v=8nApy-rYevg" target="_blank" rel="noopener">https://www.youtube.com/watch?v=8nApy-rYevg</a>
-  </div>
-
-  <div class="callout tip" style="margin-top:1rem">
-    <strong>📺 共通の見どころチェックリスト:</strong>
-    <ul style="margin-top:.3rem;font-size:.85rem">
-      <li>胸骨正中切開・心膜開放(Phase 2 と対応)</li>
-      <li>大動脈・静脈カニューレ挿入と CPB 開始(Phase 3)</li>
-      <li>大動脈遮断 → 心筋保護液注入 → 心停止(Phase 4)</li>
-      <li>大動脈切開 → 弁切除 → サイザー測定 → 縫合糸配置 → 人工弁降下・結紮(Phase 5)</li>
-      <li>大動脈閉鎖 → 脱気 → 遮断解除 → CPB離脱(Phase 6)</li>
-    </ul>
-    <p style="margin-top:.5rem;font-size:.8rem">
-      💡 <strong>複数動画を見比べるコツ:</strong> 同じ手技でも、術者によって切開のしかた・縫合の運び・脱気の順序などに違いがあります。「なぜ違うのか?」を意識すると、自分の手技の引き出しが増えます。
-    </p>
-  </div>
-
-  <p style="font-size:.78rem;color:var(--muted);margin-top:.6rem">
-    ※ 動画の著作権は投稿者に帰属します。本サイトでは教育目的の embed を行っており、動画自体のホスティングはしていません。
-  </p>
 </section>
 
-<section class="content reveal" id="phases">
-  <h2>5. 7フェーズ 詳細手順(クリックで展開)</h2>
+<section class="content reveal" id="postop">
+  <h2>6. 術後評価・成熟・穿刺開始</h2>
+  <p>穿刺開始日はカレンダーだけで決めません。創部、浮腫、感染、アクセスの発達、bruit・thrill、穿刺可能な長さと深さを経験者が評価します。</p>
 
-  <!-- Phase 1 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">1</div>
-      <div class="phase-title">術前準備・麻酔導入</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>体位:</strong> 仰臥位、両上肢は体側に。下肢にコンプレッションストッキング装着</li>
-        <li><strong>モニタリング:</strong> 5誘導心電図、SpO₂、動脈圧ライン(橈骨)、中心静脈ライン(右内頚静脈または左鎖骨下静脈)、尿カテ、温度プローブ(食道・直腸・膀胱)</li>
-        <li><strong>麻酔導入:</strong> プロポフォール + フェンタニル + ロクロニウム。気管挿管</li>
-        <li><strong>TEE挿入:</strong> 麻酔導入後に経食道心エコー(TEE)プローブ挿入 → 術前心機能・弁形態の最終確認</li>
-        <li><strong>除毛・消毒:</strong> 頸部〜大腿まで広範囲消毒。ドレーピング</li>
-      </ul>
-      <div class="tip-inline"><strong>💡 TEE の意義:</strong> 術前にAS/ARの程度、左室機能、左心耳血栓、大動脈基部径を再確認。術中は脱気の確認、術後は人工弁機能評価に用いる。</div>
-    </div></div>
+  <div class="timing-lane">
+    <span class="timing-label">術直後</span>
+    <p>thrill・bruit、出血、手指の色・温度・痛み・感覚、橈骨動脈拍動を確認します。急な手指虚血は緊急評価が必要です。</p>
+  </div>
+  <div class="timing-lane">
+    <span class="timing-label">約2週</span>
+    <p>創傷治癒、感染、持続痛、上肢腫脹、神経症状、スチール症候群、アクセス開存を手術チームが確認します。</p>
+  </div>
+  <div class="timing-lane">
+    <span class="timing-label">AVF 4–6週</span>
+    <p>成熟と穿刺可能性を評価します。未成熟なら狭窄・側枝・深さなどの原因を調べ、観察、VAIVT、表在化、再建を検討します。</p>
+  </div>
+  <div class="timing-lane">
+    <span class="timing-label">AVG 1–4週</span>
+    <p>人工血管の材質と創部の状態に応じて穿刺可能性を評価します。早期穿刺型ではより早く使用できる場合があります。</p>
   </div>
 
-  <!-- Phase 2 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">2</div>
-      <div class="phase-title">開胸 ― 胸骨正中切開</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>皮膚切開:</strong> 胸骨切痕(jugular notch)から剣状突起下まで(15-20cm)</li>
-        <li><strong>皮下組織展開:</strong> 電気メスで前胸筋膜まで到達</li>
-        <li><strong>胸骨切開:</strong> 胸骨ノコギリ(sternal saw)で正中縦切開。<u>麻酔科に「気道圧を下げて」依頼</u>(肺損傷予防)</li>
-        <li><strong>骨膜止血:</strong> ボーンワックスで切断面の出血を止める</li>
-        <li><strong>開胸器設置:</strong> retractor(Finochietto)で胸骨を開く</li>
-        <li><strong>胸腺・脂肪組織分離:</strong> 心膜露出</li>
-        <li><strong>心膜開放:</strong> 縦切開 → 心膜を吊り上げる縫合糸(stay suture)で創縁に固定</li>
-      </ul>
-      <div class="pitfall"><strong>⚠ ピットフォール:</strong> 胸骨ノコ使用時に <u>気道圧を下げない</u> と肺が膨らんで損傷リスク。再手術例では胸骨後癒着・右室直下のため、まず大腿動静脈で部分CPB確立してから開胸する。</div>
-    </div></div>
-  </div>
-
-  <!-- Phase 3 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">3</div>
-      <div class="phase-title">体外循環(CPB)確立</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>ヘパリン投与:</strong> 300-400 U/kg → ACT >400-480秒を確認</li>
-        <li><strong>大動脈カニュレーション(送血):</strong> 上行大動脈遠位(無名動脈直下)に purse-string 縫合 → カニューレ挿入 → 結紮固定 → 送血回路接続</li>
-        <li><strong>静脈カニュレーション(脱血):</strong> 右房に二段カニューレ(two-stage venous cannula)挿入。purse-string 固定</li>
-        <li><strong>心筋保護液ライン:</strong> 順行性(antegrade)は大動脈基部にneedle vent、逆行性(retrograde)は冠静脈洞にカニューレ</li>
-        <li><strong>左室ベント:</strong> 右上肺静脈経由で左房 → 左室へ。心拡張時の過伸展防止</li>
-        <li><strong>CPB開始:</strong> 灌流量2.4 L/min/m²を目安。動脈圧60-80mmHg維持</li>
-        <li><strong>体温冷却:</strong> 32-34℃まで冷却(中等度低体温)。脳保護・代謝低下</li>
-      </ul>
-      <div class="tip-inline"><strong>💡 順行性 vs 逆行性 心筋保護:</strong> ASでは大動脈弁が硬く順行性で十分注入できないことがある → 逆行性も併用。さらに大動脈遮断後に左右冠動脈口に直接 cardioplegia カニューレ挿入することもある。</div>
-    </div></div>
-  </div>
-
-  <!-- Phase 4 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">4</div>
-      <div class="phase-title">大動脈遮断・心停止確立</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>大動脈遮断(cross-clamp):</strong> カニューレと冠動脈口の間で aortic cross-clamp を装着</li>
-        <li><strong>心筋保護液(cardioplegia)注入:</strong> 冷却心筋保護液(高K⁺、~20mEq/L)を順行性に注入(800-1000mL) → 数秒で心停止</li>
-        <li><strong>追加注入:</strong> 20分ごとに300-500mL を反復(冷却維持・心筋保護)</li>
-        <li><strong>心臓表面冷却:</strong> 氷スラッシュ(slush)を心膜内に充填</li>
-      </ul>
-      <div class="pitfall"><strong>⚠ ピットフォール:</strong> 大動脈遮断中はARが強いと cardioplegia が左室へ逆流して効果不十分 + 左室拡張。ARあれば <u>大動脈切開後に直接冠動脈口へ注入</u> または <u>逆行性メイン</u> で対応。</div>
-    </div></div>
-  </div>
-
-  <!-- Phase 5 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">5</div>
-      <div class="phase-title">弁交換 ― 切除・サイジング・縫着</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>大動脈切開(aortotomy):</strong> 大動脈基部の数cm遠位で <u>横切開(transverse)</u> または <u>斜め切開(hockey-stick)</u>。切開上下に stay suture</li>
-        <li><strong>視野展開:</strong> retractor で大動脈壁を引いて弁を観察</li>
-        <li><strong>弁切除:</strong> 弁尖を <u>1枚ずつ尖端から弁輪近くで切離</u>。石灰化は専用鉗子で除去(脳塞栓予防のため断片をガーゼで保持しながら回収)</li>
-        <li><strong>弁輪のデブリ除去:</strong> 残存石灰化を完全に除去(縫合糸保持と人工弁シール性のため)</li>
-        <li><strong>サイザー測定:</strong> 各社サイザー(19-29mm)で弁輪径を測定。<u>最大限の弁口面積を選ぶ</u>(small AVRの患者ミスマッチ予防)</li>
-        <li><strong>縫合糸配置:</strong> ピル付き縫合糸(2-0 Ethibond pledgeted mattress)を 12-15本、<u>大動脈側から左室側へ(non-everting)</u> または逆方向(everting)に配置</li>
-        <li><strong>人工弁通糸:</strong> 縫合糸を人工弁のsewing ringに通す</li>
-        <li><strong>弁降下:</strong> 縫合糸を引きながら人工弁を弁輪へ slide-down</li>
-        <li><strong>結紮:</strong> 縫合糸をすべて結紮(機械弁では機械的可動域に注意)。剩余糸切除</li>
-        <li><strong>弁機能確認:</strong> 開閉動作・周囲漏れがないか視診</li>
-      </ul>
-      <div class="tip-inline"><strong>💡 patient-prosthesis mismatch (PPM)対策:</strong> 弁輪が小さい(<21mm)女性などでは大きい弁が入らない。Aortic root enlargement(Nicks法、Manougian法)、stentless弁、homograft、suturelessなどで対応。</div>
-    </div></div>
-  </div>
-
-  <!-- Phase 6 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">6</div>
-      <div class="phase-title">大動脈閉鎖・脱気・遮断解除・CPB離脱</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>大動脈閉鎖:</strong> 4-0 prolene で2層連続縫合(外膜・内膜)</li>
-        <li><strong>脱気(de-airing):</strong> 大動脈ベントから空気吸引。手指で心尖部・左室を圧迫して空気を押し出す。TEE で左室・左房・上行大動脈の空気残存を確認</li>
-        <li><strong>復温開始:</strong> CPB回路で37℃まで温める</li>
-        <li><strong>大動脈遮断解除:</strong> Cross-clamp 解除。冠動脈再灌流開始</li>
-        <li><strong>心拍再開:</strong> 通常 心室細動 → 自然心拍 or DC除細動 10-30Jで除細動</li>
-        <li><strong>ペーシング判断:</strong> 房室ブロックあれば 心外膜ペーシングワイヤー留置 → 一時ペーシング</li>
-        <li><strong>TEE評価:</strong> 人工弁機能、周囲漏れ(paravalvular leak)、左室機能、空気残存</li>
-        <li><strong>CPB離脱(weaning):</strong> 灌流量徐々に下げる → 自己心拍で循環維持できれば CPB OFF</li>
-      </ul>
-      <div class="pitfall"><strong>⚠ ピットフォール:</strong> 脱気不十分 → <u>左冠動脈に空気塞栓</u> → 下壁虚血・心室細動。TEEで上行大動脈・心室・心房を細かく確認、心拍再開前に十分時間をかける。</div>
-    </div></div>
-  </div>
-
-  <!-- Phase 7 -->
-  <div class="phase">
-    <div class="phase-head">
-      <div class="phase-num">7</div>
-      <div class="phase-title">プロタミン・止血・閉胸</div>
-      <div class="phase-chev">▶</div>
-    </div>
-    <div class="phase-body"><div class="phase-body-inner">
-      <ul class="step-list">
-        <li><strong>プロタミン投与:</strong> ヘパリン中和(投与量比 1:1)。ACT が CPB前値に戻ることを確認。<u>急速静注は血圧低下・アナフィラキシー</u>のリスク → ゆっくり投与</li>
-        <li><strong>カニューレ抜去:</strong> 静脈カニューレ → 動脈カニューレの順に抜去。purse-string で結紮</li>
-        <li><strong>止血確認:</strong> 縫合部・カニューレ抜去部・胸壁切離部 を厳密に確認。出血点には追加縫合 or 局所止血剤</li>
-        <li><strong>ペーシングワイヤー留置:</strong> 心房用・心室用の2本。皮下を経由して体外に出す</li>
-        <li><strong>ドレーン留置:</strong> 縦隔ドレーン(1-2本)、必要に応じて心嚢ドレーン・胸腔ドレーン(両側胸腔開放例)</li>
-        <li><strong>胸骨ワイヤー閉鎖:</strong> ステンレスワイヤー 6-8本で胸骨を寄せて固定(figure-of-eight または simple loop)</li>
-        <li><strong>皮下・皮膚閉鎖:</strong> 筋膜層、皮下、皮膚を縫合(吸収糸 + 真皮内縫合 or ステープラー)</li>
-        <li><strong>ICU搬入:</strong> 挿管下に ICU 移送 → 24時間呼吸・循環管理</li>
-      </ul>
-    </div></div>
-  </div>
-
-  <div class="callout tip" style="margin-top:1rem">
-    <strong>💡 すべてのフェーズを開く:</strong> 上の「▶」を順番にクリックすると、フェーズごとの詳細が確認できます。
+  <div class="callout tip">
+    <strong>KDOQI 2019 implementation tool:</strong> AVFは術後4–6週、AVGは材質に応じて術後1–4週に穿刺可能性を評価する流れを示しています。これは「その週になれば自動的に穿刺してよい」という意味ではありません。
   </div>
 </section>
 
 <section class="content reveal" id="complications">
-  <h2>6. 主要合併症と頻度</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>合併症</th><th>頻度</th><th>主な対策</th></tr></thead>
-      <tbody>
-        <tr><td>術後出血(再開胸)</td><td>2-5%</td><td>術中の厳密な止血、ACT補正</td></tr>
-        <tr><td>術後心房細動</td><td>20-40%</td><td>β遮断薬・アミオダロン予防</td></tr>
-        <tr><td>完全房室ブロック</td><td>2-7%</td><td>心房・心室ペーシングワイヤー、必要時PMI</td></tr>
-        <tr><td>脳梗塞</td><td>1-3%</td><td>脱気徹底、術前頸動脈評価、epi-aortic echo</td></tr>
-        <tr><td>急性腎障害(AKI)</td><td>5-30%</td><td>灌流量維持、術中尿量モニター</td></tr>
-        <tr><td>胸骨感染(縦隔炎)</td><td>0.5-2%</td><td>術前歯科 consult、術中抗菌薬、皮下脂肪止血</td></tr>
-        <tr><td>Low Output Syndrome</td><td>5-15%</td><td>カテコラミン、IABP、必要時 ECMO</td></tr>
-        <tr><td>Paravalvular leak</td><td>1-3%</td><td>術中TEE確認、必要時再縫着</td></tr>
-        <tr><td>PPM (patient-prosthesis mismatch)</td><td>10-30%</td><td>術前計画、可能な限り大きい弁・root enlargement</td></tr>
-      </tbody>
-    </table>
+  <h2>7. 合併症 ― どこで何が起きるか</h2>
+  <div class="component-grid">
+    <div class="component-card">
+      <h4>🧱 狭窄・成熟不全</h4>
+      <p>AVFの吻合部近傍・流出静脈、AVGの静脈側吻合部が重要。脱血不良、静脈圧上昇、透析後止血延長の原因になります。</p>
+    </div>
+    <div class="component-card">
+      <h4>🩸 血栓閉塞</h4>
+      <p>狭窄、低血圧、圧迫などを背景に閉塞。thrill消失は緊急サインで、早期の血栓除去と原因治療が必要です。</p>
+    </div>
+    <div class="component-card">
+      <h4>🦠 感染</h4>
+      <p>発赤、熱感、排膿、疼痛、発熱。特にAVG感染では菌血症や人工血管抜去を要する可能性があります。</p>
+    </div>
+    <div class="component-card">
+      <h4>🧊 スチール症候群</h4>
+      <p>血流がアクセスへ奪われ手指が虚血に。冷感、疼痛、しびれ、潰瘍。急性の神経障害は迅速な評価が必要です。</p>
+    </div>
+    <div class="component-card">
+      <h4>💪 静脈高血圧</h4>
+      <p>中枢静脈狭窄などで上肢腫脹、皮下静脈怒張、穿刺部出血延長が出現します。</p>
+    </div>
+    <div class="component-card">
+      <h4>🎈 瘤・仮性瘤</h4>
+      <p>反復穿刺や吻合部変化で拡大。皮膚菲薄化、急速な増大、出血、感染兆候は要注意です。</p>
+    </div>
+    <div class="component-card">
+      <h4>🫀 過剰血流・心不全</h4>
+      <p>高流量アクセスは心拍出量を増やし、心不全や肺高血圧に関与することがあります。</p>
+    </div>
+    <div class="component-card">
+      <h4>💧 血清腫(AVG)</h4>
+      <p>人工血管周囲に漿液が貯留。増大、皮膚障害、感染リスクがあれば治療を検討します。</p>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <strong>すぐ連絡する所見:</strong> thrillが突然消えた、手が急に冷たい・痛い・しびれる、創部出血が止まらない、急速な腫脹、排膿や発熱。放置するとアクセス喪失や手指障害につながります。
   </div>
 </section>
 
+<section class="content reveal" id="exam">
+  <h2>8. 内シャントの診察 ― Look, Listen, Feel</h2>
+  <div class="exam-grid">
+    <div class="exam-card">
+      <h4>👀 Look：見る</h4>
+      <p>発赤、腫脹、創離開、排膿、穿刺痕、皮膚菲薄化、瘤、側副静脈、左右差を観察します。</p>
+    </div>
+    <div class="exam-card">
+      <h4>🩺 Listen：聴く</h4>
+      <p>吻合部から流出路までbruitを聴取。連続性から高調な収縮期優位へ変化すれば狭窄を疑います。</p>
+    </div>
+    <div class="exam-card">
+      <h4>✋ Feel：触る</h4>
+      <p>連続性thrill、拍動性、圧迫による変化、走行、深さ、手指温度、末梢動脈拍動を確認します。</p>
+    </div>
+  </div>
+
+  <h3>医学生がベッドサイドで言えるとよい一文</h3>
+  <div class="key-box">
+    「吻合部から流出静脈にかけて連続性thrillを触れ、発赤・腫脹・手指虚血はありません」
+  </div>
+
+  <ul>
+    <li>アクセス側上肢での<strong>血圧測定、採血、末梢点滴、長時間の圧迫</strong>を避けます。</li>
+    <li>患者自身が毎日、見る・聴く・触る短時間の自己チェックを行うことが早期発見につながります。</li>
+    <li>透析前には訓練されたスタッフがアクセスを診察し、前回との変化を確認します。</li>
+  </ul>
+</section>
+
 <section class="content reveal" id="quiz">
-  <h2>7. 理解度チェック(全7問)</h2>
+  <h2>9. 理解度チェック(全8問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 7</div>
+    <div class="progress" id="progress">問題 1 / 8</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -660,42 +652,72 @@
       <span class="progress" id="score">得点: 0 / 0</span>
       <button class="btn" id="nextBtn" disabled>次へ →</button>
     </div>
-    <div class="score-display" id="scoreDisplay">
-      <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 7</div>
-      <div id="comment"></div>
-      <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
-    </div>
+  </div>
+  <div class="score-display" id="scoreDisplay">
+    <div>あなたの得点</div>
+    <div class="big" id="finalScore"></div>
+    <p id="comment"></p>
+    <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度挑戦</button>
   </div>
 </section>
 
 <section class="content reveal" id="glossary">
-  <h2>8. 用語集</h2>
+  <h2>10. 用語集・参考資料</h2>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>用語</th><th>意味</th></tr></thead>
+      <thead><tr><th>用語</th><th>英語</th><th>意味</th></tr></thead>
       <tbody>
-        <tr><td>AVR</td><td>Aortic Valve Replacement(大動脈弁置換術)</td></tr>
-        <tr><td>CPB</td><td>Cardiopulmonary Bypass(人工心肺)</td></tr>
-        <tr><td>Cross-clamp</td><td>大動脈遮断鉗子</td></tr>
-        <tr><td>Cardioplegia</td><td>心筋保護液。高K⁺で心停止 + 冷却</td></tr>
-        <tr><td>Aortotomy</td><td>大動脈切開</td></tr>
-        <tr><td>Sewing ring</td><td>人工弁の縫合用リング(布製)</td></tr>
-        <tr><td>Pledgeted suture</td><td>テフロン補強付き縫合糸。引き裂き防止</td></tr>
-        <tr><td>TEE</td><td>Transesophageal Echocardiography(経食道心エコー)</td></tr>
-        <tr><td>ACT</td><td>Activated Clotting Time(活性化凝固時間)。CPB中の目標 >400-480秒</td></tr>
-        <tr><td>De-airing</td><td>脱気。心内・大動脈の空気除去手技</td></tr>
-        <tr><td>Paravalvular leak (PVL)</td><td>弁周囲漏れ。縫合不良によるシール不良</td></tr>
-        <tr><td>PPM</td><td>Patient-Prosthesis Mismatch(患者-人工弁ミスマッチ)。有効弁口面積/BSA <0.85で重症</td></tr>
-        <tr><td>Nicks/Manougian法</td><td>大動脈基部拡大形成術。弁輪が小さい例の対策</td></tr>
-        <tr><td>Stentless弁</td><td>ステントなしの生体弁。Freestyleなど</td></tr>
-        <tr><td>Homograft</td><td>同種大動脈弁グラフト</td></tr>
-        <tr><td>Sutureless弁</td><td>縫合不要型生体弁(Perceval, Intuity)。手術時間短縮</td></tr>
+        <tr><td>バスキュラーアクセス</td><td>Vascular access (VA)</td><td>血液透析で血液を出し入れする経路の総称</td></tr>
+        <tr><td>自己血管内シャント</td><td>Arteriovenous fistula (AVF)</td><td>自己動脈と自己静脈を直接吻合したアクセス</td></tr>
+        <tr><td>人工血管内シャント</td><td>Arteriovenous graft (AVG)</td><td>動脈と静脈を人工血管で橋渡ししたアクセス</td></tr>
+        <tr><td>吻合</td><td>Anastomosis</td><td>血管同士、または血管と人工血管を縫い合わせること</td></tr>
+        <tr><td>橈骨動脈―橈側皮静脈AVF</td><td>Radiocephalic AVF</td><td>手関節付近に作る代表的AVF</td></tr>
+        <tr><td>上腕動脈―橈側皮静脈AVF</td><td>Brachiocephalic AVF</td><td>肘部で作るAVF</td></tr>
+        <tr><td>上腕動脈―尺側皮静脈AVF</td><td>Brachiobasilic AVF</td><td>尺側皮静脈を用いる上腕AVF</td></tr>
+        <tr><td>転位・表在化</td><td>Transposition / superficialization</td><td>深い静脈を穿刺しやすい皮下へ移す操作</td></tr>
+        <tr><td>流入動脈</td><td>Inflow artery</td><td>アクセスへ血液を送る動脈</td></tr>
+        <tr><td>流出静脈</td><td>Outflow vein</td><td>アクセスから心臓側へ血液を戻す静脈</td></tr>
+        <tr><td>ePTFE</td><td>Expanded polytetrafluoroethylene</td><td>AVGに広く使われる人工血管材料</td></tr>
+        <tr><td>PU</td><td>Polyurethane</td><td>人工血管材料の一つ</td></tr>
+        <tr><td>成熟</td><td>Maturation</td><td>AVF静脈が発達し、安全に穿刺できるようになる過程</td></tr>
+        <tr><td>スリル</td><td>Thrill</td><td>シャント上で触れる振動</td></tr>
+        <tr><td>シャント音</td><td>Bruit</td><td>聴診器で聴くアクセス血流音</td></tr>
+        <tr><td>狭窄</td><td>Stenosis</td><td>アクセス回路の一部が狭くなること</td></tr>
+        <tr><td>血栓閉塞</td><td>Thrombosis</td><td>血栓でアクセスが閉じること</td></tr>
+        <tr><td>スチール症候群</td><td>Steal syndrome</td><td>アクセスへ血流が奪われて手指が虚血になる状態</td></tr>
+        <tr><td>静脈高血圧</td><td>Venous hypertension</td><td>流出路障害で上肢静脈圧が上昇する状態</td></tr>
+        <tr><td>仮性瘤</td><td>Pseudoaneurysm</td><td>穿刺孔などから血液が周囲へ広がり形成される瘤</td></tr>
+        <tr><td>血清腫</td><td>Seroma</td><td>人工血管周囲に漿液が貯留した状態</td></tr>
+        <tr><td>VAIVT</td><td>Vascular access intervention therapy</td><td>狭窄拡張や血栓除去などの血管内治療</td></tr>
+        <tr><td>一次開存</td><td>Primary patency</td><td>追加治療なしでアクセスが開存している期間</td></tr>
+        <tr><td>二次開存</td><td>Secondary patency</td><td>修復治療を行いながらアクセスを維持できた期間</td></tr>
       </tbody>
     </table>
   </div>
+
+  <h3>主な参考資料</h3>
+  <ol class="reference-list">
+    <li><a href="https://www.kidney.org/2019-vascular-access-guidelines-and-implementation-tools">National Kidney Foundation: KDOQI 2019 Vascular Access Guidelines and Implementation Tools</a></li>
+    <li><a href="https://www.kidney.org/sites/default/files/vait-08_new_av_access_creation_follow_up-best_practices-surgeons.pdf">KDOQI: New AV Access Creation &amp; Follow-up — Best Practices for Surgeons</a></li>
+    <li><a href="https://www.kidney.org/sites/default/files/vait-10_post-operative_av_access_monitoring_and_management.pdf">KDOQI: Post-operative AV Access Monitoring and Management</a></li>
+    <li><a href="https://www.jsdt.or.jp/jsdt/17.shtml">日本透析医学会: 慢性血液透析用バスキュラーアクセスの作製および修復に関するガイドライン</a></li>
+    <li><a href="https://esvs.org/guideline/vascular-access-2/">European Society for Vascular Surgery: 2018 Vascular Access Guidelines</a></li>
+  </ol>
+
+  <div class="callout">
+    <strong>更新上の注意:</strong> 日本透析医学会のAVF・AVG作製章は2005年版です。本ページでは国内術式の基本を参照しつつ、アクセス選択と術後評価はKDOQI 2019の個別化方針を併記しています。
+  </div>
+
+  <h3>関連ページ</h3>
+  <ul>
+    <li><a href="hemodialysis_basics_v2.html">血液透析(HD)の基礎</a></li>
+    <li><a href="cardiovascular_pressures_v2.html">心血管の圧 ― シャント血流を理解する</a></li>
+    <li><a href="infection_control_v2.html">感染制御の総論</a></li>
+  </ul>
 </section>
+
 </main>
+
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -858,7 +880,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = do
 const btt = document.getElementById('backToTop');
   btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
   window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
-  // Highlight current page in the top text-based page nav
+
   const _curP_alt = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
   // Mark current page in the drawer & page nav (CSS-only otherwise)
@@ -881,15 +903,17 @@ const btt = document.getElementById('backToTop');
   });
   // Escape to close
   document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
-  const questions = [
-    {q:"単独AVRの一般的な大動脈遮断時間として最も適切な範囲はどれか。",choices:["10-20分","40-70分","2-3時間","CPB全期間"],correct:1,explain:"単独AVRの大動脈遮断時間は通常40-70分(縫合配置・弁縫着が主な時間)。CPB時間は60-90分が目安。"},
-    {q:"AVR術中の心筋保護(cardioplegia)の主成分として正しいのはどれか。",choices:["高Na⁺・温溶液","高K⁺・冷却溶液","高Ca²⁺溶液","生理食塩水のみ"],correct:1,explain:"Cardioplegiaは高K⁺(~20mEq/L)で心臓の電気的活動を停止させ、冷却で代謝を抑制する。順行性(大動脈基部から)・逆行性(冠静脈洞から)で投与する。"},
-    {q:"65歳未満で機械弁が選択される主な理由はどれか。",choices:["価格が安い","ワーファリン管理が不要","耐久性が半永久で再手術を回避できる","TAVIに移行しやすい"],correct:2,explain:"機械弁は構造的に半永久の耐久性があり、若年者の再手術回避メリットが大きい。一方で生涯ワーファリン内服が必要。生体弁は10-20年で劣化するため65歳以上で選択することが多い。"},
-    {q:"大動脈遮断解除前の『脱気(de-airing)』を怠ると何が起こりうるか。",choices:["左室破裂","冠動脈空気塞栓 → 下壁虚血・心室細動","僧帽弁逆流","脱血不良"],correct:1,explain:"左室・左房・上行大動脈に残った空気が冠動脈口(右冠動脈は前壁にあり最初に空気が流入しやすい)に流入し、下壁虚血・心室細動を起こす。TEEで脱気を確認することが重要。"},
-    {q:"AVR後 完全房室ブロック(CAVB)が発生した場合の初期対応として正しいのはどれか。",choices:["即時 永久ペースメーカー植込","心外膜ペーシングワイヤーで一時ペーシング → 1-2週経過観察","ジゴキシン静注","ワーファリン開始"],correct:1,explain:"AVR後CAVB(2-7%)の多くは一過性で1-2週で回復することがある。心外膜ペーシングワイヤーで一時ペーシングし、回復しない場合に PMI(永久ペースメーカー植込)を考慮する。"},
-    {q:"小さい弁輪(<21mm)女性で人工弁が入りにくい場合の対策として正しいのはどれか。",choices:["手術中止","大動脈基部拡大形成術(Nicks法、Manougian法)を併用","TAVIへ変更","機械弁にこだわる"],correct:1,explain:"Nicks法・Manougian法などのroot enlargement、stentless弁、sutureless弁、homograft などで対応。Patient-prosthesis mismatch(PPM)は予後不良要因となるため、可能な限り大きい有効弁口面積を確保する。"},
-    {q:"プロタミンの主な役割はどれか。",choices:["心筋保護","ヘパリンの中和","昇圧","抗血小板"],correct:1,explain:"プロタミンは塩基性タンパクで、酸性のヘパリンと結合して中和(投与比 1:1)。CPB離脱後 ACTがCPB前値に戻ることを確認する。急速投与でアナフィラキシー・血圧低下のリスクがあるためゆっくり投与。"}
+const questions = [
+    {q:"自己血管内シャント(AVF)の構造として正しいのはどれか。",choices:["動脈と自己静脈を直接吻合する","動脈と静脈を必ず人工血管でつなぐ","中心静脈カテーテルを皮下に埋める","動脈だけを表在化する"],correct:0,explain:"AVFは患者自身の動脈と静脈を直接吻合するアクセス。人工血管を介在させるのはAVGです。"},
+    {q:"人工血管内シャント(AVG)を検討する代表的な状況はどれか。",choices:["使える自己静脈が十分で成熟を待てる","自己静脈が不適でAVFの作製・成熟が期待しにくい","一時的に1回だけ透析する","全身感染症が治療されていない"],correct:1,explain:"AVGは自己静脈が乏しい、AVF不成功、より早い穿刺可能性が必要などで検討します。活動性感染があれば人工物植え込みは避ける方向で評価します。"},
+    {q:"KDOQI 2019がアクセス選択で重視する考え方はどれか。",choices:["全員に手関節AVFを作る","ESKD Life-Planに沿って個別化する","年齢だけでAVGを選ぶ","最初のアクセスだけ考えればよい"],correct:1,explain:"患者の腎代替療法計画、血管条件、透析開始時期、希望、予後、次のアクセス候補まで含めて個別化します。"},
+    {q:"AVFで一般的な吻合法はどれか。",choices:["動脈側―静脈端の端側吻合","動脈端―動脈端吻合","静脈側―静脈側吻合だけ","吻合せず近接させる"],correct:0,explain:"AVFでは動脈側に静脈端を吻合する端側吻合が一般的です。解剖と術式により例外はあります。"},
+    {q:"術後の穿刺可能性評価としてKDOQI実装ツールに沿う組み合わせはどれか。",choices:["AVF翌日・AVG翌日","AVF 4–6週・AVG 1–4週を目安に評価","AVF 6か月・AVG 1年","どちらも術後3日で必ず穿刺"],correct:1,explain:"AVFは4–6週、AVGは材質により1–4週に評価する流れです。ただし日数だけでなく、創部とアクセスの診察で判断します。"},
+    {q:"AVGで狭窄の好発部位として特に重要なのはどれか。",choices:["人工血管中央だけ","静脈側吻合部・流出路","手指末梢動脈だけ","皮膚切開部だけ"],correct:1,explain:"AVGでは静脈側吻合部から流出静脈の狭窄が血栓閉塞の重要な原因です。"},
+    {q:"内シャントのthrillが突然触れなくなった。最も適切なのはどれか。",choices:["翌月まで様子を見る","閉塞を疑い早急にアクセスチームへ連絡する","強く揉み続ける","シャント側で血圧を測定する"],correct:1,explain:"thrill消失は血栓閉塞の重要なサインです。アクセス救済のため早期評価・治療が必要です。"},
+    {q:"内シャント作製後、手が冷たく強く痛み、しびれが出た。疑うべき合併症はどれか。",choices:["スチール症候群・手指虚血","血清腫だけ","正常な成熟反応","尿毒症性心膜炎"],correct:0,explain:"アクセスへ血流が偏り手指灌流が低下するスチール症候群を疑います。急性の疼痛・冷感・神経症状は迅速な評価が必要です。"}
   ];
+
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
   function renderQ(){
