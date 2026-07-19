@@ -67,6 +67,19 @@
   .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;margin:.8rem 0}
   .component-card{background:#fafbfd;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:1rem}
   .component-card h4{color:var(--navy);font-size:.95rem;margin-bottom:.25rem}.component-card p{font-size:.83rem}
+  .knot-visual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin:1rem 0}
+  .knot-visual-card{display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid var(--border);border-top:5px solid var(--success);border-radius:14px;box-shadow:var(--shadow-sm)}
+  .knot-visual-card.caution{border-top-color:var(--danger)}.knot-visual-card.surgeon{border-top-color:#1976d2}
+  .knot-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;padding:1rem 1rem .55rem}
+  .knot-card-head h3{margin:0!important;font-size:1.03rem!important;line-height:1.45}.knot-card-head h3 small{display:block;color:var(--muted);font-size:.72rem;font-weight:600}
+  .knot-status{flex:none;display:inline-flex;align-items:center;border-radius:99px;background:#e8f5e9;color:var(--success);padding:.25rem .55rem;font-size:.68rem;font-weight:800;white-space:nowrap}
+  .caution .knot-status{background:#ffebee;color:var(--danger)}.surgeon .knot-status{background:#e3f2fd;color:#1565c0}
+  .knot-image{display:flex;align-items:center;justify-content:center;min-height:190px;margin:.15rem .8rem .65rem;padding:.85rem;border-radius:12px;background:linear-gradient(145deg,#f8fafc,#eef3f8)}
+  .knot-image svg{display:block;width:100%;max-width:280px;height:auto;max-height:185px}
+  .knot-card-body{display:flex;flex:1;flex-direction:column;padding:.15rem 1rem 1rem}.knot-card-body p{font-size:.84rem;line-height:1.75}
+  .throw-sequence{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;margin:.65rem 0}.throw-pill{display:inline-flex;align-items:center;min-height:32px;padding:.25rem .55rem;border-radius:7px;background:var(--navy);color:#fff;font-size:.72rem;font-weight:800}.throw-arrow{color:var(--muted);font-weight:800}
+  .license-note{border-top:1px solid var(--border);margin-top:auto;padding-top:.65rem;color:var(--muted);font-size:.68rem!important;line-height:1.55!important}.license-note a{font-weight:700}
+  .knot-legend{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:.25rem;color:var(--muted);font-size:.72rem}.knot-legend span{display:inline-flex;align-items:center;gap:.3rem}.knot-color{width:18px;height:6px;border-radius:4px;background:#dd3232}.knot-color.blue{background:#327ecd}
   .video-shell{position:relative;max-width:760px;margin:1rem auto;border-radius:13px;overflow:hidden;background:#000;box-shadow:0 10px 28px rgba(11,37,69,.2)}
   .video-ratio{position:relative;padding-bottom:56.25%;height:0}.video-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .cutoff-cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.2rem;background:linear-gradient(145deg,rgba(6,24,47,.96),rgba(91,22,32,.96));color:#fff}
@@ -90,6 +103,7 @@
   .menu-toggle-input{position:absolute;opacity:0;pointer-events:none}.drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.25s;z-index:1500}.drawer{position:fixed;inset:0 auto 0 0;width:min(360px,90vw);height:100vh;height:100dvh;background:#fff;transform:translateX(-100%);transition:.3s;z-index:1501;box-shadow:8px 0 32px rgba(0,0,0,.2);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}#menuToggle:checked~.drawer-backdrop{opacity:1;pointer-events:auto}#menuToggle:checked~.drawer{transform:none}
   .drawer-head{background:var(--navy);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;gap:.6rem}.drawer-close{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;border-radius:8px}.drawer-head h3{font-size:1rem}.drawer-search{padding:.7rem 1rem;border-bottom:1px solid var(--border)}.drawer-search input{width:100%;min-height:44px;padding:.55rem .8rem;border:1px solid var(--border);border-radius:8px;font:inherit}.drawer-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:2rem}.drawer-section h4{color:var(--navy);font-size:.78rem;padding:.9rem 1.2rem .35rem;background:#f5f8fc;border-top:1px solid var(--border)}.drawer ul{list-style:none}.drawer-content a{display:block;padding:.68rem 1.2rem;color:var(--text);text-decoration:none;font-size:.88rem;border-bottom:1px solid #f0f2f6;min-height:44px}.drawer-content a.current{background:#fff0f0;color:var(--accent);font-weight:700;border-left:4px solid var(--accent);padding-left:calc(1.2rem - 4px)}.drawer-content a.hidden,.drawer-section.empty{display:none}
   .reveal{opacity:0;transform:translateY(22px);transition:.6s ease}.reveal.visible{opacity:1;transform:none}
+  @media(max-width:800px){.knot-visual-grid{grid-template-columns:1fr}.knot-visual-card{max-width:560px;width:100%;margin:auto}.knot-image{min-height:160px}}
   @media(max-width:720px){.class-overview,.vs-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.site-logo .logo-text{max-width:50vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
   @media(max-width:430px){main{padding:1.4rem .8rem 2.5rem}section.content{padding:1.25rem 1rem}.hero{min-height:auto;padding:6rem 1rem 4rem}.flow{grid-template-columns:1fr}.topbar-btn .label{display:none}.topbar-btn{padding:.45rem .65rem}.safety-banner{grid-template-columns:1fr;text-align:center}.diagram{padding:.6rem}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}}
@@ -117,14 +131,14 @@
       <span class="hero-chip">📍 <strong>6階演習室</strong> 集合</span>
       <span class="hero-chip">🗓 <strong>7月23日</strong> 実施</span>
       <span class="hero-chip">🎬 <strong>0:00-5:20</strong> 指定再生</span>
-      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">❓ <strong>10</strong> 問クイズ</span>
     </div>
   </div>
 </section>
 
 <nav class="section-nav" aria-label="セクション">
   <div class="section-nav-inner">
-    <a href="index_v2.html" class="home">🏠 目次</a><a href="#class">授業案内</a><a href="#video">指定動画</a><a href="#workflow">全体手順</a><a href="#instruments">器械</a><a href="#needles">針</a><a href="#simple">単純結節</a><a href="#vertical">垂直マットレス</a><a href="#safety">安全</a><a href="#quiz">クイズ</a><a href="#glossary">用語</a>
+    <a href="index_v2.html" class="home">🏠 目次</a><a href="#class">授業案内</a><a href="#video">指定動画</a><a href="#workflow">全体手順</a><a href="#instruments">器械</a><a href="#needles">針</a><a href="#simple">単純結節</a><a href="#vertical">垂直マットレス</a><a href="#knot">結紮</a><a href="#safety">安全</a><a href="#quiz">クイズ</a><a href="#glossary">用語</a>
   </div>
 </nav>
 
@@ -247,9 +261,85 @@
 </section>
 
 <section class="content reveal" id="knot">
-  <h2>8. 結紮・抜糸・ドレッシング</h2>
+  <h2>8. 結紮方法：男結び・女結び・外科結び</h2>
+  <p>結び目は、<strong>第1結節と第2結節の方向</strong>で性質が変わります。赤と青は糸の左右を示しています。形だけでなく、「どちら向きに掛けたか」を声に出して確認しましょう。</p>
+
+  <div class="knot-visual-grid">
+    <article class="knot-visual-card">
+      <div class="knot-card-head"><h3>男結び<small>Square knot / Reef knot</small></h3><span class="knot-status">基本</span></div>
+      <figure class="knot-image">
+        <svg viewBox="0 0 592 336" role="img" aria-labelledby="squareTitle squareDesc">
+          <title id="squareTitle">男結び（square knot）の構造</title><desc id="squareDesc">赤と青の糸が左右対称にかみ合う男結び</desc>
+          <path fill="none" stroke="#327ecd" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" d="M240 304c-32 0-64-32-64-64V96c0-32 32-64 64-64"/>
+          <path fill="none" stroke="#dd3232" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" d="M0 224h224c48 0 64 80 128 80M352 32c-64 0-80 80-128 80H96"/>
+          <path fill="none" stroke="#327ecd" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" d="M592 224H368c-48 0-64 80-128 80M240 32c64 0 80 80 128 80h128"/>
+          <path fill="none" stroke="#dd3232" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" d="M352 304c32 0 64-32 64-64V96c0-32-32-64-64-64"/>
+        </svg>
+      </figure>
+      <div class="knot-card-body">
+        <p><strong>第1結節と逆方向</strong>に第2結節を掛けます。左右対称にかみ合い、糸端が本線と平行に並ぶ、縫合で基本となる結びです。</p>
+        <div class="throw-sequence" aria-label="右上から左、次に左上から右"><span class="throw-pill">右を上</span><span class="throw-arrow">→</span><span class="throw-pill">左を上</span></div>
+        <p class="license-note">図：CountingPine「<a href="https://commons.wikimedia.org/wiki/File:Square_knot.svg" target="_blank" rel="noopener">Square knot.svg</a>」をインライン表示（Public Domain）</p>
+      </div>
+    </article>
+
+    <article class="knot-visual-card caution">
+      <div class="knot-card-head"><h3>女結び<small>Granny knot</small></h3><span class="knot-status">要注意</span></div>
+      <figure class="knot-image">
+        <svg viewBox="0 0 576 336" role="img" aria-labelledby="grannyTitle grannyDesc">
+          <title id="grannyTitle">女結び（granny knot）の構造</title><desc id="grannyDesc">赤と青の糸が同じ向きに重なり、ずれやすい女結び</desc>
+          <g transform="scale(16)">
+            <path fill="none" stroke="#327ecd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 19c-2 0-4-2-4-4v-4"/>
+            <path fill="none" stroke="#dd3232" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M0 14h14c3 0 4 5 8 5m4-9V6c0-2-2-4-4-4"/>
+            <path fill="none" stroke="#327ecd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 19c4 0 5-5 8-5h14m-6-7h-8c-3 0-4-5-8-5"/>
+            <path fill="none" stroke="#dd3232" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 19c2 0 4-2 4-4v-5m-4-8c-4 0-5 5-8 5H6"/>
+            <path fill="none" stroke="#327ecd" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6c0-2 2-4 4-4"/>
+          </g>
+        </svg>
+      </figure>
+      <div class="knot-card-body">
+        <p>第1・第2結節を<strong>同じ方向</strong>に掛けた状態です。男結びより滑り・ほどけが生じやすいため、意図せず作らないよう注意します。</p>
+        <div class="throw-sequence" aria-label="右上から左、続けて右上から左"><span class="throw-pill">右を上</span><span class="throw-arrow">→</span><span class="throw-pill">右を上</span></div>
+        <p class="license-note">図：CountingPine「<a href="https://commons.wikimedia.org/wiki/File:Granny_knot.svg" target="_blank" rel="noopener">Granny knot.svg</a>」をインライン表示（Public Domain）</p>
+      </div>
+    </article>
+
+    <article class="knot-visual-card surgeon">
+      <div class="knot-card-head"><h3>外科結び<small>Surgeon’s knot</small></h3><span class="knot-status">張力対策</span></div>
+      <figure class="knot-image">
+        <svg viewBox="0 0 640 336" role="img" aria-labelledby="surgeonTitle surgeonDesc">
+          <title id="surgeonTitle">外科結びの手順</title><desc id="surgeonDesc">第1結節を二回巻き、第2結節を逆方向に一回巻く</desc>
+          <defs><marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#1976d2"/></marker></defs>
+          <rect x="18" y="18" width="286" height="300" rx="18" fill="#fff" stroke="#dbe3ec" stroke-width="3"/><rect x="336" y="18" width="286" height="300" rx="18" fill="#fff" stroke="#dbe3ec" stroke-width="3"/>
+          <circle cx="70" cy="65" r="25" fill="#1976d2"/><text x="70" y="74" text-anchor="middle" fill="#fff" font-size="25" font-weight="800">1</text><text x="110" y="73" fill="#0b2545" font-size="22" font-weight="800">第1結節</text>
+          <path d="M42 235C110 235 116 105 183 105s72 130 121 130" fill="none" stroke="#dd3232" stroke-width="18" stroke-linecap="round"/>
+          <path d="M42 105c62 0 72 130 141 130s72-130 121-130" fill="none" stroke="#327ecd" stroke-width="18" stroke-linecap="round"/>
+          <path d="M125 270c32 28 85 28 116 0" fill="none" stroke="#1976d2" stroke-width="6" marker-end="url(#arrowBlue)"/>
+          <text x="161" y="302" text-anchor="middle" fill="#1565c0" font-size="22" font-weight="800">2回巻き</text>
+          <circle cx="388" cy="65" r="25" fill="#1976d2"/><text x="388" y="74" text-anchor="middle" fill="#fff" font-size="25" font-weight="800">2</text><text x="428" y="73" fill="#0b2545" font-size="22" font-weight="800">第2結節</text>
+          <path d="M360 220h85c45 0 58-95 145-95" fill="none" stroke="#dd3232" stroke-width="18" stroke-linecap="round"/>
+          <path d="M360 125c87 0 100 95 145 95h85" fill="none" stroke="#327ecd" stroke-width="18" stroke-linecap="round"/>
+          <text x="479" y="275" text-anchor="middle" fill="#1565c0" font-size="21" font-weight="800">逆方向へ1回</text>
+        </svg>
+      </figure>
+      <div class="knot-card-body">
+        <p>第1結節を<strong>2回巻き</strong>にして摩擦を増やし、第2結節は逆方向へ掛けます。創に張力があり、第1結節が緩みやすい場面で役立ちます。</p>
+        <div class="throw-sequence" aria-label="第1結節を二回巻き、逆方向に一回"><span class="throw-pill">第1：2回</span><span class="throw-arrow">→</span><span class="throw-pill">第2：逆へ1回</span></div>
+        <p class="license-note">図：本教材の自作模式図。構造は <a href="https://www.bumc.bu.edu/surgery/training/technical-training/surgeons-knot/" target="_blank" rel="noopener">Boston University</a> と <a href="https://sites.uw.edu/uwgensurgtechskills/knot-tying-two-handed-tie/" target="_blank" rel="noopener">University of Washington</a> の教育資料を参照</p>
+      </div>
+    </article>
+  </div>
+  <div class="knot-legend" aria-label="糸の色の凡例"><span><i class="knot-color"></i>右側の糸</span><span><i class="knot-color blue"></i>左側の糸</span></div>
+
+  <div class="table-wrap"><table><thead><tr><th>結び方</th><th>第1 → 第2結節</th><th>学習ポイント</th></tr></thead><tbody>
+    <tr><td><strong>男結び</strong></td><td>互いに逆方向</td><td>基本となる安定した結び。左右対称の形を確認します。</td></tr>
+    <tr><td><strong>女結び</strong></td><td>同じ方向</td><td>滑りやすく、意図しない作成を避けます。</td></tr>
+    <tr><td><strong>外科結び</strong></td><td>初回2回巻き → 逆方向</td><td>摩擦を増やし、張力下で第1結節の緩みを抑えます。</td></tr>
+  </tbody></table></div>
+  <div class="callout tip"><strong>実習のコツ：</strong>「右を上、次は左を上」のように声に出すと、女結びを防ぎやすくなります。外科結びも、第2結節以降は方向を交互にします。</div>
+
+  <h3>抜糸・ドレッシング</h3>
   <div class="component-grid">
-    <div class="component-card"><h4>結紮</h4><p>外科結び、両手結び、片手結び、器械結びを練習します。結び目は創の直上を避け、適切な張力にします。</p></div>
     <div class="component-card"><h4>抜糸</h4><p>皮膚外に露出していた糸を組織内へ引き込まないよう、清潔側を短く切って抜去します。</p></div>
     <div class="component-card"><h4>ドレッシング</h4><p>止血、創縁、滲出液、疼痛を観察し、適切な被覆材で保護します。</p></div>
   </div>
@@ -283,13 +373,16 @@
     <li>令和8年度「臨床入門」実習要項「外科手技(縫合実習)」</li>
     <li>令和8年度「臨床入門」外科縫合授業担当者一覧(2026年7月1日)</li>
     <li>自治医大消化器一般外科「結紮縫合ビデオ」</li>
+    <li>CountingPine. <a href="https://commons.wikimedia.org/wiki/File:Square_knot.svg" target="_blank" rel="noopener">Square knot.svg</a> / <a href="https://commons.wikimedia.org/wiki/File:Granny_knot.svg" target="_blank" rel="noopener">Granny knot.svg</a>. Wikimedia Commons（Public Domain）</li>
+    <li>Boston University Surgery. <a href="https://www.bumc.bu.edu/surgery/training/technical-training/surgeons-knot/" target="_blank" rel="noopener">Surgeon’s Knot</a></li>
+    <li>University of Washington General Surgery. <a href="https://sites.uw.edu/uwgensurgtechskills/knot-tying-two-handed-tie/" target="_blank" rel="noopener">Knot Tying: Two-handed Tie</a></li>
   </ul>
 </section>
 
 <section class="content reveal" id="quiz">
-  <h2>11. 理解度チェック(全8問)</h2>
+  <h2>11. 理解度チェック(全10問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="progress" id="progress">問題 1 / 10</div>
     <div class="quiz-q" id="questionText"></div><div class="quiz-choices" id="choices"></div><div class="quiz-feedback" id="feedback"></div>
     <div class="quiz-controls"><span class="progress" id="score">得点: 0 / 0</span><button class="btn" id="nextBtn" disabled>次へ →</button></div>
     <div class="score-display" id="scoreDisplay"><div>最終得点</div><div class="big" id="finalScore"></div><div id="scoreMessage"></div><button class="btn" id="retryBtn" style="margin-top:1rem">もう一度</button></div>
@@ -314,6 +407,8 @@
     <tr><td>Eversion</td><td>外反</td><td>創縁を軽く外側へ向けて接合すること</td></tr>
     <tr><td>Dead space</td><td>死腔</td><td>閉鎖後に残る不要な空間</td></tr>
     <tr><td>Instrument tie</td><td>器械結び</td><td>持針器を用いて糸を結ぶ方法</td></tr>
+    <tr><td>Square knot / Reef knot</td><td>男結び・本結び</td><td>第1・第2結節を互いに逆方向へ掛ける基本の結び</td></tr>
+    <tr><td>Granny knot</td><td>女結び</td><td>第1・第2結節が同方向となり滑りやすい結び</td></tr>
     <tr><td>Surgeon's knot</td><td>外科結び</td><td>初回を二重に回し摩擦を増やす結び</td></tr>
     <tr><td>Suture removal</td><td>抜糸</td><td>創治癒後に縫合糸を除去する操作</td></tr>
     <tr><td>Dressing</td><td>ドレッシング</td><td>創の観察・保護と被覆</td></tr>
@@ -389,6 +484,8 @@
     {q:'針を台上へ置くときの正しい行動は？',c:['素手で針先を押さえる','針を裸のまま放置する','持針器に把持してから手を離す','糸だけを持って投げる'],a:2,e:'針は必ず持針器で把持してから手を離します。針先の方向も周囲から外します。'},
     {q:'単純結節縫合の特徴は？',c:['一針ごとに独立して結紮する','深部を縫合できない','連続して一本の糸で縫う','必ず金属クリップを使う'],a:0,e:'単純結節縫合は一針ごとに独立して結紮する基本的な縫合法です。'},
     {q:'垂直マットレス縫合の考え方として正しいものは？',c:['near-nearだけを行う','far-farとnear-nearを組み合わせる','創縁を内反させる','針を直線に押し込む'],a:1,e:'遠く深いfar-farと、近く浅いnear-nearを組み合わせ、深部と創縁を整えます。'},
+    {q:'男結び（square knot）の掛け方として正しいものは？',c:['第1・第2結節を同じ方向へ掛ける','第1・第2結節を互いに逆方向へ掛ける','第1結節だけで終了する','毎回必ず3回巻きにする'],a:1,e:'男結びは、第1結節と第2結節を互いに逆方向へ掛けます。同じ方向では女結びになります。'},
+    {q:'外科結び（surgeon’s knot）の特徴は？',c:['第1結節を2回巻きにする','第2結節を省略する','糸を切らず連続縫合する','左右とも同じ方向に2回掛ける'],a:0,e:'外科結びは第1結節を2回巻いて摩擦を増やし、第2結節は逆方向へ掛けます。'},
     {q:'使用済み縫合針の処理として正しいものは？',c:['一般ごみへ捨てる','ポケットに一時保管する','シャープスコンテナへ直ちに廃棄する','机上にまとめて置く'],a:2,e:'針は本数を確認し、耐穿刺性のシャープスコンテナへ直ちに廃棄します。'}
   ];
   let qi=0,points=0,answered=false;
