@@ -131,6 +131,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "M
 - `surgical_instruments.html` — 手術器械
 - `gowning_technique.html` — ガウンテクニック
 - `clinical_intro_operating_room_skills_v2.html` — 臨床入門 基本的臨床手技(手術室手技)
+- `clinical_intro_suturing_skills_v2.html` — 臨床入門 外科手技(縫合実習)
 
 ### 🫶 補助循環(MCS)
 - `iabp.html` / `va_ecmo.html` / `vv_ecmo.html` / `impella.html`
