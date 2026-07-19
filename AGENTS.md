@@ -130,6 +130,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "M
 - `brain_isolation_technique.html` — 弓部置換 + Brain Isolation Technique
 - `surgical_instruments.html` — 手術器械
 - `gowning_technique.html` — ガウンテクニック
+- `clinical_intro_operating_room_skills_v2.html` — 臨床入門 基本的臨床手技(手術室手技)
 
 ### 🫶 補助循環(MCS)
 - `iabp.html` / `va_ecmo.html` / `vv_ecmo.html` / `impella.html`

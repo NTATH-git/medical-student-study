@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>下腸間膜動脈・内腸骨動脈の血流ネットワーク ― 医学生のために (v2)</title>
-<meta name="description" content="EVAR・大動脈手術で必須の側副血行を理解する">
+<title>臨床入門 基本的臨床手技(手術室手技)― 2026年度事前学習 (v2)</title>
+<meta name="description" content="2026年7月22日 臨床入門・基本的臨床手技(手術室手技)の授業案内と事前学習。手術時手洗い、滅菌手袋、滅菌ガウン、清潔・不潔を学ぶ。">
 <style>
   :root{
     --navy:#0b2545;--navy-light:#13315c;--navy-dark:#06182f;
@@ -189,26 +189,62 @@
     .site-logo .logo-text{max-width:48vw}
     .version-switch{bottom:14px;left:14px;padding:.45rem .85rem;font-size:.76rem}
   }
-  nav a.home-link:hover{background:rgba(255,255,255,.25)}
-  .legend{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:.8rem;font-size:.8rem}
-  .legend span{display:flex;align-items:center;gap:.3rem}
-  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
-  .accordion-item{border:1px solid var(--border);border-radius:8px;margin-bottom:.6rem;overflow:hidden}
-  .accordion-head{background:#f9fafc;padding:.9rem 1rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);user-select:none;transition:background .2s}
-  .accordion-head:hover{background:#eef2f7}
-  .accordion-head .chev{transition:transform .25s;color:var(--accent);font-size:1.2rem}
-  .accordion-item.open .chev{transform:rotate(90deg)}
-  .accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 1rem}
-  .accordion-item.open .accordion-body{max-height:1500px;padding:1rem}
-  .clinical-card{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:8px;padding:1rem 1.2rem;margin:.8rem 0}
-  .clinical-card h4{color:var(--navy);font-size:1rem;margin-bottom:.4rem}
-  .clinical-card .reason{background:#f5f8fc;padding:.5rem .7rem;border-radius:4px;font-size:.85rem;margin-top:.4rem}
+  .step-flow{counter-reset:step;list-style:none;padding-left:0}
+  .step-flow li{position:relative;padding:.6rem 0 .6rem 2.5rem;border-left:2px solid var(--accent);margin-left:1rem;padding-left:1.5rem}
+  .step-flow li::before{counter-increment:step;content:counter(step);position:absolute;left:-1rem;top:.5rem;width:2rem;height:2rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+  .step-flow strong{color:var(--navy)}
+  .checklist{background:#f5f8fc;border-radius:10px;padding:1rem 1.2rem;margin-top:.8rem}
+  .checklist label{display:block;padding:.4rem 0;font-size:.92rem;cursor:pointer}
+  .checklist input{margin-right:.5rem;transform:scale(1.15)}
+  .checklist input:checked + span{text-decoration:line-through;color:var(--muted)}
+  .sterile-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}
+  .sterile-grid > div{padding:1rem;border-radius:8px}
+  .sterile-yes{background:#e8f5e9;border-left:4px solid var(--success)}
+  .sterile-no{background:#ffebee;border-left:4px solid var(--danger)}
+  .sterile-grid h4{margin-bottom:.5rem}
+  .sterile-yes h4{color:var(--success)}
+  .sterile-no h4{color:var(--danger)}
   .menu-toggle{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-open{display:none}
   #menuToggle:checked ~ .page-nav .menu-label-close{display:inline}
   .page-nav-badge{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);font-size:.72rem;min-width:1.6em;height:1.6em;border-radius:999px;padding:0 .35em;font-weight:700}
   #menuToggle:checked ~ .drawer-backdrop{opacity:1;pointer-events:auto}
   #menuToggle:checked ~ .drawer{transform:translateX(0)}
+  .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;box-shadow:0 8px 24px rgba(11,37,69,.15);margin:1rem 0;background:#000}
+  .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+  .video-caption{font-size:.82rem;color:var(--muted);margin-top:.5rem;padding:.5rem .8rem;background:#f5f8fc;border-radius:6px;border-left:3px solid var(--accent)}
+  .video-caption strong{color:var(--navy)}
+  .video-caption a{color:var(--accent);text-decoration:none;word-break:break-all}
+  .video-caption a:hover{text-decoration:underline}
+  .class-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin:1rem 0}
+  .class-card{background:linear-gradient(145deg,#fff,#f4f7fb);border:1px solid var(--border);border-top:4px solid var(--navy);border-radius:12px;padding:1rem;box-shadow:var(--shadow-sm)}
+  .class-card .label{display:block;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.08em;margin-bottom:.25rem}
+  .class-card strong{display:block;color:var(--navy);font-size:1rem;line-height:1.55}
+  .class-card small{display:block;color:var(--text-light);font-size:.78rem;line-height:1.55;margin-top:.25rem}
+  .day-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:1rem 0}
+  .day-step{position:relative;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem .9rem .9rem;text-align:center}
+  .day-step::after{content:'→';position:absolute;right:-.65rem;top:50%;transform:translateY(-50%);z-index:2;color:var(--accent);font-size:1.3rem;font-weight:800}
+  .day-step:last-child::after{display:none}
+  .day-step .num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;margin-bottom:.4rem}
+  .day-step strong{display:block;color:var(--navy);font-size:.9rem}
+  .day-step span{display:block;color:var(--muted);font-size:.75rem;line-height:1.5;margin-top:.2rem}
+  .video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1rem}
+  .video-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:.9rem;box-shadow:var(--shadow-sm)}
+  .video-card h3{margin:.2rem 0 .25rem!important;font-size:1rem!important}
+  .video-card p{font-size:.82rem!important;line-height:1.65!important}
+  .video-card .video-container{margin:.7rem 0}
+  .video-note{font-size:.76rem;color:var(--muted);background:#f5f8fc;border-radius:8px;padding:.65rem .75rem;line-height:1.6}
+  .learning-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin:1rem 0}
+  .learning-map div{background:#eef5fb;border:1px solid #c9daeb;border-radius:10px;padding:.8rem;text-align:center;color:var(--navy);font-size:.8rem;font-weight:700}
+  .learning-map span{display:block;font-size:1.6rem;line-height:1;margin-bottom:.35rem}
+  .source-list{font-size:.82rem;line-height:1.75;color:var(--text-light)}
+  .source-list li{margin-bottom:.45rem}
+  @media(max-width:720px){
+    .class-overview,.video-grid{grid-template-columns:1fr}
+    .day-flow,.learning-map{grid-template-columns:1fr 1fr}
+    .day-step::after{display:none}
+  }
+  @media(max-width:420px){.day-flow,.learning-map{grid-template-columns:1fr}}
   .version-switch:focus-visible{outline:2px solid var(--accent-light, #ef5350);outline-offset:3px}
 
   /* === Topbar actions cluster (Menu + v1/v2) === */
@@ -250,10 +286,10 @@
       <span class="logo-text">Heart of Medicine</span>
     </a>
     <nav class="site-nav">
-      <a href="#why">なぜ重要か</a>
-      <a href="#mesenteric">腸間膜動脈系</a>
-      <a href="#iliac">内腸骨動脈系</a>
-      <a href="#collateral">3つの側副路</a>
+      <a href="#class">授業案内</a>
+      <a href="#video">手技動画</a>
+      <a href="#scrub">手術時手洗い</a>
+      <a href="#sterile">清潔・不潔</a>
       <a href="index_v2.html" class="cta">トップ</a>
     </nav>
     <label for="menuToggle" class="menu-btn" role="button" aria-haspopup="dialog" aria-label="メニューを開く">☰</label>
@@ -274,17 +310,17 @@
     <circle cx="1000" cy="650" r="120" fill="none" stroke="#ef5350" stroke-width="1" opacity=".6"/>
   </svg>
   <div class="hero-inner">
-    <span class="hero-eyebrow"><span class="dot"></span> Cardiovascular Surgery · Medical Student</span>
-    <h1>下腸間膜動脈・内腸骨<br><span class="accent">動脈の血流ネットワーク</span></h1>
-    <p class="lead">EVAR・大動脈手術で必須の側副血行を理解する</p>
+    <span class="hero-eyebrow"><span class="dot"></span> Clinical Introduction · Operating Room Skills</span>
+    <h1>臨床入門<br><span class="accent">基本的臨床手技(手術室手技)</span></h1>
+    <p class="lead">2026年7月22日(水)｜手術時手洗い・滅菌手袋・滅菌ガウン・清潔／不潔を、授業前にひとつの流れで確認</p>
     <div class="hero-meta">
-      <span class="hero-chip">🎓 <strong>全学年</strong> 対象</span>
-      <span class="hero-chip">📊 <strong>8</strong> セクション</span>
-      <span class="hero-chip">❓ <strong>6</strong> 問クイズ</span>
-      <span class="hero-chip">🖼 <strong>1</strong> 図解</span>
+      <span class="hero-chip">📍 <strong>D601</strong> 集合</span>
+      <span class="hero-chip">🗓 <strong>7月22日</strong> 実施</span>
+      <span class="hero-chip">🎬 <strong>2</strong> 本の動画</span>
+      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
     </div>
   </div>
-  <a href="#why" class="scroll-indicator" aria-label="下にスクロール">
+  <a href="#class" class="scroll-indicator" aria-label="下にスクロール">
     <div class="mouse"></div>
     <span>SCROLL</span>
   </a>
@@ -293,285 +329,341 @@
 <nav class="section-nav" aria-label="セクション">
   <div class="section-nav-inner">
     <a href="index_v2.html" class="home">🏠 目次</a>
-    <a href="#why">なぜ重要か</a>
-    <a href="#mesenteric">腸間膜動脈系</a>
-    <a href="#iliac">内腸骨動脈系</a>
-    <a href="#collateral">3つの側副路</a>
-    <a href="#diagram">血流網模式図</a>
-    <a href="#clinical">臨床的意義</a>
+    <a href="#class">授業案内</a>
+    <a href="#video">手技動画</a>
+    <a href="#preprep">事前準備</a>
+    <a href="#mask">マスク・帽子</a>
+    <a href="#scrub">手術時手洗い</a>
+    <a href="#gown">滅菌ガウン</a>
+    <a href="#glove">滅菌手袋</a>
+    <a href="#sterile">清潔・不潔</a>
+    <a href="#daycheck">当日チェック</a>
     <a href="#quiz">クイズ</a>
     <a href="#glossary">用語</a>
   </div>
 </nav>
 
 <main>
-<div class="disclaimer reveal" role="note" aria-label="重要なお知らせ">
+<div class="disclaimer reveal" role="note">
   <div class="disclaimer-icon">⚠️</div>
   <div class="disclaimer-text">
-    <strong>本ページは学習用の参考資料です</strong>
-    内容は概要的・教育目的のため、<u>診療判断には必ず最新ガイドライン・原著論文などの一次情報をご確認ください</u>。誤りや古い記載を見つけた場合は指導医にご相談ください。
+    <strong>2026年度「臨床入門」授業資料をもとにした事前学習ページです</strong>
+    実技では当日の説明、施設の感染対策手順、担当教員の指示を優先してください。汚染の可能性を感じたら、自己判断で続けず<u>その場で申告・確認</u>します。
   </div>
 </div>
 
-<section class="content reveal" id="why">
-  <h2>1. なぜこのネットワークを理解する必要があるか</h2>
-
-  <div class="ref-figure">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Gray506.svg"
-         alt="Gray's Anatomy: 大動脈弓と分枝"
-         loading="lazy">
-    <div class="ref-caption">
-      <strong>Gray's Anatomy(1918)の大動脈図</strong> ― 上行・弓部・下行大動脈と3分枝(腕頭・左総頸・左鎖骨下)。
-    </div>
-    <div class="ref-attribution">
-      画像出典:Henry Gray <em>Anatomy of the Human Body</em> Plate 506 ―
-      <a href="https://commons.wikimedia.org/wiki/File:Gray506.svg" target="_blank" rel="noopener">Wikimedia Commons (Public Domain)</a>
-    </div>
+<section class="content reveal" id="class">
+  <h2>1. 授業案内</h2>
+  <div class="class-overview">
+    <div class="class-card"><span class="label">DATE</span><strong>2026年7月22日(水)</strong><small>A・B：9:00-12:10／C・D：13:10-16:20</small></div>
+    <div class="class-card"><span class="label">MEETING POINT</span><strong>D601演習室</strong><small>教育研究棟I・6階。授業冒頭の説明後、各班に分かれます。</small></div>
+    <div class="class-card"><span class="label">GOAL</span><strong>手術室の基本動作を実践できる</strong><small>手洗い、滅菌手袋、滅菌ガウン、清潔・不潔の判断を練習します。</small></div>
+    <div class="class-card"><span class="label">BRING</span><strong>動画を視聴できる通信機器</strong><small>実習要項の学修・評価項目(第1.1版)も確認しておきます。</small></div>
   </div>
 
-  <p>腹部大動脈瘤の手術(EVAR、開腹)では、<strong>下腸間膜動脈(IMA)や内腸骨動脈を意図的に塞栓・結紮する</strong>場面があります。これらの動脈を「塞いでも大丈夫か」を判断する根拠が、<strong>側副血行ネットワーク(collateral circulation)</strong>です。</p>
+  <h3>授業当日の流れ</h3>
+  <div class="day-flow" aria-label="授業当日の3段階">
+    <div class="day-step"><span class="num">1</span><strong>D601で頭出し</strong><span>目的、清潔操作、進め方を全体確認</span></div>
+    <div class="day-step"><span class="num">2</span><strong>各班で実践</strong><span>帽子・マスク、手洗い、手袋、ガウンを練習</span></div>
+    <div class="day-step"><span class="num">3</span><strong>教員からフィードバック</strong><span>担当教員が各グループを順次巡回</span></div>
+  </div>
+
+  <div class="callout tip"><strong>担当教員向け:</strong> 出欠表は当日D601に設置予定です。担当グループで出欠を確認し、授業終了後に所定の提出先へ返却してください。</div>
+</section>
+
+<section class="content reveal" id="why">
+  <h2>2. なぜ清潔操作が重要か</h2>
+  <p>手術室の清潔操作には、<strong>患者への感染を防ぐ</strong>ことと、血液・体液などから<strong>医療者を守る</strong>ことの2つの目的があります。手術時手洗い、滅菌手袋、滅菌ガウンは別々の手技ではなく、無菌的な作業空間を連続して作る一連の行動です。</p>
 
   <div class="callout danger">
-    <strong>⚠ ネットワークが破綻すると…</strong>
+    <strong>⚠ 学生が起こしがちな汚染:</strong>
     <ul style="margin-top:.4rem">
-      <li><strong>結腸虚血(ischemic colitis)</strong> — 死亡率高い、再開腹必要</li>
-      <li><strong>骨盤虚血</strong> — 殿筋跛行(buttock claudication)、勃起障害</li>
-      <li><strong>脊髄虚血</strong> — 対麻痺(まれ、Adamkiewicz動脈関連)</li>
+      <li>手を下げる・後ろを振り向く → ガウン背中(非滅菌)を術野に触れさせる</li>
+      <li>マスクを触ったまま手洗い直後にガウンへ → マスクに付着した細菌を手袋へ</li>
+      <li>ガウン装着前に器械台に触る → 触れた瞬間に滅菌野汚染</li>
+      <li>顎マスクで会話 → 飛沫が術野へ</li>
     </ul>
   </div>
 
+  <h3>この授業でつなげて覚える4項目</h3>
+  <div class="learning-map">
+    <div><span>😷</span>帽子・マスク</div><div><span>🫧</span>手術時手洗い</div><div><span>🧤</span>滅菌手袋</div><div><span>🥼</span>滅菌ガウン</div>
+  </div>
+
+  <h3>滅菌野の3つの原則</h3>
+  <ol>
+    <li><strong>滅菌物どうしのみ接触可</strong>(非滅菌に触れた瞬間に汚染)</li>
+    <li><strong>視線の届かない場所は非滅菌扱い</strong>(背中、腰より下、テーブル端より外側)</li>
+    <li><strong>濡れた = 汚染</strong>(液体は細菌の通り道になる ― strikethrough contamination)</li>
+  </ol>
+</section>
+
+<section class="content reveal" id="video">
+  <h2>3. 指定動画2本のまとめ</h2>
+  <p>どちらも <strong>Medical*Online Videoのプレビュー</strong>です。動画を一度見たあと、下の観察ポイントを意識してもう一度見ると、清潔面と不潔面の境界が理解しやすくなります。</p>
+
+  <div class="video-grid">
+    <article class="video-card">
+      <h3>① 滅菌手袋の装着</h3>
+      <p>手指で直接無菌操作を行うため、滅菌手袋を汚染せず装着する手技です。</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube-nocookie.com/embed/vN7DlHlTKBk" title="滅菌手袋の装着｜Medical Online Video プレビュー" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="video-note"><strong>見るポイント:</strong> 包装の開き方／素手で触れてよい面／手袋外面を汚染しない手の動き／袖口の被覆。</div>
+      <p><a href="https://www.youtube.com/watch?v=vN7DlHlTKBk" target="_blank" rel="noopener">YouTubeで開く</a></p>
+    </article>
+
+    <article class="video-card">
+      <h3>② ガウンテクニック(清潔区域)</h3>
+      <p>滅菌ガウンと滅菌手袋を組み合わせ、無菌操作を行える清潔区域を作る手技です。</p>
+      <div class="video-container">
+        <iframe src="https://www.youtube-nocookie.com/embed/_feoJvXCdXo" title="ガウンテクニック 清潔区域｜Medical Online Video プレビュー" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="video-note"><strong>見るポイント:</strong> ガウンを広げる空間／介助者との受け渡し／前面と袖の清潔維持／装着後の手の位置。</div>
+      <p><a href="https://www.youtube.com/watch?v=_feoJvXCdXo" target="_blank" rel="noopener">YouTubeで開く</a></p>
+    </article>
+  </div>
+
+  <div class="callout"><strong>注意:</strong> YouTube版は短いプレビューです。完全な手順は授業資料、R8 OSCE教育・学修用動画、当日の実技指導で確認してください。</div>
+</section>
+
+<section class="content reveal" id="preprep">
+  <h2>4. 入室前の準備</h2>
+  <ol class="step-flow">
+    <li><strong>更衣:</strong> スクラブ(術衣)に着替え、上は下に入れる。靴も手術室専用</li>
+    <li><strong>装飾品の除去:</strong> 指輪・腕時計・ネックレス・ピアスは原則外す(細菌温床)</li>
+    <li><strong>爪:</strong> 短く切り、マニキュア・ジェル禁止</li>
+    <li><strong>傷の確認:</strong> 手指に傷・湿疹があれば申告(防水絆創膏)</li>
+    <li><strong>長髪:</strong> 髪を完全に帽子内に収める</li>
+  </ol>
+
   <div class="callout tip">
-    <strong>💡 大原則:</strong> 「血流は別経路で代償できるか」を術前CTで予測することが、これらの合併症を防ぐ唯一の方法。
+    <strong>💡 トイレは入室前に:</strong> 手洗い後にトイレに行けば全てやり直し。
   </div>
 </section>
 
-<section class="content reveal" id="mesenteric">
-  <h2>2. 腸間膜動脈系(Mesenteric Arteries)</h2>
-  <p>消化管を栄養する3本の主幹動脈:</p>
+<section class="content reveal" id="mask">
+  <h2>5. マスク・帽子の装着</h2>
 
-  <h3>3つの主幹</h3>
-  <ul>
-    <li><strong>腹腔動脈(CA: Celiac Artery)</strong> — T12レベル / 肝・脾・胃・十二指腸上部・膵頭</li>
-    <li><strong>上腸間膜動脈(SMA: Superior Mesenteric Artery)</strong> — L1 / 十二指腸下部〜横行結腸右2/3</li>
-    <li><strong>下腸間膜動脈(IMA: Inferior Mesenteric Artery)</strong> — L3 / 横行結腸左1/3〜直腸上部</li>
-  </ul>
+  <h3>順序(必ずこの順)</h3>
+  <ol class="step-flow">
+    <li><strong>帽子装着:</strong> 長い髪をまとめ、頭髪を完全に帽子の内側へ収める</li>
+    <li><strong>マスク装着:</strong> 上下を確認し、鼻・口・顎を覆ってノーズワイヤーを鼻の形に密着させる</li>
+    <li><strong>マスクが密着しているか確認:</strong> 隙間から空気漏れがないことを確認</li>
+  </ol>
 
-  <h3>IMAの3つの分枝</h3>
-  <ul>
-    <li><strong>左結腸動脈(left colic artery)</strong> — 下行結腸を支配</li>
-    <li><strong>S状結腸動脈(sigmoid arteries)</strong> — S状結腸を支配</li>
-    <li><strong>上直腸動脈(superior rectal artery)</strong> — 直腸上部を支配</li>
-  </ul>
-
-  <div class="callout">
-    <strong>📌 ポイント:</strong> IMAはL3レベルから分岐するので、<u>腎動脈下AAA(infrarenal AAA)の瘤腔内に開口</u>することが多い。EVARで覆われる/結紮される可能性大。
-  </div>
-</section>
-
-<section class="content reveal" id="iliac">
-  <h2>3. 内腸骨動脈系(Internal Iliac Artery)</h2>
-  <p>総腸骨動脈は仙腸関節の高さで <strong>外腸骨動脈(EIA)</strong> と <strong>内腸骨動脈(IIA, hypogastric artery)</strong> に分岐します。</p>
-
-  <h3>内腸骨動脈の主な分枝</h3>
-  <div class="accordion-item">
-    <div class="accordion-head">前枝(anterior division)<span class="chev">▶</span></div>
-    <div class="accordion-body">
-      <ul>
-        <li>閉鎖動脈(obturator)</li>
-        <li>下殿動脈(inferior gluteal)</li>
-        <li>内陰部動脈(internal pudendal)</li>
-        <li>下膀胱動脈/子宮動脈(inferior vesical / uterine)</li>
-        <li><strong>中直腸動脈(middle rectal artery)</strong> ← 重要(IMA系との吻合)</li>
-      </ul>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <div class="accordion-head">後枝(posterior division)<span class="chev">▶</span></div>
-    <div class="accordion-body">
-      <ul>
-        <li>腸腰動脈(iliolumbar)</li>
-        <li>外側仙骨動脈(lateral sacral)</li>
-        <li>上殿動脈(superior gluteal)</li>
-      </ul>
-    </div>
-  </div>
-
-  <h3>下直腸動脈(inferior rectal artery)はどこから?</h3>
-  <p>内陰部動脈の分枝で <u>直腸下部・肛門管</u> を支配。これも IMA系との吻合を形成する重要動脈。</p>
-</section>
-
-<section class="content reveal" id="collateral">
-  <h2>4. 3つの主要側副血行路</h2>
-
-  <h3>① Marginal artery of Drummond(辺縁動脈)</h3>
-  <p>SMAとIMAの末梢分枝が大腸辺縁で連結し、<strong>結腸全体を縁取る</strong>1本の連続した動脈アーケード。SMA-IMA間の最も恒常的な側副路。</p>
-  <ul>
-    <li>SMA側: 中結腸動脈・右結腸動脈・回結腸動脈</li>
-    <li>IMA側: 左結腸動脈・S状結腸動脈</li>
-    <li>連結点が脾湾曲付近 = <strong>Griffith point</strong>(脆弱)</li>
-  </ul>
-
-  <h3>② Arc of Riolan(リオラン弓)</h3>
-  <p>中結腸動脈(SMA)と左結腸動脈(IMA)を結ぶ、<strong>腸間膜内側の太い側副路</strong>。通常は細いが、慢性的なIMA狭窄/閉塞があると<strong>拡張・蛇行</strong>して側副血行を担う ("meandering mesenteric artery")。</p>
-
-  <div class="callout">
-    <strong>📌 CT読影:</strong> 太く蛇行したArc of Riolanが見えたら、<u>IMA・腹腔動脈・SMAのいずれかに有意狭窄がある</u> 強い示唆。この動脈は絶対に温存・結紮回避。
-  </div>
-
-  <h3>③ 直腸動脈経由(IMA ↔ 内腸骨動脈)</h3>
-  <p>IMA系の<u>上直腸動脈</u>と、内腸骨動脈系の<u>中直腸動脈・下直腸動脈</u>が直腸壁内で吻合。<strong>骨盤と腸間膜の血流をつなぐ重要なバイパス</strong>。</p>
-  <ul>
-    <li>IMAを塞いでも → 内腸骨動脈 → 中・下直腸動脈 → 上直腸動脈 → 左結腸動脈 と逆流で代償可</li>
-    <li>逆に内腸骨動脈を塞いでも → IMA → 上直腸動脈 → 中・下直腸動脈 と順行で代償可</li>
-  </ul>
-
-  <h3>Watershed area(脆弱領域)</h3>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>名称</th><th>部位</th><th>支配動脈の境界</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Griffith point</strong></td><td>脾湾曲(splenic flexure)</td><td>SMA(中結腸動脈)と IMA(左結腸動脈)の境界</td></tr>
-        <tr><td><strong>Sudeck critical point</strong></td><td>直腸S状結腸移行部(S3)</td><td>S状結腸動脈最末梢と上直腸動脈の境界</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:.88rem;margin-top:.5rem">これらの領域は側副血行が乏しく、IMA結紮後の<strong>虚血性大腸炎の好発部位</strong>(特に脾湾曲)。</p>
-</section>
-
-<section class="content reveal" id="diagram">
-  <h2>5. 血流ネットワーク 模式図</h2>
-  <div class="diagram-wrap">
-    <svg viewBox="0 0 520 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="腸間膜動脈と内腸骨動脈の側副血行ネットワーク">
-      <!-- Title -->
-      <text x="260" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">腸間膜動脈系 ↔ 内腸骨動脈系 のネットワーク</text>
-
-      <!-- Aorta -->
-      <rect x="245" y="40" width="20" height="220" fill="#c62828" rx="2"/>
-      <text x="220" y="55" font-size="10" fill="#c62828" text-anchor="end" font-weight="bold">大動脈</text>
-
-      <!-- CA -->
-      <line x1="265" y1="60" x2="340" y2="55" stroke="#c62828" stroke-width="3"/>
-      <text x="345" y="58" font-size="10" fill="#c62828" font-weight="bold">CA</text>
-
-      <!-- SMA -->
-      <line x1="265" y1="100" x2="340" y2="105" stroke="#c62828" stroke-width="4"/>
-      <text x="345" y="108" font-size="11" fill="#c62828" font-weight="bold">SMA</text>
-
-      <!-- Middle colic (SMA) -->
-      <path d="M 340 105 Q 380 115 410 145" stroke="#ef6c00" stroke-width="2" fill="none"/>
-      <text x="395" y="135" font-size="9" fill="#ef6c00">中結腸A</text>
-
-      <!-- IMA -->
-      <line x1="265" y1="180" x2="340" y2="185" stroke="#c62828" stroke-width="3"/>
-      <text x="345" y="188" font-size="11" fill="#c62828" font-weight="bold">IMA</text>
-
-      <!-- Left colic -->
-      <path d="M 340 185 Q 380 195 410 215" stroke="#ef6c00" stroke-width="2" fill="none"/>
-      <text x="395" y="212" font-size="9" fill="#ef6c00">左結腸A</text>
-
-      <!-- Sigmoid -->
-      <path d="M 340 195 Q 370 230 380 270" stroke="#ef6c00" stroke-width="2" fill="none"/>
-      <text x="385" y="265" font-size="9" fill="#ef6c00">S状結腸A</text>
-
-      <!-- Superior rectal -->
-      <line x1="345" y1="195" x2="365" y2="330" stroke="#ef6c00" stroke-width="2"/>
-      <text x="370" y="335" font-size="9" fill="#ef6c00">上直腸A</text>
-
-      <!-- ★ Arc of Riolan (連結) -->
-      <path d="M 410 145 Q 470 180 410 215" stroke="#7e57c2" stroke-width="3" stroke-dasharray="6,3" fill="none"/>
-      <text x="475" y="185" font-size="11" fill="#7e57c2" font-weight="bold">Arc of Riolan</text>
-
-      <!-- ★ Marginal artery (continuous along colon) -->
-      <path d="M 420 145 Q 480 200 430 270 Q 400 300 380 275" stroke="#2e7d32" stroke-width="2.5" fill="none"/>
-      <text x="480" y="270" font-size="10" fill="#2e7d32" font-weight="bold">辺縁動脈</text>
-      <text x="480" y="282" font-size="9" fill="#2e7d32">(Drummond)</text>
-
-      <!-- ★ Griffith point -->
-      <circle cx="445" cy="180" r="5" fill="#ef6c00" stroke="#000" stroke-width="0.5"/>
-      <text x="455" y="160" font-size="9" fill="#ef6c00">Griffith point</text>
-      <text x="455" y="170" font-size="8" fill="#ef6c00">(脾湾曲)</text>
-
-      <!-- Iliac bifurcation -->
-      <path d="M 265 260 L 200 320" stroke="#c62828" stroke-width="3"/>
-      <path d="M 265 260 L 330 320" stroke="#c62828" stroke-width="3"/>
-      <text x="170" y="335" font-size="9" fill="#c62828">総腸骨A</text>
-
-      <!-- External iliac -->
-      <line x1="200" y1="320" x2="160" y2="400" stroke="#c62828" stroke-width="2"/>
-      <text x="120" y="380" font-size="9" fill="#c62828">外腸骨A</text>
-      <line x1="330" y1="320" x2="370" y2="400" stroke="#c62828" stroke-width="2"/>
-
-      <!-- Internal iliac -->
-      <line x1="200" y1="320" x2="240" y2="380" stroke="#1565c0" stroke-width="3"/>
-      <text x="210" y="395" font-size="9" fill="#1565c0" font-weight="bold">内腸骨A</text>
-      <line x1="330" y1="320" x2="290" y2="380" stroke="#1565c0" stroke-width="3"/>
-
-      <!-- Middle rectal -->
-      <path d="M 240 380 Q 280 360 345 340" stroke="#1565c0" stroke-width="2" fill="none"/>
-      <text x="270" y="375" font-size="9" fill="#1565c0">中直腸A</text>
-
-      <!-- Inferior rectal (via internal pudendal) -->
-      <path d="M 290 380 Q 330 360 350 345" stroke="#1565c0" stroke-width="2" fill="none"/>
-      <text x="295" y="350" font-size="9" fill="#1565c0">下直腸A</text>
-
-      <!-- ★ Anastomosis at rectum -->
-      <ellipse cx="357" cy="335" rx="14" ry="10" fill="none" stroke="#7e57c2" stroke-width="2"/>
-      <text x="378" y="320" font-size="10" fill="#7e57c2" font-weight="bold">直腸吻合</text>
-      <text x="378" y="332" font-size="9" fill="#7e57c2">(IMA↔IIA)</text>
-
-      <!-- Sudeck critical point -->
-      <circle cx="365" cy="300" r="5" fill="#ef6c00" stroke="#000" stroke-width="0.5"/>
-      <text x="380" y="295" font-size="9" fill="#ef6c00">Sudeck point</text>
-
-      <!-- Bottom legend -->
-      <text x="260" y="440" font-size="9" fill="#5a6473" text-anchor="middle">★ 紫=側副血行路 / 橙=脆弱領域 / 緑=辺縁動脈</text>
-    </svg>
-    <div class="legend">
-      <span><i style="background:#c62828"></i>動脈幹</span>
-      <span><i style="background:#ef6c00"></i>IMA分枝/Watershed</span>
-      <span><i style="background:#1565c0"></i>内腸骨動脈系</span>
-      <span><i style="background:#7e57c2"></i>側副血行路</span>
-      <span><i style="background:#2e7d32"></i>辺縁動脈</span>
-    </div>
-  </div>
-</section>
-
-<section class="content reveal" id="clinical">
-  <h2>6. 臨床的意義(血管外科のシナリオ)</h2>
-
-  <div class="clinical-card">
-    <h4>シナリオ1: EVAR で IMA が瘤腔内開口している</h4>
-    <p>大半は <strong>結紮(覆い)てよい</strong>(無治療でも辺縁動脈 + Riolan弓 + 直腸吻合で代償される)。</p>
-    <div class="reason"><strong>確認すべき:</strong> ① SMA・腹腔動脈に有意狭窄がない / ② 内腸骨動脈が両側開存 / ③ IMA径が4mm以上で太い場合は注意 / ④ 過去の腸管手術で側副が破壊されていない</div>
-  </div>
-
-  <div class="clinical-card">
-    <h4>シナリオ2: AAA が腸骨動脈に及び 内腸骨動脈をプラグする必要</h4>
-    <p>片側塞栓なら通常は耐えられるが、<strong>両側塞栓は禁忌</strong>(殿筋虚血、骨盤虚血、勃起障害)。</p>
-    <div class="reason"><strong>対策:</strong> 内腸骨動脈温存型デバイス(IBE: Iliac Branch Endoprosthesis)を選択。または bell-bottom 法、サンドイッチ法</div>
-  </div>
-
-  <div class="clinical-card">
-    <h4>シナリオ3: CT で Riolan弓が太く蛇行している</h4>
-    <p>IMA、SMA、または腹腔動脈のいずれかに有意狭窄がある証拠。</p>
-    <div class="reason"><strong>対策:</strong> Riolan弓は<u>絶対に温存</u>。瘤覆いがRiolan弓を含む場合は再建を検討。IMA結紮で結腸虚血の高リスク</div>
-  </div>
-
-  <div class="clinical-card">
-    <h4>シナリオ4: 開腹AAA手術中 IMA を結紮する判断</h4>
-    <p><strong>術中evaluation:</strong> IMA結紮前に <u>クランプテスト</u>(数分IMA遮断)→ S状結腸の色調、ドップラー血流、結腸辺縁拍動を確認 → 良好なら結紮、不良なら IMA再建(S状結腸動脈に吻合)</p>
-    <div class="reason"><strong>背景:</strong> AAA開腹手術後の虚血性大腸炎は1-3%、死亡率50%以上の重篤合併症</div>
-  </div>
+  <h3>マスクの種類</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>種類</th><th>用途</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td>サージカルマスク(三層)</td><td>標準。通常手術</td><td>飛沫(>5μm)を防ぐ</td></tr>
+      <tr><td>シールド付きマスク</td><td>大量出血予想、血液・体液飛散症例</td><td>結膜を保護</td></tr>
+      <tr><td>N95マスク</td><td>結核・空気感染対策、感染症例</td><td>密着度試験(fit test)必要</td></tr>
+    </tbody>
+  </table></div>
 
   <div class="callout danger">
-    <strong>⚠ 結腸虚血の早期警告:</strong> 術後の<u>血性下痢・腹部膨満・代謝性アシドーシス・WBC↑/CRP↑</u>は虚血性大腸炎の典型像。即座にS状結腸鏡(下部消化管内視鏡)で評価。
+    <strong>⚠ マスクの取り扱い:</strong>
+    <ul style="margin-top:.4rem">
+      <li><u>手洗い後はマスクに絶対触れない</u>(マスク表面は非滅菌)</li>
+      <li>「顎マスク」(マスクを顎に下げる)は禁止 ― 細菌付着 + 飛沫拡散</li>
+      <li>濡れたら交換(濡れたマスクは細菌が通り抜ける)</li>
+      <li>1症例ごとに交換が原則</li>
+    </ul>
   </div>
+</section>
+
+<section class="content reveal" id="scrub">
+  <h2>6. 手術時手洗い＋手指消毒</h2>
+  <div class="key-box">手洗いと手指消毒はワンセット<br><small>清潔度の高い「指先」から「肘側」へ一方向に進める</small></div>
+
+  <h3>手洗い</h3>
+  <ol class="step-flow">
+    <li><strong>流水:</strong> 手指から前腕まで濡らし、目に見える汚れを落とす</li>
+    <li><strong>洗浄:</strong> 石けん等を泡立て、指先・指間・手掌・手背・手首・前腕を洗う</li>
+    <li><strong>すすぎ:</strong> 指先を高く保ち、指先から肘方向へ流水を流す</li>
+    <li><strong>乾燥:</strong> ペーパータオル等で指先から肘方向へ拭く</li>
+  </ol>
+
+  <h3>速乾性アルコール製剤による手指消毒</h3>
+  <ol class="step-flow">
+    <li><strong>片腕ずつ:</strong> 製品規定量を用い、手指から手首・前腕へ擦り込む</li>
+    <li><strong>指先を再確認:</strong> 爪周囲、指間、母指、手掌・手背を塗り残さない</li>
+    <li><strong>規定時間を守る:</strong> 量と擦り込み時間は製品・施設の手順を優先する</li>
+    <li><strong>乾燥まで待つ:</strong> 両手を胸の前で保持し、何にも触れず完全に乾かす</li>
+  </ol>
+
+  <div class="callout danger"><strong>やり直しになる場面:</strong> 手を腰より下へ下げた／蛇口・衣服・顔・マスクに触れた／清潔か迷う物に触れた。迷った時点で申告して、指導者と再開方法を確認します。</div>
+</section>
+
+<section class="content reveal" id="gown">
+  <h2>7. 滅菌ガウンの装着</h2>
+
+  <h3>ガウンの構造を理解する</h3>
+  <ul>
+    <li><strong>滅菌部分:</strong> 前面(胸〜腰)、腕の肘から手首、上半身</li>
+    <li><strong>非滅菌扱い部分:</strong> 背中、腰より下、肩より上、袖の手首より先(=手袋でカバー)</li>
+  </ul>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ガウンの滅菌領域">
+      <text x="190" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">滅菌ガウンの領域</text>
+      <!-- Body silhouette -->
+      <path d="M 150 50 L 150 80 L 100 100 L 100 220 L 280 220 L 280 100 L 230 80 L 230 50 Z" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <!-- Head -->
+      <circle cx="190" cy="40" r="20" fill="#fff" stroke="#5a6473" stroke-width="1"/>
+      <!-- Arms -->
+      <path d="M 100 100 L 70 200 L 80 210 L 110 130 Z" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <path d="M 280 100 L 310 200 L 300 210 L 270 130 Z" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+      <!-- Below waist (non-sterile) -->
+      <rect x="100" y="180" width="180" height="40" fill="#ffebee" stroke="#c62828" stroke-width="1.5"/>
+      <text x="190" y="205" font-size="10" fill="#c62828" text-anchor="middle">腰より下 = 非滅菌扱い</text>
+      <!-- Back hidden -->
+      <text x="190" y="135" font-size="11" fill="#2e7d32" text-anchor="middle" font-weight="bold">滅菌領域</text>
+      <text x="190" y="150" font-size="9" fill="#2e7d32" text-anchor="middle">(前面・肘から手首)</text>
+      <!-- Hands (gloves) -->
+      <circle cx="75" cy="210" r="10" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="55" y="240" font-size="8" fill="#1565c0">滅菌手袋</text>
+      <circle cx="305" cy="210" r="10" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
+      <text x="290" y="240" font-size="8" fill="#1565c0">滅菌手袋</text>
+      <!-- Back annotation -->
+      <text x="350" y="135" font-size="9" fill="#c62828">背中=非滅菌</text>
+    </svg>
+  </div>
+
+  <h3>本実習資料に沿った装着の流れ</h3>
+  <ol class="step-flow">
+    <li><strong>介助を依頼:</strong> 学生であることを伝えて自己紹介し、介助者へ自分のガウンサイズを伝える</li>
+    <li><strong>無菌的に取り出す:</strong> ガウンの外面や周囲へ触れないように持ち、十分な空間で広げる</li>
+    <li><strong>右側を装着:</strong> 介助者へ右肩ひもを渡し、右腕を袖へ通す</li>
+    <li><strong>左側を装着:</strong> 同じように左肩ひもを渡し、左腕を袖へ通す</li>
+    <li><strong>後方を固定:</strong> 介助者に肩と腰のひもを結んでもらう</li>
+    <li><strong>手袋と前ひも:</strong> 滅菌手袋で袖口を覆い、前ひものタグを介助者へ渡して身体を回し、ひもを結ぶ</li>
+  </ol>
+
+  <div class="callout">
+    <strong>📌 施設差があります:</strong> ひもの形、介助方法、手袋装着法は製品や施設で異なります。当日は担当教員の実演を見て、同じ方法で練習してください。
+  </div>
+</section>
+
+<section class="content reveal" id="glove">
+  <h2>8. 滅菌手袋の装着</h2>
+
+  <h3>標準的手順</h3>
+  <ol class="step-flow">
+    <li><strong>右手用手袋を取る:</strong> ガウン袖の中の左手で、滅菌手袋パックから右手用手袋を取り出す</li>
+    <li><strong>手のひら側を上に:</strong> 右手袋の <u>掌側を自分の前腕上に乗せ</u>、指先が肘側を向くように配置</li>
+    <li><strong>手袋の折返しを掴む:</strong> 袖の中の左手で手袋折返し(カフ)の <u>下層</u>(肌側)を掴む</li>
+    <li><strong>右手で手袋を被せる:</strong> 右手側の袖から指を出しながら、手袋を被せる</li>
+    <li><strong>左手も同様に:</strong> 装着済みの右手(滅菌)で左手袋の <u>外側カフ</u> を持ち、左手に被せる</li>
+    <li><strong>カフを伸ばす:</strong> 両手袋のカフがガウンスリーブをしっかり覆うよう伸ばす</li>
+  </ol>
+
+  <h3>二重手袋(double gloving)</h3>
+  <ul>
+    <li>心血管外科・大手術では <strong>二重装着</strong> が標準</li>
+    <li>外側手袋の損傷・穿孔リスク低減(針刺し事故時の血液暴露減)</li>
+    <li>内側は色付き(例:緑)を使うと穿孔検出しやすい(indicator gloves)</li>
+  </ul>
+</section>
+
+<section class="content reveal" id="sterile">
+  <h2>9. 清潔・不潔の判断</h2>
+
+  <div class="sterile-grid">
+    <div class="sterile-yes">
+      <h4>✅ やっていい</h4>
+      <ul>
+        <li>胸の前で両手を組む(滅菌領域内)</li>
+        <li>滅菌された器械・ガウンに触れる</li>
+        <li>術野の上方を移動する</li>
+        <li>テーブル端より内側に手を置く</li>
+        <li>胸〜腰の高さに手を保つ</li>
+      </ul>
+    </div>
+    <div class="sterile-no">
+      <h4>❌ やってはいけない</h4>
+      <ul>
+        <li>手を腰より下に下げる(=非滅菌扱い)</li>
+        <li>背中側に手を回す</li>
+        <li>マスク・帽子・自分のガウン襟を触る</li>
+        <li>非滅菌の人・物に触る(壁、麻酔器、モニター)</li>
+        <li>顔を掻く、汗を拭う</li>
+        <li>滅菌ガウン同士でも背中側で触れ合う</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>術野内移動の基本</h3>
+  <ul>
+    <li><strong>表表で交差:</strong> 滅菌どうしのすれ違いは前後に向き合って</li>
+    <li><strong>裏裏で交差:</strong> 非滅菌どうしは背中合わせで</li>
+    <li><strong>180°回転は危険:</strong> 背中(非滅菌)が術野を通過する</li>
+  </ul>
+
+  <div class="callout danger">
+    <strong>⚠ 学生がやりがちな汚染と対処:</strong> 「あっ、汚染した!」と思ったらすぐ申告。気づかないふりが最大の害悪。看護師がガウン/手袋を交換してくれる(ペナルティではない)。
+  </div>
+</section>
+
+<section class="content reveal" id="degown">
+  <h2>10. 脱ガウンの手順</h2>
+  <p>術後の脱ガウンは、<strong>体表・術野・器械を汚染させない</strong>順序で行います。</p>
+
+  <ol class="step-flow">
+    <li><strong>腰紐を切る/外す:</strong> 自分で前で切る or 看護師に頼む</li>
+    <li><strong>ガウンを脱ぐ:</strong> 首と肩の部分を引き、外側(汚染面)が内側になるように丸めながら脱ぐ</li>
+    <li><strong>手袋装着のままガウンを廃棄:</strong> 手袋は最後</li>
+    <li><strong>手袋を脱ぐ:</strong> 内側を出すように外側を掴んで脱ぐ → 反対手も同様</li>
+    <li><strong>マスク・帽子は最後:</strong> 紐のみを持って外す(マスク表面に触れない)</li>
+    <li><strong>手指消毒:</strong> アルコール擦込み</li>
+  </ol>
+
+  <div class="callout tip">
+    <strong>💡 順序の理由:</strong> ガウン → 手袋 → マスク の順で外せば、最も汚染リスクの高い手袋を最後まで保持できる。
+  </div>
+</section>
+
+<section class="content reveal" id="daycheck">
+  <h2>11. 授業前・当日のチェック</h2>
+  <div class="sterile-grid">
+    <div class="sterile-yes">
+      <h4>学生</h4>
+      <div class="checklist">
+        <label><input type="checkbox"><span> 自分がA・B／C・Dのどちらか確認した</span></label>
+        <label><input type="checkbox"><span> 集合場所D601を確認した</span></label>
+        <label><input type="checkbox"><span> 爪を短くし、装飾品を外せる状態にした</span></label>
+        <label><input type="checkbox"><span> 指定動画2本を視聴した</span></label>
+        <label><input type="checkbox"><span> 汚染に気づいたらすぐ申告すると理解した</span></label>
+      </div>
+    </div>
+    <div class="sterile-no" style="background:#eef5fb;border-left-color:#1976d2">
+      <h4 style="color:#0b4f95">担当教員</h4>
+      <div class="checklist">
+        <label><input type="checkbox"><span> 実習要項グループ表で担当班を確認した</span></label>
+        <label><input type="checkbox"><span> D601で出欠表を受け取った</span></label>
+        <label><input type="checkbox"><span> 担当グループを巡回し出欠を確認した</span></label>
+        <label><input type="checkbox"><span> 学生の清潔／不潔判断を言語化して確認した</span></label>
+        <label><input type="checkbox"><span> 終了後、出欠表を所定の提出先へ返却した</span></label>
+      </div>
+    </div>
+  </div>
+
+  <h3>参照資料</h3>
+  <ul class="source-list">
+    <li>札幌医科大学医学部「2026 基本的臨床手技(手術室手技)ハンドアウト」全18頁</li>
+    <li>令和8年度「臨床入門」実習要項「基本的臨床手技(手術室手技)」(冊子21頁)</li>
+    <li><a href="https://www.cato.or.jp/pdf/hyouka_1.1.pdf" target="_blank" rel="noopener">診療参加型臨床実習に必要とされる技能と態度についての学修・評価項目(第1.1版)</a></li>
+    <li><a href="https://sapmed.box.com/s/1rnuxswf9l6lof74n49nyddxjrlps76r" target="_blank" rel="noopener">R8 OSCE教育・学修用動画(学内案内)</a></li>
+    <li><a href="https://www.youtube.com/watch?v=vN7DlHlTKBk" target="_blank" rel="noopener">Medical*Online Video「滅菌手袋の装着」プレビュー</a></li>
+    <li><a href="https://www.youtube.com/watch?v=_feoJvXCdXo" target="_blank" rel="noopener">Medical*Online Video「ガウンテクニック(清潔区域)」プレビュー</a></li>
+  </ul>
 </section>
 
 <section class="content reveal" id="quiz">
-  <h2>7. 理解度チェック(全6問)</h2>
+  <h2>12. 理解度チェック(全8問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 6</div>
+    <div class="progress" id="progress">問題 1 / 8</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -581,7 +673,7 @@
     </div>
     <div class="score-display" id="scoreDisplay">
       <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 6</div>
+      <div class="big" id="finalScore">0 / 8</div>
       <div id="comment"></div>
       <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
     </div>
@@ -589,26 +681,28 @@
 </section>
 
 <section class="content reveal" id="glossary">
-  <h2>8. 用語集</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>用語</th><th>意味</th></tr></thead>
-      <tbody>
-        <tr><td>IMA</td><td>Inferior Mesenteric Artery(下腸間膜動脈)。L3レベルから分岐</td></tr>
-        <tr><td>SMA</td><td>Superior Mesenteric Artery(上腸間膜動脈)</td></tr>
-        <tr><td>IIA</td><td>Internal Iliac Artery(内腸骨動脈、hypogastric artery)</td></tr>
-        <tr><td>EIA</td><td>External Iliac Artery(外腸骨動脈)</td></tr>
-        <tr><td>Marginal artery of Drummond</td><td>結腸を縁取る辺縁動脈。SMA-IMAの最も恒常的側副</td></tr>
-        <tr><td>Arc of Riolan</td><td>中結腸動脈と左結腸動脈を結ぶ太い側副路。狭窄あれば肥大</td></tr>
-        <tr><td>Meandering mesenteric artery</td><td>蛇行・拡張したArc of Riolanの別名</td></tr>
-        <tr><td>Griffith point</td><td>脾湾曲のwatershed(SMA-IMA境界)</td></tr>
-        <tr><td>Sudeck critical point</td><td>直腸S状結腸移行部のwatershed</td></tr>
-        <tr><td>Buttock claudication</td><td>殿部間欠跛行。内腸骨動脈閉塞の典型症状</td></tr>
-        <tr><td>IBE</td><td>Iliac Branch Endoprosthesis(内腸骨温存型デバイス)</td></tr>
-        <tr><td>虚血性大腸炎</td><td>Ischemic colitis。AAA手術後1-3%、特に脾湾曲・S状結腸</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <h2>13. 用語集</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>用語</th><th>意味</th></tr></thead>
+    <tbody>
+      <tr><td>SSI</td><td>Surgical Site Infection(手術部位感染)</td></tr>
+      <tr><td>Aseptic technique</td><td>病原体の侵入を防ぐための無菌操作・清潔操作</td></tr>
+      <tr><td>Sterile</td><td>滅菌された状態。無菌的に扱う領域</td></tr>
+      <tr><td>Non-sterile</td><td>非滅菌。滅菌物を接触させない領域</td></tr>
+      <tr><td>Surgical hand preparation</td><td>手術前の手洗いと手指消毒</td></tr>
+      <tr><td>Scrub</td><td>手術時手洗い・手指消毒、または手洗いを終えた術者</td></tr>
+      <tr><td>Closed glove technique</td><td>ガウン袖から手を出さずに手袋を装着する方法</td></tr>
+      <tr><td>Double gloving</td><td>二重手袋。針刺し時の血液暴露減</td></tr>
+      <tr><td>Indicator gloves</td><td>色付き内側手袋。穿孔検出用</td></tr>
+      <tr><td>Cuff</td><td>手袋やガウンの袖口部分</td></tr>
+      <tr><td>Scrub nurse</td><td>清潔区域で器械を扱う看護師</td></tr>
+      <tr><td>Circulating nurse</td><td>外回りを担当し、非滅菌区域から支援する看護師</td></tr>
+      <tr><td>Strikethrough contamination</td><td>濡れたガウン/マスクを介した細菌透過汚染</td></tr>
+      <tr><td>Rub method</td><td>速乾性アルコール製剤を規定量・時間擦り込む方法</td></tr>
+      <tr><td>Fit test</td><td>N95マスクの密着度試験</td></tr>
+      <tr><td>顎マスク</td><td>マスクを顎に下げた状態(禁止)</td></tr>
+    </tbody>
+  </table></div>
 </section>
 </main>
 
@@ -774,7 +868,6 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape'){ const t = do
 const btt = document.getElementById('backToTop');
   btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
   window.addEventListener('scroll', () => { btt.classList.toggle('show', window.scrollY > 300); }, {passive:true});
-  // Highlight current page in the top text-based page nav
   const _curP_alt = (location.pathname.split('/').pop() || 'index.html');
   document.querySelectorAll('.page-nav a').forEach(a => { if(a.getAttribute('href')===_curP_alt) a.classList.add('current'); });
   // Mark current page in the drawer & page nav (CSS-only otherwise)
@@ -798,43 +891,22 @@ const btt = document.getElementById('backToTop');
   // Escape to close
   document.addEventListener('keydown', e => { if(e.key==='Escape'){ const t = document.getElementById('menuToggle'); if(t) t.checked = false; } });
   const questions = [
-    {q:"Marginal artery of Drummond は何と何の間の側副路か。",choices:["腹腔動脈とSMA","SMAとIMA","IMAと内腸骨動脈","SMAと内腸骨動脈"],correct:1,explain:"Drummond辺縁動脈は SMA末梢分枝(中結腸・右結腸・回結腸動脈)と IMA末梢分枝(左結腸・S状結腸動脈)を結腸辺縁で連結する、最も恒常的な側副路。"},
-    {q:"Arc of Riolan が CTで太く蛇行している所見の意味として正しいのはどれか。",choices:["先天奇形","IMA・SMA・腹腔動脈のいずれかに有意狭窄がある","健常人の正常所見","AAAの典型像"],correct:1,explain:"Arc of Riolanは通常は細いが、慢性的な主幹動脈狭窄があると側副血行として代償的に拡張・蛇行する(meandering mesenteric artery)。この所見があればIMA結紮は禁忌に近い。"},
-    {q:"虚血性大腸炎の最好発部位はどこか。",choices:["回盲部","上行結腸","脾湾曲(Griffith point)","直腸下部"],correct:2,explain:"脾湾曲はSMA-IMA境界のwatershedで、側副血行が乏しい。AAA手術後の虚血性大腸炎の最好発部位。"},
-    {q:"両側内腸骨動脈塞栓を避けるべき主な理由はどれか。",choices:["心機能低下","殿筋跛行・骨盤虚血・勃起障害","結腸虚血","脳梗塞"],correct:1,explain:"両側内腸骨動脈塞栓は殿部間欠跛行(buttock claudication)、骨盤虚血、男性では勃起障害をきたしうる。片側なら通常 代償される。"},
-    {q:"IMAと内腸骨動脈を結ぶ側副路として正しいのはどれか。",choices:["腎動脈経由","直腸動脈経由(上直腸-中直腸-下直腸)","Marginal artery of Drummond","椎骨動脈経由"],correct:1,explain:"IMA系の上直腸動脈と、内腸骨動脈系の中直腸動脈(前枝)・下直腸動脈(内陰部動脈分枝)が直腸壁内で吻合し、骨盤と腸間膜の血流をつなぐ。"},
-    {q:"AAA開腹手術中 IMA結紮の可否を判定する術中evaluation として最も適切なのはどれか。",choices:["心電図変化","クランプテストでS状結腸の色調・拍動・ドップラー血流を確認","血圧変化","尿量"],correct:1,explain:"IMA結紮前に数分間遮断し、S状結腸の色調・辺縁拍動・ドップラー血流を観察。良好なら結紮可、不良なら IMA再建(S状結腸動脈に直接吻合など)を行う。"}
+    {q:"7月22日の授業で、最初に集合する場所はどこか。",choices:["C302講義室","D601演習室","D701自然科学実験室","各班の実習室へ直接集合"],correct:1,explain:"授業冒頭はD601演習室に集合して全体説明を受け、その後に各班で実践します。"},
+    {q:"本授業の学習項目に含まれないものはどれか。",choices:["手術時手洗い","滅菌手袋の装着","滅菌ガウンの装着","静脈採血"],correct:3,explain:"静脈採血は別の基本的臨床手技で実施します。本授業では清潔・不潔、帽子・マスク、手洗い、滅菌手袋、滅菌ガウンを扱います。"},
+    {q:"手術時手指消毒で重要な考え方はどれか。",choices:["製品にかかわらず必ず5分行う","製品規定量・時間と施設手順を守る","ブラシで皮膚が赤くなるまで擦る","消毒後すぐ濡れたままガウンを着る"],correct:1,explain:"消毒薬ごとに必要量と擦り込み時間が異なります。製品と施設の手順を守り、完全に乾燥してから次へ進みます。"},
+    {q:"滅菌ガウンの『非滅菌扱い』とされる部位はどれか。",choices:["前面の胸〜腰","背中","両側の前腕","滅菌手袋で覆われた手"],correct:1,explain:"ガウンの背中は視線が届かず、非滅菌扱いです。清潔領域の範囲はガウンの製品と施設手順でも確認します。"},
+    {q:"Closed glove techniqueの特徴として正しいのはどれか。",choices:["素手で手袋を装着する","ガウン袖から手を出さずに袖越しに手袋を装着する","手袋装着後に水で洗う","二重手袋を意味する"],correct:1,explain:"Closed glove techniqueはガウン装着後、袖から手を出さずに袖の中の手で手袋を引き上げる方法。ガウン外面の滅菌を装着完了まで保てる。心血管外科で標準。"},
+    {q:"実習中に『不潔な物へ触れたかもしれない』と感じた。最も適切な行動はどれか。",choices:["そのまま続ける","水で軽く流して続ける","直ちに申告し、指導者とやり直す範囲を確認する","周囲に気づかれなければ問題ない"],correct:2,explain:"清潔かどうか迷った時点で申告します。汚染を隠さず、どこから再開するかを指導者と確認することが患者安全につながります。"},
+    {q:"手洗い後に手を肘より下に下げてはいけない理由はどれか。",choices:["疲労防止","消毒液・水が指先側に流れて再汚染","関節に負担","ガウンが破ける"],correct:1,explain:"手を下げると、肘の汚染水・消毒液が重力で指先側へ流れ、最も清潔に保ちたい指先を再汚染してしまう。手洗い後・ガウン装着後は常に手を胸の高さ以上に保つ。"},
+    {q:"脱ガウンの正しい順序はどれか。",choices:["マスク → ガウン → 手袋","手袋 → ガウン → マスク","ガウン → 手袋 → マスク","ガウン → マスク → 手袋"],correct:2,explain:"正しい順序は ガウン → 手袋 → マスク。最も汚染リスクが高い手袋を最後まで保持することで、ガウン脱ぐ際にも手指を保護できる。マスクは紐のみ持ち外面に触れずに外す。"}
   ];
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
-  function renderQ(){
-    answered=false;const q=questions[idx];
-    progress.textContent=`問題 ${idx+1} / ${questions.length}`;
-    qText.textContent=q.q;choicesEl.innerHTML='';
-    feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;
-    q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)});
-  }
-  function selectAnswer(i,btn){
-    if(answered)return;answered=true;const q=questions[idx];
-    const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);
-    if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}
-    else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}
-    scoreEl.textContent=`得点: ${score} / ${idx+1}`;
-    nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →';
-  }
+  function renderQ(){answered=false;const q=questions[idx];progress.textContent=`問題 ${idx+1} / ${questions.length}`;qText.textContent=q.q;choicesEl.innerHTML='';feedback.classList.remove('show','ok','ng');nextBtn.disabled=true;q.choices.forEach((c,i)=>{const b=document.createElement('button');b.className='quiz-choice';b.textContent=`${String.fromCharCode(65+i)}. ${c}`;b.addEventListener('click',()=>selectAnswer(i,b));choicesEl.appendChild(b)})}
+  function selectAnswer(i,btn){if(answered)return;answered=true;const q=questions[idx];const all=choicesEl.querySelectorAll('.quiz-choice');all.forEach(b=>b.disabled=true);if(i===q.correct){btn.classList.add('correct');feedback.className='quiz-feedback show ok';feedback.innerHTML=`<strong>⭕ 正解!</strong> ${q.explain}`;score++}else{btn.classList.add('wrong');all[q.correct].classList.add('correct');feedback.className='quiz-feedback show ng';feedback.innerHTML=`<strong>❌ 不正解。</strong> 正解は <strong>${String.fromCharCode(65+q.correct)}</strong>。 ${q.explain}`}scoreEl.textContent=`得点: ${score} / ${idx+1}`;nextBtn.disabled=false;nextBtn.textContent=idx===questions.length-1?'結果を見る':'次へ →'}
   nextBtn.addEventListener('click',()=>{if(idx===questions.length-1)showResult();else{idx++;renderQ()}});
-  function showResult(){
-    document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';
-    finalScore.textContent=`${score} / ${questions.length}`;
-    const pct=score/questions.length;
-    comment.textContent=pct===1?'🏆 満点! 完璧に理解しています。':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース。復習しましょう。':'📚 もう一度教材を読んでみましょう。';
-    scoreDisplay.classList.add('show');
-  }
-  restartBtn.addEventListener('click',()=>{
-    idx=0;score=0;
-    ['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');
-    scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ();
-  });
+  function showResult(){document.getElementById('questionText').style.display='none';choicesEl.style.display='none';feedback.style.display='none';nextBtn.style.display='none';progress.style.display='none';scoreEl.style.display='none';finalScore.textContent=`${score} / ${questions.length}`;const pct=score/questions.length;comment.textContent=pct===1?'🏆 満点!':pct>=.75?'👏 素晴らしい!':pct>=.5?'💪 良いペース':'📚 復習しましょう';scoreDisplay.classList.add('show')}
+  restartBtn.addEventListener('click',()=>{idx=0;score=0;['questionText','choices','feedback','nextBtn','progress','score'].forEach(id=>document.getElementById(id).style.display='');scoreEl.textContent='得点: 0 / 0';scoreDisplay.classList.remove('show');renderQ()});
   renderQ();
 </script>
 
