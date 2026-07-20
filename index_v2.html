@@ -111,6 +111,9 @@
   .case-concept-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin:.85rem 0}
   .case-concept-card{overflow:hidden;background:#f7fafc;border:1px solid var(--border);border-radius:11px}
   .case-concept-card svg{display:block;width:100%;height:320px;background:linear-gradient(145deg,#f8fbff,#edf3f8)}
+  .case-concept-card img{display:block;width:100%;height:320px;object-fit:contain;background:#eef2f6}
+  .case-img-tag{display:inline-block;background:var(--navy);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.05em;padding:.1rem .42rem;border-radius:99px;margin-right:.3rem;vertical-align:middle}
+  .case-img-tag.schema{background:#5a6473}
   .case-concept-card figcaption{min-height:58px;background:#fff;color:var(--navy);padding:.58rem .7rem;font-size:.76rem;font-weight:700;line-height:1.5}
   .case-prompts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:.85rem}.case-prompt{background:#f5f8fc;border-left:4px solid var(--accent);border-radius:8px;padding:.7rem .8rem;font-size:.78rem;line-height:1.6}.case-prompt strong{display:block;color:var(--navy);font-size:.8rem;margin-bottom:.12rem}
   .case-privacy-note{margin-top:.85rem;background:#e8f5e9;border-left:4px solid var(--success);border-radius:8px;padding:.65rem .8rem;color:#245c2a;font-size:.73rem;line-height:1.65}
@@ -230,7 +233,7 @@
     .hero-ctas{flex-direction:column;width:100%;max-width:300px;margin-left:auto;margin-right:auto}
     .btn-primary,.btn-secondary{width:100%;justify-content:center}
     .category-head{flex-wrap:wrap;gap:.55rem}
-    .case-concept-grid,.case-prompts{grid-template-columns:1fr}.case-concept-card svg{height:auto;max-height:430px}.case-concept-card figcaption{min-height:auto}.weekly-case-spotlight{padding:.9rem}
+    .case-concept-grid,.case-prompts{grid-template-columns:1fr}.case-concept-card svg{height:auto;max-height:430px}.case-concept-card img{height:auto;max-height:430px}.case-concept-card figcaption{min-height:auto}.weekly-case-spotlight{padding:.9rem}
   }
 
   /* === Topbar actions cluster (Menu + v1/v2) === */
@@ -364,20 +367,20 @@
 
       <article class="weekly-case-spotlight" aria-labelledby="weekly-case-title">
         <div class="case-spotlight-head">
-          <div><h3 id="weekly-case-title">症例から病変の全体像と術前計画を考える</h3><p>患者個人情報と実症例画像は掲載せず、今週の学習ポイントを患者非依存の自作模式図として一般化しています。</p></div>
+          <div><h3 id="weekly-case-title">症例から病変の全体像と術前計画を考える</h3><p>①② は当科症例の造影CT(3D-VR)を、<u>患者情報・撮影日時・施設名・機器情報をすべて削除して匿名化</u>のうえ教育目的で掲載しています。③ は自作の一般化模式図です(下肢静脈の検査所見は画像・実測値とも掲載していません)。</p></div>
           <span class="case-date">WEEKLY CASE · 2026.07.20</span>
         </div>
         <div class="case-concept-grid">
-          <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="弓部大動脈と3分枝を示す一般化模式図"><path d="M95 312V150c0-72 48-112 105-112s86 35 86 82v192" fill="none" stroke="#c98b55" stroke-width="34" stroke-linecap="round"/><path d="M132 65V18M188 46V12M238 55V22" fill="none" stroke="#c98b55" stroke-width="18" stroke-linecap="round"/><circle cx="229" cy="105" r="53" fill="rgba(198,40,40,.15)" stroke="#c62828" stroke-width="5" stroke-dasharray="9 7"/><path d="M260 74l28-30" stroke="#c62828" stroke-width="4"/><text x="291" y="39" text-anchor="end" fill="#c62828" font-size="17" font-weight="700">位置関係</text><text x="160" y="340" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">弓部3分枝・中枢側</text></svg><figcaption>① 弓部3分枝と大動脈病変の位置関係</figcaption></figure>
-          <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="腹部大動脈、腎動脈、腸骨動脈を示す一般化模式図"><path d="M160 24v220M160 122H83M160 122h77M160 238l-68 94M160 238l68 94" fill="none" stroke="#c98b55" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path d="M75 92c-44 0-54 77-8 96 23 9 45-9 45-42 0-30-14-54-37-54zm170 0c44 0 54 77 8 96-23 9-45-9-45-42 0-30 14-54 37-54z" fill="#efb48f" stroke="#8d5a3b" stroke-width="3"/><ellipse cx="160" cy="190" rx="47" ry="72" fill="rgba(198,40,40,.16)" stroke="#c62828" stroke-width="5" stroke-dasharray="9 7"/><text x="160" y="348" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">分枝・再建範囲・アクセス</text></svg><figcaption>② 腎動脈・内臓分枝から腸骨動脈まで</figcaption></figure>
-          <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="両下肢の表在静脈を示す一般化模式図"><path d="M93 38c-28 51-28 103-12 148l-9 129M227 38c28 51 28 103 12 148l9 129" fill="none" stroke="#b9c2cc" stroke-width="30" stroke-linecap="round"/><path d="M91 48c-9 52-8 103 1 151l-10 113M229 48c9 52 8 103-1 151l10 113" fill="none" stroke="#1976d2" stroke-width="8" stroke-linecap="round"/><path d="M88 182c-22 22-25 45-8 67M232 182c22 22 25 45 8 67" fill="none" stroke="#2e7d32" stroke-width="7"/><path d="M52 116h47M221 116h47" stroke="#c62828" stroke-width="4" stroke-dasharray="6 5"/><text x="160" y="338" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">径・逆流・血栓を評価</text></svg><figcaption>③ 下肢静脈評価：GSV・SSVをどう読むか</figcaption></figure>
+          <figure class="case-concept-card"><img src="images/weekly/arch_aneurysm_3dvr.jpg" alt="造影CTの3D volume rendering。上行大動脈から弓部・下行大動脈と、弓部から分岐する3分枝が描出されている。弓部小弯側に拡張した部分がみられる。" loading="lazy"><figcaption><span class="case-img-tag">実CT</span>① 弓部3分枝と大動脈病変の位置関係(造影CT 3D-VR)</figcaption></figure>
+          <figure class="case-concept-card"><img src="images/weekly/aaa_3dvr.jpg" alt="造影CTの3D volume rendering。腹部大動脈に紡錘状の拡張(腹部大動脈瘤)がみられ、両側腎臓・腎動脈、および蛇行した両側腸骨動脈が描出されている。" loading="lazy"><figcaption><span class="case-img-tag">実CT</span>② 腎動脈・内臓分枝から腸骨動脈まで(造影CT 3D-VR)</figcaption></figure>
+          <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="両下肢の表在静脈を示す一般化模式図"><path d="M93 38c-28 51-28 103-12 148l-9 129M227 38c28 51 28 103 12 148l9 129" fill="none" stroke="#b9c2cc" stroke-width="30" stroke-linecap="round"/><path d="M91 48c-9 52-8 103 1 151l-10 113M229 48c9 52 8 103-1 151l10 113" fill="none" stroke="#1976d2" stroke-width="8" stroke-linecap="round"/><path d="M88 182c-22 22-25 45-8 67M232 182c22 22 25 45 8 67" fill="none" stroke="#2e7d32" stroke-width="7"/><path d="M52 116h47M221 116h47" stroke="#c62828" stroke-width="4" stroke-dasharray="6 5"/><text x="160" y="338" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">径・逆流・血栓を評価</text></svg><figcaption><span class="case-img-tag schema">模式図</span>③ 下肢静脈評価：GSV・SSVをどう読むか</figcaption></figure>
         </div>
         <div class="case-prompts">
           <div class="case-prompt"><strong>見るポイント 1｜中枢側</strong>弓部3分枝と大動脈病変の位置関係を確認し、遮断・送血・脳保護を考えます。</div>
           <div class="case-prompt"><strong>見るポイント 2｜末梢側</strong>腎動脈・内臓分枝・腸骨動脈まで連続して観察し、再建範囲とアクセスを考えます。</div>
           <div class="case-prompt"><strong>見るポイント 3｜術前評価</strong>下肢静脈の径、逆流、血栓の有無が手術計画にどう関わるかを考えます。</div>
         </div>
-        <p class="case-privacy-note"><strong>プライバシー保護：</strong>実症例画像・実検査値・患者属性は公開していません。模式図は教育目的の一般化表現であり、個別の診断・治療判断には使用しません。</p>
+        <p class="case-privacy-note"><strong>プライバシー保護：</strong>掲載しているCT画像は <strong>教育目的・匿名化済みの自施設データ</strong>(札幌医科大学 心臓血管外科)です。氏名・患者ID・生年月日・年齢・性別・撮影日時・施設名・検査説明などの識別情報、およびワークステーション画面上の付随表示はすべて削除し、撮影機器由来のメタデータ(EXIF)も除去しています。<u>実検査値・患者属性・診療文書は一切掲載していません</u>。掲載画像・模式図は教育目的の参考であり、個別の診断・治療判断には使用しません。</p>
       </article>
 
       <div class="weekly-grid">
