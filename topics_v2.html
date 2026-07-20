@@ -201,6 +201,16 @@
   @keyframes weeklyPulse{0%,100%{box-shadow:0 0 0 0 rgba(198,40,40,.5)}50%{box-shadow:0 0 0 8px rgba(198,40,40,0)}}
   .weekly h2{color:var(--navy);font-size:clamp(1.15rem,3vw,1.4rem);font-weight:700;margin:0}
   .weekly-sub{color:var(--muted);font-size:.88rem;margin-bottom:1.2rem;position:relative}
+  .weekly-case-spotlight{position:relative;background:#fff;border:1.5px solid #ffcdd2;border-radius:14px;padding:1.2rem;margin:0 0 1.5rem;box-shadow:0 6px 20px rgba(11,37,69,.08)}
+  .case-spotlight-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.85rem;flex-wrap:wrap}
+  .case-spotlight-head h3{color:var(--navy);font-size:clamp(1.05rem,2.7vw,1.35rem);line-height:1.5;margin:.18rem 0 .25rem}.case-spotlight-head p{color:var(--muted);font-size:.84rem;line-height:1.7;max-width:760px}
+  .case-date{display:inline-flex;align-items:center;min-height:30px;background:var(--navy);color:#fff;border-radius:99px;padding:.25rem .7rem;font-size:.7rem;font-weight:800;letter-spacing:.06em;white-space:nowrap}
+  .case-concept-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin:.85rem 0}
+  .case-concept-card{overflow:hidden;background:#f7fafc;border:1px solid var(--border);border-radius:11px}
+  .case-concept-card svg{display:block;width:100%;height:320px;background:linear-gradient(145deg,#f8fbff,#edf3f8)}
+  .case-concept-card figcaption{min-height:58px;background:#fff;color:var(--navy);padding:.58rem .7rem;font-size:.76rem;font-weight:700;line-height:1.5}
+  .case-prompts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:.85rem}.case-prompt{background:#f5f8fc;border-left:4px solid var(--accent);border-radius:8px;padding:.7rem .8rem;font-size:.78rem;line-height:1.6}.case-prompt strong{display:block;color:var(--navy);font-size:.8rem;margin-bottom:.12rem}
+  .case-privacy-note{margin-top:.85rem;background:#e8f5e9;border-left:4px solid var(--success);border-radius:8px;padding:.65rem .8rem;color:#245c2a;font-size:.73rem;line-height:1.65}
   .weekly-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;position:relative}
   .weekly-card{background:#fff;border-radius:12px;padding:1.2rem 1.3rem;text-decoration:none;color:inherit;border:1.5px solid var(--border);transition:all .25s ease;display:flex;flex-direction:column;gap:.5rem;position:relative}
   .weekly-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
@@ -273,6 +283,7 @@
     .topbar-btn{padding:.34rem .58rem;font-size:.7rem}
     .topbar-btn .tb-text{display:none}
     .topbar-btn .tb-icon{font-size:1.05rem}
+    .case-concept-grid,.case-prompts{grid-template-columns:1fr}.case-concept-card svg{height:auto;max-height:430px}.case-concept-card figcaption{min-height:auto}.weekly-case-spotlight{padding:.9rem}
   }
 </style>
 </head>
@@ -329,6 +340,24 @@
       <h2 id="weekly-h">今週の症例で押さえておきたいこと</h2>
     </div>
     <p class="weekly-sub">今週の手術・回診で出てくるテーマ。<u>下の6つを先に読んでおく</u>と、症例検討・術後管理の理解がぐっと深まります。</p>
+
+    <article class="weekly-case-spotlight" aria-labelledby="weekly-case-title">
+      <div class="case-spotlight-head">
+        <div><h3 id="weekly-case-title">症例から病変の全体像と術前計画を考える</h3><p>患者個人情報と実症例画像は掲載せず、今週の学習ポイントを患者非依存の自作模式図として一般化しています。</p></div>
+        <span class="case-date">WEEKLY CASE · 2026.07.20</span>
+      </div>
+      <div class="case-concept-grid">
+        <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="弓部大動脈と3分枝を示す一般化模式図"><path d="M95 312V150c0-72 48-112 105-112s86 35 86 82v192" fill="none" stroke="#c98b55" stroke-width="34" stroke-linecap="round"/><path d="M132 65V18M188 46V12M238 55V22" fill="none" stroke="#c98b55" stroke-width="18" stroke-linecap="round"/><circle cx="229" cy="105" r="53" fill="rgba(198,40,40,.15)" stroke="#c62828" stroke-width="5" stroke-dasharray="9 7"/><path d="M260 74l28-30" stroke="#c62828" stroke-width="4"/><text x="291" y="39" text-anchor="end" fill="#c62828" font-size="17" font-weight="700">位置関係</text><text x="160" y="340" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">弓部3分枝・中枢側</text></svg><figcaption>① 弓部3分枝と大動脈病変の位置関係</figcaption></figure>
+        <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="腹部大動脈、腎動脈、腸骨動脈を示す一般化模式図"><path d="M160 24v220M160 122H83M160 122h77M160 238l-68 94M160 238l68 94" fill="none" stroke="#c98b55" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path d="M75 92c-44 0-54 77-8 96 23 9 45-9 45-42 0-30-14-54-37-54zm170 0c44 0 54 77 8 96-23 9-45-9-45-42 0-30 14-54 37-54z" fill="#efb48f" stroke="#8d5a3b" stroke-width="3"/><ellipse cx="160" cy="190" rx="47" ry="72" fill="rgba(198,40,40,.16)" stroke="#c62828" stroke-width="5" stroke-dasharray="9 7"/><text x="160" y="348" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">分枝・再建範囲・アクセス</text></svg><figcaption>② 腎動脈・内臓分枝から腸骨動脈まで</figcaption></figure>
+        <figure class="case-concept-card"><svg viewBox="0 0 320 360" role="img" aria-label="両下肢の表在静脈を示す一般化模式図"><path d="M93 38c-28 51-28 103-12 148l-9 129M227 38c28 51 28 103 12 148l9 129" fill="none" stroke="#b9c2cc" stroke-width="30" stroke-linecap="round"/><path d="M91 48c-9 52-8 103 1 151l-10 113M229 48c9 52 8 103-1 151l10 113" fill="none" stroke="#1976d2" stroke-width="8" stroke-linecap="round"/><path d="M88 182c-22 22-25 45-8 67M232 182c22 22 25 45 8 67" fill="none" stroke="#2e7d32" stroke-width="7"/><path d="M52 116h47M221 116h47" stroke="#c62828" stroke-width="4" stroke-dasharray="6 5"/><text x="160" y="338" text-anchor="middle" fill="#0b2545" font-size="18" font-weight="700">径・逆流・血栓を評価</text></svg><figcaption>③ 下肢静脈評価：GSV・SSVをどう読むか</figcaption></figure>
+      </div>
+      <div class="case-prompts">
+        <div class="case-prompt"><strong>見るポイント 1｜中枢側</strong>弓部3分枝と大動脈病変の位置関係を確認し、遮断・送血・脳保護を考えます。</div>
+        <div class="case-prompt"><strong>見るポイント 2｜末梢側</strong>腎動脈・内臓分枝・腸骨動脈まで連続して観察し、再建範囲とアクセスを考えます。</div>
+        <div class="case-prompt"><strong>見るポイント 3｜術前評価</strong>下肢静脈の径、逆流、血栓の有無が手術計画にどう関わるかを考えます。</div>
+      </div>
+      <p class="case-privacy-note"><strong>プライバシー保護：</strong>実症例画像・実検査値・患者属性は公開していません。模式図は教育目的の一般化表現であり、個別の診断・治療判断には使用しません。</p>
+    </article>
 
     <div class="weekly-grid">
       <a href="brain_isolation_technique_v2.html" class="weekly-card">
