@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -221,6 +221,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -379,44 +385,80 @@
   </ul>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="胸管の走行">
-      <text x="230" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">胸管(thoracic duct)の走行</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img" aria-label="胸管の走行。乳び槽から始まり、大動脈裂孔を通って下部胸椎では大動脈と奇静脈の間を右寄りに上行し、第5から6胸椎の高さで左へ交差して、頸部で左静脈角に注ぐ" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <defs>
+    <marker id="chyA" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f9a825"/></marker>
+  </defs>
+  <rect width="640" height="560" fill="#fff"/>
+  <text x="320" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">胸管(thoracic duct)の走行 ― 下は右、上は左</text>
+  <text x="320" y="46" text-anchor="middle" font-size="11" fill="#5a6473">前面から見た模式図(図の左 = 患者の右)</text>
 
-      <!-- Body silhouette -->
-      <ellipse cx="230" cy="170" rx="120" ry="130" fill="#f5f8fc" stroke="#0b2545" stroke-width="1"/>
+  <!-- vertebral level scale -->
+  <g font-size="11" fill="#5a6473" text-anchor="end">
+    <text x="60" y="104">C7</text><text x="60" y="184">T4</text><text x="60" y="224">T5〜6</text>
+    <text x="60" y="334">T10</text><text x="60" y="414">T12</text><text x="60" y="474">L1〜2</text>
+  </g>
+  <g stroke="#e1e5ea" stroke-dasharray="3 4"><line x1="66" y1="100" x2="560" y2="100"/><line x1="66" y1="180" x2="560" y2="180"/><line x1="66" y1="220" x2="560" y2="220"/><line x1="66" y1="330" x2="560" y2="330"/><line x1="66" y1="410" x2="560" y2="410"/><line x1="66" y1="470" x2="560" y2="470"/></g>
 
-      <!-- Diaphragm -->
-      <path d="M 130 240 Q 230 220 330 240" stroke="#5a6473" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/>
-      <text x="345" y="245" font-size="9" fill="#5a6473">横隔膜</text>
+  <!-- veins of the neck: left IJV + left subclavian = left venous angle -->
+  <path d="M420,56 L420,112" stroke="#1565c0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M600,112 L420,112" stroke="#1565c0" stroke-width="12" stroke-linecap="round"/>
+  <path d="M420,112 C380,130 330,150 300,170" stroke="#1565c0" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <text x="430" y="64" font-size="11" fill="#1565c0">左内頸静脈</text>
+  <text x="500" y="102" font-size="11" fill="#1565c0">左鎖骨下静脈</text>
+  <text x="378" y="168" font-size="10.5" fill="#1565c0">左腕頭静脈</text>
 
-      <!-- Cisterna chyli (below diaphragm) -->
-      <ellipse cx="245" cy="270" rx="15" ry="8" fill="#90caf9" stroke="#1565c0" stroke-width="1.5"/>
-      <text x="265" y="275" font-size="9" fill="#1565c0">乳糜槽</text>
+  <!-- thoracic duct -->
+  <path d="M268,462 L268,340 C268,290 268,250 272,236 C278,214 314,212 318,196 L318,120 C318,96 360,90 384,98 C402,104 412,108 418,110" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M268,462 L268,340 C268,290 268,250 272,236 C278,214 314,212 318,196 L318,120 C318,96 360,90 384,98 C402,104 412,108 418,110" stroke="#f9a825" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M268,400 L268,370" stroke="#f9a825" stroke-width="2" marker-end="url(#chyA)"/>
+  <path d="M318,132 L318,112" stroke="#f9a825" stroke-width="2" marker-end="url(#chyA)"/>
+  <!-- esophagus (midline above, slightly patient-left below) -->
+  <path d="M290,60 L290,230 C290,280 302,320 304,410" stroke="#d1c4e9" stroke-opacity=".92" stroke-width="28" fill="none" stroke-linecap="round"/>
+  <text x="290" y="88" text-anchor="middle" font-size="11" fill="#6a1b9a">食道</text>
 
-      <!-- Thoracic duct ascending (right side initially) -->
-      <path d="M 245 265 L 250 240 L 255 200 L 250 170 L 235 140 L 215 110 L 190 90 L 175 80" stroke="#1565c0" stroke-width="3" fill="none"/>
+  <!-- azygos (patient right) -->
+  <path d="M236,470 L236,214 C236,190 220,176 200,172" stroke="#64b5f6" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <text x="226" y="300" text-anchor="end" font-size="11" fill="#1565c0">奇静脈</text>
 
-      <!-- T5-T6 crossing marker -->
-      <circle cx="245" cy="170" r="3" fill="#c62828"/>
-      <text x="252" y="173" font-size="9" fill="#c62828">T5-6 交叉</text>
+  <!-- aorta (arch + descending, patient left) -->
+  <path d="M232,204 C232,150 344,138 344,196 L344,470" stroke="#e57373" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <text x="362" y="300" font-size="11" fill="#c62828">下行大動脈</text>
 
-      <!-- Subclavian vein (left) -->
-      <line x1="160" y1="75" x2="120" y2="75" stroke="#1565c0" stroke-width="4"/>
-      <text x="80" y="78" font-size="9" fill="#1565c0">左鎖骨下V</text>
-      <circle cx="175" cy="80" r="4" fill="#c62828"/>
-      <text x="155" y="55" font-size="9" fill="#c62828">静脈角(注入)</text>
+  <!-- diaphragm -->
+  <path d="M90,420 Q320,370 550,420" stroke="#8d6e63" stroke-width="2" stroke-dasharray="7 5" fill="none"/>
+  <text x="548" y="438" text-anchor="end" font-size="11" fill="#8d6e63">横隔膜(大動脈裂孔を通る)</text>
 
-      <!-- Aorta (descending) for reference -->
-      <path d="M 220 90 L 220 240" stroke="#c62828" stroke-width="2.5" fill="none" opacity=".4"/>
-      <text x="195" y="200" font-size="8" fill="#c62828" opacity=".7">大動脈</text>
+  <!-- cisterna chyli -->
+  <ellipse cx="268" cy="476" rx="22" ry="14" fill="#fff59d" stroke="#f9a825" stroke-width="2.5"/>
 
-      <!-- Esophagus -->
-      <path d="M 260 90 L 260 240" stroke="#7e57c2" stroke-width="2" fill="none" stroke-dasharray="2,2" opacity=".5"/>
-      <text x="270" y="200" font-size="8" fill="#7e57c2" opacity=".7">食道</text>
+  <!-- numbered callouts -->
+  <g font-size="12">
+    <circle cx="420" cy="112" r="9" fill="none" stroke="#0b2545" stroke-width="2" stroke-dasharray="3 2"/>
+    <line x1="428" y1="120" x2="470" y2="150" stroke="#0b2545"/>
+    <text x="474" y="152" font-weight="800" fill="#0b2545">④ 左静脈角に注ぐ</text>
+    <text x="474" y="168" font-size="11" fill="#5a6473">(左内頸V + 左鎖骨下V の合流部)</text>
 
-      <!-- Direction arrow -->
-      <text x="230" y="305" font-size="9" fill="#0b2545" text-anchor="middle">↑ リンパ流 1,500-2,400 mL/日</text>
-    </svg>
+    <line x1="296" y1="222" x2="470" y2="236" stroke="#f9a825"/>
+    <text x="474" y="232" font-weight="800" fill="#e65100">③ T5〜6 で右 → 左へ交差</text>
+    <text x="474" y="248" font-size="11" fill="#5a6473">食道の後ろを通って左側へ</text>
+
+    <line x1="262" y1="360" x2="160" y2="360" stroke="#f9a825"/>
+    <text x="70" y="356" font-weight="800" fill="#e65100">② 大動脈と</text>
+    <text x="70" y="372" font-size="11" fill="#5a6473">奇静脈の間を</text>
+    <text x="70" y="387" font-size="11" fill="#5a6473">右寄りに上行</text>
+
+    <line x1="246" y1="478" x2="112" y2="500" stroke="#f9a825"/>
+    <text x="70" y="506" font-weight="800" fill="#e65100">① 乳び槽(L1〜2)</text>
+    <text x="70" y="522" font-size="11" fill="#5a6473">腸・下肢のリンパが集まる</text>
+  </g>
+
+  <!-- footer -->
+  <rect x="300" y="492" width="324" height="56" rx="10" fill="#fff8e1" stroke="#ffe082"/>
+  <text x="462" y="514" text-anchor="middle" font-size="11.5" fill="#5d4037">流量 1.5〜2.4 L/日(食事・脂肪で増加)</text>
+  <text x="462" y="534" text-anchor="middle" font-size="11.5" fill="#5d4037"><tspan font-weight="700">損傷すると:</tspan> T5 より下 → 右胸腔、上 → 左胸腔</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 前面像なので図の左が患者の右です。胸管は乳び槽(L1〜2)から始まり、大動脈裂孔を通って、下部胸郭では<u>大動脈と奇静脈の間を右寄りに</u>上行します。T5〜6 の高さで食道の後ろを通って左へ移り、頸部で左静脈角(左内頸静脈と左鎖骨下静脈の合流部)に注ぎます。このため、損傷部位がT5より下なら右の乳び胸、上なら左の乳び胸になりやすいのです。</div>
   </div>
 </section>
 

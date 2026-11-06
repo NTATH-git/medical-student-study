@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -239,6 +239,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -447,63 +453,76 @@
   </div>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="生理食塩水輸液による造影剤腎症予防の機序">
-      <text x="270" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">生食輸液による腎保護メカニズム</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-label="生理食塩水輸液による造影剤腎症予防の機序。循環血液量が増えることで、腎髄質の血流改善、レニンアンジオテンシン系の抑制、尿量増加による造影剤の希釈と排泄促進、尿の浸透圧とpHの維持が起こり、造影剤腎症を予防する" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <defs>
+    <marker id="cinA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#455a64"/></marker>
+    <marker id="cinG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/></marker>
+  </defs>
+  <rect width="720" height="400" fill="#fff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">生理食塩水輸液はなぜ腎臓を守るのか ― 番号は本文の機序 1〜5</text>
 
-      <!-- Saline bag -->
-      <rect x="40" y="50" width="60" height="80" fill="#bbdefb" stroke="#1565c0" stroke-width="2" rx="4"/>
-      <text x="70" y="80" font-size="10" fill="#0b2545" text-anchor="middle" font-weight="bold">0.9%</text>
-      <text x="70" y="95" font-size="10" fill="#0b2545" text-anchor="middle">NaCl</text>
-      <text x="70" y="115" font-size="9" fill="#0b2545" text-anchor="middle">1mL/kg/h</text>
+  <!-- saline bag -->
+  <path d="M52,120 h52 a8,8 0 0 1 8,8 v92 a26,26 0 0 1 -26,26 h-16 a26,26 0 0 1 -26,-26 v-92 a8,8 0 0 1 8,-8z" fill="#e3f2fd" stroke="#1565c0" stroke-width="2.5"/>
+  <rect x="70" y="104" width="16" height="16" fill="#90caf9" stroke="#1565c0" stroke-width="1.5"/>
+  <path d="M60,170 h44 v52 a18,18 0 0 1 -18,18 h-8 a18,18 0 0 1 -18,-18z" fill="#bbdefb"/>
+  <text x="78" y="150" text-anchor="middle" font-size="12" font-weight="800" fill="#0d47a1">0.9%</text>
+  <text x="78" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="#0d47a1">生食</text>
+  <text x="78" y="270" text-anchor="middle" font-size="10.5" fill="#5a6473">1 mL/kg/h</text>
+  <text x="78" y="285" text-anchor="middle" font-size="10.5" fill="#5a6473">検査の前後に</text>
 
-      <!-- Arrow to body -->
-      <path d="M 100 90 L 160 90" stroke="#1565c0" stroke-width="4" marker-end="url(#ca1)"/>
+  <path d="M118,186 L146,186" stroke="#455a64" stroke-width="2.5" marker-end="url(#cinA)"/>
+  <!-- hub -->
+  <rect x="150" y="160" width="112" height="52" rx="10" fill="#0b2545"/>
+  <text x="206" y="182" text-anchor="middle" font-size="12.5" font-weight="800" fill="#fff">循環血液量↑</text>
+  <text x="206" y="200" text-anchor="middle" font-size="10.5" fill="#cfd8dc">心拍出量↑</text>
 
-      <!-- Body (circulation) -->
-      <ellipse cx="220" cy="90" rx="55" ry="35" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
-      <text x="220" y="88" font-size="10" fill="#0b2545" text-anchor="middle" font-weight="bold">循環血液量↑</text>
-      <text x="220" y="102" font-size="10" fill="#0b2545" text-anchor="middle">心拍出量↑</text>
+  <!-- branches -->
+  <g fill="none" stroke="#455a64" stroke-width="2">
+    <path d="M262,186 C276,186 276,82 296,82" marker-end="url(#cinA)"/>
+    <path d="M262,186 C280,186 280,160 296,160" marker-end="url(#cinA)"/>
+    <path d="M262,186 C280,186 280,250 296,250" marker-end="url(#cinA)"/>
+    <path d="M262,186 C276,186 276,330 296,330" marker-end="url(#cinA)"/>
+  </g>
 
-      <!-- Kidney -->
-      <ellipse cx="400" cy="180" rx="65" ry="80" fill="#ffe0b2" stroke="#ef6c00" stroke-width="2"/>
-      <text x="400" y="125" font-size="11" fill="#0b2545" text-anchor="middle" font-weight="bold">腎臓</text>
+  <!-- row boxes -->
+  <g font-size="12">
+    <rect x="300" y="60" width="300" height="46" rx="9" fill="#fdecea" stroke="#c62828"/>
+    <circle cx="318" cy="83" r="11" fill="#c62828"/><text x="318" y="87" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">1</text>
+    <text x="336" y="79" font-weight="800" fill="#c62828">腎血流↑(とくに髄質)</text>
+    <text x="336" y="96" font-size="11" fill="#3a4150">酸素不足に弱い髄質へ血液が届く</text>
 
-      <!-- Cortex -->
-      <ellipse cx="400" cy="160" rx="60" ry="35" fill="#fff3e0" stroke="#ef6c00" stroke-width="1"/>
-      <text x="400" y="155" font-size="9" fill="#0b2545" text-anchor="middle">皮質</text>
+    <rect x="300" y="137" width="300" height="46" rx="9" fill="#fff3e0" stroke="#ef6c00"/>
+    <circle cx="318" cy="160" r="11" fill="#ef6c00"/><text x="318" y="164" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">4</text>
+    <text x="336" y="156" font-weight="800" fill="#e65100">レニン↓ → アンジオテンシンⅡ↓</text>
+    <text x="336" y="173" font-size="11" fill="#3a4150">造影剤による腎血管の収縮をゆるめる</text>
 
-      <!-- Medulla (hypoxic risk area) -->
-      <ellipse cx="400" cy="210" rx="40" ry="35" fill="#ffccbc" stroke="#e64a19" stroke-width="1.5"/>
-      <text x="400" y="210" font-size="9" fill="#0b2545" text-anchor="middle">髄質</text>
-      <text x="400" y="222" font-size="8" fill="#bf360c" text-anchor="middle">★低酸素脆弱</text>
+    <rect x="300" y="214" width="300" height="72" rx="9" fill="#ede7f6" stroke="#6a1b9a"/>
+    <text x="316" y="234" font-weight="800" fill="#6a1b9a">尿量↑</text>
+    <circle cx="328" cy="254" r="11" fill="#6a1b9a"/><text x="328" y="258" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">2</text>
+    <text x="346" y="258" font-size="11.5" fill="#3a4150">尿細管の造影剤を<tspan font-weight="700">薄める</tspan></text>
+    <circle cx="328" cy="276" r="11" fill="#6a1b9a"/><text x="328" y="280" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">3</text>
+    <text x="346" y="280" font-size="11.5" fill="#3a4150">とどまる時間が短く<tspan font-weight="700">早く出ていく</tspan></text>
 
-      <!-- Arrow from heart to kidney -->
-      <path d="M 270 110 Q 330 130 360 160" stroke="#c62828" stroke-width="3" marker-end="url(#ca2)"/>
-      <text x="295" y="130" font-size="9" fill="#c62828">腎血流↑</text>
+    <rect x="300" y="310" width="300" height="40" rx="9" fill="#eceff1" stroke="#78909c"/>
+    <circle cx="318" cy="330" r="11" fill="#78909c"/><text x="318" y="334" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">5</text>
+    <text x="336" y="335" font-size="11.5" fill="#3a4150">尿の浸透圧・pH を保ち、酸化ストレス↓</text>
+  </g>
 
-      <!-- Effects -->
-      <text x="490" y="155" font-size="9" fill="#2e7d32">→ 希釈</text>
-      <text x="490" y="170" font-size="9" fill="#2e7d32">→ 排泄促進</text>
-      <text x="490" y="185" font-size="9" fill="#2e7d32">→ RA系抑制</text>
+  <!-- converge to outcome -->
+  <g fill="none" stroke="#2e7d32" stroke-width="2">
+    <path d="M600,83 C624,83 624,196 640,200"/>
+    <path d="M600,160 C618,160 620,198 640,200"/>
+    <path d="M600,250 C618,250 620,204 640,200"/>
+    <path d="M600,330 C624,330 624,206 640,200" marker-end="url(#cinG)"/>
+  </g>
+  <rect x="644" y="160" width="68" height="80" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="678" y="190" text-anchor="middle" font-size="12" font-weight="800" fill="#1b5e20">CI-AKI</text>
+  <text x="678" y="208" text-anchor="middle" font-size="12" font-weight="800" fill="#1b5e20">を予防</text>
+  <text x="678" y="228" text-anchor="middle" font-size="10" fill="#2e7d32">造影剤腎症</text>
 
-      <!-- Urine outflow -->
-      <path d="M 400 270 L 400 305" stroke="#fdd835" stroke-width="6" marker-end="url(#ca3)"/>
-      <text x="410" y="295" font-size="10" fill="#0b2545">尿量↑</text>
-      <text x="410" y="307" font-size="9" fill="#5a6473">造影剤排泄</text>
-
-      <!-- Contrast media in -->
-      <circle cx="200" cy="160" r="6" fill="#5a6473"/>
-      <text x="170" y="180" font-size="9" fill="#5a6473">造影剤</text>
-      <text x="170" y="192" font-size="8" fill="#5a6473">(腎毒性)</text>
-      <path d="M 206 160 Q 280 180 355 200" stroke="#5a6473" stroke-width="1.5" stroke-dasharray="3,2" fill="none" marker-end="url(#ca4)"/>
-
-      <defs>
-        <marker id="ca1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#1565c0"/></marker>
-        <marker id="ca2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
-        <marker id="ca3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#fdd835"/></marker>
-        <marker id="ca4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#5a6473"/></marker>
-      </defs>
-    </svg>
+  <text x="360" y="384" text-anchor="middle" font-size="11" fill="#5a6473">心機能が低い例では輸液速度を下げる(0.5 mL/kg/h)。過剰輸液による心不全に注意</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 出発点は「循環血液量を増やす」ことただ1つですが、そこから<u>腎血流・RA系・尿量・尿の性状</u>の4つの経路に効果が広がり、すべてが造影剤腎症の予防につながります。番号は上の機序1〜5に対応しています。</div>
   </div>
 </section>
 

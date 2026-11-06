@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -250,6 +250,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -392,41 +398,74 @@
   </div>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="透析の原理">
-      <text x="270" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">血液 ↔ 半透膜 ↔ 透析液</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-label="透析の原理。半透膜をはさんで、尿素やカリウムは濃い血液側から薄い透析液側へ拡散し、重炭酸は透析液側から血液側へ拡散する。圧較差による限外濾過で水分が除かれる。血液と透析液は逆向きに流す" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <defs>
+    <marker id="hdO" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e65100"/></marker>
+    <marker id="hdB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1565c0"/></marker>
+    <marker id="hdP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6a1b9a"/></marker>
+    <marker id="hdG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5a6473"/></marker>
+  </defs>
+  <rect width="720" height="380" fill="#fff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">透析の原理 ― 半透膜をはさんで何が移動するか</text>
 
-      <!-- Blood side -->
-      <rect x="40" y="50" width="200" height="200" fill="#fce4e4" stroke="#c62828" stroke-width="2" rx="6"/>
-      <text x="140" y="75" font-size="12" fill="#c62828" text-anchor="middle" font-weight="bold">血液(患者側)</text>
-      <text x="140" y="100" font-size="11" fill="#c62828" text-anchor="middle">高: 尿素・Cr・K⁺・水</text>
+  <!-- compartments -->
+  <rect x="160" y="50" width="190" height="290" rx="10" fill="#fdecea" stroke="#c62828" stroke-width="2"/>
+  <rect x="370" y="50" width="190" height="290" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="255" y="72" text-anchor="middle" font-size="13" font-weight="800" fill="#c62828">血液(患者側)</text>
+  <text x="465" y="72" text-anchor="middle" font-size="13" font-weight="800" fill="#1565c0">透析液</text>
+  <!-- membrane -->
+  <rect x="350" y="50" width="20" height="290" fill="#cfd8dc"/>
+  <g fill="#fff">
+    <rect x="356" y="94" width="8" height="14" rx="3"/><rect x="356" y="130" width="8" height="14" rx="3"/>
+    <rect x="356" y="166" width="8" height="14" rx="3"/><rect x="356" y="202" width="8" height="14" rx="3"/>
+    <rect x="356" y="238" width="8" height="14" rx="3"/><rect x="356" y="274" width="8" height="14" rx="3"/>
+    <rect x="356" y="310" width="8" height="14" rx="3"/>
+  </g>
+  <text x="360" y="362" text-anchor="middle" font-size="11.5" font-weight="700" fill="#455a64">半透膜</text>
 
-      <!-- Dialysate side -->
-      <rect x="300" y="50" width="200" height="200" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" rx="6"/>
-      <text x="400" y="75" font-size="12" fill="#1565c0" text-anchor="middle" font-weight="bold">透析液</text>
-      <text x="400" y="100" font-size="11" fill="#1565c0" text-anchor="middle">低: 老廃物 / 適切: 電解質</text>
+  <!-- counter-current flow -->
+  <path d="M176,90 L176,320" stroke="#c62828" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#hdG)"/>
+  <path d="M544,320 L544,90" stroke="#1565c0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#hdG)"/>
+  <text x="600" y="186" font-size="11" fill="#5a6473">血液と透析液は</text>
+  <text x="600" y="201" font-size="11" fill="#5a6473">逆向きに流す</text>
+  <text x="600" y="216" font-size="11" fill="#5a6473">(向流)</text>
+  <text x="600" y="231" font-size="11" fill="#5a6473">→ 濃度差を保つ</text>
 
-      <!-- Membrane -->
-      <rect x="245" y="55" width="50" height="190" fill="#bdbdbd" stroke="#424242" stroke-width="1" stroke-dasharray="2,2"/>
-      <text x="270" y="155" font-size="10" fill="#424242" text-anchor="middle" font-weight="bold" transform="rotate(90, 270, 155)">半透膜</text>
+  <!-- row 1: diffusion out (urea, K) -->
+  <text x="14" y="112" font-size="13" font-weight="800" fill="#e65100">① 拡散</text>
+  <text x="14" y="129" font-size="11" fill="#5a6473">濃い → 薄い</text>
+  <g fill="#ff9800">
+    <circle cx="200" cy="104" r="5"/><circle cx="218" cy="118" r="5"/><circle cx="236" cy="100" r="5"/><circle cx="254" cy="120" r="5"/>
+    <circle cx="272" cy="104" r="5"/><circle cx="290" cy="122" r="5"/><circle cx="308" cy="102" r="5"/><circle cx="326" cy="118" r="5"/>
+    <circle cx="420" cy="108" r="5"/><circle cx="470" cy="120" r="5"/>
+  </g>
+  <path d="M300,140 L430,140" stroke="#e65100" stroke-width="3" marker-end="url(#hdO)"/>
+  <text x="255" y="160" text-anchor="middle" font-size="11.5" font-weight="700" fill="#e65100">尿素・Cr・K⁺ 多い</text>
+  <text x="470" y="160" text-anchor="middle" font-size="11.5" fill="#e65100">ほとんど 0</text>
 
-      <!-- Diffusion arrow (urea/K from blood to dialysate) -->
-      <path d="M 200 130 L 340 130" stroke="#c62828" stroke-width="3" marker-end="url(#hd1)"/>
-      <text x="210" y="125" font-size="10" fill="#c62828">① 拡散(尿素・K)</text>
+  <!-- row 2: diffusion in (HCO3) -->
+  <text x="14" y="202" font-size="13" font-weight="800" fill="#1565c0">① 拡散</text>
+  <text x="14" y="219" font-size="11" fill="#5a6473">逆向きにも起こる</text>
+  <g fill="#42a5f5">
+    <circle cx="390" cy="194" r="5"/><circle cx="408" cy="208" r="5"/><circle cx="426" cy="190" r="5"/><circle cx="444" cy="210" r="5"/>
+    <circle cx="462" cy="194" r="5"/><circle cx="480" cy="212" r="5"/><circle cx="498" cy="192" r="5"/><circle cx="516" cy="206" r="5"/>
+    <circle cx="240" cy="200" r="5"/><circle cx="300" cy="210" r="5"/>
+  </g>
+  <path d="M420,230 L290,230" stroke="#1565c0" stroke-width="3" marker-end="url(#hdB)"/>
+  <text x="255" y="250" text-anchor="middle" font-size="11.5" fill="#1565c0">HCO₃⁻ を受け取る</text>
+  <text x="465" y="250" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1565c0">HCO₃⁻ 多い</text>
 
-      <!-- HCO3 from dialysate to blood -->
-      <path d="M 340 165 L 200 165" stroke="#1565c0" stroke-width="2" marker-end="url(#hd2)"/>
-      <text x="220" y="180" font-size="10" fill="#1565c0">① HCO₃⁻補充</text>
-
-      <!-- UF arrow (water from blood) -->
-      <path d="M 200 210 L 340 210" stroke="#7e57c2" stroke-width="3" stroke-dasharray="4,2" marker-end="url(#hd3)"/>
-      <text x="210" y="225" font-size="10" fill="#7e57c2">② 限外濾過(水分)</text>
-
-      <defs>
-        <marker id="hd1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
-        <marker id="hd2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#1565c0"/></marker>
-        <marker id="hd3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#7e57c2"/></marker>
-      </defs>
-    </svg>
+  <!-- row 3: ultrafiltration -->
+  <text x="14" y="290" font-size="13" font-weight="800" fill="#6a1b9a">② 限外濾過</text>
+  <text x="14" y="307" font-size="11" fill="#5a6473">圧の差で水を移す</text>
+  <g fill="#7e57c2">
+    <path d="M232,276 q-6,10 0,14 q6,-4 0,-14z"/><path d="M262,290 q-6,10 0,14 q6,-4 0,-14z"/><path d="M292,276 q-6,10 0,14 q6,-4 0,-14z"/><path d="M322,290 q-6,10 0,14 q6,-4 0,-14z"/>
+  </g>
+  <path d="M300,316 L430,316" stroke="#6a1b9a" stroke-width="3" marker-end="url(#hdP)"/>
+  <text x="250" y="334" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6a1b9a">圧が高い → 除水</text>
+  <text x="470" y="334" text-anchor="middle" font-size="11.5" fill="#6a1b9a">圧が低い</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 半透膜には小さな穴があり、小分子は通れますが血球やタンパクは通れません。尿素・Cr・K⁺ は<u>濃い血液側から薄い透析液側へ</u>拡散で抜け、HCO₃⁻ は逆に透析液側から補われます。血液側にかかる圧を高くすると水が押し出され(限外濾過)、これが除水です。血液と透析液を逆向きに流すことで、膜の全長で濃度差が保たれます。</div>
   </div>
 
   <h3>透析液の組成(おおまかな目安)</h3>
@@ -511,42 +550,85 @@
 
   <h3>AVFの仕組み図</h3>
   <div class="diagram-wrap">
-    <svg viewBox="0 0 500 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AVFの仕組み">
-      <text x="250" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">自己血管内シャント(AVF)― 橈骨動脈と橈側皮静脈の吻合</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-label="自己血管内シャント(AVF)の作成前と作成後。手首で橈側皮静脈を橈骨動脈に吻合すると、動脈血が静脈に流れ込み静脈が太く発達する。脱血針は吻合部側、返血針は中枢側に穿刺する" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <defs>
+    <marker id="avR" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker>
+    <marker id="avB" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1565c0"/></marker>
+    <marker id="avP" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8e24aa"/></marker>
+  </defs>
+  <rect width="720" height="400" fill="#fff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">自己血管内シャント(AVF)― 手首で静脈を動脈につなぐ</text>
+  <text x="360" y="46" text-anchor="middle" font-size="11.5" fill="#5a6473">左前腕を手のひら側から見た模式図(左が手・右がひじ=心臓側)</text>
 
-      <!-- Artery (radial) -->
-      <rect x="50" y="80" width="160" height="22" fill="#c62828" rx="3"/>
-      <text x="60" y="75" font-size="11" fill="#c62828" font-weight="bold">橈骨動脈(血流豊富・高圧)</text>
+  <!-- ===================== BEFORE ===================== -->
+  <g transform="translate(10,70)">
+    <text x="170" y="0" text-anchor="middle" font-size="14" font-weight="800" fill="#5a6473">① 作成前</text>
+    <!-- forearm & hand -->
+    <path d="M70,40 C40,40 18,60 18,100 C18,140 40,160 70,160 L330,170 L330,30 Z" fill="#fbeee6" stroke="#d7b8a3" stroke-width="2"/>
+    <path d="M70,46 C52,40 26,52 22,70 M22,130 C26,150 52,160 70,154" fill="none" stroke="#d7b8a3" stroke-width="2"/>
+    <text x="34" y="104" font-size="11" fill="#a1887f">手</text>
+    <text x="318" y="186" text-anchor="end" font-size="11" fill="#a1887f">ひじ →</text>
+    <!-- vein (thin, blue) -->
+    <path d="M80,72 C140,64 220,70 320,62" fill="none" stroke="#1565c0" stroke-width="5" stroke-linecap="round"/>
+    <path d="M200,67 L236,66" stroke="#1565c0" stroke-width="2" marker-end="url(#avB)"/>
+    <text x="236" y="56" font-size="11.5" font-weight="700" fill="#1565c0">橈側皮静脈</text>
+    <text x="236" y="40" font-size="10.5" fill="#5a6473">細い・圧が低い</text>
+    <!-- artery (red) -->
+    <path d="M320,132 C220,136 140,128 70,132" fill="none" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+    <path d="M230,134 L194,133" stroke="#c62828" stroke-width="2" marker-end="url(#avR)"/>
+    <text x="236" y="154" font-size="11.5" font-weight="700" fill="#c62828">橈骨動脈</text>
+    <text x="110" y="154" font-size="10.5" fill="#5a6473">手へ向かう</text>
+    <text x="170" y="214" text-anchor="middle" font-size="11.5" fill="#3a4150">静脈は細く、そのままでは</text>
+    <text x="170" y="230" text-anchor="middle" font-size="11.5" fill="#3a4150">透析に必要な血流がとれない</text>
+  </g>
 
-      <!-- Vein (cephalic) - initially thin -->
-      <line x1="50" y1="150" x2="200" y2="150" stroke="#1565c0" stroke-width="6"/>
-      <text x="60" y="170" font-size="10" fill="#1565c0">術前:橈側皮静脈(細い、低圧)</text>
+  <!-- arrow between panels -->
+  <path d="M352,166 L376,166" stroke="#0b2545" stroke-width="3" marker-end="url(#avP)"/>
+  <text x="359" y="152" text-anchor="middle" font-size="10.5" fill="#0b2545">手術</text>
 
-      <!-- Anastomosis arrow -->
-      <path d="M 210 91 Q 240 120 240 145" stroke="#000" stroke-width="2" fill="none" stroke-dasharray="3,2"/>
-      <text x="248" y="125" font-size="10" fill="#000">吻合</text>
+  <!-- ===================== AFTER ===================== -->
+  <g transform="translate(374,70)">
+    <text x="170" y="0" text-anchor="middle" font-size="14" font-weight="800" fill="#8e24aa">② 作成後(4〜8週で発達)</text>
+    <path d="M70,40 C40,40 18,60 18,100 C18,140 40,160 70,160 L330,170 L330,30 Z" fill="#fbeee6" stroke="#d7b8a3" stroke-width="2"/>
+    <path d="M70,46 C52,40 26,52 22,70 M22,130 C26,150 52,160 70,154" fill="none" stroke="#d7b8a3" stroke-width="2"/>
+    <text x="34" y="104" font-size="11" fill="#a1887f">手</text>
+    <text x="318" y="186" text-anchor="end" font-size="11" fill="#a1887f">ひじ →</text>
+    <!-- artery -->
+    <path d="M320,132 C220,136 140,128 70,132" fill="none" stroke="#c62828" stroke-width="7" stroke-linecap="round"/>
+    <path d="M260,134 L224,133" stroke="#c62828" stroke-width="2" marker-end="url(#avR)"/>
+    <!-- arterialized vein: end-to-side to artery at wrist -->
+    <path d="M100,130 C100,100 110,82 140,74 C200,62 240,70 320,60" fill="none" stroke="#8e24aa" stroke-width="15" stroke-linecap="round"/>
+    <path d="M100,130 C100,100 110,82 140,74 C200,62 240,70 320,60" fill="none" stroke="#e1bee7" stroke-width="9" stroke-linecap="round"/>
+    <path d="M104,118 L106,98" stroke="#8e24aa" stroke-width="2" marker-end="url(#avP)"/>
+    <path d="M150,72 L186,67" stroke="#8e24aa" stroke-width="2" marker-end="url(#avP)"/>
+    <!-- anastomosis marker -->
+    <circle cx="100" cy="131" r="10" fill="none" stroke="#0b2545" stroke-width="2" stroke-dasharray="3 2"/>
+    <text x="72" y="190" font-size="11.5" font-weight="700" fill="#0b2545">吻合部</text>
+    <path d="M92,178 L98,144" stroke="#0b2545" stroke-width="1"/>
+    <!-- thrill -->
+    <path d="M120,150 q5,-6 10,0 t10,0 t10,0" fill="none" stroke="#ef6c00" stroke-width="2"/>
+    <text x="154" y="154" font-size="10.5" fill="#ef6c00">スリル(ザーッという振動)</text>
+    <!-- needles -->
+    <g>
+      <line x1="200" y1="24" x2="190" y2="64" stroke="#455a64" stroke-width="4" stroke-linecap="round"/>
+      <rect x="194" y="6" width="14" height="20" rx="3" fill="#c62828"/>
+      <text x="201" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">A</text>
+      <line x1="290" y1="22" x2="280" y2="60" stroke="#455a64" stroke-width="4" stroke-linecap="round"/>
+      <rect x="284" y="4" width="14" height="20" rx="3" fill="#1565c0"/>
+      <text x="291" y="19" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">V</text>
+    </g>
+    <text x="236" y="98" font-size="11.5" font-weight="700" fill="#8e24aa">静脈が太く・強く</text>
+    <text x="236" y="114" font-size="10.5" fill="#5a6473">(動脈化した静脈)</text>
+    <text x="170" y="214" text-anchor="middle" font-size="11.5" fill="#3a4150">動脈血が静脈に流れ込み、</text>
+    <text x="170" y="230" text-anchor="middle" font-size="11.5" fill="#3a4150">血流 600〜1500 mL/min の穿刺血管になる</text>
+  </g>
 
-      <!-- After AVF: vein arterialized -->
-      <rect x="250" y="140" width="200" height="22" fill="#c62828" opacity="0.6" rx="3"/>
-      <rect x="250" y="138" width="200" height="26" fill="none" stroke="#1565c0" stroke-width="2" rx="3"/>
-      <text x="350" y="195" font-size="11" fill="#0b2545" text-anchor="middle" font-weight="bold">術後:静脈が動脈化(太く強く)</text>
-      <text x="350" y="210" font-size="9" fill="#5a6473" text-anchor="middle">血流 600-1500 mL/min、穿刺可能</text>
-
-      <!-- Needles -->
-      <line x1="290" y1="120" x2="290" y2="138" stroke="#000" stroke-width="2"/>
-      <line x1="290" y1="120" x2="285" y2="115" stroke="#000" stroke-width="1.5"/>
-      <line x1="290" y1="120" x2="295" y2="115" stroke="#000" stroke-width="1.5"/>
-      <text x="270" y="113" font-size="9" fill="#c62828">脱血</text>
-
-      <line x1="410" y1="120" x2="410" y2="138" stroke="#000" stroke-width="2"/>
-      <line x1="410" y1="120" x2="405" y2="115" stroke="#000" stroke-width="1.5"/>
-      <line x1="410" y1="120" x2="415" y2="115" stroke="#000" stroke-width="1.5"/>
-      <text x="395" y="113" font-size="9" fill="#1565c0">返血</text>
-    </svg>
-    <div class="legend">
-      <span><i style="background:#c62828"></i>動脈血流</span>
-      <span><i style="background:#1565c0"></i>静脈(動脈化前)</span>
-    </div>
+  <!-- footer notes -->
+  <rect x="40" y="326" width="640" height="58" rx="10" fill="#f5f8fc" stroke="#e1e5ea"/>
+  <text x="60" y="349" font-size="12" fill="#0b2545"><tspan font-weight="700" fill="#c62828">脱血針(A)</tspan> は吻合部に近い側、<tspan font-weight="700" fill="#1565c0">返血針(V)</tspan> は心臓側に刺す(血流の向きに沿って並べる)</text>
+  <text x="60" y="371" font-size="12" fill="#0b2545">シャント側の腕では <tspan font-weight="700">血圧測定・採血・点滴をしない</tspan>(閉塞の原因になる)</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 手首で<u>橈側皮静脈の断端を橈骨動脈の側面に吻合</u>すると(端側吻合)、圧の高い動脈血が静脈へ流れ込みます。4〜8週かけて静脈は太く壁も厚くなり(成熟・動脈化)、透析で繰り返し穿刺できる血管になります。紫は動脈化した静脈、オレンジの波線は吻合部近くで触れるスリルです。</div>
   </div>
 
   <h3>シャント管理のポイント</h3>
