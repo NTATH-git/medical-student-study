@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -236,6 +236,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -372,61 +378,78 @@
   </ul>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="脊髄血流とAdamkiewicz動脈">
-      <!-- Spinal cord -->
-      <rect x="240" y="20" width="20" height="320" fill="#fce4e4" stroke="#c62828" stroke-width="1.5" rx="3"/>
-      <text x="265" y="35" font-size="10" fill="#0b2545">脊髄</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 600" role="img" aria-label="脊髄の血流。前脊髄動脈と後脊髄動脈に、上から椎骨動脈系、中央から大動脈の分節動脈、下から内腸骨動脈系が流入する。T9からT12で最も太いAdamkiewicz動脈がヘアピン状に前脊髄動脈へ合流する。中位胸髄は血流が乏しい分水嶺" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="720" height="600" fill="#fff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">脊髄の血流 ― 上・中・下の3方向から流れ込む</text>
+  <text x="360" y="46" text-anchor="middle" font-size="11" fill="#5a6473">模式図(脊髄と大動脈を横に並べて描いています)</text>
 
-      <!-- Anterior spinal artery (front) -->
-      <line x1="245" y1="20" x2="245" y2="340" stroke="#c62828" stroke-width="3"/>
-      <text x="190" y="180" font-size="10" fill="#c62828" font-weight="bold">前脊髄動脈</text>
-      <text x="190" y="192" font-size="10" fill="#c62828" font-weight="bold">(ASA, 1本)</text>
+  <g transform="translate(0,40)">
+  <!-- level scale -->
+  <g font-size="11" fill="#5a6473" text-anchor="end">
+    <text x="62" y="94">頸髄</text><text x="62" y="134">T1</text><text x="62" y="194">T4</text>
+    <text x="62" y="274">T8</text><text x="62" y="334">T10</text><text x="62" y="374">T12</text>
+    <text x="62" y="404">L1</text><text x="62" y="458">仙髄</text>
+  </g>
+  <g stroke="#eef1f5"><line x1="68" y1="130" x2="520" y2="130"/><line x1="68" y1="190" x2="520" y2="190"/><line x1="68" y1="270" x2="520" y2="270"/><line x1="68" y1="330" x2="520" y2="330"/><line x1="68" y1="370" x2="520" y2="370"/><line x1="68" y1="400" x2="520" y2="400"/></g>
 
-      <!-- Posterior spinal arteries -->
-      <line x1="255" y1="20" x2="255" y2="340" stroke="#1565c0" stroke-width="2"/>
-      <text x="290" y="180" font-size="9" fill="#1565c0">後脊髄動脈</text>
-      <text x="290" y="192" font-size="9" fill="#1565c0">(PSA, 左右2本)</text>
+  <!-- watershed band -->
+  <rect x="150" y="190" width="80" height="100" fill="#fff3e0"/>
+  <path d="M142,192 L134,192 L134,288 L142,288" fill="none" stroke="#ef6c00" stroke-width="2"/>
+  <text x="128" y="236" text-anchor="end" font-size="11" font-weight="700" fill="#e65100">分水嶺</text>
+  <text x="128" y="252" text-anchor="end" font-size="10.5" fill="#e65100">中位胸髄</text>
 
-      <!-- Levels markers -->
-      <text x="220" y="60" font-size="9" fill="#5a6473" text-anchor="end">T1</text>
-      <text x="220" y="105" font-size="9" fill="#5a6473" text-anchor="end">T4</text>
-      <text x="220" y="150" font-size="9" fill="#5a6473" text-anchor="end">T8</text>
-      <text x="220" y="195" font-size="9" fill="#5a6473" text-anchor="end">T9</text>
-      <text x="220" y="220" font-size="9" fill="#5a6473" text-anchor="end">T10</text>
-      <text x="220" y="245" font-size="9" fill="#5a6473" text-anchor="end">T12</text>
-      <text x="220" y="275" font-size="9" fill="#5a6473" text-anchor="end">L1</text>
+  <!-- spinal cord -->
+  <rect x="166" y="72" width="40" height="400" rx="20" fill="#fbe9e7" stroke="#e57373" stroke-width="2"/>
+  <text x="186" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#c62828">脊髄</text>
+  <!-- PSA (posterior, paired) -->
+  <line x1="174" y1="84" x2="174" y2="460" stroke="#7e57c2" stroke-width="2"/>
+  <line x1="180" y1="84" x2="180" y2="460" stroke="#7e57c2" stroke-width="2"/>
+  <!-- ASA (anterior, single) : thin in mid-thoracic -->
+  <line x1="200" y1="80" x2="200" y2="190" stroke="#c62828" stroke-width="5" stroke-linecap="round"/>
+  <line x1="200" y1="190" x2="200" y2="292" stroke="#c62828" stroke-width="2"/>
+  <line x1="200" y1="292" x2="200" y2="464" stroke="#c62828" stroke-width="5.5" stroke-linecap="round"/>
 
-      <!-- Aorta -->
-      <rect x="370" y="20" width="22" height="240" fill="#c62828" rx="2"/>
-      <text x="400" y="40" font-size="10" fill="#c62828" font-weight="bold">大動脈</text>
+  <!-- 1: vertebral arteries from above -->
+  <path d="M262,30 C246,60 222,74 202,84" fill="none" stroke="#2e7d32" stroke-width="4" stroke-linecap="round"/>
+  <!-- aorta -->
+  <rect x="470" y="104" width="30" height="372" rx="8" fill="#ef9a9a" stroke="#c62828" stroke-width="2"/>
+  <text x="485" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#c62828">下行大動脈</text>
+  <!-- 2: segmental arteries -->
+  <g fill="none" stroke="#ef6c00" stroke-width="2.5" stroke-linecap="round">
+    <path d="M470,150 L206,150"/><path d="M470,210 L206,210"/><path d="M470,250 L206,250"/>
+    <path d="M470,370 L206,370"/><path d="M470,400 L206,400"/>
+  </g>
+  <!-- Adamkiewicz: thick, hairpin into ASA -->
+  <path d="M470,336 L226,336 C214,336 212,316 212,304 C212,294 206,290 202,294" fill="none" stroke="#6a1b9a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="202" cy="296" r="5" fill="#6a1b9a"/>
+  <!-- 3: internal iliac from below -->
+  <path d="M485,476 L470,520 L250,520 C226,520 210,500 204,468" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round"/>
 
-      <!-- Segmental arteries (intercostal/lumbar) -->
-      <line x1="260" y1="60" x2="370" y2="60" stroke="#ef6c00" stroke-width="1.5"/>
-      <line x1="260" y1="105" x2="370" y2="105" stroke="#ef6c00" stroke-width="1.5"/>
-      <line x1="260" y1="150" x2="370" y2="150" stroke="#ef6c00" stroke-width="1.5"/>
-      <line x1="260" y1="220" x2="370" y2="220" stroke="#ef6c00" stroke-width="1.5"/>
+  <!-- labels on figure -->
+  <g font-size="11.5">
+    <text x="272" y="34" font-weight="700" fill="#2e7d32">① 椎骨動脈系(上から)</text>
+    <text x="300" y="144" font-weight="700" fill="#e65100">② 分節動脈(肋間・腰動脈)</text>
+    <text x="250" y="244" font-size="10.5" fill="#e65100">中位胸髄は流入が少なく ASA も細い</text>
+    <text x="252" y="328" font-weight="800" fill="#6a1b9a">★ Adamkiewicz 動脈</text>
+    <text x="252" y="360" font-size="10.5" fill="#6a1b9a">T9〜T12 に多い・左側が多い</text>
+    <text x="270" y="514" font-weight="700" fill="#1565c0">③ 内腸骨動脈系(下から)</text>
+    <text x="490" y="540" text-anchor="middle" font-size="10.5" fill="#1565c0">内腸骨A</text>
+  </g>
 
-      <!-- Adamkiewicz: most prominent at T9-T12 -->
-      <path d="M 260 195 Q 320 200 370 200" stroke="#7e57c2" stroke-width="4" fill="none"/>
-      <text x="380" y="200" font-size="10" fill="#7e57c2" font-weight="bold">★ Adamkiewicz</text>
-      <text x="380" y="212" font-size="9" fill="#7e57c2">(T9-T12, 75%)</text>
-
-      <!-- Other label -->
-      <text x="375" y="270" font-size="9" fill="#ef6c00">分節動脈</text>
-      <text x="375" y="282" font-size="9" fill="#ef6c00">(肋間/腰)</text>
-
-      <!-- Iliac for collateral -->
-      <path d="M 380 260 L 400 320" stroke="#c62828" stroke-width="2"/>
-      <text x="405" y="335" font-size="9" fill="#c62828">内腸骨A</text>
-      <line x1="260" y1="320" x2="395" y2="320" stroke="#1565c0" stroke-width="1" stroke-dasharray="4,3"/>
-      <text x="295" y="315" font-size="8" fill="#1565c0">仙髄側副</text>
-    </svg>
-    <div class="legend">
-      <span><i style="background:#c62828"></i>前脊髄動脈(運動)</span>
-      <span><i style="background:#1565c0"></i>後脊髄動脈(感覚)</span>
-      <span><i style="background:#ef6c00"></i>分節動脈</span>
-      <span><i style="background:#7e57c2"></i>Adamkiewicz動脈</span>
-    </div>
+  <!-- legend -->
+  <rect x="534" y="120" width="176" height="210" rx="10" fill="#f5f8fc" stroke="#e1e5ea"/>
+  <g font-size="11.5" fill="#1a1a1a">
+    <line x1="548" y1="144" x2="574" y2="144" stroke="#c62828" stroke-width="5"/><text x="580" y="140" font-weight="700">前脊髄動脈</text><text x="580" y="155" font-size="10.5" fill="#5a6473">ASA・1本・運動を担う</text>
+    <line x1="548" y1="182" x2="574" y2="182" stroke="#7e57c2" stroke-width="2.5"/><text x="580" y="178" font-weight="700">後脊髄動脈</text><text x="580" y="193" font-size="10.5" fill="#5a6473">PSA・左右2本・感覚</text>
+    <line x1="548" y1="220" x2="574" y2="220" stroke="#ef6c00" stroke-width="3"/><text x="580" y="224" font-weight="700">分節動脈</text>
+    <line x1="548" y1="250" x2="574" y2="250" stroke="#6a1b9a" stroke-width="6"/><text x="580" y="246" font-weight="700">Adamkiewicz</text><text x="580" y="261" font-size="10.5" fill="#5a6473">最も太い根動脈</text>
+    <rect x="548" y="282" width="26" height="14" fill="#fff3e0" stroke="#ef6c00"/><text x="580" y="294" font-weight="700">分水嶺</text><text x="580" y="309" font-size="10.5" fill="#5a6473">虚血に弱い</text>
+  </g>
+  <text x="622" y="356" text-anchor="middle" font-size="10.5" fill="#5a6473">ASA は脊髄の前2/3を</text>
+  <text x="622" y="371" text-anchor="middle" font-size="10.5" fill="#5a6473">栄養 → 虚血で運動麻痺</text>
+  </g>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 脊髄の前面を走る前脊髄動脈(ASA)には、<u>上から椎骨動脈系、中央から大動脈の分節動脈、下から内腸骨動脈系</u>が流れ込みます。分節動脈の中で最も太いのが Adamkiewicz 動脈で、脊髄に沿って上行してからヘアピン状に向きを変えて ASA に合流します。中位胸髄(T4〜T8)は流入が少なく ASA も細いため、虚血に弱い分水嶺です。</div>
   </div>
 
   <h3>側副血行ネットワーク(collateral network)</h3>

@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -260,6 +260,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -661,19 +667,19 @@
 
       <!-- Aortic arch -->
       <path data-name="大動脈弓(aortic arch)" data-mean="~95" data-pressure="120/80 mmHg" data-detail="大動脈の弓部。冠動脈・頚動脈・鎖骨下動脈の分枝部。" data-level="high"
-            d="M 220 155 Q 200 145 195 165" stroke="#c62828" stroke-width="10" fill="none"/>
+            d="M 232 178 Q 238 140 255 168" stroke="#c62828" stroke-width="10" fill="none"/>
 
       <!-- AORTA (descending) - LARGE, prominent red -->
       <rect data-name="🔴 大動脈 ★最高圧" data-mean="~95" data-pressure="収縮期120 / 拡張期80(平均~95)mmHg" data-detail="心臓の出口。全身で最も圧が高い場所。" data-level="high"
-            x="216" y="165" width="14" height="180" fill="#c62828" rx="3"/>
-      <text x="148" y="240" font-size="11" fill="#c62828" font-weight="bold">大動脈</text>
-      <text x="148" y="252" font-size="10" fill="#c62828">(★最高圧)</text>
+            x="248" y="165" width="14" height="180" fill="#c62828" rx="3"/>
+      <text x="268" y="334" font-size="11" fill="#c62828" font-weight="bold">大動脈</text>
+      <text x="306" y="334" font-size="10" fill="#c62828">(★最高圧)</text>
 
       <!-- SVC (Superior Vena Cava) - blue -->
       <rect data-name="🔵 上大静脈(SVC)" data-mean="~3" data-pressure="0〜5 mmHg" data-detail="心臓に戻る大静脈。圧は最低レベル。" data-level="low"
-            x="250" y="155" width="12" height="80" fill="#1565c0" rx="2"/>
-      <text x="270" y="190" font-size="10" fill="#1565c0">上大静脈</text>
-      <text x="270" y="202" font-size="9" fill="#1565c0">SVC(★最低)</text>
+            x="200" y="150" width="12" height="80" fill="#1565c0" rx="2"/>
+      <text x="196" y="146" font-size="10" fill="#1565c0" text-anchor="end">上大静脈</text>
+      <text x="196" y="158" font-size="9" fill="#1565c0" text-anchor="end">SVC(★最低)</text>
 
       <!-- HEART (4 chambers) -->
       <!-- Heart outline -->
@@ -714,9 +720,9 @@
 
       <!-- Lungs (decorative) -->
       <ellipse cx="125" cy="170" rx="35" ry="45" fill="#e1bee7" stroke="#9c27b0" stroke-width="1" opacity="0.3"/>
-      <text x="125" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">左肺</text>
+      <text x="125" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">右肺</text>
       <ellipse cx="340" cy="170" rx="35" ry="45" fill="#e1bee7" stroke="#9c27b0" stroke-width="1" opacity="0.3"/>
-      <text x="340" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">右肺</text>
+      <text x="340" y="175" font-size="10" fill="#9c27b0" text-anchor="middle">左肺</text>
 
       <!-- Brachial artery (upper limb) -->
       <rect data-name="上腕動脈(brachial)" data-mean="~90" data-pressure="120/80 mmHg(末梢動脈)" data-detail="血圧測定の標準部位。" data-level="high"
@@ -744,14 +750,14 @@
 
       <!-- IVC (Inferior Vena Cava) -->
       <rect data-name="🔵 下大静脈(IVC)" data-mean="~3" data-pressure="0〜5 mmHg" data-detail="心臓に戻る下大静脈。最低圧。" data-level="low"
-            x="248" y="345" width="14" height="160" fill="#1565c0" rx="3"/>
-      <text x="270" y="430" font-size="11" fill="#1565c0" font-weight="bold">下大静脈</text>
-      <text x="270" y="443" font-size="10" fill="#1565c0">IVC(★最低)</text>
+            x="200" y="345" width="14" height="160" fill="#1565c0" rx="3"/>
+      <text x="196" y="430" font-size="11" fill="#1565c0" font-weight="bold" text-anchor="end">下大静脈</text>
+      <text x="196" y="443" font-size="10" fill="#1565c0" text-anchor="end">IVC(★最低)</text>
 
       <!-- Abdominal aorta -->
       <rect data-name="腹部大動脈" data-mean="~90" data-pressure="120/80 mmHg" data-detail="大動脈下行部の腹部。AAA好発部位。" data-level="high"
-            x="216" y="345" width="14" height="160" fill="#c62828" rx="3"/>
-      <text x="148" y="430" font-size="10" fill="#c62828">腹部大動脈</text>
+            x="248" y="345" width="14" height="160" fill="#c62828" rx="3"/>
+      <text x="268" y="430" font-size="10" fill="#c62828">腹部大動脈</text>
 
       <!-- Femoral artery -->
       <rect data-name="大腿動脈(femoral)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="EVAR・カテーテルアクセスの標準。" data-level="high"
@@ -762,14 +768,15 @@
       <rect data-name="大腿静脈" data-mean="~8" data-pressure="5-10 mmHg(立位で増加)" data-detail="立位では重力で下肢静脈圧↑。" data-level="low"
             x="165" y="510" width="6" height="90" fill="#42a5f5" rx="2"/>
 
-      <!-- Other femoral leg (right side) for symmetry -->
-      <rect data-name="大腿動脈(右)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="左右対称。" data-level="high"
+      <!-- Other femoral leg (patient's left = viewer's right) -->
+      <rect data-name="大腿動脈(左)" data-mean="~90" data-pressure="120/80 mmHg" data-detail="左右対称。" data-level="high"
             x="298" y="510" width="6" height="90" fill="#ef5350" rx="2"/>
-      <rect data-name="大腿静脈(右)" data-mean="~8" data-pressure="5-10 mmHg" data-detail="左右対称。" data-level="low"
+      <rect data-name="大腿静脈(左)" data-mean="~8" data-pressure="5-10 mmHg" data-detail="左右対称。" data-level="low"
             x="308" y="510" width="6" height="90" fill="#42a5f5" rx="2"/>
 
       <!-- Bottom label -->
-      <text x="230" y="625" font-size="9" fill="#5a6473" text-anchor="middle">指で触れる・マウスで動かすと圧が表示されます</text>
+      <text x="230" y="612" font-size="9" fill="#5a6473" text-anchor="middle">正面から見た図(図の左 = 患者の右)</text>
+      <text x="230" y="626" font-size="9" fill="#5a6473" text-anchor="middle">指で触れる・マウスで動かすと圧が表示されます</text>
     </svg>
 
     <div class="bp-hint">📱 スマホでは指でゆっくり動かしてください</div>

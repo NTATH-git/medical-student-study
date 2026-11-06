@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -254,6 +254,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -444,35 +450,55 @@
   </div>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 540 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="逆二乗の法則の模式図">
-      <text x="270" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">逆二乗の法則:距離2倍 → 線量1/4</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-label="逆二乗の法則。線源からの距離が0.5メートルで相対線量4、1メートルで1、2メートルで0.25、3メートルで0.11。距離が2倍になると線量は4分の1になる" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="700" height="400" fill="#fff"/>
+  <text x="350" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">逆二乗の法則 ― 距離が2倍になると線量は 1/4</text>
+  <!-- source (patient on table) -->
+  <rect x="24" y="250" width="92" height="14" rx="4" fill="#90a4ae"/>
+  <circle cx="70" cy="226" r="20" fill="#ffcdd2" stroke="#c62828" stroke-width="2.5"/>
+  <text x="70" y="231" text-anchor="middle" font-size="12" font-weight="800" fill="#c62828">線源</text>
+  <text x="70" y="286" text-anchor="middle" font-size="11" fill="#5a6473">患者</text>
+  <text x="70" y="300" text-anchor="middle" font-size="10" fill="#5a6473">(散乱線の発生源)</text>
 
-      <!-- Source -->
-      <circle cx="60" cy="130" r="15" fill="#c62828"/>
-      <text x="60" y="135" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">線源</text>
-      <text x="60" y="160" font-size="9" fill="#c62828" text-anchor="middle">(患者体内)</text>
+  <!-- axis: x = 100 + d*140 -->
+  <line x1="100" y1="320" x2="600" y2="320" stroke="#0b2545" stroke-width="1.5"/>
+  <g font-size="11" fill="#0b2545" text-anchor="middle">
+    <text x="170" y="338">0.5 m</text><text x="240" y="338">1 m</text><text x="380" y="338">2 m</text><text x="520" y="338">3 m</text>
+  </g>
+  <g stroke="#0b2545"><line x1="170" y1="316" x2="170" y2="324"/><line x1="240" y1="316" x2="240" y2="324"/><line x1="380" y1="316" x2="380" y2="324"/><line x1="520" y1="316" x2="520" y2="324"/></g>
+  <text x="610" y="324" font-size="11" fill="#5a6473">距離</text>
 
-      <!-- Distance 0.5m circle (small, red) -->
-      <circle cx="60" cy="130" r="60" fill="none" stroke="#c62828" stroke-width="2" stroke-dasharray="3,2"/>
-      <text x="120" y="80" font-size="10" fill="#c62828">0.5m: 線量 4</text>
+  <!-- bars: height = dose * 55 -->
+  <rect x="150" y="98" width="40" height="220" rx="4" fill="#c62828"/>
+  <rect x="220" y="263" width="40" height="55" rx="4" fill="#ef6c00"/>
+  <rect x="360" y="304" width="40" height="14" rx="3" fill="#f9a825"/>
+  <rect x="500" y="312" width="40" height="6" rx="2" fill="#2e7d32"/>
+  <g text-anchor="middle" font-weight="800">
+    <text x="170" y="90" font-size="16" fill="#c62828">4.0</text>
+    <text x="240" y="254" font-size="15" fill="#ef6c00">1.0</text>
+    <text x="240" y="238" font-size="11" fill="#ef6c00" font-weight="700">1/4</text>
+    <text x="380" y="294" font-size="14" fill="#f57f17">0.25</text>
+    <text x="380" y="278" font-size="11" fill="#f57f17" font-weight="700">1/16</text>
+    <text x="520" y="302" font-size="13" fill="#2e7d32">0.11</text>
+    <text x="520" y="286" font-size="11" fill="#2e7d32" font-weight="700">1/36</text>
+  </g>
 
-      <!-- Distance 1m circle -->
-      <circle cx="60" cy="130" r="120" fill="none" stroke="#ef6c00" stroke-width="2" stroke-dasharray="3,2"/>
-      <text x="185" y="50" font-size="10" fill="#ef6c00">1m: 線量 1</text>
-
-      <!-- Distance 2m circle -->
-      <circle cx="60" cy="130" r="200" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="3,2"/>
-      <text x="270" y="25" font-size="10" fill="#2e7d32">2m: 線量 0.25</text>
-
-      <!-- People at distances -->
-      <text x="115" y="135" font-size="20">🧑‍⚕️</text>
-      <text x="170" y="135" font-size="20">👨‍⚕️</text>
-      <text x="255" y="135" font-size="20">👩‍⚕️</text>
-
-      <text x="135" y="190" font-size="9" fill="#c62828">術者</text>
-      <text x="180" y="190" font-size="9" fill="#ef6c00">助手</text>
-      <text x="260" y="190" font-size="9" fill="#2e7d32">麻酔/看護</text>
-    </svg>
+  <!-- who stands where -->
+  <g font-size="11.5" text-anchor="middle" fill="#0b2545">
+    <text x="170" y="360" font-weight="700">術者</text>
+    <text x="240" y="360" font-weight="700">第二助手</text>
+    <text x="380" y="360" font-weight="700">麻酔科医・看護師</text>
+    <text x="520" y="360" font-weight="700">透視室の外周</text>
+  </g>
+  <!-- key message -->
+  <rect x="430" y="60" width="256" height="112" rx="12" fill="#e8f5e9" stroke="#a5d6a7"/>
+  <text x="558" y="86" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1b5e20">線量 ∝ 1 / 距離²</text>
+  <text x="558" y="110" text-anchor="middle" font-size="11.5" fill="#2e7d32">0.5 m → 1 m に下がるだけで</text>
+  <text x="558" y="128" text-anchor="middle" font-size="11.5" fill="#2e7d32">被曝は <tspan font-weight="800">4分の1</tspan></text>
+  <text x="558" y="152" text-anchor="middle" font-size="10.5" fill="#5a6473">距離は費用ゼロで最も効く防御</text>
+  <text x="350" y="388" text-anchor="middle" font-size="10.5" fill="#5a6473">棒の高さと数字 = 相対線量(1 m を 1.0)。小さい分数 = 術者の位置(0.5 m)と比べた割合</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 散乱線の発生源である患者からの距離ごとに、相対的な被曝量を棒の高さで示しています。術者の位置(0.5 m)から<u>1歩下がって 1 m になるだけで被曝は 1/4</u>、2 m では 1/16 になります。距離は費用がかからず、最も効果の大きい防御策です。</div>
     <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem">距離は最も効果が大きく、コストもかからない最強の防御策。</p>
   </div>
 

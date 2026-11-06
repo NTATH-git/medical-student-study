@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -222,6 +222,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -489,33 +495,41 @@
   </ul>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marfan大動脈病変">
-      <text x="260" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">Marfan vs 正常 大動脈基部の比較</text>
-
-      <!-- Normal aortic root (left) -->
-      <text x="125" y="50" font-size="11" fill="#0b2545" text-anchor="middle" font-weight="bold">正常</text>
-      <path d="M 100 280 L 100 130 Q 100 110 110 100 L 140 100 Q 150 110 150 130 L 150 280 Z" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
-      <!-- Normal sinus -->
-      <path d="M 95 130 Q 95 145 105 145 Q 100 145 100 140 M 150 130 Q 150 145 145 145" stroke="#c62828" stroke-width="1.5" fill="none"/>
-      <text x="125" y="180" font-size="10" fill="#0b2545" text-anchor="middle">上行大動脈</text>
-      <text x="125" y="250" font-size="10" fill="#0b2545" text-anchor="middle">弁輪</text>
-      <text x="125" y="305" font-size="9" fill="#5a6473" text-anchor="middle">基部 約 25-35mm</text>
-
-      <!-- Marfan aortic root (right) - pear shape -->
-      <text x="395" y="50" font-size="11" fill="#c62828" text-anchor="middle" font-weight="bold">Marfan(annuloaortic ectasia)</text>
-      <!-- Pear-shape: dilated sinus -->
-      <path d="M 350 280 L 360 240 Q 350 200 340 170 Q 330 130 350 100 L 440 100 Q 460 130 450 170 Q 440 200 430 240 L 440 280 Z" fill="#ffcdd2" stroke="#c62828" stroke-width="2.5"/>
-      <text x="395" y="155" font-size="10" fill="#c62828" text-anchor="middle" font-weight="bold">バルサルバ洞拡張</text>
-      <text x="395" y="170" font-size="9" fill="#c62828" text-anchor="middle">(40-55mm)</text>
-
-      <!-- Arrow showing AR -->
-      <line x1="395" y1="285" x2="395" y2="245" stroke="#1565c0" stroke-width="2" marker-end="url(#mfsArrow)"/>
-      <text x="395" y="305" font-size="9" fill="#1565c0" text-anchor="middle">弁輪拡張 → AR</text>
-
-      <defs>
-        <marker id="mfsArrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#1565c0"/></marker>
-      </defs>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-label="正常な大動脈基部とMarfan症候群の大動脈弁輪拡張症の比較。Marfanではバルサルバ洞から拡張する洋ナシ型になり、洞上行大動脈接合部のくびれが消え、弁輪拡張で弁尖が閉じきらず大動脈弁逆流が起こる" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+<defs><marker id="mfB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1565c0"/></marker></defs>
+<rect width="720" height="480" fill="#fff"/>
+<text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">大動脈基部:正常 と Marfan(大動脈弁輪拡張症)</text>
+<text x="210" y="56" text-anchor="middle" font-size="14" font-weight="800" fill="#2e7d32">正常</text>
+<text x="520" y="56" text-anchor="middle" font-size="14" font-weight="800" fill="#c62828">Marfan ― 洋ナシ(チューリップ)型</text>
+<line x1="350" y1="44" x2="350" y2="440" stroke="#e1e5ea" stroke-width="2"/>
+<path d="M146,330 C136,390 180,430 210,432 C240,430 284,390 274,330 Z" fill="#fbe3e3" stroke="#c62828" stroke-width="2.5"/><text x="210" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#c62828">左室</text>
+<path d="M176,330 C158,316 156,312 160,282 C164,248 166,238 176,228 L176,70 L244,70 L244,228 C254,238 256,248 260,282 C264,312 262,316 244,330 Z" fill="#fdeeee" stroke="#c62828" stroke-width="3" stroke-linejoin="round"/>
+<path d="M176,330 Q194,304 210,318 Q226,304 244,330" fill="none" stroke="#0b2545" stroke-width="3"/>
+<line x1="166" y1="282" x2="254" y2="282" stroke="#5a6473" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M442,330 C432,390 490,430 520,432 C550,430 608,390 598,330 Z" fill="#fbe3e3" stroke="#c62828" stroke-width="2.5"/><text x="520" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#c62828">左室</text>
+<path d="M472,330 C454,316 424,288 428,258 C432,224 468,200 478,190 L482,70 L558,70 L562,190 C572,200 608,224 612,258 C616,288 586,316 568,330 Z" fill="#fdeeee" stroke="#c62828" stroke-width="3" stroke-linejoin="round"/>
+<path d="M472,330 Q490,300 510,314 M568,330 Q550,300 530,314" fill="none" stroke="#0b2545" stroke-width="3"/>
+<path d="M520,300 L520,372" stroke="#1565c0" stroke-width="4" marker-end="url(#mfB)"/>
+<line x1="434" y1="258" x2="606" y2="258" stroke="#c62828" stroke-width="1.5" stroke-dasharray="4 3"/>
+<g font-size="11.5">
+<line x1="176" y1="330" x2="100" y2="346" stroke="#0b2545"/><text x="96" y="350" text-anchor="end" font-weight="700" fill="#0b2545">弁輪</text>
+<line x1="162" y1="282" x2="100" y2="282" stroke="#0b2545"/><text x="96" y="279" text-anchor="end" font-weight="700" fill="#0b2545">バルサルバ洞</text>
+<text x="96" y="294" text-anchor="end" font-size="10.5" fill="#5a6473">軽くふくらむ</text>
+<line x1="176" y1="228" x2="100" y2="214" stroke="#0b2545"/><text x="96" y="211" text-anchor="end" font-weight="700" fill="#0b2545">STJ</text>
+<text x="96" y="225" text-anchor="end" font-size="10.5" fill="#5a6473">ここでくびれる</text>
+<line x1="176" y1="140" x2="100" y2="140" stroke="#0b2545"/><text x="96" y="144" text-anchor="end" font-weight="700" fill="#0b2545">上行大動脈</text>
+<text x="210" y="458" text-anchor="middle" font-size="11.5" fill="#2e7d32">弁尖がぴたりと閉じる</text>
+</g>
+<g font-size="11.5">
+<line x1="612" y1="258" x2="650" y2="240" stroke="#c62828"/><text x="654" y="232" font-weight="800" fill="#c62828">洞が</text><text x="654" y="248" font-weight="800" fill="#c62828">大きく拡張</text>
+<line x1="562" y1="192" x2="650" y2="176" stroke="#c62828"/><text x="654" y="172" font-weight="700" fill="#c62828">くびれ</text><text x="654" y="188" font-weight="700" fill="#c62828">消失</text>
+<line x1="558" y1="120" x2="650" y2="120" stroke="#0b2545"/><text x="654" y="116" fill="#0b2545">上行は</text><text x="654" y="131" fill="#0b2545">ほぼ正常</text>
+<line x1="568" y1="330" x2="650" y2="330" stroke="#0b2545"/><text x="654" y="326" font-weight="700" fill="#0b2545">弁輪も</text><text x="654" y="342" font-weight="700" fill="#0b2545">拡張</text>
+<text x="520" y="458" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1565c0">弁尖が閉じきらず逆流(AR)</text>
+</g>
+<text x="352" y="474" text-anchor="middle" font-size="10" fill="#5a6473">点線 = 径を測る位置(バルサルバ洞)。体格差があるので Z-score で評価する</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 正常の大動脈基部はバルサルバ洞で軽くふくらみ、洞上行大動脈接合部(STJ)でくびれます。Marfan 症候群では<u>バルサルバ洞から拡張が始まり</u>、STJ のくびれが消えた洋ナシ(チューリップ)型になります。弁輪も広がるため弁尖が中央で合わさらず、大動脈弁逆流(AR)が生じます。径は体格で大きく異なるので、点線の位置で測った値を Z-score で評価します。</div>
   </div>
 </section>
 

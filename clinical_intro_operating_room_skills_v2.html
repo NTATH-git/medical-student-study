@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -273,6 +273,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -507,29 +513,53 @@
   </ul>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ガウンの滅菌領域">
-      <text x="190" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">滅菌ガウンの領域</text>
-      <!-- Body silhouette -->
-      <path d="M 150 50 L 150 80 L 100 100 L 100 220 L 280 220 L 280 100 L 230 80 L 230 50 Z" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
-      <!-- Head -->
-      <circle cx="190" cy="40" r="20" fill="#fff" stroke="#5a6473" stroke-width="1"/>
-      <!-- Arms -->
-      <path d="M 100 100 L 70 200 L 80 210 L 110 130 Z" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
-      <path d="M 280 100 L 310 200 L 300 210 L 270 130 Z" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
-      <!-- Below waist (non-sterile) -->
-      <rect x="100" y="180" width="180" height="40" fill="#ffebee" stroke="#c62828" stroke-width="1.5"/>
-      <text x="190" y="205" font-size="10" fill="#c62828" text-anchor="middle">腰より下 = 非滅菌扱い</text>
-      <!-- Back hidden -->
-      <text x="190" y="135" font-size="11" fill="#2e7d32" text-anchor="middle" font-weight="bold">滅菌領域</text>
-      <text x="190" y="150" font-size="9" fill="#2e7d32" text-anchor="middle">(前面・肘から手首)</text>
-      <!-- Hands (gloves) -->
-      <circle cx="75" cy="210" r="10" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
-      <text x="55" y="240" font-size="8" fill="#1565c0">滅菌手袋</text>
-      <circle cx="305" cy="210" r="10" fill="#bbdefb" stroke="#1565c0" stroke-width="1.5"/>
-      <text x="290" y="240" font-size="8" fill="#1565c0">滅菌手袋</text>
-      <!-- Back annotation -->
-      <text x="350" y="135" font-size="9" fill="#c62828">背中=非滅菌</text>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 350" role="img" aria-label="滅菌ガウンの滅菌領域。前面の胸から腰の高さまでと、肘から手首(袖口)までの袖が滅菌。首まわり・肩・腋窩・背中・腰より下は非滅菌として扱う" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <defs>
+    <pattern id="gwHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#ffebee"/><line x1="0" y1="0" x2="0" y2="8" stroke="#ef9a9a" stroke-width="3"/></pattern>
+  </defs>
+  <rect width="460" height="350" fill="#fff"/>
+  <text x="230" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#0b2545">滅菌ガウンの「清潔な範囲」(前から見た図)</text>
+
+  <g transform="translate(0,14)">
+  <!-- whole gown as non-sterile base (hatched) -->
+  <path d="M190,62 L150,78 L118,96 L84,232 L108,240 L136,150 L140,300 L320,300 L324,150 L352,240 L376,232 L342,96 L310,78 L270,62 Z" fill="url(#gwHatch)" stroke="#c62828" stroke-width="1.5"/>
+  <!-- sterile torso: chest to waist -->
+  <path d="M146,110 L314,110 L318,206 L142,206 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2.5"/>
+  <!-- sterile sleeves: just above elbow to cuff -->
+  <path d="M108,166 L134,172 L112,236 L88,228 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2.5"/>
+  <path d="M352,166 L326,172 L348,236 L372,228 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2.5"/>
+  <!-- gloves -->
+  <circle cx="100" cy="246" r="11" fill="#bbdefb" stroke="#1565c0" stroke-width="2"/>
+  <circle cx="360" cy="246" r="11" fill="#bbdefb" stroke="#1565c0" stroke-width="2"/>
+  <!-- head -->
+  <circle cx="230" cy="44" r="20" fill="#fff" stroke="#90a4ae" stroke-width="2"/>
+  <!-- waist / table level line -->
+  <line x1="40" y1="206" x2="420" y2="206" stroke="#0b2545" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="420" y="200" text-anchor="end" font-size="10.5" fill="#0b2545">腰(術野の高さ)</text>
+
+  <!-- labels -->
+  <text x="230" y="154" text-anchor="middle" font-size="13" font-weight="800" fill="#1b5e20">清潔(滅菌)</text>
+  <text x="230" y="172" text-anchor="middle" font-size="11" fill="#2e7d32">胸から腰まで</text>
+  <text x="230" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="#c62828">腰より下 = 不潔扱い</text>
+  <text x="230" y="98" text-anchor="middle" font-size="10.5" fill="#c62828">首まわり・肩・腋窩 = 不潔扱い</text>
+  <g font-size="10.5">
+    <line x1="98" y1="198" x2="70" y2="150" stroke="#2e7d32"/>
+    <text x="8" y="132" fill="#2e7d32" font-weight="700">袖:肘から</text>
+    <text x="8" y="146" fill="#2e7d32" font-weight="700">手首(袖口)まで</text>
+    <text x="100" y="274" text-anchor="middle" fill="#1565c0">滅菌手袋</text>
+    <text x="360" y="274" text-anchor="middle" fill="#1565c0">滅菌手袋</text>
+  </g>
+  <!-- back note -->
+  </g>
+  <rect x="332" y="296" width="120" height="44" rx="8" fill="#fff5f5" stroke="#ef9a9a"/>
+  <text x="392" y="314" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c62828">背中は見えないので</text>
+  <text x="392" y="330" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c62828">常に不潔扱い</text>
+  <g font-size="10.5" fill="#3a4150">
+    <rect x="12" y="318" width="14" height="12" fill="#c8e6c9" stroke="#2e7d32"/><text x="32" y="328">清潔</text>
+    <rect x="72" y="318" width="14" height="12" fill="url(#gwHatch)" stroke="#c62828"/><text x="92" y="328">不潔扱い</text>
+  </g>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 緑が清潔(滅菌)として扱う範囲で、<u>前面の胸から腰(術野の高さ)まで</u>と、袖の肘から手首(袖口)までです。首まわり・肩・腋窩・腰より下は斜線の「不潔扱い」で、自分から見えない背中も常に不潔として扱います。手は胸から腰の高さ、緑の範囲の前に保ちます。</div>
   </div>
 
   <h3>本実習資料に沿った装着の流れ</h3>
