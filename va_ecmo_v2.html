@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -222,6 +222,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -369,58 +375,80 @@
   </div>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 580 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VA-ECMO回路模式図">
-      <text x="290" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">VA-ECMO 回路の流れ</text>
-
-      <!-- Patient body silhouette -->
-      <ellipse cx="120" cy="180" rx="50" ry="120" fill="#f5f8fc" stroke="#0b2545" stroke-width="1.5"/>
-      <text x="120" y="60" font-size="10" fill="#0b2545" text-anchor="middle" font-weight="bold">患者</text>
-
-      <!-- Femoral vein (right) -->
-      <line x1="125" y1="280" x2="125" y2="180" stroke="#1565c0" stroke-width="6"/>
-      <text x="80" y="290" font-size="9" fill="#1565c0">大腿静脈</text>
-
-      <!-- Femoral artery (left) -->
-      <line x1="105" y1="280" x2="105" y2="180" stroke="#c62828" stroke-width="6"/>
-      <text x="60" y="305" font-size="9" fill="#c62828">大腿動脈</text>
-
-      <!-- Drainage line out -->
-      <path d="M 125 230 Q 200 220 250 180" stroke="#1565c0" stroke-width="5" fill="none"/>
-      <text x="180" y="210" font-size="10" fill="#1565c0">①脱血</text>
-
-      <!-- Centrifugal pump -->
-      <circle cx="280" cy="180" r="25" fill="#7e57c2" stroke="#4a148c" stroke-width="2"/>
-      <text x="280" y="178" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">②ポンプ</text>
-      <text x="280" y="190" font-size="8" fill="#fff" text-anchor="middle">centrifugal</text>
-
-      <!-- Oxygenator -->
-      <rect x="340" y="150" width="90" height="60" fill="#90caf9" stroke="#1565c0" stroke-width="2" rx="4"/>
-      <text x="385" y="175" font-size="10" fill="#0b2545" text-anchor="middle">③人工肺</text>
-      <text x="385" y="190" font-size="8" fill="#0b2545" text-anchor="middle">oxygenator</text>
-      <line x1="305" y1="180" x2="340" y2="180" stroke="#7e57c2" stroke-width="4"/>
-
-      <!-- Gas in/out -->
-      <line x1="365" y1="140" x2="365" y2="120" stroke="#000" stroke-width="2" marker-end="url(#vaarr1)"/>
-      <text x="370" y="115" font-size="9" fill="#000">CO₂↑</text>
-      <line x1="400" y1="120" x2="400" y2="140" stroke="#c62828" stroke-width="2" marker-end="url(#vaarr2)"/>
-      <text x="405" y="115" font-size="9" fill="#c62828">O₂↓</text>
-
-      <!-- Heat exchanger label -->
-      <text x="385" y="225" font-size="8" fill="#5a6473" text-anchor="middle">⑤熱交換器(内蔵)</text>
-
-      <!-- Return line back to patient -->
-      <path d="M 430 180 Q 500 230 450 280 Q 350 320 200 280 Q 150 270 105 250" stroke="#c62828" stroke-width="5" fill="none"/>
-      <text x="350" y="280" font-size="10" fill="#c62828">④送血(動脈)</text>
-
-      <!-- Distal perfusion line -->
-      <line x1="105" y1="240" x2="80" y2="250" stroke="#ef9a9a" stroke-width="3"/>
-      <text x="30" y="260" font-size="8" fill="#ef9a9a">⑥順行性灌流</text>
-
-      <defs>
-        <marker id="vaarr1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#000"/></marker>
-        <marker id="vaarr2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
-      </defs>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 660" role="img" aria-label="末梢VA-ECMOの回路。大腿静脈から脱血し、遠心ポンプと人工肺を経て対側の大腿動脈へ逆行性に送血する。下肢の順行性灌流ラインと、北南症候群の混合点を示す" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+<defs><marker id="vaR" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker><marker id="vaB" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1565c0"/></marker><marker id="vaP" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7b1fa2"/></marker><marker id="vaG" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#455a64"/></marker></defs>
+<rect width="700" height="660" fill="#fff"/>
+<text x="350" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">末梢 VA-ECMO ― 大腿静脈から抜いて、大腿動脈へ戻す</text>
+<path d="M128,136 L104,290" stroke="#c5ccd6" stroke-width="24" stroke-linecap="round"/>
+<path d="M128,136 L104,290" stroke="#f4f6f9" stroke-width="20" stroke-linecap="round"/>
+<path d="M252,136 L276,290" stroke="#c5ccd6" stroke-width="24" stroke-linecap="round"/>
+<path d="M252,136 L276,290" stroke="#f4f6f9" stroke-width="20" stroke-linecap="round"/>
+<rect x="136" y="330" width="46" height="190" rx="16" fill="#f4f6f9" stroke="#c5ccd6" stroke-width="2"/>
+<rect x="198" y="330" width="46" height="190" rx="16" fill="#f4f6f9" stroke="#c5ccd6" stroke-width="2"/>
+<path d="M126,124 Q190,112 254,124 L262,340 Q190,358 118,340 Z" fill="#f4f6f9" stroke="#c5ccd6" stroke-width="2"/>
+<rect x="178" y="100" width="24" height="22" fill="#f4f6f9"/>
+<circle cx="190" cy="80" r="24" fill="#f4f6f9" stroke="#c5ccd6" stroke-width="2"/>
+<ellipse cx="156" cy="182" rx="24" ry="40" fill="#eaf2fb"/><ellipse cx="224" cy="182" rx="24" ry="40" fill="#eaf2fb"/>
+<ellipse cx="198" cy="212" rx="24" ry="19" fill="#fbe3e3" stroke="#c62828" stroke-width="2"/>
+<path d="M174,96 L178,200 M180,224 L180,324 L164,340 L164,510 M180,324 L212,340 L212,510" fill="none" stroke="#90caf9" stroke-width="5" stroke-linejoin="round"/>
+<path d="M206,198 C202,164 216,150 224,166 L218,324 L152,340 L152,510 M218,324 L228,340 L228,510 M210,158 L200,104" fill="none" stroke="#ef9a9a" stroke-width="5" stroke-linejoin="round"/>
+<path d="M164,376 L164,620 L470,620 L470,554" fill="none" stroke="#1565c0" stroke-width="6" stroke-linejoin="round"/>
+<path d="M300,620 L330,620" stroke="#1565c0" stroke-width="2" marker-end="url(#vaB)"/>
+<rect x="436" y="380" width="68" height="80" rx="8" fill="#fff" stroke="#0b2545" stroke-width="2"/>
+<rect x="437" y="381" width="66" height="44" rx="7" fill="#fdecec"/>
+<rect x="437" y="425" width="66" height="34" fill="#e1f5fe"/>
+<line x1="436" y1="425" x2="504" y2="425" stroke="#0b2545"/>
+<text x="470" y="408" text-anchor="middle" font-size="11" font-weight="700" fill="#c62828">人工肺</text>
+<text x="470" y="447" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0277bd">熱交換器</text>
+<circle cx="470" cy="530" r="24" fill="#ede7f6" stroke="#5e35b1" stroke-width="2"/>
+<circle cx="470" cy="530" r="6" fill="#5e35b1"/>
+<path d="M458,524 A13,13 0 0 1 480,522" fill="none" stroke="#5e35b1" stroke-width="2"/>
+<text x="440" y="534" text-anchor="end" font-size="11" font-weight="700" fill="#5e35b1">遠心ポンプ</text>
+<path d="M470,506 L470,460" stroke="#1565c0" stroke-width="6"/>
+<path d="M470,500 L470,480" stroke="#1565c0" stroke-width="2" marker-end="url(#vaB)"/>
+<path d="M470,380 L470,362 L236,362 L236,378" fill="none" stroke="#c62828" stroke-width="6" stroke-linejoin="round"/>
+<path d="M400,362 L370,362" stroke="#c62828" stroke-width="2" marker-end="url(#vaR)"/>
+<path d="M300,362 L300,450 L236,450" fill="none" stroke="#c62828" stroke-width="3" stroke-dasharray="6 4" stroke-linejoin="round"/>
+<path d="M248,436 L228,470" stroke="#34474f" stroke-width="7" stroke-linecap="round" fill="none" stroke-linejoin="round"/>
+<path d="M164,380 L164,340 L180,324 L180,222" stroke="#37474f" stroke-width="7" stroke-linecap="round" fill="none" stroke-linejoin="round"/>
+<path d="M236,382 L228,350 L222,328" stroke="#37474f" stroke-width="7" stroke-linecap="round" fill="none" stroke-linejoin="round"/>
+<path d="M216,302 L222,210" stroke="#c62828" stroke-width="3" marker-end="url(#vaR)"/>
+<path d="M204,196 C200,172 206,158 214,156" fill="none" stroke="#7b1fa2" stroke-width="3" marker-end="url(#vaP)"/>
+<circle cx="224" cy="178" r="9" fill="none" stroke="#7b1fa2" stroke-width="2.5" stroke-dasharray="3 2"/>
+<circle cx="158" cy="276" r="10" fill="#1565c0"/><text x="158" y="280" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text>
+<circle cx="508" cy="530" r="10" fill="#5e35b1"/><text x="508" y="534" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text>
+<circle cx="518" cy="402" r="10" fill="#c62828"/><text x="518" y="406" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">3</text>
+<circle cx="260" cy="392" r="10" fill="#c62828"/><text x="260" y="396" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">4</text>
+<circle cx="518" cy="440" r="10" fill="#0277bd"/><text x="518" y="444" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5</text>
+<circle cx="316" cy="436" r="10" fill="#c62828"/><text x="316" y="440" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">6</text>
+<circle cx="248" cy="170" r="10" fill="#7b1fa2"/><text x="248" y="174" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">!</text>
+<text x="60" y="60" font-size="10.5" fill="#5a6473">前面像</text>
+<text x="60" y="74" font-size="10.5" fill="#5a6473">(図の左=患者の右)</text>
+<circle cx="410" cy="64" r="10" fill="#1565c0"/><text x="410" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text>
+<text x="428" y="68" font-size="12.5" font-weight="700" fill="#0b2545">脱血カニューレ</text>
+<text x="428" y="85" font-size="11.5" fill="#5a6473">大腿静脈 → 先端は IVC〜右房</text>
+<circle cx="410" cy="102" r="10" fill="#5e35b1"/><text x="410" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text>
+<text x="428" y="106" font-size="12.5" font-weight="700" fill="#0b2545">遠心ポンプ</text>
+<text x="428" y="123" font-size="11.5" fill="#5a6473">回転数で流量を調節</text>
+<circle cx="410" cy="140" r="10" fill="#c62828"/><text x="410" y="144" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">3</text>
+<text x="428" y="144" font-size="12.5" font-weight="700" fill="#0b2545">人工肺</text>
+<text x="428" y="161" font-size="11.5" fill="#5a6473">O₂ を入れ CO₂ を抜く</text>
+<circle cx="410" cy="178" r="10" fill="#c62828"/><text x="410" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">4</text>
+<text x="428" y="182" font-size="12.5" font-weight="700" fill="#0b2545">送血カニューレ</text>
+<text x="428" y="199" font-size="11.5" fill="#5a6473">大腿動脈 → 大動脈へ逆行性</text>
+<circle cx="410" cy="216" r="10" fill="#0277bd"/><text x="410" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5</text>
+<text x="428" y="220" font-size="12.5" font-weight="700" fill="#0b2545">熱交換器</text>
+<text x="428" y="237" font-size="11.5" fill="#5a6473">人工肺に内蔵・体温管理</text>
+<circle cx="410" cy="254" r="10" fill="#c62828"/><text x="410" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">6</text>
+<text x="428" y="258" font-size="12.5" font-weight="700" fill="#0b2545">下肢の順行性灌流</text>
+<text x="428" y="275" font-size="11.5" fill="#5a6473">送血側の脚の虚血を防ぐ</text>
+<rect x="398" y="286" width="290" height="58" rx="8" fill="#f3e5f5" stroke="#ce93d8"/>
+<circle cx="412" cy="304" r="10" fill="#7b1fa2"/><text x="412" y="308" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">!</text>
+<text x="428" y="308" font-size="12" font-weight="700" fill="#7b1fa2">混合点(北南症候群)</text>
+<text x="428" y="325" font-size="11" fill="#4a148c">心臓が動き出すと、ここより上(脳・冠動脈)は</text>
+<text x="428" y="339" font-size="11" fill="#4a148c">肺を通った酸素の少ない血液が灌流する</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 番号は上の構成要素①〜⑥と対応しています(前面像なので図の左が患者の右)。末梢VA-ECMOでは、大腿静脈から脱血した血液を人工肺で酸素化し、<u>大腿動脈から大動脈を逆行性に</u>送血します。送血側の脚は虚血になりやすいため、⑥の順行性灌流ラインを追加します。自己心拍が戻ると、ECMOの血流と心臓から出る血流が大動脈内でぶつかる<strong>混合点</strong>ができ、それより上流の脳・冠動脈が低酸素になるのが北南(Harlequin)症候群です。</div>
   </div>
 </section>
 

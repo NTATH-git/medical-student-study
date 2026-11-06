@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -222,6 +222,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -376,52 +382,82 @@
   </ol>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Impellaの位置と作用">
-      <text x="240" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">Impella の留置位置</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 540" role="img" aria-label="Impellaの留置位置。大腿動脈から逆行性に挿入したカテーテルが大動脈弁をまたぎ、流入口は左室内、流出口は上行大動脈内にある" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <defs>
+    <marker id="impArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker>
+  </defs>
+  <rect width="640" height="540" fill="#fff"/>
+  <text x="320" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">Impella の留置位置 ― 大動脈弁をまたいで置く</text>
+  <g transform="translate(0,36)">
 
-      <!-- LV outline -->
-      <path d="M 180 80 Q 240 70 290 100 L 285 220 Q 280 260 230 270 Q 180 260 175 220 Z" fill="#fce4e4" stroke="#c62828" stroke-width="2"/>
-      <text x="230" y="200" font-size="11" fill="#c62828" text-anchor="middle" font-weight="bold">左室(LV)</text>
+  <!-- aorta as a tube: outer wall + lumen -->
+  <path id="impAo" d="M258,262 L254,150 C252,86 330,62 400,70 C470,78 522,110 522,170 L522,470" fill="none" stroke="#c62828" stroke-width="50" stroke-linecap="butt"/>
+  <path d="M258,262 L254,150 C252,86 330,62 400,70 C470,78 522,110 522,170 L522,470" fill="none" stroke="#fdeeee" stroke-width="44" stroke-linecap="butt"/>
+  <!-- arch branches -->
+  <g stroke="#c62828" stroke-width="12" stroke-linecap="round"><line x1="318" y1="66" x2="312" y2="36"/><line x1="370" y1="52" x2="370" y2="28"/><line x1="420" y1="56" x2="428" y2="32"/></g>
+  
 
-      <!-- Aortic arch and aorta -->
-      <path d="M 280 100 Q 330 50 380 60 Q 420 70 410 130 Q 400 200 350 280" stroke="#c62828" stroke-width="2" fill="none"/>
-      <path d="M 295 100 Q 340 60 380 70 Q 405 80 395 130 Q 385 200 340 280" stroke="#c62828" stroke-width="2" fill="none"/>
-      <text x="380" y="55" font-size="10" fill="#c62828">上行大動脈</text>
+  <!-- left ventricle -->
+  <path d="M226,266 C196,300 204,382 268,414 C330,446 404,430 426,398 C448,364 424,296 384,268 C346,246 268,236 226,266 Z" fill="#fbe3e3" stroke="#c62828" stroke-width="3"/>
+  <text x="352" y="356" font-size="15" font-weight="700" fill="#c62828">左室</text>
+  <!-- aortic valve leaflets -->
+  <path d="M234,262 Q246,276 256,262 M258,262 Q270,276 282,262" fill="none" stroke="#0b2545" stroke-width="3"/>
 
-      <!-- AV (aortic valve) -->
-      <line x1="280" y1="100" x2="290" y2="100" stroke="#0b2545" stroke-width="3"/>
-      <line x1="295" y1="100" x2="305" y2="100" stroke="#0b2545" stroke-width="3"/>
-      <text x="312" y="98" font-size="9" fill="#0b2545">AV</text>
+  <!-- catheter (thin) from femoral, through arch, down ascending -->
+  <path d="M522,488 L522,170 C522,112 470,82 400,76 C334,70 262,92 262,150 L262,176" fill="none" stroke="#546e7a" stroke-width="4"/>
+  <!-- motor housing -->
+  <rect x="254" y="172" width="16" height="30" rx="3" fill="#37474f"/>
+  <!-- cannula: outlet (above valve) -> through valve -> inlet in LV -->
+  <path d="M262,202 L262,262 L300,322" fill="none" stroke="#90a4ae" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- outlet window -->
+  <rect x="255" y="208" width="14" height="22" fill="#fff" stroke="#37474f" stroke-width="1.5"/>
+  <!-- inlet window -->
+  <g transform="rotate(-34 296 316)"><rect x="289" y="302" width="14" height="22" fill="#fff" stroke="#37474f" stroke-width="1.5"/></g>
+  <!-- pigtail -->
+  <path d="M302,326 C316,348 334,356 340,374 C346,392 326,400 318,388 C312,378 324,370 330,378" fill="none" stroke="#546e7a" stroke-width="3.5" stroke-linecap="round"/>
 
-      <!-- Impella catheter -->
-      <line x1="360" y1="290" x2="290" y2="180" stroke="#5a6473" stroke-width="3"/>
-      <line x1="290" y1="180" x2="250" y2="200" stroke="#5a6473" stroke-width="3"/>
+  <!-- blood flow -->
+  <path d="M372,388 Q340,356 314,334" fill="none" stroke="#c62828" stroke-width="3" marker-end="url(#impArr)"/>
+  <path d="M242,206 L242,132" fill="none" stroke="#c62828" stroke-width="3" marker-end="url(#impArr)"/>
+  
 
-      <!-- Inflow (pigtail tip in LV) -->
-      <circle cx="245" cy="205" r="6" fill="#1565c0"/>
-      <path d="M 245 205 m -4 0 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0" fill="none" stroke="#1565c0" stroke-width="1"/>
-      <text x="195" y="225" font-size="9" fill="#1565c0">②流入口(LV内)</text>
+  <!-- labels (left column, numbered) -->
+  <g font-size="12.5">
+    <line x1="254" y1="187" x2="208" y2="166" stroke="#0b2545"/>
+    <circle cx="30" cy="160" r="10" fill="#0b2545"/><text x="30" y="164" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">3</text>
+    <text x="46" y="158" font-weight="700" fill="#0b2545">モーター</text><text x="46" y="175" font-size="11.5" fill="#5a6473">カテーテル先端の小型ポンプ</text>
 
-      <!-- Pump motor section -->
-      <rect x="278" y="170" width="14" height="20" fill="#7e57c2" rx="2"/>
-      <text x="295" y="178" font-size="8" fill="#7e57c2">①ポンプ</text>
+    <line x1="255" y1="219" x2="208" y2="222" stroke="#c62828"/>
+    <circle cx="30" cy="216" r="10" fill="#c62828"/><text x="30" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text>
+    <text x="46" y="214" font-weight="700" fill="#c62828">流出口:上行大動脈</text><text x="46" y="231" font-size="11.5" fill="#5a6473">血液をここから送り出す</text>
 
-      <!-- Outflow (above AV in aorta) -->
-      <circle cx="320" cy="135" r="4" fill="#c62828"/>
-      <text x="328" y="138" font-size="9" fill="#c62828">③流出口</text>
-      <text x="328" y="150" font-size="8" fill="#c62828">(大動脈内)</text>
+    <line x1="232" y1="264" x2="208" y2="276" stroke="#0b2545"/>
+    <circle cx="30" cy="272" r="10" fill="#0b2545"/><text x="30" y="276" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">4</text>
+    <text x="46" y="270" font-weight="700" fill="#0b2545">大動脈弁をまたぐ</text><text x="46" y="287" font-size="11.5" fill="#5a6473">弁の位置が正しさの目安</text>
 
-      <!-- Flow arrows -->
-      <path d="M 250 200 Q 270 190 290 180" stroke="#1565c0" stroke-width="2" fill="none" marker-end="url(#imp1)"/>
-      <path d="M 290 165 Q 310 145 320 135" stroke="#c62828" stroke-width="2" fill="none" marker-end="url(#imp2)"/>
+    <line x1="290" y1="318" x2="208" y2="334" stroke="#c62828"/>
+    <circle cx="30" cy="330" r="10" fill="#c62828"/><text x="30" y="334" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text>
+    <text x="46" y="328" font-weight="700" fill="#c62828">流入口:左室内</text><text x="46" y="345" font-size="11.5" fill="#5a6473">左室の血液を吸い込む</text>
 
-      <text x="200" y="295" font-size="9" fill="#5a6473">大腿動脈から逆行性に挿入</text>
+    <line x1="320" y1="390" x2="208" y2="402" stroke="#546e7a"/>
+    <circle cx="30" cy="398" r="10" fill="#546e7a"/><text x="30" y="402" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5</text>
+    <text x="46" y="396" font-weight="700" fill="#0b2545">ピッグテール</text><text x="46" y="413" font-size="11.5" fill="#5a6473">左室壁を傷つけない丸い先端</text>
+  </g>
+  <!-- access -->
+  
+  <text x="572" y="440" font-size="12" font-weight="700" fill="#546e7a">大腿動脈</text>
+  <text x="572" y="457" font-size="12" font-weight="700" fill="#546e7a">から挿入</text>
+  <text x="572" y="474" font-size="11" fill="#5a6473">(逆行性)</text>
+  <text x="456" y="140" font-size="11" fill="#5a6473" text-anchor="middle">大動脈弓</text>
+  <text x="568" y="260" font-size="11" fill="#5a6473">下行</text><text x="568" y="275" font-size="11" fill="#5a6473">大動脈</text>
+  <text x="196" y="110" font-size="11" fill="#5a6473" text-anchor="end">上行大動脈</text>
 
-      <defs>
-        <marker id="imp1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#1565c0"/></marker>
-        <marker id="imp2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="#c62828"/></marker>
-      </defs>
-    </svg>
+  <!-- flow summary -->
+  <rect x="150" y="452" width="340" height="34" rx="8" fill="#fff5f5" stroke="#f3c2c2"/>
+  <text x="320" y="474" text-anchor="middle" font-size="12.5" fill="#c62828" font-weight="700">左室 → 1 流入口 → 3 ポンプ → 2 流出口 → 大動脈</text>
+  </g>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> Impella は大腿動脈から逆行性に挿入し、カテーテル先端が<u>大動脈弁をまたぐ</u>位置に留置します。血液は 左室 → ①流入口(左室内) → ③ポンプ → ②流出口(上行大動脈) → 大動脈 の順に送られます。留置位置の目安は大動脈弁で、流入口が左室内・流出口が大動脈内にあることを心エコーやX線で確認します(模式図・前面像)。</div>
   </div>
 </section>
 

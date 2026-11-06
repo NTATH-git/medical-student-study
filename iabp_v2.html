@@ -110,8 +110,8 @@
   .ref-figure{background:#fff;border-radius:12px;padding:1.2rem;text-align:center;border:1px solid var(--border);margin:1.2rem 0;box-shadow:var(--shadow-sm);transition:box-shadow .25s var(--ease)}
   .ref-figure:hover{box-shadow:var(--shadow)}
   .ref-figure img{max-width:100%;height:auto;border-radius:8px;background:#fff}
-  .ref-figure.compact img{max-width:380px}
-  .ref-figure.wide img{max-width:560px}
+  .ref-figure.compact img{max-width:min(380px,100%)}
+  .ref-figure.wide img{max-width:min(560px,100%)}
   .ref-caption{font-size:.85rem;color:var(--text);margin-top:.8rem;text-align:left;line-height:1.7}
   .ref-caption strong{color:var(--navy)}
   .ref-attribution{font-size:.72rem;color:var(--muted);margin-top:.45rem;text-align:left;border-top:1px dashed var(--border);padding-top:.45rem;font-style:italic}
@@ -224,6 +224,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>
@@ -357,38 +363,90 @@
   </ul>
 
   <div class="diagram-wrap">
-    <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IABPの圧波形">
-      <text x="280" y="20" font-size="13" fill="#0b2545" text-anchor="middle" font-weight="bold">IABPによる動脈圧波形の変化</text>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-label="IABP 1:2補助時の動脈圧波形。拡張期増強は収縮期圧より高く、補助後の拡張末期圧と収縮期圧は補助なしより低い" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="720" height="400" fill="#fff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#0b2545">IABP 1:2 補助のときの動脈圧波形</text>
+  <text x="360" y="46" text-anchor="middle" font-size="12" fill="#5a6473">2拍に1回だけ補助するので、「補助あり」と「補助なし」を同じ波形の中で比べられる</text>
 
-      <!-- Axes -->
-      <line x1="50" y1="220" x2="540" y2="220" stroke="#000" stroke-width="1"/>
-      <line x1="50" y1="50" x2="50" y2="220" stroke="#000" stroke-width="1"/>
-      <text x="30" y="60" font-size="10" fill="#000">mmHg</text>
-      <text x="540" y="240" font-size="10" fill="#000" text-anchor="end">時間→</text>
+  <!-- grid: y = 290 - (p-50)*2 -->
+  <g stroke="#e6eaf0" stroke-width="1">
+    <line x1="70" y1="110" x2="470" y2="110"/><line x1="70" y1="150" x2="470" y2="150"/>
+    <line x1="70" y1="190" x2="470" y2="190"/><line x1="70" y1="230" x2="470" y2="230"/>
+    <line x1="70" y1="270" x2="470" y2="270"/>
+  </g>
+  <line x1="70" y1="90" x2="70" y2="290" stroke="#0b2545" stroke-width="1.5"/>
+  <line x1="70" y1="290" x2="470" y2="290" stroke="#0b2545" stroke-width="1.5"/>
+  <g font-size="11" fill="#5a6473" text-anchor="end">
+    <text x="64" y="114">140</text><text x="64" y="154">120</text><text x="64" y="194">100</text>
+    <text x="64" y="234">80</text><text x="64" y="274">60</text>
+  </g>
+  <text x="22" y="190" font-size="11" fill="#5a6473" transform="rotate(-90 22 190)" text-anchor="middle">動脈圧 (mmHg)</text>
 
-      <!-- Unassisted (gray dotted): one cardiac cycle -->
-      <path d="M 60 200 L 80 200 L 100 90 L 120 110 L 140 130 L 160 140 L 180 145 L 200 150 L 220 150" stroke="#999" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
-      <text x="135" y="80" font-size="10" fill="#999">補助なし</text>
+  <!-- beat zones -->
+  <rect x="74" y="290" width="196" height="20" fill="#eef2f7"/>
+  <rect x="270" y="290" width="200" height="20" fill="#fdecea"/>
+  <text x="172" y="304" text-anchor="middle" font-size="11" font-weight="700" fill="#5a6473">補助なしの収縮 → 補助される拡張期</text>
+  <text x="370" y="304" text-anchor="middle" font-size="11" font-weight="700" fill="#c62828">補助の効果が出た収縮</text>
 
-      <!-- Assisted -->
-      <path d="M 230 200 L 250 200 L 270 90 L 285 110 L 295 70 L 310 75 L 325 80 L 340 90 L 360 105 L 380 200" stroke="#c62828" stroke-width="2.5" fill="none"/>
+  <!-- reference lines (unassisted values) -->
+  <line x1="96" y1="150" x2="350" y2="150" stroke="#5a6473" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="74" y1="250" x2="320" y2="250" stroke="#5a6473" stroke-width="1" stroke-dasharray="4 4"/>
 
-      <!-- Augmented diastolic pressure label -->
-      <line x1="298" y1="70" x2="380" y2="40" stroke="#c62828" stroke-width="1"/>
-      <text x="385" y="45" font-size="10" fill="#c62828" font-weight="bold">①拡張期増強 (Augmentation)</text>
-      <text x="385" y="58" font-size="9" fill="#c62828">→ 冠血流↑</text>
+  <!-- trace -->
+  <path d="M74,250 C86,250 92,142 106,150
+           C118,156 140,178 156,186
+           C162,170 168,126 182,122
+           C200,124 232,226 262,264
+           C268,268 276,268 280,262
+           C290,250 296,164 310,166
+           C324,168 342,182 356,188
+           C362,184 366,184 370,188
+           C392,204 430,232 468,252"
+        fill="none" stroke="#c62828" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 
-      <!-- Reduced systolic / end-diastolic dip -->
-      <circle cx="380" cy="200" r="4" fill="#1565c0"/>
-      <line x1="383" y1="200" x2="450" y2="240" stroke="#1565c0" stroke-width="1"/>
-      <text x="455" y="245" font-size="10" fill="#1565c0" font-weight="bold">②拡張末期圧↓</text>
-      <text x="455" y="258" font-size="9" fill="#1565c0">→ 後負荷↓・需要↓</text>
+  <!-- key points + numbered tags -->
+  <g fill="#0b2545"><circle cx="106" cy="150" r="4.5"/><circle cx="156" cy="186" r="4.5"/></g>
+  <circle cx="182" cy="122" r="4.5" fill="#c62828"/>
+  <g fill="#1976d2"><circle cx="268" cy="266" r="4.5"/><circle cx="310" cy="166" r="4.5"/></g>
+  <g font-size="12" font-weight="700" text-anchor="middle" fill="#fff">
+    <line x1="106" y1="145" x2="100" y2="84" stroke="#0b2545"/><circle cx="100" cy="76" r="10" fill="#0b2545"/><text x="100" y="80">1</text>
+    <line x1="182" y1="117" x2="196" y2="84" stroke="#c62828"/><circle cx="198" cy="76" r="10" fill="#c62828"/><text x="198" y="80">2</text>
+    <line x1="156" y1="191" x2="140" y2="226" stroke="#0b2545"/><circle cx="136" cy="234" r="10" fill="#0b2545"/><text x="136" y="238">3</text>
+    <line x1="268" y1="271" x2="250" y2="276" stroke="#1976d2"/><circle cx="240" cy="278" r="10" fill="#1976d2"/><text x="240" y="282">4</text>
+    <line x1="313" y1="161" x2="332" y2="124" stroke="#1976d2"/><circle cx="336" cy="116" r="10" fill="#1976d2"/><text x="336" y="120">5</text>
+  </g>
 
-      <!-- Second assisted beat (partial) -->
-      <path d="M 380 200 L 400 200 L 420 95 L 435 115 L 445 75 L 460 80 L 475 85 L 490 95 L 510 110" stroke="#c62828" stroke-width="2.5" fill="none"/>
+  <!-- balloon timing strip -->
+  <text x="70" y="344" font-size="12" font-weight="700" fill="#0b2545">バルーン</text>
+  <line x1="130" y1="340" x2="470" y2="340" stroke="#cfd6df" stroke-width="2"/>
+  <rect x="156" y="331" width="110" height="18" rx="9" fill="#c62828"/>
+  <text x="211" y="344" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">膨張(拡張期)</text>
+  <line x1="156" y1="196" x2="156" y2="330" stroke="#c62828" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="266" y1="276" x2="266" y2="330" stroke="#c62828" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="150" y="368" text-anchor="middle" font-size="11" fill="#c62828">重複切痕で膨張</text>
+  <text x="290" y="368" text-anchor="middle" font-size="11" fill="#c62828">次の収縮の直前に収縮</text>
 
-      <text x="295" y="245" font-size="10" fill="#0b2545" text-anchor="middle">補助あり (1:1)</text>
-    </svg>
+  <!-- legend (right column) -->
+  <g font-size="12.5" fill="#1a1a1a">
+    <circle cx="502" cy="96" r="9" fill="#0b2545"/><text x="502" y="100" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
+    <text x="518" y="100">補助なしの収縮期圧</text>
+    <circle cx="502" cy="130" r="9" fill="#c62828"/><text x="502" y="134" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
+    <text x="518" y="134" font-weight="700" fill="#c62828">拡張期増強</text>
+    <text x="518" y="151" font-size="11.5" fill="#5a6473">収縮期圧より高い → 冠血流↑</text>
+    <circle cx="502" cy="182" r="9" fill="#0b2545"/><text x="502" y="186" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">3</text>
+    <text x="518" y="186">重複切痕(大動脈弁が閉鎖)</text>
+    <text x="518" y="203" font-size="11.5" fill="#5a6473">ここが膨張の合図</text>
+    <circle cx="502" cy="234" r="9" fill="#1976d2"/><text x="502" y="238" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">4</text>
+    <text x="518" y="238" font-weight="700" fill="#1976d2">補助後の拡張末期圧↓</text>
+    <circle cx="502" cy="268" r="9" fill="#1976d2"/><text x="502" y="272" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">5</text>
+    <text x="518" y="272" font-weight="700" fill="#1976d2">補助後の収縮期圧↓</text>
+    <text x="518" y="289" font-size="11.5" fill="#5a6473">後負荷↓ → 心筋酸素需要↓</text>
+  </g>
+  <rect x="490" y="318" width="218" height="54" rx="8" fill="#f5f8fc" stroke="#e1e5ea"/>
+  <text x="599" y="339" text-anchor="middle" font-size="11.5" fill="#0b2545" font-weight="700">点線 = 補助なしの値</text>
+  <text x="599" y="358" text-anchor="middle" font-size="11" fill="#5a6473">2 が点線より上、4・5 が下 → 適切</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 1:2補助では、補助された拡張期(2)の直後の収縮(5)と、補助されない収縮(1)を同じ画面で比較できます。<u>拡張期増強(2)が収縮期圧(1)を上回り</u>、補助後の拡張末期圧(4)・収縮期圧(5)が補助なしより下がっていれば、膨張・収縮のタイミングは適切です。</div>
   </div>
 </section>
 
