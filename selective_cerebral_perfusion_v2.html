@@ -585,43 +585,76 @@
   </div>
 
   <div class="diagram-wrap" aria-label="Unilateral vs Bilateral SACP の概念図">
-    <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="片側vs両側SACP">
-      <rect width="640" height="280" fill="#fff"/>
-      <text x="160" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#1976d2">Unilateral SACP</text>
-      <text x="480" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#c62828">Bilateral SACP</text>
-      <!-- Left panel (Unilateral) -->
-      <g transform="translate(20,40)">
-        <!-- Willis ring -->
-        <ellipse cx="140" cy="80" rx="90" ry="22" fill="none" stroke="#0b2545" stroke-width="2"/>
-        <text x="140" y="85" text-anchor="middle" font-size="10" fill="#0b2545">Willis 輪</text>
-        <!-- right ICA active -->
-        <line x1="100" y1="180" x2="100" y2="100" stroke="#1976d2" stroke-width="6"/>
-        <text x="70" y="195" font-size="10" fill="#1976d2">BCA→右ICA</text>
-        <!-- left ICA passive -->
-        <line x1="180" y1="180" x2="180" y2="100" stroke="#cfd8dc" stroke-width="3" stroke-dasharray="4 3"/>
-        <text x="190" y="195" font-size="10" fill="#90a4ae">LCC(off)</text>
-        <!-- left hemisphere fed via Willis -->
-        <path d="M 100 80 Q 140 65 180 80" stroke="#1976d2" stroke-width="2" fill="none"/>
-        <text x="140" y="60" text-anchor="middle" font-size="9" fill="#1976d2">→ Willis 輪経由で左へ</text>
-        <!-- caveat -->
-        <text x="140" y="220" text-anchor="middle" font-size="10" fill="#c62828">⚠ Willis 不完全例で左半球乏血</text>
-      </g>
-      <!-- Right panel (Bilateral) -->
-      <g transform="translate(340,40)">
-        <ellipse cx="140" cy="80" rx="90" ry="22" fill="none" stroke="#0b2545" stroke-width="2"/>
-        <text x="140" y="85" text-anchor="middle" font-size="10" fill="#0b2545">Willis 輪</text>
-        <!-- both active -->
-        <line x1="100" y1="180" x2="100" y2="100" stroke="#c62828" stroke-width="6"/>
-        <text x="70" y="195" font-size="10" fill="#c62828">BCA→右ICA</text>
-        <line x1="180" y1="180" x2="180" y2="100" stroke="#c62828" stroke-width="6"/>
-        <text x="190" y="195" font-size="10" fill="#c62828">LCCバルーン</text>
-        <text x="140" y="60" text-anchor="middle" font-size="9" fill="#c62828">両半球とも独立に灌流</text>
-        <text x="140" y="220" text-anchor="middle" font-size="10" fill="#2e7d32">✅ Willis輪に非依存</text>
-      </g>
-    </svg>
-    <div class="diagram-caption">
-      <strong>図:</strong> Unilateral(左)では BCA 経由で右内頸動脈に送血、左半球は Willis 輪頼み。Bilateral(右)は LCC バルーンで左半球にも独立灌流。NIRS rSO₂ 左右差は両者の判別と切替判断の中心モニタ。
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-label="片側SACPと両側SACPの比較。片側では右腋窩から腕頭動脈を通って右総頸動脈だけに送血し、左半球はウィリス動脈輪を介した血流に頼る。両側では左総頸動脈にもバルーンカテーテルで送血し、左右の半球を独立して灌流する" font-family="-apple-system,'Hiragino Sans','Yu Gothic',sans-serif">
+<rect width="720" height="470" fill="#fff"/>
+<text x="360.0" y="22" text-anchor="middle" font-size="12" fill="#5a6473">前から見た図(図の左 = 患者の右)・下半身は循環停止、弓部は開放中</text>
+<line x1="360" y1="36" x2="360" y2="440" stroke="#e3e7ee" stroke-width="1.5"/>
+<text x="180" y="56" text-anchor="middle" font-size="15" font-weight="800" fill="#1565c0">片側 SACP(unilateral)</text>
+<path d="M88,150 C88,92 128,78 176,80 L176,150 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.8"/>
+<path d="M184,150 L184,80 C232,78 272,92 272,150 Z" fill="#fff8e1" stroke="#f9a825" stroke-width="1.8" stroke-dasharray="5 3"/>
+<text x="132" y="120" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1b5e20">右半球</text>
+<text x="228" y="120" text-anchor="middle" font-size="12.5" font-weight="700" fill="#e65100">左半球</text>
+<text x="228" y="137" text-anchor="middle" font-size="11" fill="#e65100">輪からの血流頼み</text>
+<rect x="122" y="160" width="116" height="26" rx="13" fill="none" stroke="#e53935" stroke-width="5"/>
+<text x="180" y="204" text-anchor="middle" font-size="11" fill="#5a6473">Willis 動脈輪</text>
+<path d="M132,186 L132,262" fill="none" stroke="#b71c1c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M132,186 L132,262" fill="none" stroke="#e53935" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M228,186 C228,230 210,262 202,300" fill="none" stroke="#90a4ae" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M228,186 C228,230 210,262 202,300" fill="none" stroke="#cfd8dc" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M132,262 C106,250 74,250 36,258" fill="none" stroke="#b71c1c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M132,262 C106,250 74,250 36,258" fill="none" stroke="#e53935" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M132,262 L150,296" fill="none" stroke="#b71c1c" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M132,262 L150,296" fill="none" stroke="#e53935" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M260,300 C272,276 292,262 328,258" fill="none" stroke="#90a4ae" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M260,300 C272,276 292,262 328,258" fill="none" stroke="#cfd8dc" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M122,420 L122,345 C122,300 170,290 210,292 C260,294 292,318 292,360 L292,430" fill="none" stroke="#ef9a9a" stroke-width="26" stroke-linecap="round"/>
+<text x="207" y="352" text-anchor="middle" font-size="11" fill="#5a6473">弓部(循環停止)</text>
+<path d="M62,252 L52,300" stroke="#2e7d32" stroke-width="6" stroke-linecap="round"/>
+<text x="28" y="318" font-size="11.5" font-weight="700" fill="#2e7d32">右腋窩から送血</text>
+<line x1="133.6" y1="292.0" x2="154.4" y2="280.0" stroke="#212121" stroke-width="5" stroke-linecap="round"/>
+<line x1="256.8" y1="282.3" x2="275.2" y2="297.7" stroke="#212121" stroke-width="5" stroke-linecap="round"/>
+<path d="M110.0,252.0 L96.4,258.0 L96.4,246.0 z" fill="#2e7d32" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M132.0,220.0 L138.0,233.6 L126.0,233.6 z" fill="#2e7d32" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+<line x1="199.9" y1="276.7" x2="208.1" y2="299.3" stroke="#212121" stroke-width="5" stroke-linecap="round"/>
+<text x="240" y="222" font-size="11.5" fill="#5a6473">LCC は遮断</text>
+<text x="240" y="237" font-size="11.5" fill="#5a6473">(送血なし)</text>
+<path d="M188.0,160.0 L174.4,166.0 L174.4,154.0 z" fill="#2e7d32" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+<rect x="30" y="440" width="300" height="24" rx="6" fill="#fff3e0"/>
+<text x="180" y="457" text-anchor="middle" font-size="12" font-weight="700" fill="#e65100">輪が不完全だと左半球が乏血 → NIRS 左右差</text>
+<text x="540" y="56" text-anchor="middle" font-size="15" font-weight="800" fill="#2e7d32">両側 SACP(bilateral)</text>
+<path d="M448,150 C448,92 488,78 536,80 L536,150 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.8"/>
+<path d="M544,150 L544,80 C592,78 632,92 632,150 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.8"/>
+<text x="492" y="120" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1b5e20">右半球</text>
+<text x="588" y="120" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1b5e20">左半球</text>
+<rect x="482" y="160" width="116" height="26" rx="13" fill="none" stroke="#e53935" stroke-width="5"/>
+<text x="540" y="204" text-anchor="middle" font-size="11" fill="#5a6473">Willis 動脈輪</text>
+<path d="M492,186 L492,262" fill="none" stroke="#b71c1c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M492,186 L492,262" fill="none" stroke="#e53935" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M588,186 C588,230 570,262 562,300" fill="none" stroke="#b71c1c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M588,186 C588,230 570,262 562,300" fill="none" stroke="#e53935" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M492,262 C466,250 434,250 396,258" fill="none" stroke="#b71c1c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M492,262 C466,250 434,250 396,258" fill="none" stroke="#e53935" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M492,262 L510,296" fill="none" stroke="#b71c1c" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M492,262 L510,296" fill="none" stroke="#e53935" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M620,300 C632,276 652,262 688,258" fill="none" stroke="#90a4ae" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M620,300 C632,276 652,262 688,258" fill="none" stroke="#cfd8dc" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M482,420 L482,345 C482,300 530,290 570,292 C620,294 652,318 652,360 L652,430" fill="none" stroke="#ef9a9a" stroke-width="26" stroke-linecap="round"/>
+<text x="567" y="352" text-anchor="middle" font-size="11" fill="#5a6473">弓部(循環停止)</text>
+<path d="M422,252 L412,300" stroke="#2e7d32" stroke-width="6" stroke-linecap="round"/>
+<text x="388" y="318" font-size="11.5" font-weight="700" fill="#2e7d32">右腋窩から送血</text>
+<line x1="493.6" y1="292.0" x2="514.4" y2="280.0" stroke="#212121" stroke-width="5" stroke-linecap="round"/>
+<line x1="616.8" y1="282.3" x2="635.2" y2="297.7" stroke="#212121" stroke-width="5" stroke-linecap="round"/>
+<path d="M470.0,252.0 L456.4,258.0 L456.4,246.0 z" fill="#2e7d32" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M492.0,220.0 L498.0,233.6 L486.0,233.6 z" fill="#2e7d32" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+<ellipse cx="566" cy="284" rx="7" ry="12" transform="rotate(-15 566 284)" fill="#ffd54f" stroke="#f57c00" stroke-width="1.6"/>
+<line x1="567" y1="296" x2="570" y2="332" stroke="#2e7d32" stroke-width="3" stroke-dasharray="5 3"/>
+<path d="M583.3,220.0 L590.5,233.1 L578.5,234.1 z" fill="#2e7d32" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="600" y="222" font-size="11.5" font-weight="700" fill="#2e7d32">LCC にバルーン</text>
+<text x="600" y="237" font-size="11.5" font-weight="700" fill="#2e7d32">カテーテルで送血</text>
+<rect x="390" y="440" width="300" height="24" rx="6" fill="#e8f5e9"/>
+<text x="540" y="457" text-anchor="middle" font-size="12" font-weight="700" fill="#1b5e20">Willis 輪に頼らず、左右とも直接灌流</text>
+</svg>
+    <div class="diagram-caption"><strong>図の読み方:</strong> 前から見た図で、図の左が患者の右です。片側(左)では右腋窩から送った血液が右総頸動脈だけに入り、左半球には Willis 動脈輪を回って届きます。両側(右)では左総頸動脈にもバルーンカテーテルで送血するので、輪がつながっていなくても左右とも灌流されます。左鎖骨下動脈はどちらも遮断した例で描いています。NIRS の左右差が、片側から両側へ切り替える判断の手がかりになります。</div>
   </div>
 </section>
 
