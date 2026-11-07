@@ -175,6 +175,12 @@
   .drawer-content a.weekly-link::after{content:"NEW";position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);background:var(--accent);color:#fff;font-size:.62rem;font-weight:800;padding:.12rem .45rem;border-radius:99px;letter-spacing:.04em}
   @keyframes weeklyLinkBlink{0%,100%{box-shadow:inset 0 0 0 0 rgba(198,40,40,.0)}50%{box-shadow:inset 4px 0 0 0 rgba(198,40,40,.55)}}
   @media (prefers-reduced-motion:reduce){.drawer-content a.weekly-link{animation:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram-wrap > svg{min-width:600px}
+    .diagram-wrap::after{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-top:.35rem}
+  }
 </style>
 </head>
 <body>

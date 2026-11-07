@@ -107,6 +107,13 @@
   @media(max-width:720px){.class-overview,.vs-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.site-logo .logo-text{max-width:50vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
   @media(max-width:430px){main{padding:1.4rem .8rem 2.5rem}section.content{padding:1.25rem 1rem}.hero{min-height:auto;padding:6rem 1rem 4rem}.flow{grid-template-columns:1fr}.topbar-btn .label{display:none}.topbar-btn{padding:.45rem .65rem}.safety-banner{grid-template-columns:1fr;text-align:center}.diagram{padding:.6rem}}
   @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.reveal{opacity:1;transform:none;transition:none}}
+  /* small screens: keep diagrams legible; scroll inside the frame instead of shrinking text */
+  @media (max-width:600px){
+    .diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .diagram > svg{min-width:600px}
+    .diagram > .diagram-caption{position:sticky;left:0}
+    .diagram > svg + .diagram-caption::before{content:"← 図は横にスクロールできます →";display:block;font-size:.72rem;color:#5a6473;text-align:center;margin-bottom:.35rem}
+  }
 </style>
 </head>
 <body>
