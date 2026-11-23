@@ -352,7 +352,7 @@
     <div class="hero-meta">
       <span class="hero-chip">🎓 <strong>高学年</strong> 対象</span>
       <span class="hero-chip">📊 <strong>9</strong> セクション</span>
-      <span class="hero-chip">❓ <strong>8</strong> 問クイズ</span>
+      <span class="hero-chip">❓ <strong>9</strong> 問クイズ</span>
     </div>
   </div>
   <a href="#overview" class="scroll-indicator" aria-label="下にスクロール">
@@ -573,6 +573,19 @@
           <g id="tar-cannula-ao"><path d="M110 207 L184 207" stroke="#546e7a" stroke-width="6" fill="none"/>
             <text x="56" y="194" font-size="13" font-weight="700" fill="#0b2545">上行大動脈 送血</text></g>
           <g id="tar-lbl-rsa"><text x="60" y="24" font-size="12.5" fill="#0b2545">右鎖骨下A</text></g>
+          <g id="tar-cannula-ra">
+            <path d="M150 316 L150 240 M160 378 L160 424" stroke="#3949ab" stroke-width="17" fill="none"/>
+            <path d="M150 318 L150 240 M160 376 L160 424" stroke="#9fa8da" stroke-width="12" fill="none"/>
+            <path d="M2 275 L136 275 Q150 275 150 262" stroke="#546e7a" stroke-width="6" fill="none"/>
+            <path d="M150 262 L150 248" stroke="#546e7a" stroke-width="5" fill="none" stroke-dasharray="4 3"/>
+            <path d="M2 360 L132 360 Q160 360 160 388" stroke="#546e7a" stroke-width="6" fill="none"/>
+            <path d="M160 388 L160 414" stroke="#546e7a" stroke-width="5" fill="none" stroke-dasharray="4 3"/>
+            <text x="2" y="262" font-size="12.5" font-weight="700" fill="#0b2545">上大静脈へ 脱血管</text>
+            <text x="2" y="388" font-size="12.5" font-weight="700" fill="#0b2545">下大静脈へ 脱血管</text>
+            <text x="136" y="236" text-anchor="end" font-size="12" fill="#3949ab">上大静脈</text>
+            <text x="174" y="424" font-size="12" fill="#3949ab">下大静脈</text></g>
+          <path id="f-ven-s" class="flow" d="M150 250 L150 262 Q150 275 136 275 L4 275" fill="none" stroke="#7b1fa2" stroke-width="4" stroke-linecap="round"/>
+          <path id="f-ven-i" class="flow" d="M160 412 L160 388 Q160 360 132 360 L4 360" fill="none" stroke="#7b1fa2" stroke-width="4" stroke-linecap="round"/>
           <g id="tar-cannula-side"><path d="M52 150 L110 150" stroke="#546e7a" stroke-width="6" fill="none"/>
             <text x="40" y="178" font-size="12.5" fill="#0b2545">側枝から下半身へ送血</text></g>
           <g id="tar-clamp-asc"><rect x="170" y="252" width="60" height="8" rx="2" fill="#111"/><text x="236" y="261" font-size="12.5" fill="#111">遮断</text></g>
@@ -584,7 +597,7 @@
           <g font-size="12.5" fill="#0b2545" text-anchor="middle">
             <text x="250" y="-14">右総頸A</text><text x="310" y="-14">左総頸A</text><text x="375" y="-14">左鎖骨下A</text>
           </g>
-          <text x="170" y="282" text-anchor="end" font-size="12.5" fill="#0b2545">上行大動脈</text>
+          <text x="226" y="292" font-size="12.5" fill="#0b2545">上行大動脈</text>
           <text x="462" y="372" font-size="12.5" fill="#0b2545">下行大動脈</text>
         </g>
       </svg>
@@ -596,6 +609,7 @@
       <span><i style="background:#fdd835;border-color:#f57f17;border-radius:50%"></i>バルーン</span>
       <span><i class="ln" style="background:#1e8c3a"></i>脳の回路(SCP)</span>
       <span><i class="ln" style="background:#1565c0"></i>体の回路・自己心拍</span>
+      <span><i class="ln" style="background:#7b1fa2"></i>脱血(静脈血)</span>
     </div>
     <div class="ix-readout">
       <div class="ix-chip"><div class="k">膀胱温</div><div class="v" id="tarTemp">—</div></div>
@@ -660,8 +674,13 @@
         <li><strong>右腋窩動脈から送る場合:</strong> 鎖骨下の小切開で露出し、人工血管を端側吻合して送血管をつなぐ方法が多い</li>
         <li><strong>上行大動脈から送る場合:</strong> 腕頭動脈の少し手前に送血管を入れる。術前 CT や大動脈表面エコーで、粥腫・解離のない場所を選ぶ</li>
         <li><strong>胸骨正中切開:</strong> 心膜を開け、上行大動脈から弓部・3分枝を見えるようにする</li>
-        <li><strong>ヘパリン投与 → 送脱血管:</strong> ACT を確認して右腋窩動脈から送血、右房から脱血</li>
+        <li><strong>ヘパリン投与 → 送血管 → 脱血管の順:</strong> ACT を確認してから入れる。送血を先に確保しておくと、脱血管を入れる途中で出血や低血圧が起きても、すぐ人工心肺から補える</li>
+        <li><strong>脱血管(上・下大静脈の二本脱血):</strong> 右房に巾着縫合(purse-string)を2か所かけ、1本は上大静脈へ、もう1本は下大静脈へ進める。2本を Y 字コネクタでまとめて人工心肺へ戻す</li>
+        <li><strong>二本にする理由:</strong> 上大静脈側の脱血を確実にでき、SCP 中に脳の静脈がうっ滞するのを防ぎやすい。逆行性脳灌流(RCP)への切り替えや右房を開く操作にも、大静脈をテープで締めるだけで対応できる</li>
+        <li><strong>逆行性心筋保護のカニューレ:</strong> 右房の別の巾着縫合から冠静脈洞へ入れる</li>
+        <li><strong>脱血の確認:</strong> 人工心肺を始めたら、リザーバーの液面・中心静脈圧・顔面のうっ血を見る。陰圧吸引脱血(VAVD)を併用する施設も多い</li>
       </ul>
+      <div class="pitfall"><strong>⚠ ピットフォール(脱血不良):</strong> 心臓を持ち上げたり位置を変えたりすると、脱血管の先端がずれて脱血が悪くなります。とくに上大静脈の脱血管が浅くなったり折れ曲がったりして上大静脈側がうっ滞すると、SCP 中は脳の静脈圧が上がって脳灌流を妨げます。中心静脈圧(上大静脈)と顔面のうっ血に注意します。</div>
       <div class="tip-inline"><strong>💡 右腋窩動脈と上行大動脈の違い:</strong> 右腋窩動脈は動脈硬化が少なく、循環停止中もそのまま右脳への SCP に使えます。上行大動脈は追加の皮膚切開がいらず手早く入れられますが、弓部を開くときに抜くため、SCP は3本ともバルーンで行います。粥腫の多い上行大動脈は塞栓の原因になるため避けます。大腿動脈からの逆行性送血は、下行大動脈のプラークを脳へ飛ばす心配があります。</div>
     </div></div>
   </div>
@@ -783,6 +802,7 @@
       <thead><tr><th>項目</th><th>このページの例</th><th>ほかのやり方</th></tr></thead>
       <tbody>
         <tr><td>送血路</td><td>右腋窩動脈、上行大動脈(ステップ図で切り替え可)</td><td>腕頭動脈、大腿動脈(併用を含む)</td></tr>
+        <tr><td>脱血</td><td>上・下大静脈の二本脱血</td><td>右心耳から二段脱血管1本、大腿静脈からの脱血(再手術など)</td></tr>
         <tr><td>冷却温度</td><td>膀胱温 25–28℃(中等度低体温)</td><td>より浅い低体温(28℃以上)、以前は 20℃前後の超低体温</td></tr>
         <tr><td>脳保護</td><td>SCP(3分枝)</td><td>逆行性脳灌流(RCP)、超低体温循環停止(DHCA)単独</td></tr>
         <tr><td>吻合の順番</td><td>末梢側 → 中枢側 → 分枝(distal-first)</td><td>分枝を先に再建する arch-first、分枝を島状に一括で吻合する方法</td></tr>
@@ -813,9 +833,9 @@
 </section>
 
 <section class="content reveal" id="quiz">
-  <h2>8. 理解度チェック(全8問)</h2>
+  <h2>8. 理解度チェック(全9問)</h2>
   <div class="quiz" id="quizContainer">
-    <div class="progress" id="progress">問題 1 / 8</div>
+    <div class="progress" id="progress">問題 1 / 9</div>
     <div class="quiz-q" id="questionText"></div>
     <div class="quiz-choices" id="choices"></div>
     <div class="quiz-feedback" id="feedback"></div>
@@ -825,7 +845,7 @@
     </div>
     <div class="score-display" id="scoreDisplay">
       <div>最終得点</div>
-      <div class="big" id="finalScore">0 / 8</div>
+      <div class="big" id="finalScore">0 / 9</div>
       <div id="comment"></div>
       <button class="btn" id="restartBtn" style="margin-top:1rem">もう一度</button>
     </div>
@@ -850,6 +870,9 @@
         <tr><td>Arch-first</td><td>頸部分枝を先に再建し、脳の虚血を早く終える方法</td></tr>
         <tr><td>4分枝付き人工血管</td><td>3分枝用の枝と、送血用の側枝を1本持つ人工血管</td></tr>
         <tr><td>NIRS</td><td>近赤外線分光法。前額で脳の酸素飽和度(rSO₂)を連続で測る</td></tr>
+        <tr><td>二本脱血(bicaval cannulation)</td><td>上大静脈と下大静脈に1本ずつ脱血管を入れる方法。大静脈をテープで締めれば右房を開けられる</td></tr>
+        <tr><td>二段脱血管(two-stage cannula)</td><td>先端が下大静脈、途中の側孔が右房に位置する1本の脱血管。二本脱血の代わりに使う施設もある</td></tr>
+        <tr><td>VAVD</td><td>Vacuum-Assisted Venous Drainage(陰圧吸引脱血)。リザーバーに陰圧をかけて脱血を助ける</td></tr>
         <tr><td>左室ベント</td><td>左室にたまる血液を抜く管。心臓の過伸展を防ぐ</td></tr>
         <tr><td>反回神経</td><td>声帯を動かす神経。左は大動脈弓の下を回るため弓部手術で傷つきやすい</td></tr>
       </tbody>
@@ -1056,7 +1079,8 @@ const btt = document.getElementById('backToTop');
     {q:"大動脈遮断を解除して心拍が再開するのは、どの吻合の後か。",choices:["末梢側吻合","左鎖骨下動脈の吻合","中枢側(上行大動脈)の吻合","腕頭動脈の吻合"],correct:2,explain:"中枢側吻合を終え、脱気してから遮断を外すと冠動脈に血液が流れる。頸部分枝はその後につなぐため、心停止時間を短くできる。"},
     {q:"FET(Frozen Elephant Trunk)について正しいのはどれか。",choices:["上行大動脈に入れるステント","下行大動脈に入れるステント付き人工血管で、残った病変の追加治療(TEVAR)の足場にもなる","脳分離用のバルーンカテーテル","脊髄障害を必ず防ぐ装置"],correct:1,explain:"FET は下行大動脈まで病変が続く例で用いる。長く入れるほど肋間動脈を覆い、脊髄障害が増えるため長さの選択が大切。"},
     {q:"末梢側吻合を浅い位置(zone 0–2)で行う利点として正しいのはどれか。",choices:["反回神経を傷つけにくく、視野がよい","下半身の循環停止が不要になる","SCP が不要になる","心筋保護液が不要になる"],correct:0,explain:"深い位置での吻合は視野が悪く、左反回神経の損傷や止血困難につながりやすい。FET を併用すると浅い位置で吻合しやすくなる。"},
-    {q:"SCP 中に NIRS の左右差が大きく開いた。まず疑うべきことはどれか。",choices:["体温が高すぎる","バルーンカテーテルの位置ずれ・折れ曲がりや、片側の灌流不足","心筋保護液が足りない","下半身の送血が多すぎる"],correct:1,explain:"左右差は片側の脳灌流不足のサイン。カテーテルの位置・圧・流量を確認する。詳しくは選択的脳灌流のページを参照。"}
+    {q:"SCP 中に NIRS の左右差が大きく開いた。まず疑うべきことはどれか。",choices:["体温が高すぎる","バルーンカテーテルの位置ずれ・折れ曲がりや、片側の灌流不足","心筋保護液が足りない","下半身の送血が多すぎる"],correct:1,explain:"左右差は片側の脳灌流不足のサイン。カテーテルの位置・圧・流量を確認する。詳しくは選択的脳灌流のページを参照。"},
+    {q:"体外循環を始める前に送血管と脱血管を入れる順番として、一般的なのはどれか。",choices:["脱血管が先、送血管があと","送血管が先、脱血管があと","同時に入れる","順番は決まっていない"],correct:1,explain:"送血管を先に入れておくと、脱血管を入れる途中で出血や低血圧が起きても、すぐ人工心肺から血液を補える。このページの例では、脱血管は上大静脈と下大静脈に1本ずつ入れる(二本脱血)。"}
   ];
   let idx=0,score=0,answered=false;
   const qText=document.getElementById('questionText'),choicesEl=document.getElementById('choices'),feedback=document.getElementById('feedback'),nextBtn=document.getElementById('nextBtn'),progress=document.getElementById('progress'),scoreEl=document.getElementById('score'),scoreDisplay=document.getElementById('scoreDisplay'),finalScore=document.getElementById('finalScore'),comment=document.getElementById('comment'),restartBtn=document.getElementById('restartBtn');
@@ -1106,8 +1130,8 @@ const btt = document.getElementById('backToTop');
   var root=document.getElementById('tarIx'); if(!root) return;
   var STEPS=[
     {t:'胸骨正中切開・送脱血管', temp:'36℃', brain:'自己心拍', body:'自己心拍', cor:'拍動',
-     d:'胸骨正中切開で心臓と弓部を出します。ヘパリンを入れたあと、<b>右腋窩動脈</b>に送血管(人工血管を端側吻合して挿入することが多い)、右房に脱血管を入れます。まだ血液は自分の心臓が送っています。',
-     ao:'胸骨正中切開で心臓と弓部を出します。ヘパリンを入れたあと、<b>上行大動脈</b>(腕頭動脈の少し手前)に送血管、右房に脱血管を入れます。術前 CT や大動脈表面エコーで、送血部位に粥腫や解離がないことを確かめます。まだ血液は自分の心臓が送っています。'},
+     d:'胸骨正中切開で心臓と弓部を出します。ヘパリンを入れたあと、<b>右腋窩動脈</b>に送血管(人工血管を端側吻合して挿入することが多い)、<b>上大静脈と下大静脈に1本ずつ</b>脱血管を入れます(紫は人工心肺が始まってからの脱血)。まだ血液は自分の心臓が送っています。',
+     ao:'胸骨正中切開で心臓と弓部を出します。ヘパリンを入れたあと、<b>上行大動脈</b>(腕頭動脈の少し手前)に送血管、<b>上大静脈と下大静脈に1本ずつ</b>脱血管を入れます。術前 CT や大動脈表面エコーで、送血部位に粥腫や解離がないことを確かめます。まだ血液は自分の心臓が送っています。'},
     {t:'体外循環開始・冷却', temp:'36 → 28℃', brain:'人工心肺', body:'人工心肺', cor:'拍動(冷却で細動へ)',
      ao:'人工心肺を回し、上行大動脈から全身へ送ります。<b>膀胱温 25–28℃</b> まで冷やし、右上肺静脈から左室ベントを入れて心臓が張りすぎないようにします。',
      d:'人工心肺を回し、右腋窩動脈から全身へ送ります。<b>膀胱温 25–28℃</b> まで冷やし、右上肺静脈から左室ベントを入れて心臓が張りすぎないようにします。'},
@@ -1138,6 +1162,7 @@ const btt = document.getElementById('backToTop');
     'tar-fet':[5,6,7,8,9,10],'tar-graft-arch':[5,6,7,8,9,10],'tar-graft-side':[5,6,7,8,9,10],
     'tar-graft-asc':[8,9,10],'tar-graft-lsca':[7,8,9,10],'tar-graft-lcca':[9,10],'tar-graft-bca':[9,10],
     'tar-cannula-ax':[1,2,3,4,5,6,7,8,9],'tar-cannula-side':[6,7,8,9],
+    'tar-cannula-ra':[1,2,3,4,5,6,7,8,9],'f-ven-s':[2,3,4,5,6,7,8,9],'f-ven-i':[2,3,4,5,6,7,8,9],
     'tar-clamp-asc':[3,4,5,6,7],'tar-clamp-graft':[6,7],'tar-clamp-bca':[4,5,6,7,8],
     'tar-bal-lcca':[4,5,6,7,8],'tar-bal-lsca':[4,5,6],
     'f-asc':[1,8,9,10],'f-arch':[1,2,3,8,9,10],'f-arch2':[6,7],'f-desc':[1,2,3,6,7,8,9,10],'f-side':[6,7,8,9],
